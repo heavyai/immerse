@@ -1,0 +1,98 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../variables";
+
+.notebook-button-group {
+  display: flex;
+  gap: $spacing-04;
+}
+
+.notebook-button {
+  // Default button styles
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-06;
+
+  color: $defaultButtonText;
+  background-color: $defaultButton;
+  border: 0;
+  border-radius: 8px;
+  padding: $spacing-05 $spacing-06;
+  font-weight: 500;
+  font-size: $fontSizeNormal;
+
+  // Be a button
+  &:hover {
+    cursor: pointer;
+  }
+
+  // Icon
+  .notebook-button__icon {
+    height: 24px;
+    width: 24px;
+    svg {
+      fill: $buttonText;
+    }
+  }
+
+  // Default outline button styles
+  &.button-outlined {
+    border: 1px solid $outlineButtonBorder;
+    background-color: var(--outline-button-background);
+    color: $outlineButtonTextColor;
+    &:hover {
+      background-color: var(--outline-button-hover-background);
+      color: var(--outline-button-hover-text-color);
+    }
+  }
+
+  &.button-success {
+    background-color: $successButton;
+    &:hover {
+      background-color: $successButtonActive;
+    }
+  }
+
+  &.button-secondary {
+    background-color: $secondaryButton;
+    &:hover {
+      background-color: $secondaryButtonActive;
+    }
+  }
+
+  &.button-primary {
+    background-color: $primaryButton;
+    &:hover {
+      background-color: $primaryButtonActive;
+    }
+  }
+
+  &.button-error {
+    background-color: $errorButton;
+    &:hover {
+      background-color: $errorButtonActive;
+    }
+  }
+
+  &:disabled {
+    border: 0;
+    pointer-events: none;
+    background-color: var(--button-disabled-background);
+    color: var(--button-disabled-text-color);
+    svg {
+      fill: var(--button-disabled-text-color);
+    }
+  }
+
+  &:not(:disabled) i {
+    transition: transform ease-in-out 250ms;
+  }
+
+  &:not(:disabled) {
+    transition: background-color ease-in-out 200ms;
+  }
+}

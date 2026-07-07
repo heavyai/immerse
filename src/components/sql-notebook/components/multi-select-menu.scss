@@ -1,0 +1,58 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../mixins";
+
+body {
+  --menuAnchorOutline: #{$icon-dim};
+
+  --menuAnchorSelectedBackground: var(--secondary-400);
+  --menuAnchorSelectedOutline: var(--secondary-300);
+
+  --menuAnchorSelectedText: var(--gray-50);
+  --menuAnchorSelectedTextActive: $solid;
+}
+
+.toggle-menu-multi-select {
+  .multi-select__menu-anchor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-03 $spacing-05;
+    gap: $spacing-04;
+    @include menu-anchor-pill;
+
+    svg {
+      fill: var(--menuAnchorOutline);
+    }
+
+    // When there are options selected, "active" state
+    &.has-selected-options {
+      background: var(--menuAnchorSelectedBackground);
+      border: 1px solid var(--menuAnchorSelectedOutline);
+      color: var(--menuAnchorSelectedText);
+      svg {
+        fill: var(--menuAnchorSelectedText);
+      }
+
+      &:hover {
+        background: var(--menuAnchorSelectedOutline);
+      }
+    }
+
+    .clear-option {
+      display: flex;
+      font-size: $fontSizeNormal;
+      &:hover {
+        color: var(--menuAnchorSelectedTextActive);
+      }
+    }
+  }
+}
+
+.multi-select__menu-surface {
+  background-color: transparent;
+}

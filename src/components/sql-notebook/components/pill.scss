@@ -1,0 +1,61 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.sql-notebook-pill {
+  color: var(--pill-text-color);
+  font-size: $fontSizeSmall;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--pill-border-color);
+  margin: $spacing-02;
+  flex: 1;
+  min-width: 0;
+  max-width: fit-content;
+  font-weight: 700;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  // Hover effects for clickable things
+  &:not(.sql-notebook-pill--read-only) {
+    cursor: pointer;
+    &:hover {
+      background-color: $grayDp1;
+    }
+    span.sql-notebook-pill__label, .sql-notebook-pill__trailing-icon {
+      &:hover {
+        color: $solid;
+      }
+    }
+  }
+
+  span.sql-notebook-pill__label {
+    padding: $spacing-02 $spacing-05;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // If removable, make room for the icon
+  &.sql-notebook-pill--removable {
+    span.sql-notebook-pill__label {
+      padding-right: $spacing-02;
+    }
+  }
+
+  .sql-notebook-pill__trailing-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-02 $spacing-03 $spacing-02 $spacing-02;
+    i {
+      font-size: $fontSizeSmall;
+    }
+  }
+}

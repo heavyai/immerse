@@ -1,0 +1,153 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.annotations-controls {
+  position: relative;
+  margin-left: 8px;
+
+  .react-popover {
+    position: absolute;
+    top: 43px;
+    left: -81px;
+  }
+}
+
+.annotations-controls__toggle {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 2px 2px 0 2px;
+  height: 28px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.annotations-controls__icon {
+  margin-top: 7px;
+  padding: 4px;
+  color: $text-gray;
+
+  .rmwc-icon {
+    font-size: $fontSizeLarge;
+  }
+
+  body:not(.light2-mode) & {
+    color: $dimTextOnDark;
+  }
+}
+
+.annotations-controls__icon--edit {
+  height: 28px;
+  padding: 6px;
+  background: $mdc-theme-primary;
+  border-radius: 4px;
+  color: white;
+
+  > svg {
+    width: 16px;
+    margin-top: -6px;
+    margin-left: 0px;
+  }
+}
+
+.annotations-controls__icon--hidden {
+  height: 22px;
+  padding: 2px 5px;
+  color: $text-gray;
+
+  body:not(.light2-mode) & {
+    color: $dimTextOnDark;
+  }
+
+  > svg {
+    width: 20px;
+  }
+}
+
+.annotations-controls__open-dropdown {
+  opacity: 0;
+  margin-right: 2px;
+  padding-top: 2px;
+  transition: opacity 0.3s ease-in-out;
+
+  body:not(.light2-mode) & {
+    color: $dimTextOnDark;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  > i {
+    overflow: hidden;
+    padding-top: 2px;
+    color: $text-gray;
+  }
+
+  .annotations-controls:hover &,
+  .annotations-controls.is-dropdown-open & {
+    opacity: 1;
+  }
+}
+
+.app.is-side-nav-enabled {
+  .annotations-controls__open-dropdown {
+    opacity: 1;
+  }
+}
+
+.annotations-controls__dropdown {
+  width: 195px;
+  padding: 14px 16px;
+  border: 1px solid $light-border;
+  border-radius: 4px;
+  background: white;
+  color: $text-dim;
+
+  body:not(.light2-mode) & {
+    color: $dimTextOnDark;
+    border-color: $borderSeparator;
+    background: $grayDp3;
+  }
+
+  &:before {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    margin-left: -8px;
+    content: "";
+    border: 8px solid transparent;
+    border-bottom-color: $light-border;
+
+    body:not(.light2-mode) & {
+      border-bottom-color: $borderSeparator;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    margin-left: -8px;
+    content: "";
+    border: 8px solid transparent;
+    border-bottom-color: white;
+
+    body:not(.light2-mode) & {
+      border-bottom-color: $grayDp3;
+    }
+  }
+
+  > label {
+    vertical-align: middle;
+    margin-left: 16px;
+    font-weight: normal;
+    font-size: $fontSizeNormal;
+  }
+}

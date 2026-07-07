@@ -1,0 +1,24 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.sql-notebook-left-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $grayDp0;
+
+  .sql-notebook-left-panel__tabs {
+    display: flex;
+    padding: 0 $spacing-06;
+    justify-content: space-around;
+  }
+
+  // Can move to table browser stylesheet when left panel moves out of feature flag
+  .sql-notebook__table-browser__current-table {
+    margin-top: $spacing-04;
+  }
+}

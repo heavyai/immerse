@@ -1,0 +1,223 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+$filter-sets-list-width: 250px;
+$filter-sets-row-height: 32px;
+
+.filter-sets-list {
+  &, &.mdc-list {
+    border-width: 0;
+    color: $text-black;
+    font-size: $fontSizeNormal;
+    width: $filter-sets-list-width;
+    background: none;
+  }
+
+  .filter-sets-list__toggle {
+    left: 10px;
+    position: relative;
+    top: 5px;
+    z-index: 99;
+  }
+
+  .filter-sets-list__label {
+    color: $text-gray;
+    font-size: $fontSizeSmall;
+    height: 0;
+    left: 64px;
+    position: absolute;
+    top: 1px;
+  }
+
+  .filter-sets-list__notch {
+    position: absolute;
+    background: white;
+    height: 1px;
+    width: 50px;
+    left: 60px;
+    margin-top: -1px;
+  }
+
+  .filter-sets-list__items-container-outer {
+    margin-top: -25px;
+
+    .filter-sets-list__items {
+      max-height: 8 * $filter-sets-row-height;
+      overflow: auto;
+      position: absolute;
+      width: $filter-sets-list-width;
+      border: 1px solid $light-border;
+      box-shadow: 0 2px 4px $light-border;
+    }
+
+    .filter-sets-list__items-container {
+      display: flex;
+      flex-direction: column;
+
+      .filter-set-item:last-child .filter-set-item__title-text {
+        color: $mdc-theme-primary;
+      }
+    }
+  }
+  .filter-set-item {
+    background: white;
+    display: flex;
+    flex-basis: $filter-sets-row-height;
+
+    &:hover {
+      background: $gray1;
+      cursor: pointer;
+    }
+
+    &.filter-set-item--selected {
+      background: white;
+      border-radius: 4px;
+      border: 1px solid $light-border;
+      cursor: pointer;
+      height: 32px;
+      padding-left: 42px;
+
+      .tick-icon {
+        fill: $text-dim;
+        height: 20px;
+        margin-top: 5px;
+        width: 20px;
+      }
+    }
+
+    .filter-set-item__title {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      align-items: center;
+    }
+
+    .filter-set-item__title-text {
+      overflow: hidden;
+      padding: 0 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &[contenteditable] {
+        outline: 0 solid transparent;
+      }
+    }
+
+    .filter-set-item__title-text--editable {
+      text-overflow: clip;
+    }
+
+    .filter-set-item__filter-count {
+      color: $text-gray;
+    }
+
+    .filter-set-item__buttons {
+      display: none;
+      flex-basis: 64px;
+      justify-content: flex-end;
+      padding-right: 7px;
+    }
+
+    &:hover .filter-set-item__buttons {
+      display: flex;
+    }
+
+    .filter-set-item__button-container {
+      cursor: pointer;
+      height: 23px;
+      margin-right: 6px;
+      width: 24px;
+    }
+
+    .filter-set-item__button {
+      color: $text-dim;
+      fill: $text-dim;
+      max-height: 20px;
+      max-width: 25px;
+      font-size: $fontSizeLarge;
+
+      &:hover {
+        color: $mdc-theme-primary;
+        fill: $mdc-theme-primary;
+      }
+
+      &.hidden {
+        display: none;
+      }
+
+      &.filter-set-item__button--active {
+        color: $mdc-theme-primary;
+        fill: $mdc-theme-primary;
+      }
+
+      &.filter-set-item__button--save {
+        height: 20px;
+        margin-top: 5px;
+        padding-left: 4px;
+        width: 20px;
+      }
+
+      &.filter-set-item__button--edit {
+        height: 20px;
+        margin-top: 5px;
+        padding-left: 4px;
+        width: 20px;
+      }
+
+      &.filter-set-item__button--duplicate {
+        margin-top: 4px;
+      }
+
+      &.filter-set-item__button--remove {
+        cursor: pointer;
+        font-size: $fontSizeLarge;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+body:not(.light2-mode) .filter-sets-list {
+  background-color: none !important;
+  color: $textOnDark;
+
+  .filter-set-item {
+    background: $grayDp8;
+
+    &:hover {
+      background: $highlightOnDark;
+    }
+
+    &.filter-set-item--selected {
+      background: $grayDp24;
+      border: 1px solid $borderSeparator;
+    }
+  }
+
+  .filter-sets-list__items {
+    border: 1px solid $borderSeparator;
+    box-shadow: 0 2px 4px $grayDp1;
+  }
+
+  .filter-sets-list__label,
+  .filter-sets-list__items-container-outer .filter-set-item .filter-set-item__filter-count {
+    color: $dimTextOnDark;
+  }
+
+  .filter-sets-list__notch {
+    background: $grayDp8;
+  }
+
+  .filter-set-item__button {
+    color: $dimTextOnDark;
+    fill: $dimTextOnDark;
+  }
+
+  .filter-set-name-container .filter-set-name:focus {
+    background: $grayDp24;
+  }
+}

@@ -1,0 +1,35 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+body {
+  --tableSelectorSeparator: $gray3;
+}
+
+body.dark-mode {
+  --tableSelectorSeparator: $borderSeparator;
+}
+
+.table-selector__search {
+  padding: $spacing-06;
+  border-bottom: 1px solid var(--tableSelectorSeparator);
+}
+
+.table-selector__search__input {
+  border-radius: 4px;
+}
+
+.table-selector__list {
+  // Required for react-virtualized to calculate the list height
+  height: 100%;
+  padding: $spacing-05;
+}
+
+.ReactVirtualized__Grid {
+  &:focus {
+    outline: none;
+  }
+}

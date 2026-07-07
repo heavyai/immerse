@@ -1,0 +1,58 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.used-snippets-popover {
+  width: 365px;
+  background-color: var(--workspace-background);
+  border-radius: 8px;
+  padding: 16px;
+  color: $gray-550;
+  font-size: $fontSizeNormal;
+  z-index: 1;
+  font-weight: normal;
+  max-height: 50vh;
+  border: 1px solid $gray-850;
+  box-shadow: 0 7px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 22px 0 rgba(0, 0, 0, 0.12), 0 12px 17px 0 rgba(0, 0, 0, 0.14);
+
+  h6 {
+    display: flex;
+    gap: $spacing-04;
+    align-items: center;
+    svg {
+      height: 12px;
+      width: 12px;
+
+      path {
+        fill: $solid;
+      }
+    }
+    margin: 0;
+    font-size: $fontSizeNormal;
+    color: var(--used-snippets-popover-header-color);
+  }
+
+  .used-snippets-popover__item {
+    display: grid;
+    grid-template-columns: 1fr 14px;
+    grid-column-gap: $spacing-02;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: $spacing-04;
+    font-size: $fontSizeNormal;
+    color: var(--used-snippets-popover-item-color);
+
+    &:hover {
+      color: var(--used-snippets-popover-item-color-hover);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    i {
+      font-size: $fontSizeNormal;
+      width: 14px;
+    }
+  }
+}

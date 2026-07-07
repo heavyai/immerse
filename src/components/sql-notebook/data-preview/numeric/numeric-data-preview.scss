@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#vg-tooltip-element {
+  // Above rmwc tooltip @ 9999
+  z-index: 10000;
+}
+
+.sql-notebook__number-data-preview {
+  .sql-notebook-data-preview--chart {
+    // Should be synced up with the loader height in
+    // numeric-summary-chart to prevent glitchy looking heights
+    height: 200px;
+  }
+}

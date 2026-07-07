@@ -1,0 +1,165 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.global-side-nav {
+  z-index: map_get($zindex, side-nav);
+}
+
+.global-side-nav__trigger {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  z-index: map_get($zindex, side-nav-control);
+  fill: $icon-light;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.global-side-nav__panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: $globalSideNavWidth;
+  height: 100vh;
+  position: fixed;
+  left: -$globalSideNavWidth;
+  transition: left 0.1s ease-in-out;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  background: $gray1;
+
+  body:not(.light2-mode) & {
+    background: $grayDp8;
+  }
+
+  .side-nav-icon {
+    fill: $icon-light;
+    path {
+      fill: $icon-light;
+    }
+  }
+
+  &.is-expanded {
+    left: 0;
+  }
+
+  &.is-pinned {
+    position: initial;
+  }
+
+  .nav-group {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .jupyter-icon-button {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+    }
+
+    a {
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px 0;
+      text-align: center;
+      font-size: $fontSizeMedium;
+      font-weight: 500;
+      color: $dimTextOnDark;
+
+      &:hover {
+        cursor: pointer;
+        color: $dimTextOnDark;
+        background: $gray2;
+
+        body:not(.light2-mode) & {
+          background: $highlightOnDark;
+        }
+      }
+    }
+
+    svg {
+      vertical-align: middle;
+    }
+
+    .is-active {
+      border-left: 3px solid $mdc-theme-primary;
+      background: $gray2;
+
+      body:not(.light2-mode) & {
+        background: $highlightOnDark;
+      }
+
+      svg {
+        margin-left: -3px;
+      }
+    }
+  }
+
+  .nav-footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > a {
+      height: auto;
+      width: 100%;
+      margin: 5px 0;
+      padding: 6px 14px;
+
+      &:hover {
+        background: $gray2;
+
+        body:not(.light2-mode) & {
+          background: $highlightOnDark;
+        }
+      }
+    }
+  }
+
+  .account-menu-panel {
+    margin-left: 55px;
+  }
+}
+
+.global-side-nav__account {
+  position: relative;
+  padding: 6px 0;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background: $gray2;
+
+    body:not(.light2-mode) & {
+      background: $highlightOnDark;
+    }
+  }
+
+  &.is-panel-open {
+    i {
+      visibility: visible;
+    }
+  }
+
+  // Arrow
+  i {
+    visibility: hidden;
+    position: absolute;
+    top: 12px;
+    right: 0;
+    font-size: $fontSizeMedium;
+    color: $dimTextOnDark;
+  }
+}

@@ -1,0 +1,63 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.selectable-card {
+  border: 1px solid $borderSeparator;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  
+  flex: 0 1 33%;
+
+  margin-right: $spacing-04;
+  padding: $spacing-04;
+  background: $grayDp0;
+  color: $solid;
+
+  .selectable-card__content {
+    padding: $spacing-02 $spacing-04;
+    color: $dimTextOnDark;
+  }
+
+
+  &:not(.disabled) {
+    // Highlight and show pointer when its enabled
+    &:hover, &.selected  {
+      border-color: $mdc-theme-primary;
+      cursor: pointer;
+    }
+
+    // Show pointer for all content children as well
+    .selectable-card__content {
+      > * {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    // Dim colors + opacity when disabled
+    background-color: $grayDp8;
+    color: $dimTextOnDark;
+    opacity: 0.6;
+
+    // Cursor should remain default when disabled
+    &:hover {
+      cursor: default;
+    }
+    .selectable-card__content {
+      > * {
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+}

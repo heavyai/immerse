@@ -1,0 +1,125 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@function hslColor($l) {
+  @return hsl(var(--main-color), var(--main-saturation), $l);
+}
+
+@function hslaColor($l, $a) {
+  @return hsla(var(--main-color), var(--main-saturation), $l, $a);
+}
+
+body {
+  --main-color: 200;
+  --main-saturation: 0%;
+
+  --solid: #{hslColor(100%)}; // #000000; solid black or white
+  --grayDp0: #{hslColor(7%)}; // #121212; textarea and darkest items
+  --grayDp1: #{hslColor(12%)}; // #1e1e1e; background
+  --grayDp2: #{hslColor(13%)}; // #222; new settings panel
+  --grayDp3: #{hslColor(15%)}; // #252525; header and larger panel
+  --grayDp8: #{hslColor(17.5%)}; // #2c2c2c; non-input widget, panel headers, popup
+  --grayDp24: #{hslColor(23%)}; // #3b3b3b; input widgets
+
+  --textOnDark: #{hslColor(90%)}; /* default text */
+  --dimTextOnDark: #{hslColor(60%)}; /* less emphasized text */
+  --highlightOnDark: #{hslColor(20%)}; /* hover background */
+  --disabled: #{hslColor(34%)};
+  --dimIconOnDark: #{hslColor(50%)};
+  --borderSeparator: #{hslColor(27%)}; // #454545
+  --secondaryButtonBorder: #{hslColor(34%)};
+  --secondaryPanelHover: #{hslColor(20.5%)}; /* hover color for $grayDp8 panels */
+  --grayDp2Translucent: #{hslaColor(13%, 90%)}; /* grayDp2 with slight translucency */
+
+  --solid-alpha30: #{hslaColor(100%, 30%)};
+  --solid-alpha10: #{hslaColor(100%, 10%)};
+
+  --icon-dim: #{hslColor(50%)};
+  --icon-light: #{hslColor(60%)};
+  --icon-medium: #{hslColor(60%)};
+  --icon-solid: #{hslColor(100%)};
+  --icon-disabled: #{hslaColor(60%, 50%)};
+
+  --text-default: #{hslColor(90%)};
+  --text-light: #{hslColor(60%)};
+  --text-solid: #{hslColor(100%)};
+  --text-active-secondary: hsl(150, 66%, 52%);
+
+  --border-light: #{hslColor(27%)};
+  --border-medium: #{hslColor(40%)};
+  --border-dim: #{hslColor(20%)};
+  --surface-container-lowest: #{hslColor(5%)};
+  --surface-container-medium-hover: #{hslColor(33%)};
+
+  --logo-primary: #ffffff;
+}
+
+body.tint-mode {
+  --secondaryPanelHover: #{hslColor(21%)}; /* hover color for $grayDp8 panels */
+  --grayDp2Translucent: #{hslaColor(13%, 90%)}; /* grayDp2 with slight translucency */
+}
+
+body.light-mode {
+  --solid: #{hslColor(0%)}; /* solid black or white */
+  --grayDp0: #{hslColor(100%)}; /* textarea and darkest items */
+  --grayDp1: #{hslColor(95%)}; /* background */
+  --grayDp2: #{hslColor(97%)}; /* (new) settings panel */
+  --grayDp3: #{hslColor(100%)}; /* header and larger panel */
+  --grayDp8: #{hslColor(95%)}; /* non-input widget */
+  --grayDp24: #{hslColor(100%)}; /* input widgets */
+
+  --textOnDark: #{hslColor(30%)}; /* default text */
+  --dimTextOnDark: #{hslColor(50%)}; /* less emphasized text */
+  --highlightOnDark: #{hslColor(88%)}; /* hover background */
+  --disabled: #{hslColor(85%)};
+  --dimIconOnDark: #{hslColor(70%)};
+  --borderSeparator: #{hslColor(85%)};
+  --secondaryButtonBorder: #{hslColor(80%)};
+  --secondaryPanelHover: #{hslColor(100%)}; /* hover color for $grayDp8 panels */
+  --grayDp2Translucent: #{hslaColor(97%, 90%)}; /* grayDp2 with slight translucency */
+
+  --solid-alpha30: #{hslaColor(0%, 30%)};
+  --solid-alpha10: #{hslaColor(0%, 10%)};
+
+  --icon-dim: #{hslColor(70%)};
+  --icon-light: #{hslColor(50%)};
+  --icon-medium: #{hslColor(80%)};
+  --icon-solid: #{hslColor(0%)};
+  --icon-disabled: #{hslaColor(80%, 50%)};
+
+  --text-default: #{hslColor(30%)};
+  --text-light: #{hslColor(50%)};
+  --text-solid: #{hslColor(0%)};
+  --text-active-secondary: hsl(153, 93%, 30%);
+
+  --border-light: #{hslColor(88%)};
+  --border-medium: #{hslColor(60%)};
+  --border-dim: #{hslColor(83%)};
+  --surface-container-lowest: #{hslColor(100%)};
+  --surface-container-medium-hover: #{hslColor(90%)};
+
+  --logo-primary: #030707;
+}
+
+body.hotdog-mode {
+  --main-color: 0;
+  --main-saturation: 100%;
+
+  --grayDp0: darkred; /* textarea and darkest items */
+  --grayDp1: red; /* background */
+  --grayDp2: orange; /* settings panel */
+  --grayDp3: yellow; /* header and larger panel */
+  --grayDp8: gold; /* non-input widget */
+  --grayDp24: PeachPuff; /* input widgets */
+
+  --textOnDark: #{hslColor(30%)}; /* default text */
+  --dimTextOnDark: #{hslColor(50%)}; /* less emphasized text */
+  --highlightOnDark: orange; /* hover background */
+  --disabled: #{hslColor(85%)};
+  --dimIconOnDark: #{hslColor(80%)};
+  --borderSeparator: orange;
+  --secondaryButtonBorder: yellow;
+  --grayDp2Translucent: orange; /* settings panel */
+}

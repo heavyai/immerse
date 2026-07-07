@@ -1,0 +1,66 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../mixins";
+
+.guidance-snippets-list-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.guidance-snippets-panel--loading {
+  .guidance-snippets-list, .guidance-snippets-list-empty {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.guidance-snippets-list {
+  padding: $spacing-04;
+  overflow: auto;
+}
+
+.guidance-snippets-list-overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.guidance-snippets-sort {
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-04;
+  align-items: center;
+  font-size: 11px;
+  color: $textOnDark;
+
+  svg {
+    fill: $icon-dim;
+  }
+}
+
+.guidance-snippets-bulk-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: $spacing-04;
+  align-items: center;
+
+  // Make it a little funky for this sidebar
+  .notebook-button {
+    height: 32px;
+    border-radius: 16px;
+    gap: $spacing-04;
+  }
+  .notebook-button__icon {
+    height: 20px;
+    width: 20px;
+  }
+}

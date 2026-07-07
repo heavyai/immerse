@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "declaration": false,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitReturns": true,
+    "noLib": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rootDir": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2019",
+    "lib": ["ES2021", "ES2020", "DOM"],
+    "checkJs": true
+  },
+  "include": [
+    "./package.json",
+    "./src/**/*",
+    "./*.js",
+    "./.*.js",
+    "./test-config/**/*",
+    "./webpack.*.ts",
+    "./webpack.config.common.ts",
+    "./webpack.config.dev.ts",
+    "./webpack.config.prod.ts",
+    "./webpack.license-plugin.ts",
+    "./webpack.module.ts",
+    "./webpack.resolve.ts"
+  ],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

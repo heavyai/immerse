@@ -1,0 +1,167 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.login {
+  position: relative;
+  text-align: center;
+  margin-top: 6%;
+
+  .login-container {
+    display: inline-flex;
+    text-align: left;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0 0 3px rgba(#000000, 0.1);
+
+    .login-form {
+      width: 380px;
+      display: flex;
+      position: relative;
+      flex: 0 0 auto;
+
+      .disabled-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: white;
+        opacity: 0.7;
+      }
+
+      .advanced-settings {
+        margin-top: 10px;
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        transition-property: opacity, max-height;
+        transition-duration: 1s;
+      }
+
+      .login-error-msg {
+        color: $error;
+        font-size: $fontSizeSmall;
+        position: absolute;
+        top: 12px;
+        line-height: 1.3em;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+      }
+
+      .login-hint {
+        font-size: 80%;
+        color: $gray4;
+      }
+
+      .login-hint-credentials {
+        font-size: 80%;
+        color: white;
+      }
+
+      .login-hint-slash {
+        color: $gray4;
+      }
+
+      .hide-input {
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .login-settings-toggle {
+        .settings-button {
+          cursor: pointer;
+          &:hover {
+            color: $mdc-theme-primary;
+          }
+        }
+
+        color: $gray4;
+        margin: -5px 0 0;
+        font-size: $fontSizeNormal;
+        margin-top: 10px;
+        line-height: 30px;
+        text-align: center;
+      }
+      .login-form-toggle {
+        width: 100%;
+        padding: 40px;
+      }
+      h2 {
+        margin: 20px 0 20px;
+        color: $blue-ternary;
+        font-size: $fontSizeMedium;
+        font-weight: 400;
+        line-height: 1;
+      }
+      .login-field {
+        width: 100%;
+      }
+
+      label {
+        text-transform: uppercase;
+        font-size: $fontSizeSmall;
+        font-family: "Helvetica";
+        font-weight: normal;
+        color: $gray4;
+      }
+
+      .login-field {
+        margin-bottom: 16px;
+      }
+
+      .db-switcher,
+      .database-field {
+        margin-bottom: 35px;
+      }
+
+      #protocol-field {
+        margin-bottom: 20px;
+      }
+
+      .connect-container {
+        width: 100%;
+        text-align: center;
+
+        #connect-button {
+          font-size: $fontSizeNormal !important;
+          color: white;
+          width: 150px;
+          margin: auto;
+          background-color: $mdc-theme-primary;
+
+          &:disabled {
+            background-color: $gray3;
+          }
+        }
+      }
+      input.mdc-text-field__input:-webkit-autofill {
+        z-index: 1 !important;
+      }
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .login {
+    .login-container .login-form {
+      .disabled-overlay {
+        background-color: $grayDp1;
+        opacity: 0.8;
+      }
+
+      .connect-container #connect-button:disabled {
+        background: $grayDp24;
+        @extend %disabled;
+      }
+    }
+  }
+}

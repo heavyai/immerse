@@ -1,0 +1,237 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../base/_variables.scss";
+
+.mdc-dialog--open .mdc-dialog__scrim {
+  opacity: 0!important;
+}
+
+.rmwc-collapsible-list__children-inner {
+  overflow: initial !important;
+}
+
+.mdc-snackbar {
+  .mdc-button__label {
+    color: $mdc-theme-primary !important;
+  }
+}
+
+.rmwc-circular-progress {
+  color: $mdc-theme-primary !important;
+}
+
+.mdc-button--unelevated {
+  // Make sure loading icon stays white to match the text for unelevated buttons
+  .rmwc-circular-progress {
+    color: white !important;
+  }
+}
+
+.multi-select .select__multi-value {
+  background-color: $mdc-theme-primary !important;
+}
+
+.mdc-switch {
+  &.mdc-switch--checked {
+    .mdc-switch__thumb,
+    .mdc-switch__track {
+      background-color: $mdc-theme-primary !important;
+      border-color: $mdc-theme-primary !important;
+    }
+  }
+}
+
+.mdc-form-field {
+  --mdc-theme-secondary: #{$mdc-theme-primary};
+}
+
+// Checkbox
+.mdc-checkbox::before,
+.mdc-checkbox::after,
+.mdc-checkbox .mdc-checkbox__native-control ~ .mdc-checkbox__background::before {
+  display: none;
+}
+
+.mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+.mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
+  background-color: $mdc-theme-primary !important;
+  border-color: $mdc-theme-primary !important;
+}
+
+.mdc-checkbox__native-control:disabled:not(:checked)
+  ~ .mdc-checkbox__background {
+  border-color: $borderSeparator;
+}
+
+.mdc-checkbox--upgraded.mdc-checkbox input:enabled {
+  &:not(:checked) ~ .mdc-checkbox__background {
+    border-color: inherit;
+  }
+
+  &:checked ~ .mdc-checkbox__background .mdc-checkbox__checkmark-path {
+    color: $textOnDark;
+  }
+}
+
+.mdc-checkbox.mdc-ripple-upgraded::before {
+  background: none;
+}
+
+// radio buttons
+.mdc-form-field .mdc-radio {
+  padding: 5px !important;
+  width: 26px !important;
+  height: 26px !important;
+
+  &::before,
+  &::after {
+    background: transparent !important;
+  }
+
+  .mdc-radio__background {
+    left: 5px !important;
+    width: 16px !important;
+    height: 16px !important;
+
+    .mdc-radio__outer-circle,
+    .mdc-radio__inner-circle {
+      border-color: $mdc-theme-primary !important;
+    }
+
+    .mdc-radio__inner-circle {
+      border-width: 8px !important;
+    }
+  }
+
+  & + label {
+    margin: 0;
+  }
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: none !important;
+}
+
+.mdc-text-field.mdc-text-field--upgraded {
+  overflow: visible;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+.mdc-text-field .mdc-text-field__input {
+  caret-color: initial;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled),
+.mdc-select.mdc-select--outlined.mdc-select--focused {
+  .mdc-select__dropdown-icon,
+  .mdc-floating-label {
+    color: $mdc-theme-primary !important;
+  }
+
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: $mdc-theme-primary !important;
+  }
+}
+
+.mdc-menu.mdc-select__menu {
+  z-index: 2001;
+}
+
+button.mdc-icon-button:not(.mdc-ripple-upgraded):focus::before,
+button.mdc-icon-button.mdc-ripple-upgraded--background-focused::before {
+  opacity: 0;
+}
+
+.MuiSlider-thumb.Mui-focusVisible,
+.MuiSlider-thumb:hover,
+.MuiSlider-thumb {
+  box-shadow: none !important;
+  transition: none;
+}
+
+body.light-mode, body.light2-mode {
+  .MuiSlider-valueLabel > span > span {
+      color: $charcoal;
+ }
+}
+
+.rmwc-tooltip {
+  font-size: $fontSizeSmall !important;
+  pointer-events: none !important;
+}
+
+.rmwc-tooltip-inner {
+  background: $gray5;
+  white-space: pre-line;
+}
+
+.rmwc-tooltip-placement-bottom,
+.rmwc-tooltip-placement-bottomLeft,
+.rmwc-tooltip-placement-bottomRight {
+  .rmwc-tooltip-arrow {
+    border-bottom-color: $gray5 !important;
+  }
+}
+
+.rmwc-tooltip-placement-right,
+.rmwc-tooltip-placement-rightTop,
+.rmwc-tooltip-placement-rightBottom {
+  .rmwc-tooltip-arrow {
+    border-right-color: $gray5 !important;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .mdc-dialog__surface {
+    border: 1px solid $borderSeparator;
+    border-radius: 6px;
+  }
+
+  .rmwc-tooltip-inner {
+    background: $highlightOnDark;
+    color: $textOnDark;
+    box-shadow: 0 2px 4px $grayDp0;
+    white-space: pre-line;
+  }
+
+  .rmwc-tooltip-placement-bottom,
+  .rmwc-tooltip-placement-bottomLeft,
+  .rmwc-tooltip-placement-bottomRight {
+    .rmwc-tooltip-arrow {
+      border-bottom-color: $highlightOnDark !important;
+    }
+  }
+
+  .rmwc-tooltip-placement-right,
+  .rmwc-tooltip-placement-rightTop,
+  .rmwc-tooltip-placement-rightBottom {
+    .rmwc-tooltip-arrow {
+      border-right-color: $highlightOnDark!important;
+    }
+  }
+
+  .rmwc-tooltip-placement-left,
+  .rmwc-tooltip-placement-leftTop,
+  .rmwc-tooltip-placement-leftBottom {
+    .rmwc-tooltip-arrow {
+      border-left-color: $highlightOnDark!important;
+    }
+  }
+
+  .mdc-checkbox--upgraded.mdc-checkbox input:enabled {
+    &:not(:checked) ~ .mdc-checkbox__background {
+      border-color: $dimIconOnDark !important;
+    }
+  }
+}

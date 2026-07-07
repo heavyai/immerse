@@ -1,0 +1,186 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.count-widget-container {
+  flex: 1;
+  justify-content: flex-end;
+  display: flex;
+  max-height: 16px;
+  padding-left: 2px;
+  position: relative;
+
+  .data-source-name {
+    font-size: $fontSizeSmall;
+    color: $gray5;
+  }
+
+  .middot-spacer {
+    position: relative;
+    left: 6px;
+  }
+}
+
+.data-source {
+  display: flex;
+  height: 100%;
+}
+
+.count-dropdown-opener {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  fill: $gray4;
+  position: relative;
+
+  .icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    fill: $mdc-theme-primary;
+  }
+}
+
+.count-dropdown-closer {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  fill: $gray4;
+  padding: 2px;
+  transform: rotate(180deg);
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover {
+    fill: $mdc-theme-primary;
+  }
+
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.animated-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: showDataSource .4s;
+  animation-fill-mode: both;
+
+  > .data-source > .data-source-icon-container {
+    margin-right: 6px;
+    width: 14px;
+    height: 100%;
+    display: flex;
+
+    > .data-source-alias {
+      line-height: 18px;
+      transform: none;
+      color: $grayDp1;
+      font-weight: 600;
+
+      .is-side-nav-enabled & {
+        padding-left: 2px;
+        line-height: 20px;
+      }
+    }
+
+    svg.icon {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      transform: translate(0, -2px);
+      color: $grayDp1;
+
+      .is-side-nav-enabled & {
+        transform: translate(1px, -1px);
+      }
+    }
+  }
+}
+
+@keyframes fadeOutDown {
+   0% {
+      opacity: 1;
+      transform: translateY(0);
+   }
+   100% {
+      opacity: 0;
+      transform: translateY(20px);
+   }
+}
+
+@keyframes showDataSource {
+   0% {
+      opacity: 0;
+      transform: translateY(20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+.fadeOutDown {
+   animation: fadeOutDown .25s;
+}
+
+.count-list-container {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 28px 8px 16px;
+  border: 1px solid $gray3;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+  background: white;
+  border-radius: 4px;
+
+  .is-side-nav-enabled & {
+    left: 0;
+    top: 6px;
+    transform: none;
+  }
+}
+
+.count-list {
+  flex-direction: column;
+}
+
+.count-row-item {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  height: 32px;
+  justify-content: space-between;
+
+  .data-source {
+    align-items: center;
+  }
+
+  .data-source-name {
+    padding-left: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    overflow: hidden;
+  }
+
+  .data-source-icon-container {
+    height: 24px;
+    width: 24px;
+    color: white;
+
+    .data-source-alias {
+      line-height: 24px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables.scss";
+
+.visualization-controls {
+  width: $visualizationControlsWidth;
+  min-width: $visualizationControlsWidth;
+  margin: $spacing-07 $spacing-07 0 0;
+
+  header {
+    color: $text-light;
+    font-family: Inter;
+    font-size: $fontSizeNormal;
+    font-weight: 500;
+  }
+
+  .visualization-data-limit {
+    margin-top: $spacing-08;
+  }
+}

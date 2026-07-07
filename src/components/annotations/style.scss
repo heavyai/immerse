@@ -1,0 +1,121 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.annotation-overlay {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+
+  &.dragging-annotation {
+    pointer-events: all;
+  }
+
+  .dashboard-container.annotations-edit-mode & .annotation-label {
+    pointer-events: initial;
+  }
+
+  svg g.mark-rect.labelrect path {
+    fill: #666 !important;
+
+    body:not(.light2-mode) & {
+      fill: #444 !important;
+    }
+  }
+
+  svg g.mark-text.labeltext text {
+    // We need to add !important to override the inline style
+    // Vega adds to the text in light mode
+    fill: #fff !important;
+    paint-order: stroke;
+    stroke: black;
+    stroke-opacity: 0.3;
+    stroke-width: 2px;
+
+    body.light-mode & {
+    fill: #fff !important;
+    paint-order: stroke;
+    stroke: black;
+    stroke-opacity: 0.3;
+    stroke-width: 2px;
+    }
+  }
+}
+
+svg .annotation-anchor {
+  pointer-events: none;
+  stroke-width: 1px;
+  stroke: black;
+  opacity: 0;
+}
+
+.dashboard-container.annotations-edit-mode svg {
+  .annotation-anchor,
+  .annotation-area {
+    pointer-events: all;
+  }
+}
+
+.annotation-overlay__edit-label {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: initial;
+
+  margin-top: -1px;
+  margin-left: -1px;
+  padding: 4px 5px;
+
+  line-height: 1.25em;
+  font-size: $fontSizeSmall;
+
+  background: white;
+  border: 1px solid $text-gray;
+
+  body:not(.light2-mode) & {
+    background: $grayDp24;
+    border-color: $borderSeparator;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.annotation-overlay__delete {
+  display: none;
+  position: absolute;
+  pointer-events: initial;
+  z-index: 100;
+  margin-left: -8px;
+
+  &.is-shown {
+    display: block;
+  }
+}
+
+.annotation-overlay__delete-target {
+  pointer-events: initial;
+  margin-left: 8px;
+  padding: 0.25em 0.35em;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .rmwc-icon {
+    vertical-align: middle;
+    font-size: $fontSizeSmall;
+    border-radius: 50%;
+    border: 1px solid $text-gray;
+    color: $text-gray;
+
+    body:not(.light2-mode) & {
+      border-color: $textOnDark;
+      color: $textOnDark;
+    }
+  }
+}

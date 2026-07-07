@@ -1,0 +1,108 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.bin-settings {
+  padding: 12px 16px;
+
+  .bin-settings-toggle {
+    max-width: 100%;
+    margin: 4px 0 0 0 !important;
+    height: 24px;
+    font-weight: normal;
+  }
+
+  .bin-settings-toggle-label {
+      position: relative;
+      color: $gray5;
+      margin-left: 32px;
+      font-size: $fontSizeNormal;
+      vertical-align: 7px;
+      font-weight: 500;
+
+      &:hover {
+        color: $mdc-theme-primary !important;
+        cursor: pointer;
+      }
+  }
+
+  .chart-editor-label {
+    font-size: $fontSizeSmall;
+    margin: 8px 0 12px;
+
+    &.center {
+      text-align: center;
+    }
+  }
+
+  .custom-slider {
+    position: relative;
+
+    .input-wrap {
+      position: absolute;
+      top: -8px;
+      height: 24px;
+      font-size: $fontSizeSmall;
+      transform: translate(0, -100%);
+    }
+  }
+}
+
+.bin-settings-label {
+  font-size: $fontSizeSmall;
+  color: $gray5;
+  margin: 8px 0;
+  text-transform: uppercase;
+}
+
+.bin-settings-section {
+  padding: 8px 0;
+  position: relative;
+
+  .icon {
+    fill: $gray4;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    padding: 5px;
+    left: 50%;
+    transform: translate(28px);
+    top: 10px;
+
+    &:hover {
+      fill: $mdc-theme-primary;
+      cursor: pointer;
+    }
+  }
+}
+
+.react-toggle-track {
+  background: $gray4 !important;
+
+  &:hover {
+    + .react-toggle-thumb {
+      @extend %thumbGlow !optional;
+    }
+  }
+}
+
+.react-toggle-thumb {
+  box-shadow: 0 1px 1px 2px rgba(black, .2) !important;
+  border: none !important;
+
+  &:hover {
+    @extend %thumbGlow !optional;
+  }
+}
+
+.react-toggle--checked {
+  .react-toggle-track {
+    background: $mdc-theme-primary !important;
+  }
+  + .bin-settings-toggle-label {
+    color: $mdc-theme-primary !important;
+  }
+}

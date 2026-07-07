@@ -1,0 +1,63 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables";
+
+.sql-notebook-table-result {
+  // Table customizations
+  .sql-editor-data-viewer {
+    .table-cell {
+      border-bottom: 1px solid var(--table-cell-divider);
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .table-header {
+      font-family: "Courier New", Courier, monospace;
+      color: var(--table-header-text-color);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--table-header-border);
+
+      .table-header--name {
+        font-size: $fontSizeMedium;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .table-header--type {
+        font-size: $fontSizeSmall;
+      }
+    }
+    .table-data {
+      color: var(--table-text-color);
+      font-family: Inter;
+      font-size: $fontSizeSmall;
+      font-style: normal;
+      padding-right: $spacing-02;
+    }
+    // Break words, and auto scroll when NOT a single result cell
+    .sql-editor-data-table:not(.single-cell) {
+      .table-data {
+        // In case this cells contents are larger than we anticipated
+        // just scroll the cell and break words so it doesn't overflow to other cells
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        overflow: auto;
+      }
+    }
+
+    .sql-editor-data-table.single-cell {
+      .last-row {
+        justify-content: flex-start;
+        margin-top: $spacing-06;
+      }
+    }
+  }
+
+  .sql-notebook-table-result__meta {
+    color: var(--results-meta-text-color);
+    font-size: $fontSizeNormal;
+  }
+}

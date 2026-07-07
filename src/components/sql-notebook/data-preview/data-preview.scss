@@ -1,0 +1,80 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+// Should be synced up with the loader height in
+// numeric-summary-chart and STAT_ROW_HEIGHT
+$previewChartHeight: 200px;
+
+body {
+  --tooltipBackgroundColor: #{$surface-container-lowest};
+}
+
+.sql-notebook-data-preview {
+  padding: $spacing-06;
+  pointer-events: all;
+  max-width: 600px;
+
+  .sql-notebook-data-preview--sections {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-05;
+  }
+
+  .sql-notebook-data-preview--chart {
+    height: $previewChartHeight;
+  }
+
+  // Make sure charts + map fill container height
+  .vega-embed {
+    height: 100%;
+    width: 100%;
+  }
+  .vega-map {
+    height: 100%;
+  }
+}
+
+#vg-tooltip-element {
+  // Vega tooltip above rmwc tooltip @ 9999
+  z-index: 10000;
+}
+
+.rmwc-tooltip.data-preview-tooltip {
+  // This messes with the rmwc animation, figure it out later
+  // but we need opacity: 1
+  // &:not(.rmwc-tooltip-zoom-leave),
+  // &:not(.rmwc-tooltip-zoom-enter) {
+  //   opacity: 1;
+  // }
+  &:not(.disabled) {
+    border: 1px solid $border-dim;
+  }
+  border-radius: 8px;
+
+  // overriding material-overrides.scss madness
+  .rmwc-tooltip-inner {
+    background-color: var(--tooltipBackgroundColor) !important;
+  }
+  .rmwc-tooltip-arrow {
+    border-right-color: var(--tooltipBackgroundColor) !important;
+  }
+}
+
+.data-preview-tooltip:not(.disabled) {
+  opacity: 1;
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .data-preview-tooltip:not(.disabled) {
+    .rmwc-tooltip-inner {
+      background-color: var(--tooltipBackgroundColor) !important;
+    }
+    .rmwc-tooltip-arrow {
+      border-right-color: var(--tooltipBackgroundColor) !important;
+    }
+  }
+}

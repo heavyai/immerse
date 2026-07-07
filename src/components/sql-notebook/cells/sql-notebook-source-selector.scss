@@ -1,0 +1,116 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+@import '../variables';
+
+.sql-notebook__source-selector.mdc-dialog {
+  .mdc-dialog__surface {
+    // Prevent shrinking when list is filtered
+    min-width: 60vw;
+    height: 80%;
+  }
+
+  .mdc-dialog__actions {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-06 $spacing-06 $spacing-06 $spacing-09;
+  }
+
+  .mdc-dialog__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.mdc-dialog .mdc-dialog__container .mdc-dialog__content {
+    padding: 0;
+  }
+
+  header {
+    padding: $spacing-06;
+    border-bottom: 1px solid var(--divider);
+
+    .mdc-text-field.mdc-text-field--upgraded:not(.mdc-text-field--textarea) {
+      margin-bottom: 0;
+      height: $spacing-10;
+      display: flex;
+
+      i {
+        top: $spacing-05;
+        left: $spacing-04
+      }
+    }
+
+    .mdc-line-ripple {
+      display: none;
+    }
+  }
+
+  .mdc-text-field:not(.mdc-text-field--disabled):not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mdc-text-field__input {
+    border-bottom: transparent;
+  }
+}
+
+.source-selector__list {
+  padding: $spacing-04 $spacing-06;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  flex: 1;
+}
+
+.source-selector__list__item {
+  margin: $spacing-02 $spacing-04;
+  border-radius: $spacing-04;
+
+  &:not(.source-selector__list__item--disabled) {
+    cursor: pointer;
+  }
+
+  .mdc-form-field {
+    width: 100%;
+  }
+
+  .mdc-form-field label {
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    cursor: pointer;
+  }
+
+  .source-selector__list__item--disabled.mdc-form-field label {
+    cursor: default;
+  }
+
+  &:hover:not(.source-selector__list__item--selected):not(.source-selector__list__item--disabled) {
+    background-color: $grayDp3;
+  }
+}
+
+.source-selector__list__item--selected {
+  background-color: #0F48DA;
+  color: #FFFFFF;
+}
+
+body:not(.light2-mode) .sql-notebook__source-selector.mdc-dialog {
+  .mdc-dialog__content,
+  .mdc-dialog__actions {
+    background-color: $grayDp0;
+  }
+
+  .mdc-form-field label {
+    color: $solid !important;
+  }
+
+  .source-selector__list__item--selected .mdc-form-field label {
+    color: white !important;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) .sql-notebook__source-selector .mdc-text-field.mdc-text-field--upgraded {
+  background-color: $grayDp3;
+}

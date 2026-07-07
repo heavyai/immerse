@@ -1,0 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../ColorSelectors/color-picker-mixin.scss";
+
+.categorical-color-picker {
+  @include color-picker();
+}

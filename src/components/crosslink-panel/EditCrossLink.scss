@@ -1,0 +1,113 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.crosslink-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 1px solid $mdc-theme-primary;
+  margin: 10px 0;
+
+  fieldset {
+    width: 100%;
+    padding: 13px 8px 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .multi-select .select__menu {
+    width: 246px;
+  }
+
+  .multi-select.crosslink-source__b .select__menu {
+    left: -134px;
+  }
+
+  .multi-select
+    .select-container-wrapper
+    .select__control.select__control--is-focused {
+    box-shadow: none;
+    border: 2px solid $mdc-theme-primary;
+  }
+
+  footer {
+    width: 100%;
+    padding: 8px;
+    text-align: right;
+    border-top: 1px solid $borderSeparator;
+    background: $grayDp8;
+
+    .light2-mode & {
+      border-top-color: $borderSeparator;
+      background: $gray2;
+    }
+
+    > button {
+      margin-left: 8px;
+    }
+  }
+
+  .multi-select {
+    width: 49%;
+
+    .select__menu {
+      font-size: $fontSizeSmall;
+      margin: 0;
+    }
+
+    .select__menu-list {
+      padding: 0;
+    }
+
+    .select__group {
+      padding: 0;
+
+      &:not(:first-child) {
+        border-top: 1px solid $borderSeparator;
+      }
+    }
+
+    .select__single-value {
+      font-size: $fontSizeNormal;
+    }
+
+    .mdc-notched-outline {
+      .mdc-floating-label {
+        left: -4px;
+        font-size: $fontSizeNormal;
+      }
+    }
+  }
+}
+
+.crosslink-edit__add-columns {
+  margin: 13px 0;
+  color: $mdc-theme-primary;
+  font-size: $fontSizeSmall;
+  line-height: $fontSizeSmall;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.crosslink-info__link-icon,
+.crosslink-edit__link-icon {
+  color: $dimIconOnDark;
+}
+
+.crosslink-edit__link-icon {
+  margin: 0 3px;
+}
+
+.crosslink-edit__column-operator {
+  margin: 0 4px;
+  font-size: $fontSizeXLarge;
+  color: $dimIconOnDark;
+}

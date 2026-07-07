@@ -1,0 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+$drawer-width: 332px;
+
+@mixin svgFill($color) {
+  svg {
+    fill: $color;
+    path {
+      fill: $color;
+    }
+  }
+}

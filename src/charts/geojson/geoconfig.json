@@ -1,0 +1,20 @@
+  {
+    "countries.json": {
+      "label": "Countries",
+      "isTopo": false,
+      "topoKey": "",
+      "keys": ["name", "iso_a2", "iso_a3"]
+    },
+    "us-states.json": {
+      "label": "US States",
+      "isTopo": false,
+      "topoKey": "",
+      "keys": ["name", "abbr"]
+    },
+    "us-counties.json": {
+      "label": "US Counties",
+      "isTopo": true,
+      "topoKey": "counties",
+      "keys": ["name", "state", "county", "fips"]
+    }
+  }

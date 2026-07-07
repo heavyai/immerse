@@ -1,0 +1,118 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.dashboard-grid-container {
+  flex: 1;
+  display: flex;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+.grid-layout-wrapper {
+  // Wrapper must fill available space, since we calculate grid width from this before grid is rendered
+  display: flex;
+  flex: 1;
+  // Added for filter panel resize. This approximates the min grid width normally imposed by the app container min width
+  // when the panel has its default width.
+  min-width: 690px;
+  height: 100%;
+}
+
+.react-grid-layout {
+  background: none;
+}
+
+.react-grid-item {
+  .react-resizable-handle {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover {
+    z-index: 1;
+
+    .react-resizable-handle {
+      opacity: 1;
+    }
+  }
+
+  &.no-resize .react-resizable-handle {
+    display: none;
+  }
+}
+
+// This class gets added to the body tag when a user drags the chart resize handle.
+// In Safari, dragging the handle selects the whole page and causes a giant blue
+// highlight to flash, so disable text selection while dragging
+.react-draggable-transparent-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+button.add-chart-cta {
+  margin: 24px;
+  width: 320px;
+  height: 240px;
+  border-radius: 4px;
+  border: 1px dashed $gray3;
+  color: $gray4;
+  font-weight: 500;
+  position: relative;
+  animation: delayShow 0.3s;
+
+  .add-chart-cta-plus {
+    font-size: 36px;
+  }
+
+  .add-chart-cta-text {
+    font-size: $fontSizeLarge;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 32px);
+  }
+
+  &:hover {
+    color: $mdc-theme-primary;
+  }
+}
+
+.mapd-chart-wrapper-highlighted {
+  border-color: $mdc-theme-primary !important;
+}
+
+@keyframes delayShow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .dashboard-grid-container {
+    .parameter-widget__data-type-icon,
+    .parameter-widget__header {
+      border-color: $borderSeparator;
+    }
+  }
+}

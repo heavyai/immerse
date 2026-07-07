@@ -1,0 +1,167 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.layer-picker {
+  position: relative;
+  top: -2px;
+  overflow-x: auto;
+
+  .layer-tabs-wrapper {
+    border-bottom: 1px solid $gray3;
+    padding: 0 16px;
+    animation: showLayersBar 0.25s;
+    white-space: nowrap;
+  }
+
+  .layer-tab {
+    display: inline-block;
+    color: $gray4;
+    position: relative;
+    top: 1px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      fill: $gray4;
+    }
+
+    &.active {
+      border: 1px solid $gray3;
+      border-bottom-color: $gray1;
+      position: relative;
+      height: 29px;
+      background: $gray1;
+      border-radius: 3px 3px 0 0;
+    }
+
+    &:not(.active) {
+      .layer:hover {
+        color: $mdc-theme-primary;
+        .icon {
+          fill: $mdc-theme-primary;
+        }
+      }
+    }
+
+    &:hover {
+      .remove-layer,
+      .rename-layer,
+      .layer-label-text {
+        display: block;
+      }
+    }
+  }
+
+  .layer {
+    height: 28px;
+    line-height: 20px;
+    padding: 0 24px 0 24px;
+    font-weight: bold;
+    font-size: $fontSizeSmall;
+  }
+
+  .master {
+    padding: 0 24px 0 24px;
+    .icon {
+      width: 14px;
+      height: 14px;
+      left: 6px;
+      top: 6px;
+    }
+  }
+
+  .remove-layer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    padding-top: 2px;
+    height: 28px;
+    display: none;
+    .icon {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      left: -2px;
+    }
+
+    &:hover {
+      .icon {
+        fill: $mdc-theme-primary;
+      }
+    }
+  }
+
+  .rename-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    vertical-align: middle;
+    display: none;
+    .layer-edit-icon {
+      position: relative;
+      font-size: 16px;
+      padding: 6px 0 0 4px;
+    }
+    &:hover {
+      cursor: pointer;
+      color: $mdc-theme-primary;
+    }
+  }
+
+  .layer-label-wrapper {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+  }
+  .layer-label-text {
+    min-width: 39.53px;
+    outline: none;
+    line-height: 20px;
+
+    &:not(.layer-label-text-editable) {
+      user-select: none;
+      resize: inherit;
+      max-width: 60px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &.layer-label-text-editable {
+      border: 1px solid $borderSeparator;
+      background: $grayDp24;
+      cursor: initial;
+      border-radius: 2px;
+      text-overflow: clip;
+    }
+
+    &.layer-label-text-editable-error {
+      border: 1px solid #b00020;
+    }
+  }
+
+  .add-layer {
+    display: inline-block;
+    padding: 0 16px;
+    font-weight: bold;
+    color: $mdc-theme-primary;
+    font-size: $fontSizeSmall;
+    height: 28px;
+    line-height: 28px;
+  }
+}
+
+@keyframes showLayersBar {
+  0% {
+    transform: translate(0, -29px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

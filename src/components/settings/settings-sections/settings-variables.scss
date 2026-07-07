@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+body {
+  --listItemHoverBackgroundColor: rgba(255, 255, 255, 0.05);
+  --listItemLabelColor: var(--solid);
+  --listItemTextColor: var(--solid);
+  --listItemMDCFloatingLabel: var(--dimTextOnDark);
+}
+
+body.light-mode,
+body.light2-mode {
+  --listItemHoverBackgroundColor: rgba(0, 0, 0, 0.05);
+  --listItemLabelColor: var(--dimTextOnDark);
+  --listItemTextColor: var(--textOnDark);
+  --listItemMDCFloatingLabel: var(--textOnDark);
+}

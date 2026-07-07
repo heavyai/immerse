@@ -1,0 +1,170 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.dashboard-tab-panel {
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background: transparent;
+  display: inline-flex;
+  height: 32px;
+  max-width: calc(100vw - #{$globalSideNavWidth});
+
+  .dashboard-tab-next-icon,
+  .dashboard-tab-add-icon,
+  .dashboard-tab-menu-button {
+    display: flex;
+    color: $text-dim;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+
+    &:hover {
+      color: $text-black;
+    }
+  }
+
+  .dashboard-tab-next-icon {
+    width: 32px;
+    font-size: $fontSizeXLarge;
+  }
+
+  .dashboard-tab-add-icon {
+    width: 24px;
+    font-size: $fontSizeXLarge;
+  }
+
+  .dashboard-tab-menu-button {
+    width: 10px;
+    visibility: hidden;
+    font-size: $fontSizeMedium;
+
+    &.mdc-icon-button {
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .dashboard-tab-menu {
+    box-shadow: 0px 4px 4px 0 rgba(0, 0, 0, 0.1);
+
+    .mdc-list {
+      border: 1px solid $light-border;
+    }
+  }
+
+  .dashboard-tab-scroll-container {
+    overflow-x: auto;
+    display: flex;
+  }
+
+  .dashboard-tab {
+    position: relative;
+    display: flex;
+    min-width: fit-content;
+    background: #e8e8e8;
+    border-radius: 3px 3px 0 0;
+    border: 1px solid $light-border;
+    padding: 0 4px 0 8px;
+    margin-right: 4px;
+    align-items: center;
+    white-space: nowrap;
+
+    [contenteditable] {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+
+    &.active,
+    a:hover {
+      color: $text-black;
+    }
+
+    &:not(.active) {
+      color: $text-dim;
+    }
+
+    &.dragging {
+      visibility: hidden;
+    }
+
+    &:hover .dashboard-tab-menu-button {
+      visibility: visible;
+    }
+
+    .dashboard-tab-name {
+      white-space: nowrap;
+      background-color: transparent;
+      outline: none;
+      font-size: $fontSizeNormal;
+
+      &:not(.dashboard-tab-name--editable) {
+        cursor: pointer;
+        border: none;
+        user-select: none;
+      }
+      &.dashboard-tab-name--editable {
+        border: 1px solid $light-border;
+        cursor: initial;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  #dashboard-tab-menu-portal-root {
+    .mdc-list-item.mdc-list-item--disabled {
+      color: $text-dim;
+    }
+  }
+}
+
+body:not(.light2-mode) .dashboard-tab-panel {
+  .dashboard-tab-next-icon,
+  .dashboard-tab-add-icon,
+  .dashboard-tab-menu-button {
+    color: $dimIconOnDark;
+
+    &:hover {
+      color: $textOnDark;
+    }
+  }
+
+  .dashboard-tab-menu {
+    .mdc-list {
+      border: 1px solid $borderSeparator;
+    }
+  }
+
+  .dashboard-tab {
+    background: $grayDp8;
+    border: 1px solid $borderSeparator;
+
+    &.active,
+    a:hover {
+      color: $textOnDark;
+      background: $grayDp8;
+    }
+
+    &:not(.active) {
+      color: $dimIconOnDark;
+    }
+
+    .dashboard-tab-name.dashboard-tab-name--editable {
+      border: 1px solid $borderSeparator;
+      background: $grayDp24;
+    }
+  }
+
+  #dashboard-tab-menu-portal-root {
+    .mdc-list-item.mdc-list-item--disabled {
+      color: $disabled;
+    }
+  }
+}

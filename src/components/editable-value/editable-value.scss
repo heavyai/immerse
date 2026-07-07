@@ -1,0 +1,70 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.editable-value {
+  display: flex;
+  flex: 1;
+
+  &:not(.editable-value--editing) {
+    .editable-value__click-target:hover {
+      cursor: pointer;
+
+      .editable-value__edit-icon {
+        visibility: visible;
+      }
+    }
+  }
+
+  .editable-value__click-target {
+    display: flex;
+  }
+
+  textarea {
+    background-color: transparent;
+    border-color: transparent;
+    display: flex;
+    flex: 1;
+    overflow-y: hidden;
+    word-wrap: break-word;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  .edit-input {
+    display: flex;
+    flex: 1;
+  }
+}
+
+.editable-value--editing {
+  .editable-value__edit-icon {
+    visibility: visible;
+  }
+}
+
+.editable-value__edit-icon {
+  visibility: hidden;
+
+  svg {
+    fill: $textOnDark;
+  }
+}
+
+.editable-value__edit-icon--visible {
+  visibility: visible;
+}
+
+.editable-value__left-group {
+  display: flex;
+}

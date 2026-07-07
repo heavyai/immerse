@@ -1,0 +1,82 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.filter-time-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+
+  &.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.32);
+    z-index: 300; // over nav bar
+    padding: 50px;
+  }
+
+  .filter-time-modal-centered {
+    background: white;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .filter-time-modal-top {
+      flex-direction: column;
+    }
+
+    .time-picker-container {
+      flex-direction: column;
+      display: inline-block;
+      padding: 10px;
+
+      .MuiPickersStaticWrapper-staticWrapperRoot {
+        margin-bottom: 20px;
+      }
+    }
+
+    .filter-time-modal-bottom {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: flex-end;
+
+      > * {
+        padding: 10px;
+      }
+
+      .cancel {
+        color: $gray5;
+        cursor: pointer;
+      }
+
+      .filter-time-modal-apply {
+        .mdc-button {
+          font-size: $fontSizeSmall;
+          height: 24px;
+        }
+      }
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .filter-time-modal {
+    color: $textOnDark;
+    fill: $textOnDark;
+
+    .filter-time-modal-centered {
+      background-color: $grayDp1;
+    }
+  }
+}

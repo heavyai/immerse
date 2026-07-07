@@ -1,0 +1,71 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.changes-snackbar {
+  position: fixed;
+  display: flex;
+  transform: translate(-50%);
+  left: 50%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 24px;
+  gap: 16px;
+  width: 637px;
+  height: 65px;
+  background: #111111;
+  border: 1px solid #222222;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  z-index: 1;
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+
+  .changes-snackbar__actions {
+    display: flex;
+    align-items: center;
+    color: #999999;
+
+    .mdc-button__label {
+      color: white;
+    }
+
+    .mdc-button:not(.mdc-ripple-upgraded).mdc-button--unelevated:not(.warning):not(.info):not(.danger):not(.success) {
+      background-color: #19a057;
+    }
+
+    > div {
+      cursor: pointer;
+
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+  }
+}
+
+body.light-mode,
+body.light2-mode {
+  .changes-snackbar {
+    background: white;
+    border-color: $gray1;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+    span {
+      color: $darkGray4;
+    }
+    svg path {
+      fill: $darkGray4;
+    }
+  }
+}

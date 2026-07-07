@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>C42181E5-B856-4F71-BB7D-EFC08F5F6B50</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M12.515625,11.015625 L17.484375,15.984375 L15.984375,17.484375 L11.015625,12.515625 L11.015625,11.71875 L10.734375,11.4375 C9.54686906,12.4687552 8.14063313,12.984375 6.515625,12.984375 C4.70311594,12.984375 3.16406883,12.3593813 1.8984375,11.109375 C0.632806172,9.85936875 0,8.32813406 0,6.515625 C0,4.70311594 0.632806172,3.16406883 1.8984375,1.8984375 C3.16406883,0.632806172 4.70311594,0 6.515625,0 C8.32813406,0 9.85936875,0.632806172 11.109375,1.8984375 C12.3593813,3.16406883 12.984375,4.70311594 12.984375,6.515625 C12.984375,8.14063313 12.4687552,9.54686906 11.4375,10.734375 L11.71875,11.015625 L12.515625,11.015625 Z M6.515625,11.015625 C7.76563125,11.015625 8.82812063,10.5781294 9.703125,9.703125 C10.5781294,8.82812063 11.015625,7.76563125 11.015625,6.515625 C11.015625,5.26561875 10.5781294,4.20312937 9.703125,3.328125 C8.82812063,2.45312063 7.76563125,2.015625 6.515625,2.015625 C5.26561875,2.015625 4.20312937,2.45312063 3.328125,3.328125 C2.45312063,4.20312937 2.015625,5.26561875 2.015625,6.515625 C2.015625,7.76563125 2.45312063,8.82812063 3.328125,9.703125 C4.20312937,10.5781294 5.26561875,11.015625 6.515625,11.015625 Z" id="path-1"></path>
+    </defs>
+    <g id="LATEST---addition-of-role" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-473.000000, -80.000000)">
+            <g id="Dashboard-Original-Template" transform="translate(-1.000000, 0.000000)">
+                <g id="Saved-Dashboards-Title-Bar" transform="translate(0.000000, 48.000000)">
+                    <g id="Search-Bar" transform="translate(464.000000, 16.000000)">
+                        <g id="Search-icon-and-hint-text" transform="translate(7.000000, 13.000000)">
+                            <g id="Search" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) ">
+                                <g id="BluishGray" transform="translate(3.000000, 3.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#314054" xlink:href="#path-1"></use>
+                                    <g id="AA" mask="url(#mask-2)" fill="#AAAAAA" opacity="0.879999995">
+                                        <g transform="translate(-3.000000, -3.000000)">
+                                            <rect x="0" y="0" width="24" height="24"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

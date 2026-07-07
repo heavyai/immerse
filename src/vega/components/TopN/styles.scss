@@ -1,0 +1,237 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.top-n-item-container {
+  // makes sure color swatch popup appears in correct place
+  position: relative;
+}
+
+.top-n-item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  font-size: $fontSizeSmall;
+  border-radius: 2px;
+  &:hover {
+    i {
+      color: $text-dim;
+    }
+
+    .top-n-visible,
+    .top-n-lock {
+      display: flex;
+    }
+  }
+  .top-n-color {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    &:not(.disabled):hover {
+      cursor: pointer;
+    }
+    &:not(.visible) {
+      background: transparent;
+      border: 2px solid var(--color);
+    }
+  }
+  .top-n-value {
+    flex: 1 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 4px;
+    color: #555;
+    // Prevents Safari from auto-adding a second tooltip
+    span::after {
+      content: "";
+      display: block;
+    }
+    &:not(.visible) {
+      color: $text-dim;
+    }
+    &.italic {
+      font-style: italic;
+    }
+  }
+  .top-n-lock {
+    flex: 0 0 auto;
+    color: transparent;
+    padding: 0 4px;
+    display: none;
+    align-items: center;
+    &.locked {
+      color: $text-dim;
+      display: block;
+    }
+    i {
+      font-size: $fontSizeMedium;
+    }
+    &:hover i {
+      color: $mdc-theme-primary !important;
+      cursor: pointer;
+    }
+  }
+  .top-n-visible {
+    flex: 0 0 auto;
+    color: transparent;
+    padding: 0 4px;
+    display: none;
+    align-items: center;
+    i {
+      font-size: $fontSizeMedium;
+    }
+    &:hover i {
+      color: $mdc-theme-primary !important;
+      cursor: pointer;
+    }
+  }
+}
+
+.top-n-component {
+  margin-top: 8px;
+  .top-n-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $dimTextOnDark;
+    .top-n-header-left {
+      font-size: $fontSizeNormal;
+      color: $gray5;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      body:not(.light2-mode) & {
+        color: $textOnDark;
+      }
+    }
+    .top-n-header-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+  }
+  .top-n-values {
+    margin: 8px 0 0 0;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+  .center-button {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 0 0;
+  }
+  .selector-wrapper {
+    margin-bottom: 0;
+  }
+  .open-top-n-settings-button {
+    width: 20px;
+    height: 20px;
+    fill: $text-dim;
+    body:not(.light2-mode) & {
+      fill: $dimTextOnDark;
+    }
+    &:hover {
+      fill: $mdc-theme-primary;
+      cursor: pointer;
+    }
+  }
+
+  .top-n-search.mdc-text-field.mdc-text-field--upgraded {
+    display: flex;
+    margin-top: $spacing-04;
+
+    .mdc-text-field__input,
+    .mdc-floating-label {
+      font-size: $fontSizeSmall;
+    }
+
+    .mdc-floating-label {
+      margin-left: $spacing-05;
+    }
+
+    .mdc-line-ripple {
+      display: none;
+    }
+  }
+}
+
+.top-n-settings {
+  padding: 8px;
+  background: white;
+  .numerical-slider {
+    margin: 8px 0 4px 0;
+    height: 38px;
+    .mdc-slider {
+      height: 24px;
+      .mdc-slider__thumb-container {
+        top: 3px;
+      }
+    }
+  }
+  .sort-topN {
+    margin: 8px 0;
+  }
+  .manual-selection-button {
+    color: $mdc-theme-primary;
+    font-size: $fontSizeSmall;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .legend-toggles {
+    padding: 8px 0 4px 0;
+    font-size: $fontSizeSmall;
+    .legend-toggle {
+      padding: 4px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    body:not(.light2-mode) & {
+      color: $textOnDark;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .top-n-component {
+    .open-top-n-settings-button {
+      fill: $dimTextOnDark;
+      &:hover {
+        fill: $mdc-theme-primary;
+        cursor: pointer;
+      }
+    }
+  }
+  .top-n-item {
+    background: transparent;
+    border-width: 0;
+    // If the user hovers over the top-n-item row, make the lock icon brighter
+    &:hover {
+      i {
+        color: $dimTextOnDark;
+      }
+    }
+    .top-n-value {
+      color: $textOnDark;
+      &:not(.visible) {
+        color: $dimTextOnDark;
+      }
+    }
+    .top-n-lock {
+      i.locked {
+        color: $dimTextOnDark;
+      }
+      i:not(.visible) {
+        color: $dimIconOnDark;
+      }
+    }
+  }
+
+  .top-n-settings {
+    background: $grayDp1;
+  }
+}

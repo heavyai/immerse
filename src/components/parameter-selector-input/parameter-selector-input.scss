@@ -1,0 +1,138 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.parameter-selector-input {
+  width: 100%;
+  position: relative;
+}
+
+.parameter-selector-input__popup {
+  position: absolute;
+  top: 27px;
+  left: calc(50% - 124px);
+  z-index: 15;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+
+  .parameter-selector {
+    position: relative;
+    width: 248px;
+    height: 300px;
+    margin-top: 11px;
+    border: 1px solid $light-border;
+    border-radius: 0;
+    background: white;
+
+    body:not(.light2-mode) & {
+      border-color: $borderSeparator;
+      background-color: $grayDp8;
+    }
+
+    &:before {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      margin-left: -8px;
+      content: "";
+      border: 8px solid transparent;
+      border-bottom-color: $light-border;
+
+      body:not(.light2-mode) & {
+        border-bottom-color: $borderSeparator;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      margin-left: -8px;
+      content: "";
+      border: 8px solid transparent;
+      border-bottom-color: $gray10;
+
+      body:not(.light2-mode) & {
+        border-bottom-color: $grayDp8;
+      }
+    }
+  }
+}
+
+.parameter-selector-input__popup--align-top .parameter-selector {
+  margin-top: 0;
+  margin-bottom: 11px;
+
+  &::before,
+  &::after {
+    transform: rotate(180deg);
+  }
+
+  &::before {
+    top: 299px;
+  }
+
+  &::after {
+    top: 298px;
+    border-bottom-color: white;
+  }
+}
+
+.parameter-selector-input__popup--align-right {
+  .parameter-selector {
+    margin-top: 0;
+    margin-left: 11px;
+
+    &::before,
+    &::after {
+      top: -15px;
+      transform: translate(-131px, 162px) rotate(-90deg);
+    }
+
+    &::before {
+      margin-left: -9px;
+    }
+
+    &::after {
+      border-bottom-color: white;
+    }
+  }
+}
+
+.parameter-selector-input__popup--align-left {
+  .parameter-selector {
+    margin-top: 0;
+    margin-right: 11px;
+
+    &::before,
+    &::after {
+      top: -15px;
+      transform: translate(131px, 162px) rotate(90deg);
+    }
+
+    &::before {
+      margin-left: -8px;
+    }
+
+    &::after {
+      border-bottom-color: white;
+      margin-left: -9px;
+    }
+  }
+}
+
+.parameter-selector-input__popup--align-bottom {
+  .parameter-selector {
+    &::after {
+      border-bottom-color: $gray10;
+    }
+  }
+}
+
+#custom-portal-root .parameter-selector-input__popup {
+  position: fixed;
+}

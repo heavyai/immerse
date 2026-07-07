@@ -1,0 +1,54 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.cross-section-data-selection-panel {
+  .coordinate-pair {
+    display: flex;
+    margin-bottom: 4px;
+
+    > :first-child {
+      margin-right: 2px;
+    }
+
+    > :last-child {
+      margin-left: 2px;
+    }
+  }
+
+  .endpoints-container {
+    margin-bottom: 12px;
+
+    .chart-editor-label {
+      margin-bottom: 2px;
+    }
+  }
+  .subtype-btns {
+    // Keep a border around the sub type disabled buttons, to make it more obvious that this is a button
+    .chart-type-btn.chart-btn-disabled {
+      border: 1px solid $disabled;
+    }
+  }
+
+  // Multi select weirdness fixes
+  // These should be default behaviors
+  .select__option--is-disabled {
+    color: $disabled;
+  }
+  .select__option:hover {
+    &:not(.select__option--is-disabled) {
+      cursor: pointer;
+    }
+  }
+}
+
+.chart-editor-error-wrap .error-msg ul:hover li {
+  opacity: 1;
+}
+
+.legendables.open {
+  z-index: 6;
+}

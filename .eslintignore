@@ -1,0 +1,10 @@
+**/*.spec.js
+**/*.d.ts
+.nyc_output/
+coverage/
+coverage_jest/
+dist/
+frontend-dev/
+frontend-prod/
+node_modules/
+playwright-report/

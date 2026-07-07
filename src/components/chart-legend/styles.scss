@@ -1,0 +1,95 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.chart-legend {
+  background: #fff;
+  position: absolute;
+  right: 40px;
+  top: 70px;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+  overflow: auto;
+
+  // All font sizes in this component are relative to this value.
+  // When a user increases or decreases the font size of legends via the
+  // Dashboard Config UI, this is the value that changes
+  font-size: $fontSizeNormal;
+
+  &.has-right-axis {
+    right: 70px;
+  }
+  .title {
+    color: #888;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: normal;
+    &:hover {
+      color: #22A7F0;
+    }
+    .legend-collapse {
+      float: right;
+      transition: transform 0.2s ease;
+    }
+  }
+  &.collapsed .title{
+    border: none;
+    .legend-collapse {
+      transform: rotate(-90deg);
+    }
+  }
+  > ul > li {
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+      border-bottom: none;
+    }
+    $markStyleSize: 1.4rem;
+    > span {
+      color: #999;
+      font-size: 0.85em;
+    }
+    > ul > li {
+      font-size: 1em;
+      word-break: break-all;
+
+      .mark-style-icon {
+        display: inline-block;
+        height: $markStyleSize;
+        width: $markStyleSize;
+        border: none;
+        vertical-align: middle;
+
+        &.line {
+          border-bottom: 2.5px solid #000;
+          height: 0;
+
+          &.solid {
+            border-bottom-style: solid;
+          }
+
+          &.dashes {
+            border-bottom-style: dashed;
+          }
+
+          &.dotted {
+            border-bottom-style: dotted;
+          }
+        }
+      }
+    }
+  }
+
+  &.floating {
+    pointer-events: none;
+    right: auto;
+    top: 0;
+    left: 0;
+    display: table; // Keeps the width from shrinking as it meets edge of flexbox parent
+    z-index: 3;
+  }
+}

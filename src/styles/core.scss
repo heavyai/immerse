@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/_css-vars';
+@import '~base/nexus/colors';
+@import '~base/fonts';
+@import '~base/normalize';
+@import '~base/_base';
+@import '~base/_utils';
+@import '~base/material-icons';
+
+.show-in-dark-mode {
+  display: none;
+}

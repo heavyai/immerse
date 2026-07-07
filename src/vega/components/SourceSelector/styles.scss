@@ -1,0 +1,103 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+
+.data-source-selector {
+  .item-with-actions {
+    .value {
+      flex-grow: 1;
+    }
+    .actions {
+      display: flex;
+    }
+    .data-source-icon {
+      height: 24px;
+      width: 24px;
+      fill: $dimTextOnDark
+    }
+  }
+}
+
+
+.chart-editor-container .data-source-selector.vega-data-source-selector {
+  position: relative;
+  height: 32px;
+
+  button.add-source, button.data-source-pill {
+    height: 32px !important;
+  }
+
+  button.data-source-pill {
+    background-color: white !important;
+
+    .data-source-pill-label {
+      padding: 0 8px;
+    }
+
+    &:hover {
+      border: 1px solid $inputHoverBorder;
+    }
+  }
+
+  button.add-source {
+    border: 1px solid $gray5;
+    text-align: left;
+    padding: 0 16px;
+    color: $text-gray;
+    font-weight: initial;
+    &:disabled {
+      color: $disabled;
+    }
+  }
+
+  .data-source-clear-button {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: $fontSizeMedium;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    &.data-source-loader {
+      right: 12px;
+      top: 8px;
+    }
+  }
+
+}
+
+body:not(.light2-mode) .chart-editor-container .chart-editor-left-panel .data-source-selector.vega-data-source-selector {
+  button.data-source-pill {
+    background-color: $grayDp24 !important;
+    border: 1px solid $borderSeparator;
+
+    &:hover {
+      border: 1px solid $inputHoverBorder;
+    }
+
+    .data-source-pill-label {
+      padding: 0 4px 0 8px;
+    }
+  }
+
+  button.add-source {
+    background-color: $grayDp24;
+    border: 1px solid $borderSeparator;
+    text-align: left;
+    padding: 0 16px;
+    font-weight: initial;
+    color: $dimTextOnDark;
+
+    &:disabled {
+      color: $disabled;
+    }
+  }
+
+  .data-source-clear-button {
+    color: $dimTextOnDark;
+  }
+}

@@ -1,0 +1,42 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.geo-json-dropdown {
+  margin: $spacing-06 $spacing-02 0 $spacing-02;
+
+  .react-selectize.default .react-selectize-control {
+    background: white !important;
+    border-radius: 4px !important;
+    padding: 0 0 0 4px !important;
+  }
+
+  .react-selectize.default.open .react-selectize-control {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    padding: 4px !important;
+    box-shadow: 0 3px 4px 1px rgba(black, .2) !important;
+    position: relative;
+    margin: -2px 0 -4px -2px;
+    width: calc(100% + 4px);
+    font-size: $fontSizeMedium;
+  }
+
+  .dropdown-menu {
+    width: calc(100% + 4px) !important;
+    box-shadow: 0 3px 4px 1px rgba(black, .2) !important;
+    left: -2px;
+  }
+}
+
+.geo-join-source-selector {
+  .data-source-selector {
+    // Resets things from the vega SourceSelector that make this element overlap 
+    // the one below it, which messed up the tooltip mouse out
+    height: unset !important;
+    padding: $spacing-02 0;
+  }
+}

@@ -1,0 +1,127 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+$chart-header-height: 55px;
+$quick-filter-height: 24px;
+$chart-container-height: calc(
+  100% - #{$chart-header-height + $quick-filter-height}
+);
+
+.chart-overlay {
+  background: rgba(white, 0.6);
+  position: fixed;
+  z-index: 2000;
+  opacity: 0;
+  animation: showOverlay 1s 2s;
+  animation-fill-mode: forwards !important;
+  pointer-events: none;
+
+  .main-loading-icon {
+    position: relative;
+  }
+
+  .loading-widget {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.waiting {
+  .chart-overlay {
+    pointer-events: none;
+  }
+}
+
+.dc-chart.chart-loading-overlay {
+  width: 100%;
+  height: $chart-container-height;
+}
+
+.chart-container {
+  height: $chart-container-height;
+  display: flex;
+
+  .left-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .right-container {
+    height: 100%;
+    display: flex;
+  }
+
+  .dc-chart .geocoder-input {
+    right: 30px !important;
+  }
+
+  .line {
+    height: $chart-container-height;
+  }
+
+  .chart-type-pointmap {
+    .chart-title {
+      border-bottom-color: transparent;
+    }
+  }
+
+  &.chart-type-be-rendered {
+    overflow: hidden;
+    .mapboxgl-map {
+      width: inherit !important;
+    }
+  }
+
+  &.quick-filters-visible {
+    .dc-chart .geocoder-input {
+      top: 24px !important;
+    }
+  }
+}
+
+// Customize the ruler a bit
+
+.mapboxgl-ctrl-group.mapbox-ctrl-ruler {
+  button,
+  button:not(:disabled):hover {
+    // No hover effects for other mapbox controls
+    background-color: $grayDp8;
+    border-radius: 4px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $dimIconOnDark;
+    }
+    &.-active {
+      background-color: $grayDp24;
+      svg {
+        fill: $solid;
+      }
+    }
+  }
+}
+.dark-mode .mapboxgl-ctrl-group.mapbox-ctrl-ruler {
+  button,
+  button:not(:disabled):hover {
+    border: 0.5px solid $gray5;
+  }
+}
+
+@keyframes showOverlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.chart-container .dc-chart .axis text {
+  font-family: "Roboto", Sans-Serif !important;
+}

@@ -1,0 +1,139 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.crosslink-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 12px;
+  border: 1px solid $gray3;
+  background: $gray1;
+
+  .dark-mode & {
+    border-color: $borderSeparator;
+    background: $grayDp8;
+  }
+
+  &.is-disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  &:hover {
+    .crosslink-info__actions-link {
+      opacity: 1;
+    }
+  }
+
+  header,
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header {
+    position: relative;
+    padding: 8px;
+    font-size: $fontSizeNormal;
+
+    .rmwc-icon {
+      vertical-align: middle;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    list-style: none;
+    font-size: $fontSizeSmall;
+    border-top: 1px solid $gray3;
+
+    .dark-mode & {
+      border-top-color: $borderSeparator;
+    }
+
+    > li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding: 3px 0;
+    }
+  }
+}
+
+.crosslink-info__actions-menu {
+  margin-top: -7px;
+
+  .mdc-list {
+    padding: 0;
+
+    .rmwc-icon {
+      margin-right: 6px;
+    }
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+}
+
+.crosslink-info__actions-link {
+  opacity: 0;
+  position: absolute;
+  right: -2px;
+  top: 6px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.is-menu-open {
+    opacity: 1;
+  }
+}
+
+.crosslink-info__left,
+.crosslink-info__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 43%;
+}
+
+.crosslink-info__left {
+  .mdc-switch {
+    width: 33px;
+    margin-right: 6px;
+    margin-top: -2px;
+  }
+}
+
+.crosslink-info__source,
+.crosslink-info__column-a,
+.crosslink-info__column-b {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crosslink-info__source {
+  width: 100px;
+}
+
+.crosslink-info__column-a {
+  width: 120px;
+  padding-left: 40px;
+}
+
+.crosslink-info__column-b {
+  width: 105px;
+}

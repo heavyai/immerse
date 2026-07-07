@@ -1,0 +1,283 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.chart-container-header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 0 6px;
+  border-bottom: 1px solid $gray2;
+  text-align: center;
+  position: relative;
+
+  &.hidden {
+    opacity: 0;
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .chart-button {
+    width: 24px;
+    height: 24px;
+    color: $icon-light;
+    cursor: pointer;
+    padding: 2px;
+
+    & > svg {
+      fill: $icon-light;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .material-icons {
+      font-size: $fontSizeLarge;
+    }
+
+    &:hover {
+      color: $mdc-theme-primary;
+
+      & > svg {
+        fill: $mdc-theme-primary;
+      }
+    }
+  }
+
+  .chart-query-button > svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .delete-chart-filters {
+    opacity: 0;
+    @extend .chart-button;
+
+    .react-grid-item:hover & {
+      opacity: 1;
+    }
+  }
+
+  &.has-source-icon {
+    .delete-chart-filters {
+      left: 36px;
+    }
+  }
+
+  .chart-left-controls {
+    display: flex;
+    height: 40px;
+    transition: opacity 0.25s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 12;
+    align-items: center;
+    background-color: white;
+
+    .react-grid-item:hover & {
+      opacity: 1;
+    }
+
+    .react-grid-item:not(:hover) & {
+      display: none;
+    }
+
+    .chart-data-source {
+      opacity: 0;
+      @extend .chart-button;
+      margin-right: 2px;
+      cursor: default;
+      color: white;
+
+      .react-grid-item:hover & {
+        opacity: 1;
+      }
+
+      &:hover {
+        color: white;
+
+        .chart-data-source-tooltip {
+          display: block;
+          animation: showDataSourceTooltip 0.15s;
+        }
+      }
+    }
+
+    .chart-linked-zoom {
+      opacity: 0;
+      @extend .chart-button;
+      margin-right: 2px;
+      margin-top: -5px;
+
+      .react-grid-item:hover & {
+        opacity: 1;
+      }
+
+      svg {
+        fill: $gray4;
+      }
+    }
+    .linked-zoom-enabled {
+      opacity: 1 !important;
+      svg {
+        fill: $text-gray;
+      }
+    }
+
+    .chart-zoom-to-filters {
+      opacity: 0;
+      @extend .chart-button;
+      margin-left: 2px;
+      margin-top: 3px;
+
+      .react-grid-item:hover & {
+        opacity: 1;
+      }
+    }
+
+    .chart-data-source-tooltip {
+      display: none;
+      position: absolute;
+      z-index: 3;
+      background: rgba($charcoal, 0.86);
+      border-radius: 3px;
+      top: -16px;
+      color: white;
+      font-size: $fontSizeSmall;
+      padding: 4px 8px;
+      left: -16px;
+      text-align: center;
+      min-width: 64px;
+      transform: translate(0, -4px);
+      white-space: nowrap;
+
+      &:after {
+        content: "";
+        border: 6px solid transparent;
+        border-top-color: $charcoal;
+        opacity: 0.86;
+        position: absolute;
+        bottom: -12px;
+        left: 22px;
+      }
+    }
+  }
+
+  .chart-left-shadow {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 40px;
+    opacity: 0;
+    transition: opacity 0.25s;
+    background-color: white;
+    pointer-events: none;
+    box-shadow: 16px 0px 8px 0px white;
+
+    .react-grid-item:hover & {
+      opacity: 1;
+    }
+  }
+
+  .chart-right-controls {
+    display: flex;
+    height: 40px;
+    opacity: 0;
+    transition: opacity 0.25s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    align-items: center;
+    background-color: white;
+
+    .react-grid-item:hover & {
+      opacity: 1;
+    }
+  }
+
+  .chart-right-shadow {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 38px;
+    opacity: 0;
+    transition: opacity 0.25s;
+    background-color: white;
+    pointer-events: none;
+    box-shadow: -16px 0px 8px 0px white;
+
+    .react-grid-item:hover & {
+      opacity: 1;
+    }
+  }
+
+  .mdc-menu {
+    /*
+    Anchors the menu from the top right corner instead of the top left
+    which material menu options do not allow
+    */
+    transform-origin: right top !important;
+    right: 0;
+    top: 0;
+    left: unset !important;
+
+    .mdc-list-item {
+      /* no wrapping, so menu items will fit the text provided */
+      .list-item-title {
+        padding-left: 8px;
+        text-align: left;
+        white-space: nowrap;
+        max-width: 320px;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+      }
+    }
+  }
+}
+
+/* Red pill around New to draw attention */
+.new-button {
+  border-radius: 5px;
+  color: white;
+  background-color: #e7601e;
+  padding: 0 2px;
+  font-size: $fontSizeNormal;
+}
+
+/* popup styling */
+.zoom-to-filters-popup {
+  display: inline-flex;
+  align-items: center;
+
+  .popup-text {
+    margin-left: $spacing-04;
+  }
+}
+
+@keyframes showDataSourceTooltip {
+  0% {
+    opacity: 0;
+    transform: translate(0, 4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -4px);
+  }
+}

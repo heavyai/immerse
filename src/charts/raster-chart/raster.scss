@@ -1,0 +1,32 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.heavyai-draw-button svg {
+  fill: $dimIconOnDark;
+  height: 20px;
+  margin-top: 6px;
+
+  &:hover {
+    fill: $mdc-theme-primary;
+  }
+}
+.heavyai-draw-button-circle svg {
+  stroke: $dimIconOnDark;
+
+  &:hover {
+    stroke: $mdc-theme-primary;
+  }
+}
+
+.heavyai-draw-button-control-group .heavyai-draw-active-button {
+  background-color: $mdc-theme-primary !important;
+}
+
+.heavyai-draw-button.heavyai-draw-button-CrossSection:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

@@ -1,0 +1,22 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.contour-display-settings {
+  .switch-with-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  svg.isoline rect {
+    fill: $dimTextOnDark;
+  }
+  .color-picker-widget .button.reverse-colors {
+    width: 32px;
+  }
+}

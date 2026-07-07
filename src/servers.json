@@ -1,0 +1,9 @@
+[
+  {
+    "database": "heavyai",
+    "username": "firstname.lastname",
+    "password": "ldap-password",
+    "url": "https://localhost:6273",
+    "GTM": "GTM-MDD888"
+  }
+]

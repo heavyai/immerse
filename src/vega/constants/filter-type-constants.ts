@@ -1,0 +1,22 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+export const FILTER_TYPE_AND = "AND"
+export const FILTER_TYPE_BETWEEN = "BETWEEN"
+export const FILTER_TYPE_BOUNDING_BOX = "BOUNDING_BOX"
+export const FILTER_TYPE_DISTANCE = "DISTANCE"
+export const FILTER_TYPE_EMPTY_COHORT = "EMPTY_COHORT"
+export const FILTER_TYPE_IN = "IN"
+export const FILTER_TYPE_ISNOTNULL = "ISNOTNULL"
+export const FILTER_TYPE_ISNULL = "ISNULL"
+export const FILTER_TYPE_MULTISOURCE = "MULTISOURCE"
+export const FILTER_TYPE_NOT = "NOT"
+export const FILTER_TYPE_NOT_IN = "NOT IN"
+export const FILTER_TYPE_OR = "OR"
+export const FILTER_TYPE_POLYGON = "POLYGON"
+export const FILTER_TYPE_SIMPLE = "SIMPLE"
+export const FILTER_TYPE_SQL = "SQL"
+export const FILTER_TYPE_ST_CONTAINS = "ST_Contains"
+export const FILTER_TYPE_ST_DISTANCE = "ST_Distance"
+export const FILTER_TYPE_ST_INTERSECTS = "ST_Intersects"
+export const FILTER_TYPE_UNLIKELY = "UNLIKELY"

@@ -1,0 +1,176 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.import-dialog-title {
+  border-radius: 4px 4px 0 0;
+  background-color: #fff !important;
+  color: #333 !important;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  text-transform: capitalize;
+
+  .mdc-icon-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: 4px;
+    padding: 8px;
+    color: #555;
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+  }
+
+  .mdc-icon-button:not(.mdc-ripple-upgraded):focus {
+    &::before, &::after {
+      opacity: 0;
+    }
+  }
+}
+
+.import-dialog-content {
+  background-color: #f5f5f5;
+}
+
+.import-dialog-action-button {
+  margin-left: 16px !important;
+}
+
+.import-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  height: 200px;
+  background-color: #fff;
+  color: #ccc;
+  border: 2px dashed #ddd;
+  padding: 80px 0;
+  font-family: "Roboto";
+  font-size: 125%;
+  letter-spacing: inherit;
+
+  .dz-clickable {
+    cursor: pointer;
+  }
+
+  .dz-preview {
+    display: none;
+  }
+
+  .import-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .import-message-icon {
+      opacity: 0;
+      animation-name: importiconanimation;
+      animation-delay: 750ms;
+      animation-duration: 150ms;
+      animation-fill-mode: forwards;
+    }
+
+    .import-message-text {
+      color: $charcoal;
+      font-size: 85%;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .import-message-progress-bar-container {
+      width: 250px;
+      height: 16px;
+    }
+
+    .import-message-progress-bar {
+      width: 0;
+      height: 16px;
+      animation-name: importprogressanimation;
+      animation-duration: 750ms;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  .import-message-warning {
+    .import-message-icon {
+      fill: #f2b700;
+    }
+
+    .import-message-progress-bar {
+      background-color: #f2b700;
+    }
+  }
+
+  .import-message-success {
+    .import-message-icon {
+      fill: #5bce00;
+    }
+
+    .import-message-progress-bar {
+      background-color: #5bce00;
+    }
+  }
+
+  .import-drag-hint {
+    > svg {
+      width: 24px;
+      margin-right: 6px;
+      fill: #ccc;
+    }
+
+    display: flex;
+    font-size: 150%;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .import-browse-link {
+    color: $mdc-theme-primary;
+    font-weight: bold;
+  }
+
+  .import-file-load-error {
+    color: $error;
+    position: absolute;
+    bottom: 86px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    padding: 0 18px;
+  }
+}
+
+@keyframes importiconanimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes importprogressanimation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 250px;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .import-dialog-content .import-message-text {
+    color: $textOnDark;
+  }
+}

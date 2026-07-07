@@ -1,0 +1,133 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+#sql-generator-query-complexity {
+  display: flex;
+  background-color: $grayDp24;
+  padding: $spacing-03 $spacing-05;
+  align-items: center;
+  border-radius: 8px;
+  z-index: 1;
+
+  .query-complexity__rating {
+    border-left: 1px solid $gray7;
+    padding: 0 $spacing-03 0 $spacing-04;
+  }
+
+  .query-complexity__label {
+    padding-right: $spacing-03;
+    margin-right: $spacing-04;
+    display: flex;
+    align-items: center;
+  }
+
+  .query-complexity__label__icon {
+    margin-right: 6px;
+    height: 13px;
+    width: 16px;
+  }
+}
+
+.query-complexity__tooltip-wrapper {
+  opacity: 1;
+
+  .rmwc-tooltip-inner {
+    padding: 0;
+  }
+
+  .rmwc-tooltip-content {
+    transform: translateY(-$spacing-04);
+  }
+}
+
+.query-complexity__tooltip {
+  background-color: $grayDp0;
+  display: flex;
+  width: 393px;
+  padding: $spacing-06;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-05;
+  border-radius: 4px;
+  border: 1px solid $gray7;
+  color: $dimTextOnDark;
+  font-size: 13px;
+  pointer-events: none;
+
+  h2,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  h6 {
+    font-weight: normal;
+  }
+
+  h2 {
+    line-height: $spacing-07;
+    color: $solid;
+  }
+
+  .query-complexity__tooltip__heading {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    h6 {
+      font-size: 13px;
+    }
+  }
+
+  .query-complexity__tooltip__accuracy-level {
+    display: flex;
+    padding: $spacing-03 $spacing-05;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 4px;
+    text-transform: capitalize;
+    color: rgba(18, 18, 18, 0.75);
+
+    span {
+      display: block;
+      line-height: $spacing-06;
+    }
+
+    > :first-child {
+      font-size: 13px;
+    }
+
+    > :last-child {
+      font-size: 13px;
+      font-weight: 800;
+    }
+  }
+
+  .query-complexity__tooltip__accuracy-level--high {
+    background-color: $alert-green;
+  }
+
+  .query-complexity__tooltip__accuracy-level--moderate {
+    background-color: $alert-yellow;
+  }
+
+  .query-complexity__tooltip__accuracy-level--reduced {
+    background-color: $alert-red;
+  }
+}
+
+body.light-mode #sql-generator-query-complexity {
+  background-color: $grayDp8;
+}
+
+body:not(.light2-mode):not(.light-mode)
+.query-complexity__tooltip-wrapper
+.rmwc-tooltip-inner {
+  box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 30px 0 rgba(0, 0, 0, 0.12),
+  0 16px 24px 0 rgba(0, 0, 0, 0.14);
+}

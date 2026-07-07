@@ -1,0 +1,62 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.dashboard-config-section-title-container {
+  padding: 0 16px !important;
+  margin-bottom: 16px;
+  .dashboard-config-section-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 0 solid $borderSeparator;
+    border-bottom-width: 1px;
+    padding: 0 0 3px 0;
+    font-size: $fontSizeNormal;
+    .expand-right {
+      color: $text-dim;
+    }
+    .inline-button-container {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      color: #eeeeee;
+      .inline-button {
+        display: flex;
+      }
+    }
+  }
+  i {
+    color: $charcoal;
+  }
+}
+
+// Make chevrons work properly
+.dashboard-config-panel {
+  .rmwc-collapsible-list--open {
+    .mdc-list-item__meta,
+    .expand-right {
+      transform: rotate(-90deg) !important;
+    }
+  }
+  .rmwc-collapsible-list:not(.rmwc-collapsible-list--open) {
+    .mdc-list-item__meta,
+    .expand-right {
+      transform: rotate(0) !important;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .dashboard-config-section-title-container {
+    &.panel-filter {
+      background-color: $grayDp1;
+    }
+    i {
+      color: $dimTextOnDark;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.vega-combo-with-range {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  & > .vega-combo-focus-chart {
+    position: relative;
+    flex: 1 1 auto;
+  }
+
+  & > .vega-combo-range-chart {
+    position: relative;
+    flex: 0 0 25%;
+  }
+}

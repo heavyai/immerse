@@ -1,0 +1,68 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+@mixin highContrast($color) {
+  .chart-title-no-edit,
+  .d3-combo-chart .label-group .axis-label,
+  .chart-axis-overlay .axis-display,
+  .dc-chart .table-sort,
+  .dc-chart div.axis-label-edit,
+  .vega-title-container .domain-input,
+  .mark-text.role-axis-title > text,
+  .axis .tick > text,
+  .d3-combo-chart .domain-input-group .domain-input,
+  .d3-combo-chart .tooltip-group div,
+  .chart-legend.floating,
+  .dc-chart .chart-popup-box,
+  .chart-popup-box .popup-value,
+  .chart-tooltip,
+  .chart-legend:not(.floating),
+  .d3-combo-chart .legend-group div,
+  .dc-chart .legend-cont .legend-label,
+  .dc-chart .legend .range .text,
+  .vega-color-measure-legend-container,
+  .d3-combo-chart .binning-group .bin-label,
+  .d3-combo-chart .binning-group .item,
+  .d3-combo-chart .brush-range-input-group .brush-range-input,
+  .mark-text.role-axis-label text,
+  .chart-legend .title,
+  .chart-legend > ul > li > span,
+  .legendables .title-text,
+  .chart-popup .popup-header,
+  .dc-legend .dc-legend-header,
+  .heatmap-scroll .text,
+  .chart-type-row svg .row text,
+  .collapsible-topN-legend-panel
+    .legend-header
+    .legend-header-title
+    .column-name,
+  .dc-chart .external-axis .axis text,
+  .bin-row-item:not(.active),
+  .range-display,
+  .bin-row span,
+  .vega-container .chart-panel-binning-wrapper {
+    color: $color !important;
+    fill: $color !important;
+  }
+  .mapboxgl-ctrl-scale {
+    color: $color !important;
+    border-color: $color !important;
+  }
+  .d3-combo-chart .binning-group .item.selected {
+    color: #22a7f0 !important;
+  }
+}
+
+body.high-contrast {
+  @include highContrast($gray11);
+  .dc-chart .pie-label {
+    fill: $gray11 !important;
+  }
+  &:not(.light2-mode) {
+    @include highContrast($textOnDark);
+  }
+}

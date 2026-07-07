@@ -1,0 +1,85 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "~themes/mixins";
+
+.profile-settings {
+  .release-card {
+    margin-bottom: 32px;
+  }
+
+  .profile-settings__input-wrapper {
+    margin-bottom: 24px;
+
+    .mdc-text-field {
+      display: flex;
+    }
+  }
+
+  .profile-settings__fields {
+    width: 552px;
+  }
+
+  .profile-settings__name-fields {
+    display: flex;
+
+    .profile-settings__input-wrapper {
+      flex: 1;
+
+      &:first-child {
+        margin-right: 4px;
+      }
+
+      &:last-child {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .profile-settings__fields__additional-info header {
+    margin-bottom: 26px;
+    font-weight: normal;
+
+    h4 {
+      font-size: $fontSizeLarge;
+      font-weight: normal;
+    }
+
+    p {
+      color: #777777;
+    }
+  }
+
+  .profile-settings__fields__vitals {
+    margin-bottom: 40px;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) .profile-settings {
+  .mdc-text-field.mdc-text-field--upgraded .mdc-notched-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      background-color: $grayDp1;
+    }
+  }
+}
+
+body.light2-mode,
+body.light-mode .profile-settings {
+  .mdc-text-field.mdc-text-field--upgraded {
+    .mdc-notched-outline {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing,
+      .mdc-floating-label.mdc-floating-label--float-above {
+        color: $darkGray4;
+        background-color: $lightGray;
+      }
+    }
+    @include notch-border(#555555);
+  }
+}

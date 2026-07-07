@@ -1,0 +1,1401 @@
+[
+  {
+    "key": "combo/queryThrottle",
+    "constant": "COMBO_QUERY_THROTTLE",
+    "type": "number",
+    "description": "How often ComboChart fires crossfilters when brushing or zooming.",
+    "default": 200,
+    "migrate": "comboQueryThrottle",
+    "permission": "dev"
+  },
+  {
+    "key": "dev/SQLLogging",
+    "constant": "SQLLogging",
+    "type": "boolean",
+    "description": "Log queries to the console as they are executed",
+    "default": false,
+    "migrate": "SQLlogging",
+    "console_function": "SQLlogging",
+    "query_param": "sqllogging",
+    "permission": "super"
+  },
+  {
+    "key": "dev/enable_mock_connector",
+    "constant": "ENABLE_MOCK_CONNECTOR",
+    "type": "boolean",
+    "description": "enable heavyai-connector to be bypassed and mocked",
+    "default": false,
+    "query_param": "enable_mock_connector",
+    "permission": "dev"
+  },
+  {
+    "key": "dev/reduxlogging",
+    "constant": "REDUX_LOGGING",
+    "type": "boolean",
+    "description": "Log redux actions to the console as they are executed",
+    "default": false,
+    "migrate": "reduxlogging",
+    "permission": "dev"
+  },
+  {
+    "key": "dev/reduxtrace",
+    "constant": "REDUX_TRACE",
+    "type": "boolean",
+    "description": "Enable stack traces for actions in the redux dev tools",
+    "default": false,
+    "migrate": "reduxtrace",
+    "permission": "dev"
+  },
+  {
+    "key": "dev/reduxMaxAge",
+    "constant": "REDUX_MAX_AGE",
+    "type": "number",
+    "description": "Keep track of how many redux actions to log (0 for dev tools default (50))",
+    "permission": "dev"
+  },
+  {
+    "key": "dev/log_feature_flags",
+    "constant": "LOG_FEATURE_FLAGS",
+    "type": "boolean",
+    "description": "Print out a list of feature flags at app start up",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/render_error_handling_remove_hard_reset",
+    "constant": "RENDER_ERROR_HANDLING_REMOVE_HARD_RESET",
+    "type": "boolean",
+    "description": "On INITIAL_RENDER_ERROR or REDRAW_ALL_ERROR, remove redirect to dashboard list and hard reset of app state. This is a FF for testing only and should be removed when we're sure this code doesn't break anything",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/vega_log_level",
+    "constant": "VEGA_LOG_LEVEL",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "None",
+        "value": 0,
+        "permission": "dev"
+      },
+      {
+        "label": "Error",
+        "value": 1,
+        "permission": "dev"
+      },
+      {
+        "label": "Warn",
+        "value": 2,
+        "permission": "dev"
+      },
+      {
+        "label": "Info",
+        "value": 3,
+        "permission": "dev"
+      },
+      {
+        "label": "Debug",
+        "value": 4
+      }
+    ],
+    "description": "Log level for vega charts",
+    "default": 0,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/show_dashboard_versions",
+    "constant": "SHOW_DASHBOARD_VERSIONS",
+    "type": "boolean",
+    "description": "Show the dashboard schema version for each dashboard in the dashboard list",
+    "default": false,
+    "console_function": "showDashboardVersions",
+    "permission": "super"
+  },
+  {
+    "key": "dev/repair_invalid_filters",
+    "constant": "REPAIR_INVALID_FILTERS",
+    "type": "boolean",
+    "description": "Repair known invalid filters, due to streaming data issues circa 5.3.0",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/repair_datebin_filters",
+    "constant": "REPAIR_DATEBIN_FILTERS",
+    "type": "boolean",
+    "description": "Repair known date bin filters, due to incorrect use of constant durations",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/use_omni_sql_plus_plus",
+    "constant": "USE_OMNISQLPLUSPLUS",
+    "type": "boolean",
+    "description": "Use our fancy new parameter enhanced SQL language",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/omni_sql_plus_plus_parse_in_strings",
+    "constant": "OMNISQLPLUSPLUS_PARSE_IN_STRINGS",
+    "type": "boolean",
+    "description": "Parse out OmniSql++ parameters inside of SQL strings.",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/parse_crossfilter_tokens",
+    "constant": "PARSE_CROSSFILTER_TOKENS",
+    "type": "boolean",
+    "description": "Enable crossfilter tokens in SQL strings.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/immerse_ui_provider_demo_ui",
+    "constant": "IMMERSE_UI_PROVIDER_DEMO_UI",
+    "type": "boolean",
+    "description": "Enable the Demo UI for the Immerse UI Provider.",
+    "default": false,
+    "permission": "dev",
+    "beta": true,
+    "temp": true
+  },
+  {
+    "key": "dev/embedded_api_security",
+    "constant": "EMBEDDED_API_SECURITY",
+    "type": "boolean",
+    "description": "This should always be true - it enables domain security for the embedded API. Only turn it off to debug.",
+    "default": true,
+    "permission": "dev",
+    "beta": true
+  },
+  {
+    "key": "dev/embedded_api_logging",
+    "constant": "EMBEDDED_API_LOGGING",
+    "type": "boolean",
+    "description": "If true, will log to the console any messages that come into or go out of Immerse.",
+    "default": false,
+    "permission": "dev",
+    "beta": true
+  },
+  {
+    "key": "dev/disable_be_rendering",
+    "constant": "DISABLE_BE_RENDERING",
+    "type": "boolean",
+    "description": "This should always be false - the only time to flip it to true is if you're testing something in an environment which would not have BE rendering",
+    "default": false,
+    "permission": "dev",
+    "beta": false
+  },
+  {
+    "key": "dev/landing_page_panels",
+    "constant": "LANDING_PAGE_PANELS",
+    "type": "boolean",
+    "description": "Enable the new landing page panels",
+    "default": true,
+    "permission": "super",
+    "beta": false
+  },
+  {
+    "key": "dev/create_coordinate_parameters",
+    "constant": "CREATE_COORDINATE_PARAMETERS",
+    "type": "boolean",
+    "description": "Enable UI to create `point` type parameters via parameter manager textinput (for dev testing)",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/enable_notebook_ui_sql_editor",
+    "constant": "ENABLE_NOTEBOOK_UI_SQL_EDITOR",
+    "type": "boolean",
+    "description": "Enable new Notebook UI SQL Editor page",
+    "default": true,
+    "beta": true,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/iq-fastforward",
+    "constant": "IQ_FASTFORWARD",
+    "type": "boolean",
+    "description": "Automatically loads visualization or analysis for HeavyIQ assisted prompts in SQL Notebook",
+    "default": true,
+    "beta": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_sql_notebook_guidance",
+    "constant": "ENABLE_SQL_NOTEBOOK_GUIDANCE",
+    "type": "boolean",
+    "description": "Displays guidance snippets panel in SQL Notebook",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_parameters",
+    "constant": "ENABLE_PARAMETERS",
+    "type": "boolean",
+    "description": "Enable displaying the parameters panel",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/clear_parameter_usage",
+    "constant": "CLEAR_PARAMETER_USAGE",
+    "type": "boolean",
+    "description": "Clear parameter usage on load. Only turn this off if something breaks. Fast track to deprecate it.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_dashboard_shared_custom_sql",
+    "constant": "ENABLE_DASHBOARD_SHARED_CUSTOM_SQL",
+    "type": "boolean",
+    "description": "Enable UI for named/shared dashboard level custom SQL",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_global_custom_sql",
+    "constant": "ENABLE_GLOBAL_CUSTOM_SQL",
+    "type": "boolean",
+    "description": "Enable UI for named table level custom SQL",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/warn_unsaved_dashboard",
+    "constant": "WARN_UNSAVED_DASHBOARD",
+    "type": "boolean",
+    "description": "Display warning modal when navigating away from unsaved dashboard",
+    "default": true,
+    "permission": "user"
+  },
+  {
+    "key": "ui/enable_unrestricted_percentage_view_pie_chart",
+    "constant": "UNRESTRICTED_PIE_PERCENTAGE",
+    "type": "boolean",
+    "description": "Allow percentage labels on pie chart for any kind of measure",
+    "default": true,
+    "query_param": "enable_unrestricted_percentage_view_pie_chart",
+    "permission": "super"
+  },
+  {
+    "key": "ui/theme",
+    "constant": "UI_THEME",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "Dark",
+        "value": "dark"
+      },
+      {
+        "label": "Light",
+        "value": "light"
+      },
+      {
+        "label": "Custom",
+        "value": "custom"
+      }
+    ],
+    "description": "Immerse UI theme",
+    "migrate": "ui_theme",
+    "permission": "user"
+  },
+  {
+    "key": "ui/colorblind",
+    "constant": "COLOR_BLIND",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "Off",
+        "value": "off",
+        "permission": "dev"
+      },
+      {
+        "label": "Protanopia",
+        "value": "protanopia",
+        "permission": "dev"
+      },
+      {
+        "label": "Deuteranopia",
+        "value": "deuteranopia",
+        "permission": "dev"
+      },
+      {
+        "label": "Tritanopia",
+        "value": "tritanopia"
+      }
+    ],
+    "description": "Simulate colorblindness for the configured color palettes",
+    "permission": "user",
+    "default": "off"
+  },
+  {
+    "key": "ui/default_theme",
+    "constant": "UI_DEFAULT_THEME",
+    "migrate": "ui_theme_default",
+    "default": "dark",
+    "hidden": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_control_panel",
+    "constant": "ENABLE_CONTROL_PANEL",
+    "default": true,
+    "hidden": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_control_panel_2",
+    "constant": "ENABLE_CONTROL_PANEL_2",
+    "type": "boolean",
+    "default": true,
+    "description": "Enable new control panel UI",
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_key_manager",
+    "constant": "ENABLE_KEY_MANAGER",
+    "type": "boolean",
+    "default": true,
+    "description": "Enable key manager for users with 'is_super' privilege",
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_new_combo_chart",
+    "constant": "ENABLE_NEW_COMBO_CHART",
+    "type": "boolean",
+    "description": "Make the new Combo chart visible in the UI",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_3d_chart",
+    "constant": "ENABLE_DECKGL_CHART",
+    "type": "boolean",
+    "description": "Enable the new 3D chart",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_experimental_charts",
+    "constant": "ENABLE_EXPERIMENTAL_CHARTS",
+    "type": "boolean",
+    "description": "Enable experimental charts in the UI",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_iframe_chart",
+    "constant": "ENABLE_IFRAME_CHART",
+    "type": "boolean",
+    "description": "Enable the new iframe chart",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_gauge_chart",
+    "constant": "ENABLE_GAUGE_CHART",
+    "type": "boolean",
+    "description": "Enable the new gauge chart",
+    "default": true,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_skewt_chart",
+    "constant": "ENABLE_SKEWT_CHART",
+    "type": "boolean",
+    "description": "Enable the new skew-t chart",
+    "default": false,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_contour_chart",
+    "constant": "ENABLE_CONTOUR_CHART",
+    "type": "boolean",
+    "description": "Enable the new contour chart",
+    "default": true,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_cross_section_chart",
+    "constant": "ENABLE_CROSS_SECTION_CHART",
+    "type": "boolean",
+    "description": "Enable the new cross section chart",
+    "default": false,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_new_text_chart",
+    "constant": "ENABLE_NEW_TEXT_CHART",
+    "type": "boolean",
+    "description": "Enable the new text chart",
+    "default": false,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_chart_filter_view",
+    "constant": "ENABLE_CHART_FILTER_VIEW",
+    "type": "boolean",
+    "description": "Enable the view filters button on charts",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_chart_type_button_scrolling",
+    "constant": "ENABLE_CHART_TYPE_BUTTON_SCROLLING",
+    "type": "boolean",
+    "description": "Enable scrolling of the Chart Type buttons in the Chart Editor",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/color_measure_category_size",
+    "constant": "COLOR_MEASURE_CATEGORY_SIZE",
+    "type": "number",
+    "description": "Number of topN categories used to generate default color measures",
+    "default": 50,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_data_catalog",
+    "constant": "ENABLE_DATA_CATALOG",
+    "type": "boolean",
+    "description": "Enable the Data Catalog in the Importer",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/category_modal_limit",
+    "constant": "CATEGORY_MODAL_LIMIT",
+    "type": "number",
+    "description": "Maximum categories to display",
+    "default": 1000,
+    "query_param": "categoryLimit",
+    "permission": "super"
+  },
+  {
+    "key": "ui/default_simple_filters",
+    "constant": "DEFAULT_SIMPLE_FILTERS",
+    "type": "boolean",
+    "description": "If true, the filter panel will default to Simple Mode.",
+    "default": false,
+    "query_param": "simpleFilterPanel",
+    "permission": "super"
+  },
+  {
+    "key": "ui/default_filter_panel_open",
+    "constant": "DEFAULT_FILTER_PANEL_OPEN",
+    "type": "boolean",
+    "description": "If true, the filter panel will default open.",
+    "default": false,
+    "query_param": "filterPanelOpen",
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_filter_set_ribbon",
+    "constant": "HIDE_FILTER_SET_RIBBON",
+    "type": "boolean",
+    "description": "If true, the filter set ribbon at the top of the dashboard will be hidden.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/dashboard_grid_margin",
+    "constant": "DASHBOARD_GRID_MARGIN",
+    "type": "number",
+    "description": "The magic number that decides how much margin lies between the charts on a dashboard.",
+    "default": 16,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_chart_snapshots",
+    "constant": "ENABLE_CHART_SNAPSHOTS",
+    "type": "boolean",
+    "description": "Highly experimental and rudimentary chart versioning feature.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/dump_chart",
+    "constant": "DUMP_CHART_JSON",
+    "type": "boolean",
+    "description": "If true, provides a button to dump out a chart's JSON.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/filters_accept_filters",
+    "constant": "FILTERS_ACCEPT_FILTERS",
+    "type": "boolean",
+    "description": "If true, column based filter components will respect other applied filters.",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/show_ui_config_panel",
+    "constant": "SHOW_UI_CONFIG_PANEL",
+    "type": "boolean",
+    "description": "If true, shows non-superusers the button and panel for configuring a dashboard's UI.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_crosslink_panel",
+    "constant": "ENABLE_CROSSLINK_PANEL",
+    "type": "boolean",
+    "description": "If true, shows cross-linking panel on dashboard",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_table_chart_export",
+    "constant": "ENABLE_TABLE_CHART_EXPORT",
+    "type": "boolean",
+    "description": "If true, enables option to export data from table chart",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/show_ui_config_panel_axis_trunc",
+    "constant": "SHOW_UI_CONFIG_PANEL_AXIS_TRUNC",
+    "type": "boolean",
+    "description": "If true, shows non-superusers the axis label truncation feature in the UI config panel.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/show_ui_config_panel_color_palettes",
+    "constant": "SHOW_UI_CONFIG_PANEL_COLOR_PALETTES",
+    "type": "boolean",
+    "description": "If true, shows non-superusers the color palettes feature in the UI config panel.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/show_ui_config_panel_chart_margin",
+    "constant": "SHOW_UI_CONFIG_PANEL_CHART_MARGIN",
+    "type": "boolean",
+    "description": "If true, shows non-superusers the chart margins section in the UI config panel.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_custom_source_manager",
+    "constant": "ENABLE_CUSTOM_SOURCE_MANAGER",
+    "type": "boolean",
+    "description": "If true, shows the + Create Custom Source link in the chart editor source selector",
+    "default": false,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/geojoined-bounding-boxes",
+    "constant": "GEOJOIN_BOUNDING_BOXES",
+    "type": "boolean",
+    "description": "If enabled will vend out crossfilters to fact tables from map bounding boxes.",
+    "default": true,
+    "beta": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/raster-chart-kebab-visibility-toggle",
+    "constant": "RASTER_CHART_KEBAB_VISIBILITY_TOGGLE",
+    "type": "boolean",
+    "description": "If enabled will allow toggling layer visibility on multi-layer raster charts via chart kebab menu",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/disable-circle",
+    "constant": "DISABLE_CIRCLE",
+    "type": "boolean",
+    "description": "Disables the circle on maps.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/disable-lasso",
+    "constant": "DISABLE_LASSO",
+    "type": "boolean",
+    "description": "Disables the lasso on maps.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/disable-polyline",
+    "constant": "DISABLE_POLYLINE",
+    "type": "boolean",
+    "description": "Disables the polyline on maps.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/disable_map_geocoder",
+    "constant": "DISABLE_MAP_GEOCODER",
+    "type": "boolean",
+    "description": "Whether to show the 'zoom to' box in maps.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_linked_zoom",
+    "constant": "ENABLE_LINKED_ZOOM",
+    "type": "boolean",
+    "description": "Enable the linked zoom feature on map charts",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/no_select_star",
+    "constant": "NO_SELECT_STAR",
+    "type": "boolean",
+    "description": "Prevents the sample rows snippet (select *) from being visible in the SQL editor",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/dashboard_tabs",
+    "constant": "DASHBOARD_TABS",
+    "type": "boolean",
+    "description": "Enables dashboard tabs",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/global_side_nav",
+    "constant": "GLOBAL_SIDE_NAV",
+    "type": "boolean",
+    "description": "Replaces top main navigation with a side navigation bar",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/shift_to_zoom",
+    "constant": "UI_SHIFT_TO_ZOOM",
+    "type": "boolean",
+    "description": "Require the shift key to be held to pan/zoom on old combo chart, new combo, and maps",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_brush_filter_edits_from_chart",
+    "constant": "ENABLE_BRUSH_FILTER_EDITS",
+    "type": "boolean",
+    "description": "Enable editing combo brush range label (as a text input field)",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_map_exports",
+    "constant": "ENABLE_MAP_EXPORTS",
+    "type": "boolean",
+    "description": "Enable geojson/csv export for raster charts.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_auto_dashboard_refresh",
+    "constant": "ENABLE_AUTO_DASHBOARD_REFRESH",
+    "type": "boolean",
+    "description": "Enable auto dashboard refresh functionality.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/map_export_limit",
+    "constant": "MAP_EXPORT_LIMIT",
+    "type": "number",
+    "description": "Maximum number of rows to export from raster charts.",
+    "default": 100000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/table_export_limit",
+    "constant": "TABLE_EXPORT_LIMIT",
+    "type": "number",
+    "description": "Maximum number of rows to export from table charts.",
+    "default": 1000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/omnilink",
+    "constant": "OMNILINK",
+    "type": "boolean",
+    "description": "Enable OmniLink (FSI).",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/annotations",
+    "constant": "ENABLE_ANNOTATIONS",
+    "type": "boolean",
+    "description": "Enable annotations.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/html-editor",
+    "constant": "HTML_EDITOR",
+    "type": "boolean",
+    "description": "Enable HTML editing of text chart.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/pointmap_default_points",
+    "constant": "POINTMAP_DEFAULT_POINTS",
+    "type": "number",
+    "description": "Default limit for pointmap. Must be between 1000 and pointmap_max_points.",
+    "default": 10000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/choropleth_default_polygons",
+    "constant": "CHOROPLETH_DEFAULT_POLYGONS",
+    "type": "number",
+    "description": "Default number of polygons for choropleth.",
+    "default": 150000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/choropleth_max_polygons",
+    "constant": "CHOROPLETH_MAX_POLYGONS",
+    "type": "number",
+    "description": "Default maximum number of polygons for choropleth.",
+    "default": 1000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/linemap_min_lines",
+    "constant": "LINEMAP_MIN_LINES",
+    "type": "number",
+    "description": "Default minimum number of lines for linemap.",
+    "default": 10,
+    "permission": "super"
+  },
+  {
+    "key": "ui/linemap_max_lines",
+    "constant": "LINEMAP_MAX_LINES",
+    "type": "number",
+    "description": "Default maximum number of lines for linemap.",
+    "default": 1000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/restricted_viewing",
+    "constant": "RESTRICTED_VIEWING",
+    "type": "boolean",
+    "description": "Enabling more restrictive dashboard experience for users that do not have the editDashboard privilege.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/pointmap_max_points",
+    "constant": "POINTMAP_MAX_POINTS",
+    "type": "number",
+    "description": "Maximum number of points on a pointmap. Must be greater than 1000.",
+    "default": 10000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/windbarb_default_points",
+    "constant": "WINDBARB_DEFAULT_POINTS",
+    "type": "number",
+    "description": "Default limit for windbarb chart. Must be between 1 and pointmap_max_points.",
+    "default": 4000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/windbarb_max_points",
+    "constant": "WINDBARB_MAX_POINTS",
+    "type": "number",
+    "description": "Maximum number of barbs on a windbarb chart.",
+    "default": 10000000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/3dchart_default_points",
+    "constant": "DECKGL_DEFAULT_POINTS",
+    "type": "number",
+    "description": "Default limit for 3D chart. Must be less than or equal to 3dchart_max_points.",
+    "default": 50000,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/vega_deterministic_coloring",
+    "constant": "VEGA_DETERMINISTIC_COLORING",
+    "type": "boolean",
+    "description": "Deterministically assign default colors to grouped dimensions",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/3dchart_max_points",
+    "constant": "DECKGL_MAX_POINTS",
+    "type": "number",
+    "description": "Maximum number of points on a 3D chart.",
+    "default": 100000,
+    "beta": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/start_of_week",
+    "constant": "START_OF_WEEK",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "Monday",
+        "value": "week",
+        "permission": "dev"
+      },
+      {
+        "label": "Sunday",
+        "value": "week_sunday",
+        "permission": "dev"
+      },
+      {
+        "label": "Saturday",
+        "value": "week_saturday"
+      }
+    ],
+    "description": "What day a week starts on.",
+    "default": "week",
+    "permission": "super"
+  },
+  {
+    "key": "ui/chart_level_errors",
+    "constant": "CHART_LEVEL_ERRORS",
+    "type": "boolean",
+    "description": "If true, will attempt to report errors at the chart level, instead of bringing down the dashboard",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_chart_addons",
+    "constant": "ENABLE_CHART_ADDONS",
+    "type": "boolean",
+    "description": "Enable chart addons",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_crossfilter_replay",
+    "constant": "ENABLE_CROSSFILTER_REPLAY",
+    "type": "boolean",
+    "description": "Enable crossfilter replay",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_chart_image_export",
+    "constant": "ENABLE_CHART_IMAGE_EXPORT",
+    "type": "boolean",
+    "description": "Enable chart image export",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_dashboard_image_export",
+    "constant": "ENABLE_DASHBOARD_IMAGE_EXPORT",
+    "type": "boolean",
+    "description": "Enable dashboard image export",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_custom_theme",
+    "constant": "ENABLE_CUSTOM_THEME",
+    "type": "boolean",
+    "description": "Enable custom theme",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_deprecated_chart_types",
+    "constant": "HIDE_DEPRECATED_CHART_TYPES",
+    "type": "boolean",
+    "description": "Prevent deprecated chart types from appearing in the add/edit chart menus",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/table_params_in_param_manager",
+    "constant": "TABLE_PARAMS_IN_PARAMS_MANAGER",
+    "type": "boolean",
+    "description": "Enable table parameters in parameter manager",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/extend_combo_measure_range",
+    "constant": "EXTEND_COMBO_MEASURE_RANGE",
+    "type": "boolean",
+    "description": "Extend measure range on combo charts to nearest rounded value",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/auto_change_map_chart_type",
+    "constant": "AUTO_CHANGE_MAP_CHART_TYPE",
+    "type": "boolean",
+    "description": "Automatically change to an appropriate map chart when setting data source.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/limit_charts_per_dashboard",
+    "constant": "LIMIT_CHARTS_PER_DASHBOARD",
+    "type": "number",
+    "description": "Limit the amount of charts that can be added to a single dashboard (0 means no limit)",
+    "default": 0,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_color_ramps",
+    "constant": "ENABLE_COLOR_RAMPS",
+    "type": "boolean",
+    "description": "enable color ramps for raster charts (alpha)",
+    "default": false,
+    "beta": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/kiosk_mode",
+    "constant": "KIOSK_MODE",
+    "type": "boolean",
+    "description": "Hides multiple dashboard features, including side panels (filter, parameters, UI config) and top bar controls (refresh, share, annotations, crossfilter, duplicate/upgrade menu, save)",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/minimize_chart_size",
+    "constant": "MINIMIZE_CHART_SIZE",
+    "type": "boolean",
+    "description": "Decreases minimum chart size and default chart size. Affects existing dashboards.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_text_chart_headers",
+    "constant": "HIDE_TEXT_CHART_HEADERS",
+    "type": "boolean",
+    "description": "Hides headers for text and new text charts (visible on hover)",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_charts_containers",
+    "constant": "HIDE_CHARTS_CONTAINERS",
+    "type": "boolean",
+    "description": "Hides text and new text and number charts containers (visible on hover)",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_vega_combo_chart_legend_header",
+    "constant": "HIDE_VEGA_COMBO_CHART_LEGEND_HEADER",
+    "type": "boolean",
+    "description": "Hides vega combo chart legend headers (visible on hover)",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/hide_vega_combo_chart_date_bin_units",
+    "constant": "HIDE_VEGA_COMBO_CHART_DATE_BIN_UNITS",
+    "type": "boolean",
+    "description": "Hides vega combo chart date binning/extract options (visible on hover)",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/user_export_disabled",
+    "constant": "USER_EXPORT_DISABLED",
+    "type": "boolean",
+    "description": "If enabled, it will restrict actions for users who have the immerse_export_disabled role",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_windbarb_chart",
+    "constant": "ENABLE_WINDBARB_CHART",
+    "type": "boolean",
+    "description": "Allow for the creation of 'windbarb' charts",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/max_map_layers",
+    "constant": "MAX_MAP_LAYERS",
+    "type": "number",
+    "description": "Maximum number of layers available on raster charts. -1 is unlimited.",
+    "default": 8,
+    "permission": "super"
+  },
+  {
+    "key": "ui/max_zoom_level",
+    "constant": "MAX_ZOOM_LEVEL",
+    "type": "number",
+    "description": "Sets the max zoom level for map-based charts. Valid ranges are 16-22, with higher levels showing more detailed street-level information.",
+    "default": 22,
+    "permission": "super"
+  },
+  {
+    "key": "performance/crossfilter_pause_button",
+    "constant": "CROSSFILTER_PAUSE_BUTTON",
+    "type": "boolean",
+    "description": "Enable play/pause button to enable/disable globally crossfilter",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "performance/pause_queries",
+    "constant": "PAUSE_QUERIES",
+    "type": "boolean",
+    "description": "Enable/disable queries by default. If true, then -nothing- runs.",
+    "default": false,
+    "query_param": "pause_queries",
+    "transient": true,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/crossfilter_pause_chart_button",
+    "constant": "CROSSFILTER_PAUSE_CHART_BUTTON",
+    "type": "boolean",
+    "description": "Button on the chart to play/pause crossfilter",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "performance/crossfilter_pause_mapmove_button",
+    "constant": "CROSSFILTER_PAUSE_MAPMOVE_BUTTON",
+    "type": "boolean",
+    "description": "button on the chart to play/pause mapmove crossfilters",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "performance/crossfilter_pause_mapmove",
+    "constant": "CROSSFILTER_PAUSE_MAPMOVE",
+    "type": "boolean",
+    "description": "Enable/disable crossfiltering during map move events. If off, will only fire on map end.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/truncate_map_coordinates",
+    "constant": "TRUNCATE_MAP_COORDINATES",
+    "type": "boolean",
+    "description": "Truncate map coordinates to a certain precision",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "performance/truncate_map_coordinates_precision",
+    "constant": "MAP_COORDINATES_PRECISION",
+    "type": "number",
+    "description": "How many digits after the decimal place we should truncate coordinates",
+    "default": 9,
+    "permission": "super"
+  },
+  {
+    "key": "performance/use_cached_cohorts",
+    "constant": "USE_CACHED_COHORTS",
+    "type": "boolean",
+    "description": "HIGHLY EXPERIMENTAL. Cache your cohort to a table. This has a cost.",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/auto_refresh_cached_cohorts",
+    "constant": "AUTO_REFRESH_CACHED_COHORTS",
+    "type": "boolean",
+    "description": "If using cached cohorts, autorefresh them on dashboard load.",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/auto_recreate_cached_cohorts",
+    "constant": "AUTO_RECREATE_CACHED_COHORTS",
+    "type": "boolean",
+    "description": "If using cached cohorts, autorecreate them on dashboard load, if missing.",
+    "default": true,
+    "hidden": true,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/query_cache_duration",
+    "constant": "QUERY_CACHE_DURATION",
+    "type": "number",
+    "description": "Duration of cached data in ms",
+    "default": 5000,
+    "permission": "super"
+  },
+  {
+    "key": "performance/vega_cache_duration",
+    "constant": "VEGA_CACHE_DURATION",
+    "type": "number",
+    "description": "Duration of cached vega data in ms. Vega data is probably larger than query data",
+    "default": 5000,
+    "permission": "super"
+  },
+  {
+    "key": "performance/vega_cache_size",
+    "constant": "VEGA_CACHE_SIZE",
+    "type": "number",
+    "description": "How many previous vega queries to keep cached, per chart",
+    "default": 3,
+    "permission": "super"
+  },
+  {
+    "key": "performance/query_cache_size",
+    "constant": "QUERY_CACHE_SIZE",
+    "type": "number",
+    "description": "How many previous queries to keep cached, per chart",
+    "default": 20,
+    "permission": "super"
+  },
+  {
+    "key": "performance/query_throttle",
+    "constant": "QUERY_THROTTLE",
+    "type": "number",
+    "description": "How frequently to send a query request, in ms",
+    "default": 10,
+    "permission": "super"
+  },
+  {
+    "key": "performance/query_vega_throttle",
+    "constant": "QUERY_VEGA_THROTTLE",
+    "type": "number",
+    "description": "How frequently to send a vega request, in ms",
+    "default": 50,
+    "permission": "super"
+  },
+  {
+    "key": "performance/query_vega_delay",
+    "constant": "QUERY_VEGA_DELAY",
+    "type": "number",
+    "description": "How long to pause before interacting with a raster chart, in ms",
+    "default": 100,
+    "permission": "super"
+  },
+  {
+    "key": "performance/refresh_cohorts_button",
+    "constant": "REFRESH_COHORTS_BUTTON",
+    "type": "boolean",
+    "description": "Add a button to refresh cohorts",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/autocomplete_table_limit",
+    "constant": "AUTOCOMPLETE_TABLE_LIMIT",
+    "type": "number",
+    "description": "Threshold number of rows to turn off autocomplete in filter panel. -1 is unlimited, 0 is off.",
+    "default": -1,
+    "permission": "super"
+  },
+  {
+    "key": "performance/global_chart_queue",
+    "constant": "ENABLE_GLOBAL_CHART_QUEUE",
+    "type": "boolean",
+    "description": "Enable the global query queue",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "performance/interrupt_session_queries",
+    "constant": "INTERRUPT_SESSION_QUERIES",
+    "type": "boolean",
+    "description": "Enable interruption of session queries",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "performance/interrupt_session_on_close",
+    "constant": "INTERRUPT_SESSION_ON_CLOSE",
+    "type": "boolean",
+    "description": "Enable interruption of session queries on tab/window close",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "performance/use_binary_thrift",
+    "constant": "USE_BINARY_THRIFT",
+    "type": "boolean",
+    "description": "Use binary thrift to communicate with the backend",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "performance/use_arrow",
+    "constant": "USE_ARROW",
+    "type": "boolean",
+    "description": "Use Arrow for all queries.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "performance/use_arrow_in_sql_manager",
+    "constant": "USE_ARROW_IN_SQL_MANAGER",
+    "type": "boolean",
+    "description": "Use Arrow in the SQL Manager.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_joins",
+    "constant": "ENABLE_JOINS",
+    "type": "boolean",
+    "description": "Enable joins in Immerse.",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/session_create_timeout",
+    "constant": "NUMBER_OF_MS_TO_ATTEMPT_SESSION_CREATE",
+    "type": "number",
+    "description": "Number of milliseconds to attempt session create.",
+    "default": 10000,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_geo_joins",
+    "constant": "ENABLE_GEO_JOINS",
+    "type": "boolean",
+    "description": "Enable geo joins in Immerse.",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_cross_section_terrain_chart",
+    "constant": "ENABLE_CROSS_SECTION_TERRAIN_CHART",
+    "type": "boolean",
+    "description": "Enable cross section terrain chart",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_popup_image_preview",
+    "constant": "ENABLE_POPUP_IMAGE_PREVIEW",
+    "type": "boolean",
+    "description": "Enables image previews in chart popups",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_transcription",
+    "constant": "ENABLE_TRANSCRIPTION",
+    "type": "boolean",
+    "description": "Enables speech to text in SQL Notebook",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "dev/sql_notebook_cards",
+    "constant": "SQL_NOTEBOOK_CARDS",
+    "type": "string",
+    "description": "Configures splash cards for SQL Notebook ",
+    "default": "",
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_column_data_preview",
+    "constant": "ENABLE_COLUMN_DATA_PREVIEW",
+    "type": "boolean",
+    "description": "Enables column data previews",
+    "default": true,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/disable_sql_editor",
+    "constant": "DISABLE_SQL_EDITOR",
+    "type": "boolean",
+    "description": "Disables the sql editor",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/enable_local_geocoder",
+    "constant": "ENABLE_LOCAL_GEOCODER",
+    "type": "boolean",
+    "description": "Uses local geocoder in place of Google Maps geocoder",
+    "default": false,
+    "permission": "dev"
+  },
+  {
+    "key": "ui/aws-regions",
+    "constant": "AWS_REGIONS",
+    "type": "string",
+    "description": "Provide regions to be appended to AWS Regions dropdown list",
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_shared_color_settings",
+    "constant": "ENABLE_SHARED_COLOR_SETTINGS",
+    "type": "boolean",
+    "description": "Enables the use of shared color palette settings",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/map_measurement_units",
+    "constant": "MAP_MEASUREMENT_UNITS",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "Metric",
+        "value": "metric"
+      },
+      {
+        "label": "Imperial",
+        "value": "imperial"
+      }
+    ],
+    "description": "What units should be used for map scale and measurements",
+    "default": "metric",
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_box_and_whisker_chart",
+    "constant": "ENABLE_BOX_AND_WHISKER_CHART",
+    "type": "boolean",
+    "description": "Enables the box and whisker (and violin) chart",
+    "default": true,
+    "permission": "super"
+  },
+  {
+    "key": "ui/enable_box_plot_outliers_default",
+    "constant": "ENABLE_BOX_PLOT_OUTLIERS_DEFAULT",
+    "type": "boolean",
+    "description": "Show outliers on box plot by default",
+    "default": false,
+    "permission": "super"
+  },
+  {
+    "key": "ui/vega_combo_date_export_format",
+    "constant": "VEGA_COMBO_DATE_EXPORT_FORMAT",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "ISO8601",
+        "value": "iso8601"
+      },
+      {
+        "label": "Excel",
+        "value": "YYYY-MM-DD HH:mm:ss"
+      }
+    ],
+    "description": "Choose date format for vega combo export, default: ISO8601",
+    "default": "iso8601",
+    "permission": "super"
+  }
+]

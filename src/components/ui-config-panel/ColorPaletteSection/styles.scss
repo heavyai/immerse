@@ -1,0 +1,308 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.config-ui-color-palette {
+  padding: 0 0 16px 0;
+  // needed for popup position
+  position: relative;
+}
+
+.config-ui-color-palette-quantitative {
+  position: relative;
+  padding: 0 0 16px 0;
+
+  .quantitative-palette-preview-container {
+    width: 100%;
+    position: relative;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    margin: 2px 0 3px 0;
+    border: 1px solid #c7c7c7;
+    background: white;
+    .quantitative-palette {
+      flex-grow: 1;
+      height: 20px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &.currently-editing {
+      border: 2px solid $mdc-theme-primary;
+    }
+  }
+  .quantitative-palette-arrow {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid $dimTextOnDark;
+    margin: 0 4px;
+  }
+  .quantitative-palette {
+    width: 100%;
+    height: 14px;
+    border: 1px solid $text-gray;
+    &.currently-editing {
+      border: 2px solid $mdc-theme-primary;
+    }
+  }
+  .quantitative-palette-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+
+    .quantitative-palette + .quantitative-palette {
+      margin-top: 4px;
+    }
+
+    .quantitative-palette:hover {
+      cursor: pointer;
+      border-color: $mdc-theme-primary;
+    }
+
+    .palette-container {
+      display: flex;
+      align-items: center;
+      margin: 2px 0;
+    }
+  }
+  .add-palette-button {
+    font-size: $fontSizeSmall;
+    text-align: center;
+    padding: 8px 0 0 0;
+    &:hover {
+      color: $mdc-theme-primary;
+      cursor: pointer;
+    }
+  }
+  .palette-delete-button {
+    padding: 0 0 0 4px;
+    font-size: $fontSizeMedium;
+    text-align: center;
+    &:not(.disabled):hover {
+      cursor: pointer;
+      color: $mdc-theme-primary;
+    }
+    &.disabled {
+      color: $text-dim;
+    }
+  }
+}
+
+.config-ui-color-palette-ordinal {
+  position: relative;
+  padding: 0 0 16px 0;
+
+  .ordinal-palette {
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid $text-gray;
+    position: relative;
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+      border-color: $mdc-theme-primary;
+    }
+  }
+
+  .ordinal-palette-swatch {
+    display: flex;
+    flex: 1;
+    height: 14px;
+  }
+  .ordinal-palette-arrow {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid $dimTextOnDark;
+    margin: 0 4px;
+  }
+  .ordinal-swatch {
+    display: flex;
+    border-radius: 4px;
+    border: 1px solid $grayDp3;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+      border-color: $mdc-theme-primary;
+    }
+    &.currently-editing {
+      border: 2px solid $mdc-theme-primary;
+    }
+  }
+  .ordinal-palette-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1;
+
+    .ordinal-palette + .ordinal-palette {
+      margin-top: 4px;
+    }
+  }
+  .add-palette-button {
+    font-size: $fontSizeSmall;
+    text-align: center;
+    padding: 8px 0 0 0;
+    &:hover {
+      color: $mdc-theme-primary;
+      cursor: pointer;
+    }
+  }
+  .ordinal-palette-preview-container {
+    width: 100%;
+    position: relative;
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 0 3px 0;
+    border: 1px solid #c7c7c7;
+    background: white;
+    .ordinal-palette {
+      flex-grow: 1;
+    }
+    .ordinal-palette-swatch{
+      height: 20px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .ordinal-palette-swatch-container {
+    display: flex;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid $text-gray;
+  }
+  .ordinal-palette-container {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+  }
+  .palette-delete-button {
+    padding: 0 0 0 4px;
+    font-size: $fontSizeMedium;
+    text-align: center;
+    &:not(.disabled):hover {
+      cursor: pointer;
+      color: $mdc-theme-primary;
+    }
+    &.disabled {
+      color: $text-dim;
+    }
+  }
+}
+
+.config-ui-color-palette,
+.config-ui-color-palette-quantitative,
+.config-ui-color-palette-ordinal {
+  .color-palette-label {
+    font-size: $fontSizeSmall;
+  }
+  .popover-label {
+    font-size: $fontSizeSmall;
+  }
+  .add-color-button {
+    &:hover {
+      cursor: pointer;
+      color: $mdc-theme-primary;
+    }
+  }
+  .add-color-button {
+    margin: 4px 4px 0 0;
+    width: 20px;
+    height: 20px;
+    font-size: $fontSizeLarge;
+    line-height: 20px;
+    text-align: center;
+    color: $text-gray;
+  }
+  .color-swatch-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .color-swatch {
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    margin: 2px 2px 0 0;
+    border: 1px solid $text-gray;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      // This is getting overridden by our dark theme styles, mew
+      border-color: $mdc-theme-primary !important;
+    }
+    &.currently-editing {
+      // This is getting overridden by our dark theme styles, mew
+      border: 2px solid $mdc-theme-primary !important;
+    }
+  }
+}
+
+body:not(.light2-mode) .config-ui-color-palette,
+body:not(.light2-mode) .config-ui-color-palette-quantitative,
+body:not(.light2-mode) .config-ui-color-palette-ordinal {
+  .quantitative-palette,
+  .ordinal-palette-swatch-container {
+    border: 1px solid $grayDp3;
+  }
+  .color-palette-label {
+    color: $dimTextOnDark;
+  }
+  .add-color-button {
+    color: $dimTextOnDark;
+    &:hover {
+      color: $mdc-theme-primary;
+    }
+  }
+  .popover-label {
+    color: $dimTextOnDark;
+  }
+  .add-palette-button {
+    color: $text-dim;
+    &:hover {
+      color: $mdc-theme-primary;
+      cursor: pointer;
+    }
+  }
+  .palette-delete-button {
+    color: $dimTextOnDark;
+    &.disabled {
+      color: $disabled;
+    }
+  }
+  .color-swatch {
+    border: 1px solid $grayDp3;
+  }
+  .ordinal-palette-popover,
+  .quantitative-palette-popover,
+  .quantitative-palette-preview-container,
+  .ordinal-palette-preview-container {
+    background-color: $grayDp3;
+    border: 1px solid $borderSeparator;
+  }
+}

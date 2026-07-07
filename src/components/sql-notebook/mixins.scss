@@ -1,0 +1,40 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+body {
+  --menuAnchorPillOutline: #{$border-dim};
+  --menuAnchorPillActive: #{$border-dim};
+}
+
+@mixin menu-anchor-pill {
+  border-radius: 16px;
+  border: 1px solid var(--menuAnchorPillOutline);
+  color: $text-solid;
+  font-size: $fontSizeSmall;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--menuAnchorPillActive);
+  }
+}
+
+@mixin primary-color-classes {
+  // TODO: Add all these colors from nexus and use those vars
+  // if these are from design system.
+  .purple {
+    fill: #6255ff;
+  }
+  .yellow {
+    fill: #e5d542;
+  }
+  .green {
+    fill: #63d461;
+  }
+  .blue {
+    fill: var(--primary-200);
+  }
+}

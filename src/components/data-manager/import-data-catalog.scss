@@ -1,0 +1,117 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.import-table__selected .data-catalog-page-container {
+  margin-top: 0;
+  text-align: left;
+  width: 100%;
+
+  .search-container {
+    grid-column: 1/-1;
+    display: flex;
+
+    .search-input {
+      flex: 1;
+      border-radius: 2px;
+
+      input::placeholder {
+        font-size: 12px;
+      }
+
+      .mdc-line-ripple {
+        display: none;
+      }
+
+      .mdc-text-field__input {
+        border-bottom: none;
+      }
+
+      &.mdc-text-field.mdc-text-field--upgraded:not(.mdc-text-field--textarea) {
+        height: 32px;
+      }
+    }
+
+    .only-geo-toggle-container {
+      margin-left: 112px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+
+      .geo-pin-icon {
+        margin: 0 16px 0 4px;
+      }
+    }
+  }
+
+  .data-catalog-items {
+    grid-template-columns: repeat(auto-fill, 232px);
+    grid-row-gap: 32px;
+    grid-column-gap: 8px;
+    grid-auto-rows: min-content;
+  }
+
+  .data-catalog-card {
+    width: 232px;
+    height: initial;
+    margin: 0;
+
+    body:not(.light2-mode) & {
+      background: $grayDp3;
+      border: 1px solid $highlightOnDark;
+    }
+
+    .data-catalog-card-header {
+      height: initial;
+      min-height: 88px;
+      align-items: flex-end;
+      display: flex;
+
+      .data-catalog-name-tag {
+        align-items: start;
+        display: flex;
+        margin-bottom: 4px;
+        height: initial;
+        margin-top: 0;
+        max-height: 80px;
+        overflow-y: auto;
+      }
+    }
+
+    .data-catalog-card-body {
+      padding: 8px 8px 0;
+    }
+
+    .entry-key {
+      font-size: 11px;
+    }
+
+    .data-catalog-card-footer {
+      padding: 8px;
+      height: 48px;
+
+      .button-container {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+
+        .mdc-button {
+          width: 104px;
+        }
+
+        .mdc-button__icon {
+          margin-left: 6px !important;
+        }
+      }
+
+
+      body:not(.light2-mode) & {
+        background: inherit;
+        border-top: 1px solid $highlightOnDark;
+      }
+    }
+  }
+}

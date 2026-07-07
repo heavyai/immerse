@@ -1,0 +1,84 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.mdc-list {
+  border: 1px solid $gray5;
+  background-color: #fff;
+  color: $text-black;
+  svg {
+    fill: $dimTextOnDark
+  }
+  .mdc-list-item:hover {
+    background-color: $gray1;
+  }
+  .mdc-list-item--selected {
+    color: $text-gray;
+    svg {
+      fill: $text-gray;
+    }
+  }
+  .mdc-list-item.compact, .mdc-list-item.extra-compact {
+    padding: 0 8px;
+    font-size: $fontSizeNormal;
+  }
+  .mdc-list-item.compact {
+    height: 32px;
+  }
+  .mdc-list-item.extra-compact {
+    height: 24px;
+  }
+  &:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before,
+  &:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after {
+    background-color: $gray1;
+  }
+}
+
+.mdc-list.compact, .mdc-list.extra-compact {
+  padding: 0;
+  .mdc-list-item {
+    height: 32px;
+    padding: 0 8px;
+    font-size: $fontSizeNormal;
+  }
+}
+
+.mdc-list.extra-compact .mdc-list-item {
+  height: 24px;
+}
+
+body .mdc-list {
+  background-color: $grayDp8;
+  border-color: $borderSeparator;
+  .mdc-list-item, .mdc-list-item__meta, .mdc-list-item__graphic {
+    color: $dimTextOnDark;
+  }
+  .mdc-list-item:hover {
+    background-color: $highlightOnDark;
+    color: $textOnDark;
+    svg {
+      fill: $textOnDark;
+    }
+  }
+
+  .mdc-list-item--disabled, .mdc-list-item--disabled:hover {
+    color: $disabled;
+    svg {
+      fill: $disabled;
+    }
+  }
+  .mdc-list-item--selected {
+    color: $textOnDark;
+    svg {
+      fill: $textOnDark;
+    }
+  }
+
+  .mdc-list-item--selected::before,
+  .mdc-list-item--selected::after {
+    background-color: $grayDp8;
+  }
+}

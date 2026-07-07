@@ -1,0 +1,252 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "~themes/mixins";
+
+$borderLight: $gray5;
+
+.hover-selector {
+  border: 1px solid $gray3;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .popup-col-main-section {
+    .data-column-selector {
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+
+      .rmwc-data-table__content {
+        position: initial;
+      }
+    }
+
+    .data-table {
+      border: 1px solid $gray3;
+    }
+
+    .react-popover {
+      .data-column-selector {
+        .rmwc-data-table {
+          max-height: 300px;
+        }
+      }
+    }
+  }
+
+  .hover-selector-value {
+    line-height: 16px;
+    width: 130px;
+    font-size: $fontSizeNormal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 5px;
+  }
+  .popup-formatter {
+    position: relative;
+    display: flex;
+    flex: 1;
+
+    .react-popover {
+      position: relative;
+    }
+
+    .mdc-text-field__input,
+    .popup-formatter {
+      width: 143px;
+    }
+
+    .popup-formatter-wrapper {
+      display: flex;
+      position: relative;
+      flex: 1;
+      height: 32px;
+      flex-direction: row;
+      background-color: white;
+      border: 0.5px solid $gray2;
+      border-radius: 3px;
+    }
+    .popup-formatter-value {
+      display: flex;
+      flex: 1;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 0 0 10px;
+      font-size: $fontSizeNormal;
+    }
+    .arrow-icon-wrapper {
+      display: flex;
+      max-width: 12px;
+      margin: 0 8px 0 2px;
+      width: 10px;
+    }
+    .chart-format-selector {
+      margin-top: 0;
+      position: absolute;
+      right: 0;
+      top: -15px;
+      .mdc-text-field.mdc-text-field--upgraded
+        .mdc-floating-label.mdc-floating-label--float-above,
+      .mdc-text-field--focused.mdc-text-field.mdc-text-field--upgraded
+        .mdc-floating-label.mdc-floating-label--float-above {
+        transform: none;
+        -webkit-transform: none;
+        top: -35%;
+        font-size: 12px;
+      }
+      .mdc-text-field--focused .mdc-notched-outline__notch,
+      .mdc-text-field.mdc-text-field--upgraded.mdc-text-field--outlined.mdc-text-field--with-trailing-icon
+        .mdc-notched-outline__notch {
+        width: 62px !important;
+      }
+    }
+    .format-selector-dropdown {
+      position: absolute;
+      left: -117px;
+      width: 260px;
+    }
+  }
+  .hover-selector-value-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: $gray4;
+    width: 20px;
+    height: 24px;
+    opacity: 0;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .hover-selector-drag {
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .add-btn {
+    color: $mdc-theme-primary;
+    font-weight: bold;
+    font-size: $fontSizeNormal;
+    text-align: center;
+    height: 30px;
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: -8px;
+    transform: translateX(100%);
+    top: 0;
+    font-weight: bold;
+    color: $gray4;
+    font-size: $fontSizeSmall;
+    padding: 0 12px;
+    cursor: pointer;
+    line-height: 1.2;
+    display: none;
+    fill: $gray4;
+
+    &:hover {
+      color: $mdc-theme-primary;
+      fill: $mdc-theme-primary;
+    }
+
+    .icon {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  &.has-columns {
+    .clear-btn {
+      display: block;
+    }
+
+    background: white;
+    border-color: $gray2;
+  }
+
+  .hover-selector-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 32px;
+    margin: 10px 5px 10px 5px;
+
+    .drag-area {
+      display: flex;
+      width: 40%;
+      flex-direction: row;
+      margin-right: 5px;
+    }
+
+    &:hover {
+      .hover-selector-value-close {
+        opacity: 1;
+      }
+      .hover-selector-drag {
+        opacity: 1;
+      }
+    }
+  }
+  .hover-selector-add {
+    display: flex;
+    font-size: $fontSizeSmall;
+    justify-content: center;
+    align-items: center;
+    height: 33px;
+    color: $mdc-theme-primary;
+    cursor: pointer;
+  }
+
+  .autocomplete {
+    position: absolute;
+    width: calc(100% + 4px);
+    top: -2px;
+    left: -2px;
+  }
+}
+body:not(.light2-mode):not(.light-mode) {
+  .hover-selector {
+    border: none;
+    background: $grayDp8;
+
+    &.has-columns {
+      .clear-btn {
+        display: block;
+      }
+
+      background: $grayDp8;
+    }
+    .popup-formatter {
+      border: 0.5px solid #444444;
+      border-radius: 3px;
+
+      .popup-formatter-wrapper {
+        background-color: $grayDp24;
+      }
+    }
+    .popup-col-main-section {
+      .data-table {
+        border-color: $borderSeparator;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.sort-order-widget {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: $fontSizeSmall;
+  margin-left: 8px;
+
+  &:hover {
+    cursor: pointer;
+    color: $mdc-theme-primary;
+    fill: $mdc-theme-primary;
+  }
+  .sort-label {
+    color: $gray5;
+    width: 30px;
+    body:not(.light2-mode) & {
+      color: $dimTextOnDark;
+    }
+  }
+}

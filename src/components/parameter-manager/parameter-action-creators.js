@@ -1,0 +1,5 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+export const SHOW_PARAMETER_MANAGER_MODAL = "SHOW_PARAMETER_MANAGER_MODAL"
+export const HIDE_PARAMETER_MANAGER_MODAL = "HIDE_PARAMETER_MANAGER_MODAL"

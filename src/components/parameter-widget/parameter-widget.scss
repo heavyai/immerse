@@ -1,0 +1,437 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+@mixin iconColors($color) {
+  color: $color;
+
+  .rmwc-icon {
+    color: $color;
+  }
+
+  .replace-fill {
+    fill: $color;
+  }
+
+  .replace-stroke {
+    stroke: $color;
+  }
+}
+
+.parameter-widget {
+  border: 1px solid $gray3;
+  background: $gray1;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  grid-template-rows: minmax(32px, auto) auto auto auto;
+  font-size: $fontSizeNormal;
+  padding-bottom: 8px;
+
+  .rmwc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: $fontSizeMedium;
+  }
+
+  .mdc-text-field {
+    font-size: $fontSizeNormal;
+    width: 100%;
+    .mdc-text-field__icon {
+      top: 4px;
+      right: 2px;
+    }
+  }
+
+  .mdc-text-field.mdc-text-field--with-trailing-icon .mdc-text-field__input {
+    padding-right: 18px;
+  }
+
+  .parameter-widget__data-type-icon,
+  .parameter-widget__header {
+    display: flex;
+    align-items: center;
+    padding: 8px 4px 0 0;
+  }
+
+  .parameter-widget__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 3;
+
+    .parameter-widget__link__icon--unlinked {
+      display: flex;
+    }
+
+    .rmwc-icon {
+      font-size: $fontSizeMedium;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    &.disabled svg {
+      cursor: not-allowed;
+      > path.replace-fill {
+        fill: $disabled;
+      }
+    }
+  }
+
+  .parameter-widget__remove-icon {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    visibility: hidden;
+    color: $text-dim;
+
+    > i {
+      font-size: $fontSizeMedium;
+    }
+  }
+
+  .param-actions-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .show-hide-button {
+    visibility: hidden;
+    margin-right: 10px;
+    .rmwc-icon {
+      font-size: $fontSizeMedium;
+    }
+    &:hover {
+      color: $mdc-theme-primary;
+    }
+  }
+
+  &:hover {
+    .parameter-widget__remove-icon {
+      visibility: visible;
+    }
+
+    .parameter-widget__link .rmwc-icon {
+      opacity: 1;
+    }
+
+    .show-hide-button {
+      visibility: visible;
+    }
+  }
+  &.muted {
+    border: 1px solid $gray2;
+    .parameter-widget__data-type-icon svg path,
+    .parameter-widget__name,
+    .parameter-widget__description,
+    .parameter-widget__source-metadata {
+      fill: $text-dim;
+      color: $text-dim;
+    }
+    .parameter-widget__link,
+    .parameter-widget__remove-icon {
+      visibility: hidden;
+    }
+  }
+}
+
+.parameter-widget__data-type-icon {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+
+  > div {
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.parameter-widget__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 8px 8px 0;
+}
+
+.parameter-widget__header,
+.parameter-widget__description {
+  > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    margin-right: 8px;
+  }
+}
+
+.parameter-widget__description {
+  min-width: 0;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: $fontSizeSmall;
+  padding-bottom: 4px;
+}
+
+.parameter-widget__source-metadata {
+  grid-row: 4;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: $fontSizeSmall;
+  font-style: italic;
+  padding: 6px 8px 0 0;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    padding-right: 2px;
+  }
+}
+
+.parameter-widget__input {
+  display: flex;
+  padding-right: 8px;
+  padding-top: 4px;
+  grid-column: 2 / 3;
+  align-items: center;
+
+  .select__option {
+    padding: 4px 8px;
+  }
+
+  .mdc-menu-surface--anchor {
+    display: flex;
+    flex: 1;
+
+    form {
+      width: 100%;
+    }
+  }
+}
+
+.parameter-widget__numeric-slider {
+  .parameter-widget__link__icon--linked,
+  .parameter-widget__link__icon--unlinked,
+  .parameter-widget__numeric-input__text-field {
+    margin-top: -16px;
+  }
+}
+
+.parameter-widget__numeric-input {
+  display: flex;
+  flex: 1;
+  align-items: center;
+
+  .parameter-widget__numeric-input__slider {
+    padding-right: 10px;
+    margin-bottom: 6px;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .parameter-widget__numeric-input__text-field {
+    flex: 1 1 120px;
+  }
+
+  .parameter-widget__numeric-input__text-field--reset-visible {
+    .mdc-text-field__input {
+      padding: 4px 28px 4px 8px;
+    }
+  }
+
+  .MuiSlider-root {
+    padding: 13px 0 10px;
+
+    .MuiSlider-markLabel {
+      font-size: $fontSizeSmall;
+      color: $text-gray;
+
+      &[data-index="0"] {
+        margin-left: 8px;
+      }
+
+      &[data-index="1"] {
+        padding-right: 10px;
+      }
+    }
+
+    &.MuiSlider-marked {
+      margin-bottom: 8px;
+    }
+
+    .MuiSlider-rail {
+      color: $grayDp24;
+    }
+
+    .MuiSlider-mark {
+      display: none;
+    }
+  }
+}
+
+.parameter-widget .responsive-virtualized-list {
+  display: flex;
+  min-width: 200px;
+  flex: 1;
+}
+
+.parameter-widget__menu {
+  margin-top: -1px;
+
+  .mdc-list {
+    padding: 0;
+  }
+
+  .mdc-list-item > :first-child {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mdc-list-item {
+    @include iconColors($text-black);
+    white-space: nowrap;
+  }
+
+  .mdc-list-item--disabled {
+    @include iconColors($text-dim);
+  }
+
+  .rmwc-icon {
+    font-size: $fontSizeMedium;
+  }
+
+  .mdc-list-item--disabled {
+    pointer-events: none;
+  }
+}
+
+.parameter-widget .mdc-menu-surface--anchor > .rmwc-icon {
+  font-size: $fontSizeLarge;
+  visibility: hidden;
+  width: 4px;
+  height: 16px;
+}
+
+.parameter-widget:hover .mdc-menu-surface--anchor > .rmwc-icon {
+  visibility: visible;
+}
+
+/* specific to dashboard param widget */
+.dashboard {
+  .parameter-widget {
+    grid-template-rows: 40px auto 1fr auto;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    background-color: white;
+    border: 1px solid $light-border;
+
+    .parameter-widget__header,
+    .parameter-widget__data-type-icon {
+      border-bottom: none;
+    }
+
+    .parameter-widget__data-type-icon,
+    .parameter-widget__header {
+      cursor: move;
+    }
+
+    .parameter-widget__numeric-input__text-field {
+      flex: 1 1 180px;
+    }
+
+    .parameter-widget__description,
+    .parameter-widget__input {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin-left: 8px;
+    }
+
+    .parameter-widget__description,
+    .parameter-widget__source-metadata {
+      height: 21px;
+    }
+  }
+}
+
+body:not(.light2-mode) {
+  .parameter-widget {
+    background-color: $grayDp8;
+    border-color: $borderSeparator;
+    color: $textOnDark;
+
+    .parameter-widget__description,
+    .parameter-widget__source-metadata {
+      color: $textOnDark;
+    }
+
+    &.muted {
+      .parameter-widget__data-type-icon svg path,
+      .parameter-widget__name,
+      .parameter-widget__description,
+      .parameter-widget__source-metadata {
+        fill: $disabled;
+        color: $disabled;
+      }
+      border: none;
+    }
+  }
+
+  .parameter-widget__link__icon--unlinked .replace-fill {
+    fill: $textOnDark;
+  }
+
+  .parameter-widget__menu {
+    .mdc-list-item {
+      @include iconColors($textOnDark);
+    }
+
+    .mdc-list-item--disabled {
+      @include iconColors($disabled);
+    }
+  }
+
+  .parameter-widget__source-metadata {
+    color: $dimTextOnDark;
+    display: flex;
+  }
+
+  .parameter-widget__numeric-input .MuiSlider-root .MuiSlider-rail {
+    color: #666;
+  }
+
+  /* specific to dashboard param widget in dark mode */
+  .dashboard {
+    .parameter-widget {
+      box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
+      background-color: $grayDp3;
+      border: 1px solid $borderSeparator;
+    }
+  }
+
+  .parameter-widget__remove-icon {
+    color: $dimTextOnDark;
+  }
+
+  .MuiSlider-root .MuiSlider-markLabel {
+    color: $textOnDark;
+  }
+}

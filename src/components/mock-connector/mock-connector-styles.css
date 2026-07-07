@@ -1,0 +1,43 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.mock-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 999;
+}
+
+.mock-container-visible,
+.mock-container-invisible {
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid white;
+  background-color: #660000;
+}
+
+.mock-container:hover .mock-container-invisible {
+  visibility: visible;
+}
+
+.mock-container-invisible {
+  visibility: hidden;
+}
+
+.mock-menu {
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 25px;
+  z-index: 999;
+  white-space: nowrap;
+  border: 1px solid white;
+  padding: 0;
+  background-color: #1e1e1e;
+  visibility: hidden;
+}

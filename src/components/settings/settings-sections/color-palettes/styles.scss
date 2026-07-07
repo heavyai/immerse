@@ -1,0 +1,69 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../settings-variables";
+
+.color-palettes {
+  display: flex;
+  flex-direction: column;
+
+  .settings__content__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .color-palettes__list {
+    width: 100%;
+    padding-top: $spacing-04;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: -16px;
+  }
+
+  .color-palettes__list__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-10;
+    border-radius: 10px;
+    padding: $spacing-06;
+
+    &:hover {
+      background: var(--listItemHoverBackgroundColor);
+    }
+
+    .color-palettes__list__item__color-picker {
+      &.solid-color-picker {
+        .color-palette-picker {
+          top: 50px;
+        }
+      }
+      .color-palette-picker {
+        .color-palette-picker__input input {
+          width: 62px;
+        }
+      }
+    }
+  }
+
+  .color-palettes__list__item__info {
+    flex: 0 0 60%;
+
+    .color-palettes__list__item__label {
+      color: var(--listItemLabelColor);
+      line-height: $spacing-07;
+      font-size: $fontSizeMedium;
+      font-weight: bold;
+      display: block;
+    }
+
+    .color-palettes__list__item__description {
+      line-height: $spacing-07;
+      display: block;
+    }
+  }
+}

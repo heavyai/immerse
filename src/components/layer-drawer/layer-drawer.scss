@@ -1,0 +1,243 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.layer-drawer {
+  .layer-icon {
+    fill: $dimIconOnDark;
+  }
+  .layer-icon:hover {
+    fill: $mdc-theme-primary;
+  }
+
+  .drawer__open {
+    z-index: 1;
+  }
+
+  svg {
+    fill: $dimIconOnDark;
+  }
+
+  svg:hover {
+    fill: $solid;
+  }
+
+  .drawer__content {
+    width: 320px;
+    padding-left: $spacing-06;
+    padding-right: $spacing-06;
+    background: $grayDp2Translucent;
+    border-left: 1px solid $borderSeparator;
+    overflow: auto;
+
+    &.is-pinned {
+      background: $grayDp2;
+    }
+
+    .drawer__title {
+      display: flex;
+      color: $dimTextOnDark;
+      font-weight: 700;
+      font-size: $fontSizeNormal;
+      text-align: left;
+      margin-top: $spacing-06;
+      align-items: center;
+      justify-content: space-between;
+
+      .pin-icon {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+    &.is-pinned .pin-icon svg {
+      fill: $mdc-theme-primary;
+    }
+
+    .layer-info p {
+      font-size: $fontSizeSmall;
+      color: $grayD7;
+      margin-top: 0;
+    }
+
+    .layer-tile:hover {
+      background: $secondaryPanelHover;
+    }
+    .layer-tile {
+      padding: $spacing-04;
+      border-radius: 4px;
+      margin-bottom: $spacing-05;
+      background: $grayDp8;
+
+      &.is-disabled {
+        background: $grayDp3;
+      }
+
+      .layer-tile-container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .btn-disabled svg {
+          visibility: hidden;
+        }
+
+        .drag-area {
+          width: 15px;
+          cursor: grab;
+          margin-right: $spacing-03;
+          flex: none;
+
+          &.btn-disabled {
+            cursor: auto;
+          }
+        }
+
+        .drag-area,
+        .visibility-btn,
+        .zoom-btn,
+        .expand-btn {
+          display: flex;
+          align-items: center;
+        }
+
+        .hover-btns {
+          visibility: hidden;
+        }
+        .hover-btns:not(:last-child) {
+          margin-right: $spacing-04;
+        }
+
+        .visibility-btn svg {
+          width: 16px;
+        }
+
+        .layer-tile-text {
+          width: 60%;
+          flex: none;
+          margin-left: $spacing-04;
+          margin-right: $spacing-04;
+
+          .layer-text-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .layer-label-edit {
+              font-size: $fontSizeNormal;
+              color: $textOnDark;
+
+              .parameter-selector-input {
+                display: flex;
+                justify-content: center;
+              }
+
+              .layer-label-input {
+                display: none;
+                background-color: $grayDp24;
+                border: 1px solid $borderSeparator;
+                height: 100%;
+                width: 169px;
+                margin-top: -1px;
+
+                &:focus {
+                  outline: none;
+                }
+
+                &.layer-label-input-error {
+                  border: 1px solid $error;
+                }
+              }
+
+              &:hover,
+              &.is-focused {
+                .layer-label-input {
+                  display: block;
+                }
+
+                .layer-label-display {
+                  display: none;
+                }
+              }
+            }
+
+            .layer-source {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: block;
+              font-size: $fontSizeSmall;
+              color: $dimIconOnDark;
+            }
+          }
+        }
+
+        .right-align-wrapper {
+          display: flex;
+          align-items: center;
+          margin-left: auto;
+
+          .layer-tile-btn-wrapper {
+            margin-left: auto;
+          }
+        }
+
+        .expand-btn {
+          display: flex;
+          margin-left: auto;
+          cursor: pointer;
+
+          .expand-icon {
+            margin-left: auto;
+          }
+        }
+      }
+    }
+
+    .layer-tile:hover .hover-btns {
+      visibility: visible;
+    }
+
+    .layer-tile-btn-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &.btn-disabled {
+        cursor: auto;
+      }
+    }
+
+    .not-visible {
+      visibility: hidden !important;
+    }
+  }
+}
+
+body.light2-mode {
+  .layer-drawer {
+    .drawer__content {
+      background: white;
+      border-left: 1px solid $gray2;
+      border-top: 1px solid $gray2;
+    }
+    .layer-tile {
+      background-color: #f2f2f2;
+
+      .layer-name {
+        color: #4d4d4d !important;
+      }
+
+      .layer-tile-container svg:hover {
+        fill: #000;
+      }
+    }
+  }
+}
+
+.chart-container.quick-filters-visible .layer-drawer .drawer-toggle-icon {
+  margin-top: $spacing-07;
+}

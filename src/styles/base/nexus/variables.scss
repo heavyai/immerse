@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/** Setup sass variables as well **/
+$orange-400: var(--orange-400);
+$error-400: var(--error-400);
+
+$warning-50: var(--warning-50);
+$warning-100: var(--warning-100);
+$warning-400: var(--warning-400);
+$warning-900: var(--warning-900);
+
+$gray-10: var(--gray-10);
+$gray-25: var(--gray-25);
+$gray-50: var(--gray-50);
+$gray-75: var(--gray-75);
+$gray-100: var(--gray-100);
+$gray-200: var(--gray-200);
+$gray-300: var(--gray-300);
+$gray-400: var(--gray-400);
+$gray-500: var(--gray-500);
+$gray-550: var(--gray-550);
+$gray-600: var(--gray-600);
+$gray-650: var(--gray-650);
+$gray-700: var(--gray-700);
+$gray-800: var(--gray-800);
+$gray-850: var(--gray-850);
+$gray-900: var(--gray-900);
+$gray-950: var(--gray-950);
+$gray-975: var(--gray-975);
+
+// Spacing on an 8px grid to help normalize accross immerse
+// https://m2.material.io/design/layout/understanding-layout.html#resources
+$spacing-01: 2px;
+$spacing-02: 4px;
+$spacing-03: 6px;
+$spacing-04: 8px;
+$spacing-05: 12px;
+$spacing-06: 16px;
+$spacing-07: 24px;
+$spacing-08: 32px;
+$spacing-09: 40px;
+$spacing-10: 48px;

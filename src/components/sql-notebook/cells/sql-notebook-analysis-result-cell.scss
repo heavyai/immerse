@@ -1,0 +1,93 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../variables";
+
+body {
+  --sqlEditorBackgroundColorActive: #{$grayDp3};
+}
+
+body.light-mode {
+  --sqlEditorBackgroundColorActive: #{$grayDp2};
+}
+
+.sql-notebook__cell--analysis-result {
+  .sql-notebook__cell__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: $spacing-08;
+    margin-top: $spacing-07;
+
+    .vertical-separator {
+      border-right: 1px solid var(--divider);
+    }
+  }
+  .sql-notebook__cell__tabs {
+    border-radius: 8px;
+    background-color: $grayDp3;
+    flex-grow: 1;
+  }
+  .sql-notebook__cell__code {
+    position: relative;
+    overflow: hidden;
+
+    .sql-notebook__cell__code__cta {
+      position: absolute;
+      bottom: $spacing-04;
+      right: $spacing-04;
+      display: flex;
+      gap: $spacing-02;
+
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 100ms;
+
+      &.sql-notebook__cell__code__cta--editing {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .sql-notebook__cell__code__actions {
+      position: absolute;
+      top: $spacing-04;
+      right: $spacing-04;
+      display: flex;
+      padding: $spacing-02 $spacing-06;
+    }
+
+    &.sql-notebook__cell__code--active {
+      border-color: var(--secondary-300);
+    }
+    &.sql-notebook__cell__code--editable {
+      &:hover {
+        background-color: var(--sqlEditorBackgroundColorActive);
+        .sql-notebook-editor * {
+          background-color: var(--sqlEditorBackgroundColorActive);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .CodeMirror {
+    height: auto;
+  }
+
+  .CodeMirror-scroll {
+    max-height: $codeMirrorHeight10Lines;
+  }
+}
+
+.sql-notebook__cell__code--expanded {
+  .CodeMirror-scroll {
+    max-height: $codeMirrorHeight27Lines;
+  }
+
+  .sql-expand-cta {
+    transform: rotate(180deg);
+  }
+}

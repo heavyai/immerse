@@ -1,0 +1,480 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+$filter-view-list-width: 250px;
+$filter-view-row-height: 32px;
+
+.dashboard-manager-filters-panel.expanded {
+  display: grid;
+  grid-template-columns: $filter-view-list-width 2fr 1fr;
+  grid-gap: 8px;
+}
+
+.dashboard-manager-filters-panel {
+  padding: 24px 24px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .dashboard-mngr-filter-tags-container {
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 6px;
+    background: white;
+    border-radius: 2px;
+    height: 32px;
+    justify-content: flex-start;
+    min-width: 0;
+
+    .dashboard-mngr-tags-wrapper {
+      display: flex;
+      white-space: nowrap;
+      align-items: center;
+      min-width: 0;
+      flex: 1;
+      overflow-x: auto;
+      &.scrollbar-visible {
+        margin-top: 8px;
+      }
+      &::-webkit-scrollbar:vertical {
+        display: none;
+      }
+    }
+
+    .add-dashboard-mngr-filter-type {
+      align-self: center;
+      flex: 1;
+      fill: $icon-light;
+
+      svg {
+        height: 100%;
+      }
+    }
+
+    .dashboard-manager-filter-tag {
+      align-items: center;
+      justify-content: center;
+      background: $gray2;
+      border-radius: 3px;
+      margin: 0 4px 0 4px;
+      width: auto;
+      color: $text-gray;
+      font-size: $fontSizeSmall;
+      font-family: Roboto, serif;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 14px;
+      padding: 5px;
+      white-space: nowrap;
+      display: flex;
+
+      &:hover {
+        padding: 8px 5px;
+        cursor: pointer;
+        .material-icons.remove-filter-tag {
+          visibility: visible;
+        }
+      }
+
+      .filter-type {
+        padding: 0 3px 0 3px;
+      }
+
+      .filter-type,
+      .filter-value {
+        display: inline-block;
+      }
+
+      .remove-filter-tag {
+        font-size: $fontSizeSmall;
+        color: #bbbbbb;
+      }
+
+      .material-icons.remove-filter-tag {
+        visibility: hidden;
+      }
+    }
+
+    .dashboard-mngr-filter-picker-container {
+      display: flex;
+      flex: 0;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100%;
+      flex-direction: column;
+      min-width: 32px;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .dashboard-mngr-filter-wrapper {
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .dashboard-mngr-filter-wrapper,
+    .date-text-field-wrapper,
+    .dashboard-manager-filter-tag-text-input,
+    .dashboard-mngr-filter-type-placeholder {
+      font-size: $fontSizeSmall;
+
+      > .mdc-text-field {
+        .mdc-text-field__input {
+          font-size: $fontSizeSmall;
+        }
+        .mdc-floating-label {
+          top: 12px;
+        }
+      }
+    }
+
+    .dashboard-manager-filter-tag-text-input.mdc-text-field
+      .mdc-floating-label:not(.mdc-floating-label--float-above) {
+      top: 6px;
+    }
+
+    .dashboard-mngr-filter-type-placeholder {
+      width: fit-content;
+      box-sizing: border-box;
+      border-radius: 3px;
+      height: 100%;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .dashboard-mngr-filter-wrapper .mdc-text-field {
+    height: 32px;
+    overflow: visible;
+    width: 100%;
+    .rmwc-icon.material-icons.mdc-text-field__icon {
+      right: 8px;
+      font-size: $fontSizeMedium;
+      bottom: 8px;
+      outline: none;
+    }
+    .mdc-text-field__input {
+      min-width: 160px;
+    }
+  }
+
+  .dashboard-manager-filter-date-picker {
+    display: flex;
+
+    .date-text-field-wrapper {
+      width: 160px;
+    }
+  }
+
+  .filter-sets-list {
+    background: white;
+    border-width: 1px;
+    border-color: $gray2;
+    border-style: solid;
+    border-radius: 3px 0 0 3px;
+    width: $filter-view-list-width;
+    height: 32px;
+    font-size: $fontSizeNormal;
+
+    .dashboard-mngr-filter-view-list_container {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+
+      .dashhboard-mngr-filter-view-toggle-dropdown {
+        height: 20px;
+        width: 20px;
+        fill: $icon-light;
+      }
+
+      .filter-view-selected {
+        cursor: pointer;
+        padding-left: 4px;
+        min-width: 60%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .filter-set-item__title-text {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: fit-content;
+          background-color: transparent;
+          outline: none;
+          &:not(.filter-set-item__title-text--editable) {
+            cursor: pointer;
+            border: none;
+            user-select: none;
+          }
+          &.filter-set-item__title-text--editable {
+            border: 1px solid $light-border;
+            cursor: initial;
+            border-radius: 2px;
+          }
+        }
+
+        .dashhboard-mngr-filter-view-name-edit {
+          height: 20px;
+          min-width: 20px;
+          width: 20px;
+          fill: none;
+        }
+        &:hover {
+          .dashhboard-mngr-filter-view-name-edit {
+            fill: #a7a7a7;
+          }
+        }
+      }
+      .dashboard-mngr-filter-view-switch {
+        margin-left: 5px;
+      }
+      .mdc-switch__track {
+        width: 24px;
+        height: 10px;
+      }
+
+      .mdc-switch__thumb-underlay {
+        top: -19px;
+      }
+
+      .mdc-switch--checked {
+        .mdc-switch__thumb-underlay {
+          left: -26px;
+        }
+      }
+
+      .mdc-switch__thumb {
+        width: 12px;
+        height: 12px;
+        border: 6px solid;
+      }
+    }
+
+    .dashboard-mngr-save-filter-view {
+      height: 16px;
+      width: 16px;
+      color: $gray3;
+
+      &.disabled {
+        color: $gray2;
+        cursor: default;
+      }
+    }
+    .filter-view-list__items {
+      max-height: 8 * $filter-view-row-height;
+      overflow: auto;
+      position: absolute;
+      width: $filter-view-list-width;
+      border: 1px solid $light-border;
+      z-index: 2;
+      margin-left: -1px;
+    }
+    .filter-view-list__items-container {
+      display: flex;
+      flex-direction: column;
+
+      .filter-set-item:last-child .filter-set-item__title-text {
+        color: $mdc-theme-primary;
+      }
+    }
+  }
+
+  .mdc-list {
+    border-color: $gray2;
+  }
+
+  .dashboard-mngr-multiselect {
+    height: 100%;
+
+    .mdc-list {
+      position: absolute;
+      z-index: 1;
+      max-height: 160px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .mdc-list-item--selected::before {
+      display: none;
+    }
+
+    --mdc-theme-secondary: #{$mdc-theme-primary};
+
+    .mdc-checkbox {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      vertical-align: middle;
+    }
+
+    .mdc-checkbox__background {
+      width: 12px;
+      height: 12px;
+      top: 0;
+      left: 0;
+    }
+
+    .mdc-checkbox__native-control {
+      margin: 0;
+    }
+
+    .mdc-form-field {
+      width: 100%;
+    }
+
+    .mdc-form-field label {
+      font-weight: normal;
+      margin: 0;
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .dropdown-arrow {
+      font-size: $fontSizeMedium;
+      display: flex;
+      align-items: center;
+      color: $gray3;
+      bottom: 9px;
+      &.menu-open {
+        transform: rotate(180deg);
+      }
+    }
+
+    .mdc-text-field__input {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .react-popover {
+      position: absolute;
+    }
+  }
+
+  .mdc-text-field:hover::before {
+    display: none;
+  }
+
+  .dashboard-manager-right-section {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+
+  .selected-filter-tag-placeholder.mdc-text-field:not(.mdc-text-field--no-label) {
+    padding-top: 9px;
+  }
+
+  .selected-filter-tag-placeholder,
+  .dashboard-mngr-filter-type-placeholder,
+  .date-text-field-wrapper {
+    .mdc-text-field:not(.mdc-text-field--no-label) .mdc-text-field__input {
+      padding: 9px 8px 4px;
+    }
+  }
+}
+
+.dashboard-mngr-multiselect-search {
+  border: 1px solid $gray2;
+  border-top: 0;
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+
+.dashboard-mngr-simple-select-wrapper {
+  position: absolute;
+  z-index: 2;
+  overflow-y: auto;
+  width: auto;
+  max-height: 250px;
+}
+
+body:not(.light2-mode) .dashboard-manager-filters-panel {
+  .mdc-text-field {
+    background-color: $grayDp24;
+
+    .mdc-text-field__input {
+      color: $textOnDark;
+    }
+
+    .mdc-floating-label {
+      color: $dimTextOnDark;
+    }
+  }
+
+  .dashboard-mngr-filter-view-container,
+  .dashboard-mngr-filter-tags-container {
+    background: $grayDp8;
+    border-color: $borderSeparator;
+  }
+  .dashboard-manager-filter-tag {
+    background: $highlightOnDark;
+    color: $textOnDark;
+    border: 1px solid $borderSeparator;
+  }
+  .filter-sets-list {
+    border-color: $borderSeparator;
+    background: $grayDp8;
+  }
+  .filter-sets-list
+    .dashboard-mngr-filter-view-list_container
+    .filter-view-selected
+    .filter-set-item__title-text.filter-set-item__title-text--editable {
+    border: 1px solid $borderSeparator;
+    background: $grayDp24;
+  }
+  .dashboard-mngr-save-filter-view {
+    color: $gray2;
+    &.disabled {
+      color: $disabled;
+    }
+  }
+  .filter-view-list__items {
+    border-color: $borderSeparator;
+  }
+
+  .mdc-list-item--selected {
+    background-color: $highlightOnDark;
+  }
+
+  .mdc-list-item--selected .mdc-form-field {
+    color: $textOnDark;
+  }
+
+  .mdc-form-field {
+    color: $dimTextOnDark;
+  }
+
+  .dashboard-mngr-filter-type-placeholder {
+    background: $grayDp24;
+    color: #777777;
+    border: 0.5px solid #444444;
+  }
+
+  .dashboard-mngr-multiselect .mdc-text-field__icon {
+    color: $dimTextOnDark;
+  }
+
+  .dashboard-mngr-multiselect-search {
+    border: none;
+  }
+
+  .mdc-list {
+    border-color: $highlightOnDark;
+  }
+}

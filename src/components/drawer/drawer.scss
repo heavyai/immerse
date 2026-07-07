@@ -1,0 +1,126 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.drawer {
+  display: flex;
+
+  .drawer-content {
+    display: none;
+  }
+
+  .drawer-body {
+    display: flex;
+    flex: 1;
+  }
+
+  .drawer__open {
+    display: flex;
+    flex: 1;
+  }
+
+  .drawer__open-right {
+    height: calc(100vh - 48px);
+    width: 256px;
+  }
+
+  .drawer-toggle-tab {
+    cursor: pointer;
+    display: flex;
+  }
+
+  &.drawer-top {
+    flex-direction: column;
+
+    .drawer-toggle-tab {
+      justify-content: center;
+
+      .drawer-toggle-text,
+      .drawer-toggle-icon {
+        border-radius: 0px 0px 4px 4px;
+        border-top: none;
+      }
+    }
+  }
+
+  &.drawer-right {
+    flex-direction: row;
+
+    .drawer-toggle-tab {
+      width: 0;
+
+      .drawer-toggle-text {
+        transform: rotate(-90deg) translate(-100%);
+        white-space: nowrap;
+        transform-origin: bottom left;
+        border-radius: 4px 4px 0px 0px;
+        border-bottom: none;
+        display: flex;
+        height: 18px;
+      }
+      .drawer-toggle-icon {
+        transform: translate(-100%);
+        white-space: nowrap;
+        border-radius: $spacing-02 0 0 $spacing-02;
+        border-right: none;
+        display: flex;
+        align-items: center;
+        height: 27px;
+        margin-top: $spacing-04;
+        padding: 0 $spacing-02;
+      }
+      .drawer-toggle-icon-container {
+        display: flex;
+      }
+    }
+  }
+
+  .drawer-toggle-text,
+  .drawer-toggle-icon {
+    color: $dimTextOnDark;
+    font-size: $fontSizeSmall;
+    font-weight: 700;
+    padding-top: 1px;
+    display: flex;
+    border: 1px solid $borderSeparator;
+    background: $grayDp3;
+    padding: 0 4px;
+  }
+
+  .close-icon {
+    display: flex;
+
+    i.rmwc-icon {
+      color: $dimTextOnDark;
+      font-size: $fontSizeNormal;
+      font-weight: 700;
+      padding: 1px 0 0 2px;
+    }
+  }
+
+  .drawer-toggle-icon .close-icon .rmwc-icon {
+    font-size: $fontSizeMedium;
+    padding: 1px 0 0 0;
+    color: #fff;
+  }
+  .drawer_icon__open {
+    background-color: $mdc-theme-primary;
+  }
+}
+
+body.light2-mode {
+  .drawer {
+    .drawer-toggle-text,
+    .drawer-toggle-icon {
+      background: white;
+      border: 1px solid $gray2;
+
+      &.drawer-top {
+        border-bottom: 1px solid $gray2;
+      }
+    }
+  }
+}

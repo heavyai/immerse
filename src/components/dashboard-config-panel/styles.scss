@@ -1,0 +1,130 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.dashboard-config-container {
+  &.dashboard-config-container--hidden {
+    display: none;
+  }
+
+  .dashboard-config {
+    position: relative;
+    margin-top: -120px; // Height of tabs to play nice with `position: sticky` below
+
+    &.is-open {
+      // Keep pinned in place when scrolling down
+      // Set to sticky as opposed to fixed to offset grid to right, especially for resizing
+      position: sticky;
+      top: 0;
+    }
+
+    &.parameter-panel {
+      transform: translateZ(0);
+    }
+
+    z-index: 1; // Stack time filter modal above dashboard grid
+  }
+
+  .resize-handle {
+    height: 100%;
+    cursor: col-resize;
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: 10px;
+    transform: translate(50%);
+    z-index: 1;
+  }
+}
+
+.dashboard-config-handle-container {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  top: -2px;
+  color: $text-dim;
+  width: fit-content;
+
+  &.open {
+    left: 100%;
+    transform: translate(100%);
+  }
+
+  .handle {
+    background-color: #f7f7f7;
+    border: 1px solid $gray3;
+    border-left-width: 0;
+    border-radius: 0 4px 4px 0;
+    box-sizing: border-box;
+    height: 32px;
+    padding: 2px 0 0;
+    width: 20px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+
+    .mdc-icon-button__icon {
+      margin: -4px;
+    }
+
+    svg {
+      padding: 2px;
+    }
+
+    &.selected {
+      color: $charcoal;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::after,
+    &::before {
+      border-radius: unset;
+    }
+  }
+}
+
+.dashboard-config-panel {
+  height: calc(100vh - 148px);
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow-x: hidden;
+  overflow-y: auto;
+  // This lets the swatch popup for the color palette appear in the right place
+  .rmwc-collapsible-list__children {
+    overflow: visible;
+  }
+  .is-side-nav-enabled & {
+    height: calc(100vh - 96px); // 48px for top bar and 48px for tabs
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .dashboard-config-handle-container {
+    .handle {
+      background-color: $grayDp3;
+      border: 1px solid $borderSeparator;
+      border-left-width: 0;
+      color: $dimTextOnDark;
+
+      &.selected {
+        color: $textOnDark;
+      }
+    }
+  }
+
+  .dashboard-config-panel {
+    color: $textOnDark;
+    fill: $textOnDark;
+    background-color: $grayDp3;
+  }
+}

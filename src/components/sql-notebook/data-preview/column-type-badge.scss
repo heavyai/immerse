@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.column-type-badge {
+  &.MuiChip-root {
+    padding: 0 $spacing-04;
+    color: $text-light;
+    border-color: $border-dim;
+  }
+
+  .column-type-badge__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .svgicon {
+      width: 12px;
+      path {
+        fill: $icon-light;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../variables";
+@import "./collapsible-mixin.scss";
+
+/**
+  This is also defined in sql notebook vars, but it is defined with
+  the !default tag, so this value will only get used if this is used
+  outside of sql-notebook.
+*/
+$collapsibleDuration: 400ms;
+
+.collapsible-result {
+  // Results name, search bar etc.
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $fontSizeMedium;
+    font-weight: 400;
+    margin: $spacing-04 0;
+    cursor: pointer;
+    
+    .header-section {
+      display: flex;
+      align-items: center;
+      .header-title {
+        margin-left: $spacing-03;
+      }
+    }
+  }
+  @include collapsible($duration: $collapsibleDuration);
+}

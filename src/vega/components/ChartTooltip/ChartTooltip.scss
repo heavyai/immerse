@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.chart-tooltip {
+  position: absolute;
+  // Seems like only a z-index of 2 is necessary for the tooltip to appear above
+  // the range chart and gradient legend but bumped it up for safety
+  z-index: 100;
+
+  background: white;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+  // We truncate long measure values with an ellipsis.
+  // Yes 350px allows for a faaaat tooltip. But we can't fall back on
+  // a `title` to display the full value on hover
+  max-width: 350px;
+  white-space: nowrap;
+
+  // All font sizes in this component are relative to this value.
+  // When a user increases or decreases the font size of tooltips via
+  // the Dashboard Config UI, this is the value that changes
+  font-size: $fontSizeNormal;
+
+  // It's possible for a user to get the mouse pointer over the tooltip and
+  // then the mouseout event won't fire when they leave the chart, so the
+  // tooltip won't go away
+  pointer-events: none;
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .chart-tooltip {
+    background: $grayDp8;
+  }
+}

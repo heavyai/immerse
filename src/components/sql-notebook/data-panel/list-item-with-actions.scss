@@ -1,0 +1,88 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "./_common.scss";
+
+body {
+  --listItemBackgroundActive: #{$grayDp2};
+  --listItemActionDisabled: var(--gray-300);
+  --listItemActionFill: var(--gray-600);
+}
+
+body.dark-mode {
+  --listItemActionDisabled: var(--gray-650);
+  --listItemActionFill: var(--gray-300);
+}
+
+.list-item-with-actions__container {
+  // Needs to be synced with TABLE_LIST_ITEM_HEIGHT
+  // + margin around the item itself
+  height: 40px;
+}
+
+.list-item-with-actions {
+  height: 36px;
+  // 2px margin top/bottom, so 4px between each list item in the list
+  margin: $spacing-01 0;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding: $spacing-04;
+
+  .list-item-with-actions__info {
+    min-width: 0;
+    overflow: hidden;
+    > div {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: $fontSizeSmall;
+      color: $dimTextOnDark;
+      line-height: 18px;
+    }
+    // Bold title, everything else small
+    .list-item-with-actions__title {
+      font-size: $fontSizeNormal;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+  }
+
+  .list-item-with-actions__actions {
+    // Create a little space between overflowing text and icons
+    padding: 0 $spacing-03;
+
+    // TODO:
+    // display: none is much better here, doesn't unnecessarily truncate text (icons take up space when visible)
+    // but it messes with the column data preview tooltip. Try using a custom portal or some such, instead of the tooltip
+    visibility: hidden;
+    gap: $spacing-05;
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover {
+    &.is-selectable {
+      background-color: var(--listItemBackgroundActive);
+      // The whole row is selectable
+      cursor: pointer;
+
+      // Highlight cell text on hover
+      .list-item-with-actions__info,
+      .list-item-with-actions__description,
+      .list-item-with-actions__title {
+        color: $text-solid;
+      }
+    }
+
+    // Show actions on hover
+    .list-item-with-actions__actions {
+      visibility: visible;
+    }
+  }
+}

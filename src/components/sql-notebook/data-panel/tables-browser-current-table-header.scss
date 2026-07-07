@@ -1,0 +1,70 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables";
+@import "./_common";
+
+body {
+  --titleColor: $solid;
+  --bottomBorderColor: $borderSeparator;
+}
+
+.sql-notebook__table-browser__current-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // Don't let the table crowd us out
+  flex-shrink: 0;
+  height: 65px;
+
+  border-bottom: 1px solid var(--bottomBorderColor);
+
+  &:hover {
+    cursor: pointer;
+    background-color: $highlightOnDark;
+  }
+
+  // Left side
+  .table-browser__actions-left {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    .table-browser__current-table__back {
+      height: 100%;
+    }
+  }
+
+  // Middle
+  .table-browser__current-table__details {
+    padding: 0 $spacing-04;
+    overflow: hidden;
+
+    // Line items in details, special styles for title
+    > div {
+      color: $dimTextOnDark;
+      font-size: $fontSizeSmall;
+      font-weight: 400;
+      // Truncate text
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: $fontSizeMedium;
+
+      &.table-browser__current-table__title {
+        color: var(--titleColor);
+        line-height: $fontSizeNormal;
+        font-size: $fontSizeNormal;
+        font-weight: 700;
+        padding: $spacing-02 0;
+      }
+    }
+  }
+
+  // Right
+  .sql-notebook__row-action {
+    padding: 0 8px;
+  }
+}

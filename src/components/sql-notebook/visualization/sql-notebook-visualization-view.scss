@@ -1,0 +1,27 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./variables.scss";
+
+.visualization-view-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden; // Necessary to resize vega-lite correctly
+
+  .vega-embed {
+    width: 100%;
+    height: 100%;
+  }
+
+  .visualization-view {
+    background-color: var(--vega-lite-background);
+    border-radius: 8px;
+    padding: $spacing-04;
+    height: $visualizationHeight;
+    width: 100%;
+  }
+}

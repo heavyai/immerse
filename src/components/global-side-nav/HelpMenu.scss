@@ -1,0 +1,30 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.global-side-nav__help__menu {
+  white-space: nowrap;
+  margin-bottom: 5px;
+  color: $gray6;
+
+  // RMWC is miscalculating the menu size and setting a
+  // tiny max-height for some reason
+  max-height: 300px !important;
+
+  .mdc-list {
+    padding: 0;
+  }
+
+  .mdc-list-item {
+    height: 32px;
+    font-size: $fontSizeNormal;
+    padding: 0;
+  }
+
+  .dark-mode & {
+    color: $text-dim;
+  }
+}

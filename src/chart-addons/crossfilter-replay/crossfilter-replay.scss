@@ -1,0 +1,118 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.crossfilter-replay-container {
+  background-color: $darkGrayBackground;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 12px 5px 12px;
+  box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.25),
+    2px 2px 2px 0px rgba(0, 0, 0, 0.25);
+  border-top: 1px solid $borderSeparator;
+
+  .crossfilter-replay-advance-by-grid,
+  .custom-selector-label,
+  .crossfilter-replay-control {
+    font-size: 11px;
+  }
+
+  .crossfilter-replay-timestamp,
+  .custom-selector-label {
+    font-size: $fontSizeSmall;
+  }
+
+  .custom-selector {
+    background-color: $darkGrayBackground !important;
+    border: none;
+    padding-top: 0.9px;
+
+    .custom-selector-label {
+      color: $darkGray9;
+      padding: 0 1px 0 2px;
+    }
+
+    .custom-selector-icon {
+      svg path {
+        fill: $darkGray9;
+      }
+    }
+  }
+
+  .mdc-text-field.mdc-text-field--upgraded:not(.mdc-text-field--textarea) {
+    width: 86.81px;
+  }
+}
+
+.crossfilter-replay-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.crossfilter-replay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crossfilter-replay-button-grid {
+  display: flex;
+  justify-content: center;
+  padding-right: 130.52px;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.crossfilter-replay-advance-by-grid {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.crossfilter-replay-second-line-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.crossfilter-replay-button-grid svg {
+  cursor: pointer;
+}
+
+.crossfilter-replay-timestamp {
+  margin-right: 5px;
+}
+
+.crossfilter-replay-container > div:nth-of-type(2) {
+  gap: 2px;
+}
+
+.crossfilter-replay-container
+  > div:nth-of-type(3)
+  > div
+  .crossfilter-replay-advance-by-grid {
+  gap: 2px;
+}
+
+body.light-mode,
+body.light2-mode {
+  .crossfilter-replay-container {
+    background-color: $grayDp8;
+    box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1),
+      2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+
+    .custom-selector {
+      background-color: $grayDp8 !important;
+    }
+  }
+}

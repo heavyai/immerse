@@ -1,0 +1,16 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../../variables.scss";
+
+.vega-map {
+  position: relative;
+  height: $visualizationHeight;
+  width: 100%;
+  .vega-map-error {
+    background-color: var(--vega-map-error-background);
+    border-radius: 0;
+  }
+}

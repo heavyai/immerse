@@ -1,0 +1,87 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.time-comparison-container {
+  padding-bottom: 20px;
+
+  > .measures-to-compare {
+    margin-top: 10px;
+
+    > .measures-to-compare-header-container {
+      display: flex;
+      width: 100%;
+      align-items: center;
+
+      > .measures-to-compare-header {
+        color: var(--dimTextOnDark);
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: -0.03px;
+        text-transform: uppercase;
+        flex: 1;
+      }
+
+      > .measures-to-compare-header-time-format {
+        color: var(--dimTextOnDark);
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 13px;
+        padding-right: 16px;
+      }
+    }
+
+    > .measures-to-compare-item {
+      height: 57px;
+      padding-left: 19px;
+      padding-right: 19px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      display: flex;
+      align-items: center;
+
+      > .measures-to-compare-item-label-container {
+        flex: 1;
+        flex-direction: column;
+        margin-left: 12px;
+
+        > .measures-to-compare-item-label {
+          color: var(--dimTextOnDark);
+          font-style: normal;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 0px;
+          margin-bottom: 1px;
+        }
+
+        > .measures-to-compare-item-label-subtext {
+          color: var(--dimTextOnDark);
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+      }
+
+      > .chart-settings-button-group {
+        margin: 0;
+        width: 60px;
+      }
+    }
+
+    > .measures-to-compare-item:not(:last-child) {
+      border-bottom: 1px solid var(--highlightOnDark);
+    }
+  }
+}

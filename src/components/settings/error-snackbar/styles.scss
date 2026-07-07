@@ -1,0 +1,25 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.settings-error-snackbar {
+    position: absolute;
+    bottom: unset;
+
+    .mdc-snackbar__surface {
+        background-color: #ea3d3d;
+        max-width: 800px;
+    }
+
+    .mdc-snackbar__label {
+        padding: $spacing-05 $spacing-06;
+    }
+
+    .rmwc-icon {
+        display: flex;
+        fill: white;
+    }
+}

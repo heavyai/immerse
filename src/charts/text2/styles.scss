@@ -1,0 +1,18 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.sun-editor-wrapper {
+    height: 100%;
+
+    .sun-editor {
+        height: 100%;
+
+        .se-wrapper {
+            height: 100%;
+        }
+    }
+}

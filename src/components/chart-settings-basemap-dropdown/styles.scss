@@ -1,0 +1,83 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.basemap-selector {
+  flex-grow: 1;
+}
+
+$thumb-width: 48px;
+
+.basemap-preview {
+  height: 32px;
+  width: 48px;
+  border: 1px solid white;
+  flex-shrink: 0;
+  margin-left: 8px;
+  background-size: 768px 32px;
+  background-image: url("../../assets/imgs/basemap-thumbnails.jpg");
+
+  &.dark {
+    background-position: calc(-1 * #{$thumb-width}) 0;
+  }
+
+  &.basic {
+    background-position: calc(-2 * #{$thumb-width}) 0;
+  }
+
+  &.satellite {
+    background-position: calc(-3 * #{$thumb-width}) 0;
+  }
+
+  &.bright {
+    background-position: calc(-4 * #{$thumb-width}) 0;
+  }
+
+  &.streets {
+    background-position: calc(-5 * #{$thumb-width}) 0;
+  }
+
+  &.outdoors {
+    background-position: calc(-6 * #{$thumb-width}) 0;
+  }
+
+  &.odyssey {
+    background-position: calc(-7 * #{$thumb-width}) 0;
+  }
+
+  &.north-star {
+    background-position: calc(-8 * #{$thumb-width}) 0;
+  }
+
+  &.decimal {
+    background-position: calc(-9 * #{$thumb-width}) 0;
+  }
+
+  &.vintage {
+    background-position: calc(-10 * #{$thumb-width}) 0;
+  }
+
+  &.minimalist-dark {
+    background-position: calc(-11 * #{$thumb-width}) 0;
+  }
+
+  &.minimalist-light {
+    background-position: calc(-12 * #{$thumb-width}) 0;
+  }
+
+  &.satellite-3d {
+    background-position: calc(-13 * #{$thumb-width}) 0;
+  }
+
+  &.wireframe-3d {
+    background-position: calc(-14 * #{$thumb-width}) 0;
+  }
+
+  &.surface-3d {
+    background-position: calc(-15 * #{$thumb-width}) 0;
+  }
+}
+

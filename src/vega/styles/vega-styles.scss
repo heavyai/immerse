@@ -1,0 +1,39 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.chart-container .vega-wrapper svg text {
+  font-family: "Roboto", Sans-Serif !important;
+}
+
+.chart-container.chart-type-vega-combo g.role-mark text {
+  fill: #404040 !important;
+  paint-order: stroke;
+  stroke-opacity: 0.3;
+  stroke-width: 2px;
+
+  body:not(.light2-mode) & {
+    fill: #eee !important;
+    stroke: black;
+  }
+  body.light-mode & {
+    fill: #404040 !important;
+    stroke: white;
+
+  }
+}
+
+.vega-wrapper {
+  display: inline-block;
+}
+
+.chart-container.chart-type-deckgl,
+.chart-container.chart-type-deckgl-pointmap,
+.chart-container.chart-type-deckgl-linemap,
+.chart-container.chart-type-deckgl-geoheat,
+.chart-container.chart-type-deckgl-choropleth {
+  position: relative;
+}

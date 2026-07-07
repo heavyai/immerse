@@ -1,0 +1,10 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.sql-notebook-vega-result__image-backdrop {
+  background-color: var(--vega-backdrop);
+  width: 100%;
+  max-width: max-content;
+}

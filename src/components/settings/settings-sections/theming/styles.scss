@@ -1,0 +1,114 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../settings-variables";
+
+.theming-settings {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: calc(100% - 48px);
+  position: relative;
+
+  .settings__content__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .theming-settings__list {
+    width: 100%;
+    padding-top: $spacing-04;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: -16px;
+  }
+
+  .theming-settings__color-picker {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .color-palette-picker {
+      position: static;
+      width: 90%;
+
+      .color-palette-picker__input input {
+        width: 62px;
+        color: var(--listItemTextColor);
+      }
+    }
+  }
+
+  .theming-settings__list__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-10;
+    border-radius: 10px;
+    padding: $spacing-06;
+
+    &:hover {
+      background: var(--listItemHoverBackgroundColor);
+    }
+  }
+
+  .theming-settings__list__item__input {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    > span {
+      font-size: $fontSizeNormal;
+    }
+
+    .mdc-text-field {
+      width: 90%;
+
+      .mdc-text-field__input {
+        resize: vertical;
+      }
+    }
+    .theming-settings__list__item__input--ui-theme {
+      width: 120px;
+
+      .select__menu-list {
+        max-height: 70px;
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  .theming-settings__list__item__info {
+    flex: 0 0 60%;
+
+    .theming-settings__list__item__label {
+      color: var(--listItemLabelColor);
+      line-height: $spacing-07;
+      font-size: $fontSizeMedium;
+      font-weight: bold;
+      display: block;
+    }
+
+    .theming-settings__list__item__description {
+      line-height: $spacing-07;
+      display: block;
+    }
+  }
+
+  .mdc-text-field.mdc-text-field--upgraded {
+    .mdc-notched-outline {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing,
+      .mdc-floating-label.mdc-floating-label--float-above {
+        color: var(--listItemMDCFloatingLabel);
+      }
+    }
+  }
+}

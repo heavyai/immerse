@@ -1,0 +1,140 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.vega-combo-chart-settings {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: $text-gray;
+  .chart-settings-title {
+    border-top: 1px solid $light-border;
+    border-bottom: 1px solid $light-border;
+    padding: 8px 0;
+    text-align: center;
+    font-size: $fontSizeSmall;
+  }
+  .featured-settings-section {
+    background-color: #fff;
+    padding: 4px 8px 8px 8px;
+  }
+  .tabs-header {
+    padding: 16px 0 8px 0;
+    .tabs-border-wrapper {
+      display: flex;
+      border-bottom: 1px solid $light-border;
+    }
+    .tabs-header-item {
+      padding: 0 8px;
+      text-align: center;
+      color: $text-dim;
+      font-size: $fontSizeNormal;
+      &.selected {
+        color: $text-gray;
+        border-bottom: 2px solid $gray3;
+      }
+      &:not(.selected) {
+        cursor: pointer;
+      }
+    }
+  }
+  .tabs-body {
+    padding: 0 8px;
+  }
+  .switch-with-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $fontSizeNormal;
+    margin: 8px 0 0 0;
+  }
+  .select-with-sort {
+    display: flex;
+    padding: 8px 0;
+  }
+  .settings-subheader {
+    font-size: $fontSizeNormal;
+    border-bottom: 1px solid $light-border;
+    padding: 8px 0 0 0;
+    margin: 0 0 8px 0;
+  }
+  .input-row {
+    padding-bottom: 8px;
+  }
+  .column-name {
+    font-size: $fontSizeNormal;
+  }
+  .table-name {
+    font-size: $fontSizeNormal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .icon-and-column {
+    display: flex;
+  }
+  .measure-column {
+    margin-left: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $text-black;
+  }
+  .measure-header {
+    padding: 8px 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .measure-body {
+    padding: 8px 0;
+  }
+  .measure-with-color-dimension {
+    fill: $gray5;
+  }
+  .categorical-color-picker .color-picker-content {
+    padding: 0;
+  }
+}
+
+body:not(.light2-mode) .vega-combo-chart-settings {
+  background-color: $grayDp3;
+  .chart-settings-title {
+    border: 0px solid $borderSeparator;
+    color: $dimTextOnDark;
+  }
+  .featured-settings-section {
+    background-color: $grayDp1;
+  }
+  .tabs-header {
+    .tabs-border-wrapper {
+      border-bottom: 1px solid $borderSeparator;
+    }
+    .tabs-header-item {
+      color: $dimTextOnDark;
+      &.selected {
+        color: $textOnDark;
+        border-color: $dimTextOnDark;
+      }
+    }
+  }
+  .settings-subheader {
+    color: $dimTextOnDark;
+    border-bottom: 1px solid $borderSeparator;
+  }
+  .switch-with-label {
+    color: $textOnDark;
+  }
+  .table-name {
+    color: $dimTextOnDark;
+  }
+  .measure-column {
+    color: $textOnDark;
+  }
+  .measure-with-color-dimension {
+    fill: $dimTextOnDark;
+  }
+}

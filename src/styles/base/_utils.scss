@@ -1,0 +1,103 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.hidden {
+  display:none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+// Spacing
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3)
+  ),
+  $spacers
+);
+
+@each $prop, $abbrev in (margin: m, padding: p) {
+    @each $size, $length in $spacers {
+        .#{$abbrev}-#{$size} { #{$prop}: $length; }
+        .#{$abbrev}t-#{$size},
+        .#{$abbrev}y-#{$size} {
+            #{$prop}-top: $length;
+        }
+        .#{$abbrev}r-#{$size},
+        .#{$abbrev}x-#{$size} {
+            #{$prop}-right: $length;
+        }
+        .#{$abbrev}b-#{$size},
+        .#{$abbrev}y-#{$size} {
+            #{$prop}-bottom: $length;
+        }
+        .#{$abbrev}l-#{$size},
+        .#{$abbrev}x-#{$size} {
+            #{$prop}-left: $length;
+        }
+    }
+}
+
+// Negative margins (e.g., where `.mb-n1` is negative version of `.mb-1`)
+@each $size, $length in $spacers {
+    @if $size != 0 {
+        .m-n#{$size} { margin: -$length; }
+        .mt-n#{$size},
+        .my-n#{$size} {
+            margin-top: -$length;
+        }
+        .mr-n#{$size},
+        .mx-n#{$size} {
+            margin-right: -$length;
+        }
+        .mb-n#{$size},
+        .my-n#{$size} {
+            margin-bottom: -$length;
+        }
+        .ml-n#{$size},
+        .mx-n#{$size} {
+            margin-left: -$length;
+        }
+    }
+}
+
+// Some special margin utils
+.m-auto { margin: auto; }
+.mt-auto,
+.my-auto {
+    margin-top: auto;
+}
+.mr-auto,
+.mx-auto {
+    margin-right: auto;
+}
+.mb-auto,
+.my-auto {
+    margin-bottom: auto;
+}
+.ml-auto,
+.mx-auto {
+    margin-left: auto;
+}
+
+.text-danger {
+    color: #E41040;
+}

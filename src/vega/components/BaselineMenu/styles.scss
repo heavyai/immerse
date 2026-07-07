@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.baseline-menu {
+  position: absolute;
+  bottom: 0;
+
+  &.baseline-menu--open .baseline-menu__anchor {
+    background-color: $grayDp24;
+
+    path {
+      fill: $solid;
+    }
+  }
+
+  .baseline-menu__anchor {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: $grayDp24;
+
+      path {
+        fill: $solid;
+      }
+    }
+  }
+
+  .baseline-menu__popover {
+    position: absolute;
+    bottom: $spacing-07;
+    text-wrap: nowrap;
+    width: 200px;
+    padding: $spacing-05 $spacing-06;
+    border-radius: 4px;
+    border: 1px solid var(--gray-800);
+    background-color: $grayDp3;
+    font-size: $fontSizeNormal;
+    z-index: 101; // Chart tooltip is 100
+
+    h6 {
+      color: $solid;
+      margin: 0 0 $spacing-06 0;
+      font-size: $fontSizeNormal;
+      font-weight: normal;
+    }
+  }
+
+  .baseline-menu__toggles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40px;
+    row-gap: $spacing-04;
+
+    label {
+      display: inline-block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 1px;
+      cursor: pointer;
+    }
+
+    // Switch mods to keep the huge default click targets from overlapping
+    .mdc-switch__native-control {
+      height: 20px;
+    }
+
+    .mdc-switch__thumb-underlay {
+      height: 20px;
+      top: -3px;
+    }
+  }
+}

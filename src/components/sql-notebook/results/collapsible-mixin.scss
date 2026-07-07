@@ -1,0 +1,38 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@mixin collapsible($duration: 400ms, $headerDuration: 150ms) {
+  // Flips the chevron real nice like
+  .header-indicator {
+    transition-duration: $headerDuration;
+    transition-property: transform;
+    transform: rotate(180deg);
+    &.collapsed {
+      transform: rotate(0deg);
+    }
+  }
+
+  .collapsible-container {
+    transition-duration: $duration;
+    transition-property: all;
+    max-height: 500px;
+    overflow: auto;
+    &.collapsed {
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+
+  .collapsible {
+    transition-duration: $duration;
+    transition-property: all;
+    transform: translateY(0%);
+    overflow: auto;
+    &.collapsed {
+      transform: translateY(-100%);
+      overflow: hidden;
+    }
+  }
+}

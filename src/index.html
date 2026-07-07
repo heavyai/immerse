@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico?v=2" />
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
+    <% } %> <% if(htmlWebpackPlugin.options.environment === "override"){ %>
+    <link href="/override.css" rel="stylesheet" />
+    <% } %>
+  </head>
+  <body id="immerse-body">
+    <div id="root"></div>
+    <script src="/app-config.js"></script>
+    <script>
+      if (window.METRICS_CONFIG && window.METRICS_CONFIG.googleTagID) {
+        // Dynamically create and append the Google Tag Manager script
+        var gTagScript = document.createElement("script")
+        gTagScript.async = true
+        gTagScript.src =
+          "https://www.googletagmanager.com/gtag/js?id=" +
+          window.METRICS_CONFIG.googleTagID
+        document.head.appendChild(gTagScript)
+
+        // Dynamically create and append the configuration script
+        var configScript = document.createElement("script")
+        configScript.textContent = `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag("js", new Date());
+          gtag("config", "${window.METRICS_CONFIG.googleTagID}");
+        `
+        document.head.appendChild(configScript)
+      }
+    </script>
+    <% for (var js in htmlWebpackPlugin.files.js) { %>
+    <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+    <% } %>
+  </body>
+</html>

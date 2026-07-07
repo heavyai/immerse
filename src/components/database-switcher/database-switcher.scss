@@ -1,0 +1,259 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../../styles/base/_variables.scss";
+.account-panel {
+  .account-menu-panel {
+    margin-top: 50px;
+    position: absolute;
+    background: white;
+    border: 1px solid $gray1;
+    padding: 10px;
+    width: 208px;
+    border-radius: 4px;
+  }
+  .single-database-display {
+    line-height: 16px;
+    margin-bottom: 16px;
+    display: flex;
+  }
+  .account-user {
+    display: flex;
+  }
+  .database-switcher-option {
+    padding: 4px 8px;
+    display: flex;
+    .database-switcher-option-label {
+      max-width: 210px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    a.database-switcher-option-icon {
+      color: $text-gray;
+      display: none;
+      padding: 0;
+      margin: 0;
+      margin-left: auto;
+      height: 1em;
+      width: 1em;
+      svg {
+        height: 1em;
+        width: 1em;
+      }
+    }
+    &:hover {
+      background-color: $gray1;
+      color: $text-black;
+      a {
+        display: flex;
+      }
+    }
+  }
+  .select__menu {
+    padding: 0;
+    margin: 0;
+    border: 1px solid $gray1;
+    overflow-y: auto;
+    .select__menu-list {
+      max-height: 100px;
+    }
+  }
+  .multi-select
+    .select-container-wrapper
+    .select__control
+    .select__single-value {
+    color: $text-black !important;
+  }
+  .multi-select .mdc-notched-outline .mdc-floating-label {
+    color: $text-gray !important;
+  }
+  .db-label,
+  .user-label,
+  .theme-label {
+    color: $gray6;
+  }
+  .db-label {
+    font-size: $fontSizeNormal;
+  }
+  .user-label,
+  .theme-label,
+  .user-value {
+    font-size: $fontSizeSmall;
+  }
+  .user-value {
+    padding-left: 0.2rem;
+    max-width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .db-value,
+  .user-value {
+    color: $text-black;
+  }
+  .db-value {
+    padding-left: 0.2rem;
+    font-size: $fontSizeNormal;
+    max-width: 123px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .theme-selector {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+
+    .select__menu-list {
+      max-height: 78px;
+    }
+  }
+  .theme-label {
+    margin-bottom: 4px;
+  }
+  .tick-icon {
+    position: absolute;
+    top: 8px;
+    width: 16px;
+  }
+  .button-group {
+    display: flex;
+    margin-bottom: 16px;
+    button:first-child {
+      border-radius: 4px 0 0 4px;
+      flex: 1;
+    }
+    button:last-child {
+      border-radius: 0 4px 4px 0;
+      flex: 1;
+    }
+    button:not(.active).mdc-button--unelevated.mdc-button {
+      background: transparent !important;
+      border: 1px solid $gray3;
+      color: $text-gray;
+    }
+  }
+
+  .separator-top,
+  .separator-bottom {
+    border-bottom: 1px solid $gray3;
+  }
+
+  .separator-top {
+    margin: 16px 0;
+  }
+
+  .separator-bottom {
+    margin-top: 16px;
+  }
+  .cancel-queries-button-wrapper button {
+    width: 100%;
+    margin-bottom: 8px;
+
+    i {
+      font-size: inherit;
+      border: 1px solid #f3f3f3;
+      border-radius: 50%;
+      line-height: 16px;
+    }
+  }
+  .logout-button-wrapper button {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .database-switcher {
+    margin: 16px 0;
+  }
+
+  .control-panel-link {
+    display: flex;
+    color: $textOnDark;
+    padding: 0px;
+    height: 32px;
+    .rmwc-icon {
+      margin-right: 4px;
+    }
+  }
+
+  .control-panel-link {
+    border-radius: 4px;
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .control-panel-link {
+    color: $textOnDark;
+    font-size: 16px;
+    .key-icon {
+      margin-right: 6px;
+      margin-top: 5px;
+      margin-left: 2px;
+      svg path {
+        fill: $textOnDark;
+      }
+    }
+  }
+
+  * {
+    &:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item::before,
+    &:not(.mdc-list--non-interactive)
+      > :not(.mdc-list-item--disabled).mdc-list-item::after {
+      background-color: $gray4;
+    }
+  }
+}
+
+body:not(.light2-mode) .account-panel {
+  .db-label,
+  .user-label,
+  .theme-label {
+    color: $dimTextOnDark;
+  }
+  .db-value,
+  .user-value {
+    color: $textOnDark;
+  }
+  .account-menu-panel {
+    background: $grayDp3;
+    border: 1px solid $borderSeparator;
+    color: $textOnDark;
+    fill: $textOnDark;
+  }
+  .database-switcher-option {
+    a {
+      color: $dimTextOnDark;
+    }
+    &:hover {
+      background-color: $highlightOnDark;
+      color: $textOnDark;
+    }
+  }
+  .multi-select
+    .select-container-wrapper
+    .select__control
+    .select__single-value {
+    color: $textOnDark !important;
+  }
+  .separator-top,
+  .separator-bottom {
+    border-bottom: 1px solid $borderSeparator;
+  }
+  button:not(.active).mdc-button--unelevated.mdc-button {
+    border: 1px solid $borderSeparator;
+    color: $dimTextOnDark;
+  }
+  .select__menu {
+    border: 1px solid $borderSeparator;
+  }
+  .database-switcher-option {
+    &:hover {
+      background-color: $highlightOnDark;
+    }
+  }
+}

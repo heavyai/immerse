@@ -1,0 +1,62 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.mdc-switch {
+  /* hide ripple */
+  .mdc-switch__thumb-underlay {
+    &::before, &::after {
+      display: none;
+    }
+  }
+
+  &:not(.mdc-switch--checked) .mdc-switch__thumb {
+    border: 1px solid $borderSeparator;
+    background-color: $textOnDark;
+
+    body.light-mode & {
+      background-color: white;
+    }
+  }
+
+  .mdc-switch__track:not(.mdc-switch--checked) {
+    background-color: $gray9;
+  }
+
+  &.compact {
+    .mdc-switch__track {
+      width: 24px;
+      height: 10px;
+    }
+    .mdc-switch__thumb-underlay {
+      width: 12px;
+      height: 12px;
+      left: 0;
+      top: -1px;
+    }
+    .mdc-switch__thumb {
+      width: 12px;
+      height: 12px;
+      border: none;
+    }
+    .mdc-switch__native-control {
+      width: 24px;
+      height: 12px;
+    }
+    &.mdc-switch--checked .mdc-switch__native-control {
+      transform: translateX(-12px);
+    }
+    &.mdc-switch--checked .mdc-switch__thumb-underlay {
+      transform: translateX(12px);
+    }
+  }
+}
+
+body:not(.light2-mode) .mdc-switch {
+  .mdc-switch__track:not(.mdc-switch--checked) {
+    background-color: $textOnDark;
+  }
+}

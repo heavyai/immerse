@@ -1,0 +1,343 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.quick-filter-notch-container {
+  display: flex;
+  justify-content: center;
+  // Sorry. The dropdown needs this to overlay anything in a chart.
+  z-index: 12;
+
+  .notch {
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 8px;
+    max-width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    top: -2px;
+    position: relative;
+
+    &.collapsed {
+      height: 8px;
+
+      .notch-content {
+        max-height: 8px;
+        width: 80px;
+      }
+
+      .notch-left,
+      .notch-right {
+        height: 7px;
+        width: 7px;
+      }
+    }
+
+    &:hover .visibility-toggle-all {
+      visibility: visible;
+    }
+  }
+
+  .notch-content {
+    flex-basis: 142px;
+    max-width: calc(100% - 44px);
+    display: flex;
+    font-size: $fontSizeSmall;
+    align-items: center;
+    height: calc(100% - 1px);
+    border-bottom: 1px solid #e2e2e2;
+    padding: 0 8px;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: white;
+  }
+
+  .filters-wrapper {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .notch-handle-click-target {
+    cursor: pointer;
+  }
+
+  .notch-handle {
+    margin-bottom: 2px;
+    border: solid #e2e2e2;
+    height: 1px;
+    width: 24px;
+    border-width: 1px 0;
+  }
+
+  .notch-right,
+  .notch-left {
+    width: 22px;
+    height: 23px;
+    background: url("./notch-corner-left-light.svg");
+  }
+
+  .notch-right {
+    transform: scaleX(-1);
+  }
+
+  .notch-dropdown {
+    position: absolute;
+    white-space: nowrap;
+    max-width: 166px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  .quick-filter-notch-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    position: relative;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex-shrink: 1;
+    cursor: pointer;
+
+    &::after {
+      background: url("./dropdown-arrow.svg");
+      content: "";
+      height: 4px;
+      width: 7px;
+      margin: 5px;
+      background-size: cover;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .quick-filter-notch-item.dropdown-open::after {
+    transform: scaleY(-1);
+  }
+
+  .react-popover {
+    align-self: flex-end;
+  }
+
+  .text-container {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .inline-icon {
+    display: flex;
+    margin-right: 4px;
+    padding: 4px 0;
+    cursor: pointer;
+    visibility: hidden;
+
+    svg {
+      height: 10px;
+      width: 12px;
+    }
+
+    &.pin svg {
+      margin-top: 1px;
+      height: 13px;
+    }
+
+    &.inactive {
+      opacity: 0.5;
+    }
+  }
+
+  .mdc-list-item.last-selected {
+    border-bottom: 1px solid silver;
+  }
+
+  .mdc-list-item--selected::before, .mdc-list-item--selected::after {
+    background: transparent !important;
+  }
+
+  .dropdown-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &:not(.visible):not(:hover) {
+      .option-text {
+        color: $dimTextOnDark;
+      }
+    }
+
+    &:hover .inline-icon {
+      visibility: visible;
+    }
+  }
+
+  .visibility-toggle-all {
+    height: 12px;
+    width: 16px;
+    visibility: hidden;
+    cursor: pointer;
+
+    &:not(.visible) {
+      opacity: 0.5;
+    }
+  }
+
+  .option-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .virtualized-container {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+  }
+
+  .mdc-text-field__icon {
+    font-size: $fontSizeLarge;
+  }
+
+  .mdc-floating-label {
+    left: 30px;
+  }
+
+  .mdc-text-field {
+    .mdc-text-field__input,
+    .mdc-floating-label {
+      font-size: $fontSizeSmall;
+    }
+
+    .mdc-floating-label--float-above {
+      display: none;
+    }
+  }
+}
+
+.quick-filter-notch-container,
+#custom-portal-root {
+  .quick-filter-dropdown-tooltip {
+    position: absolute;
+    pointer-events: none;
+    z-index: 12;
+    border: none;
+
+    .inline-icon {
+      visibility: visible;
+    }
+
+    .mdc-list-item {
+      width: 100%;
+      background: $gray1;
+    }
+  }
+}
+
+.quick-filter-notch-item-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  &:hover > .inline-icon {
+    visibility: visible;
+  }
+}
+
+.quick-filter-notch-item-container:not(.visible) {
+  .dropdown-option .inline-icon {
+    display: none;
+  }
+
+  .visibility-toggle,
+  .text-container,
+  .option-text {
+    opacity: 0.5;
+  }
+}
+
+.quick-filter-notch-container.overlay {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .quick-filter-notch-container .notch {
+    .notch-content {
+      background-color: $grayDp3;
+      border-bottom: 1px solid $borderSeparator;
+    }
+
+    .notch-right,
+    .notch-left {
+      background: url("./notch-corner-left.svg");
+    }
+
+    .notch-dropdown {
+      background-color: $grayDp3;
+    }
+
+    .dropdown-option {
+      color: $textOnDark;
+    }
+
+    .notch-handle {
+      border-color: $borderSeparator;
+    }
+
+    .mdc-text-field {
+      background-color: $grayDp24;
+
+      .mdc-text-field__input {
+        color: $textOnDark;
+      }
+
+      .mdc-floating-label {
+        color: #777;
+      }
+
+      .mdc-text-field__icon {
+        color: #777;
+      }
+    }
+
+    .mdc-list-item.last-selected {
+      border-bottom: 1px solid #555;
+    }
+  }
+
+  .quick-filter-notch-container,
+  #custom-portal-root {
+    .quick-filter-dropdown-tooltip .mdc-list-item {
+      .option-text {
+        color: $textOnDark;
+      }
+
+      &.last-selected {
+        border-bottom: 1px solid #555;
+      }
+
+      background: $highlightOnDark;
+    }
+  }
+}
+
+body.light-mode {
+  .quick-filter-notch-container .notch {
+    .notch-right,
+    .notch-left {
+      background: url("./notch-corner-left-light.svg");
+    }
+  }
+}

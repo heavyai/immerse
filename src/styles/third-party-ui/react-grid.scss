@@ -1,0 +1,137 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.react-grid-layout {
+  position: relative;
+  transition: height 200ms ease;
+}
+
+.react-grid-item {
+  transition: all 100ms ease;
+  transition-property: left, top;
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: -webkit-transform;
+  transition-property: transform;
+}
+
+.react-grid-item.resizing {
+  z-index: 1;
+}
+
+.react-grid-placeholder {
+  transition-duration: 100ms;
+  z-index: 100;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.react-grid-layout {
+  background-color: #f4f5f6;
+}
+
+.layoutJSON {
+  background: #ddd;
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.columns {
+  -moz-columns: 120px;
+  -webkit-columns: 120px;
+  columns: 120px;
+}
+
+.react-grid-item:not(.react-grid-placeholder) {
+  /*background: #ccc;*/
+  border: 1px solid black;
+}
+
+.react-grid-item.resizing {
+  opacity: 0.4;
+}
+
+/*.react-grid-item.static {
+    background: #cce;
+}*/
+
+.react-grid-item .minMax {
+  font-size: 12px;
+}
+
+.react-grid-item .add {
+  cursor: pointer;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: #22a7f0;
+  opacity: 0.2;
+  transition-duration: 100ms;
+  z-index: 2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.react-resizable {
+  position: relative;
+}
+
+/* #root is there to be more specific than the one in heavyai-charting */
+#root .react-resizable-handle {
+  /* All charts + chart elements should sit below 20 */
+  z-index: 20;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDEyIDEyIj4KICA8cGF0aCBmaWxsPSIjNjY2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiwwIEwxMiwyLjUyNjMxNTc5IEwyLjUyNjMxNTc5LDEyIEwwLDEyIEwxMiwwIFogTTEyLDQgTDEyLDYuNDYxNTM4NDYgTDYuNDYxNTM4NDYsMTIgTDQsMTIgTDEyLDQgWiBNMTIsOCBMMTIsMTAuMjg1NzE0MyBMMTAuMjg1NzE0MywxMiBMOCwxMiBMMTIsOCBaIi8+Cjwvc3ZnPgo=")
+    no-repeat bottom right !important;
+  padding: 0 7px 7px 0;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: se-resize;
+  /* Since this handle is absolutely positioned, we don't want the
+      draggable transforms to actually move it */
+  transform: none !important;
+  -webkit-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  -moz-transform: none !important;
+}
+
+.chart-container {
+  /* height: inherit; */
+}
+
+.chart-grid-item {
+  height: inherit;
+}
+
+.grid-item-container {
+  height: inherit;
+}
+
+.chart-centered {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}

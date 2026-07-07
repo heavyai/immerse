@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.simple-filter--multiselect {
+  .mdc-text-field__icon {
+    margin-left: 1px;
+    margin-bottom: -4px;
+    font-size: $fontSizeLarge;
+  }
+}
+
+.simple-filter--multiselect--loading {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.simple-filter--multiselect__limit-message {
+  line-height: 1.5em;
+  margin: 4px 0;
+}
+
+.simple-filter--multiselect__categories {
+  height: 164px;
+  margin-top: 8px;
+
+  .ReactVirtualized__Grid {
+    border: 1px solid $borderSeparator;
+  }
+}
+
+.simple-filter--multiselect__category {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 16px;
+  padding: 4px 8px;
+}
+
+.simple-filter--multiselect__category__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 8px;
+  padding-top: 4px;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .simple-filter--multiselect {
+    border-color: $borderSeparator;
+  }
+
+  .simple-filter--multiselect__categories {
+    background-color: $grayDp8;
+  }
+}

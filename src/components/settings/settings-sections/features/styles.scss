@@ -1,0 +1,188 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../settings-variables";
+
+.settings__content__main.feature-settings {
+  padding: 0;
+}
+
+.feature-settings {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: calc(100% - 48px);
+
+  .settings__content__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .feature-settings__main-panel {
+    margin: 0;
+    padding: 32px;
+    height: 100%;
+
+    ul {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+
+    li {
+      display: flex;
+    }
+  }
+
+  .feature-settings__search {
+    padding-right: 32px;
+
+    .mdc-text-field {
+      width: 100%;
+    }
+  }
+
+  .feature-settings__list {
+    width: 100%;
+    overflow: hidden;
+    padding-top: 8px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: -16px;
+
+    .no-flags {
+      padding: 16px;
+    }
+  }
+
+  .feature-settings__list__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    border-radius: 10px;
+    padding: 16px;
+
+    &:hover {
+      background: var(--listItemHoverBackgroundColor);
+    }
+  }
+
+  .feature-settings__list__item__input {
+    min-width: 150px;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    flex-grow: 0;
+
+    > span {
+      font-size: $fontSizeNormal;
+    }
+  }
+
+  .features-group-scroller {
+    display: flex;
+    overflow: auto;
+    margin: 32px 0;
+    min-height: 289px;
+
+    .features-group-scroller__card:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
+
+  .features-group-scroller__card {
+    min-width: 296px;
+    height: 281px;
+    padding: 24px;
+
+    > h3,
+    > p {
+      margin-bottom: 16px;
+    }
+  }
+
+  .feature-settings__grouped-list {
+    margin-bottom: 8px;
+
+    header {
+      margin: 0 0 41px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    h2 {
+      font-size: $fontSizeLarge;
+      margin: 0;
+    }
+  }
+
+  .feature-settings__grouped-list__icon {
+    height: 18px;
+    width: 18px;
+    margin: 0 8px 6px 0;
+  }
+
+  .feature-settings__list__item__label {
+    color: #ffffff;
+    line-height: 24px;
+    font-size: $fontSizeMedium;
+    font-weight: bold;
+  }
+
+  .feature-settings__list__item__description {
+    line-height: 24px;
+  }
+
+  .features-group-scroller__icon {
+    height: 48px;
+    width: 48px;
+    margin-bottom: 19px;
+  }
+}
+
+body.light-mode,
+body.light2-mode {
+  .feature-settings__grouped-list {
+    h2 {
+      color: var(--listItemLabelColor);
+    }
+  }
+
+  .features-group-scroller {
+    h3 {
+      color: var(--listItemLabelColor);
+    }
+    .features-group-scroller__card {
+      background-color: #eeeeee;
+    }
+  }
+  .custom-selector-label,
+  .feature-settings__list__item__input > span {
+    color: var(--listItemLabelColor);
+  }
+
+  .feature-settings {
+    .mdc-text-field.mdc-text-field--upgraded {
+      .mdc-notched-outline {
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing,
+        .mdc-floating-label.mdc-floating-label--float-above {
+          color: var(--listItemLabelColor);
+        }
+      }
+    }
+  }
+
+  .feature-settings__list__item:hover {
+    background: var(--listItemHoverBackgroundColor);
+  }
+
+  .feature-settings__list .no-flags {
+    color: $darkGray4;
+  }
+}

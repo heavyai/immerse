@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables";
+
+$addSnippetsIconSize: 32px;
+
+.guidance-snippets-panel {
+  width: $dataPanelWidth;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  &.guidance-snippets-panel--loading {
+    .guidance-snippets-panel__add-guidance-snippets {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .guidance-snippets-panel__text-field {
+    padding: $spacing-06;
+
+    .mdc-text-field {
+      display: flex;
+      border-radius: 4px;
+
+      .mdc-line-ripple {
+        display: none;
+      }
+      .mdc-floating-label {
+        margin-left: $spacing-04;
+      }
+      .mdc-floating-label--float-above {
+        display: none;
+      }
+    }
+  }
+
+  .guidance-snippets-panel__add-guidance-snippets {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: $spacing-05;
+    padding-left: $spacing-04;
+    padding-right: $spacing-04;
+    border-radius: $spacing-04;
+
+    &:hover {
+      background-color: $solid-alpha10;
+      cursor: pointer;
+    }
+
+    .guidance-snippets-panel__add-guidance-snippets-icon {
+      width: $addSnippetsIconSize;
+      height: $addSnippetsIconSize;
+      background-color: $secondaryButton;
+      border-radius: $spacing-04;
+      margin-left: 0;
+      margin-top: $spacing-04;
+      margin-bottom: $spacing-04;
+      padding: 7px 0px 0px 10px;
+
+      svg path {
+        fill: $buttonText !important;
+      }
+    }
+
+    .guidance-snippets-panel__add-guidance-snippets-label {
+      margin-left: $spacing-05;
+    }
+  }
+
+  .guidance-snippets-panel__loading {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,672 @@
+{
+  "getTablesAsync": [
+    {
+      "name": "transformers",
+      "label": "obs"
+    }
+  ],
+  "getFieldsAsync": {
+    "transformers": {
+      "row_desc": [
+        {
+          "col_name": "Name",
+          "col_type": {
+            "type": 6,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 1
+        },
+        {
+          "col_name": "Line",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 2
+        },
+        {
+          "col_name": "Group_",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 3
+        },
+        {
+          "col_name": "Subgroup",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 4
+        },
+        {
+          "col_name": "Strength",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 5
+        },
+        {
+          "col_name": "Intelligence",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 6
+        },
+        {
+          "col_name": "Speed",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 7
+        },
+        {
+          "col_name": "Endurance",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 8
+        },
+        {
+          "col_name": "Rank_",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 9
+        },
+        {
+          "col_name": "Courage",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 10
+        },
+        {
+          "col_name": "Firepower",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 11
+        },
+        {
+          "col_name": "Skill",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 12
+        },
+        {
+          "col_name": "Teamwork",
+          "col_type": {
+            "type": 0,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 13
+        },
+        {
+          "col_name": "Cooperation",
+          "col_type": {
+            "type": 0,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 14
+        }
+      ],
+      "fragment_size": 32000000,
+      "page_size": 2097152,
+      "max_rows": 4611686018427388000,
+      "view_sql": "",
+      "shard_count": 0,
+      "key_metainfo": "[]",
+      "is_temporary": false,
+      "partition_detail": 0,
+      "columns": [
+        {
+          "name": "Name",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Line",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Group_",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Subgroup",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Strength",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Intelligence",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Speed",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Endurance",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Rank_",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Courage",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Firepower",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Skill",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Teamwork",
+          "type": "SMALLINT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Cooperation",
+          "type": "SMALLINT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        }
+      ]
+    }
+  },
+  "queryAsync": {
+    "SELECT transformers.Line AS key0,COUNT(*) AS val  FROM transformers GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "g1",
+          "val": 363
+        },
+        {
+          "key0": "g2",
+          "val": 97
+        },
+        {
+          "key0": "Beast Wars",
+          "val": 91
+        },
+        {
+          "key0": "Beast Machines",
+          "val": 46
+        },
+        {
+          "key0": "Machine Wars",
+          "val": 12
+        }
+      ]
+    },
+    "SELECT transformers.Line AS key0,COUNT(*) AS val  FROM transformers GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 50": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT MIN(Skill) AS min_val,MAX(Skill) AS max_val FROM transformers": {
+      "{\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":-1}": {
+        "group-value": [
+          {
+            "min_val": 2,
+            "max_val": 10
+          }
+        ]
+      }
+    },
+    "SELECT APPROX_COUNT_DISTINCT(Skill) AS card FROM transformers": [
+      {
+        "card": 35
+      }
+    ],
+    "SELECT transformers.Line AS key0,transformers.Skill AS key1,COUNT(*) AS val  FROM transformers GROUP BY key0, key1 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "g1",
+          "key1": 9,
+          "val": 78
+        },
+        {
+          "key0": "g1",
+          "key1": 7,
+          "val": 73
+        },
+        {
+          "key0": "g1",
+          "key1": 8,
+          "val": 69
+        },
+        {
+          "key0": "g1",
+          "key1": 10,
+          "val": 54
+        },
+        {
+          "key0": "g1",
+          "key1": 6,
+          "val": 43
+        },
+        {
+          "key0": "g1",
+          "key1": 5,
+          "val": 21
+        },
+        {
+          "key0": "g2",
+          "key1": 6,
+          "val": 21
+        },
+        {
+          "key0": "g2",
+          "key1": 7,
+          "val": 20
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 6,
+          "val": 19
+        },
+        {
+          "key0": "g2",
+          "key1": 9,
+          "val": 15
+        },
+        {
+          "key0": "g1",
+          "key1": 4,
+          "val": 14
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 7,
+          "val": 14
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 8,
+          "val": 14
+        },
+        {
+          "key0": "g2",
+          "key1": 10,
+          "val": 14
+        },
+        {
+          "key0": "g2",
+          "key1": 8,
+          "val": 9
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 5,
+          "val": 8
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 10,
+          "val": 7
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": null,
+          "val": 7
+        },
+        {
+          "key0": "g2",
+          "key1": 4,
+          "val": 6
+        },
+        {
+          "key0": "g2",
+          "key1": 5,
+          "val": 6
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 8,
+          "val": 6
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 9,
+          "val": 6
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 7,
+          "val": 5
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 8.5,
+          "val": 5
+        },
+        {
+          "key0": "g2",
+          "key1": null,
+          "val": 4
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 10,
+          "val": 4
+        },
+        {
+          "key0": "Machine Wars",
+          "key1": 10,
+          "val": 3
+        },
+        {
+          "key0": "Machine Wars",
+          "key1": 6,
+          "val": 3
+        },
+        {
+          "key0": "g1",
+          "key1": null,
+          "val": 3
+        },
+        {
+          "key0": "Machine Wars",
+          "key1": 7,
+          "val": 3
+        },
+        {
+          "key0": "Machine Wars",
+          "key1": 4,
+          "val": 3
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 8.899999618530273,
+          "val": 3
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 4,
+          "val": 2
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 9,
+          "val": 2
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 9.199999809265137,
+          "val": 2
+        },
+        {
+          "key0": "g1",
+          "key1": 3,
+          "val": 2
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 5,
+          "val": 2
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 9.5,
+          "val": 2
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 7.900000095367432,
+          "val": 2
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 6.5,
+          "val": 2
+        },
+        {
+          "key0": "g1",
+          "key1": 2,
+          "val": 2
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 8.199999809265137,
+          "val": 1
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 6.400000095367432,
+          "val": 1
+        },
+        {
+          "key0": "g2",
+          "key1": 5.5,
+          "val": 1
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 8.600000381469727,
+          "val": 1
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 8.800000190734863,
+          "val": 1
+        },
+        {
+          "key0": "Beast Machines",
+          "key1": 5.900000095367432,
+          "val": 1
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 7.099999904632568,
+          "val": 1
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 9.5,
+          "val": 1
+        },
+        {
+          "key0": "Beast Wars",
+          "key1": 9.300000190734863,
+          "val": 1
+        }
+      ]
+    }
+  }
+}

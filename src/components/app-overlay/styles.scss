@@ -1,0 +1,208 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+$pi: 3.14159265359;
+
+.app-overlay {
+    background: rgba(white, .8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    opacity: 0;
+    animation: showOverlay .25s .25s;
+    animation-fill-mode: forwards !important;
+}
+
+.loading-widget {
+    font-size: $fontSizeSmall;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $mdc-theme-primary;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+
+    .loading-msg {
+        margin-top: 24px;
+    }
+
+}
+
+.loading-gfx {
+  fill: none;
+  stroke: $mdc-theme-primary;
+  stroke-width: 3px;
+  stroke-miterlimit: 1;
+  width: 48px;
+  height: 48px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: scale(.8);
+  margin: 0 auto;
+}
+
+.main-loading-icon {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border: 4px solid transparent;
+    /* this overrides a style form heavyai-charting */
+    border-top-color: $mdc-theme-primary!important;
+    border-radius: 50%;
+
+    &:before, &:after {
+        z-index: -1;
+        position: absolute;
+        content: "";
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        border-radius: 50%;
+        border: 4px solid transparent;
+        /* this overrides a style from heavyai-charting */
+        border-top-color: $mdc-theme-primary!important;
+        top: -4px;
+        left: -4px;
+
+        animation: beforeGrow .3s infinite linear alternate;
+        box-sizing: border-box;
+    }
+
+    &:after {
+        animation: afterGrow .3s infinite linear alternate;
+    }
+    animation: mainLoadIconAnimation .6s infinite linear;
+}
+
+.custom-modal-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-modal-error {
+    z-index: 99;
+}
+
+.custom-modal {
+    max-height: 100%;
+    min-height: 16px;
+    min-width: 320px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    .custom-modal-header {
+      margin: 0 12px;
+      border-bottom: 1px solid $gray2;
+      font-size: $fontSizeNormal;
+      text-transform: uppercase;
+      color: $mdc-theme-primary;
+      text-align: center;
+      padding: 12px 0 8px;
+      font-weight: 500;
+    }
+
+    .custom-modal-body {
+        flex-grow: 1;
+        text-align: center;
+        padding: 16px 0px 8px 0px;
+        font-size: $fontSizeMedium;
+        white-space: pre-line;
+        overflow: auto;
+
+        &.app-overlay-error-modal {
+            padding: 16px 16px 8px 16px;
+        }
+
+        &.ee-upsell {
+            margin: 25px 25px 0px 25px;
+            .custom-modal-html-body {
+                font-size: $fontSizeMedium !important;
+                text-align: center !important;
+                p {
+                  margin-left: 20px;
+                  margin-right: 20px;
+                }
+                a {
+                    cursor: pointer;
+                    color: $mdc-theme-primary;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .custom-modal-html-body {
+        text-align: left;
+        font-size: $fontSizeNormal;
+
+    }
+
+    .custom-modal-actions {
+        padding: 16px 12px;
+        display: flex;
+        justify-content: space-around;
+        flex-shrink: 0;
+    }
+
+    .custom-modal-actions > * {
+      text-transform: uppercase;
+    }
+
+
+}
+
+@keyframes mainLoadIconAnimation {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
+@keyframes beforeGrow {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes afterGrow {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes showOverlay {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

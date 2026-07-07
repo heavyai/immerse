@@ -1,0 +1,64 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.segmented-control {
+  border: 1px solid $gray3;
+  text-decoration: none;
+  overflow: hidden;
+  width: 220px;
+  border-radius: 4px;
+  user-select: none;
+  display: flex;
+  overflow: hidden;
+
+  .segmented-button {
+    line-height: 30px;
+    height: 30px;
+    width: 50%;
+    flex-grow: 1;
+    text-align: center;
+    position: relative;
+    color: $gray4;
+    border-right: 1px solid $gray4;
+    font-size: $fontSizeSmall;
+    text-transform: uppercase;
+    font-weight: bold;
+    fill: $gray3;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 5px;
+      left: 6px;
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &:hover {
+      color: $mdc-theme-primary;
+    }
+
+    &.active {
+      background: $mdc-theme-primary;
+      color: white;
+      fill: white;
+    }
+  }
+
+  .disabled & {
+    pointer-events: none;
+    opacity: 0.6;
+    .segmented-button.active {
+      background: none;
+      color: $gray4;
+      fill: $gray3;
+    }
+  }
+}

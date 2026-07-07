@@ -1,0 +1,207 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "@material/react-floating-label/index";
+@import "~base/variables";
+
+@mixin notch-border($borderColor) {
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__trailing,
+    .mdc-notched-outline__notch {
+      box-shadow: none;
+      border-color: $borderColor;
+    }
+  }
+}
+
+.multi-select {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+
+  .select-container-wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  @include notch-border($gray5);
+
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-radius: 0 4px 4px 0;
+    }
+
+    .mdc-floating-label {
+      color: $text-dim;
+      pointer-events: none;
+      top: 6px;
+      left: 8px;
+
+      &.mdc-floating-label--float-above {
+        top: 2px;
+
+        &.no-label {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .select__single-value {
+    color: $text-black;
+  }
+
+  .select__multi-value {
+    background-color: $gray3;
+    color: $text-black;
+
+    .select__multi-value__label {
+      color: $text-black;
+    }
+  }
+
+  .select__control {
+    box-shadow: none;
+    border: none;
+  }
+
+  .select__control--is-focused {
+    box-shadow: 0 0 4px $mdc-theme-primary;
+  }
+
+  .select__indicator {
+    color: $text-dim;
+  }
+
+  .select__indicator-separator {
+    display: none !important;
+  }
+
+  .select__option {
+    &:active {
+      background-color: transparent;
+    }
+
+    &.select__option--is-selected {
+      color: $text-black;
+      background-color: $gray2;
+    }
+
+    &.select__option--is-focused {
+      color: $text-black;
+      background-color: $gray2;
+    }
+  }
+
+  &.error {
+    @include notch-border($error);
+
+    .mdc-floating-label {
+      color: $error;
+    }
+  }
+
+  &.required {
+    .mdc-floating-label::after {
+      content: " *";
+    }
+  }
+
+  .select__clear-indicator svg {
+    height: 16px;
+  }
+
+  .select__multi-value__remove {
+    opacity: 0;
+  }
+
+  &:hover .select__multi-value__remove {
+    opacity: 1;
+  }
+
+  .select__multi-value__remove:hover {
+    background-color: $mdc-theme-primary;
+    color: white;
+  }
+}
+
+body:not(.light2-mode) .multi-select {
+  .select-container-wrapper {
+    .select__control {
+      background-color: $grayDp24;
+      border: none;
+
+      .select__single-value {
+        color: $textOnDark;
+      }
+
+      .select__input input,
+      .select__dropdown-indicator,
+      .select__clear-indicator {
+        color: $dimTextOnDark !important;
+      }
+    }
+  }
+
+  .mdc-notched-outline div {
+    border-color: $borderSeparator;
+  }
+
+  .select__multi-value {
+    background-color: $grayDp8;
+    color: $dimTextOnDark;
+    .select__multi-value__label {
+      color: $textOnDark;
+    }
+  }
+
+  .mdc-floating-label {
+    color: $dimTextOnDark;
+  }
+
+  .select__menu {
+    background: $grayDp8;
+    color: $dimTextOnDark;
+  }
+
+  .select__option {
+    &:active {
+      background-color: transparent;
+    }
+
+    &.select__option--is-selected,
+    &.select__option--is-focused {
+      color: $textOnDark;
+      background-color: $highlightOnDark;
+    }
+  }
+
+  &.select--is-disabled {
+    .mdc-floating-label {
+      color: $disabled;
+    }
+
+    .select-container-wrapper {
+      .select__control {
+
+        .select__single-value,
+        .select__input input,
+        .select__dropdown-indicator,
+        .select__clear-indicator {
+          color: $disabled !important;
+        }
+      }
+    }
+  }
+}
+
+.select__menu-portal {
+    @extend .multi-select;
+}

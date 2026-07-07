@@ -1,0 +1,46 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.button-tabs {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  background-color: var(--tabs-background);
+  border-radius: 8px;
+
+  .button-tabs-tab {
+    min-width: 100px;
+    border-radius: 8px;
+    padding: $spacing-04 $spacing-06;
+    margin: $spacing-02;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tab-text-color);
+    font-weight: 500;
+
+    &.selected {
+      background-color: var(--active-tab-background);
+      color: var(--active-tab-text-color);
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: var(--tab-hover-background);
+      color: var(--tab-hover-text-color);
+    }
+  }
+  &.dense {
+    .button-tabs-tab {
+      border-radius: 4px;
+      font-size: $fontSizeSmall;
+      min-width: 0;
+      padding: $spacing-01 $spacing-03;
+      margin: $spacing-01;
+    }
+  }
+}

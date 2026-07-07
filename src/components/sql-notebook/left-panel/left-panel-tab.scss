@@ -1,0 +1,20 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.sql-notebook-left-panel-tab {
+  padding: $spacing-06 $spacing-06 $spacing-05;
+  cursor: pointer;
+  color: $dimTextOnDark;
+  font-size: $fontSizeNormal;
+  flex-shrink: 0;
+}
+
+.sql-notebook-left-panel-tab--active {
+  border-bottom: 3px solid var(--secondary-400);
+  color: $solid;
+  font-weight: 700;
+}

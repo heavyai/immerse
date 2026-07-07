@@ -1,0 +1,29 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.chart-container.chart-type-vega-pointmap {
+  position: relative;
+
+  > .map-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mapboxgl-canvas-container {
+    width: 100%;
+  }
+
+  .mapboxgl-map {
+    width: inherit !important;
+  }
+
+  canvas.mapboxgl-canvas {
+    width: 100% !important;
+  }
+
+  .mapboxgl-ctrl-group {
+    margin: 0 10px 10px 0;
+  }
+}

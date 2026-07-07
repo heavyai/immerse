@@ -1,0 +1,78 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.sort-topN {
+  header {
+    font-size: $fontSizeSmall;
+    line-height: 14px;
+    color: #444;
+    padding: 8px 0;
+    body:not(.light2-mode) & {
+      color: $dimTextOnDark;
+    }
+  }
+
+  .sort-topN-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .selector-wrapper {
+      display: flex;
+      flex-grow: 1;
+      position: relative;
+
+      .selector-sub-section {
+        .mdc-notched-outline {
+          display: none;
+        }
+      }
+
+      &.dual-selector {
+        .selector-main-section {
+          flex-grow: 3;
+          .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+            .mdc-notched-outline__leading,
+          .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+            .mdc-notched-outline__notch,
+          .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+            .mdc-notched-outline__trailing {
+            border-color: transparent;
+          }
+        }
+        .selector-sub-section {
+          flex-grow: 1;
+          margin: 0 0 0 1px;
+          .select__control {
+            min-height: 32px;
+            border-radius: 4px 4px 0 0;
+          }
+          .select__dropdown-indicator {
+            padding: 6px 8px;
+          }
+        }
+      }
+    }
+    .mdc-text-field-helper-line {
+      display: none;
+    }
+  }
+  .react-popover {
+    .data-table {
+      width: 100%;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .sort-topN {
+    .selector-search-input {
+      input::placeholder {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+}

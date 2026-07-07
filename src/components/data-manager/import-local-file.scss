@@ -1,0 +1,203 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.import-local-file {
+  display: flex;
+  flex-direction: column;
+
+  .dz-default {
+    display: none;
+  }
+
+  .dz-image {
+    height: 160px !important;
+    width: 120px !important;
+    border-radius: 1px !important;
+    background: white !important;
+    border: 1px solid $gray3 !important;
+  }
+
+  .dz-details {
+    padding: 32px 12px 0 12px !important;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .dz-upload {
+    background: $mdc-theme-primary !important;
+  }
+
+  .dz-remove {
+    position: absolute;
+    z-index: 21;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    background: url("../../assets/imgs/x-small.svg");
+    cursor: pointer;
+    transform: scale(0.8);
+
+    &:hover {
+      background: url("../../assets/imgs/x-small-blue.svg");
+    }
+  }
+
+  .dz-progress {
+    height: 8px !important;
+    width: 96px !important;
+    margin-left: -48px !important;
+    margin-top: 2px !important;
+    background: $gray3 !important;
+    top: initial !important;
+    bottom: 10% !important;
+  }
+
+  .dz-success-mark {
+    svg path {
+      fill: $mdc-theme-primary !important;
+    }
+  }
+
+  .dz-error-mark {
+    svg path {
+      fill: $error !important;
+    }
+  }
+
+  .dz-size {
+    font-size: $fontSizeNormal !important;
+    color: $gray4;
+    text-align: left;
+    margin-bottom: 0 !important;
+    margin-top: 12px;
+
+    span {
+      padding: 0 !important;
+    }
+  }
+
+  .dz-filename {
+    position: relative;
+    margin-top: 4px;
+    white-space: normal !important;
+    word-break: break-all !important;
+    overflow: hidden;
+    text-align: left;
+    max-height: 94px;
+
+    span {
+      border: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      font-size: $fontSizeNormal !important;
+    }
+  }
+
+  .dropzone.dz-drag-hover {
+    border: 2px dashed $mdc-theme-primary !important;
+  }
+
+  .drop-area-cta {
+    margin-top: 16px;
+    fill: $gray3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: $gray3;
+    flex: 1;
+    pointer-events: none;
+
+    &:active {
+      color: $mdc-theme-primary;
+      fill: $mdc-theme-primary;
+
+      .icon,
+      .drop-area-msg {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .drop-area-icon {
+    width: 80%;
+    max-width: 240px;
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .drop-area-msg {
+    font-size: $fontSizeLarge;
+    margin-top: 1.8vw;
+    opacity: 0.7;
+    word-spacing: 0.1vw;
+  }
+
+  .dropzone-wrapper {
+    display: flex;
+    min-height: 50vh;
+    max-height: calc(100vh - 300px);
+    overflow-x: auto;
+    border-radius: 5px;
+    border: 1px dashed $light-border;
+    background-color: white;
+    cursor: pointer;
+
+    .dropzone {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      max-height: 100%;
+    }
+  }
+
+  #previewsContainer {
+    position: relative;
+
+    &.has-addfile::after {
+      content: "Add Files";
+      width: 120px;
+      display: inline-block;
+      margin: 16px;
+      cursor: pointer;
+      background: url("../../assets/imgs/add-file.svg");
+      font-size: $fontSizeMedium;
+      font-weight: bold;
+      color: $dimTextOnDark;
+      padding-top: 120px;
+    }
+  }
+
+  .file-type-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid $borderSeparator;
+    border-top: 0;
+
+    .multi-select {
+      width: 206px;
+    }
+  }
+}
+
+body:not(.light2-mode) .import-local-file {
+  .dropzone-wrapper {
+    border: 1px dashed $borderSeparator;
+    background-color: $grayDp3;
+  }
+
+  .file-type-container {
+    background-color: $grayDp3;
+  }
+}

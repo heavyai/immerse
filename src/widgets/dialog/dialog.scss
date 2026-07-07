@@ -1,0 +1,188 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../button/button";
+@import "~base/variables";
+
+.mdc-dialog {
+  .mdc-dialog__container {
+    .mdc-dialog__title {
+      border-radius: 4px 4px 0 0;
+      background-color: white;
+      color: white;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: $fontSizeLarge;
+
+      .mdc-icon-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+
+        &::-moz-focus-inner {
+          border: 0;
+        }
+      }
+
+      .mdc-icon-button:not(.mdc-ripple-upgraded):focus {
+        &::before,
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+
+    .mdc-dialog__content {
+      padding: 16px;
+      color: $text-black;
+      font-size: $fontSizeNormal;
+    }
+
+    .mdc-dialog__title + .mdc-dialog__content {
+      padding-top: 16px;
+      display: flex;
+    }
+
+    .mdc-dialog__surface {
+      min-width: 420px;
+    }
+
+    .mdc-dialog__content .message-icon .material-icons {
+      margin: 0 8px 0 0;
+      font-size: 32px;
+      width: 32px;
+      min-width: 32px;
+      display: flex;
+      flex: 0 32px;
+    }
+
+    .mdc-dialog__actions {
+      border-top: 1px solid #ddd;
+    }
+
+    .dialog-message {
+      float: left;
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+
+      p {
+        margin: 0 0 $spacing-02;
+      }
+    }
+
+    .mdc-button,
+    .mdc-button:not(:disabled) {
+      color: $text-gray;
+      height: 32px;
+      margin-left: 8px;
+    }
+
+    .mdc-button.warning {
+      color: #222;
+    }
+
+    .mdc-button:last-child:not(.warning):not(.success):not(.danger):not(:disabled):not(.mdc-button--outlined) {
+      color: white;
+      background-color: $mdc-theme-primary;
+    }
+  }
+
+  &.danger {
+    .mdc-dialog__title {
+      background-color: $error;
+    }
+
+    .mdc-dialog__content .material-icons {
+      color: $error;
+    }
+
+    .mdc-button:last-child {
+      color: white;
+      background-color: $error;
+    }
+  }
+
+  &.warning {
+    .mdc-dialog__title {
+      background-color: $warning;
+      color: $text-black;
+    }
+
+    .mdc-dialog__content .material-icons {
+      color: $warning;
+    }
+
+    .mdc-button:last-child {
+      color: $text-black;
+      background-color: $warning;
+    }
+  }
+
+  &.success {
+    .mdc-dialog__title {
+      background-color: $success;
+    }
+
+    .mdc-dialog__content .material-icons {
+      color: $success;
+    }
+
+    .mdc-button:last-child {
+      color: white;
+      background-color: $success;
+    }
+  }
+
+  &.info {
+    .mdc-dialog__title {
+      background-color: $info;
+    }
+
+    .mdc-dialog__content .material-icons {
+      color: $info;
+    }
+
+    .mdc-button:last-child {
+      color: white;
+      background-color: $info;
+    }
+  }
+
+  &:not(.info):not(.warning):not(.success):not(.danger) {
+    .mdc-dialog__title {
+      border-bottom: 1px solid #ddd;
+      color: $text-black;
+    }
+  }
+}
+
+body:not(.light2-mode) .mdc-dialog {
+  &:not(.info):not(.warning):not(.success):not(.danger) {
+    .mdc-dialog__title {
+      background-color: $grayDp8;
+      color: $textOnDark;
+      border-bottom: 1px solid $borderSeparator;
+    }
+  }
+
+  .mdc-dialog__surface {
+    background-color: $grayDp3;
+  }
+
+  .mdc-dialog__content {
+    color: $textOnDark;
+  }
+
+  .mdc-dialog__actions {
+    border-top: 1px solid $borderSeparator;
+    color: $textOnDark;
+  }
+}

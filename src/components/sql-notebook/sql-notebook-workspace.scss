@@ -1,0 +1,134 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./variables";
+
+body {
+  --active-cell-background: #{$surface-container-lowest};
+  --latest-background-color: var(--gray-975);
+  --latest-text-color: var(--gray-100);
+  --latest-border-color: var(--gray-900);
+
+  &.light-mode {
+    --active-cell-background: #fff;
+    --latest-background-color: var(--gray-25);
+    --latest-text-color: var(--gray-900);
+    --latest-border-color: var(--gray-700);
+  }
+}
+
+$latestHeight: 36px;
+$latestWidth: 100px;
+
+.sql-notebook__workspace {
+  background-color: var(--workspace-background);
+  overflow: hidden;
+  // Needed so the splash page can fill the space
+  // before cells exist
+  display: flex;
+  flex-direction: column;
+
+  // Additional spacing under result types
+  .cell-wrapper--result:not(:last-child) {
+    margin-bottom: $spacing-08;
+  }
+
+  // The last result cell has some odd spacing requirements
+  .cell-wrapper--result:nth-last-child(2) {
+    min-height: calc(100% - #{$spacing-08});
+  }
+
+  // The active cell should be high/low lighted
+  .cell-wrapper:last-child {
+    position: relative;
+    background-color: var(--workspace-background);
+    box-shadow: 0px -20px 30px 10px var(--workspace-background);
+
+    .sql-notebook__cell {
+      background-color: var(--active-cell-background);
+      border: 1px solid $border-dim;
+
+      &.focused {
+        border-color: $border-medium;
+      }
+    }
+  }
+  .cell-wrapper--result {
+    .sql-notebook__cell {
+      background-color: var(--result-cell-background);
+    }
+  }
+  .cell-wrapper--input {
+    .sql-notebook__cell {
+      background-color: var(--input-cell-background);
+    }
+  }
+
+  .sql-notebook__workspace__content {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .sql-notebook__workspace__cells {
+    position: relative;
+    overflow: auto;
+    flex-grow: 1;
+  }
+
+  // Stretches the cells to full width to fill the space
+  // But keeps the splash page centered vertically
+  &:not(.sql-notebook__workspace--init) {
+    .sql-notebook__workspace__content {
+      flex: 1;
+      max-height: 100%;
+    }
+  }
+
+  &.sql-notebook__workspace--init {
+    justify-content: space-between;
+    overflow: auto;
+  }
+
+  .sql-notebook__workspace__latest {
+    position: absolute;
+    bottom: $spacing-06;
+    z-index: 6; // Above input drop shadow + map legend
+    left: calc(50% - (#{$latestWidth} / 2));
+
+    opacity: 0;
+    transform: translateY($latestHeight);
+    transition: all 400ms;
+
+    &.sql-notebook__workspace__latest--enabled {
+      position: sticky;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    svg {
+      fill: $solid;
+      transform: rotate(90deg);
+    }
+
+    border: 1px solid var(--latest-border-color);
+    background: var(--latest-background-color);
+    color: var(--latest-text-color);
+
+    width: $latestWidth;
+    height: $latestHeight;
+    border-radius: $latestHeight / 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-04;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

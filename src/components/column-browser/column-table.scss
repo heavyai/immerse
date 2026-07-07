@@ -1,0 +1,154 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../sql-notebook/data-panel/_common";
+
+$iconWidth: 15px;
+
+body {
+  --borderTopColor: #{$borderSeparator};
+
+  --cellBackgroundColor: #{$surface-container-lowest};
+  --cellBackgroundColorActive: #{$grayDp2};
+
+  --cellTextColor: #{$dimTextOnDark};
+  --sortIconColor: #{$icon-dim};
+  --headerCellBackgroundColor: #{$grayDp2};
+}
+
+.sql-notebook__column-table {
+  line-height: $fontSizeXLarge;
+  overflow: auto;
+  display: flex;
+
+  &.is-loading {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .sql-notebook__column-table__table {
+    display: flex;
+    border: 0;
+    border-top: 1px solid $gray3;
+    font-weight: 400;
+    border-top-color: var(--borderTopColor);
+
+    // Fill the drawer
+    .rmwc-data-table__content {
+      width: $drawer-width;
+    }
+
+    // Dark theme
+    .rmwc-data-table__content {
+      background: $borderSeparator;
+    }
+
+    .rmwc-data-table__body {
+      // Highlight cells when hovering a row
+      .rmwc-data-table__row {
+        &.active,
+        &:hover {
+          .rmwc-data-table__cell {
+            background-color: var(--cellBackgroundColorActive);
+          }
+        }
+
+        &:hover {
+          &.is-clickable {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    // Header cell styles
+    .rmwc-data-table__cell.rmwc-data-table__head-cell {
+      background-color: var(--headerCellBackgroundColor);
+      padding-left: $spacing-02;
+    }
+    .rmwc-data-table__head-cell--sortable:not(.rmwc-data-table__head-cell--sorted-ascending):not(.rmwc-data-table__head-cell--sorted-descending) {
+      // Show our own placeholder icon, hide material icons
+      svg.material-icons {
+        display: none;
+      }
+    }
+    // Show the up and down arrows when no sortby selected
+    // + other sort header styles
+    .rmwc-data-table__head-cell--sortable:not(.rmwc-data-table__head-cell--sorted-ascending):not(.rmwc-data-table__head-cell--sorted-descending)::before {
+      content: "⇵";
+      opacity: 1;
+      position: relative;
+      display: inline-block;
+      margin-right: $spacing-02;
+      font-size: $fontSizeSmall;
+      color: var(--sortIconColor);
+    }
+
+    // Styles apply to all cells
+    .rmwc-data-table__cell {
+      padding: $spacing-01 0;
+      height: auto;
+      border: none;
+
+      background-color: var(--cellBackgroundColor);
+      color: var(--cellTextColor);
+      padding-left: $spacing-02;
+
+      font-weight: 400;
+      font-size: $fontSizeSmall;
+
+      &:before {
+        background-color: transparent !important;
+      }
+
+      // Keeps the columns from jumping when sorting by diff values
+      svg.material-icons {
+        min-width: $iconWidth;
+        padding: 0;
+        margin: -4px 0 0 0;
+        width: $iconWidth;
+        display: inline-block;
+        fill: var(--sortIconColor);
+      }
+
+      .svgicon {
+        vertical-align: middle;
+        width: $iconWidth;
+
+        path {
+          fill: $icon-dim;
+        }
+      }
+
+      // Type icon special styles
+      &.data-table__cell--key-type {
+        font-size: $fontSizeSmall;
+        width: 35px;
+
+        > div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      // Truncate column name text
+      &.data-table__cell:last-of-type {
+        text-overflow: ellipsis;
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+}

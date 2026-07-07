@@ -1,0 +1,117 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.color-picker-popup {
+  background: white;
+  border: 1px solid $gray3;
+  border-radius: 4px;
+  width: 290px;
+  padding: 4px 8px;
+  box-shadow: 0 3px 4px 1px rgba(black, 0.2);
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  position: absolute;
+  margin-bottom: 32px;
+  max-height: 500px;
+  overflow-y: auto;
+
+  .line-styles {
+    margin: 0 4px 8px 4px;
+  }
+
+  .swatch-group {
+    &.ordinal,
+    &.quantitative {
+      .color-swatch {
+        display: flex;
+        margin-bottom: 6px;
+        .color-item {
+          flex-grow: 1;
+        }
+      }
+    }
+
+    &.solid {
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      .color-header {
+        width: 100%;
+        flex-shrink: 0;
+      }
+      .color-swatch {
+        margin-bottom: 6px;
+        margin-right: 2px;
+      }
+    }
+  }
+
+  .color-header {
+    border-bottom: 1px solid $gray2;
+    font-size: $fontSizeSmall;
+    font-weight: bold;
+    color: $gray4;
+    padding: 8px 4px 2px 4px;
+    margin-bottom: 6px;
+  }
+
+  .line-styles {
+    border: 1px solid $gray3;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    margin: 4px 8px 8px 8px;
+    .button {
+      height: 30px;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      fill: $gray4;
+
+      &:hover {
+        fill: $mdc-theme-primary;
+      }
+
+      &:not(:last-child) {
+        border-right: 1px solid $gray3;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &.is-active {
+        background: $mdc-theme-primary;
+        fill: white;
+      }
+    }
+  }
+
+  .custom-colors {
+    padding: 8px 0 4px 0;
+    .button {
+      width: 100%;
+      line-height: 28px;
+      font-size: $fontSizeNormal;
+      font-weight: bold;
+      border: solid 1px $gray3;
+      color: $mdc-theme-primary;
+      text-align: center;
+      text-transform: capitalize;
+      border-radius: 4px;
+      position: relative;
+
+      &:active {
+        background: $gray1;
+      }
+    }
+  }
+}

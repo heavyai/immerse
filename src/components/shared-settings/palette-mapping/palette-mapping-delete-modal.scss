@@ -1,0 +1,31 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.palette-mapping-delete-modal {
+  .palette-mapping-delete-modal__header {
+    display: flex;
+    align-items: center;
+
+    svg {
+      fill: white;
+    }
+
+    .palette-mapping-delete-modal__header-text {
+      padding-top: $spacing-01;
+      padding-left: $spacing-02;
+    }
+  }
+
+  .palette-mapping-delete-modal__warning-title {
+    font-weight: 700;
+    font-size: $fontSizeMedium;
+
+    .palette-mapping-delete-modal__mapping-name {
+      color: $alert-red;
+    }
+  }
+}

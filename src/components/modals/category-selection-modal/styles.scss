@@ -1,0 +1,45 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~@material/checkbox/dist/mdc.checkbox.css";
+@import "~@material/form-field/dist/mdc.form-field.css";
+@import "./components/table-section";
+@import "./components/selected-category-section";
+
+.category-selection-modal.mdc-dialog {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 580px;
+
+  .mdc-dialog__surface {
+    width: $filterPanelModalWidth;
+  }
+  .mdc-dialog__container .mdc-dialog__content {
+    flex-direction: column;
+    padding: 16px 0 0 0;
+  }
+  // Search Section
+  .csm-search-section {
+    display: flex;
+    padding: 0 16px;
+    .csm-search-input {
+      flex: 1;
+      border-radius: 4px;
+    }
+  }
+  .csm-error-message {
+    text-align: center;
+    .csm-error-message-header {
+      font-weight: bold;
+    }
+  }
+  .csm-query-limit-message {
+    background-color: #f2b700;
+    line-height: 18px;
+    padding: 0 16px;
+    font-size: $fontSizeSmall;
+    color: black;
+  }
+}

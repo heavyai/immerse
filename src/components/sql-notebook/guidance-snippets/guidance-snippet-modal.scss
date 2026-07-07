@@ -1,0 +1,160 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables";
+
+$infoIconSize: 18px;
+$deleteIconSize: 28px;
+$snippetModalHeaderWidth: 95%;
+$snippetInputFieldWidth: 100%;
+
+.guidance-snippet-modal.mdc-dialog {
+  .mdc-dialog__surface {
+    padding: $spacing-06 $spacing-07;
+    min-width: $guidanceSnippetModalMinWidth;
+    background-color: $grayDp0 !important;
+  }
+
+  .mdc-dialog__title {
+    background-color: $grayDp0 !important;
+    font-size: $modalTitleFontSize;
+    padding: 0 0 $spacing-04 0;
+  }
+
+  .mdc-dialog__content {
+    flex-direction: column;
+    padding: $spacing-06 0;
+  }
+  .mdc-dialog__actions {
+    padding: $spacing-06 0 0 0;
+  }
+
+  .guidance-snippet-modal__header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: $snippetModalHeaderWidth;
+
+    .guidance-snippet-modal__header-info {
+      display: flex;
+      align-items: center;
+      font-size: $fontSizeSmall;
+      color: $dimTextOnDark;
+
+      svg {
+        height: $infoIconSize;
+        width: $infoIconSize;
+        margin-right: $spacing-02;
+        fill: $dimTextOnDark;
+      }
+
+      &:hover {
+        color: $textOnDark;
+        cursor: pointer;
+
+        svg {
+          fill: $textOnDark;
+        }
+      }
+    }
+  }
+
+  .guidance-snippet-modal__footer {
+    display: flex;
+    gap: $spacing-04;
+  }
+  .guidance-snippet-modal__metadata {
+    font-size: $fontSizeSmall;
+  }
+
+  .guidance-snippet-modal__usage-tips-header {
+    p {
+      margin: 0;
+      color: $dimTextOnDark;
+    }
+  }
+
+  .guidance-snippet-modal__body {
+    max-height: $guidanceSnippetInputContainerMaxHeight;
+    overflow: overlay;
+
+    .guidance-snippet-modal__input-header {
+      display: flex;
+      justify-content: space-between;
+
+      .guidance-snippet-modal__input-header-label {
+        font-weight: 700;
+        margin-bottom: $spacing-04;
+      }
+    }
+
+    .guidance-snippet-modal__snippet-inputs {
+      .guidance-snippet-modal__snippet-input:not(:first-child) {
+        margin-top: $spacing-05;
+      }
+      .guidance-snippet-modal__snippet-input {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .mdc-text-field {
+          width: $snippetInputFieldWidth;
+
+          .mdc-text-field__input {
+            resize: none;
+          }
+
+          .mdc-text-field-character-counter {
+            color: $textOnDark;
+            z-index: 2;
+          }
+
+          .mdc-notched-outline {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              background-color: $grayDp1;
+            }
+          }
+        }
+
+        .guidance-snippet-modal__delete-snippet {
+          height: $deleteIconSize;
+          width: $deleteIconSize;
+          margin-left: 1%;
+          cursor: pointer;
+
+          svg {
+            height: $deleteIconSize;
+            width: $deleteIconSize;
+            fill: $dimTextOnDark;
+          }
+
+          &:hover svg {
+            fill: $textOnDark;
+          }
+        }
+      }
+    }
+
+    .guidance-snippet-modal__add-snippet-button {
+      padding: $spacing-04;
+      margin: $spacing-04 0;
+      background-color: $borderSeparator;
+      svg {
+        fill: $text-light;
+      }
+
+      &:hover {
+        background-color: $surface-container-medium-hover;
+
+        svg {
+          fill: $text-solid;
+        }
+      }
+    }
+  }
+}

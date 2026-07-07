@@ -1,0 +1,169 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+$line-color: #DDDDDD;
+$highlight-color: #EEEEEE;
+
+.accordion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $line-color;
+  border-right: none;
+  border-left: 1px solid $line-color;
+  overflow-y: visible;
+
+  .fold {
+    border-bottom: 1px solid $line-color;
+
+    .fold-trigger-container {
+      display: flex;
+      height: 32px;
+      border-bottom: 1px solid #dedede;
+      background: #fdfdfd;
+    }
+
+    .fold-trigger {
+      text-align: start;
+      font-size: $fontSizeSmall;
+      font-weight: bold;
+      color: $gray6;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: none;
+      padding: 8px 8px 8px 28px;
+    }
+
+    .fold-title {
+      float: left;
+    }
+
+    .fold-remove-button {
+      float: right;
+      fill: $gray7;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+
+    }
+
+    .fold-indicator {
+      fill: $gray4;
+      display: block;
+      float: right;
+      transition: transform 400ms;
+      transform-origin: 50%;
+      width: 16px;
+      height: 16px;
+      margin: 0px 0px 0px 15px;
+
+      &.open {
+        transform: rotateZ(-90deg);
+        display: none;
+      }
+
+    }
+
+    .fold-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms cubic-bezier(0, 1, 0, 1);
+
+      &.open {
+        max-height: 4000px;
+        transition: max-height 400ms ease-in-out;
+        overflow: visible;
+        padding: 0 16px;
+        margin-top: 24px;
+      }
+
+    }
+
+    &.closed:hover {
+      background-color: $highlight-color;
+    }
+
+    &.closed {
+      background-color: #FAFAFA;
+
+      .fold-trigger-container {
+        cursor: pointer;
+      }
+
+    }
+
+    &.open {
+      background-color: #F5F5F5;
+    }
+
+  }
+}
+
+.accordion-cta {
+  background-color: #FAFAFA;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $line-color;
+  text-align: center;
+  padding: 12px 10px;
+  font-size: $fontSizeNormal;
+  font-weight: bold;
+  color: $mdc-theme-primary;
+
+  &.hidden {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $highlight-color;
+  }
+
+}
+
+body:not(.light2-mode) .accordion {
+  border: none;
+  border-top: 1px solid $borderSeparator;
+
+  .fold {
+    background: transparent;
+    border: none;
+
+    .fold.closed:hover .fold-trigger {
+      background: $highlightOnDark;
+      color: $textOnDark;
+    }
+
+    .fold:not(:first-child) {
+      border-top: 1px solid $borderSeparator;
+    }
+
+    .fold:nth-last-child(2) {
+      border-bottom: 1px solid $borderSeparator;
+    }
+
+    .fold.open {
+      .fold-trigger-container {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .fold-trigger-container {
+      background: $grayDp8;
+      border-bottom: 1px solid $borderSeparator;
+
+      .fold-trigger {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+  .accordion-cta {
+    background: $grayDp3;
+    border: none;
+  }
+}

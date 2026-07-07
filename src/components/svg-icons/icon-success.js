@@ -1,0 +1,22 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
+import React from "react"
+// import "./icon-clear-filter.scss"
+
+const SuccessIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path
+      fill="#EEE"
+      fillRule="evenodd"
+      d="M12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 Z M17.5354666,7.22561647 L9.61638615,15.1446969 L6.31349948,11.8418103 C6.01267752,11.5409883 5.52643844,11.5409883 5.22561647,11.8418103 C4.92479451,12.1426322 4.92479451,12.6288713 5.22561647,12.9296933 L9.61638615,17.320463 L18.6233496,8.31349948 C18.9241716,8.01267752 18.9241716,7.52643844 18.6233496,7.22561647 C18.3225277,6.92479451 17.8362886,6.92479451 17.5354666,7.22561647 Z"
+    />
+  </svg>
+)
+
+export default SuccessIcon

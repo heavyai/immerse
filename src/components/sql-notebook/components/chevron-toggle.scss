@@ -1,0 +1,50 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+:root {
+  --icon-size: 18px;
+  --chevron-stroke-width: 2px;
+  --triggerHeight: 100px;
+}
+
+.chevron-toggle {
+  width: var(--icon-size);
+  height: var(--triggerHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .chevron-toggle__icon {
+    width: 0px;
+    height: var(--icon-size);
+    transition: all 100ms;
+
+    border-left: var(--chevron-stroke-width) solid $icon-light;
+    border-bottom: var(--chevron-stroke-width) solid $icon-light;
+    border-right: 0;
+    border-top: 0;
+    &.collapsed {
+      border-right: var(--chevron-stroke-width) solid $icon-light;
+      border-bottom: var(--chevron-stroke-width) solid $icon-light;
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    .chevron-toggle__icon {
+      // Arrow is half the width/height cause its turned sideways + some padding cause it looks better
+      width: calc((var(--icon-size) / 2) + 2px);
+      height: calc((var(--icon-size) / 2) + 2px);
+      transform: rotate(45deg) translateX(50%);
+      &.collapsed {
+        transform: rotate(-45deg) translateX(0);
+      }
+    }
+  }
+}

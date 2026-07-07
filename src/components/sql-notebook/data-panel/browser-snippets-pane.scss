@@ -1,0 +1,94 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+body {
+  --rowActionBackground: #{$grayDp0};
+  --rowActionBackgroundHover: #{$grayDp2};
+  --rowActionBackgroundActive: var(--gray-100);
+  --rowActionText: #{$text-light};
+  --rowActionTextHover: #{$text-solid};
+}
+
+.sql-editor__browser-snippet-pane {
+  border: 1px solid $border-dim;
+  margin: $spacing-06;
+
+  .sql-editor__browser-snippet-pane-header {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: $spacing-06;
+    font-weight: 500;
+
+    span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .back-container {
+      display: flex;
+      height: 24px;
+      width: 24px;
+      .rmwc-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  /* Copied from sql-editor styles.scss, remove one snippets is redone */
+  .insert-action-row {
+    // Height should match react-virtualized height setting
+    height: 35px;
+    font-size: $fontSizeNormal;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: var(--rowActionBackground);
+    color: var(--rowActionText);
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--rowActionBackgroundHover);
+      color: var(--rowActionTextHover);
+
+      .insert-action-row__icon {
+        visibility: visible;
+      }
+    }
+
+    &.is-active {
+      background-color: var(--rowActionBackgroundActive);
+    }
+  }
+
+  .insert-action-row__value {
+    display: inline-block;
+    vertical-align: middle;
+    width: 260px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .insert-action-row__icon {
+    vertical-align: middle;
+    visibility: hidden;
+    margin-right: $spacing-04;
+    margin-left: $spacing-04;
+    padding: 6px 16px;
+    color: $dimTextOnDark;
+
+    &:not(.has-action) {
+      color: $icon-medium;
+    }
+
+    &.has-action:hover {
+      background-color: $mdc-theme-primary;
+      color: #fff;
+    }
+  }
+}

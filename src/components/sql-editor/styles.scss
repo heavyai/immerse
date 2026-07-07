@@ -1,0 +1,642 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./_common";
+
+.sql-editor {
+  width: 100%;
+  min-width: 1024px;
+  max-width: 100vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  overflow-x: hidden;
+  font-size: $fontSizeNormal;
+
+  .mdc-button__label {
+    // Override RMWC's default uppercasing
+    text-transform: none;
+  }
+
+  .button.back {
+    display: none;
+
+    &.is-visible {
+      display: flex;
+      height: auto;
+      line-height: inherit;
+      margin: 12px 0 0 24px;
+    }
+  }
+
+  .sql-editor__content {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .sql-editor__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+  }
+
+  .sql-editor__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 10px;
+    padding: 0 30px;
+
+    &.has-back-button {
+      margin-top: 14px;
+    }
+
+    .mdc-button__label {
+      letter-spacing: 0;
+    }
+
+    .mdc-button {
+      &:not(.mdc-button--unelevated):not(:disabled) {
+        &:before {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .jupyter-button {
+      margin-right: 20px;
+
+      .mdc-button__label {
+        font-size: $fontSizeNormal;
+      }
+    }
+  }
+
+  .sql-editor__buttons {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+
+    :disabled {
+      color: $gray5;
+    }
+
+    .mdc-button {
+      margin-right: 8px;
+    }
+
+    // All three classes are instrumental fighters in the Material specificity war. Sigh.
+    .rmwc-icon.material-icons.mdc-button__icon {
+      margin: 0;
+    }
+
+    .mdc-button__label {
+      margin-left: 8px;
+    }
+  }
+
+  .sql-editor__buttons__run {
+    width: 170px;
+  }
+
+  .sql-editor__pane-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .sql-editor__bottom-pane {
+    padding: 0 30px;
+  }
+
+  .sql-editor__loader-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .sql-editor__results__meta {
+    color: $gray5;
+  }
+
+  .sql-editor__results__vega-image-backdrop {
+    background-color: #f0f0f0;
+    width: 100%;
+    max-width: max-content;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .sql-editor__top-pane {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    padding: 0 30px;
+  }
+
+  .sql-editor__input {
+    display: flex;
+    flex: 1;
+    position: relative;
+  }
+
+  .CodeMirror {
+    position: absolute;
+  }
+
+  .sql-editor__top-pane,
+  .CodeMirror,
+  .react-codemirror2 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sql-editor__top-pane {
+    font-size: $fontSizeMedium;
+  }
+
+  .sql-editor__drawer-toggle {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    padding: 4px 6px;
+
+    // Mimicking light mode secondary buttons
+    background: #fff;
+    border: 1px solid #ddd;
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    color: #666;
+
+    &:hover {
+      cursor: pointer;
+      background: rgb(245, 245, 245);
+    }
+
+    .rmwc-icon {
+      vertical-align: middle;
+    }
+  }
+
+  .sql-editor__drawer {
+    display: none;
+    width: $drawer-width;
+    background-color: inherit;
+    border-left: 1px solid #ddd;
+
+    &.sql-editor__drawer--open {
+      display: block;
+    }
+
+    .mdc-drawer__header {
+      display: flex;
+      justify-content: space-evenly;
+      min-height: fit-content;
+    }
+
+    .drawer-handle {
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+
+    .mdc-list-icon {
+      height: fit-content;
+    }
+
+    .sql-editor-data-viewer {
+      font-size: $fontSizeSmall;
+    }
+
+    .mdc-list-item {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .sql-editor__drawer__tabs {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sql-editor__drawer__tab {
+    display: inline-block;
+    padding: $spacing-06 $spacing-04 $spacing-04 $spacing-06;
+    font-size: $fontSizeNormal;
+    font-weight: 500;
+    color: $text-gray;
+
+    &:hover {
+      cursor: pointer;
+      color: $text-black;
+    }
+
+    &.is-active {
+      color: $text-black;
+      border-bottom: 2px solid $gray4;
+    }
+  }
+
+  .sql-editor__drawer__tab-content {
+    display: none;
+    position: relative;
+    // Required for table list to not push out of the drawer
+    // after navigating to column list
+    overflow: hidden;
+
+    &.is-active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      // 95px is roughly the combined height of Immerse's main top nav and
+      // SQL editor drawer tabs
+      height: calc(100vh - 100px);
+      background: $gray1;
+    }
+
+    .is-side-nav-enabled & {
+      &.is-active {
+        height: calc(100vh - 116px);
+      }
+    }
+  }
+
+  .insert-action-row {
+    // Height should match react-virtualized height setting
+    height: 35px;
+    font-size: $fontSizeNormal;
+    background: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+      background: $gray1;
+
+      .insert-action-row__icon {
+        visibility: visible;
+      }
+    }
+
+    &.is-active {
+      background-color: rgb(245, 245, 245);
+    }
+  }
+
+  .insert-action-row__value {
+    display: inline-block;
+    vertical-align: middle;
+    width: 260px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .insert-action-row__icon {
+    vertical-align: middle;
+    visibility: hidden;
+    margin-right: 8px;
+    padding: 6px 16px;
+    color: $dimTextOnDark;
+
+    &:not(.has-action) {
+      color: $mdc-theme-primary;
+    }
+
+    &.has-action:hover {
+      background-color: $mdc-theme-primary;
+      color: #fff;
+    }
+  }
+
+  .sql-editor__history {
+    overflow: hidden;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .sql-editor---new__selected-query-info {
+    position: relative;
+    flex: 2;
+    padding: 16px;
+    margin: 16px;
+    border: 1px solid #ddd;
+    font-size: $fontSizeSmall;
+    line-height: 14px;
+    background: #f9f9f9;
+
+    .section-title {
+      margin: 24px 0 8px;
+      font-size: $fontSizeMedium;
+      color: $text-gray;
+    }
+
+    .query-timestamp,
+    .meta {
+      color: $text-gray;
+    }
+
+    .meta {
+      margin-top: 8px;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .query {
+      margin: 16px 0 16px 16px;
+      max-height: 100px;
+      overflow-y: auto;
+      font-size: $fontSizeNormal;
+      margin-bottom: 4px;
+      color: $text-black;
+
+      pre {
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        color: $text-gray;
+      }
+    }
+
+    .rmwc-icon {
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+  }
+
+  .SplitPane {
+    position: relative !important;
+  }
+
+  .Pane {
+    overflow-y: auto;
+  }
+
+  .Resizer {
+    position: relative;
+    background: #ddd;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+
+    // Resizer nub
+    &:before {
+      content: "";
+      width: 64px;
+      height: 6px;
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      // Half of width to center it
+      margin-left: -32px;
+
+      background: #ddd;
+    }
+  }
+
+  .Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+  }
+
+  .Resizer.horizontal {
+    height: 11px;
+    border-top: 5px solid rgba(255, 255, 255, 0);
+    border-bottom: 5px solid rgba(255, 255, 255, 0);
+    cursor: row-resize;
+    width: 100%;
+    margin-top: -5px;
+  }
+
+  .CodeMirror-gutters {
+    background: white;
+    border-right: 0;
+  }
+
+  .insert-icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+  }
+
+  .no-history-message {
+    color: grey;
+    padding: 16px;
+  }
+
+  .table-cell.table-data {
+    padding-right: $spacing-02;
+  }
+  .table-cell.table-header {
+    font-weight: bold;
+    color: $text-black;
+    border-bottom: 1px solid $gray3;
+    display: flex;
+    align-items: center;
+    max-height: 24px;
+  }
+
+  .sql-editor__browser-snippet-pane {
+    border: 1px solid #ddd;
+    margin: 16px;
+  }
+
+  .sql-editor__browser-snippet-pane-header {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    font-weight: 500;
+    span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .back-container {
+      display: flex;
+      height: 24px;
+      width: 24px;
+      .rmwc-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .sql-editor-data-table {
+    .ReactVirtualized__Grid__innerScrollContainer {
+      .table-cell.table-header,
+      .table-cell.table-data {
+        word-wrap: break-word !important;
+        white-space: pre-wrap;
+        overflow: auto;
+      }
+    }
+
+    &.single-cell {
+      .ReactVirtualized__Grid__innerScrollContainer {
+        width: 100% !important;
+        max-width: 100% !important;
+        .table-cell.table-header,
+        .table-cell.table-data {
+          width: 100% !important;
+          overflow: auto !important;
+        }
+      }
+    }
+  }
+}
+
+body:not(.light2-mode) .sql-editor {
+  .sql-editor__content {
+    color: $dimTextOnDark;
+  }
+
+  .sql-editor__input {
+    .CodeMirror-scroll {
+      background-color: $surface-container-lowest;
+    }
+  }
+
+  .sql-editor__results__vega-image-backdrop {
+    background-color: #1a1a1a;
+  }
+
+  .Resizer,
+  .Resizer:before {
+    background-color: $borderSeparator;
+  }
+
+  .sql-editor__drawer {
+    background: $grayDp1;
+    border-left-color: $borderSeparator;
+  }
+
+  .sql-editor__drawer-toggle {
+    background: $grayDp3;
+    border-color: $secondaryButtonBorder;
+    color: $textOnDark;
+
+    &:hover {
+      background: $highlightOnDark;
+    }
+  }
+
+  .sql-editor__drawer__tab {
+    color: $dimTextOnDark;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover {
+      color: $textOnDark;
+    }
+
+    &.is-active {
+      color: $textOnDark;
+      border-bottom: 2px solid $dimTextOnDark;
+    }
+
+    svg {
+      margin-left: $spacing-04;
+    }
+  }
+
+  .sql-editor__drawer__tabs {
+    border-bottom: 1px solid $borderSeparator;
+  }
+
+  .sql-editor__drawer__tab-content,
+  .sql-editor__drawer__tabs {
+    background: $grayDp3;
+  }
+
+  .insert-action-row {
+    background-color: $grayDp3;
+    color: $textOnDark;
+
+    &:hover {
+      background-color: $highlightOnDark;
+    }
+
+    &.is-active {
+      background-color: $highlightOnDark;
+    }
+  }
+
+  .sql-editor---new__selected-query-info {
+    border-color: $borderSeparator;
+    background: $grayDp8;
+
+    .section-title {
+      color: $dimTextOnDark;
+    }
+
+    .query {
+      pre {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+
+  .sql-editor__browser-snippet-pane {
+    border-color: $borderSeparator;
+
+    .insert-action-row {
+      background-color: $grayDp8;
+
+      &:hover {
+        background-color: $highlightOnDark;
+      }
+    }
+  }
+
+  .no-history-message {
+    color: $dimTextOnDark;
+  }
+
+  .cm-s-monokai.CodeMirror,
+  .CodeMirror-gutters {
+    background: $grayDp0;
+  }
+
+  .table-cell.table-header {
+    color: $textOnDark;
+    border-bottom: 1px solid $borderSeparator;
+  }
+
+  .sql-editor-data-table .sql-data-table::-webkit-scrollbar-track {
+    background-color: #191919 !important;
+  }
+
+  .query {
+    color: $textOnDark;
+  }
+
+  .query-timestamp,
+  .meta {
+    color: $dimTextOnDark;
+  }
+}

@@ -1,0 +1,36 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.chart-container.chart-type-line2 {
+  display: flex;
+  flex-direction: column;
+  font-size: $fontSizeSmall;
+
+  .hidden {
+    display: none;
+  }
+  .line2-chart {
+    width: 100%;
+  }
+
+  .line2-reset-button {
+    position : absolute;
+    z-index : 15;
+    right : 10px;
+    bottom : 10px;
+    font : 9pt Roboto;
+    padding : 2px;
+    background-color : rgba(85, 85, 85, 0.8);
+    color : white;
+    border-radius : 1px;
+    opacity : 0;
+
+    .react-grid-item:hover & {
+      opacity : 1
+    }
+  }
+}

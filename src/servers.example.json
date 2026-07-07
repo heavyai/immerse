@@ -1,0 +1,139 @@
+[
+  {
+    "database": "heavyai",
+    "password": "HyperInteractive",
+    "url": "http://localhost:6273",
+    "username": "admin",
+    "GTM": "GTM-MDD888",
+    "mapboxCustomStyles": [
+      {
+        "label": "custom-mapbox-style",
+        "value": "mapbox://styles/mapd/cjb5nmfi50lyw2sqnlyee3sb4"
+      },
+      {
+        "label": "osm",
+        "value": {
+          "version": 8,
+          "sources": {
+            "openstreetmap": {
+              "type": "raster",
+              "tiles": [
+                "http://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                "http://b.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              ],
+              "tileSize": 256
+            }
+          },
+          "layers": [
+            {
+              "id": "openstreetmap",
+              "type": "raster",
+              "source": "openstreetmap",
+              "minzoom": 0,
+              "maxzoom": 22
+            }
+          ]
+        }
+      },
+      {
+        "label": "wms",
+        "value": {
+          "version": 8,
+          "sources": {
+            "my-wms-source": {
+              "type": "raster",
+              "tiles": [
+                "https://geodata.state.nj.us/imagerywms/Natural2015?bbox={bbox-epsg-3857}&format=image/png&service=WMS&version=1.1.1&request=GetMap&srs=EPSG:3857&width=256&height=256&layers=Natural2015"
+              ],
+              "tileSize": 256
+            }
+          },
+          "layers": [
+            {
+              "id": "my-wms-source",
+              "type": "raster",
+              "source": "my-wms-source",
+              "minzoom": 0,
+              "maxzoom": 22
+            }
+          ]
+        }
+      }
+    ],
+    "customStyles": {
+      "logoURL": "https://media.glassdoor.com/sql/688141/insight-sourcing-group-squarelogo-1416931569485.png",
+      "buttonPrimaryColor": "#4D88B4",
+      "colors": {
+        "solid": [
+          "#ce006f",
+          "#b50061",
+          "#9b0053",
+          "#8a004a",
+          "#7b003a",
+          "#ffb370",
+          "#fc9e4a",
+          "#ff8f2a"
+        ],
+        "custom": [
+          "#ce006f",
+          "#b50061",
+          "#9b0053",
+          "#8a004a",
+          "#7b003a",
+          "#ffb370",
+          "#fc9e4a",
+          "#ff8f2a",
+          "#fc8113",
+          "#ff7800",
+          "#ff7800"
+        ],
+        "ordinal": [
+          ["#2F1510", "#ECFE71"],
+          ["#2F1510", "#665A79", "#C7F779"],
+          ["#2F1510", "#5D3546", "#5B7797", "#39BFA9", "#ECFE71"],
+          [
+            "#2F1510",
+            "#492328",
+            "#5D3546",
+            "#674C68",
+            "#626889",
+            "#5086A2",
+            "#36A3AD",
+            "#39BFA9",
+            "#67D99A",
+            "#A5EE84",
+            "#ECFE71"
+          ]
+        ],
+        "quantitative": [
+          [
+            "#2F1510",
+            "#3D1B1B",
+            "#492328",
+            "#542B36",
+            "#5D3546",
+            "#644057",
+            "#674C68",
+            "#665A79",
+            "#626889",
+            "#5B7797",
+            "#5086A2",
+            "#4395A9",
+            "#36A3AD",
+            "#31B2AD",
+            "#39BFA9",
+            "#4CCCA3",
+            "#67D99A",
+            "#84E48F",
+            "#A5EE84",
+            "#C7F779",
+            "#ECFE71"
+          ],
+          ["#2F1510", "#ECFE71"],
+          ["#FF3030", "#FF8000", "#FFF68F"],
+          ["#9bb0ff", "#e0e5ff", "#ffc38b"]
+        ]
+      }
+    }
+  }
+]

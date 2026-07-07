@@ -1,0 +1,49 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+// Parent of this element needs to have a position: relative for the popup to
+// appear in the right place
+.swatch-popup {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 8px 4px 4px 8px;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  border-radius: 3px;
+  background-color: $gray1;
+  z-index: 1;
+
+  body:not(.light2-mode) & {
+    background-color: $grayDp8;
+  }
+
+  .swatch-color {
+    position: relative;
+    height: 16px;
+    width: 16px;
+    margin: 0 4px 4px 0;
+    &:hover,
+    &.selected {
+      cursor: pointer;
+      &:after {
+        content: "";
+        border: 2px solid $mdc-theme-primary;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+        padding: 1px;
+      }
+    }
+  }
+}

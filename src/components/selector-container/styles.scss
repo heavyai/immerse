@@ -1,0 +1,151 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+%dropshadow {
+  box-shadow: 0 3px 4px 1px rgba(black, .2) !important;
+}
+
+.measure-settings-wrapper {
+  border-top: 1px solid $gray3;
+
+  .agg-type-group {
+    padding: 8px 0;
+
+    .agg-type-wrapper {
+      cursor: pointer;
+      min-width: calc(99% / 3);
+      display: inline-block;
+      text-align: center;
+      margin: 4px 0;
+      height: 32px;
+      line-height: 32px;
+
+      &:hover {
+        .label {
+          color: $mdc-theme-primary;
+        }
+      }
+
+      .label {
+        color: $gray4;
+        text-transform: uppercase;
+        font-size: $fontSizeSmall;
+        user-select: none;
+        cursor: pointer;
+      }
+
+      .radio-button {
+        padding: 8px;
+        border-radius: 4px;
+
+        &.checked  {
+          background: $mdc-theme-primary;
+
+          .label {
+            color: white;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.selector-loading {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: -7px;
+  top: -4px;
+  background: white;
+  z-index: 14;
+  transform: scale(0.5);
+}
+
+.selector-pill-wrapper {
+  min-height: 32px;
+  position: relative;
+
+  & > .react-popover {
+    position: absolute;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid $gray3;
+    z-index: 10;
+    width: calc(100% + 8px);
+    left: -4px;
+    margin-bottom: 32px;
+  }
+
+  .value {
+    font-size: $fontSizeNormal !important;
+  }
+
+  .autocomplete-empty-state {
+    font-size: $fontSizeNormal !important;
+  }
+
+  .meta {
+    font-size: $fontSizeNormal !important;
+    line-height: 24px !important;
+    padding: 4px !important;
+
+    &:after {
+      content: '#';
+      pointer-events: none;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      display: block;
+    }
+
+    &.array-string:after {
+      content: '[a]';
+      pointer-events: none;
+    }
+
+    &.array-numerical:after {
+      content: '[#]';
+      pointer-events: none;
+    }
+
+    &.boolean:after {
+      content: 'TF';
+      pointer-events: none;
+    }
+
+    &.string:after {
+      content: 'a';
+    }
+
+    &.custom {
+      font-size: $fontSizeSmall !important;
+      &:after {
+        content: 'F(x)';
+      }
+    }
+
+    &.geo {
+      font-size: $fontSizeSmall !important;
+      &:after {
+        content: 'geo';
+      }
+    }
+
+    &.time:after {
+      content: '';
+      transform: scale(.75);
+      background: url('../../assets/imgs/icon-time.svg') center center;
+    }
+  }
+
+  .shared-custom-icon {
+    height: 32px;
+    width: 32px;
+    padding: 9px;
+  }
+}

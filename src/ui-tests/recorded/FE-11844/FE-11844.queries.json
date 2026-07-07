@@ -1,0 +1,946 @@
+{
+  "getTablesAsync": [
+    {
+      "name": "Faker_Geo_Legacy",
+      "label": "obs"
+    }
+  ],
+  "getFieldsAsync": {
+    "Faker_Geo_Legacy": {
+      "row_desc": [
+        {
+          "col_name": "Date_",
+          "col_type": {
+            "type": 9,
+            "encoding": 7,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": 4
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 1
+        },
+        {
+          "col_name": "Timestamp_",
+          "col_type": {
+            "type": 8,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 2
+        },
+        {
+          "col_name": "Time_Milli",
+          "col_type": {
+            "type": 8,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 3,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 3
+        },
+        {
+          "col_name": "Time_Micro",
+          "col_type": {
+            "type": 8,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 6,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 4
+        },
+        {
+          "col_name": "Time_Nano",
+          "col_type": {
+            "type": 8,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 9,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 5
+        },
+        {
+          "col_name": "Epoch_",
+          "col_type": {
+            "type": 8,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 6
+        },
+        {
+          "col_name": "Small_Int",
+          "col_type": {
+            "type": 0,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 7
+        },
+        {
+          "col_name": "Int_",
+          "col_type": {
+            "type": 1,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 8
+        },
+        {
+          "col_name": "Big_Int",
+          "col_type": {
+            "type": 2,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 9
+        },
+        {
+          "col_name": "Integer_",
+          "col_type": {
+            "type": 1,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 10
+        },
+        {
+          "col_name": "Float_",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 11
+        },
+        {
+          "col_name": "Float_Alt",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 12
+        },
+        {
+          "col_name": "Double_",
+          "col_type": {
+            "type": 5,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 13
+        },
+        {
+          "col_name": "Double_Alt",
+          "col_type": {
+            "type": 5,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 14
+        },
+        {
+          "col_name": "Boolean_",
+          "col_type": {
+            "type": 10,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 15
+        },
+        {
+          "col_name": "Name",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 16
+        },
+        {
+          "col_name": "Color",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 17
+        },
+        {
+          "col_name": "Lon",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 18
+        },
+        {
+          "col_name": "Lat",
+          "col_type": {
+            "type": 3,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 19
+        },
+        {
+          "col_name": "Geo_",
+          "col_type": {
+            "type": 13,
+            "encoding": 6,
+            "nullable": true,
+            "is_array": false,
+            "precision": 23,
+            "scale": 4326,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 20
+        },
+        {
+          "col_name": "City",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 22
+        },
+        {
+          "col_name": "Region",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 23
+        },
+        {
+          "col_name": "Country",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 24
+        },
+        {
+          "col_name": "Continent",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 25
+        }
+      ],
+      "fragment_size": 32000000,
+      "page_size": 2097152,
+      "max_rows": 4611686018427388000,
+      "view_sql": "",
+      "shard_count": 0,
+      "key_metainfo": "[]",
+      "is_temporary": false,
+      "partition_detail": 0,
+      "columns": [
+        {
+          "name": "Date_",
+          "type": "DATE",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Timestamp_",
+          "type": "TIMESTAMP",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Time_Milli",
+          "type": "TIMESTAMP",
+          "precision": 3,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Time_Micro",
+          "type": "TIMESTAMP",
+          "precision": 6,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Time_Nano",
+          "type": "TIMESTAMP",
+          "precision": 9,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Epoch_",
+          "type": "TIMESTAMP",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Small_Int",
+          "type": "SMALLINT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Int_",
+          "type": "INT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Big_Int",
+          "type": "BIGINT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Integer_",
+          "type": "INT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Float_",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Float_Alt",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Double_",
+          "type": "DOUBLE",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Double_Alt",
+          "type": "DOUBLE",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Boolean_",
+          "type": "BOOL",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Name",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Color",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Lon",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Lat",
+          "type": "FLOAT",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Geo_",
+          "type": "POINT",
+          "precision": 23,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "City",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Region",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Country",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "Continent",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        }
+      ]
+    }
+  },
+  "validateQuery": {
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end FROM Faker_Geo_Legacy": [
+      {
+        "name": "EXPR$0",
+        "type": "INT",
+        "precision": 0,
+        "is_array": false,
+        "is_dict": false
+      }
+    ]
+  },
+  "queryAsync": {
+    "SELECT APPROX_COUNT_DISTINCT(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end) AS card FROM Faker_Geo_Legacy": [
+      {
+        "card": 6
+      }
+    ],
+    "SELECT MIN(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end) AS min_val,MAX(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end) AS max_val FROM Faker_Geo_Legacy": {
+      "{\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":-1}": {
+        "group-value": [
+          {
+            "min_val": 0,
+            "max_val": 5
+          }
+        ]
+      }
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 3,
+          "val": 1694
+        },
+        {
+          "key0": 2,
+          "val": 1684
+        },
+        {
+          "key0": 1,
+          "val": 1672
+        },
+        {
+          "key0": 0,
+          "val": 1672
+        },
+        {
+          "key0": 4,
+          "val": 1648
+        },
+        {
+          "key0": 5,
+          "val": 1630
+        }
+      ],
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": [
+        {
+          "key0": 3,
+          "val": 1694
+        },
+        {
+          "key0": 2,
+          "val": 1684
+        },
+        {
+          "key0": 1,
+          "val": 1672
+        },
+        {
+          "key0": 0,
+          "val": 1672
+        },
+        {
+          "key0": 4,
+          "val": 1648
+        },
+        {
+          "key0": 5,
+          "val": 1630
+        }
+      ]
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 50": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [],
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 11 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 2.4 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 12) OR key0 IS NULL) ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 7,
+          "val": 1694
+        },
+        {
+          "key0": 4,
+          "val": 1684
+        },
+        {
+          "key0": 0,
+          "val": 1672
+        },
+        {
+          "key0": 2,
+          "val": 1672
+        },
+        {
+          "key0": 9,
+          "val": 1648
+        },
+        {
+          "key0": 11,
+          "val": 1630
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 11 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 2.4 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 12) OR key0 IS NULL) ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 100": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY val DESC NULLS LAST LIMIT 100 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 1,
+          "val": 3378
+        },
+        {
+          "key0": 0,
+          "val": 3344
+        },
+        {
+          "key0": 2,
+          "val": 3278
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 150": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 150 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 1,
+          "col0": 3378
+        },
+        {
+          "key0": 0,
+          "col0": 3344
+        },
+        {
+          "key0": 2,
+          "col0": 3278
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 200": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT COUNT(*) AS val FROM Faker_Geo_Legacy": {
+      "{\"eliminateNullRows\":false,\"renderSpec\":null}": {
+        "sizeAsync": [
+          {
+            "val": 10000
+          }
+        ]
+      },
+      "{\"columnarResults\":true,\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":null,\"logValues\":{\"chartId\":\"Faker_Geo_Legacy\",\"dashboardId\":null}}": [
+        {
+          "val": 10000
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 200 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 1,
+          "col0": 3378
+        },
+        {
+          "key0": 0,
+          "col0": 3344
+        },
+        {
+          "key0": 2,
+          "col0": 3278
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 250": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 50 OFFSET 100": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS val  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 100 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": [
+        {
+          "key0": 3,
+          "val": 1694
+        },
+        {
+          "key0": 2,
+          "val": 1684
+        },
+        {
+          "key0": 1,
+          "val": 1672
+        },
+        {
+          "key0": 0,
+          "val": 1672
+        },
+        {
+          "key0": 4,
+          "val": 1648
+        },
+        {
+          "key0": 5,
+          "val": 1630
+        }
+      ]
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 100 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": [
+        {
+          "key0": 3,
+          "col0": 1694
+        },
+        {
+          "key0": 2,
+          "col0": 1684
+        },
+        {
+          "key0": 1,
+          "col0": 1672
+        },
+        {
+          "key0": 0,
+          "col0": 1672
+        },
+        {
+          "key0": 4,
+          "col0": 1648
+        },
+        {
+          "key0": 5,
+          "col0": 1630
+        }
+      ]
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 150": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 150 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": [
+        {
+          "key0": 3,
+          "col0": 1694
+        },
+        {
+          "key0": 2,
+          "col0": 1684
+        },
+        {
+          "key0": 1,
+          "col0": 1672
+        },
+        {
+          "key0": 0,
+          "col0": 1672
+        },
+        {
+          "key0": 4,
+          "col0": 1648
+        },
+        {
+          "key0": 5,
+          "col0": 1630
+        }
+      ]
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 200": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": []
+    },
+    "SELECT COUNT(*) AS val FROM Faker_Geo_Legacy WHERE case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end BETWEEN 0 AND 1": {
+      "{\"columnarResults\":true,\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":null,\"logValues\":{\"chartId\":\"Faker_Geo_Legacy\",\"dashboardId\":null}}": [
+        {
+          "val": 3344
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 250 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": 1,
+          "col0": 3378
+        },
+        {
+          "key0": 0,
+          "col0": 3344
+        },
+        {
+          "key0": 2,
+          "col0": 3278
+        }
+      ]
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy WHERE case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end BETWEEN 0 AND 1 GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 200 OFFSET 0": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": [
+        {
+          "key0": 1,
+          "col0": 1672
+        },
+        {
+          "key0": 0,
+          "col0": 1672
+        }
+      ]
+    },
+    "SELECT case when case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end >= 5 then 2 else cast((cast(case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end as float) - 0) * 0.6 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy GROUP BY key0 HAVING ((key0 >= 0 AND key0 < 3) OR key0 IS NULL) ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 300": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": []
+    },
+    "SELECT case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end AS key0,COUNT(*) AS col0  FROM Faker_Geo_Legacy WHERE case when Faker_Geo_Legacy.Big_Int >= 9223371698849455000 then 11 else cast((cast(Faker_Geo_Legacy.Big_Int as float) - -9223371758128610000) * 6.505213252402347e-19 as int) end BETWEEN 0 AND 1 GROUP BY key0 ORDER BY col0 DESC NULLS LAST LIMIT 50 OFFSET 250": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"2\",\"dashboardId\":null}}": []
+    }
+  }
+}

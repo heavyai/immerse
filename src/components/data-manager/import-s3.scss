@@ -1,0 +1,71 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.import-s3 {
+  .autocomplete {
+    margin-top: 16px;
+
+    &.is-invalid {
+      .autocomplete-input {
+        input {
+          border-color: $error;
+        }
+      }
+    }
+  }
+
+  .segmented-control {
+    width: 100%;
+  }
+
+  .multi-select {
+    margin-top: 16px;
+  }
+}
+
+.import-s3__has-info {
+  display: flex;
+  align-items: center;
+
+  i {
+    margin: 16px 0 0 8px;
+  }
+}
+
+.import-s3__path {
+  position: relative;
+
+  span {
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    top: 22px;
+    left: 9px;
+    color: $dimTextOnDark;
+  }
+
+  .mdc-text-field--focused ~ span {
+    opacity: 1;
+  }
+
+  .mdc-text-field {
+    .mdc-text-field__input {
+      padding-left: 20px;
+    }
+  }
+}
+
+.import-s3__private {
+  display: block;
+  margin-top: 16px;
+  text-align: left;
+  font-size: $fontSizeMedium;
+
+  .mdc-checkbox {
+    vertical-align: middle;
+  }
+}

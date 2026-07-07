@@ -1,0 +1,114 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.import-table__option {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 176px;
+  height: 176px;
+  margin: 8px;
+  padding: 30px 10px 20px;
+  border-color: $gray4;
+  border-width: 1px;
+  border-style: solid;
+  position: relative;
+
+  > p {
+    margin: 0;
+    font-size: $fontSizeLarge;
+    text-align: center;
+    color: $textOnDark;
+  }
+
+  .supported-files-label {
+    font-size: $fontSizeSmall;
+
+    i {
+      font-size: $fontSizeSmall;
+      margin-right: 4px;
+      vertical-align: text-top;
+    }
+  }
+
+  &.import-table__options__redshift .import-table__option__icon,
+  &.import-table__options__snowflake .import-table__option__icon {
+    position: relative;
+
+    &::after {
+      border-radius: 10px;
+      background-color: #e7601e;
+      color: white;
+      padding: 4px 8px;
+      font-size: 12px;
+      position: absolute;
+      content: "Beta";
+      bottom: -23px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &.import-table__options__snowflake .import-table__option__icon {
+    padding-bottom: 7px;
+  }
+
+  &.import-table__options__redshift .import-table__option__icon {
+    padding-left: 2px;
+  }
+}
+
+.supported-files-content {
+  flex-direction: column;
+  padding: 8px;
+  font-size: $fontSizeSmall;
+  width: 300px;
+
+  .table-importer-hint-pair {
+    display: flex;
+    margin-bottom: 4px;
+
+    .table-importer-hint-pair-left {
+      font-weight: bold;
+    }
+
+    .table-importer-hint-pair-right {
+      margin-left: 8px;
+    }
+
+    .table-importer-hint-pair-icon svg {
+      width: 20px;
+      height: 20px;
+
+      path {
+        fill: currentColor;
+      }
+    }
+
+    .table-importer-hint-pair-right-title {
+      display: block;
+      font-weight: 500;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .table-importer-hint-pair-right-subtitle {
+    color: $textOnDark;
+  }
+
+  .import-table__option {
+    border-color: $borderSeparator;
+    background: $grayDp3;
+    color: $dimTextOnDark;
+  }
+
+  .import-table__option:hover {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,345 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+@mixin color-icon($color) {
+  color: $color;
+
+  .svgicon {
+    fill: $color;
+
+    path {
+      fill: $color;
+    }
+  }
+}
+
+.data-table {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  line-height: 24px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.data-table__search {
+  padding: 12px 8px 8px 8px;
+  background-color: $gray10;
+}
+
+.data-table__search__input {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.data-table__search__input__close {
+  &:focus {
+    outline: none;
+  }
+}
+
+.data-table__filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 12px;
+  color: #222;
+  font-size: $fontSizeSmall;
+  background-color: $gray10;
+  padding: 2px 8px;
+}
+
+.data-table__filter-categories {
+  display: flex;
+  justify-content: flex-end;
+
+  .data-table__filter-categories__icon {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    cursor: pointer;
+    align-self: center;
+
+    .svgicon {
+      height: 15px;
+      width: 15px;
+    }
+
+    @include color-icon($text-gray);
+
+    &.active {
+      @include color-icon($mdc-theme-primary);
+    }
+
+    &.disabled {
+      cursor: auto;
+      @include color-icon($gray2);
+    }
+  }
+}
+
+.data-table__row--cta {
+  .rmwc-data-table__cell {
+    color: $mdc-theme-primary;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .data-table__filter-categories {
+    &__icon {
+      @include color-icon($dimTextOnDark);
+
+      &.active {
+        @include color-icon($mdc-theme-primary);
+      }
+
+      &.disabled {
+        cursor: auto;
+        @include color-icon($disabled);
+      }
+    }
+  }
+
+  .data-table__filters {
+    color: $dimTextOnDark;
+    background-color: $grayDp1;
+  }
+}
+
+.data-table--loading {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.data-table__table {
+  position: relative;
+  display: flex;
+  flex: 1;
+  z-index: 0;
+  border: 0;
+  border-top: 1px solid $gray3;
+  font-weight: 400;
+
+  .rmwc-data-table__cell {
+    padding: 2px 0 2px 8px;
+    height: auto;
+
+    &.rmwc-data-table__head-cell--sortable:not(.rmwc-data-table__head-cell--sorted-ascending):not(.rmwc-data-table__head-cell--sorted-descending) {
+      svg.material-icons {
+        display: none;
+      }
+    }
+
+    &.rmwc-data-table__head-cell {
+      padding-left: 4px;
+    }
+
+    &.data-table__cell--first {
+      text-overflow: ellipsis;
+      max-width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .rmwc-data-table__head .rmwc-data-table__cell:last-child {
+    width: 10%;
+    padding-right: 4px;
+  }
+
+  .rmwc-data-table__body .rmwc-data-table__cell:last-child {
+    text-align: left;
+  }
+
+  .rmwc-data-table__cell:nth-child(4) {
+    padding: 0;
+  }
+
+  .rmwc-data-table__head
+    .rmwc-data-table__head-cell--sortable:not(.rmwc-data-table__head-cell--sorted-ascending):not(.rmwc-data-table__head-cell--sorted-descending)::before {
+    content: "⇵";
+    opacity: 1;
+    position: relative;
+    display: inline-block;
+    margin-right: 3px;
+    font-size: $fontSizeSmall;
+    color: $text-dim;
+  }
+
+  td.rmwc-data-table__cell {
+    border: none;
+  }
+
+  th.rmwc-data-table__head-cell {
+    font-weight: 400;
+    font-size: $fontSizeSmall;
+    text-transform: capitalize;
+    background: $gray10;
+
+    svg.material-icons {
+      min-width: 15px;
+      padding: 0;
+      margin: -4px 0 0 0;
+      width: 15px;
+      display: inline-block;
+      color: $dimTextOnDark;
+      fill: $dimTextOnDark;
+    }
+  }
+
+  .rmwc-data-table__content {
+    position: absolute;
+    width: 100%;
+  }
+
+  .rmwc-data-table__row {
+    &.active {
+      .rmwc-data-table__cell {
+        background-color: rgb(245, 245, 245);
+      }
+    }
+
+    &:hover {
+      &.is-clickable {
+        cursor: pointer;
+      }
+
+      .data-table__cell--icon {
+        &.is-clickable {
+          cursor: pointer;
+        }
+        > i {
+          visibility: visible;
+
+          &[disabled] {
+            cursor: default;
+            @include color-icon($gray2);
+          }
+        }
+
+        &.has-action {
+          > i {
+            color: $dimTextOnDark;
+          }
+
+          &:hover {
+            background: $mdc-theme-primary;
+
+            > i {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+
+    .data-table__cell {
+      .svgicon {
+        vertical-align: middle;
+        width: 15px;
+      }
+
+      > span {
+        display: block;
+      }
+
+      @include color-icon($text-gray);
+
+      color: $text-black;
+    }
+
+    .data-table__cell--key-type {
+      span {
+        display: block;
+      }
+    }
+
+    .data-table__cell--icon {
+      width: 48px;
+      text-align: center;
+      background: none;
+
+      > i {
+        visibility: hidden;
+        vertical-align: middle;
+        color: $mdc-theme-primary;
+      }
+    }
+  }
+}
+
+// special contexts
+.custom-sql-manager__browser {
+  .rmwc-data-table__head .rmwc-data-table__cell:first-child {
+    width: 10%;
+  }
+
+  .rmwc-data-table__cell:first-child {
+    padding: 0 !important;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .data-table {
+    background-color: $grayDp3;
+  }
+
+  .data-table__search {
+    background-color: $grayDp1;
+  }
+
+  .data-table__table {
+    border-top-color: $borderSeparator;
+
+    .rmwc-data-table__head {
+      .rmwc-data-table__row,
+      .rmwc-data-table__cell {
+        background-color: $grayDp3;
+        color: $dimTextOnDark;
+      }
+    }
+
+    .rmwc-data-table__content {
+      background: $borderSeparator;
+    }
+
+    .rmwc-data-table__body {
+      background-color: $borderSeparator;
+
+      .rmwc-data-table__cell {
+        background-color: $grayDp3;
+        color: $textOnDark;
+      }
+
+      .data-table__row--cta {
+        .rmwc-data-table__cell {
+          color: $mdc-theme-primary;
+        }
+      }
+    }
+
+    tbody .rmwc-data-table__row {
+      &.active,
+      &:hover {
+        .rmwc-data-table__cell {
+          background-color: $highlightOnDark;
+        }
+
+        .data-table__cell--icon > i[disabled] {
+          @include color-icon($disabled);
+        }
+      }
+    }
+
+    .rmwc-data-table__head
+      .rmwc-data-table__head-cell--sortable:not(.rmwc-data-table__head-cell--sorted-ascending):not(.rmwc-data-table__head-cell--sorted-descending)::before {
+      color: $dimIconOnDark;
+    }
+  }
+}

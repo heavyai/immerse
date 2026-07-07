@@ -1,0 +1,159 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/nexus/variables";
+
+/* theme variables */
+$mdc-theme-primary: var(--blue-main, #0089d1);
+
+$error: #d83c3c;
+$error-active: #c62121;
+$warning: #f2b700;
+$warning-active: #e2aa00;
+$info: #3ba1d9;
+$info-active: #3ba1d9;
+$success: #5bce00;
+$success-active: #54bc00;
+
+$solid: var(--solid); /* solid black or white */
+$grayDp0: var(--grayDp0); /* textarea and darkest items */
+$grayDp1: var(--grayDp1); /* background */
+$grayDp2: var(--grayDp2); /* (new) settings panel */
+$grayDp3: var(--grayDp3); /* header and larger panel */
+$grayDp8: var(--grayDp8); /* non-input widget */
+$grayDp24: var(--grayDp24); /* input widgets */
+$grayDp2Translucent: var(--grayDp2Translucent); /* layer drawer */
+
+$textOnDark: var(--textOnDark); /* default text */
+$dimTextOnDark: var(--dimTextOnDark); /* less emphasized text */
+$highlightOnDark: var(--highlightOnDark); /* hover background */
+$disabled: var(--disabled);
+$dimIconOnDark: var(--dimIconOnDark);
+$borderSeparator: var(--borderSeparator);
+
+$solid-alpha30: var(--solid-alpha30);
+$solid-alpha10: var(--solid-alpha10);
+
+$icon-dim: var(--icon-dim);
+$icon-light: var(--icon-light);
+$icon-medium: var(--icon-medium);
+$icon-solid: var(--icon-solid);
+$icon-disabled: var(--icon-disabled);
+
+$text-default: var(--text-default);
+$text-light: var(--text-light);
+$text-solid: var(--text-solid);
+$text-active-secondary: var(--text-active-secondary);
+
+$border-light: var(--border-light);
+$border-medium: var(--border-medium);
+$border-dim: var(--border-dim);
+$surface-container-lowest: var(--surface-container-lowest);
+$surface-container-medium-hover: var(--surface-container-medium-hover);
+
+$secondaryButtonBorder: var(--secondaryButtonBorder);
+$secondaryPanelHover: var(--secondaryPanelHover);
+$chartMarkStroke: #444;
+
+$fontSizeSmaller: 10px;
+$fontSizeSmall: 12px;
+$fontSizeNormal: 14px;
+$fontSizeMedium: 16px;
+$fontSizeLarge: 20px;
+$fontSizeXLarge: 24px;
+
+/* mixins */
+%outlinedText {
+  fill: $textOnDark !important;
+  stroke-width: 2px;
+  stroke: black;
+  paint-order: stroke;
+  stroke-opacity: 0.3;
+}
+
+%disabled {
+  // color: $disabled !important;
+  // background-color: $highlightOnDark;
+  // border: 1px solid $borderSeparator !important;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+%secondary-button {
+  color: $textOnDark !important;
+  border: 1px solid $secondaryButtonBorder !important;
+
+  &:hover {
+    background-color: $highlightOnDark !important;
+  }
+}
+
+/* older variables */
+$gray1: #f5f5f5;
+$gray2: #e2e2e2;
+$gray3: #c7c7c7;
+$gray4: #a7a7a7;
+$gray5: #868686;
+$gray6: #666666;
+$gray7: #4a4a4a;
+$gray8: #323232;
+$gray9: #202020;
+$gray10: #eeeeee;
+$gray11: #111111;
+
+$main-menu: #555;
+
+$charcoal: #404040;
+$operator-text: #7d7d7d;
+
+$text-black: $charcoal;
+$text-gray: $gray5;
+$text-dim: $gray4;
+
+$light-border: #ddd;
+$inputHoverBorder: rgba(0, 0, 0, 0.87);
+
+$teal: #1ed6cd;
+$blue-ternary: #003da5;
+$neon: #cae52e;
+$red: #ea5545;
+
+$medium-breakpoint: 1440px;
+$small-breakpoint: 1024px;
+
+$zindex: (
+  app-overlay: 5000,
+  side-nav-control: 2000,
+  side-nav: 1000,
+  main-nav: 300,
+  top-panel: 200,
+  dashboards-container: 100
+);
+
+$filterDateWidth: 320px;
+$filterPanelModalWidth: 500px;
+$topNavHeight: 48px;
+$globalSideNavWidth: 54px;
+
+/* new control panel variables for the Light Mode */
+$lightGray: #fbfbfb;
+$darkGray: #d3d3d3;
+$darkGray4: #444444;
+
+/* replay panel variables */
+$darkGray9: #999999;
+$darkGrayBackground: #2e2e2e;
+
+/* join manager variables */
+$grayA: #aaaaaa;
+$grayD7: #777777;
+$yellowHighlight: #ffd22f;
+$blueHighlight: #81d3f9;
+$textHighlight: #1e1e1e;
+$primaryColorHover: #3ba1d9;
+
+$alert-green: #00c200;
+$alert-yellow: #ffab43;
+$alert-red: #ed4343;

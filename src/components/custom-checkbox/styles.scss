@@ -1,0 +1,46 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.custom-checkbox {
+    width: 28px;
+    height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    fill: $gray4;
+
+    &:hover {
+        fill: $mdc-theme-primary;
+    }
+
+    .empty-checkbox {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        border: 1px solid $gray3;
+    }
+
+    .icon {
+        width: 16px;
+        height: 16px;
+        animation: showCheckMark .25s;
+    }
+}
+
+@keyframes showCheckMark {
+    0%{
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

@@ -1,0 +1,133 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.mdc-button:not(.mdc-ripple-upgraded) {
+  text-transform: initial;
+  letter-spacing: normal;
+  height: 32px;
+
+  &.mdc-button--unelevated,
+  &.mdc-button--outlined,
+  &.mdc-button--dense {
+    &:hover,
+    &:focus,
+    &:active {
+      &::before,
+      &::after {
+        opacity: 0 !important;
+      }
+    }
+  }
+
+  &.mdc-button--unelevated {
+    background-color: $mdc-theme-primary;
+
+    &:active,
+    &:hover {
+      background-color: $mdc-theme-primary;
+
+      &.danger {
+        background-color: $error-active;
+      }
+
+      &.warning {
+        background-color: $warning-active;
+      }
+
+      &.success {
+        background-color: $success-active;
+      }
+    }
+
+    &:disabled {
+      background-color: $mdc-theme-primary;
+      opacity: 0.24;
+      color: white;
+    }
+
+    &.danger {
+      background-color: $error;
+    }
+
+    &.warning {
+      background-color: $warning;
+    }
+
+    &.success {
+      background-color: $success;
+    }
+  }
+
+  &.mdc-button--outlined,
+  &.mdc-button--dense {
+    border-color: $light-border;
+    border-width: 1px;
+    color: $dimIconOnDark;
+    background: white;
+
+    &:active,
+    &:hover {
+      background-color: white;
+    }
+
+    svg,
+    svg use {
+      fill: $dimIconOnDark;
+    }
+
+    &:disabled {
+      opacity: 1 !important;
+      border-color: #ccc;
+      color: $light-border;
+      cursor: not-allowed;
+
+      svg,
+      svg use {
+        fill: #ccc;
+      }
+    }
+  }
+
+  &.mdc-button--dense {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+body:not(.light2-mode) .mdc-button:not(.mdc-ripple-upgraded) {
+  &.mdc-button--outlined,
+  &.mdc-button--dense {
+    color: $textOnDark;
+    border: 1px solid $secondaryButtonBorder;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $highlightOnDark;
+    }
+
+    &:disabled {
+      color: $disabled;
+      border: 1px solid $borderSeparator;
+      opacity: 1;
+      cursor: not-allowed;
+
+      svg,
+      svg use {
+        fill: $disabled;
+      }
+    }
+  }
+
+  &.mdc-button--dense {
+    border: none;
+    background-color: transparent;
+    &:disabled {
+      border: none;
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,1855 @@
+{
+  "getTablesAsync": [
+    {
+      "name": "nes_games",
+      "label": "obs"
+    }
+  ],
+  "getFieldsAsync": {
+    "nes_games": {
+      "row_desc": [
+        {
+          "col_name": "Title",
+          "col_type": {
+            "type": 6,
+            "encoding": 0,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 0,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 1
+        },
+        {
+          "col_name": "Developer",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 2
+        },
+        {
+          "col_name": "publisher_na",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 3
+        },
+        {
+          "col_name": "publisher_eu",
+          "col_type": {
+            "type": 6,
+            "encoding": 4,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": -1
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 4
+        },
+        {
+          "col_name": "release_date_na",
+          "col_type": {
+            "type": 9,
+            "encoding": 7,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": 4
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 5
+        },
+        {
+          "col_name": "release_date_eu",
+          "col_type": {
+            "type": 9,
+            "encoding": 7,
+            "nullable": true,
+            "is_array": false,
+            "precision": 0,
+            "scale": 0,
+            "comp_param": 32,
+            "size": 4
+          },
+          "is_reserved_keyword": false,
+          "src_name": "",
+          "is_system": false,
+          "is_physical": false,
+          "col_id": 6
+        }
+      ],
+      "fragment_size": 32000000,
+      "page_size": 2097152,
+      "max_rows": 4611686018427388000,
+      "view_sql": "",
+      "shard_count": 0,
+      "key_metainfo": "[]",
+      "is_temporary": false,
+      "partition_detail": 0,
+      "columns": [
+        {
+          "name": "Title",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "Developer",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "publisher_na",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "publisher_eu",
+          "type": "STR",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": true
+        },
+        {
+          "name": "release_date_na",
+          "type": "DATE",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        },
+        {
+          "name": "release_date_eu",
+          "type": "DATE",
+          "precision": 0,
+          "is_array": false,
+          "is_dict": false
+        }
+      ]
+    }
+  },
+  "queryAsync": {
+    "SELECT nes_games.Developer AS key0,COUNT(*) AS val  FROM nes_games GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 100": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "Konami",
+          "val": 45
+        },
+        {
+          "key0": "Rare",
+          "val": 37
+        },
+        {
+          "key0": "TOSE",
+          "val": 27
+        },
+        {
+          "key0": "Capcom",
+          "val": 26
+        },
+        {
+          "key0": "Beam Software",
+          "val": 22
+        },
+        {
+          "key0": "Nintendo Research & Development 1",
+          "val": 22
+        },
+        {
+          "key0": "Imagineering",
+          "val": 20
+        },
+        {
+          "key0": "Tecmo",
+          "val": 14
+        },
+        {
+          "key0": "Hudson Soft",
+          "val": 13
+        },
+        {
+          "key0": "Kemco",
+          "val": 11
+        },
+        {
+          "key0": "Software Creations",
+          "val": 10
+        },
+        {
+          "key0": "Atlus",
+          "val": 10
+        },
+        {
+          "key0": "SNK",
+          "val": 10
+        },
+        {
+          "key0": "Sunsoft",
+          "val": 10
+        },
+        {
+          "key0": "HAL Laboratory",
+          "val": 10
+        },
+        {
+          "key0": "Ocean Software",
+          "val": 9
+        },
+        {
+          "key0": "Sculptured Software",
+          "val": 9
+        },
+        {
+          "key0": "Techns Japan",
+          "val": 9
+        },
+        {
+          "key0": "Koei",
+          "val": 9
+        },
+        {
+          "key0": "Micronics",
+          "val": 9
+        },
+        {
+          "key0": "Human Entertainment",
+          "val": 9
+        },
+        {
+          "key0": "Data East, Sakata SAS",
+          "val": 8
+        },
+        {
+          "key0": "Aicom",
+          "val": 8
+        },
+        {
+          "key0": "Nintendo",
+          "val": 8
+        },
+        {
+          "key0": "Data East",
+          "val": 8
+        },
+        {
+          "key0": "KID",
+          "val": 8
+        },
+        {
+          "key0": "Natsume",
+          "val": 7
+        },
+        {
+          "key0": "Tengen",
+          "val": 7
+        },
+        {
+          "key0": "Rare, Zippo Games",
+          "val": 6
+        },
+        {
+          "key0": "Namco",
+          "val": 6
+        },
+        {
+          "key0": "Culture Brain",
+          "val": 6
+        },
+        {
+          "key0": "Compile",
+          "val": 5
+        },
+        {
+          "key0": "Pack-In-Video",
+          "val": 5
+        },
+        {
+          "key0": "Radical Entertainment",
+          "val": 5
+        },
+        {
+          "key0": "Nintendo Research & Development 4",
+          "val": 5
+        },
+        {
+          "key0": "Vic Tokai",
+          "val": 5
+        },
+        {
+          "key0": "Now Production",
+          "val": 4
+        },
+        {
+          "key0": "Realtime Associates",
+          "val": 4
+        },
+        {
+          "key0": "Probe Software",
+          "val": 4
+        },
+        {
+          "key0": "Chunsoft",
+          "val": 4
+        },
+        {
+          "key0": "RSP Inc.",
+          "val": 4
+        },
+        {
+          "key0": "Square",
+          "val": 4
+        },
+        {
+          "key0": "Nintendo Research & Development 3",
+          "val": 4
+        },
+        {
+          "key0": "Athena",
+          "val": 3
+        },
+        {
+          "key0": "Eurocom",
+          "val": 3
+        },
+        {
+          "key0": "SOFEL",
+          "val": 3
+        },
+        {
+          "key0": "Make Software",
+          "val": 3
+        },
+        {
+          "key0": "Bethesda Softworks",
+          "val": 3
+        },
+        {
+          "key0": "Nintendo Research & Development 1, Intelligent Systems",
+          "val": 3
+        },
+        {
+          "key0": "Distinctive Software",
+          "val": 3
+        },
+        {
+          "key0": "Nintendo Research & Development 2",
+          "val": 3
+        },
+        {
+          "key0": "NMS Software",
+          "val": 3
+        },
+        {
+          "key0": "Mindscape",
+          "val": 3
+        },
+        {
+          "key0": "Interplay Entertainment",
+          "val": 3
+        },
+        {
+          "key0": "Jaleco",
+          "val": 3
+        },
+        {
+          "key0": "Advance Communication Company",
+          "val": 3
+        },
+        {
+          "key0": "Software Toolworks",
+          "val": 3
+        },
+        {
+          "key0": "Novotrade",
+          "val": 2
+        },
+        {
+          "key0": "Bit Managers",
+          "val": 2
+        },
+        {
+          "key0": "ASCII",
+          "val": 2
+        },
+        {
+          "key0": "NMK",
+          "val": 2
+        },
+        {
+          "key0": "Bits Studios",
+          "val": 2
+        },
+        {
+          "key0": "Chris Gray Enterprises",
+          "val": 2
+        },
+        {
+          "key0": "Irem",
+          "val": 2
+        },
+        {
+          "key0": "Bullet-Proof Software",
+          "val": 2
+        },
+        {
+          "key0": "Radiance",
+          "val": 2
+        },
+        {
+          "key0": "Activision",
+          "val": 2
+        },
+        {
+          "key0": "Shouei System",
+          "val": 2
+        },
+        {
+          "key0": "AI",
+          "val": 2
+        },
+        {
+          "key0": "Hot-B",
+          "val": 2
+        },
+        {
+          "key0": "Sir-Tech",
+          "val": 2
+        },
+        {
+          "key0": "MotiveTime",
+          "val": 2
+        },
+        {
+          "key0": "Marionette",
+          "val": 2
+        },
+        {
+          "key0": "Rocket Science Games",
+          "val": 2
+        },
+        {
+          "key0": "Nintendo Research & Development 1, Nintendo Research & Development 2",
+          "val": 2
+        },
+        {
+          "key0": "Imagitec",
+          "val": 2
+        },
+        {
+          "key0": "Home Data",
+          "val": 2
+        },
+        {
+          "key0": "Beam Software, Tengen",
+          "val": 2
+        },
+        {
+          "key0": "Lucasfilm Games",
+          "val": 2
+        },
+        {
+          "key0": "Nichibutsu",
+          "val": 2
+        },
+        {
+          "key0": "Beam Software, Cinemaware",
+          "val": 2
+        },
+        {
+          "key0": "Winkysoft",
+          "val": 2
+        },
+        {
+          "key0": "Taito",
+          "val": 2
+        },
+        {
+          "key0": "Atelier Double",
+          "val": 2
+        },
+        {
+          "key0": "Natsume, Taito",
+          "val": 2
+        },
+        {
+          "key0": "Westwood Studios",
+          "val": 2
+        },
+        {
+          "key0": "Source Research & Development",
+          "val": 2
+        },
+        {
+          "key0": "Game Freak",
+          "val": 2
+        },
+        {
+          "key0": "FarSight Studios",
+          "val": 2
+        },
+        {
+          "key0": "Nihon Bussan",
+          "val": 2
+        },
+        {
+          "key0": "Softie",
+          "val": 2
+        },
+        {
+          "key0": "Pixel",
+          "val": 2
+        },
+        {
+          "key0": "The Bitmap Brothers",
+          "val": 1
+        },
+        {
+          "key0": "Vid Kidz",
+          "val": 1
+        },
+        {
+          "key0": "Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Takeru",
+          "val": 1
+        },
+        {
+          "key0": "Bitmasters",
+          "val": 1
+        },
+        {
+          "key0": "Fox Williams and Audiogenic",
+          "val": 1
+        },
+        {
+          "key0": "Taito/SOL",
+          "val": 1
+        },
+        {
+          "key0": "Toaplan",
+          "val": 1
+        }
+      ],
+      "{\"eliminateNullRows\":true\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "Konami",
+          "val": 45
+        },
+        {
+          "key0": "Rare",
+          "val": 37
+        },
+        {
+          "key0": "TOSE",
+          "val": 27
+        },
+        {
+          "key0": "Capcom",
+          "val": 26
+        },
+        {
+          "key0": "Beam Software",
+          "val": 22
+        },
+        {
+          "key0": "Nintendo Research & Development 1",
+          "val": 22
+        },
+        {
+          "key0": "Imagineering",
+          "val": 20
+        },
+        {
+          "key0": "Tecmo",
+          "val": 14
+        },
+        {
+          "key0": "Hudson Soft",
+          "val": 13
+        },
+        {
+          "key0": "Kemco",
+          "val": 11
+        },
+        {
+          "key0": "Software Creations",
+          "val": 10
+        },
+        {
+          "key0": "Atlus",
+          "val": 10
+        },
+        {
+          "key0": "SNK",
+          "val": 10
+        },
+        {
+          "key0": "Sunsoft",
+          "val": 10
+        },
+        {
+          "key0": "HAL Laboratory",
+          "val": 10
+        },
+        {
+          "key0": "Ocean Software",
+          "val": 9
+        },
+        {
+          "key0": "Sculptured Software",
+          "val": 9
+        },
+        {
+          "key0": "Techns Japan",
+          "val": 9
+        },
+        {
+          "key0": "Koei",
+          "val": 9
+        },
+        {
+          "key0": "Micronics",
+          "val": 9
+        },
+        {
+          "key0": "Human Entertainment",
+          "val": 9
+        },
+        {
+          "key0": "Data East, Sakata SAS",
+          "val": 8
+        },
+        {
+          "key0": "Aicom",
+          "val": 8
+        },
+        {
+          "key0": "Nintendo",
+          "val": 8
+        },
+        {
+          "key0": "Data East",
+          "val": 8
+        },
+        {
+          "key0": "KID",
+          "val": 8
+        },
+        {
+          "key0": "Natsume",
+          "val": 7
+        },
+        {
+          "key0": "Tengen",
+          "val": 7
+        },
+        {
+          "key0": "Rare, Zippo Games",
+          "val": 6
+        },
+        {
+          "key0": "Namco",
+          "val": 6
+        },
+        {
+          "key0": "Culture Brain",
+          "val": 6
+        },
+        {
+          "key0": "Compile",
+          "val": 5
+        },
+        {
+          "key0": "Pack-In-Video",
+          "val": 5
+        },
+        {
+          "key0": "Radical Entertainment",
+          "val": 5
+        },
+        {
+          "key0": "Nintendo Research & Development 4",
+          "val": 5
+        },
+        {
+          "key0": "Vic Tokai",
+          "val": 5
+        },
+        {
+          "key0": "Now Production",
+          "val": 4
+        },
+        {
+          "key0": "Realtime Associates",
+          "val": 4
+        },
+        {
+          "key0": "Probe Software",
+          "val": 4
+        },
+        {
+          "key0": "Chunsoft",
+          "val": 4
+        },
+        {
+          "key0": "RSP Inc.",
+          "val": 4
+        },
+        {
+          "key0": "Square",
+          "val": 4
+        },
+        {
+          "key0": "Nintendo Research & Development 3",
+          "val": 4
+        },
+        {
+          "key0": "Athena",
+          "val": 3
+        },
+        {
+          "key0": "Eurocom",
+          "val": 3
+        },
+        {
+          "key0": "SOFEL",
+          "val": 3
+        },
+        {
+          "key0": "Make Software",
+          "val": 3
+        },
+        {
+          "key0": "Bethesda Softworks",
+          "val": 3
+        },
+        {
+          "key0": "Nintendo Research & Development 1, Intelligent Systems",
+          "val": 3
+        },
+        {
+          "key0": "Distinctive Software",
+          "val": 3
+        },
+        {
+          "key0": "Nintendo Research & Development 2",
+          "val": 3
+        },
+        {
+          "key0": "NMS Software",
+          "val": 3
+        },
+        {
+          "key0": "Mindscape",
+          "val": 3
+        },
+        {
+          "key0": "Interplay Entertainment",
+          "val": 3
+        },
+        {
+          "key0": "Jaleco",
+          "val": 3
+        },
+        {
+          "key0": "Advance Communication Company",
+          "val": 3
+        },
+        {
+          "key0": "Software Toolworks",
+          "val": 3
+        },
+        {
+          "key0": "Novotrade",
+          "val": 2
+        },
+        {
+          "key0": "Bit Managers",
+          "val": 2
+        },
+        {
+          "key0": "ASCII",
+          "val": 2
+        },
+        {
+          "key0": "NMK",
+          "val": 2
+        },
+        {
+          "key0": "Bits Studios",
+          "val": 2
+        },
+        {
+          "key0": "Chris Gray Enterprises",
+          "val": 2
+        },
+        {
+          "key0": "Irem",
+          "val": 2
+        },
+        {
+          "key0": "Bullet-Proof Software",
+          "val": 2
+        },
+        {
+          "key0": "Radiance",
+          "val": 2
+        },
+        {
+          "key0": "Activision",
+          "val": 2
+        },
+        {
+          "key0": "Shouei System",
+          "val": 2
+        },
+        {
+          "key0": "AI",
+          "val": 2
+        },
+        {
+          "key0": "Hot-B",
+          "val": 2
+        },
+        {
+          "key0": "Sir-Tech",
+          "val": 2
+        },
+        {
+          "key0": "MotiveTime",
+          "val": 2
+        },
+        {
+          "key0": "Marionette",
+          "val": 2
+        },
+        {
+          "key0": "Rocket Science Games",
+          "val": 2
+        },
+        {
+          "key0": "Nintendo Research & Development 1, Nintendo Research & Development 2",
+          "val": 2
+        },
+        {
+          "key0": "Imagitec",
+          "val": 2
+        },
+        {
+          "key0": "Home Data",
+          "val": 2
+        },
+        {
+          "key0": "Beam Software, Tengen",
+          "val": 2
+        },
+        {
+          "key0": "Lucasfilm Games",
+          "val": 2
+        },
+        {
+          "key0": "Nichibutsu",
+          "val": 2
+        },
+        {
+          "key0": "Beam Software, Cinemaware",
+          "val": 2
+        },
+        {
+          "key0": "Winkysoft",
+          "val": 2
+        },
+        {
+          "key0": "Taito",
+          "val": 2
+        },
+        {
+          "key0": "Atelier Double",
+          "val": 2
+        },
+        {
+          "key0": "Natsume, Taito",
+          "val": 2
+        },
+        {
+          "key0": "Westwood Studios",
+          "val": 2
+        },
+        {
+          "key0": "Source Research & Development",
+          "val": 2
+        },
+        {
+          "key0": "Game Freak",
+          "val": 2
+        },
+        {
+          "key0": "FarSight Studios",
+          "val": 2
+        },
+        {
+          "key0": "Nihon Bussan",
+          "val": 2
+        },
+        {
+          "key0": "Softie",
+          "val": 2
+        },
+        {
+          "key0": "Pixel",
+          "val": 2
+        },
+        {
+          "key0": "The Bitmap Brothers",
+          "val": 1
+        },
+        {
+          "key0": "Vid Kidz",
+          "val": 1
+        },
+        {
+          "key0": "Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Takeru",
+          "val": 1
+        },
+        {
+          "key0": "Bitmasters",
+          "val": 1
+        },
+        {
+          "key0": "Fox Williams and Audiogenic",
+          "val": 1
+        },
+        {
+          "key0": "Taito/SOL",
+          "val": 1
+        },
+        {
+          "key0": "Toaplan",
+          "val": 1
+        }
+      ]
+    },
+    "SELECT nes_games.Developer AS key0,COUNT(*) AS val  FROM nes_games GROUP BY key0 ORDER BY val ASC NULLS LAST LIMIT 100": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "The Bitmap Brothers",
+          "val": 1
+        },
+        {
+          "key0": "Bitmasters",
+          "val": 1
+        },
+        {
+          "key0": "Workss",
+          "val": 1
+        },
+        {
+          "key0": "Nintendo Research & Development 1, TOSE",
+          "val": 1
+        },
+        {
+          "key0": "Dino Dini",
+          "val": 1
+        },
+        {
+          "key0": "Rare, Leland Corporation",
+          "val": 1
+        },
+        {
+          "key0": "Elite Systems",
+          "val": 1
+        },
+        {
+          "key0": "Atlus, Escape/Westone",
+          "val": 1
+        },
+        {
+          "key0": "David BrabenIan Bell",
+          "val": 1
+        },
+        {
+          "key0": "Cyclone System",
+          "val": 1
+        },
+        {
+          "key0": "Arena Graphics",
+          "val": 1
+        },
+        {
+          "key0": "Special FX Software",
+          "val": 1
+        },
+        {
+          "key0": "Software Creations, Gray Matter Interactive",
+          "val": 1
+        },
+        {
+          "key0": "Sandcastle",
+          "val": 1
+        },
+        {
+          "key0": "Lenar",
+          "val": 1
+        },
+        {
+          "key0": "Free Fall Associates",
+          "val": 1
+        },
+        {
+          "key0": "SETA",
+          "val": 1
+        },
+        {
+          "key0": "T&E Soft",
+          "val": 1
+        },
+        {
+          "key0": "Special FX",
+          "val": 1
+        },
+        {
+          "key0": "Novotrade International",
+          "val": 1
+        },
+        {
+          "key0": "Movie Software",
+          "val": 1
+        },
+        {
+          "key0": "Software Creations, Ocean Software",
+          "val": 1
+        },
+        {
+          "key0": "Gremlin Interactive",
+          "val": 1
+        },
+        {
+          "key0": "I.T.L",
+          "val": 1
+        },
+        {
+          "key0": "Thinking Rabbit",
+          "val": 1
+        },
+        {
+          "key0": "???",
+          "val": 1
+        },
+        {
+          "key0": "Opera House",
+          "val": 1
+        },
+        {
+          "key0": "Incredible Technologies",
+          "val": 1
+        },
+        {
+          "key0": "Bits Corporation",
+          "val": 1
+        },
+        {
+          "key0": "Taito/SOL",
+          "val": 1
+        },
+        {
+          "key0": "System 3",
+          "val": 1
+        },
+        {
+          "key0": "Marionette, SRS",
+          "val": 1
+        },
+        {
+          "key0": "Tamtex, TOSE",
+          "val": 1
+        },
+        {
+          "key0": "Shimada Kikaku",
+          "val": 1
+        },
+        {
+          "key0": "Titus Software",
+          "val": 1
+        },
+        {
+          "key0": "Game Arts",
+          "val": 1
+        },
+        {
+          "key0": "Sammy Japan",
+          "val": 1
+        },
+        {
+          "key0": "KAZe",
+          "val": 1
+        },
+        {
+          "key0": "MicroProse",
+          "val": 1
+        },
+        {
+          "key0": "Gray Matter Interactive, Eastridge Technology",
+          "val": 1
+        },
+        {
+          "key0": "Vid Kidz",
+          "val": 1
+        },
+        {
+          "key0": "Ironwind Software",
+          "val": 1
+        },
+        {
+          "key0": "Nintendo, Intelligent Systems",
+          "val": 1
+        },
+        {
+          "key0": "Sculptured Software, Radioactive Software",
+          "val": 1
+        },
+        {
+          "key0": "Another",
+          "val": 1
+        },
+        {
+          "key0": "Probe Software, Bits Studios",
+          "val": 1
+        },
+        {
+          "key0": "Crosstalk",
+          "val": 1
+        },
+        {
+          "key0": "Graphic Research",
+          "val": 1
+        },
+        {
+          "key0": "Raffaele Cecco",
+          "val": 1
+        },
+        {
+          "key0": "Origin Systems",
+          "val": 1
+        },
+        {
+          "key0": "Atelier Double, Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Newtopia Planning",
+          "val": 1
+        },
+        {
+          "key0": "Carry Lab",
+          "val": 1
+        },
+        {
+          "key0": "Visual Concepts",
+          "val": 1
+        },
+        {
+          "key0": "Daiei Seisakusho",
+          "val": 1
+        },
+        {
+          "key0": "Twilight",
+          "val": 1
+        },
+        {
+          "key0": "Cirque Verte",
+          "val": 1
+        },
+        {
+          "key0": "Quest",
+          "val": 1
+        },
+        {
+          "key0": "Toho",
+          "val": 1
+        },
+        {
+          "key0": "SETA, Visco",
+          "val": 1
+        },
+        {
+          "key0": "Beam Software, Cinemaware, Incredible Technologies",
+          "val": 1
+        },
+        {
+          "key0": "Eastridge Technology",
+          "val": 1
+        },
+        {
+          "key0": "Takeru",
+          "val": 1
+        },
+        {
+          "key0": "Rainbow Arts",
+          "val": 1
+        },
+        {
+          "key0": "Eurocom, Virgin Interactive",
+          "val": 1
+        },
+        {
+          "key0": "Magnetic Fields",
+          "val": 1
+        },
+        {
+          "key0": "Nintendo Research & Development 3, Locomotive Corporation",
+          "val": 1
+        },
+        {
+          "key0": "Gray Matter Inc.",
+          "val": 1
+        },
+        {
+          "key0": "Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Virgin Mastertronic",
+          "val": 1
+        },
+        {
+          "key0": "Intelligent Systems",
+          "val": 1
+        },
+        {
+          "key0": "SOL",
+          "val": 1
+        },
+        {
+          "key0": "Electronic Arts",
+          "val": 1
+        },
+        {
+          "key0": "Fox Williams and Audiogenic",
+          "val": 1
+        },
+        {
+          "key0": "Park Place Productions",
+          "val": 1
+        },
+        {
+          "key0": "Jaleco, The Sales Curve, Eurocom",
+          "val": 1
+        },
+        {
+          "key0": "Hudson Soft, Aicom",
+          "val": 1
+        },
+        {
+          "key0": "Lenar, Tamtex",
+          "val": 1
+        },
+        {
+          "key0": "Sculptured Software, Bits Studios",
+          "val": 1
+        },
+        {
+          "key0": "Jastec, Neue Design",
+          "val": 1
+        },
+        {
+          "key0": "Toaplan",
+          "val": 1
+        },
+        {
+          "key0": "Painting by Numbers",
+          "val": 1
+        },
+        {
+          "key0": "Equilibrium",
+          "val": 1
+        },
+        {
+          "key0": "EIM Group",
+          "val": 1
+        },
+        {
+          "key0": "Hot B, Pixel",
+          "val": 1
+        },
+        {
+          "key0": "Gremlin Graphics",
+          "val": 1
+        },
+        {
+          "key0": "Mind's Eye",
+          "val": 1
+        },
+        {
+          "key0": "Visco Corporation",
+          "val": 1
+        },
+        {
+          "key0": "New World Computing",
+          "val": 1
+        },
+        {
+          "key0": "Tamtex",
+          "val": 1
+        },
+        {
+          "key0": "Software Creations, Arcadia Systems",
+          "val": 1
+        },
+        {
+          "key0": "Arc System Works, Capcom",
+          "val": 1
+        },
+        {
+          "key0": "Enigma Variations",
+          "val": 1
+        },
+        {
+          "key0": "Romstar, Make Software",
+          "val": 1
+        },
+        {
+          "key0": "Spidersoft",
+          "val": 1
+        },
+        {
+          "key0": "Audiogenic, Milestone srl",
+          "val": 1
+        },
+        {
+          "key0": "DMA Design",
+          "val": 1
+        },
+        {
+          "key0": "King Features Syndicate",
+          "val": 1
+        },
+        {
+          "key0": "Nihon Falcom",
+          "val": 1
+        },
+        {
+          "key0": "Andrew Braybrook",
+          "val": 1
+        }
+      ]
+    },
+    "SELECT nes_games.Developer AS key0,COUNT(*) AS val  FROM nes_games GROUP BY key0 ORDER BY key0 ASC LIMIT 100": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "???",
+          "val": 1
+        },
+        {
+          "key0": "AI",
+          "val": 2
+        },
+        {
+          "key0": "ASCII",
+          "val": 2
+        },
+        {
+          "key0": "Activision",
+          "val": 2
+        },
+        {
+          "key0": "Advance Communication Company",
+          "val": 3
+        },
+        {
+          "key0": "Aicom",
+          "val": 8
+        },
+        {
+          "key0": "Andrew Braybrook",
+          "val": 1
+        },
+        {
+          "key0": "Another",
+          "val": 1
+        },
+        {
+          "key0": "Arc System Works, Capcom",
+          "val": 1
+        },
+        {
+          "key0": "Arena Graphics",
+          "val": 1
+        },
+        {
+          "key0": "Atelier Double",
+          "val": 2
+        },
+        {
+          "key0": "Atelier Double, Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Athena",
+          "val": 3
+        },
+        {
+          "key0": "Atlus",
+          "val": 10
+        },
+        {
+          "key0": "Atlus, Escape/Westone",
+          "val": 1
+        },
+        {
+          "key0": "Audiogenic, Milestone srl",
+          "val": 1
+        },
+        {
+          "key0": "Beam Software",
+          "val": 22
+        },
+        {
+          "key0": "Beam Software, Cinemaware",
+          "val": 2
+        },
+        {
+          "key0": "Beam Software, Cinemaware, Incredible Technologies",
+          "val": 1
+        },
+        {
+          "key0": "Beam Software, System 3",
+          "val": 1
+        },
+        {
+          "key0": "Beam Software, Teeny Weeny Games",
+          "val": 1
+        },
+        {
+          "key0": "Beam Software, Tengen",
+          "val": 2
+        },
+        {
+          "key0": "Bethesda Softworks",
+          "val": 3
+        },
+        {
+          "key0": "Bit Managers",
+          "val": 2
+        },
+        {
+          "key0": "Bitmasters",
+          "val": 1
+        },
+        {
+          "key0": "Bits Corporation",
+          "val": 1
+        },
+        {
+          "key0": "Bits Studios",
+          "val": 2
+        },
+        {
+          "key0": "Bullet-Proof Software",
+          "val": 2
+        },
+        {
+          "key0": "Capcom",
+          "val": 26
+        },
+        {
+          "key0": "Carry Lab",
+          "val": 1
+        },
+        {
+          "key0": "Chris Gray Enterprises",
+          "val": 2
+        },
+        {
+          "key0": "Chunsoft",
+          "val": 4
+        },
+        {
+          "key0": "Cirque Verte",
+          "val": 1
+        },
+        {
+          "key0": "Compile",
+          "val": 5
+        },
+        {
+          "key0": "Crosstalk",
+          "val": 1
+        },
+        {
+          "key0": "Culture Brain",
+          "val": 6
+        },
+        {
+          "key0": "Cyclone System",
+          "val": 1
+        },
+        {
+          "key0": "DMA Design",
+          "val": 1
+        },
+        {
+          "key0": "Daiei Seisakusho",
+          "val": 1
+        },
+        {
+          "key0": "Data East",
+          "val": 8
+        },
+        {
+          "key0": "Data East, Sakata SAS",
+          "val": 8
+        },
+        {
+          "key0": "David BrabenIan Bell",
+          "val": 1
+        },
+        {
+          "key0": "Dino Dini",
+          "val": 1
+        },
+        {
+          "key0": "Distinctive Software",
+          "val": 3
+        },
+        {
+          "key0": "EIM Group",
+          "val": 1
+        },
+        {
+          "key0": "Eastridge Technology",
+          "val": 1
+        },
+        {
+          "key0": "Electronic Arts",
+          "val": 1
+        },
+        {
+          "key0": "Elite Systems",
+          "val": 1
+        },
+        {
+          "key0": "Enigma Variations",
+          "val": 1
+        },
+        {
+          "key0": "Equilibrium",
+          "val": 1
+        },
+        {
+          "key0": "Eurocom",
+          "val": 3
+        },
+        {
+          "key0": "Eurocom, Virgin Interactive",
+          "val": 1
+        },
+        {
+          "key0": "FarSight Studios",
+          "val": 2
+        },
+        {
+          "key0": "Fox Williams and Audiogenic",
+          "val": 1
+        },
+        {
+          "key0": "Free Fall Associates",
+          "val": 1
+        },
+        {
+          "key0": "Game Arts",
+          "val": 1
+        },
+        {
+          "key0": "Game Freak",
+          "val": 2
+        },
+        {
+          "key0": "Graphic Research",
+          "val": 1
+        },
+        {
+          "key0": "Gray Matter Inc.",
+          "val": 1
+        },
+        {
+          "key0": "Gray Matter Interactive, Eastridge Technology",
+          "val": 1
+        },
+        {
+          "key0": "Gremlin Graphics",
+          "val": 1
+        },
+        {
+          "key0": "Gremlin Interactive",
+          "val": 1
+        },
+        {
+          "key0": "HAL Laboratory",
+          "val": 10
+        },
+        {
+          "key0": "Home Data",
+          "val": 2
+        },
+        {
+          "key0": "Hot B, Pixel",
+          "val": 1
+        },
+        {
+          "key0": "Hot-B",
+          "val": 2
+        },
+        {
+          "key0": "Hudson Soft",
+          "val": 13
+        },
+        {
+          "key0": "Hudson Soft, Aicom",
+          "val": 1
+        },
+        {
+          "key0": "Human Entertainment",
+          "val": 9
+        },
+        {
+          "key0": "I.T.L",
+          "val": 1
+        },
+        {
+          "key0": "Imagineering",
+          "val": 20
+        },
+        {
+          "key0": "Imagitec",
+          "val": 2
+        },
+        {
+          "key0": "Incredible Technologies",
+          "val": 1
+        },
+        {
+          "key0": "Infinity",
+          "val": 1
+        },
+        {
+          "key0": "Intelligent Systems",
+          "val": 1
+        },
+        {
+          "key0": "Interplay Entertainment",
+          "val": 3
+        },
+        {
+          "key0": "Irem",
+          "val": 2
+        },
+        {
+          "key0": "Ironwind Software",
+          "val": 1
+        },
+        {
+          "key0": "Jaleco",
+          "val": 3
+        },
+        {
+          "key0": "Jaleco, The Sales Curve, Eurocom",
+          "val": 1
+        },
+        {
+          "key0": "Jastec, Neue Design",
+          "val": 1
+        },
+        {
+          "key0": "KAZe",
+          "val": 1
+        },
+        {
+          "key0": "KID",
+          "val": 8
+        },
+        {
+          "key0": "Kemco",
+          "val": 11
+        },
+        {
+          "key0": "King Features Syndicate",
+          "val": 1
+        },
+        {
+          "key0": "Koei",
+          "val": 9
+        },
+        {
+          "key0": "Konami",
+          "val": 45
+        },
+        {
+          "key0": "Lenar",
+          "val": 1
+        },
+        {
+          "key0": "Lenar, Tamtex",
+          "val": 1
+        },
+        {
+          "key0": "Lucasfilm Games",
+          "val": 2
+        },
+        {
+          "key0": "Magnetic Fields",
+          "val": 1
+        },
+        {
+          "key0": "Make Software",
+          "val": 3
+        },
+        {
+          "key0": "Marionette",
+          "val": 2
+        },
+        {
+          "key0": "Marionette, SRS",
+          "val": 1
+        },
+        {
+          "key0": "MicroProse",
+          "val": 1
+        },
+        {
+          "key0": "Micronics",
+          "val": 9
+        },
+        {
+          "key0": "Mind's Eye",
+          "val": 1
+        },
+        {
+          "key0": "Mindscape",
+          "val": 3
+        },
+        {
+          "key0": "MotiveTime",
+          "val": 2
+        },
+        {
+          "key0": "Movie Software",
+          "val": 1
+        }
+      ]
+    },
+    "SELECT nes_games.Developer AS key0,COUNT(*) AS val  FROM nes_games GROUP BY key0 ORDER BY val DESC NULLS LAST LIMIT 10": {
+      "{\"eliminateNullRows\":false\"logValues\":{\"chartId\":\"1\",\"dashboardId\":null}}": [
+        {
+          "key0": "Konami",
+          "val": 45
+        },
+        {
+          "key0": "Rare",
+          "val": 37
+        },
+        {
+          "key0": "TOSE",
+          "val": 27
+        },
+        {
+          "key0": "Capcom",
+          "val": 26
+        },
+        {
+          "key0": "Beam Software",
+          "val": 22
+        },
+        {
+          "key0": "Nintendo Research & Development 1",
+          "val": 22
+        },
+        {
+          "key0": "Imagineering",
+          "val": 20
+        },
+        {
+          "key0": "Tecmo",
+          "val": 14
+        },
+        {
+          "key0": "Hudson Soft",
+          "val": 13
+        },
+        {
+          "key0": "Kemco",
+          "val": 11
+        }
+      ]
+    },
+    "SELECT COUNT(*) AS val FROM nes_games": {
+      "{\"eliminateNullRows\":false,\"renderSpec\":null}": {
+        "sizeAsync": [
+          {
+            "val": 680
+          }
+        ]
+      },
+      "{\"columnarResults\":true,\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":null,\"logValues\":{\"chartId\":\"nes_games\",\"dashboardId\":null}}": [
+        {
+          "val": 680
+        }
+      ]
+    },
+    "SELECT COUNT(*) AS val FROM nes_games WHERE Developer = 'Tecmo'": {
+      "{\"columnarResults\":true,\"eliminateNullRows\":false,\"renderSpec\":null,\"queryId\":null,\"logValues\":{\"chartId\":\"nes_games\",\"dashboardId\":null}}": [
+        {
+          "val": 14
+        }
+      ]
+    }
+  }
+}

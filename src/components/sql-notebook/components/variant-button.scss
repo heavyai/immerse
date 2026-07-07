@@ -1,0 +1,52 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.variant-button {
+  display: flex;
+
+  // Hover on either button should highlight separator
+  &:hover
+    .mdc-menu-surface--anchor
+    .variant-button__menu-anchor:not(:disabled) {
+    border-left: 1px solid var(--secondary-200);
+  }
+
+  > .variant-button__primary-button {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .mdc-menu-surface {
+    text-wrap: nowrap;
+    right: 0;
+    left: unset;
+    transform: translateY(-$spacing-10);
+    margin-bottom: $spacing-04;
+    border-radius: $spacing-04;
+    background-color: var(--gray-950);
+    border: 1px solid var(--gray-850);
+  }
+}
+
+.variant-button__menu-anchor {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  padding: $spacing-05 $spacing-02;
+  border-left: 1px solid var(--secondary-300);
+
+  &:disabled {
+    border-left: 1px solid $border-dim;
+  }
+
+  &:hover:not(.variant-button__menu-anchor--open) i {
+    transform: translateY(-8px);
+  }
+}
+
+.variant-button__menu-anchor--open i {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,13 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../variables.scss";
+
+.sql-notebook__snackbar {
+  top: 50px;
+  // Shift it over for side nav (54px) + side panel width
+  margin-left: calc(#{$globalSideNavWidth} + #{$dataPanelWidth});
+  bottom: unset;
+}

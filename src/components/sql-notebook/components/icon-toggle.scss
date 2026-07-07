@@ -1,0 +1,36 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+body {
+  --icon-toggle: #{$icon-light};
+  --icon-toggle-active: #ffffff;
+  --icon-toggle-selected: #{$mdc-theme-primary};
+}
+
+body.light-mode,
+body.light2-mode {
+  --icon-toggle: var(--gray-650);
+  --icon-toggle-active: var(--gray-500);
+  --icon-toggle-selected: var(--primary-400);
+}
+
+.icon-toggle {
+  svg {
+    fill: var(--icon-toggle);
+  }
+  &:hover {
+    svg {
+      fill: var(--icon-toggle-active);
+    }
+    cursor: pointer;
+  }
+  &.selected {
+    svg {
+      fill: var(--icon-toggle-selected);
+    }
+  }
+}

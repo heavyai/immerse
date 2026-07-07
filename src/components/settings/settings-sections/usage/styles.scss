@@ -1,0 +1,92 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.settings .system-settings {
+  width: 1072px;
+
+  .system-settings__row {
+    display: flex;
+    margin-bottom: 40px;
+  }
+
+  .settings__system__launcher {
+    padding: 0;
+
+    .launcher-link {
+      a {
+        display: flex;
+        align-items: center;
+      }
+
+      i {
+        margin-right: 2px;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .usage-monitor-widget {
+    margin-right: 53px;
+  }
+
+  .system-settings__logs {
+    padding: 44px 32px 36px 0;
+  }
+
+  .system-settings__upgrade {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .system-settings__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .system-settings__block {
+    background: #111111;
+    border: 1px solid #222222;
+    border-radius: 12px;
+    display: flex;
+
+    &:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
+
+  .system-settings__block--usage {
+    width: 799px;
+    display: flex;
+  }
+
+  .system-settings__block--system-dashboards {
+    display: block;
+    padding: 32px;
+  }
+
+}
+
+body.light-mode,
+body.light2-mode {
+  .system-settings {
+    .system-settings__block {
+      background: $lightGray;
+      border: 1px solid #bbbbbb;
+      color: $darkGray4;
+    }
+
+    h4,
+    h3 {
+      color: #555555;
+    }
+
+    .settings__system__launcher {
+      color: $gray6;
+    }
+  }
+}

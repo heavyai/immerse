@@ -1,0 +1,399 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.main-nav {
+  background: white;
+  display: flex;
+  flex: 0 0 48px;
+  align-items: center;
+  padding: 0 16px;
+  z-index: map_get($zindex, main-nav);
+
+  &.is-side-nav-enabled {
+    &.show-side-nav-trigger {
+      padding-left: 4px;
+
+      &:not(.is-side-nav-pinned) {
+        padding-left: 58px;
+      }
+    }
+
+    #dashboard-title-placeholder {
+      color: $gray4;
+    }
+
+    .dashboard-kebab-button {
+      display: flex;
+      height: 24px;
+    }
+
+    .left-wrapper {
+      min-width: none;
+    }
+
+    .dashboard-name {
+      height: 30px;
+    }
+
+    .global-side-nav__account {
+      border-radius: 50%;
+      width: 42px;
+      margin: 5px;
+    }
+
+    .chart-editor-navbar {
+      button.cancel {
+        margin-right: 10px;
+      }
+    }
+
+    button#dashboard-save {
+      display: flex;
+      margin-left: 8px;
+    }
+
+    .center-wrapper {
+      .count-widget-container {
+        justify-content: flex-start;
+      }
+    }
+
+    .nav-group {
+      align-self: center;
+      position: relative;
+    }
+
+    .filter-sets-list__label {
+      display: none;
+    }
+  }
+
+  .main-nav__title {
+    font-weight: 300;
+  }
+
+  .settings-main-nav__title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  .settings-nav-header-icon {
+    max-width: 100%;
+    padding-left: 8px;
+    position: absolute;
+    top: 2.5px;
+  }
+
+  .nav-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button {
+    padding: 0 8px;
+    height: 48px;
+    font-size: $fontSizeNormal;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $main-menu;
+    cursor: pointer;
+    line-height: 50px;
+    display: inline-block;
+    text-decoration: none !important;
+    margin: 0 16px;
+
+    &:hover {
+      color: $mdc-theme-primary;
+
+      .icon {
+        fill: $mdc-theme-primary;
+      }
+    }
+
+    &:hover > .help-popover {
+      color: $gray6;
+    }
+
+    &.active {
+      color: $mdc-theme-primary;
+      position: relative;
+
+      &::after {
+        height: 3px;
+        bottom: 0;
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background: $mdc-theme-primary;
+        animation: showHighlightBar 0.25s;
+        transform-origin: 50% 50%;
+      }
+
+      .icon {
+        fill: $mdc-theme-primary;
+      }
+    }
+  }
+
+  .main-nav-logo {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin: 0 32px 0 16px;
+    cursor: pointer;
+  }
+
+  .right-nav-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    > * {
+      &:not(#user-dropdown) {
+        margin: 0 4px;
+      }
+    }
+  }
+
+  .help-popover,
+  .user-popover {
+    font-weight: 200;
+    text-align: left;
+    background: white;
+    color: $gray6;
+    border: 1px solid $gray3;
+    border-radius: 4px;
+    width: 210px;
+    padding: 12px 12px;
+    margin: 0;
+    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    position: absolute;
+    top: 50px;
+
+    .nav-dropdown-break {
+      border-color: $gray2;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      margin: 10px 0;
+    }
+
+    .dropdown-link {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .highlight {
+      padding-left: 8px;
+      padding-right: 8px;
+
+      &:hover {
+        color: $mdc-theme-primary;
+      }
+    }
+
+    .displayText {
+      cursor: default;
+      color: $text-gray;
+      text-transform: none;
+      line-height: 1.3em;
+
+      .displayTextBlock {
+        font-weight: 200;
+        max-width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .displayHighlight {
+        color: $text-black;
+      }
+    }
+  }
+
+  .user-popover {
+    text-align: left;
+    right: -16px;
+    padding: 0;
+    .highlight {
+      padding: 0;
+    }
+    li {
+      .highlight {
+        padding: 0.8em 1em;
+      }
+      &:first-child > :first-child {
+        padding: 0.8rem 1em;
+        border-bottom: 1px solid #c7c7c7;
+        font-size: 0.9em;
+      }
+      &:nth-child(2) {
+        & > :first-child {
+          padding-top: 1.6em;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .user-dropdown-display {
+    display: flex;
+    align-items: center;
+    line-height: initial;
+    margin: 0;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: #383838;
+    fill: $icon-light;
+
+    body.light-mode & {
+      background-color: $grayDp1;
+      fill: #555;
+    }
+  }
+
+  .dropdown-display-text {
+    fill: $gray6;
+    position: relative;
+    padding-right: 8px;
+
+    .dropdown-display-icon {
+      position: absolute;
+      right: -8px;
+      top: -16px;
+    }
+  }
+
+  .dropdown-display-icon {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.25em;
+    margin-top: 1px;
+    display: inline-block;
+  }
+
+  .user-icon {
+    position: relative;
+
+    .dropdown-display-icon {
+      position: absolute;
+      right: -10px;
+      top: -5px;
+    }
+  }
+
+  .nav-buttons .nav-center-header {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      font-size: $fontSizeLarge;
+      font-weight: normal;
+      color: #aaa;
+
+      body.light-mode & {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.app-info-content {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+
+  .app-info-logo {
+    width: 13em;
+  }
+
+  .app-info-specs {
+    list-style: none;
+    text-align: left;
+  }
+}
+
+// Meant to be overridden by Cloud Portal CSS, will be reversed when on cloud
+.account-panel {
+  display: block;
+}
+
+.account-panel-cloud {
+  display: none;
+}
+
+@keyframes showHighlightBar {
+  0% {
+    transform: scale(0, 1);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+body:not(.light2-mode) .main-nav {
+  &.show-side-nav-trigger {
+    border-bottom: 1px solid $borderSeparator;
+  }
+  &.is-side-nav-enabled {
+    #dashboard-title-input {
+      background: $grayDp24;
+      span {
+        color: $gray3 !important;
+      }
+    }
+  }
+}
+
+.app.is-side-nav-enabled {
+  .main-nav {
+    padding-right: 0;
+  }
+  .main-nav,
+  .nav-buttons,
+  .import-dashboard-button {
+    height: 48px;
+  }
+
+  .import-dashboard-button {
+    width: 36px;
+  }
+
+  .global-side-nav__account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-nav-logo {
+    height: 48px;
+    max-width: 100%;
+    align-self: center;
+    margin: 0 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  #dashboard-share > div.icon-label {
+    display: none;
+  }
+}
+body.light-mode,
+body.light2-mode {
+  .main-nav__title.settings-main-nav__title {
+    color: $darkGray4;
+  }
+}

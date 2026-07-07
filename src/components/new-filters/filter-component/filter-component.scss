@@ -1,0 +1,702 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+$x-light-gray: rgb(245, 245, 245);
+$light-gray: silver;
+$mid-gray: rgb(125, 125, 125);
+
+.filter-component {
+  align-items: center;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  font-size: $fontSizeSmall;
+  width: 100%;
+  margin-bottom: 16px;
+
+  &:hover {
+    .filter-button > .filter-component-delete {
+      display: block;
+    }
+  }
+
+  .data-expression {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @keyframes filter-pulse-light {
+    0% {
+      border-color: transparent;
+      background-color: $gray1;
+    }
+    25% {
+      border-color: $mdc-theme-primary;
+      background-color: $mdc-theme-primary;
+    }
+    50% {
+      border-color: transparent;
+      background-color: $gray1;
+    }
+    100% {
+      border-color: $mdc-theme-primary;
+      background-color: $gray2;
+    }
+  }
+
+  .newly-created-filter {
+    animation: filter-pulse-light 1.5s linear forwards;
+  }
+
+  .filter-container {
+    border: 2px solid transparent;
+    position: relative;
+    margin-bottom: 16px;
+
+    &:hover {
+      border-color: $mdc-theme-primary;
+    }
+  }
+
+  .logical-operator {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #888888;
+  }
+  .filter-component-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  .filter-component-column {
+    min-width: 0;
+    font-size: $fontSizeNormal;
+    border-radius: 2px 2px 0 0px;
+    padding: 8px;
+    border: 1px solid silver;
+    display: flex;
+    height: 33px;
+    background: $x-light-gray;
+    align-items: center;
+    span {
+      flex: 1;
+    }
+
+    .filter-button {
+      cursor: pointer;
+    }
+
+    .filter-component-toggle {
+      margin-right: 8px;
+
+      &.incomplete {
+        background: silver;
+        border-radius: 50%;
+        height: 16px;
+        width: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        .incomplete-icon {
+          font-size: $fontSizeSmall;
+          color: white;
+        }
+      }
+    }
+
+    input {
+      background: inherit;
+      border: 0px;
+      width: 100%;
+      outline: none;
+    }
+  }
+
+  .filter-component-delete {
+    display: none;
+    justify-content: center;
+    position: absolute;
+    font-size: $fontSizeSmall;
+    color: silver;
+    right: -6px;
+    top: -6px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    border: 1px solid silver;
+  }
+
+  .filter-component-simple-mode-icon {
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.is-disabled {
+      cursor: default;
+      color: #ddd;
+    }
+  }
+
+  .filter-component-sql {
+    border-radius: 0 0 2px 2px;
+    border-top: 0;
+    font-size: $fontSizeSmall;
+    padding: 8px;
+    border: 1px solid silver;
+    border-top: 0;
+    height: 60px;
+    background: $x-light-gray;
+    align-items: flex-start;
+
+    .filter-component-scroller {
+      overflow: auto;
+      height: 100%;
+    }
+  }
+
+  .operator {
+    flex: 0 auto;
+    background: $x-light-gray;
+    padding-left: 8px;
+    border-radius: 0 0 0 3px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    box-sizing: border-box;
+    > .operator-label,
+    .arrow {
+      flex: auto;
+      color: $dimTextOnDark;
+    }
+    .operator-label {
+      font-size: $fontSizeSmall;
+      justify-content: flex-start;
+      white-space: nowrap;
+    }
+    .arrow {
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 8px;
+      font-size: $fontSizeSmall;
+      color: $mid-gray;
+
+      &::after {
+        content: "▾";
+      }
+
+      &.opened::after {
+        transform: rotate(180deg);
+      }
+    }
+    .spacer {
+      padding: 0 8px;
+    }
+  }
+
+  .filter-operator-selector {
+    display: flex;
+    align-content: stretch;
+    border: 1px solid silver;
+    border-radius: 0 0 3px 3px;
+    border-top: 0;
+    height: 30px;
+    width: 100%;
+    position: relative;
+    background: $x-light-gray;
+    &.full-width {
+      .operator {
+        display: flex;
+        flex: 1;
+      }
+      &:not(.middle-section) {
+        border-radius: 0;
+        border-bottom: 0;
+      }
+    }
+
+    &:hover .case-sensitive-icon,
+    .case-sensitive-icon.checked {
+      display: inline;
+    }
+
+    .case-sensitive-icon {
+      position: absolute;
+      padding-left: 4px;
+      line-height: 30px;
+      display: none;
+      color: $dimIconOnDark;
+
+      &.checked {
+        color: $dimTextOnDark;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $dimTextOnDark;
+      }
+    }
+
+    .between-input {
+      display: flex;
+      align-items: center;
+    }
+
+    .start-input,
+    .end-input,
+    .value-input {
+      display: flex;
+      height: 100%;
+      flex: 1;
+      position: relative;
+      input {
+        height: 100%;
+        width: 100%;
+        text-align: right;
+        padding: 0 8px 0 4px;
+        border: none;
+      }
+
+      .autosuggest-dropdown {
+        display: flex;
+        position: absolute;
+        top: 30px;
+        width: 100%;
+        ul {
+          display: flex;
+          padding: 0;
+          margin: 0;
+          flex-direction: column;
+          max-height: 400px;
+          overflow: auto;
+          &::-webkit-scrollbar {
+            width: 8px;
+            background-color: white;
+          }
+          &::-webkit-scrollbar-track {
+            background: white;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: $gray2;
+            border-radius: 8px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background: $gray2;
+          }
+        }
+        li {
+          display: flex;
+          width: fit-content;
+          align-items: center;
+          cursor: pointer;
+          height: 24px;
+          .autosuggest-item-name {
+            font-size: $fontSizeSmall;
+          }
+          .autosuggest-item-count {
+            font-size: $fontSizeSmall;
+            margin-left: 4px;
+          }
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .end-input > input {
+      border-radius: 0 0 3px 0;
+    }
+
+    .between-label {
+      align-items: center;
+      padding: 0 4px;
+      background: $x-light-gray;
+      color: $mid-gray;
+      flex: 0 20px;
+    }
+
+    .operator-menu,
+    .autosuggest-dropdown,
+    .filter-operator-selector-submenu {
+      left: 0;
+    }
+
+    .operator-item,
+    .autosuggest-item {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      color: $mid-gray;
+      font-size: $fontSizeSmall;
+      height: 24px;
+      cursor: pointer;
+      background-color: white;
+      &.selected {
+        background-color: $x-light-gray;
+      }
+      &:hover {
+        background: $x-light-gray;
+      }
+    }
+
+    .autosuggest-item-name {
+      font-weight: bold;
+      color: $text-black;
+    }
+
+    .value-input .input-tooltip-target {
+      display: flex;
+      flex: 1;
+    }
+
+    .parameter-selector-input input.parameterized {
+      font-style: italic;
+      letter-spacing: 0.07em;
+    }
+  }
+
+  .operator-menu {
+    margin-top: 28px;
+    position: absolute;
+    min-width: 148px;
+    margin-left: -1px;
+    top: 0;
+    .operator-divider {
+      height: 1px;
+      width: 100%;
+      background-color: $x-light-gray;
+      margin: 2px 0 2px;
+      cursor: default;
+    }
+    .parent-option {
+      overflow: visible;
+      &:hover {
+        > .filter-operator-selector-submenu {
+          visibility: visible;
+        }
+      }
+    }
+    .filter-operator-selector-submenu {
+      flex-direction: column;
+      z-index: 2;
+      width: fit-content;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      visibility: hidden;
+    }
+  }
+
+  .operator-menu,
+  .autosuggest-dropdown,
+  .filter-operator-selector-submenu {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 2px 0;
+    white-space: nowrap;
+  }
+
+  .filter-cohort-display {
+    font-size: $fontSizeLarge;
+    padding: 8px;
+    border: 1px solid silver;
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      > :first-child {
+        flex-grow: 1;
+        min-width: 0;
+        overflow-wrap: break-word;
+        cursor: pointer;
+      }
+      .info-icon {
+        height: 18px;
+        width: 18px;
+        position: relative;
+        display: flex;
+        svg {
+          fill: $operator-text;
+          height: 18px;
+          width: 18px;
+        }
+        &:hover .sql-popover {
+          visibility: visible;
+        }
+        .sql-popover {
+          visibility: hidden;
+          font-size: $fontSizeSmall;
+          line-height: normal;
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: fit-content;
+          width: 240px;
+          background-color: $gray5;
+          color: #eee;
+          border-radius: 3px;
+          padding: 5px;
+          z-index: 1;
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+    .data {
+      display: flex;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+      .column {
+        color: $operator-text;
+        flex-grow: 1;
+      }
+      .column,
+      .count {
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+    }
+  }
+  .filter-column-editor {
+    border: 1px solid $gray4;
+    border-top: 0;
+  }
+  .data-table {
+    width: 100%;
+    height: 200px;
+  }
+  .custom-sql-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    background-color: inherit;
+    color: #bbbbbb;
+    border-top: 1px solid silver;
+
+    .mdc-button .mdc-button__label {
+      font-size: $fontSizeSmall;
+    }
+  }
+
+  .data-table__cell--icon i {
+    font-size: 16px;
+    color: #868686;
+  }
+
+  .data-table__table
+    .rmwc-data-table__row:hover
+    .data-table__cell--icon.has-action:hover {
+    background: transparent;
+
+    i {
+      color: white;
+    }
+  }
+}
+
+.time-fields {
+  display: flex;
+  border-radius: 0 0 2px 2px;
+  border: 1px solid silver;
+  align-items: center;
+  padding: 5px 10px;
+  .hyphen {
+    font-size: $fontSizeLarge;
+    padding: 5px;
+  }
+  .time-display {
+    flex: 1;
+    width: fit-content;
+    font-size: $fontSizeMedium;
+    padding: 5px;
+    span {
+      cursor: pointer;
+    }
+    .day {
+      font-size: $fontSizeSmall;
+    }
+    .time {
+      > * {
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .second {
+        font-size: $fontSizeSmall;
+        margin-right: 0;
+      }
+    }
+  }
+  .time-empty {
+    cursor: pointer;
+  }
+}
+
+.filter-component.aggregate {
+  position: relative;
+  .filter-top-container {
+    display: flex;
+    .filter-component-column {
+      flex: 1;
+    }
+    .operator {
+      width: fit-content;
+    }
+    .operator-menu {
+      z-index: 1;
+      right: 0;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .filter-component {
+    color: $textOnDark;
+    fill: $textOnDark;
+    .filter-component-column,
+    .filter-component-sql {
+      background: $grayDp8;
+      .filter-component-toggle {
+        &.incomplete {
+          background: $grayDp0;
+          .incomplete-icon {
+            color: $operator-text;
+          }
+        }
+      }
+    }
+    .filter-component-simple-mode-icon {
+      &.is-disabled {
+        color: $disabled;
+      }
+    }
+    .filter-operator-selector-container {
+      .time-fields {
+        border-color: $borderSeparator;
+        color: $dimTextOnDark;
+      }
+    }
+    .operator-menu {
+      background: $grayDp8;
+    }
+
+    .operator,
+    .between-label {
+      background: $grayDp8;
+    }
+
+    .operator-menu > .operator-label,
+    .arrow {
+      color: $dimTextOnDark;
+    }
+
+    .start-input input,
+    .end-input input,
+    .value-input input {
+      background: $grayDp24;
+      outline: none;
+    }
+
+    .operator-menu,
+    .autosuggest-dropdown,
+    .filter-operator-selector-submenu {
+      background: $grayDp8;
+      border-color: $borderSeparator;
+      .operator-divider {
+        background-color: $borderSeparator;
+      }
+      .operator-item,
+      .autosuggest-item {
+        display: flex;
+        color: $dimTextOnDark;
+        background: $grayDp8;
+        .autosuggest-item-name {
+          color: $textOnDark;
+        }
+        &:hover,
+        &.selected {
+          color: $textOnDark;
+          background: $highlightOnDark;
+        }
+      }
+    }
+
+    .filter-cohort-display {
+      .data {
+        .column {
+          color: $operator-text;
+        }
+      }
+      .sql-popover {
+        background-color: $borderSeparator;
+        color: $textOnDark;
+      }
+    }
+
+    .filter-component-label {
+      ul {
+        padding-left: 20px;
+        margin: 0;
+      }
+    }
+
+    .filter-component-delete {
+      color: $textOnDark;
+      border: 1px solid $textOnDark;
+      background: $grayDp8;
+    }
+
+    .custom-sql-button-container {
+      background: $grayDp3;
+      border-top: 1px solid $borderSeparator;
+      .mdc-button .mdc-button__label {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+
+  .filter-component-column,
+  .filter-component-sql,
+  .filter-operator-selector,
+  .filter-cohort-display,
+  .filter-column-editor {
+    border-color: $borderSeparator;
+  }
+
+  .filter-operator-selector {
+    background: $grayDp8;
+  }
+
+  @keyframes filter-pulse-dark {
+    0% {
+      border-color: transparent;
+      background-color: $highlightOnDark;
+    }
+    25% {
+      border-color: $mdc-theme-primary;
+      background-color: $mdc-theme-primary;
+    }
+    50% {
+      border-color: transparent;
+      background-color: $highlightOnDark;
+    }
+    100% {
+      border-color: $mdc-theme-primary;
+      background-color: $highlightOnDark;
+    }
+  }
+
+  .newly-created-filter {
+    animation: filter-pulse-dark 1.5s linear forwards;
+  }
+}

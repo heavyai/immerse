@@ -1,0 +1,173 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+// styles pertaining to the modal as a whole
+.custom-modal-dashboard-sharing-body {
+  min-height: 320px;
+  max-height: 75vh;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  input[type="checkbox"],
+  label {
+    display: inline-block;
+    margin: 0;
+  }
+
+  label {
+    font: {
+      size: 14px;
+      weight: normal;
+    }
+  }
+
+  .button {
+    border-radius: 4px;
+  }
+
+  .button.secondary {
+    border: 1px solid $gray3;
+  }
+
+  .button.primary.blue {
+    background-color: $mdc-theme-primary;
+  }
+
+  .button.remove-user {
+    padding: 6px 10px;
+  }
+
+  .dashboard-share-modal--label {
+    text-align: left;
+    font: {
+      weight: bold;
+      size: 14px;
+    }
+  }
+
+  .dashboard-share-modal--tabs {
+    display: flex;
+    border-bottom: 1px solid $light-border;
+    margin-bottom: 6px;
+
+    .dashboard-share-modal--tab-item {
+      padding: 0 8px;
+      text-align: center;
+      color: $text-dim;
+      font-size: $fontSizeNormal;
+      cursor: pointer;
+
+      &.selected {
+        color: $text-gray;
+        border-bottom: 2px solid $gray3;
+        cursor: default;
+      }
+
+      body:not(.light2-mode) & {
+        color: $dimTextOnDark;
+
+        &.selected {
+          color: $textOnDark;
+          border-color: $dimTextOnDark;
+        }
+      }
+    }
+
+    body:not(.light2-mode) & {
+      border-color: $borderSeparator;
+    }
+  }
+
+  .react-autosuggest__inputContainer > .icon-search {
+    right: auto;
+    left: 11px;
+  }
+
+  .react-autosuggest__input {
+    padding-left: 35px;
+    padding-right: 10px;
+  }
+
+  .dashboard-share-modal--users-roles-label {
+    border-bottom: 1px solid $gray3;
+    margin: 6px 0;
+
+    label {
+      font-size: $fontSizeSmall;
+    }
+  }
+
+  .dashboard-share-modal--users-roles-list {
+    max-height: 40vh;
+    overflow-y: auto;
+    border-bottom: 1px solid $gray2;
+  }
+
+  .dashboard-share-modal--user-role-heading {
+    text-align: left;
+    font-size: $fontSizeMedium;
+    font-weight: bold;
+  }
+
+  .dashboard-share-modal--user-role-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 20px;
+    border-bottom: 1px solid $gray2;
+    color: $gray6;
+
+    &.none-selected {
+      border-bottom: none;
+    }
+
+    label {
+      text-align: left;
+      font-size: $fontSizeNormal;
+    }
+  }
+
+  .dashboard-share-modal--share-link-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
+
+    label {
+      flex: 1 100%;
+      margin: 6px 0;
+      text-align: left;
+      font-size: $fontSizeSmall;
+    }
+
+    input {
+      height: 32px;
+      flex-grow: 2;
+      padding-left: 10px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      overflow: hidden;
+      font-size: $fontSizeNormal;
+      font-style: italic;
+      color: #777;
+    }
+
+    button {
+      flex-grow: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .dashboard-share-modal--bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 20px 20px 15px;
+  }
+}

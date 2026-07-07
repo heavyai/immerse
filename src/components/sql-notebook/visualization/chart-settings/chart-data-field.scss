@@ -1,0 +1,86 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.sql-notebook-visualization-view__field-wrapper {
+  margin-top: $spacing-07;
+
+  .size-range-slider {
+    color: $text-light;
+  }
+
+  .sql-notebook-visualization-view__field-label {
+    color: $text-light;
+    font-family: Inter;
+    font-size: $fontSizeNormal;
+    font-weight: 500;
+  }
+
+  .sql-notebook-visualization-view__field-display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-04;
+  }
+
+  .sql-notebook-visualization-view__field-container {
+    position: relative;
+
+    &.sql-notebook-visualization-view__toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sql-notebook-visualization-view__chart-field {
+      .select__control {
+        background-color: var(--visualization-select-background) !important;
+      }
+      .select__menu {
+        background-color: var(
+          --visualization-select-menu-background
+        ) !important;
+        z-index: 3;
+        color: var(--visualization-select-text-color);
+      }
+
+      .select__option {
+        cursor: pointer;
+        &:active {
+          background-color: var(--visualization-select-background);
+        }
+
+        &.select__option--is-selected {
+          background-color: var(--visualization-select-background);
+        }
+
+        &.select__option--is-focused {
+          color: var(--visualization-select-text-color) !important;
+          background-color: var(
+            --visualization-select-focused-option-background
+          ) !important;
+        }
+      }
+    }
+
+    .sql-notebook-visualization-view__bin-control {
+      margin-top: $spacing-05;
+
+      .sql-notebook-visualization-view__bin-toggle {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .sql-notebook-visualization-view__field-type {
+      font-size: 8px;
+      position: absolute;
+      background: $grayDp1;
+      z-index: 2;
+      left: 8px;
+      top: -5px;
+    }
+  }
+}

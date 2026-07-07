@@ -1,0 +1,107 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.vega-color-measure-legend-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  line-height: 1;
+  margin-top: -12px;
+
+  // All font sizes in this component are relative to this value.
+  // When a user increases or decreases the font size of legends via the
+  // Dashboard Config UI, this is the value that changes
+  font-size: $fontSizeSmall;
+
+  .vega-color-measure-legend-wrapper {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin-bottom: 4px;
+
+    .vega-gradient-legend {
+      display: flex;
+      width: 100%;
+
+      .color-item {
+        flex-grow: 1;
+        width: 100%;
+        height: 12px;
+        border: 1px solid #979797;
+      }
+    }
+    .legend-tooltip {
+      position: absolute;
+      top: 25px;
+      font-size: 1.1em;
+      background-color: white;
+    }
+
+    .color-measure-domain-lock-icon {
+      width: 12px;
+      height: 12px;
+      fill: $gray4;
+
+      &:hover {
+        fill: $gray5;
+      }
+    }
+
+    body:not(.light2-mode) & {
+      .color-measure-domain-lock-icon {
+        &:hover {
+          fill: $gray3;
+        }
+      }
+      .legend-tooltip {
+        background-color: $grayDp3;
+      }
+    }
+  }
+  .vega-measure-legend-inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 138px;
+    line-height: 16px;
+    margin-top: -5px;
+
+    > input.legend-domain-input {
+      width: auto;
+      font-size: 1em;
+      color: $gray5;
+      border: 1px solid transparent;
+      background-color: transparent;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        border: 1px solid $gray5;
+        border-radius: 2px;
+      }
+    }
+
+    > input.legend-domain-input.right {
+      text-align: right;
+    }
+    > input.legend-domain-input.left {
+      text-align: left;
+    }
+
+    body:not(.light2-mode):not(.light-mode) & {
+      > input.legend-domain-input {
+        &:hover {
+          background-color: $gray8;
+          border: 1px solid $gray6;
+        }
+      }
+    }
+  }
+}

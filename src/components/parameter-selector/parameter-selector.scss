@@ -1,0 +1,140 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.parameter-selector {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+
+  .data-table {
+    display: flex;
+    border-bottom: 1px solid $light-border;
+    border-radius: 4px 4px 0 0;
+
+    body:not(.light2-mode) & {
+      border-color: $borderSeparator;
+    }
+  }
+
+  .data-table__search {
+    border-radius: 4px 4px 0 0;
+  }
+
+  .rmwc-data-table__row {
+    line-height: 36px;
+  }
+
+  .data-table__cell {
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .mdc-button {
+    margin: 8px;
+  }
+
+  .mdc-button__label {
+    display: flex;
+    align-items: center;
+
+    :first-child {
+      margin-right: 4px;
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+      margin-bottom: -4px;
+    }
+
+    path {
+      fill: currentColor;
+    }
+  }
+
+  .data-table__cell--key-name > span {
+    width: 130px;
+  }
+
+  .data-table__cell--key-value > span {
+    width: 93px;
+  }
+
+  .data-table__cell--key-name > span,
+  .data-table__cell--key-value > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.parameter-selector--empty {
+  .data-table {
+    max-height: 86px;
+  }
+}
+
+.parameter-selector__placeholder {
+  justify-content: center;
+  align-items: center;
+  color: black;
+  display: flex;
+  flex: 1;
+  font-size: $fontSizeSmall;
+  line-height: 16px;
+  text-align: center;
+  padding: 24px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > span {
+      display: block;
+    }
+  }
+
+  span > span {
+    display: inline-flex;
+    cursor: pointer;
+    color: $mdc-theme-primary;
+    height: 16px;
+  }
+
+  path {
+    fill: currentColor;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .parameter-selector__placeholder {
+    color: $dimTextOnDark;
+    border-bottom: 1px solid $borderSeparator;
+  }
+
+  .parameter-selector {
+    .data-table,
+    .data-table__search,
+    .data-table__filters,
+    .data-table__table .rmwc-data-table__cell {
+      background-color: $grayDp8;
+    }
+
+    .data-table__table .rmwc-data-table__head .rmwc-data-table__cell,
+    .data-table__filters {
+      border-color: $borderSeparator;
+    }
+  }
+
+  .parameter-selector .mdc-button__label {
+    color: $dimTextOnDark;
+  }
+}

@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.palette-mapping-selector__palette-mapping-item {
+  width: 100%;
+  line-height: 14px;
+
+  .palette-mapping-item__name,
+  .palette-mapping-item__source-col {
+    font-size: $fontSizeSmall;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $dimTextOnDark;
+  }
+  .palette-mapping-item__palette {
+    display: flex;
+    margin: $spacing-02 0;
+    > div {
+      height: 4px;
+      flex-grow: 1;
+      gap: 2px;
+    }
+  }
+
+  .palette-mapping-item__labels {
+    margin-bottom: $spacing-04;
+
+    > :first-child {
+      font-weight: 700;
+      color: $solid;
+      line-height: 15px;
+    }
+  }
+
+  // Custom styles for the editable value component
+  // to match our palette mapping labels
+  .editable-value {
+    overflow: hidden;
+    .editable-value__click-target {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .editable-value__left-group {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .editable-value__view {
+      flex-grow: 1;
+      line-height: $fontSizeSmall;
+      font-size: $fontSizeSmall;
+      color: $textOnDark;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .editable-value__edit-icon {
+      margin-left: $spacing-02;
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    .edit-input {
+      textarea {
+        height: $fontSizeSmall;
+        line-height: $fontSizeSmall;
+        font-size: $fontSizeSmall;
+        background-color: var(--grayDp24);
+        border-radius: 2px;
+      }
+    }
+  }
+}

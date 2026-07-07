@@ -1,0 +1,35 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#root {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &.is-side-nav-enabled {
+    flex-direction: row;
+
+    .app-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+// RMWC menus with `hoistToBody` set
+#immerse-body > .mdc-menu-surface--open {
+  z-index: 2000;
+}
+
+#custom-portal-root {
+  z-index: 2000;
+}

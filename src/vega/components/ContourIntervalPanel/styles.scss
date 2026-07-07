@@ -1,0 +1,61 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.contour-interval-panel {
+  .switch-with-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin: 8px 0 0 0;
+    width: 100%; /* TODO: figure out why i need to keep setting width on child divs */
+
+    .chart-editor-label {
+      margin: 0;
+    }
+  }
+
+  .interval-settings-container {
+    width: 100%;
+  }
+
+  .text {
+    font-size: 12px;
+    color: $dimTextOnDark;
+  }
+
+  .single-color-picker {
+    margin: 0;
+
+    .color-picker-content {
+      padding: 0;
+    }
+  }
+
+  .custom-selector {
+    width: 25%;
+  }
+
+  .interval-divisions {
+    display: flex;
+    align-items: flex-start;
+
+    .material-icons {
+      line-height: inherit;
+      font-size: inherit;
+      cursor: default;
+    }
+
+    span {
+      margin-right: 5px;
+    }
+  }
+}
+
+.panel-icon {
+  color: $solid;
+}

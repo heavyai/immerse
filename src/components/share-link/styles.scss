@@ -1,0 +1,130 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.chart-type-btn.highlight {
+    color: $mdc-theme-primary !important;
+    fill: $mdc-theme-primary !important;
+    position: relative;
+
+    .block-click {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+}
+
+.share-link-popover {
+    text-align: left;
+    background: white;
+    border: 1px solid $gray3;
+    border-radius: 4px;
+    width: 320px;
+    padding: 10px 16px;
+    box-shadow: 0 2px 3px 1px rgba(black, .2);
+    top: 100%;
+    right: 16px;
+    z-index: 10;
+    position: absolute;
+
+    .share-link-label {
+        color: $gray5;
+        font-size: $fontSizeSmall;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .share-link-row {
+        display: flex;
+    }
+
+    .share-input-wrapper {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    .copy-success {
+        position: absolute;
+        background: rgba($charcoal, .8);
+        font-size: $fontSizeSmall;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 8px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        opacity: 0;
+        animation: showSuccessMessage 1s;
+    }
+
+    .share-link-input-box {
+        padding-left: 4px;
+        color: $gray4;
+        height: 32px;
+        border: 1px solid $gray2;
+        width: 100%;
+        font-size: $fontSizeSmall;
+    }
+
+    .share-link-copy-btn {
+        width: 32px;
+        height: 32px !important;
+        cursor: pointer;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding: 0 0 0 8px !important;
+
+        .icon {
+            width: 28px !important;
+            height: 28px !important;
+        }
+    }
+
+    &:before {
+      content: '';
+      border: 8px solid transparent;
+      border-bottom-color: $gray3;
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      margin-left: 17px;
+    }
+
+    &:after {
+      content: '';
+      border: 6px solid transparent;
+      border-bottom-color: white;
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      margin-left: 19px;
+    }
+}
+
+@keyframes showSuccessMessage {
+    0% {
+        transform: translate(-50%, -50%) scale(.5, 1);
+        opacity: 0;
+    }
+    10% {
+        transform: translate(-50%, -50%) scale(1, 1);
+        opacity: 1;
+    }
+    90% {
+        transform: translate(-50%, -50%) scale(1, 1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(.5, 1);
+        opacity: 0;
+    }
+}
+

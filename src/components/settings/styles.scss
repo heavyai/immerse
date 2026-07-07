@@ -1,0 +1,349 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "~themes/mixins";
+
+.settings {
+  display: grid;
+  grid-template-columns: 218px 1fr;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  h1,
+  h3,
+  h4,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  p {
+    font-size: $fontSizeNormal;
+    color: $dimTextOnDark;
+  }
+
+  h6 {
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  table {
+    th {
+      text-align: left;
+      padding-bottom: 14px;
+    }
+
+    th,
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 8px;
+    }
+
+    td {
+      padding: 10px 4px 11px 0;
+    }
+  }
+
+  .settings__content__header {
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 36px;
+      font-weight: normal;
+      line-height: 44px;
+    }
+
+    p {
+      color: #888888;
+      line-height: 24px;
+    }
+  }
+
+  .settings__nav,
+  .settings__content {
+    padding: 24px;
+    overflow: auto;
+    color: white;
+    font-size: $fontSizeNormal;
+
+    li {
+      list-style: none;
+      font-size: $fontSizeSmall;
+    }
+
+    a {
+      &:last-child li {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .settings__content {
+    padding: 33px 50px;
+  }
+
+  ul.settings__nav {
+    list-style: none;
+    margin: 0;
+    background-color: $grayDp0;
+    color: $dimTextOnDark;
+    padding: 24px;
+
+    li {
+      border-radius: 4px;
+    }
+
+    li,
+    h6 {
+      padding: 6px 8px;
+    }
+
+    h6 {
+      color: $textOnDark;
+    }
+
+    a:hover {
+      color: white;
+
+      &:not(.active) li {
+        background: $grayDp1;
+      }
+    }
+
+    a.active {
+      color: white;
+      cursor: default;
+
+      li {
+        background-color: $grayDp1;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .profile-settings {
+    position: relative;
+  }
+
+  .settings-header-wrapper {
+    display: flex;
+    margin: 8.5px 0 13.5px 0;
+
+    .settings-header-text {
+      display: inline-block;
+      padding-right: 8px;
+      padding-top: 1px;
+      font-weight: bold;
+      font-size: 10px;
+      color: #555555;
+      text-transform: uppercase;
+      line-height: 12px;
+    }
+
+    .settings-header-icon {
+      display: inline-block;
+      max-width: 100%;
+    }
+  }
+
+  .settings-link-card {
+    background-color: $grayDp0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $textOnDark;
+
+    p {
+      color: $dimTextOnDark;
+    }
+
+    svg {
+      fill: currentColor;
+    }
+  }
+
+  .mdc-text-field--outlined.mdc-text-field--focused {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-width: 1px;
+    }
+  }
+}
+
+body.dark-mode .settings {
+  .settings-link-card {
+    background-color: #111111;
+    border: 1px solid #222222;
+    color: white;
+
+    &:hover {
+      background-color: #161616;
+    }
+
+    p {
+      color: #777777;
+    }
+  }
+
+  .link-card-grid .mdc-button:not(.mdc-ripple-upgraded).mdc-button--outlined {
+    background-color: #222222;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  .users-settings,
+  .roles-settings,
+  .feature-settings {
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__trailing {
+      border-color: #333;
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__input:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__trailing,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__icon:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__icon:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused)
+      .mdc-text-field__icon:hover
+      ~ .mdc-notched-outline
+      .mdc-notched-outline__trailing {
+      border-color: #444;
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        background-color: #444;
+      }
+    }
+
+    .mdc-text-field.mdc-text-field--upgraded:not(.mdc-text-field--disabled)
+      .mdc-text-field__input {
+      color: #fff;
+    }
+
+    .mdc-text-field {
+      i,
+      input::placeholder {
+        color: #ccc !important;
+      }
+    }
+  }
+}
+
+body.light-mode,
+body.light2-mode {
+  ul.settings__nav {
+    background-color: $gray10;
+
+    a:hover {
+      color: #404040;
+
+      &:not(.active) li {
+        background: #e3e3e3;
+      }
+    }
+
+    a.active {
+      color: #333333;
+
+      li {
+        background-color: $darkGray;
+      }
+    }
+
+    h6 {
+      color: #1e1e1e;
+    }
+
+    li {
+      color: #555555;
+    }
+  }
+
+  .settings__content {
+    background: $lightGray;
+
+    h1,
+    th,
+    td {
+      color: #444444;
+    }
+
+    h4 {
+      color: #1e1e1e;
+    }
+
+    p {
+      color: $gray6;
+    }
+  }
+
+  .users-settings,
+  .roles-settings,
+  .feature-settings {
+    .mdc-text-field.mdc-text-field--upgraded .mdc-notched-outline {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        background-color: $gray10;
+      }
+    }
+  }
+
+  .users-settings,
+  .roles-settings,
+  .feature-settings {
+    .mdc-text-field.mdc-text-field--upgraded {
+      @include notch-border($gray10);
+    }
+  }
+
+  .link-card-grid .mdc-button:not(.mdc-ripple-upgraded).mdc-button--outlined {
+    background-color: $lightGray;
+    &:hover {
+      background-color: $gray2;
+    }
+  }
+}

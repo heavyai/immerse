@@ -1,0 +1,77 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.color-picker-widget {
+  position: relative;
+
+  // color-preview-wrap
+  .color-preview-wrap {
+    margin: 4px 0;
+    display: flex;
+
+    .color-item {
+      &.quantitative {
+        width: 218px;
+      }
+    }
+
+    .color-swatch {
+      display: flex;
+      height: 24px;
+      width: 100%;
+
+      &.selected {
+        &:after {
+          display: none;
+        }
+
+        .color-item {
+          height: 24px;
+        }
+      }
+
+      &:hover {
+        &:after {
+          display: block;
+        }
+      }
+    }
+  }
+  // reverse-colors
+  .button.reverse-colors {
+    height: 24px !important;
+    width: 64px;
+    background: url("../../assets/imgs/icon-reverse-colors.svg") no-repeat
+      center center;
+    margin-left: 8px;
+    position: relative;
+    top: 1px;
+
+    &.closer {
+      margin-left: -4px;
+    }
+
+    &:hover {
+      background: url("../../assets/imgs/icon-reverse-colors-forward.svg")
+        no-repeat center center;
+
+      &.active {
+        background: url("../../assets/imgs/icon-reverse-colors-backward.svg")
+          no-repeat center center;
+      }
+    }
+  }
+}
+
+@keyframes colorItemShuffle {
+  0% {
+    transform: translate(0, 32px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

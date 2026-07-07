@@ -1,0 +1,113 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.custom-sql-side-browser {
+  display: flex;
+  flex-direction: row;
+
+  .handles {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $gray3;
+  }
+
+  .handle,
+  .close-handle {
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 4px 0 0 4px;
+    width: fit-content;
+    cursor: pointer;
+    margin-top: 8px;
+    border: 1px solid silver;
+    border-right: 0;
+  }
+
+  .handle {
+    padding: 8px 0;
+    font-size: $fontSizeNormal;
+
+    span {
+      transform: rotate(180deg);
+      writing-mode: vertical-lr;
+      white-space: nowrap;
+    }
+  }
+
+  .data-table {
+    width: 335px;
+  }
+
+  .data-table__cell--key-value,
+  .data-table__cell--key-defaultValue {
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .function-browser {
+    display: flex;
+    flex-direction: column;
+    background: $gray10;
+    width: 335px;
+  }
+
+  .column-browser {
+    display: flex;
+    flex-direction: column;
+    background: $gray10;
+
+    .multi-select {
+      margin: 12px 8px 0 8px;
+
+      .select__menu {
+        margin: 0;
+      }
+
+      .select__menu-list {
+        padding: 0;
+      }
+
+      .select__group {
+        padding: 0;
+
+        &:not(:first-child) {
+          border-top: 1px solid $borderSeparator;
+        }
+      }
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .custom-sql-side-browser {
+    .handles {
+      border-color: $borderSeparator;
+    }
+
+    .handle,
+    .close-handle {
+      background: $grayDp3;
+      border-color: $borderSeparator;
+      color: $dimTextOnDark;
+    }
+
+    .handle {
+      color: $dimTextOnDark;
+
+      &.is-active {
+        color: $textOnDark;
+      }
+    }
+
+    .column-browser,
+    .function-browser {
+      background-color: $grayDp1;
+    }
+  }
+}

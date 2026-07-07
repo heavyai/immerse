@@ -1,0 +1,192 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+/** Taking a stab at some semantic style vars for the sql notebook! **/
+body {
+  --result-cell-background: transparent;
+  --input-cell-background: var(--grayDp3);
+  --cell-section-background: #{$surface-container-lowest};
+  --code-editor-background: var(
+    --surface-container-lowest
+  ); // blend into cell section
+  --cell-text-color: var(--gray-400);
+  --cell-header-text-color: #{$text-default};
+
+  --feedback-button: var(--gray-550);
+  --feedback-button-active: var(--gray-100);
+  --feedback-button-selected: var(--gray-50);
+  --feedback-input: var(--gray-850);
+
+  --vega-backdrop: var(--gray-925);
+
+  --outline-button-text-color: var(--gray-25);
+  --outline-button-background: transparent;
+  --outline-button-hover-background: rgba(#fff, 0.2);
+  --outline-button-border: #{$border-medium};
+  --button-disabled-background: #{$grayDp1};
+  --button-disabled-text-color: #{$solid-alpha30};
+
+  --cta-button-text-color: #{$text-light};
+  --cta-button-background: #{$grayDp0};
+  --cta-button-border: transparent;
+  --cta-button-hover-text-color: #{$solid};
+  --cta-button-hover-background-color: #{$grayDp1};
+  --cta-button-hover-border: transparent;
+  --cta-button-disabled-text-color: #{$solid-alpha30};
+  --cta-button-disabled-background-color: var(--gray-900);
+
+  --editable-text-hover: var(--gray-850);
+  --editable-text-editing: rgba(255, 255, 255, 0.05);
+
+  --pill-text-color: var(--gray-400);
+  --pill-border-color: #787878;
+
+  --workspace-background: #{$grayDp0};
+
+  --divider: #{$border-dim};
+
+  --table-cell-divider: #{$border-dim};
+  --table-header-border: #{$border-medium};
+  --table-text-color: #{$text-light};
+  --table-header-text-color: #{$text-default};
+  --results-meta-text-color: #{$dimIconOnDark};
+
+  --tabs-background: var(--grayDp3);
+  --tab-text-color: #{$text-light};
+  --tab-hover-background: #{$grayDp24};
+  --tab-hover-text-color: white;
+  --active-tab-background: #{$grayDp24};
+  --active-tab-text-color: white;
+
+  --new-cell-footer-text-color: #{$text-light};
+
+  --data-panel-text-color: var(--gray-400);
+
+  --visualization-select-background: transparent;
+  --visualization-select-menu-background: #{$grayDp2};
+  --visualization-select-text-color: white;
+  --visualization-select-focused-option-background: #{$solid-alpha10};
+
+  --vega-map-error-background: var(--gray-900);
+
+  --used-snippets-popover-header-color: var(--gray-300);
+  --used-snippets-popover-item-color: var(--text-light);
+  --used-snippets-popover-item-color-hover: var(--gray-25);
+  --used-snippets-indicator-background: var(--gray-925);
+  --used-snippets-indicator-background-hover: var(--grayDp8);
+}
+
+body.light-mode {
+  --result-cell-background: transparent;
+  --input-cell-background: var(--gray-200);
+  --cell-section-background: var(--gray-50);
+  --code-editor-background: var(
+    --surface-container-lowest
+  ); // blend into cell section
+  --cell-text-color: var(--gray-850);
+
+  --feedback-button: var(--gray-500);
+  --feedback-button-active: var(--gray-800);
+  --feedback-button-selected: var(--gray-950);
+  --feedback-input: white;
+
+  --vega-backdrop: white;
+
+  --outline-button-text-color: var(--gray-850);
+  --outline-button-hover-text-color: var(--gray-700);
+  --outline-button-background: var(--gray-300);
+  --outline-button-hover-background: var(--gray-100);
+  --outline-button-border: var(--gray-100);
+
+  --cta-button-background: white;
+  --cta-button-border: var(--gray-200);
+  --cta-button-hover-text-color: var(--gray-850);
+  --cta-button-hover-background-color: var(--gray-10);
+  --cta-button-hover-border: var(--gray-400);
+  --cta-button-disabled-background-color: var(--gray-500);
+
+  --editable-text-hover: var(--gray-50);
+  --editable-text-editing: var(--gray-10);
+
+  --pill-text-color: var(--gray-650);
+  --pill-border-color: var(--gray-400);
+
+  --table-cell-divider: var(--gray-300);
+  --table-header-border: var(--gray-300);
+  --table-text-color: var(--gray-800);
+  --table-header-text-color: var(--gray-700);
+  --results-meta-text-color: var(--gray-700);
+
+  --tabs-background: var(--gray-50);
+  --tab-text-color: var(--gray-700);
+  --tab-hover-background: var(--gray-200);
+  --tab-hover-text-color: var(--gray-800);
+  --active-tab-background: var(--gray-200);
+  --active-tab-text-color: var(--gray-700);
+
+  --data-panel-text-color: var(--gray-700);
+
+  --visualization-select-background: white;
+  --visualization-select-menu-background: white;
+  --visualization-select-text-color: black;
+  --visualization-select-focused-option-background: var(--gray-50);
+
+  --vega-map-error-background: var(--gray-50);
+
+  --used-snippets-popover-header-color: var(--text-default);
+  --used-snippets-popover-item-color: var(--text-light);
+  --used-snippets-popover-item-color-hover: var(--text-solid);
+  --used-snippets-indicator-background: var(--grayDp1);
+  --used-snippets-indicator-background-hover: var(--grayDp0);
+}
+
+body.custom-mode {
+  --used-snippets-popover-header-color: var(--text-default);
+  --used-snippets-popover-item-color: var(--text-light);
+  --used-snippets-indicator-background: var(--grayDp1);
+  --used-snippets-indicator-background-hover: var(--grayDp0);
+}
+
+/** Themed variables */
+$cellBackground: var(--cell-background);
+$cellSectionBackground: var(--cell-section-background);
+$codeEditorBackground: var(--code-editor-background);
+$cellTextColor: var(--cell-text-color);
+$outlineButtonTextColor: var(--outline-button-text-color);
+
+/** Does not change based on theme **/
+$dataPanelWidth: 332px;
+$codeMirrorHeight5Lines: 136px;
+$codeMirrorHeight10Lines: 236px;
+$codeMirrorHeight27Lines: 640px;
+$collapsibleDuration: 400ms !default;
+$guidanceSnippetModalMinWidth: 1020px;
+$guidanceSnippetInputContainerMaxHeight: 330px;
+
+$modalTitleFontSize: 24px;
+
+$buttonText: #ffffff;
+$successButton: var(--success-600);
+$successButtonActive: var(--success-500);
+
+$disabledButton: var(--gray-925);
+$disabledButtonText: var(--gray-700);
+
+$outlineButtonBorder: var(--outline-button-border);
+$outlineButtonActive: var(--gray-900);
+
+$secondaryButton: var(--secondary-400);
+$secondaryButtonActive: var(--secondary-300);
+
+$primaryButton: var(--primary-400);
+$primaryButtonActive: var(--primary-300);
+
+$errorButton: var(--error-400);
+$errorButtonActive: var(--error-300);
+
+$defaultButton: var(--gray-650);
+$defaultButtonText: var(--gray-25);

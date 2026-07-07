@@ -1,0 +1,178 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../../../results/collapsible-mixin.scss";
+
+// This needs to be kept in sync with a constant in map-legend.tsx if changed 
+$legendWidth: 300px;
+$maxLegendHeight: 300px;
+
+body {
+  --legendBorder: var(--gray-850);
+  --legendBackground: var(--gray-900); 
+  --legendBackgroundActive: var(--gray-800);
+  --legendShadow: var(--gray-900);
+  --sizeGradientBackground: var(--gray-700);
+  --sizeGradientIndicator: var(--gray-200);
+}
+
+body.light-mode {
+  --legendBorder: var(--gray-400);
+  --legendBackground: var(--gray-50); 
+  --legendBackgroundActive: var(--gray-75);
+  --legendShadow: var(--gray-200);
+  --sizeGradientBackground: var(--gray-200);
+  --sizeGradientIndicator: var(--gray-700);
+}
+
+$legendBorder: var(--legendBorder);
+$legendBackground: var(--legendBackground);
+$legendBackgroundActive: var(--legendBackgroundActive);
+$legendShadow: var(--legendShadow);
+$sizeGradientBackground: var(--sizeGradientBackground);
+$sizeGradientIndicator: var(--sizeGradientIndicator);
+
+.vega-map-legend {
+  max-width: $legendWidth;
+  position: absolute;
+  bottom: $spacing-06;
+  left: $spacing-06;
+  z-index: 5;
+
+  .quantize-legend {
+    .quantize-colors {
+      min-width: $legendWidth;
+      display: flex;
+      .color-block {
+        height: 12px;
+        border: 1px solid $solid;
+      }
+    }
+    .quantize-labels {
+      display: flex;
+      justify-content: space-between;
+      > .quantize-label {
+        font-size: $fontSizeSmaller;
+      }
+    }
+  }
+
+  .categorical-legend {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-04;
+
+    .categorical-row {
+      display: flex;
+      align-items: center;
+      gap: $spacing-04;
+    }
+    .categorical-color-block {
+      width: 16px;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+    .categorical-label {
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .size-legend {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    .size-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > .continuous-label {
+        font-size: $fontSizeSmall;
+      }
+      &.align-left {
+        display: flex;
+        justify-content: flex-start;
+        gap: $spacing-04;
+      }
+    }
+
+    .size-indicator {
+      border-radius: 50%;
+      background-color: $solid;
+    }
+
+    .size-gradient {
+      width: 100%;
+      path {
+        fill: $sizeGradientBackground;
+      }
+      circle {
+        fill: $sizeGradientIndicator;
+      }
+    }
+  }
+
+  .collapsible-legend {
+    max-height: $maxLegendHeight;
+    min-width: $legendWidth;
+    box-shadow: 0px 0px 12px 2px $legendShadow;
+    border: 1px solid $legendBorder;
+
+    &.collapsed {
+      min-width: 0;
+    }
+    background-color: $legendBackground;
+    overflow: hidden;
+    border-radius: 8px;
+
+    .collapsible-legend__title {
+      display: flex;
+      align-items: center;
+      padding: $spacing-04;
+      font-size: $fontSizeNormal;
+      &:hover {
+        background-color: $legendBackgroundActive;
+        cursor: pointer;
+      }
+    }
+    .collapsible-legend__content {
+      display: block;
+      font-size: $fontSizeSmall;
+      overflow-y: auto;
+      padding: $spacing-04;
+      max-height: 200px;
+      min-height: 0;
+      // Legends stack up
+      display: flex; 
+      flex-direction: column;
+      gap: $spacing-06;
+    }
+  }
+
+  .continuous-legend {
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    .continuous-labels {
+      display: flex;
+      justify-content: space-between;
+      > .continuous-label {
+        font-size: $fontSizeSmall;
+      }
+    }
+    .continuous-colors {
+      width: 100%;
+      height: 12px;
+      border: 1px solid $solid;
+      border-radius: 4px;
+    }
+  }
+
+  $collapsibleDuration: 250ms;
+  @include collapsible($duration: $collapsibleDuration);
+}

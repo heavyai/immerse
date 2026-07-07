@@ -1,0 +1,229 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.layers-legend-container {
+  position: absolute;
+  // This should sit above the chart elements
+  // axis renaming and bound inputs (.parameter-selector-input__popup) are at 15
+  z-index: 16;
+  top: 0;
+  right: 8px;
+  overflow-y: auto;
+  max-width: calc(100% - 16px);
+  border: 1px solid #ddd;
+  &:not(.pinned) {
+    max-height: calc(100% - 40px);
+  }
+  &.pinned {
+    top: 0;
+    right: 0;
+  }
+  .collapsible-layers-legend-panel {
+    display: block;
+    overflow-x: hidden;
+    min-width: 100px;
+    max-width: 160px;
+    border: 1px solid #f1f1f1;
+
+    .legend-header {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      padding: 8px;
+      align-items: center;
+      &.hidden {
+        opacity: 0;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .legend-header-title {
+        font-size: $fontSizeSmall;
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 18px;
+        .column-name {
+          flex-shrink: 0;
+          max-width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: $charcoal;
+        }
+        .table-name {
+          flex-grow: 1;
+          margin-left: 8px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .legend-header-pin {
+        padding: 0 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &:hover {
+          cursor: pointer;
+        }
+        &.pinned svg {
+          fill: $textOnDark;
+        }
+        svg {
+          height: 16px;
+          width: 16px;
+          fill: $dimTextOnDark;
+        }
+      }
+
+      .legend-header-collapse {
+        padding: 0 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &:hover {
+          cursor: pointer;
+        }
+        svg {
+          height: 16px;
+          width: 16px;
+          fill: $dimTextOnDark;
+          &.open {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+
+    .measure-item {
+      padding: 2px 4px;
+    }
+
+    .collapsible-layers-legend-panel-children {
+      padding: 4px;
+    }
+  }
+}
+
+body:not(.light2-mode) .layers-legend-container {
+  background-color: $grayDp8;
+
+  .collapsible-layers-legend-panel {
+    border-width: 0;
+
+    .legend-header {
+      .legend-header-title {
+        .column-name {
+          color: $textOnDark;
+        }
+
+        .table-name {
+          color: $dimTextOnDark;
+        }
+      }
+
+      .legend-header-pin {
+        &.pinned svg {
+          fill: $textOnDark;
+        }
+        svg {
+          fill: $dimTextOnDark;
+        }
+      }
+    }
+  }
+}
+
+body.light-mode .layers-legend-container {
+  background-color: white;
+}
+
+// modeled after vega/components/TopN styling - reference there when adding addtl funct
+.measure-item-container {
+  // makes sure color swatch popup appears in correct place
+  position: relative;
+}
+
+.measure-item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  font-size: $fontSizeSmall;
+  border-radius: 2px;
+  &:hover {
+    i {
+      color: $text-dim;
+    }
+  }
+  .mark-style-icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border: none;
+    vertical-align: middle;
+    border-radius: 2px;
+    margin-right: 0px;
+
+    &.line {
+      border-bottom: 2.5px solid #000;
+      height: 0;
+
+      &.solid {
+        border-bottom-style: solid;
+      }
+
+      &.dashes {
+        border-bottom-style: dashed;
+      }
+
+      &.dotted {
+        border-bottom-style: dotted;
+      }
+    }
+  }
+  .measure-value {
+    flex: 1 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 4px;
+    color: #555;
+    // Prevents Safari from auto-adding a second tooltip
+    span::after {
+      content: "";
+      display: block;
+    }
+    &.disabled {
+      color: $text-dim;
+    }
+    &.italic {
+      font-style: italic;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .measure-item {
+    background: transparent;
+    border-width: 0;
+    .measure-value {
+      color: $textOnDark;
+      &.disabled {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+  .layers-legend-container {
+    border: 1px solid transparent;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+}

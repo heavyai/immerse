@@ -1,0 +1,91 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+body {
+  --orange-400: #ef6820;
+
+  --warning-25: #fffcf5;
+  --warning-50: #fffaeb;
+  --warning-100: #feefc7;
+  --warning-200: #fedf89;
+  --warning-300: #fec84b;
+  --warning-400: #fdb022;
+  --warning-400-rgb: 253, 176, 34;
+  --warning-500: #f79009;
+  --warning-600: #dc6803;
+  --warning-700: #b54708;
+  --warning-800: #93370d;
+  --warning-900: #792e0d;
+
+  --error-25: #fbebef;
+  --error-50: #f6d7de;
+  --error-100: #f2c3ce;
+  --error-200: #ea9bad;
+  --error-300: #e1728c;
+  --error-400: #d4365a;
+  --error-500: #bf3151;
+  --error-600: #aa2b48;
+  --error-700: #94263f;
+  --error-800: #7f2036;
+  --error-900: #6a1b2d;
+
+  /* Gray */
+  --gray-10: #fbfbfb;
+  --gray-25: #f3f3f3;
+  --gray-50: #eeeeee;
+  --gray-75: #e7e7e7;
+  --gray-100: #d3d3d3;
+  --gray-200: #cccccc;
+  --gray-300: #bbbbbb;
+  --gray-400: #aaaaaa;
+  --gray-500: #999999;
+  --gray-550: #888888;
+  --gray-600: #777777;
+  --gray-650: #666666;
+  --gray-700: #555555;
+  --gray-800: #444444;
+  --gray-850: #333333;
+  --gray-900: #222222;
+  --gray-925: #171717;
+  --gray-950: #111111;
+  --gray-975: #0c0c0c;
+
+  /* Success */
+  --success-25: #f6fef9;
+  --success-50: #ecfdf3;
+  --success-100: #d1fadf;
+  --success-200: #a6f4c5;
+  --success-300: #6ce9a6;
+  --success-400: #32d583;
+  --success-500: #12b76a;
+  --success-600: #039855;
+  --success-700: #027948;
+  --success-800: #05603a;
+  --success-900: #054f31;
+
+  --secondary-25: #e7eafb;
+  --secondary-50: #cfd6f8;
+  --secondary-100: #9facf0;
+  --secondary-200: #6f83e9;
+  --secondary-300: #3f59e1;
+  --secondary-400: #0f30da;
+  --secondary-500: #0e2bc4;
+  --secondary-600: #0c26ae;
+  --secondary-700: #091d83;
+  --secondary-800: #08186d;
+  --secondary-900: #061357;
+
+  --primary-25: #e6f3fa;
+  --primary-50: #cce7f6;
+  --primary-100: #99d0ed;
+  --primary-200: #4dacdf;
+  --primary-300: #1a95d6;
+  --primary-400: #0089d1;
+  --primary-500: #007bbc;
+  --primary-600: #006ea7;
+  --primary-700: #00527d;
+  --primary-800: #004569;
+  --primary-900: #022a40;
+}

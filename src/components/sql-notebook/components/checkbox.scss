@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.sql-notebook-checkbox {
+  .mdc-checkbox__native-control:enabled:checked ~ .mdc-checkbox__background,
+  .mdc-checkbox__native-control:enabled:indeterminate ~ .mdc-checkbox__background {
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+  }
+
+  .mdc-checkbox--upgraded.mdc-checkbox input:enabled {
+    &:checked ~ .mdc-checkbox__background .mdc-checkbox__checkmark-path {
+      color: #0F48DA;
+    }
+  }
+
+  .mdc-checkbox--anim-unchecked-checked .mdc-checkbox__background, .mdc-checkbox--anim-unchecked-indeterminate .mdc-checkbox__background, .mdc-checkbox--anim-checked-unchecked .mdc-checkbox__background, .mdc-checkbox--anim-indeterminate-unchecked .mdc-checkbox__background {
+    -webkit-animation-duration: 0ms;
+    animation-duration: 0ms;
+  }
+}

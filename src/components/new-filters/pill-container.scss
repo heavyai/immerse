@@ -1,0 +1,60 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../../components/pills/pills";
+
+.filter-operator-multi-select {
+  display: flex;
+  background: white;
+  border: 1px solid silver;
+  min-height: 34px;
+  .scroll-container {
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    &.scrollable {
+      overflow: auto;
+      :first-child & .selection-pill > .value {
+        max-width: calc(100% - 10px); // when "show more" pill is hidden
+      }
+    }
+  }
+  .add-selection-container {
+    display: flex;
+    justify-content: center;
+    width: 34px; // change SIZE_OF_PILL_CONTAINER_MENU_AREA in pill-container.js if this changes
+    display: flex;
+    justify-content: flex-start;
+    .add-selection {
+      cursor: pointer;
+    }
+  }
+  .selection-pill-more {
+    width: 80px;
+    .value {
+      width: 100%;
+    }
+  }
+
+  :first-child & .selection-pill {
+    > .value {
+      max-width: 116px;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .filter-operator-multi-select {
+    background: $borderSeparator;
+    border-color: $borderSeparator;
+  }
+}
+
+body.light-mode {
+  .filter-operator-multi-select {
+    background: $grayDp24;
+  }
+}

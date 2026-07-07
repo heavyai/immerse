@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.sql-notebook__polygon-map-settings {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-06;
+  .border-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

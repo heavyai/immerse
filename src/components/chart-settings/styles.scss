@@ -1,0 +1,63 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.line2-settings {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.global-chart-settings {
+    border-top: 1px solid #a7a7a7;
+    padding-top: 15px;
+}
+
+.chart-editor-visual-data-mapping-label {
+    display: flex;
+    align-items: center;
+}
+
+.chart-editor-topN-lock-button {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    margin-left: 8px;
+    box-sizing: border-box;
+    border: 2px transparent solid;
+    user-select: none;
+
+    .chart-editor-topN-locked-icon {
+        font-size: $fontSizeMedium !important;
+    }
+}
+
+.chart-editor-topN-lock-button-clickable:hover {
+    border: 2px #a7a7a7 solid;
+    border-radius: 2px;
+}
+
+.popup-switch-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pointmap-num-points .custom-slider .input-wrap input {
+  width: 60px;
+}
+
+.priority-option-selector {
+    width: 220px;
+    .select__menu {
+        padding: 0;
+        margin: 0;
+        border: 1px solid gray;
+        overflow-y: auto;
+        margin-bottom: 30px;
+    }
+}

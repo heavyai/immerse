@@ -1,0 +1,89 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.custom-source-manager {
+  // It's overrides all the way down
+  .mdc-dialog__container {
+    height: 70vh;
+    width: 60vw;
+
+    .mdc-dialog__surface {
+      height: 100%;
+      min-width: 100%;
+
+      .mdc-dialog__content {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.custom-source-manager__layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.custom-source-manager__editor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 8px 16px 16px;
+
+  .mdc-text-field {
+    margin-bottom: 8px;
+  }
+}
+
+.custom-source-manager__expression {
+  width: 100%;
+  height: 90%;
+  font-size: $fontSizeNormal;
+  padding: 10px 10px;
+  resize: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: $fontSizeNormal;
+  }
+}
+
+.custom-source-manager__name {
+  display: flex;
+  padding: 10px 0;
+  flex-direction: column;
+  width: 100%;
+}
+
+.custom-source-manager__error {
+  font-size: $fontSizeSmall;
+  line-height: 10px;
+  overflow: auto;
+  max-height: 32px;
+  padding-top: 3px;
+  margin-top: 8px;
+}
+
+.custom-source-manager__submit {
+  width: 175px;
+
+  .rmwc-circular-progress {
+    vertical-align: middle;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .custom-source-manager__expression {
+    background-color: $grayDp0;
+    color: $textOnDark;
+    border-color: $borderSeparator;
+  }
+}

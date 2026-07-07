@@ -1,0 +1,21 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.recorder-button {
+  border-right: 1px solid var(--divider);
+  margin-right: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  .recording-icon {
+    width: 24px;
+    height: 24px;
+  }
+}

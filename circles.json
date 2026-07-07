@@ -1,0 +1,22 @@
+[
+  "src/reducers/user-configurable-ui-reducer.ts -> src/actions/user-configurable-ui-action-creators.ts -> src/reducers/user-configurable-ui-reducer.ts",
+  "src/actions/user-configurable-ui-action-creators.ts -> src/reducers/user-configurable-ui-reducer.ts -> src/actions/user-configurable-ui-action-creators.ts",
+  "src/vega/utils/filter.ts -> src/vega/constants/filter-types.ts -> src/vega/utils/filter.ts",
+  "src/vega/constants/filter-types.ts -> src/vega/utils/filter.ts -> src/vega/constants/filter-types.ts",
+  "src/vega/actions/filter-action-creators-crossfilter-interop.js -> src/actions/charts-filter-action-creators.js -> src/charts/bar-chart/bar-filter-action-creators.js -> src/vega/actions/filter-action-creators-crossfilter-interop.js",
+  "src/actions/charts-filter-action-creators.js -> src/charts/bar-chart/bar-filter-action-creators.js -> src/vega/actions/filter-action-creators-crossfilter-interop.js -> src/actions/charts-filter-action-creators.js",
+  "src/charts/bar-chart/bar-filter-action-creators.js -> src/vega/actions/filter-action-creators-crossfilter-interop.js -> src/actions/charts-filter-action-creators.js -> src/charts/bar-chart/bar-filter-action-creators.js",
+  "src/actions/update-chart-action-creator.js -> src/vega/actions/filter-action-creators-crossfilter-interop.js -> src/actions/charts-filter-action-creators.js -> src/charts/combo/line-chart2/line2-filter-action-creators.js -> src/actions/update-chart-action-creator.js",
+  "src/charts/combo/line-chart2/line2-filter-action-creators.js -> src/actions/update-chart-action-creator.js -> src/vega/actions/filter-action-creators-crossfilter-interop.js -> src/actions/charts-filter-action-creators.js -> src/charts/combo/line-chart2/line2-filter-action-creators.js",
+  "src/actions/connection-action-creators.js -> src/actions/license-action-creators.js -> src/actions/connection-action-creators.js",
+  "src/actions/license-action-creators.js -> src/actions/connection-action-creators.js -> src/actions/license-action-creators.js",
+  "src/reducers/charts/charts-reducer.ts -> src/charts/line/line-chart-reducer.js -> src/reducers/charts/add-dimension-reducer.ts -> src/reducers/charts/charts-reducer.ts",
+  "src/charts/line/line-chart-reducer.js -> src/reducers/charts/add-dimension-reducer.ts -> src/reducers/charts/charts-reducer.ts -> src/charts/line/line-chart-reducer.js",
+  "src/reducers/charts/add-dimension-reducer.ts -> src/reducers/charts/charts-reducer.ts -> src/charts/line/line-chart-reducer.js -> src/reducers/charts/add-dimension-reducer.ts",
+  "src/components/new-filters/filter-component/components/filter-dropdown-menu.js -> src/components/new-filters/filter-component/components/filter-dropdown-option.js -> src/components/new-filters/filter-component/components/filter-dropdown-menu.js",
+  "src/components/new-filters/filter-component/components/filter-dropdown-option.js -> src/components/new-filters/filter-component/components/filter-dropdown-menu.js -> src/components/new-filters/filter-component/components/filter-dropdown-option.js",
+  "src/components/dashboards/dashboard-manager-filters/dashboard-manager-filters.tsx -> src/components/dashboards/dashboard-manager-filters/DashboardManagerFilterView.tsx -> src/components/dashboards/dashboard-manager-filters/dashboard-manager-filters.tsx",
+  "src/components/dashboards/dashboard-manager-filters/DashboardManagerFilterView.tsx -> src/components/dashboards/dashboard-manager-filters/dashboard-manager-filters.tsx -> src/components/dashboards/dashboard-manager-filters/DashboardManagerFilterView.tsx",
+  "src/charts/line/line-chart-interface.js -> src/charts/line/line.js -> src/charts/line/line-chart-interface.js",
+  "src/charts/line/line.js -> src/charts/line/line-chart-interface.js -> src/charts/line/line.js"
+]

@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../../sql-notebook/results/collapsible-mixin.scss";
+
+.collapsible-palette-mapping-list {
+  .collapsible-palette-mapping-list__menu-item--expanded {
+    height: 60px;
+  }
+
+  .mdc-list-item {
+    padding: $spacing-04;
+  }
+}

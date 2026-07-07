@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./variables.scss";
+
+.sql-notebook-visualization {
+  // Deck map is absolute, so need it to be positioned within this element
+  position: relative;
+  min-height: $visualizationHeight;
+  padding: $spacing-04;
+  width: 100%;
+  display: flex;
+  gap: $spacing-04;
+}

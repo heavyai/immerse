@@ -1,0 +1,54 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./variables";
+
+body {
+  --divider-color: #{$borderSeparator};
+}
+
+.sql-notebook {
+  height: calc(100vh - #{$topNavHeight});
+  width: 100%;
+  display: grid;
+  grid-template-columns:
+    var(--data-panel-width, $dataPanelWidth) var(--data-panel-spacer-width, 0)
+    16px auto;
+
+  /* Update the timeout length that resizes vega charts 
+  in sql-notebook.tsx if this changes */
+  transition: 300ms;
+
+  &.is-collapsed {
+    --data-panel-width: 0px;
+    --data-panel-spacer-width: 8px;
+    .sql-notebook__data-panel__spacer {
+      background-color: var(--workspace-background);
+      border-right: 1px solid var(--divider-color);
+    }
+  }
+  .sql-notebook__data-panel-container {
+    overflow: hidden;
+    border-right: 1px solid var(--divider-color);
+  }
+
+  .CodeMirror {
+    background-color: $codeEditorBackground;
+  }
+  .CodeMirror-gutters {
+    background-color: $codeEditorBackground;
+    border-right: none;
+  }
+}
+
+.sql-notebook__data-panel__hide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--workspace-background);
+  color: $solid;
+  width: 16px;
+}

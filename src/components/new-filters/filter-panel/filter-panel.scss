@@ -1,0 +1,357 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.filter-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &.cohort-mode {
+    border: 1px solid $mdc-theme-primary;
+
+    #filter-panel-scroller {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .cohort-name-input-container {
+      border: 1px solid $mdc-theme-primary;
+      border-top: 1px solid #888888;
+      margin: -1px;
+    }
+  }
+
+  .filter-panel-no-source-error {
+    margin: 24px 16px 8px;
+    font-size: $fontSizeNormal;
+
+    > i {
+      margin-right: 8px;
+      vertical-align: middle;
+      color: $gray5;
+    }
+  }
+
+  .filter-panel-simple-mode-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    path {
+      fill: $gray3;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      path {
+        fill: $mdc-theme-primary;
+      }
+    }
+
+    &.is-simple-mode-on {
+      path {
+        fill: $text-gray;
+      }
+    }
+
+    &.is-disabled {
+      cursor: default;
+
+      path {
+        fill: #ddd;
+      }
+    }
+  }
+
+  .mdc-switch__track {
+    width: 24px;
+    height: 10px;
+  }
+
+  .mdc-switch__thumb-underlay {
+    top: -19px;
+  }
+
+  .mdc-switch--checked {
+    .mdc-switch__thumb-underlay {
+      left: -26px;
+    }
+  }
+
+  .mdc-switch__thumb {
+    width: 12px;
+    height: 12px;
+    border: 6px solid;
+  }
+
+  #filter-panel-scroller {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    box-sizing: border-box;
+    flex: 1 1 0;
+
+    .mdc-list {
+      padding: 0;
+      border: 0;
+      background-color: #f7f7f7;
+    }
+
+    .rmwc-collapsible-list {
+      border: none;
+
+      > .rmwc-collapsible-list {
+        border: 0;
+      }
+
+      > .rmwc-collapsible-list .rmwc-collapsible-list__handle {
+        border-bottom: 1px solid $operator-text;
+      }
+    }
+
+    .filter-button-container {
+      display: flex;
+      justify-content: flex-start;
+      margin: 16px 10px;
+      button {
+        font-size: $fontSizeSmall;
+        margin: 0 4px;
+        white-space: nowrap;
+      }
+      button + button {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .filter-datasource-header-container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 8px;
+    background-color: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .mdc-switch {
+      margin-left: 1px;
+    }
+
+    .filter-datasource-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .filter-datasource-header-name {
+        font-size: $fontSizeNormal;
+        margin-left: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $text-black;
+      }
+
+      .filter-datasource-header-right-align {
+        flex-shrink: 0;
+      }
+
+      .filter-datasource-header-left-align,
+      .filter-datasource-header-right-align {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        color: $text-dim;
+      }
+
+      .filter-datasource-header-delete {
+        display: none;
+        color: $dimTextOnDark;
+
+        &:hover {
+          cursor: pointer;
+          color: $mdc-theme-primary;
+        }
+      }
+
+      &:hover {
+        .filter-datasource-header-delete {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .filter-component-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 16px;
+    .filter-component {
+      width: 100%;
+    }
+  }
+
+  .rmwc-collapsible-list--open {
+    .rmwc-collapsible-list__children {
+      overflow-y: visible;
+      overflow-x: visible;
+    }
+  }
+
+  .filter-datasource-cohort {
+    width: 100%;
+    .cohort-dimension {
+      .cohort-dimension-two-columns {
+        display: flex;
+      }
+      .cohort-dimension-left-column {
+        flex-grow: 1;
+        min-width: 0;
+      }
+      .cohort-dimension-right-column {
+        padding: 10px 0 0 10px;
+      }
+      .cohort-dimension-title-container {
+        padding: 10px 0;
+        display: flex;
+        flex-grow: 1;
+        flex-wrap: wrap;
+        .cohort-dimension-title {
+          font-size: $fontSizeLarge;
+          flex-grow: 1;
+          overflow-wrap: break-word;
+          flex-wrap: wrap;
+          overflow: hidden;
+        }
+        .cohort-dimension-title-total,
+        .subpart-total {
+          min-width: 0;
+          overflow-wrap: break-word;
+        }
+        .cohort-dimension-title-total {
+          font-size: $fontSizeLarge;
+          .subpart-total {
+            font-size: $fontSizeNormal;
+            color: $charcoal;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cohort-kebab-menu {
+  z-index: 20;
+}
+
+/**
+ * Dark Mode Styles
+ */
+
+body:not(.light2-mode):not(.light-mode) {
+  .filter-panel {
+    .cohort-dimension {
+      color: $textOnDark;
+    }
+
+    &.cohort-mode {
+      .cohort-name-input-container {
+        border-top-color: $borderSeparator;
+      }
+    }
+
+    &:not(.cohort-mode) {
+      border-color: transparent;
+    }
+
+    .filter-panel-simple-mode-icon {
+      path {
+        fill: $dimTextOnDark;
+      }
+
+      &.is-simple-mode-on {
+        path {
+          fill: $textOnDark;
+        }
+      }
+
+      &.is-disabled {
+        path {
+          fill: $disabled;
+        }
+      }
+    }
+
+    #filter-panel-scroller {
+      .rmwc-collapsible-list .rmwc-collapsible-list__handle,
+      .rmwc-collapsible-list
+        .rmwc-collapsible-list__handle
+        .mdc-list-item__meta {
+        color: $dimTextOnDark;
+      }
+      .rmwc-collapsible-list
+        > .rmwc-collapsible-list
+        .rmwc-collapsible-list__handle {
+        border-bottom: 1px solid $chartMarkStroke;
+      }
+      .rmwc-collapsible-list {
+        border: none;
+      }
+      .mdc-list {
+        background: $grayDp3;
+        .mdc-list-item,
+        .mdc-list-item:hover,
+        .mdc-list-item__meta {
+          background: none;
+        }
+      }
+    }
+    .cohort-dimension {
+      color: $textOnDark;
+    }
+    .filter-datasource-header-container {
+      background-color: $grayDp8;
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
+
+      .filter-datasource-header-left-align,
+      .filter-datasource-header-right-align {
+        color: $dimTextOnDark;
+      }
+
+      .filter-datasource-header-name {
+        color: $textOnDark;
+      }
+    }
+    .filter-subsection.panel-filters {
+      background-color: $grayDp3;
+    }
+    .rmwc-tooltip-inner {
+      background-color: $grayDp3;
+    }
+  }
+
+  .cohort-kebab-menu {
+    background-color: $grayDp8;
+    .mdc-list {
+      color: $textOnDark;
+    }
+    .mdc-list-item {
+      &:hover {
+        background-color: $highlightOnDark;
+      }
+    }
+    .remove-section {
+      width: 100%;
+      height: 1px;
+      background-color: $borderSeparator;
+    }
+  }
+}

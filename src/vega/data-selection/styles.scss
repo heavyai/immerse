@@ -1,0 +1,111 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "../../styles/base/variables.scss";
+
+.chart-editor-left-panel {
+  .source-container {
+    margin: 16px 0 32px 0;
+  }
+
+  .chart-editor-section-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: $fontSizeNormal;
+    border-bottom: 1px solid $gray3;
+    margin: 0 0 16px 0;
+
+    .chart-editor-add-selector-dropdown {
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      pointer-events: none;
+      background-color: $grayDp8;
+      border: 1px solid $borderSeparator;
+      z-index: 1;
+
+      &:focus {
+        opacity: 1;
+        pointer-events: auto;
+        outline: none;
+      }
+
+      .chart-editor-add-selector-dropdown-option {
+        width: 100%;
+        padding: 12px 14px;
+
+        &:hover {
+          background-color: $highlightOnDark;
+        }
+      }
+    }
+  }
+
+  .chart-editor-add-selector-button {
+    cursor: pointer;
+    width: 100%;
+    top: -8px;
+    position: relative;
+    text-align: center;
+    line-height: 16px;
+
+    .chart-editor-add-selector-button-icon {
+      font-size: $fontSizeNormal;
+      color: $mdc-theme-primary;
+
+      &.disabled {
+        color: #a7a7a7;
+        cursor: default;
+      }
+    }
+  }
+
+  .selector-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+  }
+
+  .vega-data-selection-accordion-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    .fold.open {
+      border-bottom: none;
+    }
+    .accordion-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $mdc-theme-primary;
+      background-color: white;
+      border-radius: 3px;
+      border: 1px solid $gray4;
+      margin: 0 16px 0 16px;
+      height: 32px;
+    }
+  }
+}
+
+body:not(.light2-mode) .chart-editor-left-panel {
+  .vega-data-selection-accordion-wrapper {
+    .accordion {
+      .fold.open {
+        border-bottom: none;
+      }
+      .accordion-cta {
+        background-color: $grayDp8;
+        border: 1px solid $highlightOnDark;
+      }
+    }
+  }
+  .chart-editor-section-header {
+    border-bottom: 1px solid $highlightOnDark;
+  }
+
+  .chart-editor-add-selector-button-icon.disabled {
+    color: #868686;
+  }
+}

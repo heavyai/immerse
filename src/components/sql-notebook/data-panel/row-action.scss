@@ -1,0 +1,26 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "./common";
+
+body {
+  --rowActionDisabled: #{$icon-disabled};
+}
+
+.sql-notebook__row-action {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include svgFill($icon-medium);
+  &.disabled {
+    @include svgFill(var(--rowActionDisabled));
+  }
+  &:hover:not(.disabled) {
+    cursor: pointer;
+    @include svgFill($solid);
+  }
+}

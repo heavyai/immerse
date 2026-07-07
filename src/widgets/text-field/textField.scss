@@ -1,0 +1,187 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+// material-components-web upgrade added horizontal padding which
+// conflicts with our own padding; neutralize with matching @support block
+@supports (top: max(0%)) {
+  .mdc-text-field--outlined {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@mixin notch-border($borderColor) {
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__trailing,
+    .mdc-notched-outline__notch {
+      box-shadow: none;
+      border-color: $borderColor;
+    }
+  }
+}
+
+.mdc-text-field.mdc-text-field--upgraded {
+  font-family: "Roboto", sans-serif;
+  min-height: 32px;
+
+  &:not(.mdc-text-field--textarea) {
+    height: 32px;
+  }
+
+  &.mdc-text-field--textarea,
+  &.mdc-text-field--textarea .mdc-text-field__input {
+    min-height: 32px;
+  }
+
+  &.mdc-text-field--textarea {
+    display: inline-flex;
+
+    &.mdc-text-field--fullwidth {
+      resize: vertical;
+    }
+  }
+
+  .mdc-text-field__input {
+    padding: 4px 8px;
+    -webkit-font-smoothing: initial;
+    color: $text-black;
+    font-size: $fontSizeNormal;
+    z-index: 2;
+  }
+
+  &.mdc-text-field--with-leading-icon .mdc-text-field__input {
+    padding-left: 32px;
+  }
+
+  &.mdc-text-field--with-trailing-icon .mdc-text-field__input {
+    padding-right: 32px;
+  }
+
+  .mdc-floating-label {
+    top: 6px;
+    bottom: initial;
+    transform: none;
+  }
+
+  .mdc-floating-label.mdc-floating-label--float-above {
+    transform: translateY(-75%) translateX(0) scale(0.75);
+  }
+
+  &.mdc-text-field--with-leading-icon .mdc-floating-label {
+    left: 24px;
+  }
+
+  &.mdc-text-field--with-leading-icon
+    .mdc-floating-label.mdc-floating-label--float-above {
+    transform: translateY(-75%) translateX(-20px) scale(0.75);
+  }
+
+  &.mdc-text-field--with-leading-icon .mdc-text-field__icon,
+  &.mdc-text-field--with-trailing-icon .mdc-text-field__icon {
+    bottom: 4px;
+  }
+
+  &.mdc-text-field--with-leading-icon .mdc-text-field__icon:first-child {
+    left: 4px;
+  }
+
+  &.mdc-text-field--with-trailing-icon
+    .mdc-text-field__icon
+    ~ .mdc-text-field__icon {
+    right: 1px;
+  }
+
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      background-color: white;
+    }
+  }
+
+  @include notch-border($gray5);
+
+  &.mdc-text-field--invalid {
+    @include notch-border($error);
+  }
+
+  &.mdc-text-field--disabled {
+    @include notch-border($gray4);
+    .mdc-text-field__input {
+      color: $gray4;
+    }
+
+    .mdc-floating-label {
+      color: $gray4;
+    }
+
+    &.mdc-text-field--with-leading-icon .mdc-text-field__icon,
+    &.mdc-text-field--with-trailing-icon .mdc-text-field__icon {
+      color: $gray4;
+    }
+  }
+}
+
+body:not(.light2-mode) .mdc-text-field.mdc-text-field--upgraded {
+  &.mdc-text-field--invalid {
+    @include notch-border($error);
+  }
+
+  &:not(.mdc-text-field--disabled) {
+    .mdc-text-field__input {
+      color: $textOnDark;
+    }
+
+    .mdc-floating-label {
+      color: $dimTextOnDark;
+    }
+
+    &.mdc-text-field--with-leading-icon .mdc-text-field__icon,
+    &.mdc-text-field--with-trailing-icon .mdc-text-field__icon {
+      color: $dimTextOnDark;
+    }
+  }
+
+  &.mdc-text-field--disabled {
+    .mdc-text-field__input {
+      color: $disabled;
+      cursor: not-allowed;
+    }
+
+    .mdc-floating-label {
+      color: $disabled;
+    }
+
+    &.mdc-text-field--with-leading-icon .mdc-text-field__icon,
+    &.mdc-text-field--with-trailing-icon .mdc-text-field__icon {
+      color: $disabled;
+    }
+  }
+
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      background-color: $grayDp24;
+    }
+  }
+
+  @include notch-border($borderSeparator);
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .mdc-text-field:not(.mdc-text-field--disabled) {
+    & + .mdc-text-field-helper-line .mdc-text-field-helper-text {
+      color: $dimTextOnDark;
+    }
+
+    .mdc-text-field__input::placeholder {
+      color: $dimTextOnDark;
+    }
+  }
+}

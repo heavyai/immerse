@@ -1,0 +1,146 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+/* Set droplist names - -item is the currently selected font, -label is the font's appearance in the droplist*/
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value='']::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value='']::before
+{
+  content: 'Default';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value='mono']::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value='mono']::before
+{
+  content: 'Mono';
+  font-family: 'Mono';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value='arial']::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value='arial']::before
+{
+  content: 'Arial';
+  font-family: 'Arial';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value='roboto']::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value='roboto']::before
+{
+  content: 'Roboto';
+  font-family: 'Roboto';
+}
+
+.ql-font-arial {
+  font-family: 'Arial';
+}
+
+.ql-font-mono {
+  font-family: 'Courier';
+}
+
+.ql-font-roboto {
+    font-family: 'Roboto';
+}
+
+.ql-snow{
+    .ql-picker{
+        &.ql-size{
+            .ql-picker-label,
+            .ql-picker-item{
+                &::before{
+                    content: attr(data-value) !important;
+                }
+            }
+        }
+    }
+}
+
+.chart-container.chart-type-text {
+    display: flex;
+    flex-direction: column;
+
+    .hidden {
+        display: none;
+    }
+    .ql-container {
+        flex: 1;
+        border: none;
+        // overflow-y: auto;
+    }
+    .ql-editor {
+        position: absolute;
+        width: 100%;
+
+        li::before {
+            display: inline;
+        }
+    }
+    .ql-tooltip.ql-editing {
+        margin-top: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        width: 340px;
+    }
+}
+
+.ql-html-popupContainer {
+    border-radius: 0 !important;
+
+    .ql-html-textContainer {
+        height: calc(100% - 10px);
+    }
+    .ql-html-buttonCancel, .ql-html-buttonOk {
+        border: none;
+        border-radius: 3px;
+        font-size: $fontSizeSmall !important;
+        color: white;
+        height: 22px;
+        min-width: 80px;
+        padding: 0 16px;
+        background-color: $mdc-theme-primary;
+    }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+    .ql-toolbar.ql-snow {
+        border: none;
+
+        .ql-picker-label {
+            color: $textOnDark;
+        }
+
+        .ql-stroke {
+            stroke: $dimTextOnDark;
+        }
+
+        .ql-picker.ql-expanded {
+            .ql-picker-options {
+                border: none;
+                background: $grayDp8;
+                color: $textOnDark;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .ql-picker-label {
+                border: none;
+            }
+        }
+    }
+
+    .ql-html-popupContainer {
+        background-color: $grayDp1 !important;
+        border: 1px solid $borderSeparator;
+    }
+
+    .ql-editor,
+    .ql-syntax {
+        border: none;
+        color: $dimTextOnDark;
+    }
+}

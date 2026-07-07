@@ -1,0 +1,53 @@
+name: Playwright Tests
+
+on: 
+  workflow_dispatch:
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 12
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - uses: webfactory/ssh-agent@v0.7.0
+        with:
+            ssh-private-key: |
+              ${{ secrets.PLAYWRIGHT_PRIVATE_KEY }}
+              ${{ secrets.PLAYWRIGHT_GAUGE_CHART_KEY }}
+      - name: Create servers.local
+        run: |
+          echo '[{"database": "${{ secrets.PLAYWRIGHT_TEST_DB }}","master": true,"username": "${{ secrets.PLAYWRIGHT_TEST_USER }}","password": "${{ secrets.PLAYWRIGHT_TEST_PASSWORD }}","url": "${{ secrets.PLAYWRIGHT_TEST_SERVER }}","GTM": "GTM-MDD888","theme": "dark"}]' > ./src/servers.local.json
+      - name: Install dependencies
+        run: npm install
+      # Start this in the background and wait for it to be done
+      - name: Start Immerse
+        run: |
+          npm run start -- --no-open &
+          echo "webpack_server_pid=$!" >> "$GITHUB_ENV"
+          echo "Saving server pid as $!"
+      - name: Wait for immerse
+        uses: iFaxity/wait-on-action@v1.1.0
+        with:
+          resource: http://localhost:8002
+          delay: 10000 # wait 10 seconds before trying
+          timeout: 300000 # 5 minutes
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npm run test:e2e
+      - name: Shut down webpack dev server
+        run: |
+          kill ${{ env.webpack_server_pid }}
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

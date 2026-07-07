@@ -1,0 +1,85 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+body {
+  --mappingItemBackground: var(--grayDp24);
+}
+
+body.light-mode {
+  --mappingItemBackground: var(--grayDp8);
+}
+
+.palette-mapping-selector {
+  margin: $spacing-06 0;
+  .palette-mapping-selector__section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-02;
+  }
+  .palette-mapping-selector__row {
+    display: flex;
+    gap: $spacing-06;
+    justify-content: space-between;
+    align-items: center;
+    > span {
+      font-size: $fontSizeSmall;
+      font-weight: 700;
+    }
+  }
+  .palette-mapping-selector__row__section {
+    display: flex;
+    gap: $spacing-02;
+  }
+  .mapping-container {
+    padding: $spacing-04;
+    width: 100%;
+    min-width: 0;
+    border-radius: 4px;
+    background-color: var(--mappingItemBackground);
+
+    > .palette-mapping-selector__palette-mapping-item {
+      font-weight: 700;
+    }
+  }
+
+  .mapping-container--dirty {
+    border: 1px solid $dimTextOnDark;
+  }
+
+  .customize-mapping-button {
+    display: flex;
+    align-items: center;
+    gap: $spacing-04;
+    svg {
+      // Leaky (super specific) button styles forces us to use !important
+      fill: $solid !important;
+    }
+  }
+
+  button.dense {
+    padding: $spacing-01 $spacing-03;
+    height: fit-content !important; // Kill widgets/button.scss
+    min-width: 0;
+  }
+
+  .mdc-dialog__surface {
+    max-width: 700px;
+  }
+}
+
+.foldy-body .palette-mapping-selector__section {
+  padding: $spacing-03 0;
+}
+
+.rmwc-tooltip--warning.rmwc-tooltip {
+  opacity: 1;
+
+  .rmwc-tooltip-content .rmwc-tooltip-inner {
+    background: $warning-400;
+    color: $warning-900;
+  }
+}

@@ -1,0 +1,104 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../mixins.scss";
+
+$avatarSize: 36px;
+$avatarSizeMedium: 18px;
+
+body {
+  --notificationBorderColor: #{$border-dim};
+  --notificationBackgroundColor: #{$grayDp1};
+}
+
+.sql-notebook__splash {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+
+  .splash-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .splash-logo {
+    margin: $spacing-08 0;
+  }
+
+  .icon-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $avatarSize * 2;
+    height: $avatarSize * 2;
+    border-radius: 50%;
+    background-color: $grayDp8;
+    &.iq-enabled {
+      background-color: var(--secondary-400);
+      svg path {
+        fill: #fff;
+      }
+    }
+    svg {
+      width: $avatarSize;
+      height: $avatarSize;
+      path {
+        fill: $solid;
+      }
+    }
+  }
+
+  .splash-title {
+    color: $solid;
+    font-family: Inter;
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: $spacing-04;
+    text-align: center;
+  }
+  .splash-text {
+    text-align: center;
+    color: $solid;
+    font-family: Inter;
+    font-size: $fontSizeLarge;
+    font-weight: 500;
+    margin-bottom: $spacing-08;
+  }
+
+  .splash-subtext {
+    color: $dimTextOnDark;
+    text-align: center;
+    font-family: Inter;
+    font-size: $fontSizeNormal;
+    font-weight: 400;
+    margin-bottom: $spacing-10;
+    > * {
+      margin-bottom: $spacing-04;
+    }
+  }
+
+  .splash-cards {
+    width: 100%;
+    display: grid;
+    // Auto-fit number of columns to handle 1 column
+    // Don't let columns shrink beyond half width (49%), grow to the full thing (auto)
+    grid-template-columns: repeat(auto-fit, minmax(33%, 49%));
+    gap: $spacing-06;
+    align-items: stretch;
+    // Stretch column to full width, but center the content within that
+    justify-items: stretch;
+    justify-content: center;
+    margin-bottom: $spacing-08;
+  }
+
+  @include primary-color-classes();
+}

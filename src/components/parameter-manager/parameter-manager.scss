@@ -1,0 +1,355 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.parameter-manager {
+  // It's overrides all the way down
+  .mdc-dialog__container {
+    height: 70vh;
+
+    .mdc-dialog__surface {
+      height: 100%;
+      max-width: 900px;
+
+      .mdc-dialog__content {
+        padding: 0;
+        overflow-x: hidden;
+      }
+    }
+  }
+
+  .mdc-checkbox {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  .mdc-checkbox__background {
+    width: 13px;
+    height: 13px;
+    top: 0;
+    left: 0;
+  }
+
+  .mdc-checkbox__native-control {
+    margin: 0;
+  }
+
+  .mdc-select {
+    .mdc-select__native-control {
+      height: 35px;
+      padding-top: 5px;
+      padding-bottom: 0;
+    }
+  }
+
+  .data-table {
+    width: 300px;
+  }
+
+  .data-table__table {
+    overflow-x: hidden;
+
+    .rmwc-data-table__row .data-table__cell--icon > i {
+      font-size: $fontSizeLarge;
+      margin-top: -3px;
+    }
+  }
+
+  .data-table__cell--key-name,
+  .data-table__cell--key-defaultValue {
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .data-table__cell--first span,
+  .data-table__cell--key-defaultValue span {
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .data-table__cell--key-type {
+    max-width: 50px;
+
+    svg {
+      vertical-align: middle;
+      margin-top: -4px;
+
+      path,
+      g {
+        fill: $gray5;
+      }
+    }
+  }
+
+  .select__group:not(:first-child) {
+    border-top: 1px solid #ddd;
+  }
+}
+
+.parameter-manager__layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.parameter-manager__browser {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid $gray3;
+
+  .mdc-dialog .mdc-dialog__container & {
+    // Ugh overriding ui styles applying
+    // to buttons that are :last-child
+    .mdc-button {
+      margin: 0;
+
+      background: white;
+      color: $gray6;
+
+      &:disabled {
+        color: $gray3;
+        border-color: $gray3;
+      }
+    }
+  }
+
+  footer {
+    padding: 8px;
+  }
+}
+
+.parameter-manager__create-new {
+  width: 100%;
+}
+
+.parameter-manager__editor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 600px;
+  padding: 24px;
+
+  .mdc-text-field,
+  .mdc-select,
+  .multi-select {
+    margin-bottom: 16px;
+  }
+
+  .mdc-select,
+  .mdc-text-field {
+    border-radius: 4px;
+  }
+
+  .mdc-text-field__input {
+    max-height: calc(100% - 8px);
+    min-height: 32px;
+  }
+
+  textarea.mdc-text-field__input {
+    margin-top: 0;
+  }
+
+  .mdc-text-field {
+    body:not(.light2-mode) & {
+      &.mdc-text-field--disabled {
+        &.mdc-text-field--upgraded {
+          .mdc-notched-outline {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              // TODO: Apply globally
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .multi-select {
+    .mdc-floating-label {
+      left: 4px;
+    }
+
+    .select__control {
+      font-size: $fontSizeMedium;
+    }
+
+    .select__control--is-focused {
+      box-shadow: none;
+    }
+
+    .select__menu {
+      margin-top: 0;
+
+      .select__menu-list {
+        padding-top: 0;
+      }
+
+      .select__option,
+      .select__option.select__option--is-focused {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: $fontSizeNormal;
+        padding: 4px 8px;
+      }
+    }
+  }
+
+  &.parameter-manager__editor--empty {
+    text-align: center;
+    justify-content: center;
+    color: $gray3;
+  }
+
+  h3 {
+    margin: 0 0 22px 0;
+    max-width: 552px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+  }
+
+  fieldset {
+    display: flex;
+    justify-content: space-between;
+
+    > * {
+      flex: 1;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  footer {
+    text-align: right;
+  }
+}
+
+.parameter-manager__tooltip {
+  text-align: center;
+}
+
+.parameter-manager__editor__add-tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  label {
+    margin: 0 0 0 8px;
+    font-weight: 400;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.parameter-manager__unsaved-warning {
+  .mdc-dialog__scrim {
+    opacity: 1 !important;
+  }
+}
+
+.column-values-autosuggest {
+  position: relative;
+
+  .mdc-text-field {
+    margin-bottom: 0;
+  }
+
+  .mdc-menu-surface {
+    width: 100%;
+  }
+
+  .mdc-text-field__input {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.column-values-autosuggest__results {
+  position: absolute;
+  overflow: auto;
+  width: 100%;
+  max-height: 160px;
+  margin: 0;
+  padding: 0;
+  // Required to appear over RMWC inputs
+  z-index: 1;
+  list-style: none;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+  > li {
+    padding: 4px 8px;
+    font-size: $fontSizeNormal;
+    background: white;
+    color: $operator-text;
+
+    &:hover {
+      cursor: pointer;
+      background: $gray10;
+    }
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .parameter-manager {
+    .mdc-select {
+      .mdc-select__native-control {
+        color: $textOnDark;
+      }
+    }
+
+    .data-table__cell--key-type {
+      svg {
+        path,
+        g {
+          fill: $dimTextOnDark;
+        }
+      }
+    }
+
+    .column-values-autosuggest__results > li {
+      color: $dimTextOnDark;
+      background-color: $grayDp8;
+
+      &:hover {
+        color: $textOnDark;
+        background-color: $highlightOnDark;
+      }
+    }
+
+    .select__group:not(:first-child) {
+      border-top: 1px solid #444;
+    }
+  }
+
+  .parameter-manager__browser {
+    border-color: $borderSeparator;
+  }
+
+  .parameter-manager__empty {
+    color: $dimTextOnDark;
+  }
+}

@@ -1,0 +1,181 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.table-preview-module {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 12px 14px 4px 15px;
+
+  .chart-editor-table-preview-wrapper {
+    display: flex;
+    flex-grow: 1;
+    padding: 16px 32px 0;
+    position: relative;
+    height: calc(100% - 72px);
+  }
+
+  .chart-editor-table-preview-half {
+    overflow: auto;
+    width: 50%;
+
+    table {
+      width: 100%;
+    }
+  }
+
+  .table-column-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 8px;
+  }
+
+  .table-column-header {
+    flex-shrink: 0;
+    border-bottom: 1px solid $gray2;
+    font-weight: bold;
+    font-size: $fontSizeSmall;
+
+    & > div {
+      padding: 12px 8px 6px;
+      color: $gray4;
+      font-size: $fontSizeSmall;
+    }
+  }
+
+  .table-column-body {
+    display: flex;
+    height: calc(100vh - 260px);
+    overflow-y: auto;
+    pointer-events: auto;
+    min-height: 279px;
+  }
+
+  .table-column-scroll {
+    flex-grow: 1;
+    padding-bottom: 32px;
+  }
+
+  .table-column-row {
+    display: flex;
+    font-size: $fontSizeNormal;
+    word-break: break-all;
+    margin: 0px;
+
+    & > div {
+      flex-basis: 50%;
+      padding: 8px;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $borderSeparator;
+    }
+  }
+
+  .chart-editor-table-preview-info {
+    padding-top: 12px;
+    max-width: 100%;
+  }
+
+  .table-name {
+    font-size: $fontSizeXLarge;
+    margin-bottom: 8px;
+    margin-right: 32px;
+    word-break: break-all;
+  }
+
+  .table-stat {
+    font-size: $fontSizeXLarge;
+    margin-bottom: 8px;
+  }
+
+  .table-info-label {
+    font-weight: bold;
+    font-size: $fontSizeSmall;
+    color: $gray4;
+    text-transform: capitalize;
+  }
+
+  .table-sql {
+    font-family: "Roboto Mono", monospace;
+    font-size: $fontSizeMedium;
+  }
+
+  .table-info-rejectedrows-nonzero {
+    color: $error;
+  }
+
+  .chart-editor-table-preview-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    z-index: 2;
+    animation: showOverlay 0.25s 0.25s;
+    animation-fill-mode: both;
+
+    .loading-widget {
+      transform: translate(-50%, -25%);
+    }
+  }
+
+  .data-preview {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    fill: $gray2;
+
+    .preview-icon {
+      width: 30%;
+
+      .icon {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    span {
+      font-size: 3vw;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: $gray3;
+      opacity: 0.6;
+      margin-top: 16px;
+      letter-spacing: 0.04vw;
+      word-spacing: 0.1vw;
+    }
+  }
+
+  .table-name-value {
+    display: flex;
+    .data-source-icon {
+      fill: $solid;
+      padding-right: $spacing-03;
+    }
+  }
+}
+
+body:not(.light2-mode)
+  .metadata-widget
+  .metadata-wrapper
+  .table-preview-module {
+  background-color: $grayDp8;
+
+  .chart-editor-table-preview-loading {
+    background-color: $grayDp8;
+  }
+}

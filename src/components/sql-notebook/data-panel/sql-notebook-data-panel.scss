@@ -1,0 +1,55 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "../variables";
+@import "./_common";
+
+// From sql-notebook-data-panel
+.sql-notebook__data-panel {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  width: $dataPanelWidth;
+
+  // From sql-editor-tables-browser.scss
+  .sql-notebook__table-browser {
+    position: relative;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 300ms;
+    display: flex;
+    &.show-columns {
+      transform: translateX(-$drawer-width);
+    }
+  }
+
+  .sql-notebook__table-browser__tables,
+  .sql-notebook__table-browser__columns {
+    min-width: $drawer-width;
+    height: 100%;
+  }
+
+  .sql-notebook__table-browser__columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sql-notebook__table-browser__tables {
+    display: flex;
+    flex-direction: column;
+    &.is-loading {
+      align-items: center;
+      margin-top: 50px;
+    }
+  }
+
+  .data-table__table .rmwc-data-table__body .rmwc-data-table__cell {
+    color: var(--data-panel-text-color);
+  }
+}

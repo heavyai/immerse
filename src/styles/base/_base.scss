@@ -1,0 +1,321 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+/* Settings go here */
+
+html,body {
+    height:100%;
+    font-family: "Roboto", Sans-Serif;
+    color: $gray8;
+    min-width: 1024px;
+    min-height: 640px;
+    font-size: $fontSizeMedium; /* Bootstrap is setting it too low in normalize.css, at 10px */
+}
+
+body {
+  background: $gray1;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: $mdc-theme-primary;
+    }
+}
+
+input::-ms-clear {display: none; width:0; height:0;}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $gray4;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: $gray4;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: $gray4;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: $gray4;
+}
+
+input[disabled] {
+  -webkit-text-fill-color: $text-dim;
+}
+
+button {
+    border-radius: unset;
+}
+
+%plain-button {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+}
+
+%icon-button {
+    fill: $gray4;
+    color: $gray5;
+
+    &:hover {
+        color: $mdc-theme-primary;
+        fill: $mdc-theme-primary;
+    }
+
+    .icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        fill: inherit;
+    }
+}
+
+.button {
+    @extend %plain-button;
+    cursor: pointer;
+
+    &.primary {
+        background: $mdc-theme-primary;
+        height: 32px;
+        line-height: 32px;
+        min-width: 80px;
+        text-align: center;
+        padding: 0 16px;
+        font-weight: 500;
+        font-size: $fontSizeNormal;
+        color: white;
+        border-radius: 3px;
+        white-space: nowrap;
+
+        &:active {
+            line-height: 34px;
+            box-shadow: inset 0 44px 0 rgba(black, .2);
+        }
+
+        &.big {
+            height: 44px;
+            font-size: $fontSizeMedium;
+            padding: 0 24px;
+            line-height: 44px;
+            word-spacing: 2px;
+            letter-spacing: .2px;
+            &:active {
+                line-height: 46px;
+            }
+        }
+
+        &.inactive {
+            color: white;
+            pointer-events: none;
+            background: $gray2;
+        }
+    }
+
+    &.secondary {
+        height: 32px;
+        line-height: 32px;
+        min-width: 80px;
+        text-align: center;
+        padding: 0 16px;
+        font-weight: 500;
+        font-size: $fontSizeNormal;
+        color: $gray4;
+        border: 1px solid $gray4;
+        border-radius: 3px;
+
+        &:hover {
+            color: $mdc-theme-primary;
+        }
+    }
+
+    &.icon-btn {
+        @extend %icon-button;
+        padding: 0 8px 0 0;
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    &.chart-type-btn {
+        @extend %icon-button;
+        min-width: 48px;
+        padding: 0 4px;
+        font-size: $fontSizeSmall;
+        text-align: center;
+        margin: 0 8px;
+
+        .icon {
+            margin: 4px 0 0 0;
+            display: inline-block;
+        }
+
+        &.pointmap-btn, &.windbarb-btn, &.backendChoropleth-btn, &.choropleth-btn, &.geoheat-btn, &.linemap-btn, &.deckgl-btn, &.contour-btn {
+            .icon {
+                transform: scale(1.3);
+            }
+        }
+
+        &.cloud-btn {
+            .icon {
+                transform: scale(1.25) translateY(1px);
+            }
+        }
+    }
+
+    /* new icon button implementation */
+    &.icon-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        fill: $gray4;
+
+        &:hover {
+            fill: $mdc-theme-primary;
+        }
+    }
+
+    &.wide {
+      width: 88%;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+}
+
+.poly-svg {
+    left: 0;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.popup-item-copy {
+  color: $mdc-theme-primary;
+  &:active {
+    color: $dimTextOnDark;
+  }
+}
+
+/* spinner */
+
+.loading {
+  opacity: 0.5;
+}
+
+.loading-spinner {
+  font-size: $fontSizeSmall;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 24px);
+  transform: translate(-50%, -50%);
+  color: #22A7F0;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+.loading-spinner-icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border: 4px solid transparent;
+  border-top-color: #22A7F0;
+  border-radius: 50%;
+  animation: mainSpinnerAnimation .6s infinite linear, appear 1s 1 linear normal;
+}
+
+.loading-spinner-icon:before, .loading-spinner-icon:after {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top-color: #22A7F0;
+  top: -4px;
+  left: -4px;
+  animation: beforeGrow .3s infinite linear alternate;
+  box-sizing: border-box;
+}
+
+.loading-spinner-icon:after {
+  animation: afterGrow .3s infinite linear alternate;
+}
+
+/* browser detection for IE and Edge https://stackoverflow.com/questions/32940965/how-to-target-microsoft-edge-with-css*/
+_:-ms-lang(x), .loading-spinner { opacity: 0.5; }
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes beforeGrow {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes afterGrow {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes mainSpinnerAnimation {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+div, ul, textarea {
+  &::-webkit-scrollbar {
+      width: 8px !important;
+      height: 8px !important;
+      background-color: $gray1 !important;
+ }
+  &::-webkit-scrollbar-track {
+      background-color: $gray1 !important;
+ }
+  &::-webkit-scrollbar-thumb {
+      background-color: $gray4 !important;
+      border-radius: 8px;
+      border: none !important;
+ }
+  &::-webkit-scrollbar-corner {
+      background-color: $gray2 !important;
+ }
+}

@@ -1,0 +1,59 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../../sql-notebook/results/collapsible-mixin.scss";
+
+.palette-mapping-customize-menu {
+  width: 332px;
+  color: $textOnDark;
+  .palette-mapping-customize-menu__container {
+    padding: 0 $spacing-05;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-04;
+  }
+
+  .palette-mapping-customize-menu__header {
+    grid-template-columns: auto auto;
+    display: inline-grid;
+    font-size: $fontSizeSmall;
+
+    > * {
+      padding: $spacing-04;
+    }
+
+    button {
+      all: unset;
+      display: inline-block;
+      cursor: pointer;
+      color: $textOnDark;
+    }
+  }
+
+  .palette-mapping-customize-menu__header--import {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .button-tabs {
+    background: transparent;
+    padding: 0;
+  }
+
+  section {
+    max-height: 300px;
+    overflow-y: auto;
+    color: $solid;
+    font-size: $fontSizeSmall;
+
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-04;
+  }
+
+  $collapsibleDuration: 400ms;
+
+  @include collapsible($duration: $collapsibleDuration);
+}

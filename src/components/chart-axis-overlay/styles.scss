@@ -1,0 +1,144 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+// Hide the heavyai-charting/heavyai-d3 axis labels for chart types using
+// Immerse's ChartAxisOverlay
+.chart-type-line2,
+.chart-type-bar {
+  .label-group {
+    .axis-label {
+      display: none !important;
+    }
+  }
+}
+
+.chart-type-scatter,
+.chart-type-backendScatter,
+.chart-type-heat,
+.chart-type-histogram {
+  .dc-chart {
+    .x-axis-label,
+    .y-axis-label,
+    .axis-label-edit {
+      display: none !important;
+    }
+  }
+}
+
+.chart-type-scatter,
+.chart-type-backendScatter,
+.chart-type-heat {
+  .chart-axis-overlay.has-continuous-legend {
+    .x-axis {
+      /* width: calc(100% - 160px); */ // We could move x axis out of the way in case there's a continuous legend
+      width: 100%;
+      right: 8px;
+
+      .axis-display {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.chart-axis-overlay {
+  width: 100%;
+  position: absolute;
+  // Using 100% height pushes x axis out of chart container
+  height: calc(100% - 35px);
+  pointer-events: none;
+
+  .parameter-selector-input {
+    display: flex;
+    justify-content: center;
+  }
+
+  .y2-axis,
+  .y-axis,
+  .x-axis {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &:hover,
+    &.is-focused {
+      .axis-input {
+        opacity: 1;
+      }
+
+      .axis-display {
+        opacity: 0;
+      }
+    }
+  }
+
+  .x-axis {
+    bottom: 17px;
+  }
+
+  .y-axis {
+    top: 50%;
+    left: -50%;
+    z-index: 1;
+    margin-left: 20px;
+
+    .axis-input,
+    .axis-display {
+      max-width: 80%;
+      transform: rotate(-90deg) translateX(25px);
+    }
+  }
+
+  .y2-axis {
+    top: 50%;
+    left: calc(50% - 5px);
+
+    .axis-input,
+    .axis-display {
+      max-width: 80%;
+      transform: rotate(-90deg) translate(25px, -10px);
+    }
+  }
+
+  .axis-input {
+    pointer-events: all;
+    z-index: 1;
+    margin-top: -2px;
+    padding: 1px 8px;
+    opacity: 0;
+    border-radius: 0;
+    border: 1px solid $gray4;
+    font-size: $fontSizeSmall;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+    }
+
+    body:not(.light2-mode) & {
+      background-color: $grayDp24;
+      border: 1px solid $borderSeparator;
+    }
+  }
+
+  .axis-display {
+    pointer-events: all;
+    position: absolute;
+    max-width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: $fontSizeSmall;
+    color: $text-gray;
+
+    body:not(.light2-mode) & {
+      color: $dimTextOnDark;
+    }
+  }
+}

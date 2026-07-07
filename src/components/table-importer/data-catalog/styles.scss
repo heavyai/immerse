@@ -1,0 +1,212 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+$card-width: 352px;
+$card-horizontal-margin: 24px;
+
+.data-catalog-page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+
+  .header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .only-geo-toggle-container {
+      margin-left: 30px;
+      display: flex;
+      align-items: center;
+      color: $charcoal;
+    }
+
+    .only-geo-toggle {
+      margin-left: 20px;
+    }
+  }
+
+  .data-catalog-info-display {
+    width: 100%;
+    justify-self: center;
+    font-size: $fontSizeSmall;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .search-input-comp {
+    flex-grow: 0;
+    margin: 8px;
+    width: 560px;
+
+    &.mdc-text-field.mdc-text-field--upgraded:not(.mdc-text-field--textarea) {
+      height: 32px;
+
+      .mdc-text-field__icon {
+        bottom: 4px;
+      }
+    }
+
+    input {
+      width: 776px;
+      padding: 0 32px;
+
+      &::placeholder {
+        color: $dimTextOnDark;
+      }
+    }
+  }
+
+  .data-catalog-items {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      $card-width + ($card-horizontal-margin * 2)
+    );
+    justify-content: center;
+    overflow-y: scroll;
+  }
+
+  .data-catalog-no-items-hint {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #888;
+  }
+
+  .data-catalog-card {
+    width: $card-width;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    margin: 24px $card-horizontal-margin;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.05);
+    border: 1px solid $gray2;
+
+    &.hidden {
+      display: none;
+    }
+
+    .data-catalog-card-header {
+      position: relative;
+      height: 142px;
+      background-size: cover;
+
+      .data-catalog-name-tag {
+        position: absolute;
+        height: 25px;
+        margin-top: 60px;
+        padding: 0 16px;
+        background: $mdc-theme-primary;
+        border-radius: 0 86px 86px 0;
+        color: white;
+        align-items: center;
+        display: flex;
+
+        .data-catalog-name-highlight {
+          background: white;
+          padding: 0;
+          box-shadow: 0 0 0 1px white;
+          color: #444;
+        }
+      }
+    }
+
+    .data-catalog-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      padding: 4px 8px 0 8px;
+
+      .info-list-primary {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .info-list-secondary {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        font-size: $fontSizeSmall;
+        color: $gray5;
+        text-align: right;
+
+        .entry-value {
+          align-self: flex-end;
+        }
+      }
+
+      .entry-key {
+        font-size: $fontSizeSmall;
+        color: $gray4;
+      }
+
+      .entry-value {
+        display: flex;
+        align-items: center;
+        font-size: $fontSizeMedium;
+        margin-bottom: 5px;
+        color: $charcoal;
+      }
+    }
+
+    .data-catalog-card-footer {
+      height: 54px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-top: #ddd solid 1px;
+
+      .button-container {
+        display: flex;
+        margin-left: auto;
+      }
+    }
+  }
+
+  .geo-pin-icon {
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .data-catalog-card {
+    background: $grayDp1;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    border: none;
+  }
+
+  .entry-key {
+    color: $dimTextOnDark;
+  }
+
+  .data-catalog-page-container {
+    .header .only-geo-toggle-container {
+      color: $textOnDark;
+    }
+
+    .data-catalog-card {
+      .data-catalog-card-body .entry-value {
+        color: $textOnDark;
+      }
+
+      .data-catalog-card-footer {
+        border-top: none;
+        background: $grayDp24;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+
+.sql-notebook-map-popup {
+  min-width: 120px;
+  max-width: 450px;
+  padding: $spacing-02;
+  // TODO: Add light theme (below)
+  // border: 1px solid #c7c7c7;
+  // background: white;
+  border-radius: 4px;
+  background: var(--grayDp8);
+  border: 1px solid var(--borderSeparator);
+  font-size: $fontSizeSmall;
+  position: absolute;
+  width: fit-content;
+  z-index: 1;
+
+  // Customize rmwc table for popup rows
+  .rmwc-data-table {
+    border: 0;
+    color: $solid;
+    display: block;
+
+    .rmwc-data-table__content {
+      border: 0;
+      background-color: transparent;
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    .rmwc-data-table__cell {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: $spacing-02 $spacing-04;
+      height: unset;
+      border: 0;
+      background-color: transparent;
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}

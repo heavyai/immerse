@@ -1,0 +1,212 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.ui-config {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .rmwc-collapsible-list {
+    margin-bottom: 16px;
+  }
+
+  .rmwc-collapsible-list__children {
+    padding: 0 16px;
+  }
+
+  .switch-with-label {
+    font-size: $fontSizeSmall;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+  }
+}
+
+.ui-config__title {
+  padding: 8px 0;
+  font-size: $fontSizeNormal;
+  text-align: center;
+}
+
+.ui-config__upper {
+  margin-bottom: 32px;
+}
+
+.ui-config__font-styles {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.ui-config__font-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  > span {
+    max-width: 170px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.ui-config__font-style__controls {
+  white-space: nowrap;
+}
+
+.ui-config__font-style__control {
+  font-size: $fontSizeSmall;
+  margin-left: 8px;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+    color: $mdc-theme-primary;
+  }
+
+  &.is-disabled {
+    pointer-events: none;
+    color: $text-dim;
+  }
+}
+
+.ui-config__help-text {
+  margin: 0 0 8px;
+  padding: 0 16px;
+  text-align: center;
+  font-size: $fontSizeSmall;
+  color: $text-gray;
+}
+
+.ui-config__error {
+  color: $error;
+}
+
+.ui-config__chart {
+  display: flex;
+  flex-direction: column;
+  font-size: $fontSizeSmall;
+  line-height: 12px;
+
+  .mdc-text-field {
+    width: 55px;
+    height: 32px;
+    margin-left: 16px;
+  }
+
+  .mdc-text-field.mdc-text-field--upgraded .mdc-text-field__input {
+    font-size: $fontSizeSmall;
+    line-height: 12px;
+  }
+}
+
+.ui-config__chart__controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > span {
+    margin-left: 4px;
+  }
+}
+
+.ui-config__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+  font-size: $fontSizeSmall;
+
+  .rmwc-icon {
+    margin-left: 8px;
+    color: $text-gray;
+  }
+}
+
+.ui-config__admin {
+  padding: 16px;
+  background: $gray2;
+}
+
+.ui-config__admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $fontSizeNormal;
+
+  &:hover {
+    cursor: pointer;
+    color: $mdc-theme-primary;
+  }
+
+  &.is-open {
+    > i {
+      transform: rotate(0deg);
+    }
+  }
+
+  > i {
+    margin-left: 8px;
+    transition: transform 0.3s;
+    transform: rotate(-90deg);
+  }
+}
+
+.ui-config__admin__actions {
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid $text-black;
+
+  button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+.ui-config__reset-tooltip {
+  p:last-child {
+    margin: 0;
+  }
+}
+
+body:not(.light2-mode):not(.light-mode) {
+  .ui-config {
+    background-color: $grayDp3;
+    color: $dimTextOnDark;
+  }
+
+  .ui-config__heading {
+    border-bottom-color: $borderSeparator;
+  }
+
+  .ui-config__title {
+    color: $dimTextOnDark;
+  }
+
+  .ui-config__help-text {
+    border-color: $highlightOnDark;
+  }
+
+  .ui-config__font-style__control {
+    &.is-disabled {
+      color: $disabled;
+    }
+  }
+
+  .ui-config__admin {
+    background-color: $grayDp8;
+  }
+
+  .ui-config__admin__actions {
+    color: $dimTextOnDark;
+  }
+}

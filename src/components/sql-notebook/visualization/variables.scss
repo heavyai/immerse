@@ -1,0 +1,28 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/_variables";
+@import "../variables";
+
+$visualizationControlsWidth: 265px;
+
+body {
+  --vega-lite-background: #{$grayDp24};
+}
+
+body.dark-mode {
+  --vega-lite-background: #333;
+}
+
+body.light-mode {
+  --vega-lite-background: #{$highlightOnDark};
+}
+
+// TODO: Style for light/dark themes
+$chartControlBackground: var(--gray-900);
+$chartControlBackgroundActive: var(--gray-950);
+$chartControlText: var(--gray-400);
+
+$visualizationHeight: 650px;

@@ -1,0 +1,114 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+$x-light-gray: rgb(245, 245, 245);
+$light-gray: silver;
+$mid-gray: rgb(125, 125, 125);
+
+.operator-selector {
+  display: flex;
+  align-content: stretch;
+  border: 1px solid silver;
+  height: 36px;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  font-size: $fontSizeSmall;
+  position: relative;
+
+  & * {
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+  .operator {
+    flex: 0 auto;
+    background: $x-light-gray;
+    padding-left: 8px;
+
+    .operator-label, .arrow {
+      flex: auto;
+      color: $mid-gray;
+    }
+    .operator-label {
+      font-size: $fontSizeLarge;
+      justify-content: flex-start;
+      white-space: nowrap;
+      align-items: center;
+
+      &.long-label {
+        font-size: $fontSizeNormal;
+      }
+    }
+    .arrow {
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 8px;
+      font-size: $fontSizeNormal;
+      color: $mid-gray;
+
+      &::after {
+        content: "▾";
+      }
+
+      &.opened::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .min-input, .max-input {
+    height: 100%;
+    flex: 1;
+
+    input {
+      width: 100%;
+      text-align: right;
+      padding: 0 8px 0 4px;
+      border: none;
+    }
+  }
+
+  .between-label {
+    align-items: center;
+    padding: 0 4px;
+    background: $x-light-gray;
+    color: $mid-gray;
+    flex: 0 20px;
+  }
+
+  .operator-menu {
+    display: flex;
+    left: 0;
+    flex-direction: column;
+    height: 228px;
+    background-color: white;
+    z-index: 1;
+    border: 1px solid $light-gray;
+    margin-top: 34px;
+    position: absolute;
+    min-width: 148px;
+    margin-left: -1px;
+    padding: 8px 0;
+
+    .operator-item {
+      align-items: center;
+      padding-left: 8px;
+      color: $mid-gray;
+      font-size: $fontSizeSmall;
+      height: 26px;
+
+      &.selected {
+        background-color: $x-light-gray;
+      }
+    }
+
+    .operator-item:hover {
+      background: $x-light-gray;
+    }
+  }
+}

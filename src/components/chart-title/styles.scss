@@ -1,0 +1,128 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import '~base/variables';
+
+.chart-title-textarea {
+  display: none;
+  text-overflow: ellipsis;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  resize: none;
+  border: none;
+  position: relative;
+  width: 100%;
+  outline: none;
+  padding: 4px 24px 0;
+  min-height: 36px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.chart-title-processed {
+  position: absolute;
+  top: 8px;
+  width: 100%;
+  padding: 0 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 0;
+  max-width: calc(100% - 50px);
+}
+
+.chart-title-edit {
+  position: relative;
+  top: 0;
+  border: 1px solid transparent;
+  width: 100%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+
+  &.is-focused {
+    .chart-title-textarea {
+      display: block;
+    }
+
+    .chart-title-processed {
+      display: none;
+    }
+  }
+
+  .chart-edit-icon {
+    vertical-align: middle;
+    margin-right: 4px;
+    font-size: $fontSizeLarge;
+    color: $mdc-theme-primary;
+    opacity: 0;
+  }
+
+  .placeholder {
+    top: 6px;
+
+    .placeholder-text {
+      margin: 3px 24px 0;
+      height: 28px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .chart-edit-icon {
+      opacity: 1;
+    }
+
+    .placeholder:not(.hasValue) {
+      .placeholder-text {
+        span {
+          opacity: 1;
+          color: $mdc-theme-primary;
+        }
+      }
+    }
+  }
+}
+
+.chart-title {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: $charcoal;
+  font-size: $fontSizeMedium;
+  text-align: center;
+  width: 100%;
+  outline: none;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+  min-width: 0;
+  min-height: 40px;
+
+  .chart-title-no-edit {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 0 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &.draggable-container-handle {
+    cursor: move;
+
+    &.default-cursor {
+      cursor: default;
+    }
+  }
+
+  .chart-edit-mode & {
+    font-size: $fontSizeLarge;
+    padding: 8px 0;
+  }
+}

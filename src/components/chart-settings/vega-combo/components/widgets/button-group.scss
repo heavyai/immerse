@@ -1,0 +1,79 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+
+.chart-settings-button-group {
+  margin: 8px 0 0 0;
+  color: $text-gray;
+  .button-group-title {
+    font-size: $fontSizeSmall;
+    line-height: 14px;
+    color: $text-gray;
+    padding: 0 0 4px 0;
+  }
+  .button-group-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-group-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    font-size: $fontSizeSmall;
+    height: 32px;
+    padding: 0 4px;
+    &.selected {
+      background-color: $mdc-theme-primary;
+      color: white;
+    }
+    &.disabled {
+      background-color: $gray1;
+      pointer-events: none;
+      cursor: default;
+    }
+    &:not(.selected) {
+      background-color: $gray2;
+      cursor: pointer;
+      path {
+        fill: $text-gray;
+      }
+      &:hover {
+        color: $mdc-theme-primary;
+        path {
+          fill: $mdc-theme-primary;
+        }
+      }
+    }
+    &:first-child {
+      border-radius: 3px 0px 0px 3px;
+    }
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+  .button-group-button + .button-group-button {
+    border-left: 1px solid $gray3;
+  }
+  .button-icon + .button-text {
+    margin-left: 8px;
+  }
+}
+
+body:not(.light2-mode) .chart-settings-button-group  {
+  .button-group-title {
+    color: $dimTextOnDark;
+  }
+  .button-group-button {
+    &:not(.selected) {
+      background-color: $grayDp3;
+      border: 1px solid $secondaryButtonBorder;
+    }
+  }
+  .button-group-button + .button-group-button {
+    border-left: 1px solid $grayDp1;
+  }
+}

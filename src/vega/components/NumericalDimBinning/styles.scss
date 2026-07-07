@@ -1,0 +1,106 @@
+/*
+ * SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@import "~base/variables";
+@import "~themes/mixins";
+
+.numerical-bin-container {
+  width: 320px;
+  height: auto;
+  padding: 17px 5px 17px 17px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid $gray4;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  top: 31px;
+  justify-content: flex-start;
+
+  .icon-chain-wrapper {
+    margin-top: 15px;
+  }
+
+  .binning-toggle_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .binning-toggle-label {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .binning-sliders-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .number-size-slider-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .number-size-sliders {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .range-slider-wrapper {
+    width: 95%;
+    text-align: center;
+  }
+}
+
+.num_dim_bin_simple_wrapper {
+  width: auto;
+  max-width: 70px;
+  margin-left: 10px;
+
+  .simple_num_bin.mdc-text-field.mdc-text-field--upgraded.mdc-text-field--outlined {
+    height: 24px;
+    input {
+      padding: 0 4px 0 4px;
+      font-size: $fontSizeSmall;
+    }
+
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      background-color: transparent;
+      border-color: transparent;
+    }
+    &:hover {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        background-color: $gray1;
+      }
+    }
+  }
+}
+body:not(.light2-mode):not(.light-mode) {
+  .numerical-bin-container {
+    border: 1px solid $borderSeparator;
+    background-color: $grayDp8;
+    color: $dimTextOnDark;
+  }
+
+  .simple_num_bin.mdc-text-field.mdc-text-field--upgraded.mdc-text-field--outlined {
+    &:hover {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        background-color: $grayDp24;
+      }
+    }
+  }
+}
