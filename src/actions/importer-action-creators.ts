@@ -182,7 +182,6 @@ export const createNewTableForImporter = () => async (
       isOdbc
         ? cleanOdbcRowDescriptors(importer.data.row_set?.row_desc)
         : importer.data.row_set?.row_desc, // TColumnType[]
-      new TCopyParams({ is_replicated: importer.settings.is_replicated }),
       {
         useUnmodifiedRowDesc: isOdbc
       }

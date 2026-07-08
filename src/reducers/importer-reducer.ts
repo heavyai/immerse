@@ -244,7 +244,6 @@ export interface ImportSettings extends TCopyParams {
   null_str: string
   delimiter: string
   quoted: boolean
-  is_replicated: boolean
   raster_point_type: number
   raster_point_transform: number
   raster_point_compute_angle: boolean
@@ -258,7 +257,6 @@ const DEFAULT_IMPORTER_SETTINGS: ImportSettings = {
   null_str: "",
   delimiter: "",
   quoted: true,
-  is_replicated: false, // Default is_replicated to false when on a distributed cluster
   raster_point_type: 1,
   raster_point_transform: 1,
   raster_point_compute_angle: false,
