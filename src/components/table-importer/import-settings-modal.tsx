@@ -24,21 +24,12 @@ interface IImportSettingsModalProps {
   shouldShowGeoImportOptions: boolean
 }
 
-// More than one 'hardware info' result means we are connected to a distributed cluster.
-// This matters for showing the 'Replicate Table' option (across distributed nodes)
-// in the import settings.
-const hardwareIsDistributed = (hardwareInfo) =>
-  Array.isArray(hardwareInfo) && hardwareInfo.length > 1
-
 const ImportSettingsModal: FC<IImportSettingsModalProps> = ({
   requestImportPreviewData,
   shouldShowGeoImportOptions
 }) => {
   const [localCopyParams, setLocalCopyParams] = useState({})
   const dispatch = useDispatch()
-  const isDistributed = useSelector(({ connection: { hardwareInfo } }: any) =>
-    hardwareIsDistributed(hardwareInfo)
-  )
   const copyParams: ImportSettings = useSelector(
     ({ importer }: { importer: ImporterState }) => importer.settings
   )
@@ -284,28 +275,6 @@ const ImportSettingsModal: FC<IImportSettingsModalProps> = ({
                 />
               </div>
             </div>
-            {isDistributed && (
-              <div className="table-importer-option-checkboxgroup">
-                <div className="table-importer-option-container">
-                  <input
-                    id="table-importer-option-checkbox-is_replicated"
-                    className="table-importer-option-checkbox"
-                    checked={localCopyParams.is_replicated}
-                    onChange={updateCopyParamEventHandler(
-                      "is_replicated",
-                      "checked"
-                    )}
-                    type="checkbox"
-                  />
-                  <label
-                    className="table-importer-option-title"
-                    htmlFor="table-importer-option-checkbox-is_replicated"
-                  >
-                    Replicate Table
-                  </label>
-                </div>
-              </div>
-            )}
           </div>
         )}
 

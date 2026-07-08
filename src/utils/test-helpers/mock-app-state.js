@@ -1088,8 +1088,7 @@ export default {
     settings: {
       null_str: "",
       delimiter: "",
-      quoted: true,
-      is_replicated: false
+      quoted: true
     },
     loading: false,
     data: {

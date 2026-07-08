@@ -480,7 +480,6 @@ export const importSettingsShape = PropTypes.shape({
   null_str: string,
   quote: string,
   quoted: bool,
-  is_replicated: bool,
   threads: number
 })
 
