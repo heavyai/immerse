@@ -182,15 +182,15 @@ These licenses are pre-approved for any third-party package. Refer to https://sp
 
 *Variables and function names are used as convention and do not reference any commercial product.*
 
-## Security
+# Security
 > [!WARNING]
 > **Do not report security vulnerabilities through public GitHub issues!**
 
 NVIDIA takes security seriously. If you discover a vulnerability in useWhisper, **DO NOT open a public issue**. Use one of the private reporting channels described in [SECURITY.md](https://github.com/heavyai/immerse/blob/main/SECURITY.md).
 
-## Support
+# Support
 Join the [HeavyAI GitHub Discussions](https://github.com/orgs/heavyai/discussions) to ask questions, share feedback, and report issues. HeavyAI maintainers review issues, discussions, and pull requests on a best effort basis without guaranteed response timelines.
   
-## License
+# License
 Apache 2.0. See [LICENSE](https://github.com/heavyai/immerse/blob/main/LICENSE.txt).
 
