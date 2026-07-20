@@ -4,6 +4,12 @@ NVIDIA is dedicated to the security and trust of our software products and servi
 
 If you need to report a security issue, please use the appropriate contact points outlined below. **Please do not report security vulnerabilities through GitHub.** If a potential security issue is inadvertently reported via a public issue or pull request, NVIDIA maintainers may limit public discussion and redirect the reporter to the appropriate private disclosure channels.
 
+## Dependency Security
+
+This repository includes a root `.npmrc` file that keeps source install output focused on actionable npm errors by suppressing routine deprecation, funding, and automatic audit messages during `npm install` and `npm ci`.
+
+This does not replace dependency security review. Maintainers continue to review and remediate vulnerable packages through the project security scanning process. The committed `.npmrc` must contain only safe project configuration and must not include registry credentials, authentication tokens, or other secrets.
+
 ## Reporting Potential Security Vulnerability in an NVIDIA Product
 
 To report a potential security vulnerability in any NVIDIA product:

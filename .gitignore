@@ -31,3 +31,5 @@ key.pem
 /playwright/.cache/
 .env
 .npmrc
+# Track only the safe project npm config; do not put credentials in it.
+!/.npmrc
