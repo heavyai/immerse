@@ -1,5 +1,5 @@
 name: Release
-run-name: ${{ inputs.description != '' && format('immerse — {0}', inputs.description) || 'immerse Release' }}
+run-name: ${{ inputs.description != '' && format('immerse — {0}', inputs.description) || 'immerse CI' }}
 
 on:
   workflow_dispatch:
@@ -8,16 +8,8 @@ on:
         description: 'Branch or SHA to check out (e.g. rc-2352)'
         type: string
         required: true
-      release_version:
-        description: 'Version string for release title (e.g. v3.2.3)'
-        type: string
-        default: ''
       heavy_eco:
         description: 'Enable Heavy Eco build'
-        type: boolean
-        default: false
-      mark_as_latest:
-        description: 'Promote this release to the repo latest (enables RC builder auto-pull)'
         type: boolean
         default: false
       description:
@@ -28,8 +20,6 @@ on:
 jobs:
   build:
     runs-on: linux-amd64-cpu16
-    permissions:
-      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,35 +45,10 @@ jobs:
 
       - name: Build
         env:
-          REPORTER: spec
-          TARGET: release
-          DEFAULT_DATA_CATALOG_MANIFEST_URL: https://data-catalog.heavy.ai/manifest.json
           HEAVY_ECO: ${{ inputs.heavy_eco == true && 'true' || '' }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-          RAYGUN_AUTH_TOKEN: ${{ secrets.RAYGUN_AUTH_TOKEN }}
-        run: npm run deploy -- --production --branch release
+        run: npm run build:prod
 
-      - name: Create GitHub Release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          SHA="${{ github.sha }}"
-          SHORT_SHA="${SHA::8}"
-          if [ -n "${{ inputs.release_version }}" ]; then
-            TAG="immerse-${{ inputs.release_version }}-${SHORT_SHA}"
-            TITLE="immerse ${{ inputs.release_version }} (${SHORT_SHA})"
-          else
-            TAG="immerse-${SHORT_SHA}"
-            TITLE="immerse ${SHORT_SHA}"
-          fi
-          if [ -n "${{ inputs.description }}" ]; then
-            TITLE="$TITLE — ${{ inputs.description }}"
-          fi
-          gh release create "$TAG" packages/*.zip \
-            --repo "${{ github.repository }}" \
-            --title "$TITLE" \
-            --notes "Built from \`${{ inputs.release_candidate }}\` (${SHA}) — run [${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
-          if [ "${{ inputs.mark_as_latest }}" = "true" ]; then
-            gh release edit "$TAG" --repo "${{ github.repository }}" --latest
-          fi
+      - name: Test
+        run: npm test
