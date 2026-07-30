@@ -17,7 +17,7 @@ Immerse is a lightning fast visual analytics for the HeavyDB database and SQL en
 
 ### Requirements
 
-- npm@11.15.0 or higher
+- npm@11.6.1 or higher
 - node 24.11.0
 
 ```bash
