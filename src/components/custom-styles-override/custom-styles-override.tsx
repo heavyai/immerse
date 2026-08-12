@@ -3,10 +3,10 @@
 
 import React, { FC, useEffect } from "react"
 import { connect, ConnectedProps } from "react-redux"
-import blinder from "color-blind"
 import initCSSVars from "polyfills/css-vars"
 
 import { AppState } from "vega/charts/types"
+import { simulateColorBlindness } from "utils/color-blindness"
 
 import {
   getFeatureFlag,
@@ -27,13 +27,22 @@ const { COLOR_BLIND } = available_feature_flags
 function buildStyleString({ buttonPrimaryColor = "#0089D1" }) {
   switch (getFeatureFlag(COLOR_BLIND)) {
     case "protanopia":
-      buttonPrimaryColor = blinder.protanopia(buttonPrimaryColor)
+      buttonPrimaryColor = simulateColorBlindness(
+        buttonPrimaryColor,
+        "protanopia"
+      )
       break
     case "deuteranopia":
-      buttonPrimaryColor = blinder.deuteranopia(buttonPrimaryColor)
+      buttonPrimaryColor = simulateColorBlindness(
+        buttonPrimaryColor,
+        "deuteranopia"
+      )
       break
     case "tritanopia":
-      buttonPrimaryColor = blinder.tritanopia(buttonPrimaryColor)
+      buttonPrimaryColor = simulateColorBlindness(
+        buttonPrimaryColor,
+        "tritanopia"
+      )
       break
     default:
   }

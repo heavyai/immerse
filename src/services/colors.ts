@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import vega from "services/vega"
-import blinder from "color-blind"
 import { map } from "ramda"
 
 import APP_CONFIG from "constants/app-config"
+import { simulateColorBlindness } from "utils/color-blindness"
 
 import {
   getFeatureFlag,
@@ -212,7 +212,10 @@ export const HEAVYAI_ORDINAL_COLORS = {
   ]
 }
 Object.keys(HEAVYAI_ORDINAL_COLORS).forEach((key) => {
-  vega.scheme(`${COLOR_SERVICE_PREFIX}-${key}-colors`, HEAVYAI_ORDINAL_COLORS[key])
+  vega.scheme(
+    `${COLOR_SERVICE_PREFIX}-${key}-colors`,
+    HEAVYAI_ORDINAL_COLORS[key]
+  )
 })
 
 export const HEAVYAI_QUANTITATIVE_COLORS = {
@@ -656,17 +659,20 @@ export function getColors(key: OmniColorScheme): Record<string, string[]> {
   switch (getFeatureFlag(COLOR_BLIND)) {
     case "protanopia":
       return deepMapArrays(
-        (colors) => colors.map((color) => blinder.protanopia(color)),
+        (colors) =>
+          colors.map((color) => simulateColorBlindness(color, "protanopia")),
         colorObj
       )
     case "deuteranopia":
       return deepMapArrays(
-        (colors) => colors.map((color) => blinder.deuteranopia(color)),
+        (colors) =>
+          colors.map((color) => simulateColorBlindness(color, "deuteranopia")),
         colorObj
       )
     case "tritanopia":
       return deepMapArrays(
-        (colors) => colors.map((color) => blinder.tritanopia(color)),
+        (colors) =>
+          colors.map((color) => simulateColorBlindness(color, "tritanopia")),
         colorObj
       )
     default:

@@ -70,6 +70,7 @@
     "npm": ">=11.6.1"
   },
   "dependencies": {
+    "@bjornlu/colorblind": "^1.0.3",
     "@date-io/moment": "^1.3.11",
     "@heavyai/charting": "git+ssh://git@github.com/heavyai/heavyai-charting.git#b16ab3c",
     "@heavyai/connector": "github:heavyai/heavyai-connector#6f77df5",
@@ -105,7 +106,6 @@
     "circular-dependency-plugin": "^5.2.2",
     "classnames": "^2.3.2",
     "codemirror": "^5.65.9",
-    "color-blind": "^0.1.3",
     "connected-react-router": "^6.9.3",
     "date-fns": "^2.29.3",
     "deck.gl": "^8.8.20",
@@ -185,6 +185,7 @@
     "suneditor": "^2.44.3",
     "suneditor-react": "^3.4.1",
     "thrift": "^0.24.0",
+    "tinycolor2": "^1.6.0",
     "topojson": "1.6.26",
     "url-join": "^4.0.1",
     "useWhisper": "git+ssh://git@github.com/heavyai/useWhisper.git#a4da42b",
@@ -257,6 +258,7 @@
     "@types/react-virtualized": "^9.21.23",
     "@types/resize-observer-browser": "^0.1.11",
     "@types/sanitize-html": "^2.13.0",
+    "@types/tinycolor2": "^1.4.6",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
     "atob": "^2.1.0",
