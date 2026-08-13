@@ -7,7 +7,7 @@ Generated from the installed environment. Total packages: **2446**.
 ## Summary
 
 | Package | Version | License | URL |
-|---|---|---|---|
+| ----------------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- |
 | @agabhane/puppeteer-pending-requests | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @asamuzakjp/css-color | 3.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @babel/cli | 7.29.7 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -151,6 +151,7 @@ Generated from the installed environment. Total packages: **2446**.
 | @babel/traverse | 7.29.7 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @babel/types | 7.29.7 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @bcoe/v8-coverage | 0.2.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @bjornlu/colorblind | 1.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @cspotcode/source-map-support | 0.8.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @csstools/color-helpers | 5.1.0 | MIT-0 | [https://spdx.org/licenses/MIT-0.html](https://spdx.org/licenses/MIT-0.html) |
 | @csstools/css-calc | 2.1.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -195,7 +196,7 @@ Generated from the installed environment. Total packages: **2446**.
 | @heavyai/connector | 7.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @heavyai/crossfilter | 1.2.1 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @heavyai/d3-combo-chart | 1.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
-| @heavyai/draw | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @heavyai/draw | 2.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @hot-loader/react-dom | 16.14.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @humanwhocodes/config-array | 0.5.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @humanwhocodes/object-schema | 1.2.1 | BSD-3-Clause | [https://spdx.org/licenses/BSD-3-Clause.html](https://spdx.org/licenses/BSD-3-Clause.html) |
@@ -435,8 +436,8 @@ Generated from the installed environment. Total packages: **2446**.
 | @rmwc/tooltip | 5.7.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @rmwc/types | 5.6.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @rmwc/types | 6.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @rooks/use-key | 3.6.0 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @rooks/use-outside-click | 3.6.0 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @rooks/use-key | 3.6.0 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @rooks/use-outside-click | 3.6.0 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @sheerun/mutationobserver-shim | 0.3.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @sinclair/typebox | 0.27.10 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @sinclair/typebox | 0.34.49 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -476,10 +477,10 @@ Generated from the installed environment. Total packages: **2446**.
 | @turf/meta | 6.5.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @turf/rewind | 5.1.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/aria-query | 5.0.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @types/babel__core | 7.20.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @types/babel__generator | 7.27.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @types/babel__template | 7.4.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @types/babel__traverse | 7.28.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/babel\_\_core | 7.20.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/babel\_\_generator | 7.27.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/babel\_\_template | 7.4.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/babel\_\_traverse | 7.28.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/body-parser | 1.19.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/bonjour | 3.5.13 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/chai | 4.3.20 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -559,7 +560,8 @@ Generated from the installed environment. Total packages: **2446**.
 | @types/styled-jsx | 2.2.9 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/tapable | 1.0.12 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/tern | 0.23.9 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| @types/testing-library__dom | 6.14.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/testing-library\_\_dom | 6.14.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @types/tinycolor2 | 1.4.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/tough-cookie | 4.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/uglify-js | 3.17.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @types/unist | 2.0.11 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -735,7 +737,7 @@ Generated from the installed environment. Total packages: **2446**.
 | brcast | 2.0.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | brfs | 1.6.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | brorand | 1.1.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| browser-cookies | 1.2.0 | Public Domain |  |
+| browser-cookies | 1.2.0 | Public Domain | |
 | browser-or-node | 1.3.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | browser-process-hrtime | 1.0.0 | BSD-2-Clause | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | browser-resolve | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -747,7 +749,7 @@ Generated from the installed environment. Total packages: **2446**.
 | browserify-zlib | 0.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | browserslist | 4.28.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | bser | 2.1.1 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
-| btoa | 1.1.2 | Apache* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
+| btoa | 1.1.2 | Apache\* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | buf-compare | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | buffer | 5.7.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | buffer | 6.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -819,7 +821,6 @@ Generated from the installed environment. Total packages: **2446**.
 | collapse-white-space | 1.0.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | collect-v8-coverage | 1.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | collection-visit | 1.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| color-blind | 0.1.3 | MIT, CC-BY-SA-4.0 | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | color-convert | 1.9.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | color-convert | 2.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | color-name | 1.1.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -838,7 +839,7 @@ Generated from the installed environment. Total packages: **2446**.
 | commondir | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | component-classes | 1.2.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | component-emitter | 1.3.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| component-indexof | 0.0.3 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| component-indexof | 0.0.3 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | compressible | 2.0.18 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | compression | 1.8.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | concat-map | 0.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1199,7 +1200,7 @@ Generated from the installed environment. Total packages: **2446**.
 | flat | 5.0.2 | BSD-3-Clause | [https://spdx.org/licenses/BSD-3-Clause.html](https://spdx.org/licenses/BSD-3-Clause.html) |
 | flat-cache | 2.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | flat-cache | 3.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| flatbuffers | 2.0.4 | Apache* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
+| flatbuffers | 2.0.4 | Apache\* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | flatted | 2.0.2 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | flatted | 3.4.2 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | flow-bin | 0.55.0 | BSD-3-Clause | [https://spdx.org/licenses/BSD-3-Clause.html](https://spdx.org/licenses/BSD-3-Clause.html) |
@@ -1255,7 +1256,7 @@ Generated from the installed environment. Total packages: **2446**.
 | glob-parent | 3.1.0 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | glob-parent | 5.1.2 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | glob-parent | 6.0.2 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
-| glob-to-regexp | 0.3.0 | BSD* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
+| glob-to-regexp | 0.3.0 | BSD\* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | global | 4.4.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | global-cache | 1.2.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | global-modules | 0.2.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1296,8 +1297,8 @@ Generated from the installed environment. Total packages: **2446**.
 | hasha | 3.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | hasown | 2.0.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | he | 1.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| heavy-gauge-chart | 0.1.0 | UNLICENSED |  |
-| heavy-skewt-chart | 0.1.0 | UNLICENSED |  |
+| heavy-gauge-chart | 0.1.0 | UNLICENSED | |
+| heavy-skewt-chart | 0.1.0 | UNLICENSED | |
 | highlight-words-core | 1.2.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | history | 4.10.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | hmac-drbg | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1306,7 +1307,7 @@ Generated from the installed environment. Total packages: **2446**.
 | homedir-polyfill | 1.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | hosted-git-info | 2.8.9 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | hpack.js | 2.1.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| html | 1.0.0 | BSD* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
+| html | 1.0.0 | BSD\* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | html-element-map | 1.4.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | html-encoding-sniffer | 1.0.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | html-encoding-sniffer | 4.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1348,7 +1349,7 @@ Generated from the installed environment. Total packages: **2446**.
 | image-size | 0.7.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | immediate | 3.0.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | immer | 9.0.21 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| immerse | 9.0.0 | UNLICENSED |  |
+| immerse | 9.0.0 | UNLICENSED | |
 | immutable | 4.3.9 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | immutable | 5.1.9 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | import-fresh | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1360,7 +1361,7 @@ Generated from the installed environment. Total packages: **2446**.
 | indent-string | 3.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | indent-string | 4.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | indexes-of | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| indexof | 0.0.1 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| indexof | 0.0.1 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | inflight | 1.0.6 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | inherits | 2.0.4 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
 | ini | 1.3.8 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
@@ -1546,7 +1547,7 @@ Generated from the installed environment. Total packages: **2446**.
 | jss-plugin-rule-value-function | 10.10.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | jss-plugin-vendor-prefixer | 10.10.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | jsx-ast-utils | 3.3.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| jszip | 3.10.1 | (MIT OR GPL-3.0-or-later) | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| jszip | 3.10.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | just-extend | 4.2.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | just-extend | 5.1.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | kdbush | 3.0.0 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
@@ -1580,7 +1581,7 @@ Generated from the installed environment. Total packages: **2446**.
 | locate-path | 6.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | lodash | 4.18.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | lodash-es | 4.18.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| lodash._reinterpolate | 3.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| lodash.\_reinterpolate | 3.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | lodash.camelcase | 4.3.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | lodash.clonedeep | 4.5.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | lodash.debounce | 4.0.8 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1624,7 +1625,7 @@ Generated from the installed environment. Total packages: **2446**.
 | map-obj | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | map-obj | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | map-visit | 1.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| mapbox-gl | 1.9.1 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| mapbox-gl | 1.9.1 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | markdown-escapes | 1.0.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | markdown-table | 1.1.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | material-colors | 1.2.6 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
@@ -1682,7 +1683,7 @@ Generated from the installed environment. Total packages: **2446**.
 | ms | 2.1.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | multicast-dns | 7.2.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | murmurhash-js | 1.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| mutation-observer | 1.0.3 | BSD* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
+| mutation-observer | 1.0.3 | BSD\* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | mutationobserver-shim | 0.3.7 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | nanoid | 3.3.15 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | nanomatch | 1.2.13 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1740,11 +1741,10 @@ Generated from the installed environment. Total packages: **2446**.
 | on-finished | 2.4.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | on-headers | 1.1.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | once | 1.4.0 | ISC | [https://spdx.org/licenses/ISC.html](https://spdx.org/licenses/ISC.html) |
-| onecolor | 3.1.0 | BSD-2-Clause | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | onetime | 5.1.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | open | 8.4.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | opener | 1.5.2 | (WTFPL OR MIT) | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| optimist | 0.3.7 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| optimist | 0.3.7 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | optionator | 0.8.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | optionator | 0.9.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | os-browserify | 0.3.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -1942,7 +1942,7 @@ Generated from the installed environment. Total packages: **2446**.
 | react-router-dom | 5.3.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | react-select | 4.3.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | react-select-event | 2.1.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| react-selectize | 3.0.1 | Apache* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
+| react-selectize | 3.0.1 | Apache\* | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | react-sizeme | 2.6.12 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | react-split-pane | 0.1.92 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | react-style-proptype | 3.2.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -2140,13 +2140,13 @@ Generated from the installed environment. Total packages: **2446**.
 | spdy | 4.0.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | spdy-transport | 3.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | specificity | 0.4.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| split | 0.2.10 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| split | 0.2.10 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | split-string | 3.1.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | sprintf-js | 1.0.3 | BSD-3-Clause | [https://spdx.org/licenses/BSD-3-Clause.html](https://spdx.org/licenses/BSD-3-Clause.html) |
 | sql-formatter | 2.3.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | sshpk | 1.18.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | stack-utils | 2.0.6 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| stackframe | 0.3.1 | Public Domain |  |
+| stackframe | 0.3.1 | Public Domain | |
 | state-toggle | 1.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | static-eval | 2.1.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | static-extend | 0.1.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -2247,7 +2247,7 @@ Generated from the installed environment. Total packages: **2446**.
 | tr46 | 5.1.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | tree-kill | 1.2.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | treeify | 1.1.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| trim | 0.0.1 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| trim | 0.0.1 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | trim-newlines | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | trim-trailing-lines | 1.1.4 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | trough | 1.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -2283,7 +2283,7 @@ Generated from the installed environment. Total packages: **2446**.
 | unicode-match-property-value-ecmascript | 2.2.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | unicode-property-aliases-ecmascript | 2.2.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | unified | 7.1.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| union | 0.5.0 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| union | 0.5.0 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | union-value | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | uniq | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | unist-util-find-all-after | 1.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -2303,11 +2303,11 @@ Generated from the installed environment. Total packages: **2446**.
 | url-join | 2.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | url-join | 4.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | use | 3.1.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| useWhisper | 0.1.0 | UNLICENSED |  |
+| useWhisper | 0.1.0 | UNLICENSED | |
 | util | 0.12.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | util-deprecate | 1.0.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | util-extend | 1.0.3 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
-| util-inspect | 0.1.8 | MIT* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| util-inspect | 0.1.8 | MIT\* | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | utila | 0.4.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | utils-merge | 1.0.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | utrie | 1.0.2 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
@@ -2393,7 +2393,7 @@ Generated from the installed environment. Total packages: **2446**.
 | webpack-sources | 3.5.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | websocket-driver | 0.7.5 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | websocket-extensions | 0.1.4 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
-| wellknown | 0.5.0 | BSD* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
+| wellknown | 0.5.0 | BSD\* | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | wgs84 | 0.0.0 | BSD-2-Clause | [https://spdx.org/licenses/BSD-2-Clause.html](https://spdx.org/licenses/BSD-2-Clause.html) |
 | whatwg-encoding | 1.0.5 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | whatwg-encoding | 3.1.1 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
