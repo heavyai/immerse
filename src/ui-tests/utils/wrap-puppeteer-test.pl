@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+# SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 # use this script on the processed puppeteer script that you got from puppeteer-recorder-rewriter.pl
 #
 # it needs 3 args - the name of the describe block, the name of the test, and the file name.
