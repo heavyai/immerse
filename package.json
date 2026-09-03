@@ -182,7 +182,7 @@
     "shallow-equal": "~1.2.1",
     "single-line-string": "^0.0.2",
     "sql-formatter": "^2.3.4",
-    "suneditor": "^2.44.3",
+    "suneditor": "^2.47.11",
     "suneditor-react": "^3.4.1",
     "thrift": "^0.24.0",
     "tinycolor2": "^1.6.0",
