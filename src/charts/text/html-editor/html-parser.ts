@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 /* eslint-disable no-useless-escape */
 import sanitizeHtml from "sanitize-html"
 import { sanitizeOpts } from "../sanitize-opts"

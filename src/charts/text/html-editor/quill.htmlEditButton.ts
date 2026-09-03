@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 /* eslint-disable func-names */
 /**
  * NOTE: This is a copy from https://github.com/benwinding/quill-html-edit-button

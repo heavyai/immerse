@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 // This is pretty much an exact copy of https://github.com/gouch/to-title-case
 // which ignores articles, leaves intentional capitalization, etc. See
 // https://daringfireball.net/2008/05/title_case for the library's inspo

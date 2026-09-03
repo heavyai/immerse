@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 // Adapted from https://github.com/mapbox/s3urls/releases/tag/v1.5.3
 
 const parse = require("url").parse
