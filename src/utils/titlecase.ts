@@ -1,3 +1,5 @@
+/* To Title Case © 2018 David Gouch | https://github.com/gouch/to-title-case */
+
 // This is pretty much an exact copy of https://github.com/gouch/to-title-case
 // which ignores articles, leaves intentional capitalization, etc. See
 // https://daringfireball.net/2008/05/title_case for the library's inspo
