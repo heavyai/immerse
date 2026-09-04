@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 import moment from "moment"
 
 import { DATETIME_FORMAT } from "constants/magic-variables"

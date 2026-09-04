@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+# SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 # use this script on the raw puppeteer recording that you got from puppeteer recorder.
 # ./puppeteer-recorder-rewriter.pl puppeteer.raw.js > puppeteer.formatted.js
 #

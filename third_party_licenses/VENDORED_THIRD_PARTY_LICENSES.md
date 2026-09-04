@@ -2,7 +2,7 @@
 
 This file lists third-party components vendored into this project and their licenses, in fulfillment of the attribution requirements of those licenses.
 
-Compiled from `vendored-third-party-components.csv`. Total components: **20**.
+Total components: **20**.
 
 ## Summary
 

@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 const canvas = document.createElement("canvas")
 const canvasContext = canvas.getContext("2d")
 

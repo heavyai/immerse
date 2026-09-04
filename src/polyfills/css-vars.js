@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-// SPDX-License-Identifier: Apache-2.0
-
 /* eslint-disable */
 // Taken from https://gist.github.com/aaronbarker/d1eae896a7ae9da2e976002069ab53ec
 
