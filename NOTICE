@@ -62,7 +62,7 @@ single-line-string adaptation 0.0.2
 Source: https://github.com/clhenrick/single-line-string
 Copyright (c) 2010-2017 Google, Inc. http://angularjs.org
 
-css-var-polyfill.js 1.0.0
+polyfills/css-vars.js 1.0.0
 Source: https://gist.github.com/aaronbarker/d1eae896a7ae9da2e976002069ab53ec
 Copyright (c) 2018 Aaron Barker
 
