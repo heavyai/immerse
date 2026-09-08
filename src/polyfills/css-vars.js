@@ -1,5 +1,11 @@
-/* eslint-disable */
-// Taken from https://gist.github.com/aaronbarker/d1eae896a7ae9da2e976002069ab53ec
+/*!
+ * css-var-polyfill.js - v1.0.0
+ *
+ * Copyright (c) 2018 Aaron Barker <http://aaronbarker.net>
+ * Released under the MIT license
+ *
+ * Date: 2018-03-09
+ */
 
 /*
 TODO:
@@ -51,7 +57,7 @@ const cssVarPoly = {
     let counter = 1
 
     // loop through all CSS blocks looking for CSS variables being set
-    ;[].forEach.call(styleBlocks, block => {
+    ;[].forEach.call(styleBlocks, (block) => {
       // console.log(block.nodeName);
       let theCSS
       if (block.nodeName === "STYLE") {
@@ -129,7 +135,7 @@ const cssVarPoly = {
       const matches = curCSS.match(getterRegex2)
       if (matches) {
         // console.log("matches",matches);
-        matches.forEach(match => {
+        matches.forEach((match) => {
           // console.log(match.match(/var\(.+,\s*(.+)\)/))
           // find the fallback within the getter
           curCSS = curCSS.replace(match, match.match(/var\(.+,\s*(.+)\)/)[1])
@@ -150,7 +156,7 @@ const cssVarPoly = {
       const curVars = varList[curBlock]
       // console.log("curVars:",curVars);
       // loop through each var in the block
-      curVars.forEach(theVar => {
+      curVars.forEach((theVar) => {
         // console.log(theVar);
         // split on the name value pair separator
         const matches = theVar.split(/:\s*/)
@@ -166,7 +172,7 @@ const cssVarPoly = {
     const request = new XMLHttpRequest()
     request.open("GET", url, true)
     request.overrideMimeType("text/css;")
-    request.onload = function() {
+    request.onload = function () {
       if (request.status >= 200 && request.status < 400) {
         // Success!
         // console.log(request.responseText);
@@ -179,7 +185,7 @@ const cssVarPoly = {
       }
     }
 
-    request.onerror = function() {
+    request.onerror = function () {
       // There was a connection error of some sort
       console.warn("we could not get anything from:", url)
     }

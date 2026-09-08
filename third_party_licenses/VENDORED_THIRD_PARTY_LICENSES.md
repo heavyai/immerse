@@ -2,7 +2,7 @@
 
 This file lists third-party components vendored into this project and their licenses, in fulfillment of the attribution requirements of those licenses.
 
-Total components: **20**.
+Total components: **21**.
 
 ## Summary
 
@@ -22,6 +22,7 @@ Total components: **20**.
 | to-title-case | Unknown snapshot | MIT | [https://github.com/gouch/to-title-case/blob/master/LICENSE](https://github.com/gouch/to-title-case/blob/master/LICENSE) |
 | mapbox/s3urls parser | 1.5.3 | ISC | [https://github.com/mapbox/s3urls/blob/v1.5.3/LICENSE.txt](https://github.com/mapbox/s3urls/blob/v1.5.3/LICENSE.txt) |
 | single-line-string adaptation | 0.0.2 | MIT | [https://github.com/clhenrick/single-line-string/blob/master/LICENSE](https://github.com/clhenrick/single-line-string/blob/master/LICENSE) |
+| css-var-polyfill.js | 1.0.0 | MIT | [https://gist.github.com/aaronbarker/d1eae896a7ae9da2e976002069ab53ec](https://gist.github.com/aaronbarker/d1eae896a7ae9da2e976002069ab53ec) |
 | Roboto font files | v18 | Apache-2.0 | [https://github.com/googlefonts/roboto-2/blob/main/LICENSE](https://github.com/googlefonts/roboto-2/blob/main/LICENSE) |
 | Roboto Mono font files | v5 | Apache-2.0 | [https://github.com/googlefonts/RobotoMono/blob/main/OFL.txt](https://github.com/googlefonts/RobotoMono/blob/main/OFL.txt) |
 | Inter font files | Unknown snapshot | OFL-1.1 | [https://github.com/rsms/inter/blob/master/LICENSE.txt](https://github.com/rsms/inter/blob/master/LICENSE.txt) |
