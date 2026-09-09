@@ -1,7 +1,8 @@
+// SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 const canvas = document.createElement("canvas")
 const canvasContext = canvas.getContext("2d")
-
-// Taken from https://medium.com/@CarysMills/wrapping-svg-text-without-svg-2-ecbfb58f7ba4
 
 /**
  * Calculates the width of text
@@ -12,6 +13,27 @@ const canvasContext = canvas.getContext("2d")
 export function getTextWidth(text: string, font = "9px inherit"): number {
   canvasContext.font = font
   return canvasContext.measureText(text).width
+}
+
+function splitLongWord(word: string, maxWidth: number, font: string): string[] {
+  const chunks: string[] = []
+  let chunk = ""
+
+  for (const char of word) {
+    const candidate = chunk + char
+    if (chunk && getTextWidth(candidate, font) > maxWidth) {
+      chunks.push(chunk)
+      chunk = char
+    } else {
+      chunk = candidate
+    }
+  }
+
+  if (chunk) {
+    chunks.push(chunk)
+  }
+
+  return chunks
 }
 
 /**
@@ -26,44 +48,35 @@ export function wordWrap(
   maxWidth: number,
   font = "9px inherit"
 ): string[] {
-  const words = text.split(/\s+/)
-  const completedLines: string[] = []
-  let currentLine = ""
+  const lines: string[] = []
+  let line = ""
 
-  words.forEach((word) => {
-    let wordLength = getTextWidth(word, font)
-    if (wordLength > maxWidth) {
-      if (currentLine) {
-        completedLines.push(currentLine)
-      }
+  text.split(/\s+/).forEach((word) => {
+    const candidate = line ? `${line} ${word}` : word
 
-      currentLine = word[0]
-      for (let i = 1; i < word.length; i += 1) {
-        const next = `${currentLine}${word[i]}`
-        wordLength = getTextWidth(next, font)
-        if (wordLength > maxWidth) {
-          completedLines.push(currentLine)
-          currentLine = word[i]
-        } else {
-          currentLine = next
-        }
-      }
-    } else {
-      const nextLine = currentLine ? `${currentLine} ${word}` : word
-      const nextLineLength = getTextWidth(nextLine, font)
-
-      if (nextLineLength > maxWidth) {
-        completedLines.push(currentLine)
-        currentLine = word
-      } else {
-        currentLine = nextLine
-      }
+    if (getTextWidth(candidate, font) <= maxWidth) {
+      line = candidate
+      return
     }
+
+    if (line) {
+      lines.push(line)
+      line = ""
+    }
+
+    if (getTextWidth(word, font) <= maxWidth) {
+      line = word
+      return
+    }
+
+    const chunks = splitLongWord(word, maxWidth, font)
+    lines.push(...chunks.slice(0, -1))
+    line = chunks[chunks.length - 1] ?? ""
   })
 
-  if (currentLine) {
-    completedLines.push(currentLine)
+  if (line) {
+    lines.push(line)
   }
 
-  return completedLines
+  return lines
 }
