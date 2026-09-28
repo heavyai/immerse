@@ -1,13 +1,11 @@
 name: immerse-puppeteer-automation
 
+# Temporarily manual-only while isolated HeavyDB provisioning is designed.
 # Replaces the legacy Jenkins immerse-puppeteer-automation job.
 # The UI suite requires a HeavyDB instance containing the test data documented
 # in src/ui-tests/README-Puppeteer-UI-tests.md.
 
 on:
-  push:
-    branches:
-      - "**"
   workflow_dispatch:
     inputs:
       ref:
