@@ -47,6 +47,20 @@ The build will automatically launch Immerse as http://localhost:8002 in your def
 
 The server configuration (what host to connect to and credentials to use) is determined by src/servers.json - this can be overridden locally by copying it to src/servers.local.json and modifying.
 
+Mapbox and Google keys are read at runtime from the first `servers.json` entry. A compiled `MAPBOX_TOKEN` / `GOOGLE_API_KEY` is used only when the file does not set one, so a product-tarball install can add the keys without rebuilding Immerse:
+
+```json
+[
+  {
+    "database": "heavyai",
+    "mapboxToken": "pk....",
+    "googleApiKey": "AIza...."
+  }
+]
+```
+
+`MAPBOX_TOKEN` and `GOOGLE_API_KEY` are also accepted as property names. The web server injects this file as `window.APP_CONFIG` before the bundle runs.
+
 #### servers.local.json management scripts
 
 To use these, you need a src/servers.local.json first (copy src/servers.json over for a good starting point).

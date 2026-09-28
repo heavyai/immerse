@@ -18,10 +18,7 @@ import { OFFLINE_BASEMAP } from "constants/charts"
 import { DeckGLLayerVisualSpec } from "./visual-spec"
 import { autoFormat } from "services/vega"
 import { resolveBasemapValue } from "charts/raster-chart/basemap"
-
-const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN
-const TERRAIN_IMAGE = `https://api.mapbox.com/v4/mapbox.terrain-rgb/{z}/{x}/{y}@2x.png?access_token=${MAPBOX_TOKEN}`
-const TERRAIN_TEXTURE_IMAGE = `https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=${MAPBOX_TOKEN}`
+import { getMapboxToken } from "services/map-service-keys"
 const TERRAIN_LAYER_IDX = 0
 const POPUP_THROTTLE = 500
 
@@ -111,6 +108,13 @@ const DeckGLChartComponent: FC<Props> = ({
   const [popup, setPopup] = useState<PopupInfo | null>(null)
 
   const terrainDisplayMode = getTerrainDisplayMode(basemap)
+  const mapboxToken = getMapboxToken()
+  const terrainImage = mapboxToken
+    ? `https://api.mapbox.com/v4/mapbox.terrain-rgb/{z}/{x}/{y}@2x.png?access_token=${mapboxToken}`
+    : null
+  const terrainTextureImage = mapboxToken
+    ? `https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=${mapboxToken}`
+    : null
   useEffect(() => {
     setLayers((lyrs) => {
       const newLayers = [...lyrs]
@@ -122,10 +126,10 @@ const DeckGLChartComponent: FC<Props> = ({
         elevationDecoder: ELEVATION_DECODER,
         // Need to set terrain and texture sources to null if layer is invisible, otherwise tiles get pulled
         elevationData:
-          terrainDisplayMode !== TerrainDisplayMode.NONE ? TERRAIN_IMAGE : null,
+          terrainDisplayMode !== TerrainDisplayMode.NONE ? terrainImage : null,
         texture:
           terrainDisplayMode === TerrainDisplayMode.SATELLITE
-            ? TERRAIN_TEXTURE_IMAGE
+            ? terrainTextureImage
             : null,
         wireframe: terrainDisplayMode === TerrainDisplayMode.WIREFRAME,
         color: [200, 200, 200],
@@ -133,7 +137,7 @@ const DeckGLChartComponent: FC<Props> = ({
       })
       return newLayers
     })
-  }, [terrainDisplayMode])
+  }, [terrainDisplayMode, terrainImage, terrainTextureImage])
 
   useEffect(() => {
     setLayers((lyrs) => {
@@ -241,7 +245,7 @@ const DeckGLChartComponent: FC<Props> = ({
           width={width}
           height={height}
         >
-          <StaticMap mapStyle={mapStyle} mapboxApiAccessToken={MAPBOX_TOKEN} />
+          <StaticMap mapStyle={mapStyle} mapboxApiAccessToken={mapboxToken} />
           {popup && (
             <div
               className="deckgl-popup"

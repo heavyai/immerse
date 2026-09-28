@@ -14,8 +14,7 @@ import ReactMapGL, {
 } from "react-map-gl"
 import WebMercatorViewport from "viewport-mercator-project"
 import { debounce } from "lodash"
-
-const mapboxToken = process.env.MAPBOX_TOKEN
+import { getMapboxToken } from "services/map-service-keys"
 const MAP_MOVE_DEBOUNCE_MS = 100
 const EASE_DURATION_MS = 500
 
@@ -135,7 +134,7 @@ const MapComponent: FC<Props> = ({
       height={height}
       mapStyle={basemapStyle}
       onViewportChange={updateViewport}
-      mapboxApiAccessToken={mapboxToken}
+      mapboxApiAccessToken={getMapboxToken()}
     >
       {layerData && (
         <Source type="image" url={layerData} coordinates={imageBounds}>
