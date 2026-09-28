@@ -37,6 +37,8 @@ To use map charts, you must setup a mapbox token first
 MAPBOX_TOKEN=<mapbox token here>
 ```
 
+This `.env` value is only used for local development (`npm run start`). In production, the Mapbox token and Google Maps API key are supplied by the `heavyai/webserver` process at runtime as `window.MAP_CONFIG` (via `mapbox-token`/`google-api-key` under `[web]` in `heavy.conf`), not baked into the build — see `src/constants/map-config.js`.
+
 To start Immerse normally, use this command:
 
 ```bash
