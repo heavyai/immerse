@@ -108,86 +108,86 @@ export default class Dashboards extends Component {
 
     return (
       <div className="dashboards-page">
-          <div className="left-container">
-            {getFeatureFlag(LANDING_PAGE_PANELS) ? (
-              <Drawer
-                position="top"
-                drawerOpen={retrieveFromLocalStorage(WELCOME_PANEL_OPEN_KEY, {
-                  defaultValue: true,
-                  asJSON: true
-                })}
-                tabText="Welcome Panel"
-                toggleDrawerCallback={(open) => {
-                  storeInLocalStorage(WELCOME_PANEL_OPEN_KEY, open)
-                }}
-              >
-                <WelcomeSection />
-              </Drawer>
-            ) : (
-              ""
-            )}
-            <DashboardManagerFiltersComponent
-              list={dashboards.list}
-              updateFilters={this.updateFilters}
-              toggleFilter={this.toggleFilter}
-              filterEnabled={this.state.dm_filterEnabled}
-              database={this.props.dbName}
-              username={username}
-              subComponents={
-                <div className={"dashboard-manager-right-section"}>
-                  <SearchInput
-                    placeholder={SEARCH_PLACEHOLDER}
-                    searchVal={this.state.searchVal}
-                    updateSearchVal={this.updateSearchVal}
-                  />
-                  <DashboardManagerFilterCount
-                    filteredListCount={this.state.dm_filteredCount}
-                    fullListCount={dashboards.list.length}
-                  />
-                </div>
-              }
-            />
-            <div className="top-panel">
-              <div className="left-wrapper">
-                <BulkActions />
-              </div>
-              {canCreateDashboard && !getFeatureFlag(GLOBAL_SIDE_NAV) && (
-                <div className="right-wrapper">
-                  <Tooltip content={IMPORT_DASHBOARD_TEXT} enterDelay={500}>
-                    <button
-                      className="button import-dashboard-button"
-                      data-testid="import-dashboard-button"
-                      onClick={this.props.showDashboardImportModal}
-                    >
-                      <IconImport />
-                    </button>
-                  </Tooltip>
-                  <PrimaryButton
-                    className="button primary new-dashboard"
-                    disabled={isDemo}
-                    id="new-dashboard"
-                    data-testid="new-dashboard-button"
-                    onClick={initializeDashboard}
-                  >
-                    {NEW_DASHBOARD_TEXT}
-                  </PrimaryButton>
-                </div>
-              )}
-            </div>
-            <DashboardsList
-              {...{
-                canCreateDashboard,
-                sharingEnabled,
-                list: dashboards.list,
-                selected: dashboards.selected,
-                searchVal: this.state.searchVal,
-                filters: this.state.dm_filters,
-                updateFilteredListCount: this.updateFilteredListCount,
-                filterEnabled: this.state.dm_filterEnabled
+        <div className="left-container">
+          {getFeatureFlag(LANDING_PAGE_PANELS) ? (
+            <Drawer
+              position="top"
+              drawerOpen={retrieveFromLocalStorage(WELCOME_PANEL_OPEN_KEY, {
+                defaultValue: true,
+                asJSON: true
+              })}
+              tabText="Welcome Panel"
+              toggleDrawerCallback={(open) => {
+                storeInLocalStorage(WELCOME_PANEL_OPEN_KEY, open)
               }}
-            />
+            >
+              <WelcomeSection />
+            </Drawer>
+          ) : (
+            ""
+          )}
+          <DashboardManagerFiltersComponent
+            list={dashboards.list}
+            updateFilters={this.updateFilters}
+            toggleFilter={this.toggleFilter}
+            filterEnabled={this.state.dm_filterEnabled}
+            database={this.props.dbName}
+            username={username}
+            subComponents={
+              <div className={"dashboard-manager-right-section"}>
+                <SearchInput
+                  placeholder={SEARCH_PLACEHOLDER}
+                  searchVal={this.state.searchVal}
+                  updateSearchVal={this.updateSearchVal}
+                />
+                <DashboardManagerFilterCount
+                  filteredListCount={this.state.dm_filteredCount}
+                  fullListCount={dashboards.list.length}
+                />
+              </div>
+            }
+          />
+          <div className="top-panel">
+            <div className="left-wrapper">
+              <BulkActions />
+            </div>
+            {canCreateDashboard && !getFeatureFlag(GLOBAL_SIDE_NAV) && (
+              <div className="right-wrapper">
+                <Tooltip content={IMPORT_DASHBOARD_TEXT} enterDelay={500}>
+                  <button
+                    className="button import-dashboard-button"
+                    data-testid="import-dashboard-button"
+                    onClick={this.props.showDashboardImportModal}
+                  >
+                    <IconImport />
+                  </button>
+                </Tooltip>
+                <PrimaryButton
+                  className="button primary new-dashboard"
+                  disabled={isDemo}
+                  id="new-dashboard"
+                  data-testid="new-dashboard-button"
+                  onClick={initializeDashboard}
+                >
+                  {NEW_DASHBOARD_TEXT}
+                </PrimaryButton>
+              </div>
+            )}
           </div>
+          <DashboardsList
+            {...{
+              canCreateDashboard,
+              sharingEnabled,
+              list: dashboards.list,
+              selected: dashboards.selected,
+              searchVal: this.state.searchVal,
+              filters: this.state.dm_filters,
+              updateFilteredListCount: this.updateFilteredListCount,
+              filterEnabled: this.state.dm_filterEnabled
+            }}
+          />
         </div>
+      </div>
     )
   }
 }

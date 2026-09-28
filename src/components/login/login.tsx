@@ -13,41 +13,44 @@ interface LoginProps {
   user: User
   dispatch: Function
   version: string
+  match: {
+    params?: {
+      database?: string
+    }
+  }
 }
 
-class Login extends React.PureComponent<LoginProps, {}> {
-  render() {
-    const databaseParam = (this.props.match.params || {}).database
-    const login_panel_databases = this.props.user.login_panel_databases || []
+const Login = (props: LoginProps) => {
+  const databaseParam = (props.match.params || {}).database
+  const login_panel_databases = props.user.login_panel_databases || []
 
-    const shouldDisableDatabase =
-      databaseParam !== undefined || this.props.shouldDisableDatabase
+  const shouldDisableDatabase =
+    databaseParam !== undefined || props.shouldDisableDatabase
 
-    if (
-      databaseParam !== undefined &&
-      login_panel_databases.length &&
-      !login_panel_databases.some((v) => v === databaseParam)
-    ) {
-      return <Redirect to="/login" />
-    }
-
-    return (
-      <div className="login" data-testid="login-wrapper">
-        <div className="login-container">
-          <LoginPanel
-            error={this.props.error}
-            handleConnect={this.props.handleConnect}
-            shouldDisableDatabase={shouldDisableDatabase}
-            titleName={this.props.titleName}
-            user={this.props.user}
-            isDisabled={false}
-            login_panel_databases={login_panel_databases}
-            databaseParam={databaseParam}
-          />
-        </div>
-      </div>
-    )
+  if (
+    databaseParam !== undefined &&
+    login_panel_databases.length &&
+    !login_panel_databases.some((v) => v === databaseParam)
+  ) {
+    return <Redirect to="/login" />
   }
+
+  return (
+    <div className="login" data-testid="login-wrapper">
+      <div className="login-container">
+        <LoginPanel
+          error={props.error}
+          handleConnect={props.handleConnect}
+          shouldDisableDatabase={shouldDisableDatabase}
+          titleName={props.titleName}
+          user={props.user}
+          isDisabled={false}
+          login_panel_databases={login_panel_databases}
+          databaseParam={databaseParam}
+        />
+      </div>
+    </div>
+  )
 }
 
 export default Login

@@ -72,7 +72,9 @@ export const TemporalSummaryChart = ({
       .then((result: Array<any>) => {
         const enrichedResult = result.map((row) => {
           const start = moment(row[bucketAlias])
-          const end = start.clone().add(1, `${timeStep}s` as moment.unitOfTime.DurationConstructor)
+          const end = start
+            .clone()
+            .add(1, `${timeStep}s` as moment.unitOfTime.DurationConstructor)
           return {
             ...row,
             bucketRange: `${start.format(tooltipFormat)} – ${end.format(

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState, useContext } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { NavLink, useHistory } from "react-router-dom"
 
 import { SimpleWarningDialog } from "widgets/dialog/Dialog"
