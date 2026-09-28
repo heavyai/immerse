@@ -1,0 +1,134 @@
+name: immerse-puppeteer-automation
+
+# Replaces the legacy Jenkins immerse-puppeteer-automation job.
+# The UI suite requires a HeavyDB instance containing the test data documented
+# in src/ui-tests/README-Puppeteer-UI-tests.md.
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or SHA to test"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: immerse-puppeteer-automation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  immerse-puppeteer-automation:
+    name: immerse-puppeteer-automation
+    runs-on: linux-amd64-cpu32
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Upgrade npm
+        run: npm install --global npm@^11.6.1
+
+      - name: Use HTTPS for GitHub dependencies
+        run: |
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "git@github.com:"
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "ssh://git@github.com/"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure test server
+        env:
+          TEST_DATABASE: ${{ secrets.PLAYWRIGHT_TEST_DB }}
+          TEST_USERNAME: ${{ secrets.PLAYWRIGHT_TEST_USER }}
+          TEST_PASSWORD: ${{ secrets.PLAYWRIGHT_TEST_PASSWORD }}
+          TEST_SERVER: ${{ secrets.PLAYWRIGHT_TEST_SERVER }}
+        run: |
+          node <<'NODE'
+          const fs = require("fs")
+
+          const required = [
+            "TEST_DATABASE",
+            "TEST_USERNAME",
+            "TEST_PASSWORD",
+            "TEST_SERVER"
+          ]
+          const missing = required.filter((name) => !process.env[name])
+          if (missing.length) {
+            throw new Error(`Missing required secrets: ${missing.join(", ")}`)
+          }
+
+          const server = {
+            database: process.env.TEST_DATABASE,
+            master: true,
+            username: process.env.TEST_USERNAME,
+            password: process.env.TEST_PASSWORD,
+            url: process.env.TEST_SERVER,
+            GTM: "GTM-MDD888",
+            theme: "dark"
+          }
+
+          fs.writeFileSync(
+            "src/servers.local.json",
+            `${JSON.stringify([server], null, 2)}\n`
+          )
+          NODE
+
+      - name: Start Immerse
+        run: |
+          npm run start -- --no-open > webpack.log 2>&1 &
+          echo "WEBPACK_SERVER_PID=$!" >> "$GITHUB_ENV"
+
+      - name: Wait for Immerse
+        run: |
+          for attempt in {1..120}; do
+            if curl --fail --silent --show-error http://localhost:8002/ > /dev/null; then
+              exit 0
+            fi
+            sleep 5
+          done
+
+          cat webpack.log
+          echo "Immerse did not become ready within 10 minutes" >&2
+          exit 1
+
+      - name: Run Puppeteer integration tests
+        run: npm run test:ui
+
+      - name: Stop Immerse
+        if: always()
+        run: |
+          if [ -n "${WEBPACK_SERVER_PID:-}" ]; then
+            kill "$WEBPACK_SERVER_PID" 2>/dev/null || true
+          fi
+
+      - name: Upload test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: puppeteer-test-diagnostics
+          path: |
+            jest-results.xml
+            webpack.log
+            src/ui-tests/_screenshot-*.png
+          if-no-files-found: ignore
+          retention-days: 14
