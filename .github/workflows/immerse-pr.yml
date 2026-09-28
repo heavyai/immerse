@@ -1,6 +1,5 @@
-name: mapd-immerse-pr
+name: immerse-pr
 
-# Replaces the legacy Jenkins mapd-immerse-pr job.
 # ESLint also enforces the repository's Prettier rules.
 
 on:
@@ -18,12 +17,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: mapd-immerse-pr-${{ github.ref }}
+  group: immerse-pr-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  mapd-immerse-pr:
-    name: mapd-immerse-pr
+  immerse-pr:
+    name: immerse-pr
     runs-on: linux-amd64-cpu16
     timeout-minutes: 60
     env:
