@@ -21,6 +21,7 @@ import {
   available_feature_flags
 } from "components/control-panel/featureflags"
 import { getTablesForDataSource } from "components/join-manager/utils"
+import { getMapboxToken } from "services/map-service-keys"
 
 const NUMBER_OF_RESULTS_TO_FETCH = 50
 const MIN_FOUND_PERCENTAGE = 0.3
@@ -189,7 +190,7 @@ export function createChoroplethChart(crossFilter) {
       Choropleth.width(chartSpec.width)
         .height(chartSpec.height)
         .mapStyle(currentBasemapValue(chartSpec))
-        .mapboxToken(process.env.MAPBOX_TOKEN)
+        .mapboxToken(getMapboxToken())
         .mapUpdateInterval(MAP_UPDATE_INTERVAL)
 
       const dimensions = composeDimensions(crossFilter, chartSpec)

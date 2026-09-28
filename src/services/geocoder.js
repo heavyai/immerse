@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import APP_CONFIG from "constants/app-config"
+import { getGoogleApiKey } from "services/map-service-keys"
 import { fetchJsonPromiseCrossOrigin } from "utils/fetch-json-promise"
 import {
   getFeatureFlag,
@@ -11,7 +12,7 @@ import {
 const GOOGLE_GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode"
 
 function createURL(query) {
-  return `${GOOGLE_GEOCODE_URL}/json?address=${query}&key=${process.env.GOOGLE_API_KEY}`
+  return `${GOOGLE_GEOCODE_URL}/json?address=${query}&key=${getGoogleApiKey()}`
 }
 
 function parseQuery(query) {

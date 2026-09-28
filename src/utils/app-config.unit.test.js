@@ -30,6 +30,21 @@ describe("normalize app config", () => {
     })
   })
 
+  it("keeps map service keys from servers.json", () => {
+    const serversJson = {
+      url: "http://my.host.com:8000",
+      mapboxToken: "pk.servers",
+      googleApiKey: "AIza-servers"
+    }
+
+    expect(normalizeAppConfig(serversJson)).toEqual(
+      expect.objectContaining({
+        mapboxToken: "pk.servers",
+        googleApiKey: "AIza-servers"
+      })
+    )
+  })
+
   it("default port set if absent", () => {
     const url = "http://my.host.com"
     const serversJson = { url }

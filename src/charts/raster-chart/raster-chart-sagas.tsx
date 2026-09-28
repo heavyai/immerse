@@ -76,6 +76,7 @@ import APP_CONFIG from "constants/app-config"
 import d3 from "services/d3"
 import { CHART_TYPES, CHARTS } from "constants/charts"
 import initGeocoder from "services/geocoder"
+import { getMapboxToken } from "services/map-service-keys"
 import {
   layerDefaultOpacity,
   MAP_UPDATE_DEBOUNCE,
@@ -687,7 +688,7 @@ export function* handleCreateRasterChart({
         yield call(RasterChart.useLonLat, true)
         yield call(RasterChart.mapUpdateInterval, MAP_UPDATE_DEBOUNCE)
 
-        yield call(RasterChart.mapboxToken, process.env.MAPBOX_TOKEN)
+        yield call(RasterChart.mapboxToken, getMapboxToken())
 
         if (!getFeatureFlag(available_feature_flags.DISABLE_MAP_GEOCODER)) {
           const geoCoder = yield call(initGeocoder)
