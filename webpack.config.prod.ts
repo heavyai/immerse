@@ -8,7 +8,7 @@
 // - minify css
 // - use different type of source maps for production
 import path from "path"
-import webpack, { Configuration } from "webpack"
+import { Configuration } from "webpack"
 import { merge } from "webpack-merge"
 import MinifierPlugin from "terser-webpack-plugin"
 import CopyWebpackPlugin from "copy-webpack-plugin"
@@ -119,9 +119,6 @@ export const prodConfig = merge<Configuration>(commonConfig, {
     new MiniCssExtractPlugin({
       filename: "[name].[git-revision-hash].css",
       chunkFilename: "[id].[git-revision-hash].css"
-    }),
-    new webpack.DefinePlugin({
-      "process.env.MAPBOX_TOKEN": JSON.stringify(process.env.MAPBOX_TOKEN)
     })
   ]
 })

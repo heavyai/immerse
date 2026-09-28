@@ -160,7 +160,6 @@ export const commonConfig: Configuration = {
         process.env.IMMERSE_BUILD_MODE
       ),
       "process.env.APP_VERSION": JSON.stringify(metadata.version),
-      "process.env.GOOGLE_API_KEY": JSON.stringify(process.env.GOOGLE_API_KEY),
       "process.env.ENABLE_CONTROL_PANEL": JSON.stringify(
         process.env.ENABLE_CONTROL_PANEL
       ),
