@@ -16,6 +16,7 @@ import { HeavyBitmapLayer } from "../layers/heavy-bitmap-layer"
 import { BASEMAP_OPTIONS } from "constants/charts"
 import { currentTheme } from "utils/dark-mode-switcher"
 import { DARK_THEME } from "utils/theme/types"
+import { MAPBOX_TOKEN } from "constants/map-config"
 
 import "./vega-map.scss"
 import { useVegaMetadata } from "../hooks/use-vega-metadata"
@@ -203,7 +204,7 @@ export const VegaRasterMap = ({
       >
         <StaticMap
           mapStyle={basemap || DEFAULT_BASEMAP}
-          mapboxApiAccessToken={process.env.MAPBOX_TOKEN}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
           ref={mapRef}
         />
         {popup && showPopup && (

@@ -14,8 +14,9 @@ import ReactMapGL, {
 } from "react-map-gl"
 import WebMercatorViewport from "viewport-mercator-project"
 import { debounce } from "lodash"
+import { MAPBOX_TOKEN } from "constants/map-config"
 
-const mapboxToken = process.env.MAPBOX_TOKEN
+const mapboxToken = MAPBOX_TOKEN
 const MAP_MOVE_DEBOUNCE_MS = 100
 const EASE_DURATION_MS = 500
 

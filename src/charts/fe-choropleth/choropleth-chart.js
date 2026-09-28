@@ -15,6 +15,7 @@ import specificChartUpdates from "charts/utils/specific-chart-updates"
 import * as topojson from "topojson"
 import { setValueFormatter } from "actions/charts-action-creators"
 import { currentBasemapValue } from "charts/raster-chart/basemap"
+import { MAPBOX_TOKEN } from "constants/map-config"
 
 import {
   getFeatureFlag,
@@ -189,7 +190,7 @@ export function createChoroplethChart(crossFilter) {
       Choropleth.width(chartSpec.width)
         .height(chartSpec.height)
         .mapStyle(currentBasemapValue(chartSpec))
-        .mapboxToken(process.env.MAPBOX_TOKEN)
+        .mapboxToken(MAPBOX_TOKEN)
         .mapUpdateInterval(MAP_UPDATE_INTERVAL)
 
       const dimensions = composeDimensions(crossFilter, chartSpec)

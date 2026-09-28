@@ -135,6 +135,7 @@ import { getTablesForDataSource } from "components/join-manager/utils"
 import { UPDATE_PALETTE_MAPPING } from "components/shared-settings/palette-mapping-actions"
 import { MAP_MEASUREMENT_UNITS } from "./raster-chart-consts"
 import { immerseAutoFormatter } from "utils/auto-formatter"
+import { MAPBOX_TOKEN } from "constants/map-config"
 
 const rasterChartSettings = ["basemap", "width", "height"]
 
@@ -687,7 +688,7 @@ export function* handleCreateRasterChart({
         yield call(RasterChart.useLonLat, true)
         yield call(RasterChart.mapUpdateInterval, MAP_UPDATE_DEBOUNCE)
 
-        yield call(RasterChart.mapboxToken, process.env.MAPBOX_TOKEN)
+        yield call(RasterChart.mapboxToken, MAPBOX_TOKEN)
 
         if (!getFeatureFlag(available_feature_flags.DISABLE_MAP_GEOCODER)) {
           const geoCoder = yield call(initGeocoder)

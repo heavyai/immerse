@@ -18,8 +18,8 @@ import { OFFLINE_BASEMAP } from "constants/charts"
 import { DeckGLLayerVisualSpec } from "./visual-spec"
 import { autoFormat } from "services/vega"
 import { resolveBasemapValue } from "charts/raster-chart/basemap"
+import { MAPBOX_TOKEN } from "constants/map-config"
 
-const MAPBOX_TOKEN = process.env.MAPBOX_TOKEN
 const TERRAIN_IMAGE = `https://api.mapbox.com/v4/mapbox.terrain-rgb/{z}/{x}/{y}@2x.png?access_token=${MAPBOX_TOKEN}`
 const TERRAIN_TEXTURE_IMAGE = `https://api.mapbox.com/v4/mapbox.satellite/{z}/{x}/{y}@2x.png?access_token=${MAPBOX_TOKEN}`
 const TERRAIN_LAYER_IDX = 0
