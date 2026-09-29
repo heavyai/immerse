@@ -71,7 +71,9 @@ jobs:
       - name: Download and verify HeavyDB product
         id: heavydb-product
         env:
-          HEAVYAI_BINARY_SCAN_TOKEN: ${{ secrets.HEAVYAI_BINARY_SCAN_TOKEN }}
+          # PRIVATE_PACKAGES_TOKEN is a migration fallback for the private
+          # binary-scan repository only; npm installation uses no token.
+          HEAVYAI_BINARY_SCAN_TOKEN: ${{ secrets.HEAVYAI_BINARY_SCAN_TOKEN || secrets.PRIVATE_PACKAGES_TOKEN }}
           HEAVYDB_PRODUCT_DIR: ${{ runner.temp }}/heavydb-product-${{ github.run_id }}-${{ github.run_attempt }}
           HEAVYDB_RUN_ID: ${{ inputs.heavydb_run_id }}
         run: |
