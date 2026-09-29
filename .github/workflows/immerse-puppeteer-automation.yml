@@ -29,7 +29,6 @@ jobs:
     timeout-minutes: 120
     env:
       HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
-      HEAVYDB_PRODUCT_DIR: ${{ runner.temp }}/heavydb-product-${{ github.run_id }}-${{ github.run_attempt }}
       HEAVYDB_DIAGNOSTICS_DIR: ${{ github.workspace }}/heavydb-diagnostics
     steps:
       - name: Checkout
@@ -73,6 +72,7 @@ jobs:
         id: heavydb-product
         env:
           HEAVYAI_BINARY_SCAN_TOKEN: ${{ secrets.HEAVYAI_BINARY_SCAN_TOKEN }}
+          HEAVYDB_PRODUCT_DIR: ${{ runner.temp }}/heavydb-product-${{ github.run_id }}-${{ github.run_attempt }}
           HEAVYDB_RUN_ID: ${{ inputs.heavydb_run_id }}
         run: |
           args=(--output-dir "$HEAVYDB_PRODUCT_DIR")
@@ -159,6 +159,8 @@ jobs:
 
       - name: Remove disposable HeavyDB resources
         if: always()
+        env:
+          HEAVYDB_PRODUCT_DIR: ${{ runner.temp }}/heavydb-product-${{ github.run_id }}-${{ github.run_attempt }}
         run: |
           if [ -x scripts/ci/puppeteer-heavydb/cleanup-heavydb.sh ]; then
             scripts/ci/puppeteer-heavydb/cleanup-heavydb.sh
