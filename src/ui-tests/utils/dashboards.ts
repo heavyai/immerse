@@ -9,6 +9,7 @@ import {
 } from "./common"
 import { DASHBOARD_TITLE_PLACEHOLDER_ID } from "../../constants/dashboards"
 import { Page } from "@playwright/test"
+import * as path from "path"
 
 export async function clearDashboards(dashboardSubstring: string) {
   const firstDashboardInList = "#dashboards-list .row-item:first-of-type"
@@ -129,6 +130,26 @@ export async function findDashboard(dashboardName: string) {
 
 export async function goToDashboardList() {
   return await page.goto(BASE_TEST_URL, { waitUntil: "networkidle0" })
+}
+
+export async function importDashboard(dashboardPath: string) {
+  const searchInput = '[data-testid="dashboard-search-bar-field"]'
+  const importButton = '[data-testid="import-dashboard-button"]'
+  const fileInput = '.import-dialog input[type="file"]'
+
+  await page.click(searchInput, { clickCount: 3 })
+  await page.keyboard.press("Backspace")
+  await clickAfterVisible(importButton)
+  await page.waitForSelector(fileInput)
+
+  const uploadInput = await page.$(fileInput)
+  await uploadInput.uploadFile(path.resolve(dashboardPath))
+  await page.waitForSelector(".import-message-success")
+  await clickAfterVisible(
+    ".import-dialog .mdc-dialog__actions .import-dialog-action-button:last-child"
+  )
+  await page.waitForSelector(".import-dialog", { hidden: true })
+  await processPause()
 }
 
 export async function loadDashboard(dashboardName: string) {

@@ -120,4 +120,36 @@ describe("dashboard-action-creators minimalist basemap", () => {
       "minimalist"
     )
   })
+
+  it("updates imported dashboard titles inside tabs", async () => {
+    const services = new Map()
+    const createDashboardAsync = jest.fn().mockResolvedValue(undefined)
+    services.set("DbCon", {
+      getDashboardsAsync: jest.fn().mockResolvedValue([]),
+      createDashboardAsync
+    })
+
+    const importState = JSON.stringify({
+      tabs: {
+        tab1: {
+          dashboard: {
+            title: "Exported title"
+          }
+        }
+      }
+    })
+
+    await importDashboard("Imported title", "{}", importState)(
+      jest.fn(),
+      () => ({}),
+      services
+    )
+
+    const serializedImportedState = createDashboardAsync.mock.calls[0][1]
+    const decodedImportedState = decodeSerializedState(serializedImportedState)
+
+    expect(decodedImportedState.tabs.tab1.dashboard.title).toBe(
+      "Imported title"
+    )
+  })
 })
