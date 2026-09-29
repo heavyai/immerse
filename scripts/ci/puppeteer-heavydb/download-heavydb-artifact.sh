@@ -73,7 +73,10 @@ resolve_artifact() {
   local candidate
 
   if [[ -n "${requested_run_id}" ]]; then
-    find_artifact_for_run "${requested_run_id}"
+    if ! find_artifact_for_run "${requested_run_id}"; then
+      echo "Run ${requested_run_id} has no accessible published bundle; verify HEAVYAI_BINARY_SCAN_TOKEN can read ${SCAN_REPOSITORY}" >&2
+      return 1
+    fi
     return
   fi
 
@@ -91,7 +94,10 @@ resolve_artifact() {
   return 1
 }
 
-IFS=$'\t' read -r run_id run_date artifact_name < <(resolve_artifact)
+if ! resolved_artifact="$(resolve_artifact)"; then
+  exit 1
+fi
+IFS=$'\t' read -r run_id run_date artifact_name <<<"${resolved_artifact}"
 artifact_relative_path="runs/${run_date}/${run_id}/${artifact_name}"
 
 mkdir -p "${output_dir}"
