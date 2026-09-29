@@ -2,24 +2,15 @@
 
 ## Configuration requirements
 
-CI starts a disposable HeavyDB and loads deterministic CSV fixtures generated
-by `fixtures/heavydb/generate-fixtures.js`. Local runs may use the same loader
-or a server containing the following contract:
+The UI tests require connecting to a server running a HeavyDB instance with
+specific data sources:
 
-- `flights_donotmodify` has 1,200 synthetic flight rows. It contains the
-  standard flight columns used throughout the tests, including carrier,
-  destination, origin, delay, date, location, and plane metadata. Months 5 and
-  12 are present, month 100 is absent, and carrier values include American
-  Airlines, Delta Air Lines, Southwest Airlines, and United Airlines.
-- `tweets_nov_feb` has deterministic coordinate clusters and all 51 country
-  codes asserted by the scatter and point-map tests. It also includes
-  `followees`, `followers`, `state_abbr`, `admin1`, and `join_time`.
-- `us_states_geo` has five state rows with `NAME`, `ALAND`, and `AWATER`
-  columns. The active tests use it for SQL view creation and deletion.
+- flights_donotmodify
+- us_states_geo
+- tweets_nov_feb
 
-The schema is defined in `fixtures/heavydb/schema.sql`. Update the generator,
-schema, validation in `scripts/ci/puppeteer-heavydb/load-fixtures.sh`, and this
-contract together when a UI test requires another table or column.
+This list of required data sources must be updated if new data sources are
+incorporated into UI tests.
 
 ## How to run in the background
 
