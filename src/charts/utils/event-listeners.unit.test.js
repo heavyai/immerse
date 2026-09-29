@@ -20,9 +20,6 @@ describe("Chart Event Listeners", () => {
   let dcChart = null
   const id = 0
   describe("Filtered Event Listener", () => {
-    const filters = [1, 2, 3]
-    const rangeFilter = ["date1", "date2"]
-    const areFiltersInverse = false
     /*
     beforeEach(() => {
       dispatch = jest.fn()
@@ -71,13 +68,6 @@ describe("Chart Event Listeners", () => {
   })
 
   describe("Sort Event Listener", () => {
-    const sortColumn = {
-      col: {
-        name: "val"
-      },
-      index: 1,
-      order: "desc"
-    }
     /*
     beforeEach(() => {
       dispatch = jest.fn()

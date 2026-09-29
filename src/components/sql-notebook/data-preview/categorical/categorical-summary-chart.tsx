@@ -62,7 +62,7 @@ export const CategoricalSummaryChart = ({
       .finally(() => {
         setLoading(false)
       })
-  }, [column, numBuckets])
+  }, [column, numBuckets, theme])
 
   return (
     <div className="sql-notebook-chart-container">

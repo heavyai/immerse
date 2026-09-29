@@ -1672,16 +1672,7 @@ export function buildSpec(opts: SpecOptions): Spec {
             type: "window",
             sort: { field: "sortableVal", order: "ascending" },
             groupby: ["measureKey"],
-            ops: [
-              "lag",
-              "lag",
-              "lag",
-              "lag",
-              "lead",
-              "lead",
-              "lead",
-              "lead"
-            ],
+            ops: ["lag", "lag", "lag", "lag", "lead", "lead", "lead", "lead"],
             fields: [
               "hasValue",
               "measureMin",

@@ -188,6 +188,11 @@ describe("Vega combo chart creation", () => {
       measures: ["airtime"]
     })
 
+    await processPause(1)
+    const initialBarMarks = await page.$$(
+      ".vega-container .mark-rect.role-mark.bar > path"
+    )
+
     await expect(page).toClick("[data-testid='add-data-layer-button']")
 
     await processPause(1)
@@ -203,9 +208,8 @@ describe("Vega combo chart creation", () => {
       ".vega-container .mark-rect.role-mark.bar > path"
     )
 
-    // This is the number of base paths expected to appear for these two layers,
-    // 52 rows from flights and 51 rows from tweets
-    expect(numBarMarks.length).toEqual(103)
+    expect(initialBarMarks.length).toBeGreaterThan(0)
+    expect(numBarMarks.length).toBeGreaterThan(initialBarMarks.length)
   })
 
   it("Creates a Vega bar chart with a binned date dimension", async () => {

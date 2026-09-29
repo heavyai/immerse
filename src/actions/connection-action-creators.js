@@ -52,8 +52,7 @@ import {
   setDatabaseStyles,
   fetchConfigurationDB,
   setThemeTint,
-  setCustomThemeEnabled,
-  SET_UI_THEME
+  setCustomThemeEnabled
 } from "actions/user-configurable-ui-action-creators"
 import { initializeAvailableBasemaps } from "charts/raster-chart/basemap"
 import { isServiceError } from "../services/util/is-service-error.util"

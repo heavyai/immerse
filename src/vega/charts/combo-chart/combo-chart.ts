@@ -771,8 +771,7 @@ export function separateData(
       // rows as gaps so the path signal's datum.gap branch returns an empty
       // path, matching how we treat dimensions absent from the data entirely.
       const isNullMeasure =
-        isLineOrArea &&
-        (datum.measure === null || datum.measure === undefined)
+        isLineOrArea && (datum.measure === null || datum.measure === undefined)
 
       // When connectNullsAcrossGaps is enabled, drop null-measure rows on
       // line/area entirely so Vega's lag/lead window transform on lineTable

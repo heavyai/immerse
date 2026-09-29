@@ -8,3 +8,4 @@ frontend-dev/
 frontend-prod/
 node_modules/
 playwright-report/
+src/polyfills/css-vars.js

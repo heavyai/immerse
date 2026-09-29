@@ -70,8 +70,6 @@ const defaultValues = {
   geoJson: null
 }
 
-let setEliminateNull = false
-
 const crossfilter = {
   dimension: () => ({
     group: () => ({
@@ -80,10 +78,7 @@ const crossfilter = {
       }),
       binParams: noop
     }),
-    setEliminateNull: (val) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setEliminateNull = val
-    }
+    setEliminateNull: noop
   })
 }
 
