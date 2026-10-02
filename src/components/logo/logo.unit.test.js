@@ -42,7 +42,7 @@ describe("Logo", () => {
 
   it("should mount logo after config loaded", () => {
     state.connection.serversJsonPending = false
-    const { getByText, queryByRole } = render(
+    const { container, getByText, getByRole } = render(
       <Provider store={store}>
         <Logo />
       </Provider>
@@ -50,8 +50,9 @@ describe("Logo", () => {
 
     // Check that the text logo exists
     expect(getByText("HeavyAI")).toBeInTheDocument()
-    // Check that no image is rendered
-    expect(queryByRole("img")).not.toBeInTheDocument()
+    // Check that the NVIDIA logo is rendered alongside it
+    expect(getByRole("img")).toBeInTheDocument()
+    expect(container.querySelector("img.nv-logo")).toBeInTheDocument()
   })
 
   it("should mount an image if a logoURL is provided", () => {

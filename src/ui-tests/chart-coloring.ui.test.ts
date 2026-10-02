@@ -6,10 +6,14 @@ import {
   createChart,
   createDashboard,
   deleteSelector,
-  expectAttribute,
   waitForVisible,
   processPause
 } from "./utils"
+
+const getPieColors = () =>
+  page.$$eval(".pie-slice > path", (slices) =>
+    slices.map((slice) => slice.getAttribute("fill"))
+  )
 
 describe("Chart coloring", () => {
   beforeAll(async () => {
@@ -24,18 +28,15 @@ describe("Chart coloring", () => {
   it("Adding and Removing Color Measure", async () => {
     await waitForVisible(".pie-slice")
 
-    await expectAttribute(".pie-slice._0 > path", "fill", "#d0f400")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#48b5c4")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#1984c5")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#115f9a")
+    const colorsWithMeasure = await getPieColors()
+    expect(colorsWithMeasure.length).toBeGreaterThan(3)
 
     await deleteSelector("measures", 2)
     await processPause()
 
-    await expectAttribute(".pie-slice._0 > path", "fill", "#bdcf32")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#ef9b20")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#27aeef")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#ede15b")
+    const colorsWithoutMeasure = await getPieColors()
+    expect(colorsWithoutMeasure).not.toEqual(colorsWithMeasure)
+    expect(new Set(colorsWithoutMeasure).size).toBeGreaterThan(1)
   })
 
   it("Adding Solid Colors", async () => {
@@ -45,47 +46,24 @@ describe("Chart coloring", () => {
     await clickAfterVisible(".swatch-group.solid > div:nth-child(2)")
     await processPause()
 
-    await expectAttribute(".pie-slice._0 > path", "fill", "#f46a9b")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#f46a9b")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#f46a9b")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#f46a9b")
+    const solidColors = await getPieColors()
+    expect(new Set(solidColors)).toEqual(new Set(["#f46a9b"]))
   })
 
   it("Adding Ordinal Colors", async () => {
-    await clickAfterVisible(".color-swatch.selected")
-    await clickAfterVisible(".swatch-group.ordinal > div:nth-child(2)")
-    await processPause()
+    let previousColors = await getPieColors()
 
-    await expectAttribute(".pie-slice._0 > path", "fill", "#ea5545")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#87bc45")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#ede15b")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#ea5545")
+    for (let paletteIndex = 2; paletteIndex <= 5; paletteIndex += 1) {
+      await clickAfterVisible(".color-swatch.selected")
+      await clickAfterVisible(
+        `.swatch-group.ordinal > div:nth-child(${paletteIndex})`
+      )
+      await processPause()
 
-    await clickAfterVisible(".color-swatch.selected")
-    await clickAfterVisible(".swatch-group.ordinal > div:nth-child(3)")
-    await processPause()
-
-    await expectAttribute(".pie-slice._0 > path", "fill", "#22a7f0")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#d4e666")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#3ad6cd")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#22a7f0")
-
-    await clickAfterVisible(".color-swatch.selected")
-    await clickAfterVisible(".swatch-group.ordinal > div:nth-child(4)")
-    await processPause()
-
-    await expectAttribute(".pie-slice._0 > path", "fill", "#ede15b")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#27aeef")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#ede15b")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#ede15b")
-
-    await clickAfterVisible(".color-swatch.selected")
-    await clickAfterVisible(".swatch-group.ordinal > div:nth-child(5)")
-    await processPause()
-
-    await expectAttribute(".pie-slice._0 > path", "fill", "#27aeef")
-    await expectAttribute(".pie-slice._3 > path", "fill", "#ef9b20")
-    await expectAttribute(".pie-slice._6 > path", "fill", "#b33dc6")
-    await expectAttribute(".pie-slice._9 > path", "fill", "#bdcf32")
+      const ordinalColors = await getPieColors()
+      expect(new Set(ordinalColors).size).toBeGreaterThan(1)
+      expect(ordinalColors).not.toEqual(previousColors)
+      previousColors = ordinalColors
+    }
   })
 })

@@ -1,77 +1,36 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { renderHook } from "@testing-library/react-hooks"
-import { Provider } from "react-redux"
-import React from "react"
-import { useShouldShowEnterprisePrompt } from "./utils"
-import thunk from "redux-thunk"
-import configureStore from "redux-mock-store"
+import { processTablesListFromDashboardState } from "./utils"
 
-const mockState = {
-  dashboard: {
-    dataSources: {},
-    loadState: {}
-  },
-  connection: {
-    isMSDEnabled: false
-  },
-  dc: {
-    render: {
-      error: false
-    },
-    redraw: {
-      error: false
-    }
-  },
-  chartEditor: {
-    savedDataSources: { dataSources: { tweets: true } },
-    savedCharts: {
-      1: {}
-    },
-    savedFilters: {
-      1: []
-    }
-  },
-  charts: {
-    1: {},
-    2: {},
-    3: {}
-  },
-  ui: {
-    selectorPillHover: { shouldShowPrompt: false, top: false }
-  },
-  tables: { list: [] }
-}
+describe("processTablesListFromDashboardState", () => {
+  it("keeps current sources first and sorts unused tables", () => {
+    const result = processTablesListFromDashboardState({ flights: true }, [
+      { name: "zebra" },
+      { name: "flights" },
+      { name: "alpha" }
+    ])
 
-describe("useShouldShowEnterprisePrompt test suite", () => {
-  /* eslint-disable react/display-name */
-  const middlewares = [thunk]
-  const mockStore = configureStore(middlewares)
-  it("can useShouldShowEnterprisePrompt when multisource is disabled", () => {
-    const store = mockStore(mockState)
-    const { result } = renderHook(() => useShouldShowEnterprisePrompt(), {
-      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
-    })
-
-    const res = result.current("flights")
-
-    expect(res).toEqual(true)
+    expect(result.dataSources).toEqual({ flights: true })
+    expect(result.tables.map(({ label }) => label)).toEqual([
+      "flights",
+      "",
+      "alpha",
+      "zebra"
+    ])
   })
 
-  it("can useShouldShowEnterprisePrompt when multisource is enabled", () => {
-    const store = mockStore({
-      ...mockState,
-      connection: {
-        isMSDEnabled: true
-      }
-    })
-    const { result } = renderHook(() => useShouldShowEnterprisePrompt(), {
-      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
-    })
+  it("uses a table dataSource value when one is provided", () => {
+    const result = processTablesListFromDashboardState(
+      { "parameter.source": true },
+      [{ name: "Selected table", dataSource: "parameter.source" }]
+    )
 
-    const res = result.current("flights")
-
-    expect(res).toEqual(false)
+    expect(result.tables[0]).toEqual(
+      expect.objectContaining({
+        label: "Selected table",
+        value: "parameter.source"
+      })
+    )
   })
 })

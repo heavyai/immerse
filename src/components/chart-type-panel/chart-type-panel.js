@@ -143,8 +143,7 @@ export const filterChartTypes = (
   distributed
 ) => {
   const enableDeckGLCharts =
-    !distributed &&
-    (!isRenderingEnabled || getFeatureFlag(ENABLE_DECKGL_CHART))
+    !distributed && (!isRenderingEnabled || getFeatureFlag(ENABLE_DECKGL_CHART))
 
   const hiddenNonBEChartTypes = [
     NOT_BE_RENDERED_CHART_TYPES.LINE,

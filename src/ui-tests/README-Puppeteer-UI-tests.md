@@ -2,29 +2,31 @@
 
 ## Configuration requirements
 
-The UI tests require connecting to a server running a HeavyDB instance with specific data sources:
+The UI tests require connecting to a server running a HeavyDB instance with
+specific data sources:
 
 - flights_donotmodify
 - us_states_geo
 - tweets_nov_feb
 
-This list of required data sources must be updated if new data sources are incorporated into UI tests.
+This list of required data sources must be updated if new data sources are
+incorporated into UI tests.
 
 ## How to run in the background
 
-In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
+In your `servers.local.json`, specify a server with the required data sources.
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests: `npm run test:ui`
+Run tests: `pnpm run test:ui`
 
 ## How to watch it run
 
-In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
+In your `servers.local.json`, specify a server with the required data sources.
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:observe`: `npm run test:ui:observe`
+Run tests with `:observe`: `pnpm run test:ui:observe`
 
 ## How to run just one test
 
@@ -35,11 +37,11 @@ describe("DEBUG A suite of tests", () => {
   it("DEBUG A single test", async () => {
 ```
 
-In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
+In your `servers.local.json`, specify a server with the required data sources.
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:debug`: `npm run test:ui:debug`
+Run tests with `:debug`: `pnpm run test:ui:debug`
 
 This also works for any kind of Jest test from any suite.
 

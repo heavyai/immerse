@@ -40,7 +40,6 @@ import {
 
 import {
   inDashboard,
-  atDashboardsList,
   atLoginPath,
   atLoggedOutPath,
   routeToSqlEditor,

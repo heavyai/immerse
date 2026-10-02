@@ -80,8 +80,6 @@ const defaultValues = {
   geoJson: null
 }
 
-let setEliminateNull = false
-
 const mockGroup = () => {
   const group = {
     reduce: () => group,
@@ -100,10 +98,7 @@ const mockDimension = () => {
     filter: jest.fn(() => dimension),
     filterMulti: jest.fn(() => dimension),
     filterAll: jest.fn(() => dimension),
-    setEliminateNull: (val) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      setEliminateNull = val
-    }
+    setEliminateNull: noop
   }
   return dimension
 }
