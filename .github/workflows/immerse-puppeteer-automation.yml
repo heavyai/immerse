@@ -34,17 +34,12 @@ jobs:
           ref: ${{ inputs.ref || github.sha }}
           persist-credentials: false
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Use HTTPS for GitHub dependencies
         run: |
@@ -56,7 +51,7 @@ jobs:
             "ssh://git@github.com/"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -90,7 +85,7 @@ jobs:
 
       - name: Start Immerse
         run: |
-          pnpm run start --no-open > webpack.log 2>&1 &
+          npm run start -- --no-open > webpack.log 2>&1 &
           echo "WEBPACK_SERVER_PID=$!" >> "$GITHUB_ENV"
 
       - name: Wait for Immerse
@@ -107,7 +102,7 @@ jobs:
           exit 1
 
       - name: Run Puppeteer integration tests
-        run: pnpm run test:ui
+        run: npm run test:ui
 
       - name: Collect diagnostics
         if: always()
