@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 60
     env:
       # The PR checks do not use a browser. Avoid downloading Chromium during
-      # pnpm install; the Puppeteer workflow installs it independently.
+      # npm install; the Puppeteer workflow installs it independently.
       PUPPETEER_SKIP_DOWNLOAD: "true"
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
     steps:
