@@ -16,9 +16,9 @@ Switch to node 14 `nvm use 14`
 
 There are two convenience scripts setup in package.json:
 
-- `npm run test:playwright` - Runs all playwright tests, produces html report in browser at the end
-- `npm run test:playwright:gui` - Opens the browser GUI for playwright. Allows you to view tests running in browser, run single tests, watch for changes, debug, etc.
+- `pnpm run test:playwright` - Runs all playwright tests, produces html report in browser at the end
+- `pnpm run test:playwright:gui` - Opens the browser GUI for playwright. Allows you to view tests running in browser, run single tests, watch for changes, debug, etc.
 
 Other Useful Commands
 
-- `npm run test:playwright -- --debug` - Opens the playwright web interface in debug mode, where you can step through the test one line at a time while observing immerse in the browser.
+- `pnpm run test:playwright --debug` - Opens the playwright web interface in debug mode, where you can step through the test one line at a time while observing immerse in the browser.

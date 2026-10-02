@@ -1,0 +1,140 @@
+name: immerse-puppeteer-automation
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or SHA to test"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: immerse-puppeteer-automation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  immerse-puppeteer-automation:
+    name: immerse-puppeteer-automation
+    runs-on: linux-amd64-cpu32
+    timeout-minutes: 120
+    env:
+      HEAVYDB_IMAGE: docker.io/heavyai/scantest:latest
+      HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
+      HEAVYDB_START_COMMAND: ${{ vars.HEAVYDB_START_COMMAND }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Use HTTPS for GitHub dependencies
+        run: |
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "git@github.com:"
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "ssh://git@github.com/"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Start HeavyDB
+        run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
+
+      - name: Configure local HeavyDB
+        run: |
+          node <<'NODE'
+          const fs = require("fs")
+          const server = {
+            database: "heavyai",
+            master: true,
+            username: "admin",
+            password: "HyperInteractive",
+            url: "http://127.0.0.1:6273/",
+            GTM: "GTM-MDD888",
+            theme: "dark"
+          }
+
+          fs.writeFileSync(
+            "src/servers.local.json",
+            `${JSON.stringify([server], null, 2)}\n`
+          )
+          NODE
+
+      - name: Start Immerse
+        run: |
+          pnpm run start --no-open > webpack.log 2>&1 &
+          echo "WEBPACK_SERVER_PID=$!" >> "$GITHUB_ENV"
+
+      - name: Wait for Immerse
+        run: |
+          for attempt in {1..120}; do
+            if curl --fail --silent --show-error http://127.0.0.1:8002/ > /dev/null; then
+              exit 0
+            fi
+            sleep 5
+          done
+
+          cat webpack.log
+          echo "Immerse did not become ready within 10 minutes" >&2
+          exit 1
+
+      - name: Run Puppeteer integration tests
+        run: pnpm run test:ui
+
+      - name: Collect diagnostics
+        if: always()
+        run: |
+          mkdir -p heavydb-diagnostics
+          docker logs "immerse-puppeteer-heavydb-${HEAVYDB_RESOURCE_SUFFIX}" \
+            > heavydb-diagnostics/container.log 2>&1 || true
+
+      - name: Stop test services
+        if: always()
+        run: |
+          if [ -n "${WEBPACK_SERVER_PID:-}" ]; then
+            kill "$WEBPACK_SERVER_PID" 2>/dev/null || true
+          fi
+          docker rm --force \
+            "immerse-puppeteer-heavydb-${HEAVYDB_RESOURCE_SUFFIX}" \
+            2>/dev/null || true
+
+      - name: Upload test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: puppeteer-test-diagnostics-${{ github.run_attempt }}
+          path: |
+            heavydb-diagnostics
+            jest-results.xml
+            webpack.log
+            src/ui-tests/_screenshot-*.png
+          if-no-files-found: ignore
+          retention-days: 14
