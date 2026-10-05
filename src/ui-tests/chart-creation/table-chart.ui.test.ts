@@ -8,8 +8,7 @@ import {
   saveChart,
   waitForVisible,
   setInputText,
-  clickAfterVisible,
-  waitForCrossfilter
+  clickAfterVisible
 } from "../utils"
 
 describe("Table chart", () => {
@@ -91,18 +90,9 @@ describe("Table chart", () => {
 
     await saveChart()
 
-    const totalCount = await page.$eval(".count-selected", (element) =>
-      Number(element.textContent.replace(/,/g, ""))
-    )
-
     await clickAfterVisible("table > tr:nth-child(2) td")
-    await waitForCrossfilter()
 
-    const selectedCount = await page.$eval(".count-selected", (element) =>
-      Number(element.textContent.replace(/,/g, ""))
-    )
-    expect(selectedCount).toBeGreaterThan(0)
-    expect(selectedCount).toBeLessThan(totalCount)
+    await expectContainsText(".count-selected", "67,280")
 
     await expect(page).toMatchElement('td[class="filtered cell-align-left"]')
     await expect(page).toMatchElement('[class="unfilter-btn"]')

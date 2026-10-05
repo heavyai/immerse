@@ -47,16 +47,13 @@ jobs:
       - name: Upgrade npm
         run: npm install --global npm@^11.6.1
 
-      - name: Use HTTPS for GitHub dependencies
-        run: |
-          git config --global --add \
-            url."https://github.com/".insteadOf \
-            "git@github.com:"
-          git config --global --add \
-            url."https://github.com/".insteadOf \
-            "ssh://git@github.com/"
-
       - name: Install dependencies
+        env:
+          GIT_CONFIG_COUNT: "2"
+          GIT_CONFIG_KEY_0: url.https://github.com/.insteadOf
+          GIT_CONFIG_VALUE_0: "git@github.com:"
+          GIT_CONFIG_KEY_1: url.https://github.com/.insteadOf
+          GIT_CONFIG_VALUE_1: "ssh://git@github.com/"
         run: npm ci
 
       - name: Lint and check formatting

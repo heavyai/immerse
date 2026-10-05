@@ -2,19 +2,17 @@
 
 ## Configuration requirements
 
-The UI tests require connecting to a server running a HeavyDB instance with
-specific data sources:
+The UI tests require connecting to a server running a HeavyDB instance with specific data sources:
 
 - flights_donotmodify
 - us_states_geo
 - tweets_nov_feb
 
-This list of required data sources must be updated if new data sources are
-incorporated into UI tests.
+This list of required data sources must be updated if new data sources are incorporated into UI tests.
 
 ## How to run in the background
 
-In your `servers.local.json`, specify a server with the required data sources.
+In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
@@ -22,7 +20,7 @@ Run tests: `npm run test:ui`
 
 ## How to watch it run
 
-In your `servers.local.json`, specify a server with the required data sources.
+In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
@@ -37,7 +35,7 @@ describe("DEBUG A suite of tests", () => {
   it("DEBUG A single test", async () => {
 ```
 
-In your `servers.local.json`, specify a server with the required data sources.
+In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
