@@ -14,7 +14,7 @@ import {
   available_feature_flags
 } from "components/control-panel/featureflags"
 import IconAccount from "components/svg-icons/icon-account"
-import { getThemes, currentTheme } from "utils/dark-mode-switcher"
+import { getThemes } from "utils/dark-mode-switcher"
 import HelpMenu from "components/global-side-nav/HelpMenu"
 import {
   IMMERSE_UI_HELP_DROPDOWN,

@@ -30,7 +30,7 @@ import {
   getFeatureFlag,
   available_feature_flags
 } from "components/control-panel/featureflags"
-import { DARK_THEME, ImmerseUITheme } from "utils/theme/types"
+import { ImmerseUITheme } from "utils/theme/types"
 import { currentTheme } from "utils/dark-mode-switcher"
 
 const { DASHBOARD_GRID_MARGIN } = available_feature_flags

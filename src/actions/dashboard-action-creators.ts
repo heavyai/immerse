@@ -894,7 +894,7 @@ export const importDashboard = (title, metadata, state) => async (
     const deserializedState = normalizeMinimalistBasemapState(JSON.parse(state))
 
     const newTitleState = dashboardStateWithNewTitle(
-      state.tabs,
+      deserializedState.tabs,
       deserializedState,
       uniqueTitle
     )

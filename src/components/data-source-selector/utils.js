@@ -90,4 +90,3 @@ export function processTablesListFromDashboardState(
     tables: allDataSources
   }
 }
-

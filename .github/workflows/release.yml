@@ -35,12 +35,11 @@ jobs:
       - name: Upgrade npm
         run: npm install -g npm@^11.6.1
 
-      - name: Configure git for private npm dependencies
-        env:
-          TOKEN: ${{ secrets.PRIVATE_PACKAGES_TOKEN }}
-        run: git config --global url."https://x-access-token:${TOKEN}@github.com/".insteadOf "ssh://git@github.com/"
-
       - name: Install dependencies
+        env:
+          GIT_CONFIG_COUNT: "1"
+          GIT_CONFIG_KEY_0: url.https://x-access-token:${{ secrets.PRIVATE_PACKAGES_TOKEN }}@github.com/.insteadOf
+          GIT_CONFIG_VALUE_0: "ssh://git@github.com/"
         run: npm ci
 
       - name: Build

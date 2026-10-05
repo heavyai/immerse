@@ -21,9 +21,10 @@ export const LeftPanel = ({
 
   const TABS = useMemo(() => {
     return [
-    { label: "Table Browser", key: LeftPanelTabKey.DATA },
-    { label: "Guidance", key: LeftPanelTabKey.GUIDANCE, enabled: iqEnabled }
-  ]}, [iqEnabled])
+      { label: "Table Browser", key: LeftPanelTabKey.DATA },
+      { label: "Guidance", key: LeftPanelTabKey.GUIDANCE, enabled: iqEnabled }
+    ]
+  }, [iqEnabled])
 
   // eslint-disable-next-line init-declarations
   let activePanel
@@ -44,15 +45,17 @@ export const LeftPanel = ({
   return (
     <div className={"sql-notebook-left-panel"}>
       <div className="sql-notebook-left-panel__tabs">
-        {TABS.filter(({enabled}) => enabled !== false).map(({ label, key }) => (
-          <LeftPanelTab
-            label={label}
-            tabKey={key}
-            key={key}
-            activeTabKey={activeTab}
-            setActiveTab={setActiveTab}
-          />
-        ))}
+        {TABS.filter(({ enabled }) => enabled !== false).map(
+          ({ label, key }) => (
+            <LeftPanelTab
+              label={label}
+              tabKey={key}
+              key={key}
+              activeTabKey={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          )
+        )}
       </div>
       {activePanel}
     </div>
