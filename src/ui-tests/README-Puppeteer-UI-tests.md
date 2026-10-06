@@ -16,7 +16,7 @@ In your `servers.local.json`, specify a server with the required data sources (e
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests: `npm run test:ui`
+Run tests: `pnpm run test:ui`
 
 ## How to watch it run
 
@@ -24,7 +24,7 @@ In your `servers.local.json`, specify a server with the required data sources (e
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:observe`: `npm run test:ui:observe`
+Run tests with `:observe`: `pnpm run test:ui:observe`
 
 ## How to run just one test
 
@@ -39,7 +39,7 @@ In your `servers.local.json`, specify a server with the required data sources (e
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:debug`: `npm run test:ui:debug`
+Run tests with `:debug`: `pnpm run test:ui:debug`
 
 This also works for any kind of Jest test from any suite.
 
