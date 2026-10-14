@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-: "${HEAVYDB_IMAGE:=docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.0.0-20260929-39952e6c25}"
+: "${HEAVYDB_IMAGE:=docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.1.0dev-20261014-bae68469da}"
 : "${HEAVYDB_RESOURCE_SUFFIX:?HEAVYDB_RESOURCE_SUFFIX is required}"
 
 resource_suffix="$(tr -cd '[:alnum:]_-' <<<"${HEAVYDB_RESOURCE_SUFFIX}")"
