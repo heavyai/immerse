@@ -3,7 +3,18 @@ name: immerse-puppeteer-automation
 on:
   push:
     branches:
-      - "**"
+      - "pull-request/[0-9]+"
+    paths:
+      - ".github/workflows/immerse-puppeteer-automation.yml"
+      - ".nvmrc"
+      - "babel.config.js"
+      - "jest*.js"
+      - "package*.json"
+      - "scripts/**"
+      - "src/**"
+      - "test-config/**"
+      - "tsconfig*.json"
+      - "webpack*.ts"
   workflow_dispatch:
     inputs:
       ref:
@@ -13,21 +24,26 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: immerse-puppeteer-automation-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  immerse-puppeteer-automation:
-    name: immerse-puppeteer-automation
-    runs-on: linux-amd64-cpu32
-    timeout-minutes: 120
+  build-immerse:
+    name: Build Immerse
+    runs-on: linux-amd64-cpu16
+    timeout-minutes: 45
     env:
-      HEAVYDB_IMAGE: docker.io/heavyai/scantest:latest
-      HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
-      HEAVYDB_START_COMMAND: ${{ vars.HEAVYDB_START_COMMAND }}
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+      PUPPETEER_SKIP_DOWNLOAD: "true"
     steps:
+      - name: Get PR info
+        if: github.event_name == 'push'
+        id: get-pr-info
+        uses: nv-gha-runners/get-pr-info@main
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -53,16 +69,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Start HeavyDB
-        run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
-
       - name: Configure local HeavyDB
         run: |
           node <<'NODE'
@@ -83,14 +89,87 @@ jobs:
           )
           NODE
 
+      - name: Build Immerse
+        run: npm run build:dev
+
+      - name: Upload Immerse build
+        uses: actions/upload-artifact@v4
+        with:
+          name: immerse-puppeteer-build-${{ github.run_attempt }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 1
+
+  immerse-puppeteer-automation:
+    name: immerse-puppeteer-automation
+    needs: build-immerse
+    runs-on: linux-amd64-gpu-t4-latest-1
+    timeout-minutes: 60
+    env:
+      HEAVYDB_IMAGE: ${{ vars.HEAVYDB_IMAGE || 'docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.0.0-20260929-39952e6c25' }}
+      HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
+      HEAVYDB_START_COMMAND: ${{ vars.HEAVYDB_START_COMMAND }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - name: Verify GPU access
+        timeout-minutes: 2
+        run: nvidia-smi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Use HTTPS for GitHub dependencies
+        run: |
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "git@github.com:"
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "ssh://git@github.com/"
+
+      - name: Install dependencies
+        timeout-minutes: 15
+        run: npm ci
+
+      - name: Download Immerse build
+        uses: actions/download-artifact@v4
+        with:
+          name: immerse-puppeteer-build-${{ github.run_attempt }}
+          path: dist/
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Start HeavyDB
+        timeout-minutes: 15
+        run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
+
       - name: Start Immerse
         run: |
-          npm run start -- --no-open > webpack.log 2>&1 &
+          ./node_modules/.bin/http-server \
+            ./dist \
+            -p 8002 \
+            -P "http://127.0.0.1:8002?" \
+            > webpack.log 2>&1 &
           echo "WEBPACK_SERVER_PID=$!" >> "$GITHUB_ENV"
 
       - name: Wait for Immerse
+        timeout-minutes: 2
         run: |
-          for attempt in {1..120}; do
+          for _ in {1..24}; do
             if curl --fail --silent --show-error http://127.0.0.1:8002/ > /dev/null; then
               exit 0
             fi
@@ -98,11 +177,12 @@ jobs:
           done
 
           cat webpack.log
-          echo "Immerse did not become ready within 10 minutes" >&2
+          echo "Immerse did not become ready within 2 minutes" >&2
           exit 1
 
       - name: Run Puppeteer integration tests
-        run: npm run test:ui
+        timeout-minutes: 30
+        run: timeout --signal=TERM 25m npm run test:ui
 
       - name: Collect diagnostics
         if: always()

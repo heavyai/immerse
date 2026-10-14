@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-: "${HEAVYDB_IMAGE:=docker.io/heavyai/scantest:latest}"
+: "${HEAVYDB_IMAGE:=docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.0.0-20260929-39952e6c25}"
 : "${HEAVYDB_RESOURCE_SUFFIX:?HEAVYDB_RESOURCE_SUFFIX is required}"
 
 resource_suffix="$(tr -cd '[:alnum:]_-' <<<"${HEAVYDB_RESOURCE_SUFFIX}")"
@@ -15,6 +15,7 @@ docker rm --force "${container_name}" 2>/dev/null || true
 docker_args=(
   --detach
   --name "${container_name}"
+  --gpus all
   --ipc host
   --publish 127.0.0.1:6273:6273
   --publish 127.0.0.1:6274:6274
