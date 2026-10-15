@@ -101,9 +101,8 @@ describe("Immerse smoke test and sessionization", () => {
       visible: true
     })
 
-    await page.reload()
-
-    await expect(page).toMatchElement(".dashboards-container")
+    await page.reload({ waitUntil: "networkidle0" })
+    await page.waitForSelector(".dashboards-container", { visible: true })
   })
 
   it("maintains session on dashboard refresh and navigates directly to a saved dashboard ", async () => {
