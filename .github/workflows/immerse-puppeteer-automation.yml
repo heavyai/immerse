@@ -211,36 +211,20 @@ jobs:
         timeout-minutes: 15
         run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
 
-      - name: Start Immerse
+      - name: Verify mounted Immerse
         run: |
-          ./test-config/puppeteer/node_modules/.bin/http-server \
-            ./dist \
-            -p 8002 \
-            -P "http://127.0.0.1:8002?" \
-            > webpack.log 2>&1 &
-          echo "WEBPACK_SERVER_PID=$!" >> "$GITHUB_ENV"
+          curl --fail --silent --show-error http://127.0.0.1:6273/ |
+            grep --quiet '<div id="root"></div>'
 
-      - name: Wait for Immerse
-        timeout-minutes: 2
-        run: |
-          for _ in {1..24}; do
-            if curl --fail --silent --show-error http://127.0.0.1:8002/ > /dev/null; then
-              exit 0
-            fi
-            sleep 5
-          done
-
-          cat webpack.log
-          echo "Immerse did not become ready within 2 minutes" >&2
-          exit 1
-
-      - name: Run Puppeteer integration tests
-        timeout-minutes: 30
+      - name: Run Puppeteer smoke test
+        timeout-minutes: 5
         env:
+          IMMERSE_TEST_URL: http://127.0.0.1:6273
           JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/jest-puppeteer.config.js
+          PUPPETEER_ARTIFACT_DIR: ${{ github.workspace }}/puppeteer-artifacts
         run: >-
-          timeout --signal=TERM 25m
-          npm run --prefix test-config/puppeteer test
+          timeout --signal=TERM 4m
+          npm run --prefix test-config/puppeteer test:smoke
 
       - name: Collect diagnostics
         if: always()
@@ -252,9 +236,6 @@ jobs:
       - name: Stop test services
         if: always()
         run: |
-          if [ -n "${WEBPACK_SERVER_PID:-}" ]; then
-            kill "$WEBPACK_SERVER_PID" 2>/dev/null || true
-          fi
           docker rm --force \
             "immerse-puppeteer-heavydb-${HEAVYDB_RESOURCE_SUFFIX}" \
             2>/dev/null || true
@@ -267,7 +248,7 @@ jobs:
           path: |
             heavydb-diagnostics
             jest-results.xml
-            webpack.log
+            puppeteer-artifacts
             src/ui-tests/_screenshot-*.png
           if-no-files-found: ignore
           retention-days: 14
