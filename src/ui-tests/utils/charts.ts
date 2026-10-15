@@ -130,7 +130,9 @@ export async function selectChartDataSource(
   await waitForVisible(dataSourceInputSelector)
   await page.type(dataSourceInputSelector, dataSource)
 
-  return await clickAfterVisible(dropDownDataSourceSelector)
+  await clickAfterVisible(dropDownDataSourceSelector)
+  await waitForHidden(".invisible-overlay")
+  return await waitForHidden(".selector-loading")
 }
 
 export async function selectDimension(
@@ -166,6 +168,8 @@ export async function selectMeasure(
   const selectMeasureInputSelector =
     ".measures-container .autocomplete-input input"
 
+  await waitForHidden(".invisible-overlay")
+  await waitForHidden(".selector-loading")
   await clickAfterVisible(dropDownMeasureSelector)
   await processPause()
   await clickAfterVisible(selectMeasureInputSelector)

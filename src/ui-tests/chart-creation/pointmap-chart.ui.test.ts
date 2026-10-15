@@ -7,6 +7,7 @@ import {
   expectContainsText,
   expectLegendItems,
   processPause,
+  waitForHidden,
   waitForVisible,
   waitForCrossfilter,
   saveChart,
@@ -139,6 +140,8 @@ describe("Pointmap chart", () => {
       ".backendChoropleth-btn.chart-btn-enabled"
     )
 
+    await waitForHidden(".invisible-overlay")
+    await waitForHidden(".selector-loading")
     await page.click(".backendChoropleth-btn")
     await waitForVisible(".error-msg")
 
