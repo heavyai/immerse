@@ -151,20 +151,20 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: test-config/puppeteer/package-lock.json
 
-      - name: Use HTTPS for GitHub dependencies
-        run: |
-          git config --global --add \
-            url."https://github.com/".insteadOf \
-            "git@github.com:"
-          git config --global --add \
-            url."https://github.com/".insteadOf \
-            "ssh://git@github.com/"
+      - name: Restore cached Puppeteer browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: >-
+            puppeteer-browser-${{ runner.os }}-${{ runner.arch }}-${{
+              hashFiles('test-config/puppeteer/package-lock.json')
+            }}
 
-      - name: Install dependencies
-        timeout-minutes: 15
-        run: npm ci --prefer-offline --no-audit
+      - name: Install Puppeteer test dependencies
+        timeout-minutes: 10
+        run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit
 
       - name: Download Immerse build
         uses: actions/download-artifact@v4
@@ -185,7 +185,7 @@ jobs:
 
       - name: Start Immerse
         run: |
-          ./node_modules/.bin/http-server \
+          ./test-config/puppeteer/node_modules/.bin/http-server \
             ./dist \
             -p 8002 \
             -P "http://127.0.0.1:8002?" \
@@ -208,7 +208,11 @@ jobs:
 
       - name: Run Puppeteer integration tests
         timeout-minutes: 30
-        run: timeout --signal=TERM 25m npm run test:ui
+        env:
+          JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/jest-puppeteer.config.js
+        run: >-
+          timeout --signal=TERM 25m
+          npm run --prefix test-config/puppeteer test
 
       - name: Collect diagnostics
         if: always()
