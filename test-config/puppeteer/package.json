@@ -4,7 +4,7 @@
   "scripts": {
     "test": "jest --config jest.config.js --runInBand",
     "test:ci": "jest --config jest.config.js --runInBand",
-    "test:smoke": "npm test -- --runTestsByPath ../../src/ui-tests/smoke.ui.test.ts"
+    "test:smoke": "npm test -- --runTestsByPath ../../src/ui-tests/sessionization.ui.test.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",
