@@ -211,6 +211,13 @@ jobs:
         timeout-minutes: 15
         run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
 
+      - name: Restore Puppeteer test data
+        timeout-minutes: 30
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: scripts/ci/puppeteer-heavydb/restore-test-data.sh
+
       - name: Verify mounted Immerse
         run: |
           curl --fail --silent --show-error http://127.0.0.1:6273/ |
