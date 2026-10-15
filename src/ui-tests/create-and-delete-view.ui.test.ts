@@ -46,7 +46,9 @@ describe("Create and delete a view", () => {
     await page.click('[data-testid="dashboard-search-bar-field"]')
     await page.type('[data-testid="dashboard-search-bar-field"]', VIEW_NAME)
 
-    await page.click(`[data-testid="table-row-${VIEW_NAME}"]`)
+    const viewRow = `[data-testid="table-row-${VIEW_NAME}"]`
+    await waitForVisible(viewRow)
+    await page.click(viewRow)
 
     await waitForVisible('[data-testid="table-info-name"]')
 

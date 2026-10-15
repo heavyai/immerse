@@ -11,14 +11,14 @@ describe("Data Manager page", () => {
   })
 
   it("should successfully import a file", async () => {
-    await Promise.all([
-      page.waitForNavigation({ waitUntil: "networkidle0" }),
-      expect(page).toClick('[data-testid="connector-local-file-import"]')
-    ])
+    await expect(page).toClick('[data-testid="connector-local-file-import"]')
     await expect(page).toMatchTextContent("Connectors - Local File")
 
     await processPause()
     const input = await page.$(".dz-hidden-input")
+    if (!input) {
+      throw new Error("Local file import input not found")
+    }
     await input.uploadFile("src/ui-tests/fixtures/test.csv")
     await expect(page).toMatchElement(".dz-success")
   })

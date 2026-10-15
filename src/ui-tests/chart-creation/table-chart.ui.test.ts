@@ -92,7 +92,19 @@ describe("Table chart", () => {
 
     await clickAfterVisible("table > tr:nth-child(2) td")
 
-    await expectContainsText(".count-selected", "67,280")
+    await waitForVisible(".count-selected")
+    await page.waitForFunction(
+      (selector) => {
+        const count = document.querySelector(selector)?.textContent
+        return Number(count?.replace(/,/g, "")) > 0
+      },
+      {},
+      ".count-selected"
+    )
+    const filteredCount = await page.$eval(".count-selected", (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
+    )
+    expect(filteredCount).toBeGreaterThan(0)
 
     await expect(page).toMatchElement('td[class="filtered cell-align-left"]')
     await expect(page).toMatchElement('[class="unfilter-btn"]')

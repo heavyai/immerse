@@ -30,11 +30,7 @@ describe("Vega bar chart with existing dashboard filter", () => {
     await saveChart()
     await processPause(1)
 
-    await createDashboardFilter("flightnum", 7720)
-    await expect(page).toClick(".filter-operator-selector > .operator")
-    await expect(page).toClick(
-      "[data-testid='filter-component-dropdown-menu-=']"
-    )
+    await createDashboardFilter("flightnum", 7720, "=")
 
     // This should be the only bar left now
     await expect(page).toMatchElement(

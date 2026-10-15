@@ -104,18 +104,7 @@ describe("Vega Bar chart filtering", () => {
   })
 
   it("Receives a new incoming dashboard filter", async () => {
-    await createDashboardFilter("flightnum", 7720)
-    await expect(page).toClick(".filter-operator-selector > .operator")
-    await expect(page).toClick(
-      "[data-testid='filter-component-dropdown-menu-=']"
-    )
-
-    // Wait for the queries to settle
-    await waitForCrossfilter()
-
-    // Wait for the HTML to settle (renders not firing for about half a second)
-    await waitUntilHTMLRendered(page)
-    await processPause()
+    await createDashboardFilter("flightnum", 7720, "=")
 
     // This should be the only bar left now
     await expect(page).toMatchElement(

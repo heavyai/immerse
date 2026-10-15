@@ -10,7 +10,7 @@ import {
   processPause,
   saveChart,
   clickAfterVisible,
-  waitForCrossfilter,
+  waitForVisible,
   getMapRect
 } from "../utils"
 
@@ -112,8 +112,17 @@ describe("Scatter chart", () => {
     await page.mouse.move(x + width / 2, y + height / 2)
     await page.mouse.up()
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
+    await page.waitForFunction(
+      (selector, previousCount) => {
+        const count = document.querySelector(selector)?.textContent
+        const value = Number(count?.replace(/,/g, ""))
+        return value > 0 && value < previousCount
+      },
+      {},
+      countSelector,
+      countSelected
+    )
+    await processPause()
 
     const newCountSelectedEl = await page.$(countSelector)
     const newCountSelectedText = await page.evaluate(
@@ -127,11 +136,17 @@ describe("Scatter chart", () => {
 
     const dashboardName = await saveDashboard("ui-test/create-scatter-chart")
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
-
+    await waitForVisible(chartCanvas)
+    await page.waitForFunction(
+      (selector, expectedCount) => {
+        const count = document.querySelector(selector)?.textContent
+        return Number(count?.replace(/,/g, "")) === expectedCount
+      },
+      {},
+      countSelector,
+      newCountSelected
+    )
     await expect(page).not.toMatchElement('[role="alertdialog"]')
-    await expect(page).toMatchElement(chartCanvas)
 
     const finalCountSelectedEl = await page.$(countSelector)
     const finalCountSelectedText = await page.evaluate(
