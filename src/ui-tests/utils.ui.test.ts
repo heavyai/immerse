@@ -19,7 +19,7 @@ describe("Dashboard Utils", () => {
   it("createDashboard util should route to new /dashboard page", async () => {
     const dashboardName = await createDashboard("ui-tests/new-dashboard")
     await expectDashboardTitleInputToMatch(dashboardName)
-    expect(new URL(page.url()).pathname).toEqual("/mapd/dashboard")
+    expect(new URL(page.url()).pathname).toEqual("/heavyai/dashboard")
   })
 
   it("createDashboard util should title the dashboard", async () => {

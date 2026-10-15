@@ -1,6 +1,9 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { promises as fs } from "fs"
+import path from "path"
+
 import {
   clickAfterVisible,
   getTestUrl,
@@ -125,6 +128,37 @@ export async function createDashboard(
 export async function findDashboard(dashboardName: string) {
   await processPause()
   return await page.$(`.dashboard-name[title="${dashboardName}"]`)
+}
+
+export async function importDashboard(dashboardFilePath: string) {
+  const repositoryRoot = path.resolve(__dirname, "../../..")
+  const absoluteDashboardFilePath = path.resolve(
+    repositoryRoot,
+    dashboardFilePath
+  )
+  const [dashboardName] = (
+    await fs.readFile(absoluteDashboardFilePath, "utf8")
+  ).split(/\r?\n/)
+
+  await clickAfterVisible('[data-testid="import-dashboard-button"]')
+  await page.waitForSelector(".import-dialog", { visible: true })
+
+  const fileInput = await page.$(".dz-hidden-input")
+  if (!fileInput) {
+    throw new Error("Dashboard import file input not found")
+  }
+
+  await fileInput.uploadFile(absoluteDashboardFilePath)
+  await page.waitForSelector(".import-message-success", { visible: true })
+  await clickAfterVisible(
+    ".import-dialog-action-button.mdc-button--unelevated:not([disabled])"
+  )
+  await page.waitForSelector(".import-dialog", { hidden: true })
+
+  return await page.waitForSelector(
+    `.dashboard-name[title="${dashboardName}"]`,
+    { visible: true }
+  )
 }
 
 export async function goToDashboardList() {
