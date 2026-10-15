@@ -14,11 +14,7 @@ module.exports = {
   moduleNameMapper: {
     "^puppeteer$": require.resolve("puppeteer")
   },
-  modulePaths: [
-    "<rootDir>/src/",
-    "<rootDir>/test-config/",
-    harnessNodeModules
-  ],
+  modulePaths: ["<rootDir>/src/", "<rootDir>/test-config/", harnessNodeModules],
   preset: require.resolve("jest-puppeteer/jest-preset.js"),
   reporters: [
     "default",
