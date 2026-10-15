@@ -310,6 +310,7 @@
     "prettier": "2.0.5",
     "prop-types": "^15.8.1",
     "proxyquire": "1.7.4",
+    "puppeteer": "^24.43.1",
     "react-codemirror-runmode": "^1.0.5",
     "react-select-event": "^2.1.1",
     "redux-logger": "^3.0.6",
