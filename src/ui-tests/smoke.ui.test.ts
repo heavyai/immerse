@@ -11,11 +11,6 @@ const artifactDirectory =
   path.resolve(process.cwd(), "puppeteer-artifacts")
 const browserLog: string[] = []
 
-async function replaceInputValue(selector: string, value: string) {
-  await page.click(selector, { clickCount: 3 })
-  await page.keyboard.type(value)
-}
-
 describe("Immerse smoke test", () => {
   beforeEach(() => {
     page.on("console", (message) => {
@@ -57,38 +52,35 @@ describe("Immerse smoke test", () => {
     const sessionResponsePromise = page.waitForResponse(
       (response) => new URL(response.url()).pathname === "/session/validate"
     )
+    const loginResponsePromise = page.waitForResponse(
+      (response) => new URL(response.url()).pathname === "/session/create"
+    )
 
     const navigationResponse = await page.goto(getTestUrl(), {
       waitUntil: "domcontentloaded"
     })
     const sessionResponse = await sessionResponsePromise
+    const loginResponse = await loginResponsePromise
 
     expect(navigationResponse?.ok()).toBe(true)
-    expect(sessionResponse.status()).toBeLessThan(500)
-    await expect(sessionResponse.json()).resolves.toBeDefined()
-
-    await page.waitForFunction(
-      () =>
-        document.querySelector('[data-testid="login-form"]') ||
-        document.querySelector('[data-testid="dashboard-search-bar-field"]')
+    expect(sessionResponse.status()).toBe(401)
+    expect(loginResponse.ok()).toBe(true)
+    expect(
+      await page.evaluate(() => {
+        const config = window.APP_CONFIG?.[0]
+        return {
+          database: config?.database,
+          password: config?.password,
+          username: config?.username
+        }
+      })
+    ).toEqual(
+      expect.objectContaining({
+        database: "heavyai",
+        password: "HyperInteractive",
+        username: "admin"
+      })
     )
-
-    if (await page.$('[data-testid="login-form"]')) {
-      await replaceInputValue("#username-field", "admin")
-      await replaceInputValue("#password-field", "HyperInteractive")
-      await replaceInputValue("#database-field", "heavyai")
-
-      const loginResponsePromise = page.waitForResponse(
-        (response) =>
-          response.request().method() === "POST" &&
-          new URL(response.url()).origin === new URL(getTestUrl()).origin
-      )
-
-      await page.click('[data-testid="connect-button"]')
-
-      const loginResponse = await loginResponsePromise
-      expect(loginResponse.ok()).toBe(true)
-    }
 
     await page.waitForSelector('[data-testid="dashboard-search-bar-field"]', {
       visible: true
