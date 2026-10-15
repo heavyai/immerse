@@ -223,15 +223,15 @@ jobs:
           curl --fail --silent --show-error http://127.0.0.1:6273/ |
             grep --quiet '<div id="root"></div>'
 
-      - name: Run Puppeteer smoke test
-        timeout-minutes: 5
+      - name: Run Puppeteer test suite
+        timeout-minutes: 45
         env:
           IMMERSE_TEST_URL: http://127.0.0.1:6273
           JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/jest-puppeteer.config.js
           PUPPETEER_ARTIFACT_DIR: ${{ github.workspace }}/puppeteer-artifacts
         run: >-
-          timeout --signal=TERM 4m
-          npm run --prefix test-config/puppeteer test:smoke
+          timeout --signal=TERM 44m
+          npm run --prefix test-config/puppeteer test:ci
 
       - name: Collect diagnostics
         if: always()
