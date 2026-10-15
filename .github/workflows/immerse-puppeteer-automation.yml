@@ -166,6 +166,34 @@ jobs:
         timeout-minutes: 10
         run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit
 
+      - name: Install Chrome system dependencies
+        timeout-minutes: 5
+        run: |
+          sudo apt-get update
+          sudo env \
+            PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer" \
+            "$(command -v node)" \
+            test-config/puppeteer/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js \
+            browsers install chrome --install-deps
+
+      - name: Verify Chrome launch
+        timeout-minutes: 1
+        run: |
+          node <<'NODE'
+          const puppeteer = require("./test-config/puppeteer/node_modules/puppeteer")
+
+          ;(async () => {
+            const browser = await puppeteer.launch({
+              headless: true,
+              args: ["--no-sandbox", "--disable-setuid-sandbox"]
+            })
+            await browser.close()
+          })().catch(error => {
+            console.error(error)
+            process.exit(1)
+          })
+          NODE
+
       - name: Download Immerse build
         uses: actions/download-artifact@v4
         with:
