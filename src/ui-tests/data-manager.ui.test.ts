@@ -21,7 +21,35 @@ describe("Data Manager page", () => {
     if (!input) {
       throw new Error("Local file import input not found")
     }
+
+    const uploadResponsePromise = page.waitForResponse(
+      (response) => new URL(response.url()).pathname === "/upload",
+      { timeout: 30000 }
+    )
     await input.uploadFile(path.resolve(__dirname, "fixtures/test.csv"))
-    await expect(page).toMatchElement(".dz-success")
+    const uploadResponse = await uploadResponsePromise
+
+    if (!uploadResponse.ok()) {
+      throw new Error(
+        `File upload failed with HTTP ${uploadResponse.status()}: ${await uploadResponse.text()}`
+      )
+    }
+
+    const uploadResult = await page.waitForSelector(".dz-success, .dz-error", {
+      visible: true,
+      timeout: 10000
+    })
+    const resultClass = await uploadResult?.evaluate(
+      (element) => element.className
+    )
+
+    if (resultClass?.includes("dz-error")) {
+      const errorMessage = await uploadResult?.evaluate(
+        (element) => element.textContent
+      )
+      throw new Error(`Dropzone rejected the file: ${errorMessage}`)
+    }
+
+    expect(resultClass).toContain("dz-success")
   })
 })

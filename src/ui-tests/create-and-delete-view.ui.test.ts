@@ -5,6 +5,7 @@ import {
   clickByText,
   expectContainsText,
   getTestUrl,
+  setInputText,
   waitForVisible
 } from "./utils"
 import {
@@ -47,9 +48,13 @@ describe("Create and delete a view", () => {
       waitUntil: "networkidle0"
     })
 
-    await waitForVisible('[data-testid="dashboard-search-bar-field"]')
-    await page.click('[data-testid="dashboard-search-bar-field"]')
-    await page.type('[data-testid="dashboard-search-bar-field"]', VIEW_NAME)
+    const searchInput = '[data-testid="dashboard-search-bar-field"]'
+    await waitForVisible(searchInput)
+
+    // Mirror the manual flow by letting the asynchronous catalog request
+    // complete before filtering its results.
+    await waitForVisible('[data-testid="table-row-us_states_geo"]')
+    await setInputText(searchInput, VIEW_NAME)
 
     const viewRow = '[data-testid^="table-row-"]'
     await waitForVisible(viewRow)

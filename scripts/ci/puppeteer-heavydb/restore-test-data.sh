@@ -104,6 +104,13 @@ SELECT
 FROM tweets_nov_feb
 LIMIT 1;
 
+SELECT country, COUNT(country) AS row_count
+FROM tweets_nov_feb
+WHERE country IS NOT NULL
+GROUP BY country
+ORDER BY row_count DESC
+LIMIT 51;
+
 SELECT NAME, ALAND, AWATER, geom, STUSPS
 FROM us_states_geo
 LIMIT 1;
