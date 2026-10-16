@@ -89,7 +89,9 @@ describe("Table chart", () => {
 
     await saveChart()
 
-    await page.locator("table > tr:nth-child(2) td").click()
+    await page.$eval("table > tr:nth-child(2) td", (element: HTMLElement) =>
+      element.click()
+    )
 
     await waitForVisible(".count-selected")
     await page.waitForFunction(

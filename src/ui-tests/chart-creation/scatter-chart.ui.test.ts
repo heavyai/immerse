@@ -5,7 +5,6 @@ import {
   createChart,
   createDashboard,
   saveDashboard,
-  deleteDashboard,
   expectLegendItems,
   processPause,
   saveChart,
@@ -82,7 +81,7 @@ describe("Scatter chart", () => {
     expect(newCountSelected).toBeGreaterThan(0)
     expect(newCountSelected).toBeLessThan(countSelected)
 
-    const dashboardName = await saveDashboard("ui-test/create-scatter-chart")
+    await saveDashboard("ui-test/create-scatter-chart")
 
     await waitForVisible(chartCanvas)
     await page.waitForFunction(
@@ -106,7 +105,5 @@ describe("Scatter chart", () => {
     )
     expect(finalCountSelected).toBeGreaterThan(0)
     expect(finalCountSelected).toBe(newCountSelected)
-
-    await deleteDashboard(dashboardName)
   })
 })

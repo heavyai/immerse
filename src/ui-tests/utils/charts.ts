@@ -108,7 +108,7 @@ export async function deleteSelector(selectorType: string, index: number) {
 export async function saveChart() {
   await processPause()
   await Promise.all([
-    page.waitForNavigation({ waitUntil: "networkidle0" }),
+    page.waitForNavigation({ waitUntil: "domcontentloaded" }),
     page.click('[data-testid="chart-edit-apply"]')
   ])
   return await processPause()

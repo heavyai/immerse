@@ -3,7 +3,7 @@
 
 import path from "path"
 
-import { getTestUrl, waitForVisible } from "./utils"
+import { getTestUrl } from "./utils"
 
 describe("Data Manager page", () => {
   beforeAll(async () => {
@@ -16,7 +16,7 @@ describe("Data Manager page", () => {
     await expect(page).toClick('[data-testid="connector-local-file-import"]')
     await expect(page).toMatchTextContent("Connectors - Local File")
 
-    await waitForVisible(".dz-hidden-input")
+    await page.waitForSelector(".dz-hidden-input")
     const input = await page.$(".dz-hidden-input")
     if (!input) {
       throw new Error("Local file import input not found")
