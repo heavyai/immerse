@@ -10,6 +10,7 @@ import {
   processPause,
   saveChart,
   clickAfterVisible,
+  waitForCrossfilter,
   waitForVisible,
   getMapRect
 } from "../utils"
@@ -106,6 +107,25 @@ describe("Scatter chart", () => {
     )
     expect(finalCountSelected).toBeGreaterThan(0)
     expect(finalCountSelected).toBe(newCountSelected)
+
+    // Remove the lasso before leaving the page so its asynchronous GPU overlay
+    // is not destroyed during test teardown.
+    await page.keyboard.down("Alt")
+    try {
+      await expect(page).toClick("#dashboard-clear-cross-filters")
+    } finally {
+      await page.keyboard.up("Alt")
+    }
+    await page.waitForFunction(
+      (selector, expectedCount) => {
+        const count = document.querySelector(selector)?.textContent
+        return Number(count?.replace(/,/g, "")) === expectedCount
+      },
+      {},
+      countSelector,
+      countSelected
+    )
+    await waitForCrossfilter()
 
     // Deleting from the active dashboard page destroys the GPU chart while its
     // final overlay may still be completing. Use the same authenticated browser

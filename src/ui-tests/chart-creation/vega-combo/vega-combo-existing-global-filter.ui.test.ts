@@ -14,7 +14,6 @@ import {
   saveChart,
   createVegaChart,
   waitForCrossfilter,
-  waitForThriftResponse,
   waitForVisible
 } from "../../utils"
 import { createDashboardFilter } from "../../utils/filter-panel"
@@ -29,16 +28,18 @@ describe("Vega bar chart with existing dashboard filter", () => {
       dimensions: ["uniquecarrier"],
       measures: ["airtime"]
     })
-    const initialRender = waitForThriftResponse("render_vega")
     await saveChart()
-    await initialRender
     await waitForVisible(".chart-type-vega-combo .vega-container")
     await waitForCrossfilter()
 
-    await Promise.all([
-      waitForThriftResponse("render_vega"),
-      createDashboardFilter("flightnum", 7720, "=")
-    ])
+    // Confirm the unfiltered chart has completed its initial render before
+    // creating a filter that should remove this carrier.
+    await expect(page).toMatchElement(
+      ".chart-type-vega-combo .vega-container",
+      { text: "AA" }
+    )
+
+    await createDashboardFilter("flightnum", 7720, "=")
     await waitForCrossfilter()
 
     // This should be the only bar left now

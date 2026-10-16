@@ -47,24 +47,6 @@ export async function waitForCrossfilter() {
   return await processPause()
 }
 
-export function waitForThriftResponse(thriftMethod: string, timeout = 30000) {
-  return page.waitForResponse(
-    async (response) => {
-      try {
-        const contentType = response.headers()["content-type"]
-        if (!contentType?.includes("application/x-thrift")) {
-          return false
-        }
-
-        return (await response.buffer()).includes(thriftMethod)
-      } catch {
-        return false
-      }
-    },
-    { timeout }
-  )
-}
-
 export function getTestUrl(path = "/") {
   const baseUrl = process.env.IMMERSE_TEST_URL || "http://localhost:8002"
 
