@@ -1,0 +1,263 @@
+name: immerse-puppeteer-automation
+
+on:
+  push:
+    branches:
+      - "pull-request/[0-9]+"
+      - "puppeteer-ci-automation"
+    paths:
+      - ".github/workflows/immerse-puppeteer-automation.yml"
+      - ".nvmrc"
+      - "babel.config.js"
+      - "jest*.js"
+      - "package*.json"
+      - "scripts/**"
+      - "src/**"
+      - "test-config/**"
+      - "tsconfig*.json"
+      - "webpack*.ts"
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or SHA to test"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: immerse-puppeteer-automation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-immerse:
+    name: Build Immerse
+    runs-on: linux-amd64-cpu16
+    timeout-minutes: 45
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
+      PUPPETEER_SKIP_DOWNLOAD: "true"
+    steps:
+      - name: Get PR info
+        if: github.event_name == 'push' && startsWith(github.ref_name, 'pull-request/')
+        id: get-pr-info
+        uses: nv-gha-runners/get-pr-info@main
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - name: Restore cached Immerse build
+        id: immerse-build-cache
+        uses: actions/cache@v4
+        with:
+          path: dist/
+          key: >-
+            immerse-build-v2-${{ runner.os }}-${{
+              hashFiles(
+                '.github/workflows/immerse-puppeteer-automation.yml',
+                '.nvmrc',
+                'babel.config.js',
+                'package.json',
+                'package-lock.json',
+                'scripts/build-dev.sh',
+                'src/**',
+                'tsconfig*.json',
+                'webpack*.ts'
+              )
+            }}
+
+      - name: Set up Node.js
+        if: steps.immerse-build-cache.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Use HTTPS for GitHub dependencies
+        if: steps.immerse-build-cache.outputs.cache-hit != 'true'
+        run: |
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "git@github.com:"
+          git config --global --add \
+            url."https://github.com/".insteadOf \
+            "ssh://git@github.com/"
+
+      - name: Install dependencies
+        if: steps.immerse-build-cache.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Configure local HeavyDB
+        if: steps.immerse-build-cache.outputs.cache-hit != 'true'
+        run: |
+          node <<'NODE'
+          const fs = require("fs")
+          const server = {
+            database: "heavyai",
+            master: true,
+            username: "admin",
+            password: "HyperInteractive",
+            url: "http://127.0.0.1:6273/",
+            GTM: "GTM-MDD888",
+            offline: true,
+            theme: "dark"
+          }
+
+          fs.writeFileSync(
+            "src/servers.local.json",
+            `${JSON.stringify([server], null, 2)}\n`
+          )
+          NODE
+
+      - name: Build Immerse
+        if: steps.immerse-build-cache.outputs.cache-hit != 'true'
+        run: npm run build:dev
+
+      - name: Upload Immerse build
+        uses: actions/upload-artifact@v4
+        with:
+          name: immerse-puppeteer-build-${{ github.run_id }}
+          path: dist/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 1
+
+  immerse-puppeteer-automation:
+    name: immerse-puppeteer-automation
+    needs: build-immerse
+    runs-on: linux-amd64-gpu-t4-latest-1
+    timeout-minutes: 60
+    env:
+      HEAVYDB_IMAGE: ${{ vars.HEAVYDB_IMAGE || 'docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.1.0dev-20261014-bae68469da' }}
+      HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
+      HEAVYDB_START_COMMAND: ${{ vars.HEAVYDB_START_COMMAND }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          persist-credentials: false
+
+      - name: Verify GPU access
+        timeout-minutes: 2
+        run: nvidia-smi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: test-config/puppeteer/package-lock.json
+
+      - name: Restore cached Puppeteer browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: >-
+            puppeteer-browser-${{ runner.os }}-${{ runner.arch }}-${{
+              hashFiles('test-config/puppeteer/package-lock.json')
+            }}
+
+      - name: Install Puppeteer test dependencies
+        timeout-minutes: 10
+        run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit
+
+      - name: Install Chrome system dependencies
+        timeout-minutes: 5
+        run: |
+          sudo apt-get update
+          sudo env \
+            PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer" \
+            "$(command -v node)" \
+            test-config/puppeteer/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js \
+            browsers install chrome --install-deps
+
+      - name: Verify Chrome launch
+        timeout-minutes: 1
+        run: |
+          node <<'NODE'
+          const puppeteer = require("./test-config/puppeteer/node_modules/puppeteer")
+
+          ;(async () => {
+            const browser = await puppeteer.launch({
+              headless: true,
+              args: ["--no-sandbox", "--disable-setuid-sandbox"]
+            })
+            await browser.close()
+          })().catch(error => {
+            console.error(error)
+            process.exit(1)
+          })
+          NODE
+
+      - name: Download Immerse build
+        uses: actions/download-artifact@v4
+        with:
+          name: immerse-puppeteer-build-${{ github.run_id }}
+          path: dist/
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Start HeavyDB
+        timeout-minutes: 15
+        run: scripts/ci/puppeteer-heavydb/start-heavydb.sh
+
+      - name: Restore Puppeteer test data
+        timeout-minutes: 30
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: scripts/ci/puppeteer-heavydb/restore-test-data.sh
+
+      - name: Verify mounted Immerse
+        run: |
+          curl --fail --silent --show-error http://127.0.0.1:6273/ |
+            grep --quiet '<div id="root"></div>'
+
+      - name: Run Puppeteer test suite
+        timeout-minutes: 45
+        env:
+          IMMERSE_TEST_URL: http://127.0.0.1:6273
+          JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/test-config/puppeteer/jest-puppeteer.config.js
+          PUPPETEER_ARTIFACT_DIR: ${{ github.workspace }}/puppeteer-artifacts
+        run: >-
+          timeout --signal=TERM 44m
+          npm run --prefix test-config/puppeteer test:ci
+
+      - name: Collect diagnostics
+        if: always()
+        run: |
+          mkdir -p heavydb-diagnostics
+          docker logs "immerse-puppeteer-heavydb-${HEAVYDB_RESOURCE_SUFFIX}" \
+            > heavydb-diagnostics/container.log 2>&1 || true
+
+      - name: Stop test services
+        if: always()
+        run: |
+          docker rm --force \
+            "immerse-puppeteer-heavydb-${HEAVYDB_RESOURCE_SUFFIX}" \
+            2>/dev/null || true
+
+      - name: Upload test diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: puppeteer-test-diagnostics-${{ github.run_attempt }}
+          path: |
+            heavydb-diagnostics
+            jest-results.xml
+            puppeteer-artifacts
+            src/ui-tests/_screenshot-*.png
+          if-no-files-found: ignore
+          retention-days: 14

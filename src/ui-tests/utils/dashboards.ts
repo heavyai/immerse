@@ -1,6 +1,9 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { promises as fs } from "fs"
+import path from "path"
+
 import {
   clickAfterVisible,
   getTestUrl,
@@ -127,6 +130,37 @@ export async function findDashboard(dashboardName: string) {
   return await page.$(`.dashboard-name[title="${dashboardName}"]`)
 }
 
+export async function importDashboard(dashboardFilePath: string) {
+  const repositoryRoot = path.resolve(__dirname, "../../..")
+  const absoluteDashboardFilePath = path.resolve(
+    repositoryRoot,
+    dashboardFilePath
+  )
+  const [dashboardName] = (
+    await fs.readFile(absoluteDashboardFilePath, "utf8")
+  ).split(/\r?\n/)
+
+  await clickAfterVisible('[data-testid="import-dashboard-button"]')
+  await page.waitForSelector(".import-dialog", { visible: true })
+
+  const fileInput = await page.$(".dz-hidden-input")
+  if (!fileInput) {
+    throw new Error("Dashboard import file input not found")
+  }
+
+  await fileInput.uploadFile(absoluteDashboardFilePath)
+  await page.waitForSelector(".import-message-success", { visible: true })
+  await clickAfterVisible(
+    ".import-dialog-action-button.mdc-button--unelevated:not([disabled])"
+  )
+  await page.waitForSelector(".import-dialog", { hidden: true })
+
+  return await page.waitForSelector(
+    `.dashboard-name[title="${dashboardName}"]`,
+    { visible: true }
+  )
+}
+
 export async function goToDashboardList() {
   return await page.goto(BASE_TEST_URL, { waitUntil: "networkidle0" })
 }
@@ -168,10 +202,16 @@ export async function deleteDashboardPlaywright(
   return page.getByTestId("no-search-results")
 }
 
-export async function deleteDashboard(dashboardName: string) {
-  await goToDashboardList()
-  await searchDashboardList(dashboardName)
-  const dashboardFound = (await findDashboard(dashboardName)) !== null
+export async function deleteDashboard(dashboardName: string, testPage = page) {
+  await testPage.goto(BASE_TEST_URL, { waitUntil: "networkidle0" })
+  await testPage.type(
+    '[data-testid="dashboard-search-bar-field"]',
+    dashboardName,
+    { delay: 50 }
+  )
+  await processPause()
+  const dashboardFound =
+    (await testPage.$(`.dashboard-name[title="${dashboardName}"]`)) !== null
 
   if (dashboardFound) {
     const dashboardActionMenuSelector = `.dashboard-action-menu-button[data-dashboard-name="${dashboardName}"]`
@@ -179,12 +219,21 @@ export async function deleteDashboard(dashboardName: string) {
     const dashboardDeleteConfirmSelector =
       ".mdc-dialog .mdc-dialog__actions .mdc-button--unelevated"
 
-    await page.hover(dashboardActionMenuSelector)
-    await clickAfterVisible(dashboardActionMenuSelector)
-    await clickAfterVisible(dashboardActionDeleteSelector)
-    await clickAfterVisible(dashboardDeleteConfirmSelector)
+    await testPage.hover(dashboardActionMenuSelector)
+    await testPage.waitForSelector(dashboardActionMenuSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardActionMenuSelector)
+    await testPage.waitForSelector(dashboardActionDeleteSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardActionDeleteSelector)
+    await testPage.waitForSelector(dashboardDeleteConfirmSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardDeleteConfirmSelector)
 
-    return await page.waitForSelector('[data-testid="no-search-results"]')
+    return await testPage.waitForSelector('[data-testid="no-search-results"]')
   } else {
     throw new Error("Dashboard not found")
   }

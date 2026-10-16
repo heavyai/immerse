@@ -41,9 +41,17 @@ const createIncompleteGlobalFilter = async (column = "flight_month") => {
 // Limited to numerical types for now
 export const createDashboardFilter = async (
   column = "flight_month",
-  value = 12
+  value = 12,
+  operator?: string
 ) => {
   await createIncompleteGlobalFilter(column)
+
+  if (operator) {
+    await clickAfterVisible(".filter-operator-selector > .operator")
+    await clickAfterVisible(
+      `[data-testid='filter-component-dropdown-menu-${operator}']`
+    )
+  }
 
   // select the filter component input, clear the contents, then insert a value
   await page.focus("[data-testid='filter-component-input-value']")

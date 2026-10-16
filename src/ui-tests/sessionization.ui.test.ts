@@ -1,22 +1,116 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { promises as fs } from "fs"
+import path from "path"
+
 import {
   createDashboard,
   deleteDashboard,
   getTestUrl,
-  goToDashboardList,
   saveDashboard
 } from "./utils"
 import { expectDashboardTitleInputToMatch } from "./utils/expect"
 
-describe("Sessionization", () => {
-  it("maintains session on dashboard list refresh", async () => {
-    await goToDashboardList()
+const artifactDirectory =
+  process.env.PUPPETEER_ARTIFACT_DIR ||
+  path.resolve(process.cwd(), "puppeteer-artifacts")
+const verifyCiAutoLogin = Boolean(process.env.IMMERSE_TEST_URL)
+const browserLog: string[] = []
 
-    await page.reload()
+describe("Immerse smoke test and sessionization", () => {
+  beforeAll(() => {
+    page.on("console", (message) => {
+      browserLog.push(`[console:${message.type()}] ${message.text()}`)
+    })
+    page.on("pageerror", (error) => {
+      browserLog.push(`[pageerror] ${error.stack || error.message}`)
+    })
+    page.on("requestfailed", (request) => {
+      browserLog.push(
+        `[requestfailed] ${request.method()} ${request.url()} ${
+          request.failure()?.errorText || "unknown error"
+        }`
+      )
+    })
+  })
 
-    await expect(page).toMatchElement(".dashboards-container")
+  afterAll(async () => {
+    await fs.mkdir(artifactDirectory, { recursive: true })
+
+    if (!page.isClosed()) {
+      await page.screenshot({
+        path: path.join(artifactDirectory, "immerse-smoke.png"),
+        fullPage: true
+      })
+      await fs.writeFile(
+        path.join(artifactDirectory, "immerse-smoke.html"),
+        await page.content()
+      )
+    }
+
+    await fs.writeFile(
+      path.join(artifactDirectory, "immerse-smoke-browser.log"),
+      `${browserLog.join("\n")}\n`
+    )
+  })
+
+  it("loads the dashboard list, connects to HeavyDB, and maintains the session on refresh", async () => {
+    let navigationResponse
+
+    if (verifyCiAutoLogin) {
+      const browserContext = page.browserContext()
+      const cookies = await browserContext.cookies()
+      if (cookies.length) {
+        await browserContext.deleteCookie(...cookies)
+      }
+
+      const sessionResponsePromise = page.waitForResponse(
+        (response) => new URL(response.url()).pathname === "/session/validate"
+      )
+      const loginResponsePromise = page.waitForResponse(
+        (response) => new URL(response.url()).pathname === "/session/create"
+      )
+
+      navigationResponse = await page.goto(getTestUrl(), {
+        waitUntil: "domcontentloaded"
+      })
+      const sessionResponse = await sessionResponsePromise
+      const loginResponse = await loginResponsePromise
+
+      expect(sessionResponse.status()).toBe(401)
+      expect(loginResponse.ok()).toBe(true)
+      expect(
+        await page.evaluate(() => {
+          const config = window.APP_CONFIG?.[0]
+          return {
+            database: config?.database,
+            username: config?.username
+          }
+        })
+      ).toEqual(
+        expect.objectContaining({
+          database: "heavyai",
+          username: "admin"
+        })
+      )
+    } else {
+      navigationResponse = await page.goto(getTestUrl(), {
+        waitUntil: "domcontentloaded"
+      })
+    }
+
+    expect(navigationResponse?.ok()).toBe(true)
+
+    await page.waitForSelector('[data-testid="dashboard-search-bar-field"]', {
+      visible: true
+    })
+    await page.waitForSelector('[data-testid="new-dashboard-button"]', {
+      visible: true
+    })
+
+    await page.reload({ waitUntil: "networkidle0" })
+    await page.waitForSelector(".dashboards-container", { visible: true })
   })
 
   it("maintains session on dashboard refresh and navigates directly to a saved dashboard ", async () => {

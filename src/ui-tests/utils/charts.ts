@@ -108,7 +108,7 @@ export async function deleteSelector(selectorType: string, index: number) {
 export async function saveChart() {
   await processPause()
   await Promise.all([
-    page.waitForNavigation({ waitUntil: "networkidle0" }),
+    page.waitForNavigation({ waitUntil: "domcontentloaded" }),
     page.click('[data-testid="chart-edit-apply"]')
   ])
   return await processPause()
@@ -130,7 +130,9 @@ export async function selectChartDataSource(
   await waitForVisible(dataSourceInputSelector)
   await page.type(dataSourceInputSelector, dataSource)
 
-  return await clickAfterVisible(dropDownDataSourceSelector)
+  await clickAfterVisible(dropDownDataSourceSelector)
+  await waitForHidden(".invisible-overlay")
+  return await waitForHidden(".selector-loading")
 }
 
 export async function selectDimension(
@@ -166,17 +168,32 @@ export async function selectMeasure(
   const selectMeasureInputSelector =
     ".measures-container .autocomplete-input input"
 
+  await waitForHidden(".invisible-overlay")
+  await waitForHidden(".selector-loading")
   await clickAfterVisible(dropDownMeasureSelector)
-  await processPause()
+  try {
+    await page.waitForSelector(selectMeasureInputSelector, {
+      visible: true,
+      timeout: 5000
+    })
+  } catch {
+    // A selector update can replace the button just as it is clicked. Retry
+    // against the current element after the editor finishes updating.
+    await waitForHidden(".invisible-overlay")
+    await waitForHidden(".selector-loading")
+    await clickAfterVisible(dropDownMeasureSelector)
+  }
   await clickAfterVisible(selectMeasureInputSelector)
   await page.keyboard.type(measureName)
   await page.keyboard.press("Enter")
 
   const aggregateVisible = (await page.$(".agg-type-group")) !== null
-  if (aggregateVisible && aggregate) {
-    await clickByText(aggregate)
+  if (aggregateVisible) {
+    if (aggregate) {
+      await clickByText(aggregate)
+    }
+    await page.keyboard.press("Enter")
   }
-  await page.keyboard.press("Enter")
 
   await waitForHidden(".invisible-overlay")
   await waitForHidden(".selector-loading")

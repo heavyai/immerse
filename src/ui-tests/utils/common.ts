@@ -48,7 +48,7 @@ export async function waitForCrossfilter() {
 }
 
 export function getTestUrl(path = "/") {
-  const baseUrl = "http://localhost:8002"
+  const baseUrl = process.env.IMMERSE_TEST_URL || "http://localhost:8002"
 
   return new URL(path, baseUrl).toString()
 }

@@ -1,0 +1,29 @@
+DROP TABLE IF EXISTS flights_donotmodify;
+RESTORE TABLE flights_donotmodify
+FROM 's3://heavyai-render-test/flights.dump.lz4'
+WITH (
+  compression = 'lz4',
+  s3_region = 'us-west-1',
+  s3_access_key = '__AWS_ACCESS_KEY_ID__',
+  s3_secret_key = '__AWS_SECRET_ACCESS_KEY__'
+);
+
+DROP TABLE IF EXISTS us_states_geo;
+RESTORE TABLE us_states_geo
+FROM 's3://heavyai-render-test/us_states.dump.lz4'
+WITH (
+  compression = 'lz4',
+  s3_region = 'us-west-1',
+  s3_access_key = '__AWS_ACCESS_KEY_ID__',
+  s3_secret_key = '__AWS_SECRET_ACCESS_KEY__'
+);
+
+DROP TABLE IF EXISTS tweets_nov_feb;
+RESTORE TABLE tweets_nov_feb
+FROM 's3://heavyai-render-test/tweets_2017_may.dump.lz4'
+WITH (
+  compression = 'lz4',
+  s3_region = 'us-west-1',
+  s3_access_key = '__AWS_ACCESS_KEY_ID__',
+  s3_secret_key = '__AWS_SECRET_ACCESS_KEY__'
+);

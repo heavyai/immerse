@@ -32,14 +32,15 @@ export const expectDashboardTitleInputToMatch = async (
 }
 
 export async function expectLegendItems(legendItems) {
-  let index = 1
-  for (const legendItem of legendItems) {
-    await expectContainsText(
-      `.legendables .body>div:nth-child(${index}) .text`,
-      legendItem
-    )
-    index = index + 1
-  }
+  const legendItemSelector = ".legendables .body > div .text"
+  await page.waitForSelector(legendItemSelector, { visible: true })
+
+  const renderedLegendItems = await page.$$eval(
+    legendItemSelector,
+    (elements) => elements.map((element) => element.textContent?.trim())
+  )
+
+  expect(renderedLegendItems).toEqual(legendItems)
 
   return await processPause()
 }

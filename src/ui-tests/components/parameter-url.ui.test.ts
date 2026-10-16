@@ -29,7 +29,6 @@ describe("Parameter url", () => {
       await importDashboard(
         "src/ui-tests/test-json-files/Demo_ Parameter URL (don’t delete).json"
       )
-      await searchDashboardList(dashboardName)
     }
 
     await clickAfterVisible(
