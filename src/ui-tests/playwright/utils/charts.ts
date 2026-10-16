@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Page, expect, test } from "@playwright/test"
-import { BASE_TEST_URL } from "ui-tests/utils"
+import { BASE_TEST_URL } from "ui-tests/utils/common"
 import { asTestId, chartSelectors } from "../ui-automation/selectors"
 import { getChartIdFromPage, waitForThriftResponse } from "./common"
 
