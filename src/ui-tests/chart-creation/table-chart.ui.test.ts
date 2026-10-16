@@ -106,13 +106,13 @@ describe("Table chart", () => {
     )
     expect(filteredCount).toBeGreaterThan(0)
 
-    await expect(page).toMatchElement('td[class="filtered cell-align-left"]')
-    await expect(page).toMatchElement('[class="unfilter-btn"]')
+    await expect(page).toMatchElement("td.filtered.cell-align-left")
+    await expect(page).toMatchElement(".unfilter-btn")
 
     const filterCount = await page.evaluate(
       () =>
-        document.querySelector('span[class="filter-set-item__filter-count"]')
-          .innerText
+        document.querySelector<HTMLElement>(".filter-set-item__filter-count")
+          ?.innerText
     )
     expect(filterCount).toBe(" (1)")
 

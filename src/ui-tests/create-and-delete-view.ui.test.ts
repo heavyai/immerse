@@ -17,7 +17,7 @@ const getTestId = (testId: string) => `[data-testid="${testId}"]`
 
 describe("Create and delete a view", () => {
   const VIEW_NAME = `us_states_geo_view_${new Date().getTime()}`
-  const CREATE_VIEW_QUERY = `CREATE VIEW ${VIEW_NAME} AS (SELECT NAME FROM us_states_geo);`
+  const CREATE_VIEW_QUERY = `CREATE VIEW ${VIEW_NAME} AS SELECT NAME FROM us_states_geo;`
 
   it("should create a view in the SQL editor", async () => {
     await page.goto(getTestUrl("sql-editor"), { waitUntil: "networkidle0" })
@@ -32,6 +32,11 @@ describe("Create and delete a view", () => {
       getTestId(SQL_EDITOR_TEST_ID_RESULTS_META),
       "Total time:"
     )
+    const queryResult = await page.$eval(
+      getTestId(SQL_EDITOR_TEST_ID_RESULTS_META),
+      (element) => element.textContent
+    )
+    expect(queryResult).not.toContain("Exception")
 
     // eslint-disable-next-line no-console
     console.log("Created view: ", VIEW_NAME)
@@ -46,13 +51,23 @@ describe("Create and delete a view", () => {
     await page.click('[data-testid="dashboard-search-bar-field"]')
     await page.type('[data-testid="dashboard-search-bar-field"]', VIEW_NAME)
 
-    const viewRow = `[data-testid="table-row-${VIEW_NAME}"]`
+    const viewRow = '[data-testid^="table-row-"]'
     await waitForVisible(viewRow)
+    const viewRowTestId = await page.$eval(viewRow, (element) =>
+      element.getAttribute("data-testid")
+    )
+    expect(viewRowTestId?.toLowerCase()).toBe(
+      `table-row-${VIEW_NAME}`.toLowerCase()
+    )
     await page.click(viewRow)
 
     await waitForVisible('[data-testid="table-info-name"]')
 
-    await expectContainsText('[data-testid="table-info-name"]', VIEW_NAME)
+    const displayedViewName = await page.$eval(
+      '[data-testid="table-info-name"]',
+      (element) => element.textContent
+    )
+    expect(displayedViewName?.toLowerCase()).toContain(VIEW_NAME.toLowerCase())
 
     // Now delete it
     await waitForVisible('[data-testid="table-preview-delete-table"]')

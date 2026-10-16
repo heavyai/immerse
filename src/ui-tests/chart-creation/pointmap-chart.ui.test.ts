@@ -6,9 +6,9 @@ import {
   createDashboard,
   expectLegendItems,
   processPause,
-  waitForCrossfilter,
   saveChart,
-  getMapRect
+  getMapRect,
+  waitForVisible
 } from "../utils"
 
 describe("Pointmap chart", () => {
@@ -91,12 +91,11 @@ describe("Pointmap chart", () => {
     await processPause(1)
 
     // First get the current row count, according to the count widget
-    const countSelectedEl = await page.$("#charttweets_nov_feb .count-selected")
-    const countSelectedText = await page.evaluate(
-      (el) => el.textContent,
-      countSelectedEl
+    const countSelector = ".count-selected"
+    await waitForVisible(countSelector)
+    const countSelected = await page.$eval(countSelector, (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
     )
-    const countSelected = Number(countSelectedText.replace(",", ""))
 
     expect(countSelected).toBeGreaterThan(0)
 
@@ -110,17 +109,19 @@ describe("Pointmap chart", () => {
     await page.mouse.move(x + width / 2, y + height / 2)
     await page.mouse.up()
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
-
-    const newCountSelectedEl = await page.$(
-      "#charttweets_nov_feb .count-selected"
+    await page.waitForFunction(
+      (selector, previousCount) => {
+        const count = document.querySelector(selector)?.textContent
+        const value = Number(count?.replace(/,/g, ""))
+        return value > 0 && value < previousCount
+      },
+      {},
+      countSelector,
+      countSelected
     )
-    const newCountSelectedText = await page.evaluate(
-      (el) => el.textContent,
-      newCountSelectedEl
+    const newCountSelected = await page.$eval(countSelector, (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
     )
-    const newCountSelected = Number(newCountSelectedText.replace(",", ""))
 
     expect(newCountSelected).toBeGreaterThan(0)
     expect(newCountSelected).toBeLessThan(countSelected)
