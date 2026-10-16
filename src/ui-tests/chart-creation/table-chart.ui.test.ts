@@ -2,12 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {
+  clickAfterVisible,
   createChart,
   createDashboard,
   expectContainsText,
   saveChart,
-  waitForVisible,
-  setInputText
+  setInputText,
+  waitForHidden,
+  waitForVisible
 } from "../utils"
 
 describe("Table chart", () => {
@@ -89,23 +91,58 @@ describe("Table chart", () => {
 
     await saveChart()
 
-    await page.$eval("table > tr:nth-child(2) td", (element: HTMLElement) =>
-      element.click()
-    )
+    const countSelector = ".count-selected"
+    const cellSelector = "table > tr:nth-child(2) td"
 
-    await waitForVisible(".count-selected")
+    await waitForVisible(countSelector)
     await page.waitForFunction(
       (selector) => {
         const count = document.querySelector(selector)?.textContent
         return Number(count?.replace(/,/g, "")) > 0
       },
       {},
-      ".count-selected"
+      countSelector
     )
-    const filteredCount = await page.$eval(".count-selected", (element) =>
+    const initialCount = await page.$eval(countSelector, (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
+    )
+    const selectedCell = await page.$eval(
+      cellSelector,
+      (element) => element.textContent?.trim() || "<empty>"
+    )
+
+    await waitForHidden(".invisible-overlay")
+    await waitForHidden(".selector-loading")
+    await clickAfterVisible(cellSelector)
+
+    try {
+      await page.waitForFunction(
+        (selector, previousCount) => {
+          const count = document.querySelector(selector)?.textContent
+          const value = Number(count?.replace(/,/g, ""))
+          return value > 0 && value < previousCount
+        },
+        {},
+        countSelector,
+        initialCount
+      )
+    } catch (error) {
+      const currentCount = await page.$eval(countSelector, (element) =>
+        Number(element.textContent?.replace(/,/g, ""))
+      )
+      throw new Error(
+        `Table row click did not reduce the selected count: ` +
+          `before=${initialCount}, after=${currentCount}, cell=${JSON.stringify(
+            selectedCell
+          )}. ${error instanceof Error ? error.message : String(error)}`
+      )
+    }
+
+    const filteredCount = await page.$eval(countSelector, (element) =>
       Number(element.textContent?.replace(/,/g, ""))
     )
     expect(filteredCount).toBeGreaterThan(0)
+    expect(filteredCount).toBeLessThan(initialCount)
 
     await expect(page).toMatchElement("td.filtered.cell-align-left")
     await expect(page).toMatchElement(".unfilter-btn")

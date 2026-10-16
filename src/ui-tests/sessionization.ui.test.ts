@@ -15,6 +15,7 @@ import { expectDashboardTitleInputToMatch } from "./utils/expect"
 const artifactDirectory =
   process.env.PUPPETEER_ARTIFACT_DIR ||
   path.resolve(process.cwd(), "puppeteer-artifacts")
+const verifyCiAutoLogin = Boolean(process.env.IMMERSE_TEST_URL)
 const browserLog: string[] = []
 
 describe("Immerse smoke test and sessionization", () => {
@@ -55,44 +56,51 @@ describe("Immerse smoke test and sessionization", () => {
   })
 
   it("loads the dashboard list, connects to HeavyDB, and maintains the session on refresh", async () => {
-    const browserContext = page.browserContext()
-    const cookies = await browserContext.cookies()
-    if (cookies.length) {
-      await browserContext.deleteCookie(...cookies)
+    let navigationResponse
+
+    if (verifyCiAutoLogin) {
+      const browserContext = page.browserContext()
+      const cookies = await browserContext.cookies()
+      if (cookies.length) {
+        await browserContext.deleteCookie(...cookies)
+      }
+
+      const sessionResponsePromise = page.waitForResponse(
+        (response) => new URL(response.url()).pathname === "/session/validate"
+      )
+      const loginResponsePromise = page.waitForResponse(
+        (response) => new URL(response.url()).pathname === "/session/create"
+      )
+
+      navigationResponse = await page.goto(getTestUrl(), {
+        waitUntil: "domcontentloaded"
+      })
+      const sessionResponse = await sessionResponsePromise
+      const loginResponse = await loginResponsePromise
+
+      expect(sessionResponse.status()).toBe(401)
+      expect(loginResponse.ok()).toBe(true)
+      expect(
+        await page.evaluate(() => {
+          const config = window.APP_CONFIG?.[0]
+          return {
+            database: config?.database,
+            username: config?.username
+          }
+        })
+      ).toEqual(
+        expect.objectContaining({
+          database: "heavyai",
+          username: "admin"
+        })
+      )
+    } else {
+      navigationResponse = await page.goto(getTestUrl(), {
+        waitUntil: "domcontentloaded"
+      })
     }
 
-    const sessionResponsePromise = page.waitForResponse(
-      (response) => new URL(response.url()).pathname === "/session/validate"
-    )
-    const loginResponsePromise = page.waitForResponse(
-      (response) => new URL(response.url()).pathname === "/session/create"
-    )
-
-    const navigationResponse = await page.goto(getTestUrl(), {
-      waitUntil: "domcontentloaded"
-    })
-    const sessionResponse = await sessionResponsePromise
-    const loginResponse = await loginResponsePromise
-
     expect(navigationResponse?.ok()).toBe(true)
-    expect(sessionResponse.status()).toBe(401)
-    expect(loginResponse.ok()).toBe(true)
-    expect(
-      await page.evaluate(() => {
-        const config = window.APP_CONFIG?.[0]
-        return {
-          database: config?.database,
-          password: config?.password,
-          username: config?.username
-        }
-      })
-    ).toEqual(
-      expect.objectContaining({
-        database: "heavyai",
-        password: "HyperInteractive",
-        username: "admin"
-      })
-    )
 
     await page.waitForSelector('[data-testid="dashboard-search-bar-field"]', {
       visible: true

@@ -4,10 +4,12 @@
 import {
   createChart,
   createDashboard,
+  expectContainsText,
   expectLegendItems,
   processPause,
   saveChart,
   getMapRect,
+  waitForHidden,
   waitForVisible
 } from "../utils"
 import { TWEETS_2017_MAY_COUNTRY_LEGEND } from "../fixtures/tweets-2017-may-country-legend"
@@ -75,7 +77,7 @@ describe("Pointmap chart", () => {
     expect(newCountSelected).toBeLessThan(countSelected)
   })
 
-  it("Does not convert an incompatible Pointmap to Choropleth", async () => {
+  it("Converts Pointmap to Choropleth and reports invalid measures", async () => {
     await createDashboard("ui-test/converts-pointmap-to-choropleth")
     await createChart("pointmap", {
       dataSource: "flights_donotmodify",
@@ -85,6 +87,27 @@ describe("Pointmap chart", () => {
     await expect(page).not.toMatchElement(
       ".backendChoropleth-btn.chart-btn-enabled"
     )
-    await expect(page).toMatchElement(".pointmap-btn.chart-btn-selected")
+
+    await waitForHidden(".invisible-overlay")
+    await waitForHidden(".selector-loading")
+    await page.click(".backendChoropleth-btn")
+    await waitForVisible(".error-msg")
+
+    await expectContainsText(".error-msg", "Choropleth Requirements")
+    await expectContainsText(
+      ".error-msg ul li:first-of-type span",
+      "Invalid geo measure"
+    )
+    await expectContainsText(
+      ".measures-container>div:nth-child(1) .selector-label",
+      "geo"
+    )
+    await expectContainsText(
+      ".measures-container>div:nth-child(2) .selector-label",
+      "color"
+    )
+    await expect(page).toMatchElement(
+      ".measures-container>div:nth-child(1) .selector-pill.is-error"
+    )
   })
 })
