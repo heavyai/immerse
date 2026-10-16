@@ -102,7 +102,7 @@ test.describe("Dashboard with Joins + Crossfiltering", () => {
     await createJoinDataSource(page, {
       name: "test-join-1",
       leftTable: "flights_donotmodify",
-      rightTable: "us_states",
+      rightTable: "us_states_geo",
       leftJoinKey: "dest_state",
       rightJoinKey: "STUSPS"
     })
