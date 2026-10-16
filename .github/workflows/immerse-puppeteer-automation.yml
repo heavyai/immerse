@@ -131,7 +131,7 @@ jobs:
     name: immerse-puppeteer-automation
     needs: build-immerse
     runs-on: linux-amd64-gpu-t4-latest-1
-    timeout-minutes: 60
+    timeout-minutes: 90
     env:
       HEAVYDB_IMAGE: ${{ vars.HEAVYDB_IMAGE || 'docker.io/heavyai/scantest:ubuntu22.04-cuda-render-x86_64-10.1.0dev-20261014-bae68469da' }}
       HEAVYDB_RESOURCE_SUFFIX: ${{ github.run_id }}-${{ github.run_attempt }}
@@ -151,7 +151,9 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-          cache-dependency-path: test-config/puppeteer/package-lock.json
+          cache-dependency-path: |
+            test-config/puppeteer/package-lock.json
+            test-config/playwright/package-lock.json
 
       - name: Restore cached Puppeteer browser
         uses: actions/cache@v4
@@ -162,19 +164,36 @@ jobs:
               hashFiles('test-config/puppeteer/package-lock.json')
             }}
 
+      - name: Restore cached Playwright browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: >-
+            playwright-browser-${{ runner.os }}-${{ runner.arch }}-${{
+              hashFiles('test-config/playwright/package-lock.json')
+            }}
+
       - name: Install Puppeteer test dependencies
         timeout-minutes: 10
         run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit
 
-      - name: Install Chrome system dependencies
+      - name: Install Playwright test dependencies
+        timeout-minutes: 5
+        run: npm ci --prefix test-config/playwright --prefer-offline --no-audit
+
+      - name: Install Puppeteer Chrome
         timeout-minutes: 5
         run: |
-          sudo apt-get update
-          sudo env \
-            PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer" \
+          env PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer" \
             "$(command -v node)" \
             test-config/puppeteer/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js \
-            browsers install chrome --install-deps
+            browsers install chrome
+
+      - name: Install browser system dependencies and Playwright Chromium
+        timeout-minutes: 10
+        run: >-
+          test-config/playwright/node_modules/.bin/playwright
+          install --with-deps chromium
 
       - name: Verify Chrome launch
         timeout-minutes: 1
@@ -233,6 +252,18 @@ jobs:
           timeout --signal=TERM 44m
           npm run --prefix test-config/puppeteer test:ci
 
+      - name: Run Playwright test suite
+        timeout-minutes: 30
+        env:
+          IMMERSE_TEST_URL: http://127.0.0.1:6273
+          PLAYWRIGHT_HTML_OUTPUT_DIR: ${{ github.workspace }}/playwright-report
+          PLAYWRIGHT_HTML_OPEN: never
+        run: |
+          ln --symbolic \
+            "${GITHUB_WORKSPACE}/test-config/playwright/node_modules" \
+            "${GITHUB_WORKSPACE}/node_modules"
+          npm run --prefix test-config/playwright test:ci
+
       - name: Collect diagnostics
         if: always()
         run: |
@@ -255,7 +286,9 @@ jobs:
           path: |
             heavydb-diagnostics
             jest-results.xml
+            playwright-report
             puppeteer-artifacts
             src/ui-tests/_screenshot-*.png
+            test-results
           if-no-files-found: ignore
           retention-days: 14
