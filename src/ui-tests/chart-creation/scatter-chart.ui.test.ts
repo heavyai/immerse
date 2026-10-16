@@ -107,6 +107,14 @@ describe("Scatter chart", () => {
     expect(finalCountSelected).toBeGreaterThan(0)
     expect(finalCountSelected).toBe(newCountSelected)
 
-    await deleteDashboard(dashboardName)
+    // Deleting from the active dashboard page destroys the GPU chart while its
+    // final overlay may still be completing. Use the same authenticated browser
+    // context for cleanup without navigating away from the chart under test.
+    const cleanupPage = await page.browserContext().newPage()
+    try {
+      await deleteDashboard(dashboardName, cleanupPage)
+    } finally {
+      await cleanupPage.close()
+    }
   })
 })

@@ -202,10 +202,16 @@ export async function deleteDashboardPlaywright(
   return page.getByTestId("no-search-results")
 }
 
-export async function deleteDashboard(dashboardName: string) {
-  await goToDashboardList()
-  await searchDashboardList(dashboardName)
-  const dashboardFound = (await findDashboard(dashboardName)) !== null
+export async function deleteDashboard(dashboardName: string, testPage = page) {
+  await testPage.goto(BASE_TEST_URL, { waitUntil: "networkidle0" })
+  await testPage.type(
+    '[data-testid="dashboard-search-bar-field"]',
+    dashboardName,
+    { delay: 50 }
+  )
+  await processPause()
+  const dashboardFound =
+    (await testPage.$(`.dashboard-name[title="${dashboardName}"]`)) !== null
 
   if (dashboardFound) {
     const dashboardActionMenuSelector = `.dashboard-action-menu-button[data-dashboard-name="${dashboardName}"]`
@@ -213,12 +219,21 @@ export async function deleteDashboard(dashboardName: string) {
     const dashboardDeleteConfirmSelector =
       ".mdc-dialog .mdc-dialog__actions .mdc-button--unelevated"
 
-    await page.hover(dashboardActionMenuSelector)
-    await clickAfterVisible(dashboardActionMenuSelector)
-    await clickAfterVisible(dashboardActionDeleteSelector)
-    await clickAfterVisible(dashboardDeleteConfirmSelector)
+    await testPage.hover(dashboardActionMenuSelector)
+    await testPage.waitForSelector(dashboardActionMenuSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardActionMenuSelector)
+    await testPage.waitForSelector(dashboardActionDeleteSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardActionDeleteSelector)
+    await testPage.waitForSelector(dashboardDeleteConfirmSelector, {
+      visible: true
+    })
+    await testPage.click(dashboardDeleteConfirmSelector)
 
-    return await page.waitForSelector('[data-testid="no-search-results"]')
+    return await testPage.waitForSelector('[data-testid="no-search-results"]')
   } else {
     throw new Error("Dashboard not found")
   }
