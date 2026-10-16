@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "pull-request/[0-9]+"
+      - "puppeteer-ci-automation"
     paths:
       - ".github/workflows/immerse-puppeteer-automation.yml"
       - ".nvmrc"
@@ -58,6 +59,7 @@ jobs:
           key: >-
             immerse-build-v2-${{ runner.os }}-${{
               hashFiles(
+                '.github/workflows/immerse-puppeteer-automation.yml',
                 '.nvmrc',
                 'babel.config.js',
                 'package.json',
@@ -227,7 +229,7 @@ jobs:
         timeout-minutes: 45
         env:
           IMMERSE_TEST_URL: http://127.0.0.1:6273
-          JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/jest-puppeteer.config.js
+          JEST_PUPPETEER_CONFIG: ${{ github.workspace }}/test-config/puppeteer/jest-puppeteer.config.js
           PUPPETEER_ARTIFACT_DIR: ${{ github.workspace }}/puppeteer-artifacts
         run: >-
           timeout --signal=TERM 44m

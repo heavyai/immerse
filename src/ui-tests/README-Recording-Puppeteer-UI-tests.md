@@ -46,7 +46,14 @@ Run the test wrapper on your reformmatted value.
 
 immerse/src/ui-tests/utils/wrap-puppeteer-test.pl "This is my test description" "This is my test name" puppeteer.reformatted.js > NAMEOFMYTEST.ui.test.js
 
-This test can now be run through `npm run test:ui`. I recommend testing it to confirm it works (you can do that with "DEBUG" in the name to run only your test)
+This test can now be run with:
+
+```sh
+npm ci --prefix test-config/puppeteer
+IMMERSE_TEST_URL=http://localhost:8002 \
+  npm run --prefix test-config/puppeteer test -- \
+  --runTestsByPath ../../src/ui-tests/recorded/NAMEOFYOURTEST/NAMEOFMYTEST.ui.test.js
+```
 
 ## add files to git.
 

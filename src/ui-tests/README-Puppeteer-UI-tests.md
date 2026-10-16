@@ -10,13 +10,25 @@ The UI tests require connecting to a server running a HeavyDB instance with spec
 
 This list of required data sources must be updated if new data sources are incorporated into UI tests.
 
+## Install the test dependencies
+
+Puppeteer has a dedicated package and is not installed with the Immerse
+dependencies:
+
+```sh
+npm ci --prefix test-config/puppeteer
+```
+
 ## How to run in the background
 
 In your `servers.local.json`, specify a server with the required data sources (e.g. Forge).
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests: `npm run test:ui`
+```sh
+IMMERSE_TEST_URL=http://localhost:8002 \
+  npm run --prefix test-config/puppeteer test:ci
+```
 
 ## How to watch it run
 
@@ -24,7 +36,10 @@ In your `servers.local.json`, specify a server with the required data sources (e
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:observe`: `npm run test:ui:observe`
+```sh
+IMMERSE_TEST_URL=http://localhost:8002 DEBUG=true \
+  npm run --prefix test-config/puppeteer test
+```
 
 ## How to run just one test
 
@@ -39,11 +54,23 @@ In your `servers.local.json`, specify a server with the required data sources (e
 
 Start a local server hosting Immerse at `http://localhost:8002`.
 
-Run tests with `:debug`: `npm run test:ui:debug`
+Run tests containing `debug` in their descriptions:
 
-This also works for any kind of Jest test from any suite.
+```sh
+IMMERSE_TEST_URL=http://localhost:8002 DEBUG=true \
+  npm run --prefix test-config/puppeteer test -- \
+  --testNamePattern='[Dd][Ee][Bb][Uu][Gg]'
+```
 
-For UI tests, the debug mode will also turn off headless mode and run in a visible browser just like `test:ui:observe`, allowing you to see the isolated test(s) run in a browser window.
+Run one test file:
+
+```sh
+IMMERSE_TEST_URL=http://localhost:8002 \
+  npm run --prefix test-config/puppeteer test -- \
+  --runTestsByPath ../../src/ui-tests/sessionization.ui.test.ts
+```
+
+`DEBUG=true` disables headless mode and opens the browser developer tools.
 
 ## Where is the API Documentation?
 

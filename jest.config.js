@@ -64,27 +64,6 @@ module.exports = {
         "<rootDir>/src/**/?(*.)component.test.ts?(x)"
       ],
       setupFilesAfterEnv: ["<rootDir>/test-config/setup-jest.js"]
-    },
-    {
-      ...baseConfig,
-      // UI tests run under real Node + puppeteer; the fs mapper from
-      // baseConfig breaks puppeteer's cosmiconfig (fs_1.default.statSync).
-      moduleNameMapper: Object.fromEntries(
-        Object.entries(baseConfig.moduleNameMapper).filter(
-          ([key]) => key !== "^fs$" && key !== "^node:fs$"
-        )
-      ),
-      displayName: "UI",
-      preset: "jest-puppeteer",
-      testEnvironment: "jest-environment-puppeteer",
-      testMatch: [
-        "<rootDir>/src/**/?(*.)ui.test.js?(x)",
-        "<rootDir>/src/**/?(*.)ui.test.ts?(x)"
-      ],
-      setupFilesAfterEnv: [
-        "expect-puppeteer",
-        "<rootDir>/test-config/setup-jest-ui.js"
-      ]
     }
   ]
 }
