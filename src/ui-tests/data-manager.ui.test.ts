@@ -7,7 +7,7 @@ import { getTestUrl, waitForVisible } from "./utils"
 
 describe("Data Manager page", () => {
   beforeAll(async () => {
-    await page.goto(getTestUrl("/mapd/data-manager/import/create"), {
+    await page.goto(getTestUrl("/heavyai/data-manager/import/create"), {
       waitUntil: "networkidle0"
     })
   })
@@ -31,7 +31,7 @@ describe("Data Manager page", () => {
 
     if (!uploadResponse.ok()) {
       throw new Error(
-        `File upload failed with HTTP ${uploadResponse.status()}: ${await uploadResponse.text()}`
+        `File upload failed with HTTP ${uploadResponse.status()} ${uploadResponse.statusText()}`
       )
     }
 

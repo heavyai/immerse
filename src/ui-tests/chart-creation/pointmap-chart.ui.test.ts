@@ -10,6 +10,7 @@ import {
   getMapRect,
   waitForVisible
 } from "../utils"
+import { TWEETS_2017_MAY_COUNTRY_LEGEND } from "../fixtures/tweets-2017-may-country-legend"
 
 describe("Pointmap chart", () => {
   it("Creates a Pointmap chart", async () => {
@@ -22,60 +23,7 @@ describe("Pointmap chart", () => {
     await processPause(3)
     await expect(page).toMatchElement(".mapboxgl-canvas")
 
-    const countries = [
-      "US",
-      "BR",
-      "ID",
-      "AR",
-      "TR",
-      "GB",
-      "JP",
-      "MY",
-      "ES",
-      "PH",
-      "FR",
-      "SA",
-      "TH",
-      "RU",
-      "MX",
-      "CO",
-      "IT",
-      "PT",
-      "CA",
-      "UY",
-      "CL",
-      "IN",
-      "NL",
-      "ZA",
-      "VE",
-      "EG",
-      "AU",
-      "EC",
-      "SG",
-      "DE",
-      "IE",
-      "UA",
-      "PY",
-      "SE",
-      "AE",
-      "KW",
-      "NG",
-      "DO",
-      "PL",
-      "PR",
-      "PE",
-      "BY",
-      "BE",
-      "GT",
-      "KR",
-      "PK",
-      "CR",
-      "PA",
-      "LV",
-      "JO",
-      "IL"
-    ]
-    await expectLegendItems(countries)
+    await expectLegendItems(TWEETS_2017_MAY_COUNTRY_LEGEND)
   })
 
   it("Applies a circle filter to the Pointmap, and it crossfilters", async () => {

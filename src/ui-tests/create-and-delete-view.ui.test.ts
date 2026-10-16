@@ -44,7 +44,7 @@ describe("Create and delete a view", () => {
   })
 
   it("should detect a view in the Data Manager and delete it", async () => {
-    await page.goto(getTestUrl("/mapd/data-manager"), {
+    await page.goto(getTestUrl("/heavyai/data-manager"), {
       waitUntil: "networkidle0"
     })
 

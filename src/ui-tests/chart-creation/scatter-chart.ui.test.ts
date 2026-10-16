@@ -13,6 +13,7 @@ import {
   waitForVisible,
   getMapRect
 } from "../utils"
+import { TWEETS_2017_MAY_COUNTRY_LEGEND } from "../fixtures/tweets-2017-may-country-legend"
 
 describe("Scatter chart", () => {
   it("Applies a lasso filter to the Scatter chart, and it crossfilters and doesn't error on dash reload", async () => {
@@ -27,60 +28,7 @@ describe("Scatter chart", () => {
     const chartCanvas = ".webgl-canvas"
     await expect(page).toMatchElement(chartCanvas)
 
-    const countries = [
-      "US",
-      "BR",
-      "ID",
-      "AR",
-      "TR",
-      "GB",
-      "JP",
-      "MY",
-      "ES",
-      "PH",
-      "FR",
-      "SA",
-      "TH",
-      "RU",
-      "MX",
-      "CO",
-      "IT",
-      "PT",
-      "CA",
-      "UY",
-      "CL",
-      "IN",
-      "NL",
-      "ZA",
-      "VE",
-      "EG",
-      "AU",
-      "EC",
-      "SG",
-      "DE",
-      "IE",
-      "UA",
-      "PY",
-      "SE",
-      "AE",
-      "KW",
-      "NG",
-      "DO",
-      "PL",
-      "PR",
-      "PE",
-      "BY",
-      "BE",
-      "GT",
-      "KR",
-      "PK",
-      "CR",
-      "PA",
-      "LV",
-      "JO",
-      "IL"
-    ]
-    await expectLegendItems(countries)
+    await expectLegendItems(TWEETS_2017_MAY_COUNTRY_LEGEND)
 
     await saveChart()
 

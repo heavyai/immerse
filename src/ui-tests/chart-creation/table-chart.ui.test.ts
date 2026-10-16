@@ -7,8 +7,7 @@ import {
   expectContainsText,
   saveChart,
   waitForVisible,
-  setInputText,
-  clickAfterVisible
+  setInputText
 } from "../utils"
 
 describe("Table chart", () => {
@@ -90,7 +89,7 @@ describe("Table chart", () => {
 
     await saveChart()
 
-    await clickAfterVisible("table > tr:nth-child(2) td")
+    await page.locator("table > tr:nth-child(2) td").click()
 
     await waitForVisible(".count-selected")
     await page.waitForFunction(
