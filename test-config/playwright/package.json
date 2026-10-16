@@ -1,0 +1,10 @@
+{
+  "name": "immerse-playwright-runner",
+  "private": true,
+  "scripts": {
+    "test:ci": "playwright test --config ../../playwright.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
+}
