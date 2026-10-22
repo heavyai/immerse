@@ -104,12 +104,12 @@ describe("Vega Bar chart filtering", () => {
   })
 
   it("Receives a new incoming dashboard filter", async () => {
-    await createDashboardFilter("flightnum", 7720, "=")
+    await createDashboardFilter("flightnum", 5849, "=")
 
-    // This should be the only bar left now
+    // This carrier has rows for flight 5849 in the restored CI fixture.
     await expect(page).toMatchElement(
       ".chart-type-vega-combo .vega-container",
-      { text: "XE" }
+      { text: "9E" }
     )
 
     // This one was visible on the chart at first but should not be now

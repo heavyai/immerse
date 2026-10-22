@@ -92,12 +92,12 @@ describe("Vega bar chart with existing dashboard filter", () => {
     // creating a filter that should remove this carrier.
     await waitForVegaText("AA", "unfiltered")
 
-    await createDashboardFilter("flightnum", 7720, "=")
+    await createDashboardFilter("flightnum", 5849, "=")
     await waitForCrossfilter()
-    await waitForVegaText("XE", "filtered")
+    await waitForVegaText("9E", "filtered")
 
-    // This should be the only bar left now
-    await expect(page).toMatchElement(chartSelector, { text: "XE" })
+    // This carrier has rows for flight 5849 in the restored CI fixture.
+    await expect(page).toMatchElement(chartSelector, { text: "9E" })
 
     // This one was visible on the chart at first but should not be now
     await expect(page).not.toMatchElement(chartSelector, { text: "AA" })
