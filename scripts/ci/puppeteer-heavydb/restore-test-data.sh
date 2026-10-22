@@ -89,6 +89,24 @@ SELECT
 FROM flights_donotmodify
 LIMIT 1;
 
+SELECT flightnum, uniquecarrier, COUNT(*) AS row_count
+FROM flights_donotmodify
+WHERE flightnum = 7720
+GROUP BY flightnum, uniquecarrier
+ORDER BY row_count DESC;
+
+SELECT
+  flightnum,
+  MIN(uniquecarrier) AS uniquecarrier,
+  COUNT(DISTINCT uniquecarrier) AS carrier_count,
+  COUNT(*) AS row_count
+FROM flights_donotmodify
+WHERE flightnum IS NOT NULL AND uniquecarrier IS NOT NULL
+GROUP BY flightnum
+HAVING COUNT(DISTINCT uniquecarrier) = 1
+ORDER BY row_count DESC, flightnum
+LIMIT 20;
+
 SELECT
   lon,
   lat,

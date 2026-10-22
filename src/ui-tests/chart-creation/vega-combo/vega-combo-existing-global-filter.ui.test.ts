@@ -19,6 +19,17 @@ import {
 import { createDashboardFilter } from "../../utils/filter-panel"
 
 const chartSelector = ".chart-type-vega-combo .vega-container"
+const browserDiagnostics: string[] = []
+
+const captureConsoleError = (message) => {
+  if (["error", "warn"].includes(message.type())) {
+    browserDiagnostics.push(`[console:${message.type()}] ${message.text()}`)
+  }
+}
+
+const capturePageError = (error) => {
+  browserDiagnostics.push(`[pageerror] ${error.stack || error.message}`)
+}
 
 async function waitForVegaText(text: string, state: string) {
   try {
@@ -46,12 +57,24 @@ async function waitForVegaText(text: string, state: string) {
     throw new Error(
       `Vega chart did not contain ${JSON.stringify(text)} in ${state} state. ` +
         `Diagnostics: ${JSON.stringify(diagnostics)}. ` +
+        `Browser errors: ${JSON.stringify(browserDiagnostics)}. ` +
         `${error instanceof Error ? error.message : String(error)}`
     )
   }
 }
 
 describe("Vega bar chart with existing dashboard filter", () => {
+  beforeEach(() => {
+    browserDiagnostics.length = 0
+    page.on("console", captureConsoleError)
+    page.on("pageerror", capturePageError)
+  })
+
+  afterEach(() => {
+    page.off("console", captureConsoleError)
+    page.off("pageerror", capturePageError)
+  })
+
   it("Renders correctly with an existing dashboard filter", async () => {
     await createDashboard("ui-test/create-vega-combo-chart")
 
