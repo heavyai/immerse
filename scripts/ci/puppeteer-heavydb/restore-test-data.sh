@@ -89,12 +89,6 @@ SELECT
 FROM flights_donotmodify
 LIMIT 1;
 
-SELECT flightnum, uniquecarrier, COUNT(*) AS row_count
-FROM flights_donotmodify
-WHERE flightnum = 5849
-GROUP BY flightnum, uniquecarrier
-ORDER BY row_count DESC;
-
 SELECT
   lon,
   lat,

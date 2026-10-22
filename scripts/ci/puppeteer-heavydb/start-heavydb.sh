@@ -32,19 +32,10 @@ docker_args=(
   --publish 127.0.0.1:6279:6279
   --volume "${immerse_dist_dir}:/opt/heavyai/frontend:ro"
 )
-container_command=()
-
-# The image's default entrypoint is preferred. This override provides a
-# temporary escape hatch until the private image's runtime contract is known.
-if [[ -n "${HEAVYDB_START_COMMAND:-}" ]]; then
-  docker_args+=(--entrypoint bash)
-  container_command=(-lc "${HEAVYDB_START_COMMAND}")
-fi
 
 docker run \
   "${docker_args[@]}" \
-  "${HEAVYDB_IMAGE}" \
-  "${container_command[@]}" >/dev/null
+  "${HEAVYDB_IMAGE}" >/dev/null
 
 ready=false
 for _ in $(seq 1 150); do
