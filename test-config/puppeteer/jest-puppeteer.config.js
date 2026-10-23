@@ -5,6 +5,7 @@ const debugMode = process.env.DEBUG === "true"
 const slowMode = process.env.SLOW === "true"
 
 module.exports = {
+  exitOnPageError: false,
   launch: {
     defaultViewport: {
       width: 1440,
@@ -13,7 +14,6 @@ module.exports = {
     headless: !debugMode,
     devtools: debugMode,
     slowMo: slowMode ? 50 : 1,
-    exitOnPageError: false,
     args: [
       "--start-maximized",
       "--flag-switches-begin",

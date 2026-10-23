@@ -4,15 +4,17 @@
 import {
   createChart,
   createDashboard,
-  saveDashboard,
   deleteDashboard,
+  saveDashboard,
   expectLegendItems,
   processPause,
   saveChart,
   clickAfterVisible,
   waitForCrossfilter,
+  waitForVisible,
   getMapRect
 } from "../utils"
+import { TWEETS_2017_MAY_COUNTRY_LEGEND } from "../fixtures/tweets-2017-may-country-legend"
 
 describe("Scatter chart", () => {
   it("Applies a lasso filter to the Scatter chart, and it crossfilters and doesn't error on dash reload", async () => {
@@ -27,60 +29,7 @@ describe("Scatter chart", () => {
     const chartCanvas = ".webgl-canvas"
     await expect(page).toMatchElement(chartCanvas)
 
-    const countries = [
-      "US",
-      "BR",
-      "ID",
-      "AR",
-      "TR",
-      "GB",
-      "JP",
-      "MY",
-      "ES",
-      "PH",
-      "FR",
-      "SA",
-      "TH",
-      "RU",
-      "MX",
-      "CO",
-      "IT",
-      "PT",
-      "CA",
-      "UY",
-      "CL",
-      "IN",
-      "NL",
-      "ZA",
-      "VE",
-      "EG",
-      "AU",
-      "EC",
-      "SG",
-      "DE",
-      "IE",
-      "UA",
-      "PY",
-      "SE",
-      "AE",
-      "KW",
-      "NG",
-      "DO",
-      "PL",
-      "PR",
-      "PE",
-      "BY",
-      "BE",
-      "GT",
-      "KR",
-      "PK",
-      "CR",
-      "PA",
-      "LV",
-      "JO",
-      "IL"
-    ]
-    await expectLegendItems(countries)
+    await expectLegendItems(TWEETS_2017_MAY_COUNTRY_LEGEND)
 
     await saveChart()
 
@@ -112,8 +61,17 @@ describe("Scatter chart", () => {
     await page.mouse.move(x + width / 2, y + height / 2)
     await page.mouse.up()
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
+    await page.waitForFunction(
+      (selector, previousCount) => {
+        const count = document.querySelector(selector)?.textContent
+        const value = Number(count?.replace(/,/g, ""))
+        return value > 0 && value < previousCount
+      },
+      {},
+      countSelector,
+      countSelected
+    )
+    await processPause()
 
     const newCountSelectedEl = await page.$(countSelector)
     const newCountSelectedText = await page.evaluate(
@@ -127,11 +85,17 @@ describe("Scatter chart", () => {
 
     const dashboardName = await saveDashboard("ui-test/create-scatter-chart")
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
-
+    await waitForVisible(chartCanvas)
+    await page.waitForFunction(
+      (selector, expectedCount) => {
+        const count = document.querySelector(selector)?.textContent
+        return Number(count?.replace(/,/g, "")) === expectedCount
+      },
+      {},
+      countSelector,
+      newCountSelected
+    )
     await expect(page).not.toMatchElement('[role="alertdialog"]')
-    await expect(page).toMatchElement(chartCanvas)
 
     const finalCountSelectedEl = await page.$(countSelector)
     const finalCountSelectedText = await page.evaluate(
@@ -144,6 +108,33 @@ describe("Scatter chart", () => {
     expect(finalCountSelected).toBeGreaterThan(0)
     expect(finalCountSelected).toBe(newCountSelected)
 
-    await deleteDashboard(dashboardName)
+    // Remove the lasso before leaving the page so its asynchronous GPU overlay
+    // is not destroyed during test teardown.
+    await page.keyboard.down("Alt")
+    try {
+      await expect(page).toClick("#dashboard-clear-cross-filters")
+    } finally {
+      await page.keyboard.up("Alt")
+    }
+    await page.waitForFunction(
+      (selector, expectedCount) => {
+        const count = document.querySelector(selector)?.textContent
+        return Number(count?.replace(/,/g, "")) === expectedCount
+      },
+      {},
+      countSelector,
+      countSelected
+    )
+    await waitForCrossfilter()
+
+    // Deleting from the active dashboard page destroys the GPU chart while its
+    // final overlay may still be completing. Use the same authenticated browser
+    // context for cleanup without navigating away from the chart under test.
+    const cleanupPage = await page.browserContext().newPage()
+    try {
+      await deleteDashboard(dashboardName, cleanupPage)
+    } finally {
+      await cleanupPage.close()
+    }
   })
 })

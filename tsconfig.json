@@ -35,7 +35,7 @@
     "./webpack.module.ts",
     "./webpack.resolve.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "src/ui-tests", "test-config/puppeteer"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

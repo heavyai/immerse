@@ -7,11 +7,12 @@ import {
   expectContainsText,
   expectLegendItems,
   processPause,
-  waitForVisible,
-  waitForCrossfilter,
   saveChart,
-  getMapRect
+  getMapRect,
+  waitForHidden,
+  waitForVisible
 } from "../utils"
+import { TWEETS_2017_MAY_COUNTRY_LEGEND } from "../fixtures/tweets-2017-may-country-legend"
 
 describe("Pointmap chart", () => {
   it("Creates a Pointmap chart", async () => {
@@ -24,60 +25,7 @@ describe("Pointmap chart", () => {
     await processPause(3)
     await expect(page).toMatchElement(".mapboxgl-canvas")
 
-    const countries = [
-      "US",
-      "BR",
-      "ID",
-      "AR",
-      "TR",
-      "GB",
-      "JP",
-      "MY",
-      "ES",
-      "PH",
-      "FR",
-      "SA",
-      "TH",
-      "RU",
-      "MX",
-      "CO",
-      "IT",
-      "PT",
-      "CA",
-      "UY",
-      "CL",
-      "IN",
-      "NL",
-      "ZA",
-      "VE",
-      "EG",
-      "AU",
-      "EC",
-      "SG",
-      "DE",
-      "IE",
-      "UA",
-      "PY",
-      "SE",
-      "AE",
-      "KW",
-      "NG",
-      "DO",
-      "PL",
-      "PR",
-      "PE",
-      "BY",
-      "BE",
-      "GT",
-      "KR",
-      "PK",
-      "CR",
-      "PA",
-      "LV",
-      "JO",
-      "IL"
-    ]
-    await expectLegendItems(countries)
+    await expectLegendItems(TWEETS_2017_MAY_COUNTRY_LEGEND)
   })
 
   it("Applies a circle filter to the Pointmap, and it crossfilters", async () => {
@@ -93,12 +41,11 @@ describe("Pointmap chart", () => {
     await processPause(1)
 
     // First get the current row count, according to the count widget
-    const countSelectedEl = await page.$("#charttweets_nov_feb .count-selected")
-    const countSelectedText = await page.evaluate(
-      (el) => el.textContent,
-      countSelectedEl
+    const countSelector = ".count-selected"
+    await waitForVisible(countSelector)
+    const countSelected = await page.$eval(countSelector, (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
     )
-    const countSelected = Number(countSelectedText.replace(",", ""))
 
     expect(countSelected).toBeGreaterThan(0)
 
@@ -112,23 +59,25 @@ describe("Pointmap chart", () => {
     await page.mouse.move(x + width / 2, y + height / 2)
     await page.mouse.up()
 
-    // Wait for crossfilter to settle
-    await waitForCrossfilter()
-
-    const newCountSelectedEl = await page.$(
-      "#charttweets_nov_feb .count-selected"
+    await page.waitForFunction(
+      (selector, previousCount) => {
+        const count = document.querySelector(selector)?.textContent
+        const value = Number(count?.replace(/,/g, ""))
+        return value > 0 && value < previousCount
+      },
+      {},
+      countSelector,
+      countSelected
     )
-    const newCountSelectedText = await page.evaluate(
-      (el) => el.textContent,
-      newCountSelectedEl
+    const newCountSelected = await page.$eval(countSelector, (element) =>
+      Number(element.textContent?.replace(/,/g, ""))
     )
-    const newCountSelected = Number(newCountSelectedText.replace(",", ""))
 
     expect(newCountSelected).toBeGreaterThan(0)
     expect(newCountSelected).toBeLessThan(countSelected)
   })
 
-  it("Converts Pointmap to Choropleth", async () => {
+  it("Converts Pointmap to Choropleth and reports invalid measures", async () => {
     await createDashboard("ui-test/converts-pointmap-to-choropleth")
     await createChart("pointmap", {
       dataSource: "flights_donotmodify",
@@ -139,6 +88,8 @@ describe("Pointmap chart", () => {
       ".backendChoropleth-btn.chart-btn-enabled"
     )
 
+    await waitForHidden(".invisible-overlay")
+    await waitForHidden(".selector-loading")
     await page.click(".backendChoropleth-btn")
     await waitForVisible(".error-msg")
 

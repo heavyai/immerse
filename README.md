@@ -139,18 +139,19 @@ For release 5.0 and beyond, we will use a new testing system that relies on Jest
 - For component testing, use [React Testing Library](https://github.com/testing-library/react-testing-library)
 - For UI testing ("end to end"), use [Jest Puppeteer](https://github.com/smooth-code/jest-puppeteer)
 
-| Command           | Description                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| `test:jest`       | Run all jest tests                                                                              |
-| `test:only`       | Run only tests with "Only" in the test description                                              |
-| `test:coverage`   | Run all test suites with a coverage report                                                      |
-| `test:unit`       | Run all unit test suites (test file extension `.unit.test.js` / `.unit.test.ts`)                |
-| `test:component`  | Run all component test suites (test file extension `.component.test.js` / `.component.test.ts`) |
-| `test:ui`         | Run all UI test suites\* (test file extension `.ui.test.js` / `.ui.test.ts`)                    |
-| `test:playwright` | Run all playwright tests (`/ui-tests/playwright`).                                              |
+| Command                                          | Description                                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| `test:jest`                                      | Run all jest tests                                                                              |
+| `test:only`                                      | Run only tests with "Only" in the test description                                              |
+| `test:coverage`                                  | Run all test suites with a coverage report                                                      |
+| `test:unit`                                      | Run all unit test suites (test file extension `.unit.test.js` / `.unit.test.ts`)                |
+| `test:component`                                 | Run all component test suites (test file extension `.component.test.js` / `.component.test.ts`) |
+| `npm run --prefix test-config/puppeteer test:ci` | Run all Puppeteer UI test suites (`.ui.test.js` / `.ui.test.ts`)                                |
+| `test:playwright`                                | Run all Playwright tests (`/ui-tests/playwright`).                                              |
 
 - UI tests require connection to a server with data sets used in the tests. See
-  `src/README-Puppeteer-UI-tests.md` for details.
+  [`src/ui-tests/README-Puppeteer-UI-tests.md`](src/ui-tests/README-Puppeteer-UI-tests.md)
+  for setup and installation instructions.
 - For details on playwright tests see [Playwright README](src/ui-tests/playwright/README-playwright.md)
 
 # Continuous Integration

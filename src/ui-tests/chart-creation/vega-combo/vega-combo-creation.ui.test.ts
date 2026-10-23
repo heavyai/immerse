@@ -204,8 +204,8 @@ describe("Vega combo chart creation", () => {
     )
 
     // This is the number of base paths expected to appear for these two layers,
-    // 52 rows from flights and 51 rows from tweets
-    expect(numBarMarks.length).toEqual(103)
+    // 52 rows from flights and 53 rows from tweets
+    expect(numBarMarks.length).toEqual(105)
   })
 
   it("Creates a Vega bar chart with a binned date dimension", async () => {

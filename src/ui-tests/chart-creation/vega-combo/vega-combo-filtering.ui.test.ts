@@ -104,23 +104,12 @@ describe("Vega Bar chart filtering", () => {
   })
 
   it("Receives a new incoming dashboard filter", async () => {
-    await createDashboardFilter("flightnum", 7720)
-    await expect(page).toClick(".filter-operator-selector > .operator")
-    await expect(page).toClick(
-      "[data-testid='filter-component-dropdown-menu-=']"
-    )
+    await createDashboardFilter("flightnum", 5849, "=")
 
-    // Wait for the queries to settle
-    await waitForCrossfilter()
-
-    // Wait for the HTML to settle (renders not firing for about half a second)
-    await waitUntilHTMLRendered(page)
-    await processPause()
-
-    // This should be the only bar left now
+    // This carrier has rows for flight 5849 in the restored CI fixture.
     await expect(page).toMatchElement(
       ".chart-type-vega-combo .vega-container",
-      { text: "XE" }
+      { text: "9E" }
     )
 
     // This one was visible on the chart at first but should not be now
