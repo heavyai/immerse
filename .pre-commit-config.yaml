@@ -11,11 +11,20 @@
 #     PRE_COMMIT_HOME=$TMPDIR/pre-commit-cache pre-commit run verify-copyright --all-files
 
 exclude: |
-  (?x)
-    ^node_modules/
-    ^dist/
-    ^build/
-    ^src/styles/vendor/
+  (?x)^(
+    node_modules/|
+    dist/|
+    build/|
+    src/charts/text/html-editor/|
+    src/components/sql-notebook/visualization/topojson-constants[.]ts$|
+    src/components/table-importer/s3-url-parser[.]js$|
+    src/polyfills/css-vars[.]js$|
+    src/styles/base/_normalize[.]scss$|
+    src/styles/base/material-icons[.]scss$|
+    src/styles/third-party-ui/|
+    src/styles/vendor/|
+    src/vega/utils/sql-tag[.]ts$
+  )
 
 repos:
 
