@@ -23,6 +23,7 @@ exclude: |
     src/styles/base/material-icons[.]scss$|
     src/styles/third-party-ui/|
     src/styles/vendor/|
+    src/utils/titlecase[.]ts$|
     src/vega/utils/sql-tag[.]ts$
   )
 
