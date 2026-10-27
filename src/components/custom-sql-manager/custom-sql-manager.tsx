@@ -151,7 +151,7 @@ const CustomSQLManager = ({
 
   // Some minimal clientside SQL validation.
   const validateSQL = () => {
-    // Global custom expressions can not use parameters
+    // Global custom expressions cannot use parameters
     const varFinderRegex = new RegExp(varFinderRegexPattern, "gs")
     if (expressionScope === "GLOBAL" && expression.match(varFinderRegex)) {
       actions.setCustomSqlFilterError(
