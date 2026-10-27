@@ -5,6 +5,7 @@
     "test:ci": "playwright test --config ../../playwright.config.ts"
   },
   "devDependencies": {
+    "@material-ui/core": "^4.12.4",
     "@playwright/test": "1.61.1"
   }
 }
