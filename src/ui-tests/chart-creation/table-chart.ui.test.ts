@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {
-  clickAfterVisible,
   createChart,
   createDashboard,
   expectContainsText,
@@ -113,7 +112,7 @@ describe("Table chart", () => {
 
     await waitForHidden(".invisible-overlay")
     await waitForHidden(".selector-loading")
-    await clickAfterVisible(cellSelector)
+    await page.$eval(cellSelector, (element: HTMLElement) => element.click())
 
     try {
       await page.waitForFunction(
