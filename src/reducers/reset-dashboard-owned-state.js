@@ -1,14 +1,13 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { cloneDeep } from "lodash"
+import { cloneDeep, omit } from "lodash"
 import { initialState as initialChartEditor } from "./chart-editor-reducer"
 import { initialState as initialDc } from "./dc-reducer"
 import { initialState as initialUi } from "./ui-reducer"
 
 export const resetDashboardWorkflows = (state) => ({
-  ...state,
-  chartData: {},
+  ...omit(state, ["chartData"]),
   columnValues: {},
   chartEditor: cloneDeep(initialChartEditor)
 })

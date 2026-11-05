@@ -3,7 +3,7 @@
 
 import React from "react"
 import { renderWithRedux } from "jest/renderScaffolding"
-import "@testing-library/jest-dom/extend-expect"
+import "@testing-library/jest-dom"
 import ChartContainer, {
   chartContainerTestId
 } from "components/chart-container/chart-container"

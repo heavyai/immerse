@@ -7,9 +7,13 @@ import { test, expect } from "@playwright/test"
 test("record a saved Vega dashboard load and crossfilter result", async ({
   page
 }, testInfo) => {
-  await page.addInitScript(() => {
+  const filterQueryPath = process.env.IMMERSE_FILTER_QUERY_PATH || "compare"
+  await page.addInitScript((mode) => {
     ;(window as any).immerseModernizationMetrics = {}
-  })
+    const flags = JSON.parse(localStorage.getItem("featureflags") || "{}")
+    flags["modernization/filterQueryPath"] = mode
+    localStorage.setItem("featureflags", JSON.stringify(flags))
+  }, filterQueryPath)
   const start = Date.now()
   await page.goto("/dashboard")
   await page.getByTestId("dashboard-title-placeholder").click()
@@ -88,10 +92,29 @@ test("record a saved Vega dashboard load and crossfilter result", async ({
       )
     })
   }
+  const queryRuntime = await page.evaluate(() => {
+    const app = window as any
+    const ownership = app.immerseModernizationMetrics.readQueryOwnership()
+    return {
+      cachedChartCount: ownership.runtimeQueryCharts.length,
+      comparison: app.immerseModernizationMetrics.filterQueryComparison || null,
+      ownership
+    }
+  })
+  expect(queryRuntime.cachedChartCount).toBeGreaterThan(0)
+  expect(queryRuntime.ownership.reduxChartCache).toBe(false)
+  expect(queryRuntime.ownership.reduxVegaResultCharts).toEqual([])
+  expect(queryRuntime.ownership.runtimeRenderCharts.length).toBeGreaterThan(0)
+  if (filterQueryPath === "compare") {
+    expect(queryRuntime.comparison?.compared).toBeGreaterThan(0)
+    expect(queryRuntime.comparison?.mismatches).toBe(0)
+  }
   await testInfo.attach("browser-baseline.json", {
     body: JSON.stringify(
       {
         schemaVersion: 1,
+        filterQueryPath,
+        queryRuntime,
         dataset: "synthetic eight-row modernization_wave0_sales",
         mode: "development-fast",
         startupToEditorMs,

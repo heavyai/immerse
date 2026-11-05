@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
 import { importableCreateQueuedConnector as createQueuedConnector } from "services/ConnectorWithQueue-importable"
 import { importableProcess as processParameters } from "utils/ImmerseSQLPlusPlus/parser-importable"
 import { getErrorMessageFromBackendError } from "utils/error-handling-helpers"
@@ -89,7 +90,7 @@ export const submitCustomSqlMeasure = (
     chartId,
     table: customSqlMeasure.table
   })
-  const chart = getState().charts[chartId]
+  const chart = withChartQueryData(getState().charts[chartId], chartId)
   const dataSelection = getLayerById(chart.dataSelections, layerId)
 
   if (typeof dataSelection === "undefined") {

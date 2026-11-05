@@ -8,10 +8,12 @@
     ".": {
       "types": "./src/index.d.ts",
       "default": "./src/index.js"
-    }
+    },
+    "./legacy-queue": "./src/legacy/MagicQueue.js",
+    "./legacy-cache": "./src/legacy/MagicCache.js"
   },
   "license": "Apache-2.0",
   "scripts": {
-    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/query-runtime/src/runtime.unit.test.js"
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/query-runtime/src/runtime.unit.test.js packages/query-runtime/src/results.unit.test.js packages/query-runtime/src/vega-results.unit.test.js"
   }
 }

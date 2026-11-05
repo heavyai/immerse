@@ -7,12 +7,15 @@
 //
 // and that's it. It's a drop in replacement, and prevents circles.
 
+import { bindLegacyApplicationStore } from "services/legacy-application-context"
+
 export let importableStore = {}
 
 let savedStore = undefined
 
 export function populateImportableStore(newStore) {
   importableStore = newStore
+  bindLegacyApplicationStore(newStore)
 }
 
 export function saveStore() {
@@ -22,6 +25,7 @@ export function saveStore() {
 export function resetStore() {
   if (savedStore) {
     importableStore = savedStore
+    bindLegacyApplicationStore(savedStore)
     savedStore = undefined
   }
 }

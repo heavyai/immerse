@@ -1397,5 +1397,27 @@
     "description": "Choose date format for vega combo export, default: ISO8601",
     "default": "iso8601",
     "permission": "super"
+  },
+  {
+    "key": "modernization/filterQueryPath",
+    "constant": "FILTER_QUERY_PATH",
+    "type": "dropdown",
+    "options": [
+      {
+        "label": "legacy",
+        "value": "legacy"
+      },
+      {
+        "label": "compare",
+        "value": "compare"
+      },
+      {
+        "label": "modern",
+        "value": "modern"
+      }
+    ],
+    "description": "Filter engine cutover; comparison generates no additional backend requests.",
+    "default": "modern",
+    "permission": "dev"
   }
 ]

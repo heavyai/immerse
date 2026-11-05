@@ -9,7 +9,7 @@ import {
   queryByText,
   fireEvent
 } from "@testing-library/react"
-import "@testing-library/jest-dom/extend-expect"
+import "@testing-library/jest-dom"
 import { noop } from "utils/helpers"
 import AggregateFilter from "./aggregate-filter-component"
 

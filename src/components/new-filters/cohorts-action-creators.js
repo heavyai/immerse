@@ -1,13 +1,14 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
 import pushid from "pushid"
 
 import {
   getFeatureFlag,
   available_feature_flags
 } from "components/control-panel/featureflags"
-import { getStore } from "services/ImmerseCrossFilter/utils"
+
 import { buildFilterSql } from "vega/constants/filter-types"
 import connector from "services/connector"
 

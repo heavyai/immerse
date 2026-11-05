@@ -1,7 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { getStore, getLayerIdFromName } from "./utils"
+import { getStore } from "services/legacy-application-context"
+import { getLayerIdFromName } from "./utils"
 import { buildBoundingBoxFilter } from "vega/actions/filter-action-creators-crossfilter-interop"
 import { isBERendered } from "charts/raster-chart/raster-utils"
 import {

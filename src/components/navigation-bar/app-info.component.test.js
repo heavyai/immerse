@@ -4,7 +4,7 @@
 import React from "react"
 import AppInfo, { appInfoSpecsTestId, appInfoContentTestId } from "./app-info"
 import { renderWithRedux } from "jest/renderScaffolding"
-import "@testing-library/jest-dom/extend-expect"
+import "@testing-library/jest-dom"
 
 describe("App Info", () => {
   describe("normal render", () => {

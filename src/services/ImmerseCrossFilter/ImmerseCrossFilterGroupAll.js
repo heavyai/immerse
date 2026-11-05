@@ -1,12 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  isRelative,
-  replaceRelative,
-  getLayerIdFromName,
-  getStore
-} from "./utils"
+import { getStore } from "services/legacy-application-context"
+import { isRelative, replaceRelative, getLayerIdFromName } from "./utils"
 import buildFilterString from "./build-filter-string.ts"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 

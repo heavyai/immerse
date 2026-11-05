@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { connect } from "react-redux"
+import { connectWithQueryResults as connect } from "services/query-results/react"
 import { bindActionCreators } from "redux"
 import { createSelector } from "reselect"
 

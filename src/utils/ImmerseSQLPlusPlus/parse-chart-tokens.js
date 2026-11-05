@@ -1,8 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
+import { getStore } from "services/legacy-application-context"
 import { chartConfigRegexPattern } from "./parser-tokens"
-import { getStore } from "services/ImmerseCrossFilter/utils"
+
 import { getMaxTimeBins, getAutoBinUnit } from "vega/utils/binning"
 import { countTopNGroups } from "vega/charts/top-n-utils"
 import {
@@ -45,7 +47,9 @@ export function parseChartTokens(sql, chartId, valueCache, process) {
       return firstChar + valueCache[property]
     }
 
-    const chart = chartId && getStore().getState().charts[chartId]
+    const chart =
+      chartId &&
+      withChartQueryData(getStore().getState().charts[chartId], chartId)
     const value =
       property in SUPPORTED_PROPERTIES &&
       SUPPORTED_PROPERTIES[property](chart, fallback)

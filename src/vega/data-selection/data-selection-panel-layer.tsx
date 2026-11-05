@@ -1,12 +1,11 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 // This component replaces the left side of the current chart editor --
 // the chart's data selection (source, dimension, measure, and related)
 
 import React, { FC, MouseEventHandler, useState, useEffect } from "react"
-
-import { enhanceColumnMetadata } from "services/ImmerseCrossFilter/utils"
 
 import ChartSourceSelector from "vega/components/SourceSelector/ChartSourceSelector"
 import PreFilterComponent from "vega/components/PreFilter/PreFilter"

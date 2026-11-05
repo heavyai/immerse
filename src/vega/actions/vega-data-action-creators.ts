@@ -1,6 +1,17 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { recordVegaResult } from "services/query-results/middleware"
+import { getQueryRuntime } from "services/query-runtime"
+
+const publishResult = (action: any) => (dispatch, getState, services) => {
+  if (!recordVegaResult(getQueryRuntime(services), getState(), action)) {
+    return undefined
+  }
+  const { data, error, ...metadata } = action
+  return dispatch({ ...metadata, queryResultAvailable: true })
+}
+
 import * as vegaConstants from "vega/constants/vega-data-action-types"
 import { DataKey, VegaComboLayerBeatData } from "vega/charts/types"
 
@@ -19,16 +30,17 @@ export const receiveData = (
   layerIndex: number,
   beatId: string,
   data: VegaComboLayerBeatData
-) => ({
-  type: vegaConstants.RECEIVE_DATA_MULTI,
-  chartId,
-  dashboardId,
-  tabId,
-  dataKey,
-  layerIndex,
-  beatId,
-  data
-})
+) =>
+  publishResult({
+    type: vegaConstants.RECEIVE_DATA_MULTI,
+    chartId,
+    dashboardId,
+    tabId,
+    dataKey,
+    layerIndex,
+    beatId,
+    data
+  })
 
 /**
  * @param chartId The chart id
@@ -45,16 +57,17 @@ export const receiveError = (
   layerIndex: number,
   beatId: string,
   error: Error
-) => ({
-  type: vegaConstants.RECEIVE_ERROR,
-  chartId,
-  dashboardId,
-  tabId,
-  dataKey,
-  layerIndex,
-  beatId,
-  error
-})
+) =>
+  publishResult({
+    type: vegaConstants.RECEIVE_ERROR,
+    chartId,
+    dashboardId,
+    tabId,
+    dataKey,
+    layerIndex,
+    beatId,
+    error
+  })
 
 /**
  * Used to indicate that the chart is loading data

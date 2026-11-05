@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
 import { parse } from "json2csv"
 import fileSaver from "file-saver"
 import { is } from "ramda"
@@ -38,7 +39,7 @@ export default function exportChartData(chartId) {
   // get the data out of the chart instance
   // inside of our dimensional crossfilter object, dc
   const state = store.getState().charts
-  const chartMetadata = state[chartId]
+  const chartMetadata = withChartQueryData(state[chartId], chartId)
 
   // do the export
   const chartType = chartMetadata.type
@@ -50,6 +51,7 @@ export default function exportChartData(chartId) {
 }
 
 export function exportICChartData(chart, localDoExport) {
+  chart = withChartQueryData(chart)
   const {
     getChartData = getICChartData,
     getChartDataSource = getICChartDataSource,

@@ -2,19 +2,23 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import {
+  getFeatureFlag,
+  available_feature_flags
+} from "components/control-panel/featureflags"
+import { legacyBuildFilterStringInternal } from "./filter-query-reference"
+import { createFilterEngine } from "@immerse/filter-engine"
+import { isBERendered } from "charts/raster-chart/raster-utils"
+import { CHART_TYPES } from "constants/charts"
+import { getTablesForFilter } from "vega/utils/filter"
+import { getTablesForDataSource } from "components/join-manager/utils"
+import { chartSupportsChartSpecificFilters } from "charts/utils/chart-type"
+import { getStore } from "services/legacy-application-context"
+import {
   buildOmnifilterSql,
   filterHasChildren
 } from "vega/constants/filter-types"
 import { buildCrossLinkFiltersInternal } from "utils/crosslink-utils"
-import {
-  getChartFiltersInternal,
-  getDashboardFiltersInternal,
-  getLayerIdFromName,
-  getStore
-} from "./utils"
-import { Chart } from "vega/charts/types"
-import { Filter } from "constants/filter-types"
-import { CrossLink } from "constants/crosslink-types"
+import { getLayerIdFromName } from "./utils"
 import { getJoinFilters } from "./ImmerseCrossFilterJoin"
 
 export function buildFilterString(
@@ -64,102 +68,45 @@ export function buildFilterString(
   })
 }
 
-export function buildFilterStringInternal(
-  chartId: string,
-  {
-    chart,
-    omnifilters,
-    includeGlobal = true,
-    includeCharts = true,
-    tables,
-    dataSource,
-    layerId,
-    excludeFilters,
-    excludeChartFilters = [],
-    crossLinks = []
-  }: {
-    chart?: Chart
-    omnifilters?: Array<Filter>
-    includeGlobal?: Boolean
-    includeCharts?: Boolean
-    tables?: Array<string>
-    dataSource?: string
-    layerId?: string
-    excludeFilters?: Array<string>
-    excludeChartFilters?: Array<string>
-    crossLinks?: Array<CrossLink>
-  } = {}
-) {
-  const allFilters = []
+export const filterQueryComparison = { compared: 0, mismatches: 0 }
 
-  // getChartFiltersInternal and getDashboardfiltersInternal will grab any omnifilters
-  // that have _any_ overlapping tables with the chart's datasource.
-  // Then we need to filter any multisource or AND/OR filters (which can contain filters with different tables)
-  // to only grab the ones that have the tables provided.
-  if (includeCharts) {
-    allFilters.push(
-      ...getChartFiltersInternal({
-        chartId,
-        tables,
-        layerId,
-        chart,
-        omnifilters,
-        excludeChartFilters
-      })
-    )
+export function buildFilterStringInternal(chartId: string, options: any = {}) {
+  const mode = getFeatureFlag(available_feature_flags.FILTER_QUERY_PATH)
+  const joinFilters =
+    options.includeGlobal === false
+      ? []
+      : getJoinFilters({ tables: options.tables, chartId })
+  const queryContext = { ...options, precomputedJoinFilters: joinFilters }
+  if (mode === "legacy") {
+    return legacyBuildFilterStringInternal(chartId, queryContext)
   }
-
-  if (includeGlobal) {
-    allFilters.push(
-      ...getDashboardFiltersInternal({
-        tables,
-        excludeFilters,
-        omnifilters
-      })
-    )
-    allFilters.push(
-      ...buildCrossLinkFiltersInternal(chartId, tables, crossLinks)
-    )
-    allFilters.push(
-      ...getJoinFilters({
-        tables,
-        chartId
-      })
-    )
+  const engine = createFilterEngine({
+    isBERendered,
+    chartTypes: () => CHART_TYPES,
+    getTablesForFilter,
+    getTablesForDataSource,
+    chartSupportsChartSpecificFilters,
+    buildOmnifilterSql,
+    filterHasChildren,
+    buildCrossLinkFiltersInternal,
+    getJoinFilters: () => joinFilters
+    // Chart and dashboard selection are configured by the application adapter below.
+  })
+  const sql = engine.buildFilterString(chartId, options)
+  if (mode !== "compare") {
+    return sql
   }
-
-  // Certain filter types (AND, OR, MULTISOURCE) can have multiple tables and datasources
-  // Now we check all filters and if they have child filters we only keep
-  // the ones that have a table specified by the "tables" arg.
-  const allRelevantFilters = allFilters.map((f) => {
-    if (filterHasChildren(f)) {
-      return {
-        ...f,
-        filters: f.filters.filter((childFilter) => {
-          // Make sure the table of this filter is included in the tables
-          // we are getting filters for
-          return tables?.includes(childFilter.table)
-        })
-      }
-    } else {
-      return f
+  const reference = legacyBuildFilterStringInternal(chartId, queryContext)
+  filterQueryComparison.compared += 1
+  if (sql !== reference) {
+    filterQueryComparison.mismatches += 1
+  }
+  if (typeof window !== "undefined" && window.immerseModernizationMetrics) {
+    window.immerseModernizationMetrics.filterQueryComparison = {
+      ...filterQueryComparison
     }
-  })
-
-  const allFilterStrings = allRelevantFilters.map((f) => {
-    if (typeof f === "string") {
-      return f
-    } else {
-      return buildOmnifilterSql(
-        f,
-        dataSource,
-        f.chartId === chartId ? layerId : undefined
-      )
-    }
-  })
-  // Filter out blank strings, if buildOmnifilterSql generates nothing
-  // for the given datasource + filter, it could return blank string
-  return allFilterStrings.filter(Boolean).join(" AND ")
+  }
+  return reference === sql ? sql : reference
 }
 
 export default buildFilterString

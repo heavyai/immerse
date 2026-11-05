@@ -6,7 +6,6 @@ import annotations from "./annotation-reducer"
 import autosuggest from "./autosuggest-reducer"
 import chartEditor from "./chart-editor-reducer"
 import charts from "./charts/charts-reducer"
-import chartData from "components/chart-data/chart-data-reducer"
 import columnValues from "reducers/column-values-reducer"
 import { combineReducers } from "redux"
 import crossLinks from "./crosslink-reducer.ts"
@@ -75,7 +74,6 @@ export default combineReducers({
   snapshots,
   userConfigurableUI,
   parameters,
-  chartData,
   chartAddons,
   settings,
   joinDataSources

@@ -1,12 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 import { useCallback, useEffect, useState } from "react"
 import Services from "../services/immerse"
-import {
-  getFields,
-  enhanceColumnMetadata
-} from "services/ImmerseCrossFilter/utils"
+import { getFields } from "services/ImmerseCrossFilter/utils"
 import {
   isNumericType,
   isStringType,

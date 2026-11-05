@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 import {
   compose,
   concat,
@@ -30,7 +31,7 @@ import { CUSTOM_MEASURE_VALUE } from "constants/magic-variables"
 import { isEmpty } from "utils/selector-helpers"
 import MeasureSelectorsPopover from "./measure-selectors-popover"
 import { isGeoTypeSupportedRasterChart } from "charts/raster-chart/raster-utils"
-import { enhanceColumnMetadata } from "services/ImmerseCrossFilter/utils"
+
 import { ParameterTypes } from "components/parameters/parameters-types"
 import {
   getParameterizedCustomSqlMetadata,

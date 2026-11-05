@@ -47,7 +47,7 @@
     "webpack:dev-server": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=development PORT=\"${IMMERSE_PORT:-8002}\" webpack serve --config webpack.config.dev.ts",
     "checkLinked": "find node_modules -maxdepth 2 -type l -not -path \"node_modules/.bin/*\"",
     "listAvailableLinked": "pnpm list -g --depth=0 --link=true",
-    "modernization:check": "node scripts/modernization/architecture.cjs && node scripts/modernization/git-sources.cjs && node scripts/modernization/workspace.cjs",
+    "modernization:check": "node scripts/modernization/architecture.cjs && node scripts/modernization/git-sources.cjs && node scripts/modernization/workspace.cjs && node scripts/modernization/query-boundaries.cjs",
     "modernization:inventory": "node scripts/modernization/inventory.cjs",
     "modernization:measure": "node scripts/modernization/measure.cjs",
     "test:modernization": "jest --runInBand --runTestsByPath src/utils/modernization/dashboard-compatibility.unit.test.js src/utils/modernization/lifecycle-invariants.unit.test.js src/utils/modernization/filter-embed-contract.unit.test.js src/utils/modernization/metrics.unit.test.js",
@@ -228,7 +228,8 @@
     "@material/switch": "catalog:",
     "@material/textfield": "catalog:",
     "@material/notched-outline": "catalog:",
-    "@material/line-ripple": "catalog:"
+    "@material/line-ripple": "catalog:",
+    "@immerse/filter-engine": "workspace:*"
   },
   "devDependencies": {
     "@babel/cli": "catalog:",

@@ -1,13 +1,12 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 import React, { FC } from "react"
 import { AnyAction } from "redux"
 import { ThunkDispatch } from "redux-thunk"
 import { connect, ConnectedProps } from "react-redux"
 import cx from "classnames"
-
-import { enhanceColumnMetadata } from "services/ImmerseCrossFilter/utils"
 
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 

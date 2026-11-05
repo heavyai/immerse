@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { categoricalColorFromChart } from "reducers/charts/helpers/color-helpers"
 import { batch, connect } from "react-redux"
@@ -294,7 +295,7 @@ export function mapDispatchToProps(dispatch, props) {
               (pm) => pm.id === pmId
             )
             const color = categoricalColorFromChart(
-              chart,
+              withChartQueryData(chart),
               selectedPaletteMapping,
               layerId,
               isMeasure
@@ -330,7 +331,7 @@ export function mapDispatchToProps(dispatch, props) {
         })
         const pmId = chart.color.lastPaletteMappingId
         if (!chart.color.paletteMappingId && pmId) {
-          const color = categoricalColorFromChart(chart)
+          const color = categoricalColorFromChart(withChartQueryData(chart))
           dispatch(
             updatePaletteMapping({
               chartId,

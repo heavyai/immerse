@@ -7,6 +7,7 @@ import thunk from "redux-thunk"
 
 import { renderHook } from "@testing-library/react-hooks"
 
+import { getQueryRuntime } from "services/query-runtime"
 import { useCachedChartData } from "./useCachedChartData"
 
 import { Provider } from "react-redux"
@@ -22,7 +23,11 @@ const mockState = {
 
 describe("useCachedChartData test suite", () => {
   it("can useCachedChartData", () => {
-    const store = mockStore(mockState)
+    const store = mockStore({})
+    store.services = new Map()
+    const runtime = getQueryRuntime(store.services)
+    runtime.write(1, "able", "able data")
+    runtime.write(1, "baker", "baker data")
     const { result } = renderHook(
       () => useCachedChartData({ chartId: 1, token: "able" }),
       {
@@ -34,7 +39,11 @@ describe("useCachedChartData test suite", () => {
   })
 
   it("can useCachedChartData w/o chartId for undefined", () => {
-    const store = mockStore(mockState)
+    const store = mockStore({})
+    store.services = new Map()
+    const runtime = getQueryRuntime(store.services)
+    runtime.write(1, "able", "able data")
+    runtime.write(1, "baker", "baker data")
     const { result } = renderHook(() => useCachedChartData(), {
       wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
     })
@@ -43,7 +52,11 @@ describe("useCachedChartData test suite", () => {
   })
 
   it("can useCachedChartData w/o token for undefined", () => {
-    const store = mockStore(mockState)
+    const store = mockStore({})
+    store.services = new Map()
+    const runtime = getQueryRuntime(store.services)
+    runtime.write(1, "able", "able data")
+    runtime.write(1, "baker", "baker data")
     const { result } = renderHook(() => useCachedChartData({ chartId: 1 }), {
       wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
     })

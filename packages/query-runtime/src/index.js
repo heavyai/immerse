@@ -7,3 +7,6 @@ function createLegacyQueryRuntime(createQueuedConnector) {
   return { forChart: (options) => createQueuedConnector(options) }
 }
 module.exports = { createLegacyQueryRuntime }
+Object.assign(module.exports, require("./results"))
+
+Object.assign(module.exports, require("./vega-results"))

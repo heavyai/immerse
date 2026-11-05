@@ -1,13 +1,13 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
 import { JOIN_CONDITION_TYPES } from "components/join-manager/constants"
 import { findJoinDataSourceForParameter } from "components/join-manager/use-join-from-parameter"
 import { getTablesFromJoinDataSource } from "components/join-manager/utils"
 import { intersection } from "lodash"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { buildFilterSql } from "vega/constants/filter-types"
-import { getStore } from "./utils"
 
 const buildJoinFilter = ({ filterMetadata, filterDataSource, tables }) => {
   const { joinDataSources } = getStore().getState()

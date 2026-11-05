@@ -8,6 +8,7 @@ import connectToMapDServices from "utils/connect-to-mapd-services"
 import { dissoc } from "ramda"
 import filter from "ramda/src/filter"
 import { onEditPath } from "utils/routerPath"
+import { withChartQueryResults } from "services/query-results/react"
 import { selectChartComponent } from "charts/components/registered-components"
 import { updateSagaChart } from "actions/charts-action-creators"
 import { isVegaChart } from "constants/charts"
@@ -149,5 +150,6 @@ export function mapStateToProps(state, props) {
 
 export default compose(
   connectToMapDServices,
+  withChartQueryResults,
   connect(mapStateToProps, mapDispatchToProps)
 )(ChartContainer)

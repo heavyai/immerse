@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
 import {
   addColNames,
   createProjectMeasures,
@@ -26,7 +27,7 @@ import {
   setValueFormatter,
   setDateFormatter
 } from "actions/charts-action-creators"
-import { getStore } from "services/ImmerseCrossFilter/utils"
+
 import { findJoinDataSourceForParameter } from "components/join-manager/use-join-from-parameter"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { getTablesForDataSource } from "components/join-manager/utils"

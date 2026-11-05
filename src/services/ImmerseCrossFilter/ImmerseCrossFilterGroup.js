@@ -1,15 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
+import { getUnbinnedQuery } from "services/legacy-filter-utilities"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
-import {
-  getStore,
-  getUnbinnedQuery,
-  isRelative,
-  replaceRelative,
-  type,
-  unBinResults
-} from "./utils"
+import { isRelative, replaceRelative, type, unBinResults } from "./utils"
 import buildFilterString from "./build-filter-string.ts"
 import { CHART_TYPES } from "../../constants/charts"
 import {

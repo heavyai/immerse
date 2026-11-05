@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
 import { cloneDeep, isEqual } from "lodash"
 
 import { createQueuedConnector } from "services/ConnectorWithQueue"
@@ -112,7 +113,7 @@ export const boxPlotQueryThunk = (
 
   const { charts } = getState()
 
-  const chart = charts[chartId] as VegaBoxPlotChart
+  const chart = withChartQueryData(charts[chartId], chartId) as VegaBoxPlotChart
   const baseDimensionScaleSettings = chart?.binSettings
   const currentData = chart.data?.[querySpec.dataKey]
   const dataSelections = chart.dataSelections
@@ -199,9 +200,13 @@ export const boxPlotQueryThunk = (
       return true
     }
 
-    const latestData = (getState().charts[chartId] as VegaComboChart).data?.[
-      querySpec.dataKey
-    ]
+    const latestData = (withChartQueryData(
+      getState().charts[chartId],
+      chartId
+    ) as VegaComboChart)?.data?.[querySpec.dataKey]
+    if (!latestData?.[layerIndex]) {
+      return true
+    }
     for (const beatId in latestData[layerIndex]) {
       if (Number(beatIds[layerIndex]) < Number(beatId)) {
         return true

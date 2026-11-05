@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { withChartQueryData } from "services/query-results"
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppState } from "vega/charts/types"
@@ -113,7 +114,7 @@ export const PaletteMappingSelector = ({
     )
     // Combo Adapter - dynamic values -> color definition for mapping
     return categoricalColorFromChart(
-      chart,
+      withChartQueryData(chart),
       selectedPaletteMapping,
       layerId,
       isMeasure

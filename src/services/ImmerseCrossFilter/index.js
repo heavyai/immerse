@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
 import { boundingBoxEnabledFilterString } from "./ImmerseCrossFilterBoundingBox"
 import { createQueuedConnector } from "services/ConnectorWithQueue"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
@@ -36,7 +37,7 @@ interface, then moved to a newly exposed one. We've got tons of opportunity here
 
 import getGroupAll from "./ImmerseCrossFilterGroupAll"
 import getDimension from "./ImmerseCrossFilterDimension"
-import { unBinResults, replaceRelative, getStore, getFields } from "./utils"
+import { unBinResults, replaceRelative, getFields } from "./utils"
 import buildFilterString from "./build-filter-string.ts"
 
 let CF_ID = 1

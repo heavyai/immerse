@@ -1,11 +1,12 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getUnbinnedQuery } from "services/legacy-filter-utilities"
 /*
   This is a new style dimension object. You can think of a dimension as roughly equivalent to a column in a table.
 */
 
-import { getUnbinnedQuery, isRelative, replaceRelative } from "./utils"
+import { isRelative, replaceRelative } from "./utils"
 import buildFilterString from "./build-filter-string.ts"
 
 import getGroup from "./ImmerseCrossFilterGroup"

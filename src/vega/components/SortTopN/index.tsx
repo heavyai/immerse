@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 import React, { FC } from "react"
 import { AnyAction } from "redux"
 import { connect, ConnectedProps } from "react-redux"
@@ -10,7 +11,7 @@ import {
   topnSetSortOrder,
   topnSetMeasureAggregate
 } from "vega/actions/top-n-action-creators"
-import { enhanceColumnMetadata } from "services/ImmerseCrossFilter/utils"
+
 import { DATA_TYPE_CATEGORY } from "components/data-column-selector/constants"
 
 import {

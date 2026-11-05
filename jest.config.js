@@ -5,6 +5,7 @@ const baseConfig = {
   testEnvironment: "jsdom",
   moduleFileExtensions: ["js", "mjs", "cjs", "jsx", "json", "ts", "tsx"],
   moduleNameMapper: {
+    "^jest/(.*)$": "<rootDir>/test-config/jest/$1",
     "^d3/build/d3$": require.resolve("d3/index.js", {
       paths: [require.resolve("@heavyai/d3-combo-chart/package.json")]
     }),

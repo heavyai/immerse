@@ -19,6 +19,12 @@ import loadDashboard from "reducers/load-dashboard-higher-order-reducer"
 import resetAppState from "reducers/reset-app-state-higher-order-reducer"
 import rootSaga from "sagas/root-saga"
 import thunk from "redux-thunk"
+import { vegaResultsMiddleware } from "services/query-results/middleware"
+import { createFilterWorkflows } from "services/filter-workflows"
+import {
+  getQueryRuntime,
+  queryLifecycleMiddleware
+} from "services/query-runtime"
 import promiseMiddleware from "redux-promise-middleware"
 import { setAutoFreeze } from "immer"
 import { createActionMetrics } from "utils/modernization/metrics"
@@ -34,8 +40,6 @@ const ignoredActions = {
   SELECTOR_PILL_NOT_HOVER: true
 }
 
-const sagaMiddleware = createSagaMiddleware()
-
 // turn off immer's auto freezing to allow non-immer reducers
 // to modify state (https://immerjs.github.io/immer/freezing/)
 setAutoFreeze(false)
@@ -45,7 +49,12 @@ export default function createStoreWithServices(
   services,
   reducer
 ) {
+  const sagaMiddleware = createSagaMiddleware()
+  const queryRuntime = getQueryRuntime(services)
+  const filters = createFilterWorkflows(services)
   let middleware = [
+    queryLifecycleMiddleware(queryRuntime),
+    filters.middleware,
     routerMiddleware(history),
     sagaMiddleware,
     thunk.withExtraArgument(services),
@@ -55,7 +64,8 @@ export default function createStoreWithServices(
     chartUpdateMiddleware(),
     cancelAsyncMiddleware(),
     chartEditorErrorHandlingMiddleware(),
-    selectorDefaultUpdateMiddleware()
+    selectorDefaultUpdateMiddleware(),
+    vegaResultsMiddleware(queryRuntime)
   ]
 
   if (
@@ -90,16 +100,46 @@ export default function createStoreWithServices(
     applyMiddleware(...middleware)
   )(createStore)(higherOrderReducer(reducer), initialState)
 
+  if (
+    process.env.NODE_ENV === "development" &&
+    window.immerseModernizationMetrics
+  ) {
+    window.immerseModernizationMetrics.readQueryOwnership = () => {
+      const state = store.getState()
+      return {
+        reduxChartCache: Object.prototype.hasOwnProperty.call(
+          state,
+          "chartData"
+        ),
+        reduxVegaResultCharts: Object.entries(state.charts || {})
+          .filter(
+            ([, chart]) =>
+              ["vega-combo", "box-plot"].includes(chart.type) &&
+              chart.data &&
+              Object.keys(chart.data).length
+          )
+          .map(([id]) => id),
+        runtimeQueryCharts: Object.keys(queryRuntime.getSnapshot()),
+        runtimeRenderCharts: Object.keys(queryRuntime.getRenderSnapshot())
+      }
+    }
+  }
+
   if (module.hot) {
     module.hot.accept("../reducers", () => {
       store.replaceReducer(reducer)
     })
   }
 
-  sagaMiddleware.run(rootSaga)
+  const sagaTask = sagaMiddleware.run(rootSaga)
 
   return {
     ...store,
-    services
+    services,
+    dispose() {
+      filters.dispose()
+      sagaTask.cancel()
+      queryRuntime.dispose()
+    }
   }
 }

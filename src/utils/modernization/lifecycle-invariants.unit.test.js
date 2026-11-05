@@ -104,7 +104,6 @@ it.each([
       "filterZones",
       "cohorts",
       "chartAddons",
-      "chartData",
       "columnValues"
     ]) {
       expect(result[key]).toEqual({})
@@ -121,6 +120,7 @@ it.each([
       usage: {},
       crossfilterTokens: {}
     })
+    expect(result.chartData).toBeUndefined()
     expect(result.chartEditor.editId).toBe("")
     expect(result.chartEditor.editing).toBe(false)
     result.parameters.values.poison = "must not survive"
@@ -145,7 +145,7 @@ it("loading another document invalidates prior query results and chart-editor wo
     dashboardState: cloneDeep(mixed),
     dashboardId: "new"
   })
-  expect(result.chartData).toEqual({})
+  expect(result.chartData).toBeUndefined()
   expect(result.columnValues).toEqual({})
   expect(result.chartEditor.editId).toBe("")
   expect(result.chartEditor.editing).toBe(false)

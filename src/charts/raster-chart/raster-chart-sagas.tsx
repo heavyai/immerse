@@ -6,6 +6,11 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import { fitCrossSectionsToFilter } from "./cross-section/cross-section"
+import {
+  SET_DASHBOARD_FILTER,
+  TOGGLE_BY_NAME
+} from "vega/constants/filter-action-types"
 import { lassoToolSetTypes } from "@heavyai/charting"
 import * as ActionTypes from "./geoheat-actions"
 import * as ChartActions from "actions/charts-action-creators"
@@ -105,7 +110,7 @@ import { createQueuedConnector } from "services/ConnectorWithQueue"
 import {
   clearFilterByName,
   updateFilterLayerIdByName
-} from "../../vega/actions/filter-action-creators-actual"
+} from "../../vega/actions/filter-state-actions"
 import { process as parserProcess } from "utils/ImmerseSQLPlusPlus/parser"
 
 import {
@@ -1787,6 +1792,8 @@ function* handlePaletteMappingUpdated({ id }) {
 
 export default function* root(): Generator {
   yield all([
+    takeEvery(SET_DASHBOARD_FILTER, fitCrossSectionsToFilter),
+    takeEvery(TOGGLE_BY_NAME, fitCrossSectionsToFilter),
     takeEvery(ActionTypes.DESTROY_GEOHEAT, handleDestroyRasterChart),
     takeEvery(ActionTypes.CREATE_GEOHEAT_CHART, handleCreateRasterChart),
     takeEvery(ActionTypes.UPDATE_GEOHEAT_CHART, handleUpdateRasterChartSize),

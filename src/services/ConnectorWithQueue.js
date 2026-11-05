@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { getStore } from "services/legacy-application-context"
+import { getQueryRuntime } from "services/query-runtime"
 import { createLegacyQueryRuntime } from "@immerse/query-runtime"
 import {
   enqueue,
@@ -26,7 +28,6 @@ import {
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { shouldTrackUsage } from "utils/ImmerseSQLPlusPlus/trackable-tokens"
 
-import { getStore } from "services/ImmerseCrossFilter/utils"
 import { populateImportableCreateQueuedConnector } from "./ConnectorWithQueue-importable"
 import { saveChartData } from "components/chart-data/chart-data-action-creators"
 import { setPaused } from "@immerse/chart-engine-dc/legacy"
@@ -34,6 +35,7 @@ import { setPaused } from "@immerse/chart-engine-dc/legacy"
 const paused = {}
 const pausedMapMove = {}
 const cachedQueuedConnectors = {}
+const runtimeBindings = new WeakSet()
 
 export function purgeQueues() {
   clearQueues()
@@ -106,6 +108,11 @@ export function createQueuedConnector({
     return cachedQueuedConnectors[connectorKey]
   }
 
+  const resultRuntime = getQueryRuntime()
+  if (!runtimeBindings.has(resultRuntime)) {
+    resultRuntime.onInvalidate(purgeQueues)
+    runtimeBindings.add(resultRuntime)
+  }
   const sharedCache = getSharedCache(tableName)
   const sharedVegaCache = getSharedCache(`${tableName},vega`)
   const queuedQueryAsync = enqueue(
@@ -341,7 +348,7 @@ export function createQueuedConnector({
       if (isCrossFilterPaused(chartId) && lastQueryAsyncValues.get(token)) {
         return lastQueryAsyncValues.get(token)
       }
-      const res = cachedQuery(
+      const pending = cachedQuery(
         processQuery(q, {
           dashboardId,
           chartId,
@@ -355,24 +362,42 @@ export function createQueuedConnector({
         }
       )
 
+      const ticket = resultRuntime.track(
+        {
+          dashboardId,
+          chartId,
+          sourceId: tableName,
+          channel: `queryAsync/${token}${keySuffix}`
+        },
+        pending
+      )
+      const res = resultRuntime.guard(ticket, pending)
+
       res.catch((e) => {
+        if (!resultRuntime.isCurrent(ticket)) {
+          return
+        }
         // eslint-disable-next-line
         getStore()?.dispatch?.(setChartDataError(chartId, e.error_msg))
       })
 
-      res.then((response) => {
-        const { shouldUpdateData = true } = o
-        if (shouldUpdateData) {
-          // eslint-disable-next-line
-          getStore()?.dispatch?.(
-            saveChartData({
-              chartId,
-              token: `${token}${keySuffix}`,
-              data: response
-            })
-          )
-        }
-      })
+      res.then(
+        (response) => {
+          const { shouldUpdateData = true } = o
+          if (shouldUpdateData) {
+            // eslint-disable-next-line
+            getStore()?.dispatch?.(
+              saveChartData({
+                chartId,
+                token: `${token}${keySuffix}`,
+                data: response,
+                ticket
+              })
+            )
+          }
+        },
+        () => {}
+      )
 
       lastQueryAsyncValues.set(token, res)
 
@@ -400,7 +425,7 @@ export function createQueuedConnector({
         return lastQueryDFAsyncValues.get(token)
       }
 
-      const res = cachedQuery(
+      const pending = cachedQuery(
         processQuery(q, {
           dashboardId,
           chartId,
@@ -414,9 +439,22 @@ export function createQueuedConnector({
         }
       )
 
-      res.catch((e) =>
-        getStore()?.dispatch?.(clearChartDataError(chartId, e.error_msg))
+      const ticket = resultRuntime.track(
+        {
+          dashboardId,
+          chartId,
+          sourceId: tableName,
+          channel: `queryDFAsync/${token}${keySuffix}`
+        },
+        pending
       )
+      const res = resultRuntime.guard(ticket, pending)
+
+      res.catch((e) => {
+        if (resultRuntime.isCurrent(ticket)) {
+          getStore()?.dispatch?.(setChartDataError(chartId, e.error_msg))
+        }
+      })
 
       lastQueryDFAsyncValues.set(token, res)
 
@@ -455,23 +493,41 @@ export function createQueuedConnector({
         token: "renderVegaAsync"
       })
 
-      const res = cachedRenderVegaAsync(widgetid, processedVega, {
+      const pending = cachedRenderVegaAsync(widgetid, processedVega, {
         ...options,
         logValues: `${dashboardId}/${chartId}`
       })
 
-      res.then((response) => {
-        // eslint-disable-next-line
-        getStore()?.dispatch?.(
-          saveChartData({
-            chartId,
-            token: `renderVegaAsync${keySuffix}`,
-            data: response
-          })
-        )
-      })
+      const ticket = resultRuntime.track(
+        {
+          dashboardId,
+          chartId,
+          sourceId: tableName,
+          channel: `renderVegaAsync${keySuffix}`
+        },
+        pending
+      )
+      const res = resultRuntime.guard(ticket, pending)
+
+      res.then(
+        (response) => {
+          // eslint-disable-next-line
+          getStore()?.dispatch?.(
+            saveChartData({
+              chartId,
+              token: `renderVegaAsync${keySuffix}`,
+              data: response,
+              ticket
+            })
+          )
+        },
+        () => {}
+      )
 
       res.catch((e) => {
+        if (!resultRuntime.isCurrent(ticket)) {
+          return
+        }
         // eslint-disable-next-line
         getStore()?.dispatch?.(setChartDataError(chartId, e.error_msg))
       })

@@ -8,7 +8,11 @@ import {
 } from "@immerse/dashboard-document"
 import { createChartRegistry, ChartPlugin } from "@immerse/chart-core"
 import { createDbTransport } from "@immerse/connector"
-import { createLegacyQueryRuntime } from "@immerse/query-runtime"
+import {
+  createLegacyQueryRuntime,
+  createChartQueryRuntime,
+  createVegaResultReducers
+} from "@immerse/query-runtime"
 import { createLegacyDcEngine } from "@immerse/chart-engine-dc"
 const codec = { atob: (wire: string) => wire, btoa: (binary: string) => binary }
 const document = decodeDashboard(encodeDashboard({ charts: {} }, codec), codec)
@@ -41,3 +45,26 @@ createLegacyDcEngine({
   redrawAllAsync: async () => undefined,
   renderAllAsync: async () => undefined
 }).redraw()
+
+import { createFilterEngine } from "@immerse/filter-engine"
+const runtime = createChartQueryRuntime()
+const ticket = runtime.begin({ chartId: "fixture", channel: "data" })
+runtime.commit(ticket, "rows", [1])
+runtime.writeRender("fixture", { focus: [] })
+runtime.getRenderSnapshot()
+runtime.execute({ chartId: "fixture" }, async (signal) => signal.aborted)
+createVegaResultReducers({
+  types: { REQUEST_DATA: "request" },
+  getErrorMessageFromBackendError: () => "failed"
+})
+createFilterEngine({
+  isBERendered: () => false,
+  chartTypes: () => ({}),
+  getTablesForFilter: () => new Set<string>(),
+  getTablesForDataSource: () => [],
+  chartSupportsChartSpecificFilters: () => false,
+  buildOmnifilterSql: () => "",
+  filterHasChildren: () => false,
+  buildCrossLinkFiltersInternal: () => [],
+  getJoinFilters: () => []
+}).buildFilterString("fixture", { tables: [], omnifilters: [] })

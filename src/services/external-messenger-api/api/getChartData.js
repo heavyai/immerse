@@ -1,12 +1,15 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { getStore } from "services/ImmerseCrossFilter/utils"
+import { withChartQueryData } from "services/query-results"
+import { getStore } from "services/legacy-application-context"
 
 import {
   registerExposedAPISchema,
   registerAPIMessages
 } from "../ExternalMessenger"
+
+import { getQueryRuntime } from "services/query-runtime"
 
 const chartTypeDispatch = {}
 
@@ -18,13 +21,13 @@ export const getChartData = ({ payload = {} }) => {
   const { chartId } = payload
   const state = getStore().getState()
 
-  const chart = state.charts[chartId]
+  const chart = withChartQueryData(state.charts[chartId], chartId)
   const getData = chartTypeDispatch[chart?.type]
 
   const data =
     chart && getData
-      ? getData(chart, state.chartData[chartId])
-      : state.chartData[chartId]
+      ? getData(chart, getQueryRuntime().readChart(chartId))
+      : getQueryRuntime().readChart(chartId)
 
   return {
     type: "chartDataResponse",

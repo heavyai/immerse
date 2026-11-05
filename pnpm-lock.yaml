@@ -928,6 +928,9 @@ importers:
       '@immerse/dashboard-document':
         specifier: workspace:*
         version: link:packages/dashboard-document
+      '@immerse/filter-engine':
+        specifier: workspace:*
+        version: link:packages/filter-engine
       '@immerse/query-runtime':
         specifier: workspace:*
         version: link:packages/query-runtime
@@ -1777,6 +1780,8 @@ importers:
         version: https://codeload.github.com/heavyai/heavyai-connector/tar.gz/6f77df57d099eaff0dda193ec186da247f261f44(apache-arrow@7.0.0)
 
   packages/dashboard-document: {}
+
+  packages/filter-engine: {}
 
   packages/query-runtime: {}
 

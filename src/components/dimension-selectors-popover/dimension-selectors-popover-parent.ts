@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { enhanceColumnMetadata } from "services/legacy-filter-utilities"
 import {
   DEFAULT_SELECTOR_TYPES,
   filterOptions,
@@ -21,7 +22,7 @@ import { restrictedDimensionTypeKey } from "reducers/charts/remove-selector-redu
 import DimensionSelectorsPopover from "./dimension-selectors-popover"
 import { COLOR_DIMENSION_LABEL } from "charts/combo/line-chart2/line2-consts"
 import { setChartSpecificBinFilters } from "vega/actions/filter-action-creators-crossfilter-interop"
-import { enhanceColumnMetadata } from "services/ImmerseCrossFilter/utils"
+
 import { ParameterTypes } from "../parameters/parameters-types"
 import {
   getParameterizedCustomSqlMetadata,

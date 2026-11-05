@@ -1,15 +1,6 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-// TODO:
-// NOTE: this file should only be imported from one place:
-// filter-action-creators.ts. If your code needs to dispatch filter
-// actions, import *that* file... do *not* import this file!
-//
-// Once we remove old crossfilter, the contents from this file should be moved
-// into filter-action-creators.ts and this file removed. In this way, no
-// code will need to be updated.
-
 import { batch } from "react-redux"
 import _ from "lodash"
 

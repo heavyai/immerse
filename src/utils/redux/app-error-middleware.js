@@ -13,6 +13,9 @@ const errorActionTypes = {
 
 export default function appErrorMiddleware() {
   return ({ dispatch }) => (next) => (action) => {
+    if (action.error?.name === "AbortError") {
+      return
+    }
     if (action.error && action.error instanceof DestroyedChartError) {
       // eslint-disable-next-line no-console
       console.warn(action.error)

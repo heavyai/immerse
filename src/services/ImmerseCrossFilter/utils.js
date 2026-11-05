@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import moment from "moment"
-import { importableStore as store } from "store/importableStore"
 import { isBERendered } from "charts/raster-chart/raster-utils"
 import { CHART_TYPES } from "constants/charts"
 import { getTablesForFilter } from "vega/utils/filter"
@@ -23,18 +22,13 @@ import {
   getTablesForDataSource
 } from "components/join-manager/utils"
 
-export const getStore = () => {
-  return store
-}
-
 // you probably don't want to use this directly. This one and the internal method really only
 // exist because crossfilter lives in this weird parallel shadow world outside of the real react
 // world we all want to live in. That said, the logic of pulling out appropriate filters is useful!
 //
 // But you still probably don't want to use this directly. Go use the hooks in charts/utils/hooks/useFilter
 // instead. They route to here anyway, but keep things nicely synced with the store.
-export function getChartFilters(chartId, table, layerId, useFakeChart) {
-  const state = getStore().getState()
+export function getChartFilters(chartId, table, layerId, useFakeChart, state) {
   const chart = useFakeChart ? undefined : state.charts[chartId]
   const omnifilters = state.omnifilters
 
@@ -139,8 +133,7 @@ export function getChartFiltersInternal({
 //
 // But you still probably don't want to use this directly. Go use the hooks in charts/utils/hooks/useFilter
 // instead. They route to here anyway, but keep things nicely synced with the store.
-export function getDashboardFilters(table, excludeFilters = []) {
-  const state = getStore().getState()
+export function getDashboardFilters(table, excludeFilters = [], state) {
   const omnifilters = state.omnifilters
 
   return getDashboardFiltersInternal({
@@ -359,9 +352,10 @@ export const getUnbinnedQuery = (
   query,
   { chartId },
   crossFilterDimension,
-  crossFilterGroup
+  crossFilterGroup,
+  state
 ) => {
-  const { charts } = getStore().getState()
+  const { charts } = state
   const { dimensions, measures } = charts[chartId]
 
   if (crossFilterGroup) {
@@ -465,15 +459,13 @@ export function getLayerIdFromName(layerName, chart) {
   }
 }
 
-export function enhanceTables(tables = []) {
+export function enhanceTables(tables = [], state) {
   // if we've been given no tables to enhance, then we just return what we've got.
-  const thisStore = getStore()
-  if (!tables.length || !thisStore.getState) {
+  if (!tables.length || !state) {
     return tables
   }
 
   const enhancedTables = [...tables]
-  const state = thisStore.getState()
   const tableParams = makeGetParametersOfType(state)(ParameterTypes.TABLE)
 
   // Add join data sources
@@ -499,10 +491,13 @@ export function enhanceTables(tables = []) {
   return enhancedTables.sort((a, b) => a.name.localeCompare(b.name))
 }
 
-export function enhanceColumnMetadata(columnMetadata = [], table = null) {
+export function enhanceColumnMetadata(
+  columnMetadata = [],
+  table = null,
+  state
+) {
   // if we've been given no columnMetadata to enhance, then we just return what we've got.
-  const thisStore = getStore()
-  if (!columnMetadata.length || !thisStore.getState) {
+  if (!columnMetadata.length || !state) {
     return columnMetadata
   }
 
@@ -510,8 +505,6 @@ export function enhanceColumnMetadata(columnMetadata = [], table = null) {
 
   // these all should be the same table, so just pull out the first one.
   table = table || columnMetadata[0].table
-
-  const state = thisStore.getState()
 
   const paramColumns = makeGetParameterColumnsForTable(state)(table)
   Object.entries(paramColumns).forEach(([paramName, column]) => {

@@ -5,7 +5,7 @@ import React from "react"
 import configureStore from "redux-mock-store"
 import thunk from "redux-thunk"
 import { fireEvent } from "@testing-library/react"
-import "@testing-library/jest-dom/extend-expect"
+import "@testing-library/jest-dom"
 import { renderWithRedux } from "jest/renderScaffolding"
 import mockAppState from "utils/test-helpers/mock-app-state"
 import {
