@@ -42,7 +42,7 @@ if [[ -d .servers ]]; then
 
     else
 
-      echo "No last used server. To switch to a server, pass a name - e.g., npm run s:switch demo-server"
+      echo "No last used server. To switch to a server, pass a name - e.g., pnpm run s:switch demo-server"
       exit 1
 
     fi

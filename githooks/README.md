@@ -13,7 +13,7 @@ enabled or disabled depending on your preference.
   git config --type bool immerse.prepare-commit-msg.add-jira-id true
   ```
 - **pre-commit-check-tether-version.sh** Checks the version of tether in
-  package-lock.json and ensures that it is 1.4.4 or less. This hook is required
+  pnpm-lock.yaml and ensures that it is 1.4.4 or less. This hook is required
   for everyone since newer tether versions break the build.
 
 - **pre-commit-lint** Run eslint on any files that have been changed and abort

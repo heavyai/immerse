@@ -14,12 +14,24 @@
     "noLib": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "sourceMap": true,
     "strict": true,
     "target": "es2019",
-    "lib": ["ES2021", "ES2020", "DOM"],
-    "checkJs": true
+    "lib": [
+      "ES2021",
+      "ES2020",
+      "DOM"
+    ],
+    "checkJs": true,
+    "paths": {
+      "@immerse/*": [
+        "../packages/*/src"
+      ],
+      "@immerse/connector/legacy": [
+        "../packages/connector/src/legacy.d.ts"
+      ]
+    }
   },
   "include": [
     "./package.json",
@@ -33,9 +45,14 @@
     "./webpack.config.prod.ts",
     "./webpack.license-plugin.ts",
     "./webpack.module.ts",
-    "./webpack.resolve.ts"
+    "./webpack.resolve.ts",
+    "./packages/**/*"
   ],
-  "exclude": ["node_modules", "src/ui-tests", "test-config/puppeteer"],
+  "exclude": [
+    "node_modules",
+    "src/ui-tests",
+    "test-config/puppeteer"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

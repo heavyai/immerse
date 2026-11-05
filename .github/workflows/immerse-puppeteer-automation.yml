@@ -62,7 +62,7 @@ jobs:
                 '.nvmrc',
                 'babel.config.js',
                 'package.json',
-                'package-lock.json',
+                'pnpm-lock.yaml',
                 'scripts/build-dev.sh',
                 'src/**',
                 'tsconfig*.json',
@@ -70,13 +70,18 @@ jobs:
               )
             }}
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Set up Node.js
         if: steps.immerse-build-cache.outputs.cache-hit != 'true'
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
-          cache-dependency-path: package-lock.json
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Use HTTPS for GitHub dependencies
         if: steps.immerse-build-cache.outputs.cache-hit != 'true'
@@ -90,7 +95,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.immerse-build-cache.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit
+        run: pnpm install --frozen-lockfile
 
       - name: Configure local HeavyDB
         if: steps.immerse-build-cache.outputs.cache-hit != 'true'
@@ -116,7 +121,7 @@ jobs:
 
       - name: Build Immerse
         if: steps.immerse-build-cache.outputs.cache-hit != 'true'
-        run: npm run build:dev
+        run: pnpm run build:dev
 
       - name: Upload Immerse build
         uses: actions/upload-artifact@v4
@@ -146,12 +151,17 @@ jobs:
         timeout-minutes: 2
         run: nvidia-smi
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
-          cache-dependency-path: test-config/puppeteer/package-lock.json
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Restore cached Puppeteer browser
         uses: actions/cache@v4
@@ -159,12 +169,12 @@ jobs:
           path: ~/.cache/puppeteer
           key: >-
             puppeteer-browser-${{ runner.os }}-${{ runner.arch }}-${{
-              hashFiles('test-config/puppeteer/package-lock.json')
+              hashFiles('pnpm-lock.yaml')
             }}
 
       - name: Install Puppeteer test dependencies
         timeout-minutes: 10
-        run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit
+        run: pnpm install --frozen-lockfile
 
       - name: Install Chrome system dependencies
         timeout-minutes: 5
@@ -231,7 +241,7 @@ jobs:
           PUPPETEER_ARTIFACT_DIR: ${{ github.workspace }}/puppeteer-artifacts
         run: >-
           timeout --signal=TERM 44m
-          npm run --prefix test-config/puppeteer test:ci
+          pnpm --dir test-config/puppeteer run test:ci
 
       - name: Collect diagnostics
         if: always()

@@ -29,7 +29,7 @@ done
 DIST_DIR="frontend-$ENV"
 GIT_HASH=$(git log -1 --format=%h)
 
-npm run build:"$ENV"
+pnpm run build:"$ENV"
 
 case "${BRANCH_NAME}" in
     '')

@@ -11,13 +11,13 @@ export LINK_OVERRIDE_CSS=override
 # Uncomment to enable Heavy Eco
 # export HEAVY_ECO=true
 
-npm run clean
-npm run copyServersJson
-npm run copyFavicon
-npm run copyGeoJson
-npm run copyFonts
-npm run copySamlErrorPage
-npm run webpack -- --bail --config webpack.config.prod.ts
+pnpm run clean
+pnpm run copyServersJson
+pnpm run copyFavicon
+pnpm run copyGeoJson
+pnpm run copyFonts
+pnpm run copySamlErrorPage
+pnpm run webpack --bail --config webpack.config.prod.ts
 
 if [ "${PIPESTATUS[0]}" != "0" ]; then exit 1; fi
 

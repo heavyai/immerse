@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - "**"
+  pull_request:
+    branches: [main]
   workflow_dispatch:
     inputs:
       ref:
@@ -27,7 +29,7 @@ jobs:
     timeout-minutes: 60
     env:
       # The PR checks do not use a browser. Avoid downloading Chromium during
-      # npm ci; the Puppeteer workflow installs it independently.
+      # pnpm install --frozen-lockfile; the Puppeteer workflow installs it independently.
       PUPPETEER_SKIP_DOWNLOAD: "true"
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
     steps:
@@ -57,15 +59,17 @@ jobs:
           pre-commit run --show-diff-on-failure --color=always verify-copyright \
             --from-ref origin/main --to-ref HEAD
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: npm
-          cache-dependency-path: package-lock.json
-
-      - name: Upgrade npm
-        run: npm install --global npm@^11.6.1
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         env:
@@ -74,16 +78,19 @@ jobs:
           GIT_CONFIG_VALUE_0: "git@github.com:"
           GIT_CONFIG_KEY_1: url.https://github.com/.insteadOf
           GIT_CONFIG_VALUE_1: "ssh://git@github.com/"
-        run: npm ci
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit dependencies (high and critical)
+        run: pnpm audit --audit-level high
 
       - name: Check modernization boundaries
-        run: npm run modernization:check && npm run test:modernization-tools
+        run: pnpm run modernization:check && pnpm run test:modernization-tools
 
       - name: Lint and check formatting
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Run unit tests
-        run: npm run test:unit
+        run: pnpm run test:unit
 
       - name: Run component tests
-        run: npm run test:component
+        run: pnpm run test:component

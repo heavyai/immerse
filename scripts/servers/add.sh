@@ -19,7 +19,7 @@ if mkdir -p .servers; then
     fi
 
   else
-    echo "Give a name to your new server - e.g., npm run s:add demo-server"
+    echo "Give a name to your new server - e.g., pnpm run s:add demo-server"
     exit 1
   fi
 

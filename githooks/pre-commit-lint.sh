@@ -59,7 +59,7 @@ function run_linter {
 }
 
 ABORT_COMMIT=0
-if ! run_linter eslint npm run lint:cmd --silent -- --color "${FILES_TO_LINT[@]}"; then
+if ! run_linter eslint pnpm --silent run lint:cmd --color "${FILES_TO_LINT[@]}"; then
   ABORT_COMMIT=1
 fi
 

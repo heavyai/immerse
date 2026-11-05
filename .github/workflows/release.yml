@@ -27,27 +27,29 @@ jobs:
           ref: ${{ inputs.release_candidate }}
           persist-credentials: false
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
 
-      - name: Upgrade npm
-        run: npm install -g npm@^11.6.1
-
       - name: Install dependencies
         env:
           GIT_CONFIG_COUNT: "1"
           GIT_CONFIG_KEY_0: url.https://x-access-token:${{ secrets.PRIVATE_PACKAGES_TOKEN }}@github.com/.insteadOf
-          GIT_CONFIG_VALUE_0: "ssh://git@github.com/"
-        run: npm ci
+          GIT_CONFIG_VALUE_0: "https://github.com/"
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         env:
           HEAVY_ECO: ${{ inputs.heavy_eco == true && 'true' || '' }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-        run: npm run build:prod
+        run: pnpm run build:prod
 
       - name: Test
-        run: npm test
+        run: pnpm test

@@ -18,7 +18,7 @@ if [[ -d .servers ]]; then
     fi
 
   else
-    echo "Name the server to remove - e.g., npm run s:remove demo-server"
+    echo "Name the server to remove - e.g., pnpm run s:remove demo-server"
     exit 1
   fi
 

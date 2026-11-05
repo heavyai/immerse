@@ -17,12 +17,14 @@ Immerse is a lightning fast visual analytics for the HeavyDB database and SQL en
 
 ### Requirements
 
-- npm@11.6.1 or higher
+- pnpm 10.34.9 (pinned in `packageManager`)
 - node 24.11.0
 
 ```bash
-npm install
+pnpm install --frozen-lockfile
 ```
+
+To bootstrap the pinned manager, run `corepack enable` and `corepack install` (or install `pnpm@10.34.9` with your Node toolchain). Shared dependency ranges live in `pnpm-workspace.yaml`; application and package manifests use `catalog:`. See [Wave 1](docs/modernization/WAVE_1.md) for dependency policy and validation.
 
 ### Local Development
 
@@ -37,12 +39,12 @@ To use map charts, you must setup a mapbox token first
 MAPBOX_TOKEN=<mapbox token here>
 ```
 
-This `.env` value is only used for local development (`npm run start`). In production, the Mapbox token and Google Maps API key are supplied by the `heavyai/webserver` process at runtime as `window.MAP_CONFIG` (via `mapbox-token`/`google-api-key` under `[web]` in `heavy.conf`), not baked into the build — see `src/constants/map-config.js`.
+This `.env` value is only used for local development (`pnpm run start`). In production, the Mapbox token and Google Maps API key are supplied by the `heavyai/webserver` process at runtime as `window.MAP_CONFIG` (via `mapbox-token`/`google-api-key` under `[web]` in `heavy.conf`), not baked into the build — see `src/constants/map-config.js`.
 
 To start Immerse normally, use this command:
 
 ```bash
-npm run start
+pnpm run start
 ```
 
 The build will automatically launch Immerse as http://localhost:8002 in your default browser, then stay running watching for file changes and automatically recompile those files.
@@ -86,7 +88,7 @@ And then launching the 'Attach to Chrome' configuration in the Debugger pane wit
 If you'd like to experience faster webpack builds, you can use the command
 
 ```bash
-npm run start:fast
+pnpm run start:fast
 ```
 
 to start **immerse** without `source-maps` or `redux-logger`
@@ -108,17 +110,17 @@ If you'd like to start up the prod build, first generate an SSL certificate and 
 Then, run
 
 ```bash
-npm run start:prod
+pnpm run start:prod
 ```
 
 #### Validation Scripts
 
 All pull requests must have passing linting and unit tests. There are automatic builds that check these once pushed, but to avoid finding out until then, it is a good idea to run these scripts yourself before checking in. The scripts are:
 
-- `npm run lint` - Run the linters
-- `npm run lint:fix` - Run the linters and automatically change files for fixable lint issues and Prettier formatting
-- `npm run test:unit` - Run the unit tests
-- `npm run test` - Run both the linters and the unit tests
+- `pnpm run lint` - Run the linters
+- `pnpm run lint:fix` - Run the linters and automatically change files for fixable lint issues and Prettier formatting
+- `pnpm run test:unit` - Run the unit tests
+- `pnpm run test` - Run both the linters and the unit tests
 
 Some githooks are available to automate linting, add the Jira ticket ID to commit messages, etc. Documentation for the githooks can be found [here](githooks).
 
@@ -146,7 +148,7 @@ For release 5.0 and beyond, we will use a new testing system that relies on Jest
 | `test:coverage`                                  | Run all test suites with a coverage report                                                      |
 | `test:unit`                                      | Run all unit test suites (test file extension `.unit.test.js` / `.unit.test.ts`)                |
 | `test:component`                                 | Run all component test suites (test file extension `.component.test.js` / `.component.test.ts`) |
-| `npm run --prefix test-config/puppeteer test:ci` | Run all Puppeteer UI test suites (`.ui.test.js` / `.ui.test.ts`)                                |
+| `pnpm --dir test-config/puppeteer run test:ci` | Run all Puppeteer UI test suites (`.ui.test.js` / `.ui.test.ts`)                                |
 | `test:playwright`                                | Run all Playwright tests (`/ui-tests/playwright`).                                              |
 
 - UI tests require connection to a server with data sets used in the tests. See
@@ -161,10 +163,10 @@ For release 5.0 and beyond, we will use a new testing system that relies on Jest
 A full list of third-party npm packages and their licenses is maintained in [`third_party_licenses/THIRD_PARTY_LICENSES.md`](third_party_licenses/THIRD_PARTY_LICENSES.md). To regenerate it after dependency changes, run:
 
 ```sh
-npx github:heavyai/js-license-list
+pnpm dlx github:heavyai/js-license-list
 ```
 
-This requires `node_modules` to be installed (`npm install`). The script is maintained in the [heavyai/js-license-list](https://github.com/heavyai/js-license-list) repo.
+This requires `node_modules` to be installed (`pnpm install --frozen-lockfile`). The script is maintained in the [heavyai/js-license-list](https://github.com/heavyai/js-license-list) repo.
 
 Every third-party module from npm that gets includes in the final, distributed bundle has its license verified and license text (if provided) or license type shipped in licenses.txt with the bundle. Licenses must be in the pre-approved list of permissive open-source licenses. If it's necessary to override a license for a module because it's missing or improperly tagged in its package.json, add an entry in license-overrides.json.
 

@@ -8,11 +8,14 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: 12
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
       - uses: webfactory/ssh-agent@v0.7.0
         with:
             ssh-private-key: |
@@ -22,11 +25,11 @@ jobs:
         run: |
           echo '[{"database": "${{ secrets.PLAYWRIGHT_TEST_DB }}","master": true,"username": "${{ secrets.PLAYWRIGHT_TEST_USER }}","password": "${{ secrets.PLAYWRIGHT_TEST_PASSWORD }}","url": "${{ secrets.PLAYWRIGHT_TEST_SERVER }}","GTM": "GTM-MDD888","theme": "dark"}]' > ./src/servers.local.json
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile
       # Start this in the background and wait for it to be done
       - name: Start Immerse
         run: |
-          npm run start -- --no-open &
+          pnpm run start --no-open &
           echo "webpack_server_pid=$!" >> "$GITHUB_ENV"
           echo "Saving server pid as $!"
       - name: Wait for immerse
@@ -35,14 +38,12 @@ jobs:
           resource: http://localhost:8002
           delay: 10000 # wait 10 seconds before trying
           timeout: 300000 # 5 minutes
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: npm run test:e2e
+        run: pnpm run test:playwright
       - name: Shut down webpack dev server
+        if: always()
         run: |
           kill ${{ env.webpack_server_pid }}
       - uses: actions/upload-artifact@v3

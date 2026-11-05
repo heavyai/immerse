@@ -5,6 +5,7 @@
 // const metadata = require("./package.json")
 import metadata from "./package.json"
 import { resolve } from "path"
+import { realpathSync } from "fs"
 import webpack, { Configuration, ResolveOptions } from "webpack"
 import HTMLWebpackPlugin from "html-webpack-plugin"
 import { GitRevisionPlugin } from "git-revision-webpack-plugin"
@@ -14,22 +15,25 @@ import licensePlugin from "./webpack.license-plugin"
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 //   .BundleAnalyzerPlugin
 
+// pnpm stores dependencies outside the logical root node_modules path.
+const chartingRoot = realpathSync(
+  resolve(__dirname, "node_modules/@heavyai/charting")
+)
+const connectorRoot = realpathSync(
+  resolve(__dirname, "node_modules/@heavyai/connector")
+)
 const webpackModule = {
   include: [
-    resolve(__dirname, "./src"),
-    resolve(__dirname, "./node_modules/@heavyai/charting"),
-    resolve(__dirname, "./node_modules/@heavyai/connector/src")
-  ],
-  exclude: [
-    resolve(__dirname, "./node_modules/@heavyai/charting/node_modules/"),
-    resolve(__dirname, "./node_modules/@heavyai/connector/node_modules/"),
-    /(node_modules\/[^(@heavyai)]+)/
+    resolve(__dirname, "src"),
+    resolve(__dirname, "packages"),
+    chartingRoot,
+    connectorRoot
   ]
 }
 
 const webpackResolve: ResolveOptions = {
   extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".geojson"],
-  symlinks: false,
+  symlinks: true,
   // modules: [resolve(__dirname, 'src'), '..', 'node_modules'],
   modules: [resolve(__dirname, "src"), "node_modules"],
   alias: {
@@ -43,7 +47,7 @@ const webpackResolve: ResolveOptions = {
     "@heavyai/charting": resolve(__dirname, "./node_modules/@heavyai/charting"),
     "@heavyai/connector": resolve(
       __dirname,
-      "./node_modules/@heavyai/connector/src"
+      "./node_modules/@heavyai/connector"
     ),
     "d3-combo-chart": resolve(
       __dirname,
@@ -52,7 +56,7 @@ const webpackResolve: ResolveOptions = {
     react: resolve(__dirname, "./node_modules/react"),
     "@heavyai/data-layer": resolve(
       __dirname,
-      "./node_modules/@heavyai/data-layer/packages/data-layer/dist/heavyai-data-layer.js"
+      "./node_modules/@heavyai/data-layer/dist/heavyai-data-layer.js"
     )
   }
 }

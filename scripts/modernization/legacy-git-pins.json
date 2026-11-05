@@ -1,0 +1,13 @@
+{
+  "@heavyai/charting": "git+https://github.com/heavyai/heavyai-charting.git#7daf2e49cd024938ec4863affbee3db3acf5f47a",
+  "@heavyai/connector": "git+https://github.com/heavyai/heavyai-connector.git#6f77df57d099eaff0dda193ec186da247f261f44",
+  "@heavyai/crossfilter": "git+https://github.com/heavyai/heavyai-crossfilter.git#25ff4c5cc27636519e65d576dfd736a34e6212e0",
+  "@heavyai/d3-combo-chart": "git+https://github.com/heavyai/heavyai-d3.git#c01faf17df9dd98876336ae7708938d450a42d85",
+  "@heavyai/data-layer": "git+https://github.com/heavyai/metis.git#fea3f3809ceb9c947d33324fdb94d0946050d6f9&path:/packages/data-layer",
+  "@heavyai/draw": "git+https://github.com/heavyai/heavyai-draw.git#e841dd2af045e0153b9d300e7cc19456ff2fac98",
+  "heavy-gauge-chart": "git+https://github.com/heavyai/gauge-chart.git#3713bfe289fc6c21146da4fee9721e49b8f3e0ea",
+  "heavy-skewt-chart": "git+https://github.com/heavyai/skewt-chart.git#9e77e97c3977e34e904d1d44271f12faf1186f8d",
+  "legendables": "git+https://github.com/heavyai/legendables.git#3eac5e999e554e31577989eda9698896b741c29a",
+  "node-sql-parser": "git+https://github.com/heavyai/node-sql-parser.git#8418024b2ff5cdd50511bb4cd73e6f2f96f597a5",
+  "useWhisper": "git+https://github.com/heavyai/useWhisper.git#a4da42bdfa8f62353ea0b21f20e5df50377f61b6"
+}

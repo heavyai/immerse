@@ -13,7 +13,7 @@ const baseConfig = {
     "^services/(.*)$": "<rootDir>/src/services/$1",
     "^utils/(.*)$": "<rootDir>/src/utils/$1",
     "^@heavyai/data-layer$":
-      "<rootDir>/node_modules/@heavyai/data-layer/packages/data-layer/dist/heavyai-data-layer.js",
+      "<rootDir>/node_modules/@heavyai/data-layer/dist/heavyai-data-layer.js",
 
     "^vega-lite$": "<rootDir>/node_modules/vega-lite/build/vega-lite.min.js"
   },
@@ -23,7 +23,7 @@ const baseConfig = {
     "\\.[jt]sx?$": "babel-jest"
   },
   transformIgnorePatterns: [
-    "<rootDir>/node_modules/(?!(@heavyai|robust-predicates|delaunator|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
+    "node_modules/(?!\\.pnpm/)(?!(@heavyai|robust-predicates|delaunator|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
   ],
   setupFiles: ["jest-canvas-mock", "<rootDir>/test-config/jest-shim"]
 }
