@@ -4,7 +4,7 @@
 import React from "react"
 import { QUERY_GENERATOR_COMPLEXITY_TEXT } from "constants/text"
 import IconComplexity from "components/svg-icons/icon-complexity"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import "./styles.scss"
 

@@ -8,7 +8,7 @@ import {
   TIME_LAG_EXPRESSION_TYPE,
   TimeLagMode
 } from "vega/constants/data-selection-types"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import ButtonGroup from "components/chart-settings/vega-combo/components/widgets/button-group"
 import "./styles.scss"
 

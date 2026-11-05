@@ -3,7 +3,7 @@
 
 import React, { useState, useRef, useEffect } from "react"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import { Icon } from "@rmwc/icon"
 import { process as processParameters } from "utils/ImmerseSQLPlusPlus/parser"

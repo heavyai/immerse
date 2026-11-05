@@ -3,7 +3,7 @@
 
 import React, { SyntheticEvent } from "react"
 import { IChartSpecificSettings } from "../visualization-settings"
-import Switch from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import "./polygon-map-settings.scss"
 import { RenderLimitSlider } from "../render-limit-slider"

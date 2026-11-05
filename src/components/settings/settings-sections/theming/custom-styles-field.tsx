@@ -3,7 +3,7 @@
 
 import React, { FC, useState, FormEvent } from "react"
 import { TextField } from "widgets/text-field/TextField"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 interface ICustomStylesField {
   prop: string

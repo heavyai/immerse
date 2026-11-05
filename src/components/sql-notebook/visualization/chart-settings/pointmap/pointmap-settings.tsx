@@ -9,8 +9,8 @@ import {
   DEFAULT_POINT_SIZE,
   DEFAULT_SIZE_RANGE
 } from "../../vega-map/constants"
-import Switch from "widgets/switch/Switch"
-import Slider from "@material-ui/core/Slider"
+import { Switch, Slider } from "@immerse/ui"
+
 import { RenderLimitSlider } from "../render-limit-slider"
 import {
   POINT_RENDER_LIMIT,

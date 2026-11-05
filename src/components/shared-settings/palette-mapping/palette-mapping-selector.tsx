@@ -24,11 +24,11 @@ import {
   setD3MappingDomainRange,
   categoricalColorFromChart
 } from "reducers/charts/helpers/color-helpers"
-import { Button } from "@rmwc/button"
+import { Button, MenuSurfaceAnchor, Tooltip } from "@immerse/ui"
 import { IconCustomize } from "components/svg-icons/icon-customize"
-import { MenuSurfaceAnchor } from "@rmwc/menu"
+
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+
 import { clearImportDashboardId } from "actions/shared-settings-import-action-creators"
 import { useImportPaletteMapping } from "../import/use-import-palette-mapping"
 import { PaletteMappingItemMenu } from "./palette-mapping-item-menu"
@@ -289,7 +289,11 @@ export const PaletteMappingSelector = ({
 
           <div className="palette-mapping-selector__row__section">
             <Tooltip content="Create New">
-              <Button outlined className="dense" onClick={handleSaveAs}>
+              <Button
+                variant="secondary"
+                className="dense"
+                onClick={handleSaveAs}
+              >
                 <div className="customize-mapping-button">
                   <Icon icon={{ icon: "add", size: "small" }} />
                 </div>
@@ -321,8 +325,8 @@ export const PaletteMappingSelector = ({
               />
 
               <Button
+                variant="secondary"
                 className="dense"
-                outlined
                 onClick={() => setCustomizeOpen(true)}
               >
                 <div className="customize-mapping-button">

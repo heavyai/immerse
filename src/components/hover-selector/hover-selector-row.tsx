@@ -64,9 +64,14 @@ const HoverSelectorRow: FC<Props> = ({
         />
       ) : null}
       {removeColumn && !isGrouped && (
-        <div className="hover-selector-value-close" onClick={handleCloseClick}>
+        <button
+          type="button"
+          aria-label={`Remove ${columnOption.label}`}
+          className="hover-selector-value-close"
+          onClick={handleCloseClick}
+        >
           <Icon name="x" />
-        </div>
+        </button>
       )}
     </div>
   )

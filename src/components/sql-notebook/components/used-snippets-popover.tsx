@@ -4,7 +4,7 @@
 import React from "react"
 import { useDispatch } from "react-redux"
 import { Icon } from "@rmwc/icon"
-import { MenuSurface } from "@rmwc/menu"
+import { MenuSurface } from "@immerse/ui"
 import { NutIcon } from "components/svg-icons/icon-nut"
 import { sqlNotebookOpenGuidanceModal } from "../redux/sql-notebook-action-creators"
 import { UsedSnippet } from "../types"

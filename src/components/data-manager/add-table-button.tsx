@@ -4,7 +4,7 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { PrimaryButton } from "widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 import { AppState } from "vega/charts/types"
 import { resetPreviewDataSource } from "actions/tables-action-creators"
 import { generateImportCreatePath } from "./utils/generate-import-path"

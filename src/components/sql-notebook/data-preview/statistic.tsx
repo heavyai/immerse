@@ -4,7 +4,7 @@
 import React from "react"
 
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import "./statistic.scss"
 import { formatNumber } from "charts/utils/coordinate-helpers"
 

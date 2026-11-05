@@ -7,7 +7,7 @@ import { useColumnOptions } from "hooks/use-column-options"
 import { makeSelectGroupedOptions } from "selectors/data-sources"
 
 import { MultiSelect } from "widgets/multi-select/Multi-select"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 import IconSourceLink from "components/svg-icons/icon-sourcelink"
 
 import { CrossLink, ColumnMap } from "constants/crosslink-types"

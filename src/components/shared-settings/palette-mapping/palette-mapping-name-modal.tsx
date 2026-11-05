@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState } from "react"
-import { SimpleDialog } from "@rmwc/dialog"
+import { SimpleDialog, Button } from "@immerse/ui"
 import { TextField } from "@rmwc/textfield"
-import { Button } from "@rmwc/button"
 
 import { TooltipIfContent } from "components/tooltip-if-content/tooltip-if-content"
 import { PaletteMappingEmptyIcon } from "./palette-mapping-empty-icon"
@@ -51,7 +50,7 @@ export const PaletteMappingNameModal = ({
       cancelLabel={null}
       footer={
         <div className="palette-mapping-name-modal__footer">
-          <Button outlined onClick={onClose}>
+          <Button variant="secondary" onClick={onClose}>
             Go Back
           </Button>
           <Button disabled={submitDisabled} onClick={onSubmit}>

@@ -59,14 +59,12 @@ module.exports = {
     "no-script-url": "error", // eval is often unsafe and performs poorly.
     "no-self-compare": "error", // usually a typo; better to use isNaN.
     "no-sequences": "error", // usually a typo; obscures side effects.
-    "no-shadow": "error", // difficult to read, limits access to higher scope vars.
     "no-sync": "error", // blocks single thread; use async.
     "no-throw-literal": "error", // be consistent about only throwing Error objects.
     "no-underscore-dangle": "error", // should not rely on variable name to reason about scoping, as it may change.
     "no-unmodified-loop-condition": "error", // possible infinite loop; probably a mistake.
     "no-unneeded-ternary": "error", // improves consistency and readability.
     "no-unused-expressions": ["error", { allowShortCircuit: true }], // usually a typo; has o effect.
-    "no-use-before-define": ["error", { functions: false }], // avoids temporal dead zone; functions below can improve readability.
     "no-useless-call": "error", // slower than normal invocation.
     "no-useless-computed-key": "error", // unnecessary; can cause confusion.
     "no-useless-concat": "error", // slower than static combination.
@@ -104,7 +102,6 @@ module.exports = {
     "@typescript-eslint/ban-types": "off", // new rule - needs many updates first before enabling
     "@typescript-eslint/explicit-function-return-type": "off", // match existing eslint rule
     "@typescript-eslint/explicit-module-boundary-types": "off", // new rule -- needs many updates first before enabling
-    "@typescript-eslint/interface-name-prefix": "off", // purely stylistic
     "@typescript-eslint/no-empty-function": "off", // match existing eslint rule
     "@typescript-eslint/no-explicit-any": "off", // too restrictive
     "no-unused-vars": "off", // off so it doesn't interfere with @typescript-eslint same rule
@@ -113,10 +110,25 @@ module.exports = {
       {
         ignoreRestSiblings: true,
         argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
+        varsIgnorePattern: "^_",
+        caughtErrors: "none"
       }
     ], // match existing eslint rule
-    "@typescript-eslint/no-use-before-define": ["error", { functions: false }], // match existing eslint rule
+    // Keep the pre-upgrade policy; CommonJS and legacy types remain in this repository.
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "@typescript-eslint/no-wrapper-object-types": "off",
+    "@typescript-eslint/no-unsafe-function-type": "off",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      { allowShortCircuit: true }
+    ],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "no-loss-of-precision": "off",
+    "no-unsafe-optional-chaining": "off",
     "@typescript-eslint/no-var-requires": "off", // used legitimately in various config/setup Node files
     "spaced-comment": "error", // improves consistency.
     "vars-on-top": "error", // best to have code agree with hoisting.

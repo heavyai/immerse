@@ -106,14 +106,14 @@ type DateInputProps = {
   testIdSuffix?: string
 }
 
-const DateInput: FC<DateInputProps> = ({
+function DateInput({
   inputName,
   menuIsOpen,
   setMenuState,
   value,
   setValue,
   testIdSuffix
-}) => {
+}: DateInputProps) {
   const openMenu = () => {
     setMenuState(true)
   }

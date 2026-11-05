@@ -6,7 +6,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { isEmpty } from "lodash"
 import { SimpleDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 
 import { supportedIntegerTypesForCohort } from "constants/data-types"
 

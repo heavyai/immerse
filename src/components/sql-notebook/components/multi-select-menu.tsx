@@ -4,7 +4,7 @@
 import React, { useState } from "react"
 import { ToggleMenu, ToggleMenuOption } from "./toggle-menu"
 
-import { MenuSurface, MenuSurfaceAnchor } from "@rmwc/menu"
+import { MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
 import cx from "classnames"
 import { IconDoubleChevron } from "components/svg-icons/icon-double-chevron"
 
@@ -59,7 +59,10 @@ export const MultiSelectDropdown = ({
             header={header}
           />
         </MenuSurface>
-        <div
+        <button
+          type="button"
+          aria-haspopup="menu"
+          aria-label="Options"
           onClick={() => {
             setMenuOpen(true)
           }}
@@ -93,7 +96,7 @@ export const MultiSelectDropdown = ({
           ) : (
             <IconDoubleChevron />
           )}
-        </div>
+        </button>
       </MenuSurfaceAnchor>
     </div>
   )

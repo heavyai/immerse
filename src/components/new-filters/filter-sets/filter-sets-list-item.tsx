@@ -6,7 +6,7 @@ import React, { FC, useRef, useState } from "react"
 import useOutsideClick from "@rooks/use-outside-click"
 import cx from "classnames"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import IconDuplicateSolid from "components/svg-icons/icon-duplicate-solid"
 

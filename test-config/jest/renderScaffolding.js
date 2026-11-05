@@ -2,14 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { render } from "@testing-library/react"
+import { render, renderHook } from "@testing-library/react"
 import { Provider } from "react-redux"
 import { ConnectedRouter, routerMiddleware } from "connected-react-router"
 import { createBrowserHistory } from "history"
 import { applyMiddleware, createStore, combineReducers } from "redux"
 import thunk from "redux-thunk"
 import reducers from "./jest-reducers"
-import { renderHook } from "@testing-library/react-hooks"
 
 const history = createBrowserHistory()
 

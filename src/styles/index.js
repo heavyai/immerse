@@ -18,26 +18,20 @@ require("./third-party-ui/react-autosuggest.scss")
 
 /* official material css */
 require("material-components-web/dist/material-components-web.css")
-require("@material/button/dist/mdc.button.css")
-require("@material/dialog/dist/mdc.dialog.css")
 require("@material/icon-button/dist/mdc.icon-button.css")
 require("@material/list/dist/mdc.list.css")
-require("@material/menu/dist/mdc.menu.css")
-require("@material/menu-surface/dist/mdc.menu-surface.css")
-require("@material/switch/dist/mdc.switch.css")
 require("@material/form-field/dist/mdc.form-field.css")
 require("@material/textfield/dist/mdc.textfield.css")
 require("@material/notched-outline/dist/mdc.notched-outline.css")
 require("@material/line-ripple/dist/mdc.line-ripple.css")
 require("@material/snackbar/dist/mdc.snackbar.css")
-require("@material/checkbox/dist/mdc.checkbox.css")
 require("@material/radio/dist/mdc.radio.css")
 
 /* rmwc css */
 require("@rmwc/icon/icon.css")
 require("@rmwc/data-table/data-table.css")
 require("@rmwc/circular-progress/circular-progress.css")
-require("@rmwc/tooltip/tooltip.css")
+require("@immerse/ui/tokens.css")
 /* custom overrides */
 require("./third-party-ui/material-override.scss")
 

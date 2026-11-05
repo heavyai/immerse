@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 
 import DeckGLBaseSettings from "./deckgl-base-settings"
 import CustomSlider from "components/custom-slider/custom-slider"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import HoverSelector from "components/hover-selector/hover-selector"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import { isSelectorUsable } from "utils/selector-helpers"

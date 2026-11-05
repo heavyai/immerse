@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { ColumnMetadata } from "constants/prop-types"
 import { DataPreview } from "../data-preview/data-preview"
 import cx from "classnames"

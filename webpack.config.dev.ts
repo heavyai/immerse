@@ -68,7 +68,7 @@ const devtool = isDevEnv && !verboseMode ? "eval" : "source-map"
 
 const bundle = [
   ...(IS_DEV_SERVER ? ["./src/devserver-app-config-init.js"] : []),
-  ...["react-hot-loader/patch", "./src/index.js"]
+  "./src/index.js"
 ]
 
 const devServerOptions: DevConfig = {
@@ -129,7 +129,6 @@ export const devConfig = merge<Configuration>(
   commonConfig,
   {
     // specify the root module for our application aka entry point
-    // the react-hot-loader/patch preceeds this bc react-hot-loader@beta.7
     entry: {
       polyfills: "./src/polyfills.js",
       bundle
@@ -266,12 +265,7 @@ export const devConfig = merge<Configuration>(
         chunkFilename: "[id].css"
       }),
       new Dotenv({ expand: true })
-    ],
-    resolve: {
-      alias: {
-        "react-dom": "@hot-loader/react-dom"
-      }
-    }
+    ]
   },
   custom
 ) // note that custom will override other settings

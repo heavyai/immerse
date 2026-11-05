@@ -7,12 +7,12 @@ import cx from "classnames"
 import { debounce } from "lodash"
 import SplitPane from "react-split-pane"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip, PrimaryButton, SecondaryButtonNoBorder } from "@immerse/ui"
 import { CircularProgress } from "@rmwc/circular-progress"
 import { Snackbar, SnackbarAction } from "@rmwc/snackbar"
 import "@material/snackbar/dist/mdc.snackbar.css"
 import "@rmwc/circular-progress/circular-progress.css"
-import { PrimaryButton, SecondaryButtonNoBorder } from "widgets/button/Button"
+
 import JupyterButton from "components/jupyter/JupyterButton"
 
 import {

@@ -83,7 +83,7 @@ const SqlEditorHistory = ({
   )
 }
 
-const SelectedQueryInfo = ({ query, closeSelectedQueryPane }) => {
+function SelectedQueryInfo({ query, closeSelectedQueryPane }) {
   const DATE_FORMAT = "dddd, MMMM Do YYYY, h:mm:ss a"
   const { theme } = useImmerseUITheme()
   return (

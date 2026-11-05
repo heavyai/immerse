@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import {
   atDashboardsList,

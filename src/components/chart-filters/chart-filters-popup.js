@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState } from "react"
-import { MenuSurfaceAnchor, MenuSurface } from "@rmwc/menu"
+import { MenuSurfaceAnchor, MenuSurface, Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+
 import PropTypes from "prop-types"
 
 import ChartFilters from "./chart-filters"

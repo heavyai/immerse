@@ -3,7 +3,7 @@
 
 import React, { FormEvent } from "react"
 
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 export const EnableCustomTheme = ({
   title,

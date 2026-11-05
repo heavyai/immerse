@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { MenuSurfaceAnchor, MenuSurface, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, MenuSurface, MenuItem } from "@immerse/ui"
 import cx from "classnames"
 import React from "react"
 import { noop } from "utils/helpers"
@@ -54,7 +54,10 @@ const DocsPanel = ({ isOpen, onToggleOpen = noop, onDocsClick = noop }) => {
           </div>
         </MenuSurface>
 
-        <div
+        <button
+          type="button"
+          aria-haspopup="menu"
+          aria-label="Options"
           className={cx("docs-panel__anchor", {
             "global-side-nav__docs": getFeatureFlag(GLOBAL_SIDE_NAV),
             "is-panel-open": isOpen
@@ -63,7 +66,7 @@ const DocsPanel = ({ isOpen, onToggleOpen = noop, onDocsClick = noop }) => {
           data-testid="docs-panel"
         >
           <Icon icon="help_outline" />
-        </div>
+        </button>
       </MenuSurfaceAnchor>
     </div>
   )

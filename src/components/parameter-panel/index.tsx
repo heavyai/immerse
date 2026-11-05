@@ -4,9 +4,7 @@
 import React, { useState } from "react"
 import { Dispatch } from "redux"
 import { connect } from "react-redux"
-import { SecondaryButton } from "widgets/button/Button"
-import { Menu, MenuSurfaceAnchor } from "@rmwc/menu"
-import { Tooltip } from "@rmwc/tooltip"
+import { SecondaryButton, Menu, MenuSurfaceAnchor, Tooltip } from "@immerse/ui"
 
 import { userCanEditDashboard } from "utils/privileges"
 import { PENDING_PARAMETER_PROPERTIES } from "components/parameter-manager/constants"

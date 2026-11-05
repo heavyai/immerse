@@ -3,7 +3,7 @@
 
 import React, { FC, FormEvent } from "react"
 import { connect, ConnectedProps } from "react-redux"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import { MarkSettings } from "vega/constants/data-selection-types"
 

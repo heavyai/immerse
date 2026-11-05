@@ -7,7 +7,7 @@ import Dropzone from "dropzone"
 import cx from "classnames"
 import { connect } from "react-redux"
 import Icon from "components/icon/icon"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 import { indexOf, remove } from "ramda"
 import {
   parseExtension,

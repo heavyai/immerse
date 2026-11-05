@@ -3,12 +3,10 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import ReactTestUtils from "react-dom/test-utils"
 import cx from "classnames"
 import { Icon } from "@rmwc/icon"
-import { Switch } from "widgets/switch/Switch"
-import { Tooltip } from "@rmwc/tooltip"
-import "@rmwc/tooltip/tooltip.css"
+import { Switch, Tooltip } from "@immerse/ui"
+
 import "@rmwc/icon/icon.css"
 
 export default function FilterTitleBar({
@@ -42,12 +40,14 @@ export default function FilterTitleBar({
     // keys down in the search input. This is the result of DataTable being
     // separate from the search field.
     //
-    // See this stackoverflow for why we're using ReactTestUtils.Simulate instead
-    // of the native `dispatchEvent(new KeyboardEvent("keydown"))`
-    // https://stackoverflow.com/questions/39065010/why-react-event-handler-is-not-called-on-dispatchevent
-    ReactTestUtils.Simulate.keyDown(dataTableRef.current, {
-      keyCode: e.keyCode
-    })
+    dataTableRef.current.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: e.key,
+        code: e.code,
+        keyCode: e.keyCode,
+        bubbles: true
+      })
+    )
   }
 
   const renderSearchField = () => {

@@ -14,7 +14,7 @@ import {
   DataTableCell
 } from "@rmwc/data-table"
 
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox } from "@immerse/ui"
 
 const MAX_INITIAL_ROWS = 100
 

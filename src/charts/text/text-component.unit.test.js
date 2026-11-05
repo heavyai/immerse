@@ -2,16 +2,19 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import ReactDOM from "react-dom"
+import { render, cleanup } from "@testing-library/react"
 
 import TextComponent from "./text-component"
 
 describe("Text widget", () => {
   window.document.getSelection = jest.fn()
   let fixture = null
+  let view = null
+  afterEach(cleanup)
   beforeEach(() => {
     document.querySelector("body").innerHTML = '<div id="chart"></div>'
     fixture = document.querySelector("#chart")
+    view = null
   })
 
   function mountComponent(givenProps) {
@@ -25,7 +28,11 @@ describe("Text widget", () => {
       ...givenProps
     }
 
-    ReactDOM.render(React.createElement(TextComponent, props, null), fixture)
+    if (view) {
+      view.rerender(<TextComponent {...props} />)
+    } else {
+      view = render(<TextComponent {...props} />, { container: fixture })
+    }
   }
 
   it("should work without props, default to showing blank editor", () => {

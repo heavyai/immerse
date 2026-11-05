@@ -1,0 +1,32 @@
+/* SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved. */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+/* Resolve aliases on the themed body, including portal content and customer tints. */
+body {
+  --ui-accent: var(--blue-main, #0089d1);
+  --ui-on-accent: #fff;
+  --ui-surface: var(--grayDp3, #fff);
+  --ui-input: var(--grayDp24, #fff);
+  --ui-text: var(--textOnDark, #222);
+  --ui-muted: var(--dimTextOnDark, #666);
+  --ui-border: var(--borderSeparator, #999);
+  --ui-hover: var(--highlightOnDark, #eee);
+  --ui-disabled: var(--disabled, #777);
+  --ui-danger: #d83c3c;
+  --ui-warning: #b58400;
+  --ui-success: #398200;
+  --ui-radius: 4px;
+  --ui-z-menu: 4000;
+  --ui-z-dialog: 3000;
+  --ui-z-tooltip: 5000;
+}
+
+/* The retained Nexus light theme uses its gray scale rather than the older HSL aliases. */
+body.light2-mode {
+  --ui-surface: var(--gray-25, #fff);
+  --ui-input: var(--gray-25, #fff);
+  --ui-text: var(--gray-900, #111);
+  --ui-muted: var(--gray-600, #666);
+  --ui-border: var(--gray-300, #ccc);
+  --ui-hover: var(--gray-100, #eee);
+}

@@ -4,7 +4,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Icon } from "@rmwc/icon"
-import { MenuSurfaceAnchor, Menu, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, Menu, MenuItem } from "@immerse/ui"
 
 import { noop } from "utils/helpers"
 
@@ -51,7 +51,10 @@ class CohortKebab extends React.PureComponent {
             </MenuItem>
           )}
         </Menu>
-        <div
+        <button
+          type="button"
+          aria-haspopup="menu"
+          aria-label="Options"
           className="cohort-kebab-button"
           onClick={(e) => {
             e.stopPropagation()
@@ -60,7 +63,7 @@ class CohortKebab extends React.PureComponent {
           data-testid="cohort-kebab-menu"
         >
           <Icon icon="more_vert" />
-        </div>
+        </button>
       </MenuSurfaceAnchor>
     )
   }

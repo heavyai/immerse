@@ -6,8 +6,7 @@ import { AnyAction } from "redux"
 import { ThunkDispatch } from "redux-thunk"
 import { connect, ConnectedProps } from "react-redux"
 import { SimpleDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
-import { Checkbox } from "@rmwc/checkbox"
+import { PrimaryButton, SecondaryButton, Checkbox } from "@immerse/ui"
 
 import { AppState } from "vega/charts/types"
 

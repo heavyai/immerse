@@ -15,7 +15,7 @@ import React, {
 import { debounce, kebabCase } from "lodash"
 import cx from "classnames"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import Vega from "vega/components/Vega/Vega"
 import { KEYCODE } from "constants/keycode"

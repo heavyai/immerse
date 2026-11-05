@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import { AutoSizer, List } from "react-virtualized"
 import Icon from "components/icon/icon"
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox } from "@immerse/ui"
 
 import DashboardRowItem from "components/dashboard-row-item/dashboard-row-item-parent"
 import { frontEndViewShape } from "constants/prop-types"

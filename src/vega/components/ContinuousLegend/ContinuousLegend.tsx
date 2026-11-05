@@ -6,8 +6,6 @@ import GradientColorLegend from "vega/components/ContinuousLegend/GradientColorL
 import Icon from "components/icon/icon"
 import "./styles.scss"
 
-type Datum = any
-
 type Props = {
   /** Chart id */
   chartId: string

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Tooltip, TooltipProps } from "@rmwc/tooltip"
+import { Tooltip, TooltipProps } from "@immerse/ui"
 
 export const TooltipIfContent = (props: TooltipProps) => {
   return props.content ? (

@@ -1,0 +1,273 @@
+/* SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved. */
+/* SPDX-License-Identifier: Apache-2.0 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius);
+  background: var(--ui-accent);
+  color: var(--ui-on-accent);
+  font: inherit;
+  cursor: pointer;
+}
+.button[data-variant="secondary"] {
+  background: transparent;
+  border-color: var(--ui-border);
+  color: var(--ui-text);
+}
+.button[data-variant="quiet"] {
+  background: transparent;
+  color: var(--ui-text);
+}
+.button[data-tone="danger"] {
+  background: var(--ui-danger);
+}
+.button[data-tone="warning"] {
+  background: var(--ui-warning);
+}
+.button[data-tone="success"] {
+  background: var(--ui-success);
+}
+.button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.button:focus-visible,
+.control:focus-visible,
+.thumb:focus-visible,
+.menuItem:focus-visible,
+.tooltipTrigger:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 3px;
+}
+.icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+}
+.control {
+  accent-color: var(--ui-accent);
+  cursor: pointer;
+}
+.control:disabled {
+  cursor: not-allowed;
+}
+.controlLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ui-text);
+  font: inherit;
+}
+.switch {
+  appearance: none;
+  width: 32px;
+  height: 18px;
+  border-radius: 10px;
+  background: var(--ui-muted);
+  border: 1px solid var(--ui-border);
+  position: relative;
+  vertical-align: middle;
+}
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ui-on-accent);
+  transition: transform 0.1s;
+}
+.switch:checked {
+  background: var(--ui-accent);
+}
+.switch:checked::before {
+  transform: translateX(14px);
+}
+.tooltipTrigger {
+  display: inline-flex;
+  max-width: 100%;
+}
+.tooltip {
+  z-index: var(--ui-z-tooltip);
+  max-width: 320px;
+  padding: 6px 9px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: 12px;
+  box-shadow: 0 2px 8px #0004;
+}
+.anchor {
+  position: relative;
+}
+.menu {
+  z-index: var(--ui-z-menu);
+  max-height: min(70vh, 500px);
+  overflow: auto;
+  min-width: 160px;
+  padding: 4px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: 0 4px 12px #0004;
+}
+.menuItem {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  border: 0;
+  padding: 8px 12px;
+  background: transparent;
+  color: inherit;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+}
+.menuItem:hover:not(:disabled),
+.menuItem:focus-visible {
+  background: var(--ui-hover);
+}
+.menuItem:disabled {
+  color: var(--ui-disabled);
+  cursor: not-allowed;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0008;
+  z-index: var(--ui-z-dialog);
+}
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: calc(var(--ui-z-dialog) + 1);
+  width: max-content;
+  min-width: min(420px, 90vw);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: 0 12px 40px #0008;
+}
+.dialogTitle {
+  position: relative;
+  margin: 0;
+  padding: 16px;
+  font-size: 20px;
+}
+.dialogContent {
+  padding: 16px;
+}
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--ui-border);
+}
+.slider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  touch-action: none;
+  user-select: none;
+  width: 100%;
+  min-width: 80px;
+  height: 24px;
+}
+.track {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ui-border);
+}
+.range {
+  position: absolute;
+  height: 100%;
+  background: var(--ui-accent);
+  border-radius: 2px;
+}
+.thumb {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ui-accent);
+  border: 2px solid var(--ui-on-accent);
+  box-shadow: 0 0 0 1px var(--ui-accent);
+}
+.slider[data-disabled] {
+  opacity: 0.45;
+}
+@media (forced-colors: active) {
+  .button,
+  .control,
+  .thumb,
+  .menu,
+  .dialog,
+  .tooltip {
+    border: 1px solid ButtonText;
+  }
+  .button:focus-visible,
+  .thumb:focus-visible {
+    outline-color: Highlight;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .switch::before {
+    transition: none;
+  }
+}
+
+.valueLabel {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 6px;
+  border-radius: var(--ui-radius);
+  color: var(--ui-on-accent);
+  background: var(--ui-accent);
+  font-size: 12px;
+  white-space: nowrap;
+  visibility: hidden;
+}
+.thumb:hover .valueLabel,
+.thumb:focus .valueLabel,
+.valueLabel[data-always] {
+  visibility: visible;
+}
+.slider[data-track="inverted"] .track {
+  background: var(--ui-accent);
+}
+.slider[data-track="inverted"] .range {
+  background: var(--ui-border);
+}
+
+.anchor > button:not([data-variant]) {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}

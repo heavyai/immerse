@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useMemo, useState, ChangeEvent } from "react"
-import { Switch } from "@rmwc/switch"
+import { Switch } from "@immerse/ui"
 import {
   ChartFieldAssignment,
   CHART_TYPE_SCHEMA,

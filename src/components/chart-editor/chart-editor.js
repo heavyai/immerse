@@ -52,7 +52,7 @@ const { ENABLE_CHART_SNAPSHOTS, GLOBAL_SIDE_NAV } = available_feature_flags
 import { LegacyChartingDataSelectionPanel } from "./legacy-charting-data-selection-panel"
 import AccountPanel from "components/account-panel/account-panel-parent"
 
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 import { CHART_TYPE_WINDBARB } from "charts/raster-chart/windbarb/constants"
 import { isCrossSectionTerrainEnabled } from "charts/raster-chart/cross-section/hooks/use-cross-section-terrain-enabled"
 import { isCrossSectionType } from "charts/raster-chart/cross-section/utils/is-cross-section-type"

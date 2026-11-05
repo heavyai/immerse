@@ -3,9 +3,15 @@
 
 import React from "react"
 import { useDispatch } from "react-redux"
-import { DialogActions, DialogContent, DialogTitle } from "@rmwc/dialog"
+import {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  PrimaryButton,
+  SecondaryButton
+} from "@immerse/ui"
 import { InfoDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+
 import { closeRefreshModal } from "actions/ui-action-creators"
 
 export const RefreshPromptModal = () => {

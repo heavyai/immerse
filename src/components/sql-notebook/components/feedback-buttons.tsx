@@ -4,7 +4,7 @@
 import React, { useState } from "react"
 import { submitIQFeedback } from "services/iq"
 import classNames from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import { IconThumbsUp } from "components/svg-icons/icon-thumbs-up"
 import { IconThumbsDown } from "components/svg-icons/icon-thumbs-down"

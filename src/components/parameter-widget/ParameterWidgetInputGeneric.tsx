@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useState } from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 import { TextField } from "widgets/text-field/TextField"
 import { CommonInputProps } from "./parameter-widget-types"

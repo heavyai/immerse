@@ -4,8 +4,8 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import dc from "services/dc"
-import { Switch } from "widgets/switch/Switch"
-import { SecondaryButton } from "widgets/button/Button"
+import { Switch, SecondaryButton } from "@immerse/ui"
+
 import { createChart } from "actions/charts-action-creators"
 import { updateChart } from "actions/update-chart-action-creator"
 import { setChartFilters } from "actions/charts-filter-action-creators"

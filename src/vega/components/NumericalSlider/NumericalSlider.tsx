@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useEffect, useRef, useState } from "react"
-import { Slider } from "widgets/slider/Slider"
+import { Slider } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { debounce } from "lodash"
 
@@ -90,6 +90,7 @@ const NumericalSlider: FC<Props> = ({
 
   useEffect(() => {
     fire.current = debounce(onChange, DEBOUNCE_INTERVAL)
+    return () => fire.current.cancel()
   }, [onChange])
 
   // The `key` field on the Slider forces the Slider to get destroyed/recreated
@@ -108,7 +109,9 @@ const NumericalSlider: FC<Props> = ({
         step={step || DEFAULT_STEP}
         value={currentValue}
         aria-labelledby="continuous-slider"
-        onInput={({ detail: { value: v } }) => setCurrentValueAndFire(v)}
+        onChange={(_event, nextValue) =>
+          setCurrentValueAndFire(Number(nextValue))
+        }
       />
       <TextField
         max={max || DEFAULT_MAX}

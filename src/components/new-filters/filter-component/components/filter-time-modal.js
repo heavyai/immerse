@@ -4,7 +4,7 @@
 import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 import moment from "moment"
-import { PrimaryButton } from "widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 import cx from "classnames"
 import FilterTimeModalInput from "./filter-time-modal-input"
 import "./filter-time-modal.scss"

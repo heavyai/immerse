@@ -1,8 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { renderHook } from "@testing-library/react-hooks"
-import { act } from "react-test-renderer"
+import { renderHook, act } from "@testing-library/react"
 import { useSearchableList } from "./useSearchableList"
 
 describe("<RolesSettings />", () => {

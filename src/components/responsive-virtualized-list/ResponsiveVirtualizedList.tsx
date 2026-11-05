@@ -5,7 +5,7 @@ import cx from "classnames"
 import React, { FC } from "react"
 import { SimpleListItem } from "@rmwc/list"
 import { List } from "react-virtualized"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import "./styles.scss"
 

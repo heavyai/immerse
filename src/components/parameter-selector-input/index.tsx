@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState, useRef, CSSProperties } from "react"
-import ReactTestUtils from "react-dom/test-utils"
 
 import "./parameter-selector-input.scss"
 import { PortalProps, OPEN_PARAM_REGEX, InputProps } from "./constants"
@@ -65,12 +64,14 @@ const ParameterSelectorInput = ({
       // This is some black magic to trigger the parameter table's keydown when
       // a user uses arrow keys in the chart title.
       //
-      // See this stackoverflow for why we're using ReactTestUtils.Simulate instead
-      // of the native `dispatchEvent(new KeyboardEvent("keydown"))`
-      // https://stackoverflow.com/questions/39065010/why-react-event-handler-is-not-called-on-dispatchevent
-      ReactTestUtils.Simulate.keyDown(dataTableRef.current, {
-        keyCode: e.keyCode
-      })
+      dataTableRef.current.dispatchEvent(
+        new KeyboardEvent("keydown", {
+          key: e.key,
+          code: e.code,
+          keyCode: e.keyCode,
+          bubbles: true
+        })
+      )
     }
   }
 

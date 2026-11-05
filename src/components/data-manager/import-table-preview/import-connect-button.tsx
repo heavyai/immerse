@@ -4,7 +4,7 @@
 import React from "react"
 import { useParams } from "react-router"
 import { useDispatch } from "react-redux"
-import { PrimaryButton } from "widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 import { areAnyColumnsNotValid } from "components/table-importer/table-importer-helpers"
 import {
   connectTable,

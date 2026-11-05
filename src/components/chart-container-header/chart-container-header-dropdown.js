@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import PropTypes from "prop-types"
 import { Icon } from "@rmwc/icon"
-import { MenuSurfaceAnchor, Menu, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, Menu, MenuItem } from "@immerse/ui"
 
 const CLOSE_TIMEOUT = 200
 

@@ -15,7 +15,7 @@ import Icon from "components/icon/icon"
 import length from "ramda/src/length"
 import Popover from "components/popover/popover"
 import { isPlainObject, isEqual } from "lodash"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 
 export default class CustomSelector extends Component {

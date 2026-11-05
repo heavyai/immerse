@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState } from "react"
-import { MenuSurface, MenuSurfaceAnchor } from "@rmwc/menu"
+import { MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 import cx from "classnames"
 import { Button, BUTTON_TYPES, ButtonProps } from "./button"

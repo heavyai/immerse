@@ -6,7 +6,7 @@ import { debounce, isEmpty } from "lodash"
 import { connect, useSelector } from "react-redux"
 
 import { TextField } from "widgets/text-field/TextField"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
 
 import { isArrayColumn, isBoolType, isDictString } from "constants/data-types"

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { TextField } from "@rmwc/textfield"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { getDataSourcesList } from "../../../actions/tables-get-datasources-list"

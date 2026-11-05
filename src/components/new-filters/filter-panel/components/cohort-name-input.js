@@ -3,11 +3,10 @@
 
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton, Switch, Tooltip } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
-import { Switch } from "widgets/switch/Switch"
+
 import InfoIcon from "components/svg-icons/info"
-import { Tooltip } from "@rmwc/tooltip"
 
 import "./cohort-name-input.scss"
 

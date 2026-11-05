@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import cx from "classnames"
 import { TextField } from "@rmwc/textfield"
-import { Switch } from "@rmwc/switch"
+import { Switch } from "@immerse/ui"
 import * as codemirror from "codemirror"
 import {
   sqlNotebookIQRequest,

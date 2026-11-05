@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import { chartShape } from "constants/prop-types"
 import cx from "classnames"
 import Icon from "components/icon/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { typeAliases } from "./chart-type-button-type-aliases"
 import { CHART_DEFS } from "constants/chart-types"
 

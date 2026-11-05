@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { SimpleDialog } from "@rmwc/dialog"
-import { Button } from "@rmwc/button"
+import { SimpleDialog, Button } from "@immerse/ui"
 
 import { YieldWarningIcon } from "components/svg-icons/icon-yield-warning"
 import "./palette-mapping-warning-modal.scss"
@@ -50,12 +49,12 @@ export const PaletteMappingWarningModal = ({
       footer={
         <div className="palette-mapping-warning-modal__footer">
           <div>
-            <Button outlined onClick={onCancel}>
+            <Button variant="secondary" onClick={onCancel}>
               Go Back
             </Button>
           </div>
           <div>
-            <Button outlined onClick={onDiscard}>
+            <Button variant="secondary" onClick={onDiscard}>
               <div>Discard Changes</div>
             </Button>
             <Button onClick={onSave}>

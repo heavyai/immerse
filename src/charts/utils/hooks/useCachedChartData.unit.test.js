@@ -1,11 +1,11 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React from "react"
+import React, { StrictMode } from "react"
 import configureStore from "redux-mock-store"
 import thunk from "redux-thunk"
 
-import { renderHook } from "@testing-library/react-hooks"
+import { renderHook, act } from "@testing-library/react"
 
 import { getQueryRuntime } from "services/query-runtime"
 import { useCachedChartData } from "./useCachedChartData"
@@ -63,4 +63,42 @@ describe("useCachedChartData test suite", () => {
 
     expect(result.current).toEqual(undefined)
   })
+})
+
+it("keeps one subscription through strict effect replay and removes it on unmount", () => {
+  const store = mockStore({})
+  store.services = new Map()
+  const runtime = getQueryRuntime(store.services)
+  const subscribe = runtime.subscribe
+  const active = new Set()
+  runtime.subscribe = (listener) => {
+    active.add(listener)
+    const unsubscribe = subscribe(listener)
+    return () => {
+      active.delete(listener)
+      unsubscribe()
+    }
+  }
+  const { result, unmount } = renderHook(
+    () => useCachedChartData({ chartId: 1, token: "rows" }),
+    {
+      wrapper: ({ children }) => (
+        <StrictMode>
+          <Provider store={store}>{children}</Provider>
+        </StrictMode>
+      )
+    }
+  )
+  expect(active.size).toBe(1)
+  act(() => {
+    runtime.write(1, "rows", ["current"])
+  })
+  expect(result.current).toEqual(["current"])
+  act(() => {
+    runtime.invalidate()
+  })
+  expect(result.current).toBeUndefined()
+  unmount()
+  expect(active.size).toBe(0)
+  runtime.dispose()
 })

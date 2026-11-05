@@ -3,7 +3,7 @@
 
 import React, { useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import { useDispatch, useSelector } from "react-redux"
 import { push } from "connected-react-router"
 import { generatePath } from "react-router"

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Switch } from "../../widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import { TextField } from "../../widgets/text-field/TextField"
 import CustomSelector from "../custom-selector/custom-selector"
 import React from "react"

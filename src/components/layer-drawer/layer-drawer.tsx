@@ -4,7 +4,7 @@
 import React, { FC, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import Services from "services/immerse"
 import * as RasterActions from "charts/raster-chart/raster-chart-actions"
 import { updateGeoHeatChart } from "charts/raster-chart/geoheat-actions"

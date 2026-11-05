@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Switch } from "@rmwc/switch"
+import { Switch } from "@immerse/ui"
 import { clamp } from "lodash"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import ChartSettingsBasemapDropdownParent from "components/chart-settings-basemap-dropdown/chart-settings-basemap-dropdown-parent"

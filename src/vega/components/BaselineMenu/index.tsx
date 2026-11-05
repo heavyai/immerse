@@ -3,7 +3,7 @@
 
 import React, { useRef, useState } from "react"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { BaselineIcon } from "components/svg-icons/icon-baseline"
 import Popover from "components/popover/popover"
 import { MeasureDomain } from "vega/components/MeasureDomainOverlay/MeasureDomainOverlay"

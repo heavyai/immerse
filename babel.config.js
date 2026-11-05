@@ -21,7 +21,7 @@ module.exports = {
         modules: "commonjs"
       }
     ],
-    "@babel/preset-react",
+    ["@babel/preset-react", { runtime: "automatic" }],
     "@babel/preset-typescript"
   ],
 
@@ -29,24 +29,15 @@ module.exports = {
     test: {
       ignore: ["node_modules/mapbox-gl/dist/mapbox-gl.js"],
       plugins: [
-        typeof process.env.JEST_WORKER_ID === undefined && [
+        typeof process.env.JEST_WORKER_ID === "undefined" && [
           "istanbul",
           {
             exclude: ["**/*.spec.js", "**/*.test.{js,ts,jsx,tsx}"]
           }
         ],
-        [
-          "babel-plugin-transform-require-ignore",
-          {
-            extensions: [".less", ".sass", ".css", ".scss"]
-          }
-        ],
         ["@babel/plugin-transform-runtime"],
         ["babel-plugin-transform-object-hasown"]
       ].filter(Boolean)
-    },
-    development: {
-      plugins: ["react-hot-loader/babel"]
     }
   },
   plugins: [

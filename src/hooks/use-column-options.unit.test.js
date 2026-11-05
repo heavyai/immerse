@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { waitFor } from "@testing-library/react"
 import Services from "services/immerse"
 import { renderHookWithStore } from "jest/renderScaffolding"
 import { useColumnOptions } from "./use-column-options"
@@ -41,42 +42,42 @@ describe("useColumnOptions", () => {
   })
 
   it("Returns stored metadata if it exists", async () => {
-    const { result, waitForNextUpdate } = renderHookWithStore(
+    const { result } = renderHookWithStore(
       () => useColumnOptions("flights_donotmodify"),
       {
         initialState: defaultState
       }
     )
 
-    await waitForNextUpdate()
-
-    expect(result.current).toMatchObject([
-      {
-        table: "flights_donotmodify",
-        value: "stored value"
-      }
-    ])
+    await waitFor(() =>
+      expect(result.current).toMatchObject([
+        {
+          table: "flights_donotmodify",
+          value: "stored value"
+        }
+      ])
+    )
   })
 
   it("Fetches metadata if none is stored", async () => {
-    const { result, waitForNextUpdate } = renderHookWithStore(
+    const { result } = renderHookWithStore(
       () => useColumnOptions("flights_donotmodify"),
       {
-        dashboard: {}
+        initialState: { dashboard: { dataSources: {} } }
       }
     )
 
-    await waitForNextUpdate()
-
-    expect(result.current).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          table: "flights_donotmodify",
-          type: "fetched type",
-          column: "fetched column",
-          name: "fetched column"
-        })
-      ])
+    await waitFor(() =>
+      expect(result.current).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            table: "flights_donotmodify",
+            type: "fetched type",
+            column: "fetched column",
+            name: "fetched column"
+          })
+        ])
+      )
     )
   })
 
@@ -93,21 +94,21 @@ describe("useColumnOptions", () => {
       }
     }
 
-    const { result, waitForNextUpdate } = renderHookWithStore(
+    const { result } = renderHookWithStore(
       () => useColumnOptions("flights_donotmodify"),
       {
         initialState: defaultState
       }
     )
 
-    await waitForNextUpdate()
-
-    expect(result.current).toMatchObject([
-      {
-        table: "flights_donotmodify",
-        value: "stored value"
-      }
-    ])
+    await waitFor(() =>
+      expect(result.current).toMatchObject([
+        {
+          table: "flights_donotmodify",
+          value: "stored value"
+        }
+      ])
+    )
   })
 
   it("Returns only columns with the same type as resetValue", async () => {
@@ -124,7 +125,7 @@ describe("useColumnOptions", () => {
       }
     )
 
-    const { result, waitForNextUpdate } = renderHookWithStore(
+    const { result } = renderHookWithStore(
       () =>
         useColumnOptions("flights_donotmodify", {
           resetValue: "stored value"
@@ -134,19 +135,19 @@ describe("useColumnOptions", () => {
       }
     )
 
-    await waitForNextUpdate()
-
-    expect(result.current).toMatchObject([
-      {
-        table: "flights_donotmodify",
-        value: "another int val",
-        type: "SMALLINT"
-      },
-      {
-        table: "flights_donotmodify",
-        value: "stored value",
-        type: "SMALLINT"
-      }
-    ])
+    await waitFor(() =>
+      expect(result.current).toMatchObject([
+        {
+          table: "flights_donotmodify",
+          value: "another int val",
+          type: "SMALLINT"
+        },
+        {
+          table: "flights_donotmodify",
+          value: "stored value",
+          type: "SMALLINT"
+        }
+      ])
+    )
   })
 })

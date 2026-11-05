@@ -3,7 +3,7 @@
 
 import React, { useState } from "react"
 import { NutIcon } from "components/svg-icons/icon-nut"
-import { MenuSurfaceAnchor } from "@rmwc/menu"
+import { MenuSurfaceAnchor } from "@immerse/ui"
 import { UsedSnippetsPopover } from "./used-snippets-popover"
 import { UsedSnippet } from "../types"
 import "./used-snippets-indicator.scss"
@@ -17,7 +17,10 @@ export const UsedSnippetsIndicator = ({
   return (
     <div className="used-snippets-indicator">
       <MenuSurfaceAnchor>
-        <div
+        <button
+          type="button"
+          aria-haspopup="menu"
+          aria-label="Options"
           className="used-snippets-indicator__widget"
           onClick={(e) => {
             e.stopPropagation()
@@ -26,7 +29,7 @@ export const UsedSnippetsIndicator = ({
         >
           <NutIcon />
           {snippets.length}
-        </div>
+        </button>
         <UsedSnippetsPopover
           snippets={snippets}
           open={popoverOpen}

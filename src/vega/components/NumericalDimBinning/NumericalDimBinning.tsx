@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC } from "react"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import IconChain from "components/svg-icons/icon-chain"
 

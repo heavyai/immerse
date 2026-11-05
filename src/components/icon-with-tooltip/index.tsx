@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC } from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon as GlyphIcon } from "@rmwc/icon"
 
 import "./styles.scss"

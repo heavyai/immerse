@@ -5,8 +5,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import { Icon } from "@rmwc/icon"
-import { Switch } from "widgets/switch/Switch"
-import { Tooltip } from "@rmwc/tooltip"
+import { Switch, Tooltip } from "@immerse/ui"
 
 import CohortDimensionSection from "components/new-filters/filter-panel/components/cohort-dimension-section"
 import { useJoinFromParameter } from "components/join-manager/use-join-from-parameter"

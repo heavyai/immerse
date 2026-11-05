@@ -7,7 +7,7 @@ import cx from "classnames"
 import moment from "moment"
 import { Link } from "react-router-dom"
 import { routeToDashboard } from "utils/routerPath"
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox } from "@immerse/ui"
 
 import DashboardMenu from "components/dashboard-row-item/dashboard-menu"
 import SearchTermHighlight from "components/search-term-highlight/search-term-highlight"

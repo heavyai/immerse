@@ -4,7 +4,7 @@
 import cx from "classnames"
 import PropTypes from "prop-types"
 import React from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import { QuickFilterDropdown } from "components/quick-filters/quick-filter-dropdown"
 import { VisibilityToggle } from "components/quick-filters/visibility-toggle"

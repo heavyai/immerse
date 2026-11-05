@@ -4,7 +4,7 @@
 import React, { useState } from "react"
 // import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 
 import {
   getFeatureFlag,

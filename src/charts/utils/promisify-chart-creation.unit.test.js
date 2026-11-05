@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-shadow */
 import promisifyChartCreation from "charts/utils/promisify-chart-creation"
 import { noop } from "utils/helpers"
 

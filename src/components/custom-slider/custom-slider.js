@@ -5,7 +5,7 @@ import { NEGATIVE_ONE, SLIDER_MAX, SLIDER_MIN } from "constants/magic-variables"
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import Slider, { Range } from "rc-slider"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 const START_INPUT_INDEX = 0
 const END_INPUT_INDEX = 1

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { AppState } from "vega/charts/types"
 import { BoxPlotCenterLineType } from "vega/constants/data-selection-types"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import CustomSelector from "components/custom-selector/custom-selector"
 import NumericalSlider from "vega/components/NumericalSlider"
 import {

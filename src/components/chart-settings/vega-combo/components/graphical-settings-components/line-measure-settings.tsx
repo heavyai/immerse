@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC } from "react"
-import { connect, ConnectedProps } from "react-redux"
+import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
 import LineTypeInput from "components/chart-settings/vega-combo/components/inputs/line-types-input"
@@ -16,7 +16,6 @@ import {
   MarkSettings,
   ComboSizeMeasureExpression
 } from "vega/constants/data-selection-types"
-import { AppState } from "vega/charts/types"
 import { DEFAULT_STROKEWIDTH } from "constants/magic-variables"
 
 interface OwnProps {
@@ -49,14 +48,7 @@ export const mapDispatchToProps = (
   }
 })
 
-const connector = connect<
-  {},
-  ReturnType<typeof mapDispatchToProps>,
-  OwnProps,
-  AppState
->(null, mapDispatchToProps)
-
-type Props = ConnectedProps<typeof connector> & OwnProps
+type Props = OwnProps & ReturnType<typeof mapDispatchToProps>
 
 const LineMeasureSettings: FC<Props> = ({ measure, actions }) =>
   measure ? (

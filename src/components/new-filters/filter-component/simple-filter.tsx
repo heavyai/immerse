@@ -5,11 +5,11 @@ import React, { FC, useState, useEffect, useRef } from "react"
 import { connect } from "react-redux"
 import cx from "classnames"
 import moment from "moment"
-import { Checkbox } from "@rmwc/checkbox"
-import { Tooltip } from "@rmwc/tooltip"
+import { Checkbox, Tooltip, Slider } from "@immerse/ui"
+
 import { TextField } from "widgets/text-field/TextField"
 import { Icon } from "@rmwc/icon"
-import Slider from "@material-ui/core/Slider"
+
 import Popover from "components/popover/popover"
 import {
   buildFilterLabel,

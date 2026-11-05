@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Checkbox as RMWCCheckbox } from "@rmwc/checkbox"
+import { Checkbox as RMWCCheckbox } from "@immerse/ui"
 import "./checkbox.scss"
 
 export const Checkbox = ({ ...props }) => (

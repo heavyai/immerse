@@ -8,7 +8,7 @@ import {
 } from "@immerse/connector/legacy"
 import { SimpleListItem } from "@rmwc/list"
 import TableFunctionArgumentField from "./table-function-argument-field"
-import { PrimaryButton } from "../../widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 import groupBy from "lodash/groupBy"
 
 export type TableFunctionDetailsItemProps = {

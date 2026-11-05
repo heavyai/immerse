@@ -5,7 +5,7 @@ import cx from "classnames"
 import React, { ReactComponentElement } from "react"
 import { Link } from "react-router-dom"
 import { generatePath, useRouteMatch } from "react-router"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 
 import SupportedFilesTooltipCategory from "./supported-files-tooltip-category"

@@ -3,8 +3,8 @@
 
 import React, { useState } from "react"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
-import { SecondaryButton } from "widgets/button/Button"
-import { Switch } from "widgets/switch/Switch"
+import { SecondaryButton, Switch } from "@immerse/ui"
+
 import { useImmerseUIContext } from "./ImmerseUIContext"
 
 import {

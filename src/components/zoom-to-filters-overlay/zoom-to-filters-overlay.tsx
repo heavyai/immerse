@@ -3,7 +3,7 @@
 
 import React, { FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import * as RasterChartActions from "charts/raster-chart/raster-chart-actions"
 import { IconTarget } from "components/svg-icons/icon-target"
 import { IconUndo } from "components/svg-icons/icon-undo"

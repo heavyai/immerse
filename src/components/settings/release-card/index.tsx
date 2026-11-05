@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useState } from "react"
-import { PrimaryButton } from "widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 import releaseCard from "assets/imgs/release-card.png"
 
 import "./styles.scss"

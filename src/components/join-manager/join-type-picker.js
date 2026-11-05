@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useRef, useState } from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import cx from "classnames"
 
 import { JoinType } from "./join-manager-types"
@@ -70,7 +70,7 @@ const JoinTypePicker = ({ setJoinType, selectedJoinType, error = false }) => {
   )
 }
 
-const JoinTypePickerItem = ({
+function JoinTypePickerItem({
   value,
   label,
   icon,
@@ -78,39 +78,41 @@ const JoinTypePickerItem = ({
   onClick,
   selected,
   opened
-}) => (
-  <Tooltip
-    className="join-type-picker-tooltip"
-    enterDelay={500}
-    content={
-      <div
-        style={{
-          width: "260.8px"
-        }}
-      >
-        {tooltip}
-      </div>
-    }
-    showArrow
-  >
-    <div
-      className={cx(
-        "join-type-picker-item",
-        {
-          "join-type-picker-item--selected": selected
-        },
-        {
-          "join-type-picker-item--opened": opened
-        }
-      )}
-      key={value}
-      onClick={onClick}
-      data-testid="join-type-picker-item"
+}) {
+  return (
+    <Tooltip
+      className="join-type-picker-tooltip"
+      enterDelay={500}
+      content={
+        <div
+          style={{
+            width: "260.8px"
+          }}
+        >
+          {tooltip}
+        </div>
+      }
+      showArrow
     >
-      <span className="join-type-picker-item__label">{label}</span>
-      {icon}
-    </div>
-  </Tooltip>
-)
+      <div
+        className={cx(
+          "join-type-picker-item",
+          {
+            "join-type-picker-item--selected": selected
+          },
+          {
+            "join-type-picker-item--opened": opened
+          }
+        )}
+        key={value}
+        onClick={onClick}
+        data-testid="join-type-picker-item"
+      >
+        <span className="join-type-picker-item__label">{label}</span>
+        {icon}
+      </div>
+    </Tooltip>
+  )
+}
 
 export default JoinTypePicker

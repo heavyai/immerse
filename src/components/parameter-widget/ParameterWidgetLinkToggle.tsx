@@ -4,7 +4,7 @@
 import cx from "classnames"
 import IconLinkOff from "components/svg-icons/icon-link-off"
 import React from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 import { noop } from "../../utils/helpers"
 

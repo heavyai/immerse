@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useState, useEffect, ChangeEvent } from "react"
-import { Switch } from "@rmwc/switch"
+import { Switch } from "@immerse/ui"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
 import { capitalizeFirstLetter } from "utils/time-helpers"
 import { ChartDef, ChartField, ChartTypeState } from "../../types"

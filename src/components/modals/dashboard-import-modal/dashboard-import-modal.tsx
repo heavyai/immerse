@@ -3,8 +3,14 @@
 
 import React, { FC, useState } from "react"
 import { InfoDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
-import { DialogTitle, DialogContent, DialogActions } from "@rmwc/dialog"
+import {
+  PrimaryButton,
+  SecondaryButton,
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from "@immerse/ui"
+
 import { IconButton } from "widgets/icon-button/Icon-button"
 import Dropzone from "react-dropzone-component"
 

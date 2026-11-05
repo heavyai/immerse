@@ -7,9 +7,9 @@ import { bindActionCreators } from "redux"
 import { isEmpty } from "lodash"
 
 import { SimpleDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton, Tooltip } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
-import { Tooltip } from "@rmwc/tooltip"
+
 import { CircularProgress } from "@rmwc/circular-progress"
 
 import { setCustomSqlFilterError } from "components/new-filters/filters-actions"

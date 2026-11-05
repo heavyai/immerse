@@ -7,7 +7,7 @@ import numeral from "numeral"
 import Highlighter from "react-highlight-words"
 import { Icon } from "@rmwc/icon"
 
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 import IconGeoPin from "components/svg-icons/icon-geo-pin"
 
 import { DataCatalogItem } from "./types"

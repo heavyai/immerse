@@ -3,10 +3,9 @@
 
 import React, { FC, useState } from "react"
 import cx from "classnames"
-import { MenuSurfaceAnchor, Menu, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, Menu, MenuItem, Tooltip, Switch } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
-import { Switch } from "widgets/switch/Switch"
+
 import IconSourceLink from "components/svg-icons/icon-sourcelink"
 import CancelOutlinedIcon from "components/svg-icons/icon-cancel-outlined"
 import { CrossLink } from "constants/crosslink-types"
@@ -94,14 +93,17 @@ const CrossLinkInfo: FC<Props> = ({
               Delete cross-link
             </MenuItem>
           </Menu>
-          <div
+          <button
+            type="button"
+            aria-haspopup="menu"
+            aria-label="Options"
             onClick={(e) => {
               e.stopPropagation()
               setIsMenuOpen(!isMenuOpen)
             }}
           >
             <Icon icon={{ icon: "more_vert", size: "xsmall" }} />
-          </div>
+          </button>
         </MenuSurfaceAnchor>
       </header>
 

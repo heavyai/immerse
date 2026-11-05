@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { noop } from "../../utils/helpers"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 import React from "react"
 

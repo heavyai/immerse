@@ -8,8 +8,8 @@ import { ThunkDispatch } from "redux-thunk"
 import { isEmpty, isEqual } from "lodash"
 import cx from "classnames"
 
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
-import { Tooltip } from "@rmwc/tooltip"
+import { PrimaryButton, SecondaryButton, Tooltip } from "@immerse/ui"
+
 import { Icon } from "@rmwc/icon"
 import { CollapsibleList } from "@rmwc/list"
 

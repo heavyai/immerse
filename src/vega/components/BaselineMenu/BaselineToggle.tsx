@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Switch } from "@rmwc/switch"
-import { Tooltip } from "@rmwc/tooltip"
+import { Switch, Tooltip } from "@immerse/ui"
+
 import { TooltipIfContent } from "components/tooltip-if-content/tooltip-if-content"
 import { MeasureDomain } from "vega/components/MeasureDomainOverlay/MeasureDomainOverlay"
 

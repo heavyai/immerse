@@ -4,8 +4,8 @@
 import React, { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { SimpleDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
-import { Switch } from "widgets/switch/Switch"
+import { PrimaryButton, SecondaryButton, Switch } from "@immerse/ui"
+
 import CustomSelector from "components/custom-selector/custom-selector"
 import {
   TEncodingType,

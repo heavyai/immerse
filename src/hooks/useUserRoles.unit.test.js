@@ -4,8 +4,7 @@
 import { useUserRoles } from "./useUserRoles"
 import { setUserRoles } from "actions/connection-action-creators"
 import { renderHookWithStore } from "../../test-config/jest/renderScaffolding"
-import TestRenderer from "react-test-renderer"
-const { act } = TestRenderer
+import { act } from "@testing-library/react"
 
 describe("useUserRoles()", () => {
   let mockState

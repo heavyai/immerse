@@ -9,7 +9,7 @@ import cx from "classnames"
 import Icon from "components/icon/icon"
 import { isLayerValid } from "charts/raster-chart/raster-utils"
 import { Icon as IconEdit } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import {
   getFeatureFlag,

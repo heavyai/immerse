@@ -3,7 +3,7 @@
 
 import React, { useState, useRef } from "react"
 import { Icon as RMWCIcon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip, SecondaryButton, Slider } from "@immerse/ui"
 
 import IconReplayGif from "components/svg-icons/icon-replay-gif"
 import IconReplayLoop from "components/svg-icons/icon-replay-loop"
@@ -14,9 +14,6 @@ import IconReplayRestart from "components/svg-icons/icon-replay-restart"
 import CustomSelector from "components/custom-selector/custom-selector"
 
 import { TextField } from "widgets/text-field/TextField"
-import { SecondaryButton } from "widgets/button/Button"
-
-import Slider from "@material-ui/core/Slider"
 
 import { registerChartAddon } from "chart-addons/chart-addon-registry"
 import { useChartAddon } from "chart-addons/utils/hooks"

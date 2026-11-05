@@ -4,7 +4,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import Icon from "components/icon/icon"
 import { Icon as RMWCIcon } from "@rmwc/icon"
 import {

@@ -5,7 +5,7 @@ import React, { FC, useState, useRef, useCallback } from "react"
 import { Dispatch } from "redux"
 import { connect, ConnectedProps } from "react-redux"
 import { Link } from "react-router-dom"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { IconButton } from "widgets/icon-button/Icon-button"
 
 import {

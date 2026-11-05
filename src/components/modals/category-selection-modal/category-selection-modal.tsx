@@ -19,7 +19,7 @@ import {
   OnApplyAction
 } from "actions/category-selection-modal-action-creators"
 import { getDistinctColumnValues } from "actions/column-values-action-creators"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 
 import {
   getFeatureFlag,

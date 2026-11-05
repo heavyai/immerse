@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Provider } from "react-redux"
-import { hot } from "react-hot-loader/root"
 import React from "react"
 import CustomStylesOverride from "components/custom-styles-override/custom-styles-override"
 import { DragDropContext } from "react-dnd"
@@ -41,4 +40,4 @@ const AppRoot = () => (
   </React.Fragment>
 )
 
-export default hot(DragDropContext(HTML5Backend)(AppRoot))
+export default DragDropContext(HTML5Backend)(AppRoot)

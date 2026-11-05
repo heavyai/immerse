@@ -5,7 +5,7 @@ import React from "react"
 import { Icon } from "@rmwc/icon"
 
 import { TextField } from "widgets/text-field/TextField"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import IconGeoPin from "components/svg-icons/icon-geo-pin"
 

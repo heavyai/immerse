@@ -19,7 +19,7 @@ import Services from "services/immerse"
 import { colorShape } from "constants/prop-types"
 import { CustomColorsComboPopup } from "./custom-colors-combo-popup"
 import Portal from "components/portal/Portal"
-import { MenuSurface, MenuSurfaceAnchor } from "@rmwc/menu"
+import { MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
 
 // This portal element is used to render autocomplete above the scrollable inner list
 export const COLUMN_AUTOCOMPLETE_PORTAL_ID = "column-autocomplete-portal-root"

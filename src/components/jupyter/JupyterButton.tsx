@@ -3,7 +3,7 @@
 
 import React, { FC } from "react"
 import { connect } from "react-redux"
-import { SecondaryButtonNoBorder } from "widgets/button/Button"
+import { SecondaryButtonNoBorder } from "@immerse/ui"
 
 import JupyterIcon from "components/svg-icons/icon-jupyter"
 import { DEFAULT_JUPYTER_ROLE } from "./constants"

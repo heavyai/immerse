@@ -3,7 +3,7 @@
 
 import TextField from "widgets/text-field/TextField"
 import React, { ChangeEvent } from "react"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Field, FieldKey } from "./field-types"
 
 const ImporterTextField = ({

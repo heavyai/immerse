@@ -6,9 +6,8 @@ import { isEqual, isEmpty } from "lodash"
 import { List as VirtualizedList } from "react-virtualized"
 import { List } from "widgets/list/List"
 import { SimpleListItem } from "@rmwc/list"
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox, Tooltip } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
-import { Tooltip } from "@rmwc/tooltip"
 
 import {
   MultiSelectValue,

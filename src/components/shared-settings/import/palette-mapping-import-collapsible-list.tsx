@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { MenuItem } from "@rmwc/menu"
-import { SecondaryButton } from "widgets/button/Button"
+import { MenuItem, SecondaryButton } from "@immerse/ui"
+
 import { CollapsibleList } from "../components/collapsible-list"
 import { PaletteMapping } from "../types"
 import { PaletteMappingSelectorItem } from "../palette-mapping/palette-mapping-selector-item"

@@ -3,18 +3,19 @@
 
 import React, { FunctionComponent } from "react"
 import classNames from "classnames"
-import { Dialog, DialogTitle, DialogContent, DialogActions } from "@rmwc/dialog"
-import { IconButton } from "widgets/icon-button/Icon-button"
-import { Icon } from "@rmwc/icon"
 import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   DangerButton,
   WarningButton,
   SuccessButton,
   SecondaryButton,
   PrimaryButton
-} from "../button/Button"
-
-import "./dialog.scss"
+} from "@immerse/ui"
+import { IconButton } from "widgets/icon-button/Icon-button"
+import { Icon } from "@rmwc/icon"
 
 /**
  * Dialog properties.
@@ -101,13 +102,9 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
       className={classNames(type, className)}
       open={open}
       onOpen={onOpen}
-      onStateChange={(e) => {
-        if (onStateChange) {
-          onStateChange(e)
-        }
-        if (open && e === "closing") {
-          onClose("from state change")
-        }
+      onClose={() => {
+        onStateChange?.("closing")
+        onClose("from state change")
       }}
       preventOutsideDismiss={preventOutsideDismiss}
       data-testid="simple-dialog"

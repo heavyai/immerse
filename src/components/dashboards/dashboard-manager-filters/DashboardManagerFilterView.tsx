@@ -13,7 +13,7 @@ import cx from "classnames"
 import useOutsideClick from "@rooks/use-outside-click"
 import IconComponent from "../../icon/icon"
 import { isEqual } from "lodash"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import { defaultView } from "./dashboard-manager-filters"
 
 type Props = {

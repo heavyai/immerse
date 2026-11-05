@@ -8,7 +8,7 @@ import React, { PureComponent } from "react"
 import cx from "classnames"
 
 import { noop } from "utils/helpers"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import PillContainer from "../../pill-container"
 import {
   contains,

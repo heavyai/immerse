@@ -8,10 +8,10 @@ import cx from "classnames"
 
 import { MultiSelect } from "widgets/multi-select/Multi-select"
 import { SimpleDialog, SimpleWarningDialog } from "widgets/dialog/Dialog"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
-import { Checkbox } from "@rmwc/checkbox"
+import { PrimaryButton, SecondaryButton, Checkbox, Tooltip } from "@immerse/ui"
+
 import { TextField } from "widgets/text-field/TextField"
-import { Tooltip } from "@rmwc/tooltip"
+
 import { sortedDataSourcesSelector } from "selectors/data-sources"
 import {
   getFeatureFlag,

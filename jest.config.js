@@ -11,7 +11,7 @@ const baseConfig = {
     }),
     "^react$": "<rootDir>/node_modules/react",
     "\\.css$": "identity-obj-proxy",
-    "\\.sass$": "identity-obj-proxy",
+    "\\.(sass|less)$": "identity-obj-proxy",
     "\\.scss$": "identity-obj-proxy",
     "^actions/(.*)$": "<rootDir>/src/actions/$1",
     "^constants/(.*)$": "<rootDir>/src/constants/$1",
@@ -30,13 +30,16 @@ const baseConfig = {
   transformIgnorePatterns: [
     "node_modules/(?!\\.pnpm/)(?!(@heavyai|robust-predicates|delaunator|d3/(?!d3\\.js$)|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
   ],
-  setupFiles: ["jest-canvas-mock", "<rootDir>/test-config/jest-shim"]
+  setupFiles: [
+    "jest-canvas-mock",
+    "<rootDir>/test-config/jest-shim",
+    "<rootDir>/test-config/ui-dom-setup"
+  ]
 }
 
 module.exports = {
   ...baseConfig,
   automock: false,
-  snapshotSerializers: ["enzyme-to-json/serializer"],
   collectCoverageFrom: [
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.test.{js,jsx,ts,tsx}",
@@ -53,6 +56,7 @@ module.exports = {
     {
       testEnvironment: "jsdom",
       displayName: "PACKAGES",
+      setupFiles: ["<rootDir>/test-config/ui-dom-setup"],
       testMatch: ["<rootDir>/packages/**/*.unit.test.js"],
       transform: baseConfig.transform,
       transformIgnorePatterns: baseConfig.transformIgnorePatterns,

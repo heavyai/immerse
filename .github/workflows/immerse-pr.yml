@@ -28,8 +28,7 @@ jobs:
     runs-on: linux-amd64-cpu16
     timeout-minutes: 60
     env:
-      # The PR checks do not use a browser. Avoid downloading Chromium during
-      # pnpm install --frozen-lockfile; the Puppeteer workflow installs it independently.
+      # Browser installation is explicit; avoid Puppeteer postinstall downloads.
       PUPPETEER_SKIP_DOWNLOAD: "true"
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
     steps:
@@ -97,3 +96,17 @@ jobs:
 
       - name: Run component tests
         run: pnpm run test:component
+
+      - name: Install Chromium for UI contracts
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Check UI keyboard, focus and theme contracts
+        run: pnpm run test:ui:browser
+
+      - name: Upload UI contract results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-contract-results
+          path: test-results/ui-primitives
+          if-no-files-found: ignore

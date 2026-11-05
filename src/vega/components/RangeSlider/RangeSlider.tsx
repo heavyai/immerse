@@ -2,10 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useEffect, useRef, useState } from "react"
-import Slider from "@material-ui/core/Slider"
+import { Slider } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { debounce } from "lodash"
-import { makeStyles } from "@material-ui/core/styles"
 import { useSelector } from "react-redux"
 import "./styles.scss"
 
@@ -39,31 +38,6 @@ type Props = {
   testId?: string
 }
 
-const primaryColor = "#0089D1"
-
-const useStyles = makeStyles({
-  root: {
-    width: 280,
-    color: ({ color }: { color?: string }) => (color ? color : primaryColor)
-  },
-  valueLabel: {
-    top: 27,
-    left: "calc(-50% - -2.3px)",
-    "& > span": {
-      width: 19,
-      height: 19,
-      color: primaryColor,
-      borderRadius: "90% 0 90% 90%"
-    },
-    "& > span > span": {
-      padding: "3px 7px 4px",
-      fontSize: 10,
-      borderRadius: 2,
-      backgroundColor: primaryColor
-    }
-  }
-})
-
 const RangeSlider: FC<Props> = ({
   label,
   max,
@@ -78,9 +52,6 @@ const RangeSlider: FC<Props> = ({
   const buttonPrimaryColor = useSelector(
     ({ connection }: any) => connection.user.customStyles?.buttonPrimaryColor
   )
-  const classes = useStyles({
-    color: buttonPrimaryColor
-  })
   const [currentRange, setCurrentRange] = useState<number[]>(value)
   const [currentMinTextVal, setCurrentMinTextVal] = useState<string>(
     String(value[0])
@@ -146,6 +117,7 @@ const RangeSlider: FC<Props> = ({
 
   useEffect(() => {
     fire.current = debounce(onChange, DEBOUNCE_INTERVAL)
+    return () => fire.current.cancel()
   }, [onChange])
 
   return (
@@ -174,7 +146,7 @@ const RangeSlider: FC<Props> = ({
         />
       </div>
       <Slider
-        classes={{ valueLabel: classes.valueLabel, root: classes.root }}
+        style={{ "--ui-accent": buttonPrimaryColor } as React.CSSProperties}
         value={currentRange}
         min={min || DEFAULT_MIN}
         step={step}

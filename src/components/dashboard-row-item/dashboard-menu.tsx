@@ -3,7 +3,7 @@
 
 import React, { FC, useState } from "react"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import cx from "classnames"
 
 import IconDuplicate from "components/svg-icons/icon-duplicate"

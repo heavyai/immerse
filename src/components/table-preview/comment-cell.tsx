@@ -3,7 +3,7 @@
 
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { setColumnComment as setColumnCommentState } from "actions/table-preview-action-creators"
 import {
   deleteColumnComment,

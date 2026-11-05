@@ -7,7 +7,7 @@ import { SendIcon } from "components/svg-icons/icon-send"
 import { IconClipboard } from "components/svg-icons/icon-clipboard"
 
 import "./sql-notebook-result-cell-actions.scss"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 export const ResultCellActions = ({
   onRun,

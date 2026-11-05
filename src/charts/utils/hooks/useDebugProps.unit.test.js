@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable no-console */
-import { renderHook } from "@testing-library/react-hooks"
+import { renderHook } from "@testing-library/react"
 
 import { useDebugProps } from "./useDebugProps"
 
@@ -19,7 +19,7 @@ describe("useDeebugProps test suite", () => {
     }
     const { rerender } = renderHook(
       ({ props, id }) => useDebugProps(props, id),
-      initialProps
+      { initialProps }
     )
 
     rerender(initialProps)

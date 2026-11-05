@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react"
 import { TextField } from "widgets/text-field/TextField"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import CustomSelector from "components/custom-selector/custom-selector"
 import IconRemove from "components/svg-icons/icon-remove"

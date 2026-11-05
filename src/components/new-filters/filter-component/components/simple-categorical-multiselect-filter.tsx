@@ -4,7 +4,7 @@
 import React, { FC, useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { AutoSizer, List } from "react-virtualized"
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { CircularProgress } from "@rmwc/circular-progress"
 import "@rmwc/circular-progress/circular-progress.css"

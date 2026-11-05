@@ -4,7 +4,7 @@
 import React, { FC, useState } from "react"
 import { AnyAction } from "redux"
 import { ThunkDispatch } from "redux-thunk"
-import { MenuSurfaceAnchor, Menu, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, Menu, MenuItem } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 import { connect, ConnectedProps } from "react-redux"
 
@@ -98,7 +98,10 @@ const DashboardKebab: FC<Props> = ({
           </MenuItem>
         )}
       </Menu>
-      <div
+      <button
+        type="button"
+        aria-haspopup="menu"
+        aria-label="Options"
         className="dashboard-kebab-button"
         onClick={(e) => {
           e.stopPropagation()
@@ -107,7 +110,7 @@ const DashboardKebab: FC<Props> = ({
         data-testid="dashboard-kebab-menu"
       >
         <Icon icon="more_vert" />
-      </div>
+      </button>
     </MenuSurfaceAnchor>
   )
 }

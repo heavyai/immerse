@@ -17,9 +17,8 @@ import {
   DataTableCell as RMWCDataTableCell
 } from "@rmwc/data-table"
 import "@rmwc/data-table/data-table.css"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-import "@rmwc/tooltip/tooltip.css"
 import { CircularProgress } from "@rmwc/circular-progress"
 import "@rmwc/circular-progress/circular-progress.css"
 

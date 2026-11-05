@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Menu, MenuItem, MenuSurfaceAnchor } from "@rmwc/menu"
+import { Menu, MenuItem, MenuSurfaceAnchor, Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+
 import { MenuOption } from "./parameter-widget-types"
 
 type Props = {

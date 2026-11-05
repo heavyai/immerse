@@ -45,56 +45,39 @@ catalog:
   "@heavyai/d3-combo-chart": git+https://github.com/heavyai/heavyai-d3.git#c01faf17df9dd98876336ae7708938d450a42d85
   "@heavyai/data-layer": git+https://github.com/heavyai/metis.git#fea3f3809ceb9c947d33324fdb94d0946050d6f9&path:/packages/data-layer
   "@heavyai/draw": git+https://github.com/heavyai/heavyai-draw.git#e841dd2af045e0153b9d300e7cc19456ff2fac98
-  "@hot-loader/react-dom": ^16.14.0
   "@material-ui/core": ^4.12.4
   "@material-ui/pickers": ^3.3.10
-  "@material/button": 3.2.0
-  "@material/checkbox": 3.2.0
-  "@material/dialog": 3.2.0
   "@material/form-field": 3.2.0
   "@material/icon-button": 3.2.0
   "@material/line-ripple": 3.1.0
   "@material/list": 3.2.0
-  "@material/menu": 3.2.0
-  "@material/menu-surface": 3.2.0
   "@material/notched-outline": 1.1.1
   "@material/radio": 5.1.0
   "@material/react-floating-label": ^0.15.0
   "@material/react-notched-outline": ^0.15.0
   "@material/snackbar": 3.2.0
-  "@material/switch": 3.2.0
   "@material/textfield": 3.2.0
   "@playwright/test": ^1.39.0
-  "@rmwc/button": ^5.7.2
-  "@rmwc/checkbox": ^5.7.2
   "@rmwc/circular-progress": ^5.7.2
   "@rmwc/data-table": ^5.7.2
-  "@rmwc/dialog": ^5.7.2
   "@rmwc/icon": ^5.7.2
   "@rmwc/icon-button": ^5.7.2
   "@rmwc/list": ^5.7.2
-  "@rmwc/menu": ^5.7.2
   "@rmwc/provider": 5.7.2
   "@rmwc/radio": ^6.1.4
-  "@rmwc/slider": ^6.1.4
   "@rmwc/snackbar": ^5.7.2
-  "@rmwc/switch": ^5.7.2
   "@rmwc/textfield": ^5.7.2
-  "@rmwc/tooltip": ^5.7.2
   "@rmwc/types": 5.6.0
   "@rooks/use-key": ^3.6.0
   "@rooks/use-outside-click": ^3.6.0
   "@testing-library/dom": ^10.4.1
   "@testing-library/jest-dom": ^7.0.1
-  "@testing-library/react": ^12.0.0
-  "@testing-library/react-hooks": ^8.0.1
+  "@testing-library/react": ^16.3.3
   "@testing-library/user-event": ^7.2.1
   "@types/chai": ^4.3.4
   "@types/circular-dependency-plugin": ^5.0.5
   "@types/classnames": ^2.3.1
   "@types/codemirror": ^5.60.15
-  "@types/enzyme": ^3.10.12
-  "@types/enzyme-adapter-react-16": ^1.0.5
   "@types/jest": ^24.0.12
   "@types/license-checker-webpack-plugin": ^0.2.1
   "@types/lodash.throttle": ^4.1.7
@@ -105,7 +88,7 @@ catalog:
   "@types/prop-types": ^15.7.5
   "@types/pushid": ~1.0.0
   "@types/ramda": ^0.25.32
-  "@types/react": ^16.14.34
+  "@types/react": ^18.3.0
   "@types/react-redux": ^7.1.24
   "@types/react-router": ^5.1.19
   "@types/react-router-dom": ^5.3.3
@@ -113,8 +96,8 @@ catalog:
   "@types/resize-observer-browser": ^0.1.11
   "@types/sanitize-html": ^2.13.0
   "@types/tinycolor2": ^1.4.6
-  "@typescript-eslint/eslint-plugin": ^3.10.1
-  "@typescript-eslint/parser": ^3.10.1
+  "@typescript-eslint/eslint-plugin": ^8.0.0
+  "@typescript-eslint/parser": ^8.0.0
   "@ungap/structured-clone": ^1.2.0
   apache-arrow: ^7.0.0
   atob: ^2.1.0
@@ -125,14 +108,10 @@ catalog:
   babel-plugin-istanbul: ^5.1.1
   babel-plugin-lodash: ^3.3.0
   babel-plugin-ramda: 1.1.1
-  babel-plugin-react-transform: 1.1.0
   babel-plugin-transform-object-hasown: ^1.1.0
-  babel-plugin-transform-require-ignore: ^0.1.1
-  babel-preset-react-hmre: 1.1.1
   browser-cookies: ^1.2.0
   btoa: 1.1.2
   chai: ^4.3.7
-  chai-enzyme: ^1.0.0-beta.1
   circular-dependency-plugin: ^5.2.2
   classnames: ^2.3.2
   codemirror: ^5.65.9
@@ -148,10 +127,7 @@ catalog:
   dotenv-webpack: ^8.1.0
   dropzone: ^6.0.0-beta.2
   elliptic: 6.6.1
-  enzyme: ^3.0.0
-  enzyme-adapter-react-16: ^1.15.7
-  enzyme-to-json: ^3.6.2
-  eslint: ^7.32.0
+  eslint: ^8.57.1
   eslint-config-prettier: ^6.15.0
   eslint-plugin-babel: ^5.3.1
   eslint-plugin-css-modules: ^2.11.0
@@ -211,7 +187,7 @@ catalog:
   quill-next: ^2.2.5
   ramda: 0.23.0
   rc-slider: ^8.6.9
-  react: ^16.14.0
+  react: 18.3.1
   react-autosuggest: ^9.3.4
   react-codemirror-runmode: ^1.0.5
   react-codemirror2: ^6.0.0
@@ -220,12 +196,11 @@ catalog:
   react-dates: ^20.1.0
   react-dnd: ^7.7.0
   react-dnd-html5-backend: ^7.7.0
-  react-dom: ^16.14.0
+  react-dom: 18.3.1
   react-dom-factories: ^1.0.2
   react-dropzone-component: ^3.2.0
   react-grid-layout: ^1.5.4
   react-highlight-words: ^0.16.0
-  react-hot-loader: ^4.13.1
   react-lightweight-tooltip: ^1.0.0
   react-map-gl: ^5.3.20
   react-redux: ^7.2.9
@@ -237,7 +212,6 @@ catalog:
   react-selectize: ^3.0.1
   react-sizeme: ^2.6.7
   react-split-pane: ^0.1.92
-  react-test-renderer: ^16.14.0
   react-toggle: ^4.1.3
   react-transition-group: ^1.2.1
   react-vega: ^7.6.0
@@ -272,7 +246,7 @@ catalog:
   tinycolor2: ^1.6.0
   topojson: 1.6.26
   ts-node: ^10.7.0
-  typescript: ^3.9.10
+  typescript: ~5.9.3
   url: 0.11.4
   url-join: ^4.0.1
   useWhisper: git+https://github.com/heavyai/useWhisper.git#a4da42bdfa8f62353ea0b21f20e5df50377f61b6
@@ -291,6 +265,12 @@ catalog:
   yaml: 1.10.3
   yargs: ^12.0.1
   vega-canvas: 2.0.0
+  "@types/react-dom": ^18.3.0
+  "@radix-ui/react-dialog": 1.3.1
+  "@radix-ui/react-tooltip": 1.4.1
+  "@radix-ui/react-popover": 1.3.1
+  "@radix-ui/react-slider": 1.6.1
+  "@types/dotenv-webpack": 7.0.8
 ignoredBuiltDependencies:
   - core-js
   - core-js-pure
@@ -325,7 +305,6 @@ overrides:
   "@heavyai/d3-combo-chart": git+https://github.com/heavyai/heavyai-d3.git#c01faf17df9dd98876336ae7708938d450a42d85
   "@heavyai/data-layer": git+https://github.com/heavyai/metis.git#fea3f3809ceb9c947d33324fdb94d0946050d6f9&path:/packages/data-layer
   "@heavyai/draw": git+https://github.com/heavyai/heavyai-draw.git#e841dd2af045e0153b9d300e7cc19456ff2fac98
-  "@testing-library/react>@types/react-dom": ^16.9.0
   axios: ^1.20.0
   body-parser@>=1 <1.20.9: 1.20.9
   brace-expansion@>=1 <1.1.20: 1.1.20

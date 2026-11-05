@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useState, useEffect } from "react"
-import Slider from "@material-ui/core/Slider"
+import { Slider } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { KEYCODE } from "constants/keycode"
 import { LabelConfig } from "../types"

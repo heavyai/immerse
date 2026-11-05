@@ -3,7 +3,7 @@
 
 import React from "react"
 import IconSnackbarAlert from "components/svg-icons/icon-snackbar-alert"
-import { PrimaryButton } from "widgets/button/Button"
+import { PrimaryButton } from "@immerse/ui"
 
 import "./styles.scss"
 

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { FC, default as React } from "react"
-import { connect, ConnectedProps } from "react-redux"
+import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
 import { AnyAction } from "redux"
 import { CHART_DEFS } from "constants/charts"
@@ -59,14 +59,9 @@ const mapDispatchToProps = (
   }
 }
 
-const connector = connect<
-  ReturnType<typeof mapStateToProps>,
-  ReturnType<typeof mapDispatchToProps>,
-  OwnProps,
-  AppState
->(mapStateToProps, mapDispatchToProps)
-
-type Props = ConnectedProps<typeof connector> & OwnProps
+type Props = OwnProps &
+  ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>
 
 const renderOption = ({ label, type }: { label: string; type: string }) => (
   <div className="sort-by-container">

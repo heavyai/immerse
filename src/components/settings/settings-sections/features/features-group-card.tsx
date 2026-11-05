@@ -3,7 +3,7 @@
 
 import React from "react"
 import { FeaturesGroup } from "components/settings/settings-sections/features/types"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 
 const FeaturesGroupCard = ({
   icon,

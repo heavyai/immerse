@@ -4,7 +4,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { getDisplayOrParameterName } from "utils/get-display-or-parameter-name"
 import { LayerState } from "charts/raster-chart/raster-chart-types"
 import {

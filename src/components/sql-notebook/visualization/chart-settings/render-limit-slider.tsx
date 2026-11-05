@@ -3,7 +3,7 @@
 
 import React from "react"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { POINT_RENDER_LIMIT } from "components/sql-notebook/constants"
 import { ChartSettings } from "components/sql-notebook/types"
 import { LargeValueSlider } from "./large-value-slider"

@@ -149,14 +149,14 @@ const nullProps = {
 
 const enterValue = (container, field = "value", value = "1") => {
   const input = getByTestId(container, `filter-component-input-${field}`)
-  input.focus()
+  fireEvent.focus(input)
   fireEvent.change(input, { target: { value } })
-  input.blur()
+  fireEvent.blur(input)
 }
 
 const selectOptionByText = (container, text) => {
-  getByTestId(container, "filter-component-dropdown-menu").click()
-  getByText(container, text).click()
+  fireEvent.click(getByTestId(container, "filter-component-dropdown-menu"))
+  fireEvent.click(getByText(document.body, text))
 }
 
 describe("Filter component input fields", () => {
@@ -290,7 +290,7 @@ describe("Custom SQL filter component", () => {
     const { container } = render(
       <Filter {...defaultProps} filterMetaData={customSql} />
     )
-    expect(getByText(container, `(${customSql.filter.sql})`)).toBeTruthy()
+    expect(getByText(document.body, `(${customSql.filter.sql})`)).toBeTruthy()
   })
   it("should not render dropdown menu", () => {
     const { container } = render(
@@ -315,9 +315,9 @@ describe("Array filter component", () => {
     const { container } = render(
       <Filter {...defaultProps} filterMetaData={numericArrayContains} />
     )
-    getByTestId(container, "filter-component-dropdown-menu").click()
-    expect(getByText(container, "Does not contain")).toBeTruthy()
-    expect(queryByText(container, "Greater than")).toBeFalsy()
+    fireEvent.click(getByTestId(container, "filter-component-dropdown-menu"))
+    expect(getByText(document.body, "Does not contain")).toBeTruthy()
+    expect(queryByText(document.body, "Greater than")).toBeFalsy()
   })
 })
 
@@ -347,9 +347,9 @@ describe("Custom selection filter component", () => {
 describe("Filter component dropdown", () => {
   it("should allow opening dropdown menu for dashboard filters", () => {
     const { container } = render(<Filter {...defaultProps} />)
-    getByTestId(container, "filter-component-dropdown-menu").click()
+    fireEvent.click(getByTestId(container, "filter-component-dropdown-menu"))
     expect(
-      queryByTestId(container, "filter-component-dropdown-menu-open")
+      queryByTestId(document.body, "filter-component-dropdown-menu-open")
     ).toBeTruthy()
   })
 
@@ -360,9 +360,9 @@ describe("Filter component dropdown", () => {
         filterMetaData={{ ...stringEquals, appliesTo: "CROSSFILTER" }}
       />
     )
-    getByTestId(container, "filter-component-dropdown-menu").click()
+    fireEvent.click(getByTestId(container, "filter-component-dropdown-menu"))
     expect(
-      queryByTestId(container, "filter-component-dropdown-menu-open")
+      queryByTestId(document.body, "filter-component-dropdown-menu-open")
     ).toBeFalsy()
   })
 
@@ -373,9 +373,9 @@ describe("Filter component dropdown", () => {
         filterMetaData={{ ...stringEquals, appliesTo: "CHART" }}
       />
     )
-    getByTestId(container, "filter-component-dropdown-menu").click()
+    fireEvent.click(getByTestId(container, "filter-component-dropdown-menu"))
     expect(
-      queryByTestId(container, "filter-component-dropdown-menu-open")
+      queryByTestId(document.body, "filter-component-dropdown-menu-open")
     ).toBeTruthy()
   })
 })

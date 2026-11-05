@@ -22,7 +22,7 @@ import { topNLegendSort } from "vega/charts/top-n-utils"
 import NumericalSlider from "vega/components/NumericalSlider"
 import TopNItem from "./TopNItem"
 import SortTopNSelector from "vega/components/SortTopN"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import { HEAVYAI_TOPN_COLORS } from "services/colors"
 

@@ -3,10 +3,10 @@
 
 import React, { useCallback, useEffect, useState } from "react"
 import cx from "classnames"
-import Slider from "@material-ui/core/Slider"
+import { Slider, Tooltip } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+
 import { CommonInputProps } from "./parameter-widget-types"
 import getNumberPrecision from "../../utils/get-number-precision"
 import { NUMBER_STEP_PRECISIONS } from "../parameters/constants"

@@ -5,7 +5,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import pushid from "pushid"
 
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import { defaultFilter } from "components/custom-sql-manager/custom-sql-manager-utils"
 
 const AddFilterButtonContainer = ({

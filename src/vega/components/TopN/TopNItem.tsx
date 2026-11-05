@@ -3,11 +3,10 @@
 
 import React, { FC, useState } from "react"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip, MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
 import cx from "classnames"
 import { OmniColorSchemes } from "services/colors"
 import { CustomColorsComboPopup } from "components/custom-colors/custom-colors-combo-popup"
-import { MenuSurface, MenuSurfaceAnchor } from "@rmwc/menu"
 
 type Props = {
   /** CSS color for this item */

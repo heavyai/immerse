@@ -5,7 +5,7 @@ import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 
 import { getDataSourcesList } from "actions/tables-action-creators"
 import { getTableListData } from "actions/dashboard-action-creators"

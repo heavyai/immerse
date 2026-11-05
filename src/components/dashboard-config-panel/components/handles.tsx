@@ -4,7 +4,7 @@
 import React, { FC } from "react"
 import cx from "classnames"
 
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import FilterIcon from "components/svg-icons/icon-filter"
 import PaletteIcon from "components/svg-icons/icon-palette"

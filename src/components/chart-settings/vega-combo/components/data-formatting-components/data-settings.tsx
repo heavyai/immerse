@@ -8,7 +8,7 @@ import { AppState } from "vega/charts/types"
 import { Dispatch } from "redux"
 import { sumOptionsEnabled } from "components/chart-settings/vega-combo/utils"
 
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import NumericalSlider from "vega/components/NumericalSlider"
 import {
   setNumberOfGroups,

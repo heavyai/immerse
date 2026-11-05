@@ -12,7 +12,7 @@ import React, {
 import { connect } from "react-redux"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
 import { SimpleDialog } from "widgets/dialog/Dialog"
-import { Checkbox } from "@rmwc/checkbox"
+import { Checkbox } from "@immerse/ui"
 import { Radio } from "@rmwc/radio"
 import { TextField } from "widgets/text-field/TextField"
 import "@material/radio/dist/mdc.radio.css"

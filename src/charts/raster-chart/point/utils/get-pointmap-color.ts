@@ -25,7 +25,7 @@ export function getPointmapColor(
   dataSource,
   fullColorHashing
 ) {
-  opacity = undefined ? layerDefaultOpacity("pointmap") : opacity
+  opacity = opacity === undefined ? layerDefaultOpacity("pointmap") : opacity
   legendOpen = typeof legendOpen === "undefined" ? true : legendOpen
   if (density && !colorMeasure?.value) {
     return {

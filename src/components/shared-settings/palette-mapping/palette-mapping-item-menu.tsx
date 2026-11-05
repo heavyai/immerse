@@ -5,7 +5,7 @@ import React from "react"
 import cx from "classnames"
 import { PaletteMapping } from "../types"
 import { Link } from "@material-ui/core"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { WarningGradientIcon } from "components/svg-icons/icon-warning-gradient"
 import { PaletteMappingSelectorItem } from "./palette-mapping-selector-item"
 

@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Slider } from "@material-ui/core"
+import { Slider } from "@immerse/ui"
 import { formatNumber } from "charts/utils/coordinate-helpers"
 import React from "react"
 

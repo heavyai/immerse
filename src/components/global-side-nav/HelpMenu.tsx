@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { MenuItem } from "@rmwc/menu"
+import { MenuItem } from "@immerse/ui"
 
 import { DropdownLink } from "components/navigation-bar/navigation-bar-container"
 

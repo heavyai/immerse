@@ -3,7 +3,7 @@
 
 import React, { FormEvent } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 import {
   setOutliersEnabled,

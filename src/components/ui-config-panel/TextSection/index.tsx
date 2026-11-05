@@ -14,7 +14,7 @@ import {
 import { TextElement, FontWeight, UserConfig } from "../types"
 
 import { TextElementControls } from "./TextElementControls"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 
 interface Props {
   textStyles: UserConfig["text"]

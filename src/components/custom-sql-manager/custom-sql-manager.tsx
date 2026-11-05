@@ -5,15 +5,16 @@ import React, { useState, useRef, useEffect } from "react"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { isEmpty, startCase } from "lodash"
-import { Tooltip } from "@rmwc/tooltip"
-import { CircularProgress } from "@rmwc/circular-progress"
-
-import { SimpleDialog } from "widgets/dialog/Dialog"
 import {
+  Tooltip,
   WarningButton,
   PrimaryButton,
   SecondaryButton
-} from "widgets/button/Button"
+} from "@immerse/ui"
+import { CircularProgress } from "@rmwc/circular-progress"
+
+import { SimpleDialog } from "widgets/dialog/Dialog"
+
 import { TextField } from "widgets/text-field/TextField"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
 import {

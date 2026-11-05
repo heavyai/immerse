@@ -26,7 +26,7 @@ import {
 } from "actions/user-configurable-ui-action-creators"
 import { showUnsavedChangesDialog } from "actions/nav-bar-action-creators"
 import { setUserData } from "actions/connection-action-creators"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import IconSave from "components/svg-icons/icon-save"
 import { setAndCacheConfigurationInstance } from "actions/refresh-action-creators"
 import { getConfigurationInstance } from "services/configuration-instance"

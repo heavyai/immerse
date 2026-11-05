@@ -20,10 +20,11 @@ export const createConnectorAndImport = async (
   remoteConnectorConfig: RemoteConnectorConfig,
   rows: number[] // Rows only passed here to update mock table preview data
 ): Promise<void> => {
-  // eslint-disable-next-line no-unused-expressions
-  ODBC_CONNECTORS.includes(connectorType)
-    ? await createODBCConnector(remoteConnectorConfig, tableName)
-    : await createS3Connector(remoteConnectorConfig, tableName)
+  if (ODBC_CONNECTORS.includes(connectorType)) {
+    await createODBCConnector(remoteConnectorConfig, tableName)
+  } else {
+    await createS3Connector(remoteConnectorConfig, tableName)
+  }
   TABLE_PREVIEW_DATA[tableName] = {
     rows
   }

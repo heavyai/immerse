@@ -264,6 +264,8 @@ The user explicitly authorized major dependency upgrades in this checkpoint.
 
 ### Wave 3: Consolidate UI and styles
 
+Implementation record: `docs/modernization/WAVE_3.md`. The current cutover selects React 18.3.1 as the compatibility bridge and migrates the seven shared primitive domains. React 19 and remaining vendor UI retirement are explicitly outstanding; the seven-primitive checkpoint does not certify completion of the entire UI/runtime modernization.
+
 - Create semantic tokens that alias current custom-theme variables.
 - Preserve light, dark, high-contrast, and customer tint behavior.
 - Migrate Enzyme tests to Testing Library.

@@ -9,7 +9,7 @@ import cx from "classnames"
 import ColorPalette from "components/ui-config-panel/ColorPaletteSection/ColorPalette"
 import QuantitativeColorPalette from "components/ui-config-panel/ColorPaletteSection/QuantitativeColorPalette"
 import OrdinalColorPalette from "components/ui-config-panel/ColorPaletteSection/OrdinalColorPalette"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import IconSave from "components/svg-icons/icon-save"
 
 import { SettingsContext } from "../../settings-context"

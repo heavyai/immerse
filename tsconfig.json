@@ -31,7 +31,8 @@
       "@immerse/connector/legacy": [
         "../packages/connector/src/legacy.d.ts"
       ]
-    }
+    },
+    "esModuleInterop": true
   },
   "include": [
     "./package.json",
@@ -56,6 +57,7 @@
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
-    }
+    },
+    "transpileOnly": true
   }
 }

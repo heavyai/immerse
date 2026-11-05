@@ -8,11 +8,10 @@ import { bindActionCreators } from "redux"
 import { CohortSnackbar } from "./components/cohort-snackbar"
 import cx from "classnames"
 import "@rmwc/list/collapsible-list.css"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton, Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+
 import "@rmwc/icon/icon.css"
-import "@rmwc/tooltip/tooltip.css"
 
 import { redrawAll } from "actions/dc-action-creators"
 

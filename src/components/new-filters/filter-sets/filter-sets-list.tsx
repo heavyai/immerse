@@ -9,7 +9,7 @@ import cx from "classnames"
 import IconComponent from "components/icon/icon"
 import { CollapsibleList } from "@rmwc/list"
 import { List } from "widgets/list/List"
-import { Switch } from "widgets/switch/Switch"
+import { Switch } from "@immerse/ui"
 import FilterSetsListItem from "./filter-sets-list-item"
 import "./filter-sets-list.scss"
 

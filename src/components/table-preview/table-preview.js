@@ -8,7 +8,7 @@ import "moment-duration-format"
 import { rowCountShape } from "constants/prop-types"
 import Icon from "components/icon/icon"
 import LoadingWidget from "components/app-overlay/loading-widget"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 
 import TableInfo from "components/table-preview/table-info"
 import SampleRows from "components/table-preview/sample-rows"

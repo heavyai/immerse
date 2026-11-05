@@ -3,7 +3,7 @@
 
 import React from "react"
 import { connect } from "react-redux"
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import { Dispatch } from "redux"
 import cx from "classnames"
 

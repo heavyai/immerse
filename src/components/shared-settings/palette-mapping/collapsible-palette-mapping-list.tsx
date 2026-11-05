@@ -3,7 +3,7 @@
 
 import React from "react"
 import cx from "classnames"
-import { MenuItem } from "@rmwc/menu"
+import { MenuItem } from "@immerse/ui"
 import { EmptyState } from "components/empty-state/empty-state"
 import { PaletteMapping } from "../types"
 import { PaletteMappingSelectorItem } from "./palette-mapping-selector-item"

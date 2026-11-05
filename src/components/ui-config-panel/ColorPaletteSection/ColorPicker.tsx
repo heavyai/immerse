@@ -8,7 +8,7 @@ import {
   Hue,
   Saturation
 } from "react-color/lib/components/common"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import "./ColorPicker.scss"
 

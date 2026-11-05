@@ -3,7 +3,7 @@
 
 import React from "react"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 
 import {
   getFeatureFlag,

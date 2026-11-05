@@ -11,7 +11,7 @@ import * as actions from "actions/crosslink-action-creators"
 import { updateDashboardSaveState } from "actions/dashboard-save-state-action-creators"
 import { CrossLink, ColumnMap } from "constants/crosslink-types"
 
-import { SecondaryButton } from "widgets/button/Button"
+import { SecondaryButton } from "@immerse/ui"
 import EditCrossLink, {
   NewCrossLink
 } from "components/crosslink-panel/EditCrossLink"

@@ -3,8 +3,8 @@
 
 import React from "react"
 import { useDispatch } from "react-redux"
-import { Switch } from "@rmwc/switch"
-import { Tooltip } from "@rmwc/tooltip"
+import { Switch, Tooltip } from "@immerse/ui"
+
 import { sqlNotebookSetCellType } from "components/sql-notebook/redux/sql-notebook-action-creators"
 import { IconFormat } from "components/svg-icons/icon-format"
 import { SendIcon } from "components/svg-icons/icon-send"

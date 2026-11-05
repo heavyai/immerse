@@ -4,7 +4,7 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Icon } from "@rmwc/icon"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { clearImportDashboardId } from "actions/shared-settings-import-action-creators"
 import { AppState } from "vega/charts/types"
 import "./palette-mapping-import-header.scss"

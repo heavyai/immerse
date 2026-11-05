@@ -3,18 +3,18 @@
 
 import "styles"
 import React from "react"
-import ReactDOM from "react-dom"
+import { mountApplication } from "./runtime/mount-application"
 import AppRoot from "./containers/application-root"
 import "./startup"
 
 const target = document.getElementById("root")
 
-ReactDOM.render(
+mountApplication(
+  target,
   <AppRoot
     {...{
       debug: true,
       debugExternal: false
     }}
-  />,
-  target
+  />
 )

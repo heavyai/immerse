@@ -4,8 +4,8 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 
-import { Tooltip } from "@rmwc/tooltip"
-import { PrimaryButton } from "widgets/button/Button"
+import { Tooltip, PrimaryButton } from "@immerse/ui"
+
 import DashboardsList from "components/dashboards-list"
 import SearchInput from "components/search-input/search-input"
 import IconImport from "components/svg-icons/icon-import"

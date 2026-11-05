@@ -3,7 +3,7 @@
 
 import React, { FC, useState } from "react"
 import cx from "classnames"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
 
 import ParameterTypeIcon from "./ParameterTypeIcon"

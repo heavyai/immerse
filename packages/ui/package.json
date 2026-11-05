@@ -8,13 +8,18 @@
     ".": {
       "types": "./src/index.d.ts",
       "default": "./src/index.js"
-    }
+    },
+    "./tokens.css": "./src/tokens.css"
   },
   "dependencies": {
-    "@rmwc/button": "catalog:"
+    "@radix-ui/react-dialog": "catalog:",
+    "@radix-ui/react-tooltip": "catalog:",
+    "@radix-ui/react-popover": "catalog:",
+    "@radix-ui/react-slider": "catalog:"
   },
   "peerDependencies": {
-    "react": "catalog:"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@testing-library/react": "catalog:",
@@ -24,6 +29,6 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/ui/src/button.unit.test.js"
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/ui/src/button.unit.test.js packages/ui/src/primitives.unit.test.js"
   }
 }

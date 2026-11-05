@@ -1,10 +1,31 @@
-# @immerse/ui
+# Immerse UI
 
-Owner: Immerse repository maintainers; contract changes are reviewed with the application consumers.
-Private source workspace package. Import only the declared public exports.
+Private workspace owner for application UI primitives. Product code imports the
+public `@immerse/ui` entry point; dependencies and styles remain package-owned.
+There are no imports from application `src`.
 
-Run `pnpm --filter @immerse/ui test` from the repository root.
-Public declarations are checked by `pnpm run ts:packages`.
+Native buttons, checkboxes and switches use standard DOM events and accessible
+labels. Radix supplies tooltip, dialog, popover and range-slider mechanics.
+`Menu` adds item keyboard navigation to the popover; `MenuSurface` supports
+arbitrary popover content. Controlled callers own open/checked/value state.
 
-See [Wave 1](../../docs/modernization/WAVE_1.md) for dependency direction,
-application composition points, compatibility limitations and migration ownership.
+Import `@immerse/ui/tokens.css` once after the application theme definitions.
+Semantic variables alias the current theme/custom tint and customer primary
+color. Component styles are CSS Modules. The remaining global application/MDC
+styles apply to unmigrated controls and must not be copied into new primitives.
+Portal layers are explicit: dialogs 3000, menus 4000, tooltips 5000, so menus
+opened inside dialogs stay above their parent surface. Windows forced-color and
+reduced-motion preferences retain browser behavior.
+
+Buttons accept native button attributes plus `variant` (primary, secondary,
+quiet), optional semantic tone, label and decorative icons. New callers should
+use these props rather than MDC flags. Provide accessible names for icon-only
+buttons and unlabelled controls. Menus need native button triggers; dialogs need
+a `DialogTitle`. Sliders accept a scalar or array, with change/commit callbacks
+receiving `(null, value)` and standard ARIA labels for thumbs.
+
+Run `pnpm --filter @immerse/ui test`, `pnpm run ts:packages`, and
+`pnpm run test:ui:browser`. The standalone browser fixture is separate from the
+product bundle and HeavyDB. Its tests cover keyboard operation, focus containment
+and return, portal cleanup, pointer dragging and theme-token inheritance.
+See `docs/modernization/WAVE_3.md` for the migration record and remaining owners.

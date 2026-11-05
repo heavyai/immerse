@@ -10,7 +10,7 @@ import {
 } from "constants/auto-refresh-values"
 import APP_CONFIG from "constants/app-config"
 
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip, PrimaryButton, SecondaryButton } from "@immerse/ui"
 import CustomSelector from "components/custom-selector/custom-selector"
 import cx from "classnames"
 import { dashboardSaveStateShape } from "constants/prop-types"
@@ -20,7 +20,7 @@ import FilterSetsList from "components/new-filters/filter-sets/filter-sets-list"
 import FilterSetsCrossFilter from "components/new-filters/filter-sets/filter-sets-cross-filter"
 import MultiCount from "components/multi-count/multi-count"
 import ShareLink from "components/share-link/share-link-parent"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+
 import IconSave from "components/svg-icons/icon-save"
 import IconRefresh2 from "components/svg-icons/icon-refresh2"
 import { Icon } from "@rmwc/icon"

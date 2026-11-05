@@ -9,8 +9,8 @@ import {
   DEFAULT_LINE_RANGE,
   DEFAULT_LINE_WIDTH
 } from "../../vega-map/constants"
-import Slider from "@material-ui/core/Slider"
-import Switch from "widgets/switch/Switch"
+import { Slider, Switch } from "@immerse/ui"
+
 import { RenderLimitSlider } from "../render-limit-slider"
 import {
   LINE_RENDER_LIMIT_DEFAULT,

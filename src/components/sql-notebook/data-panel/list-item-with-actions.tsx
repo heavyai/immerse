@@ -4,7 +4,7 @@
 import React from "react"
 import cx from "classnames"
 
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { IItemAction, RowAction } from "./row-action"
 
 import "./list-item-with-actions.scss"

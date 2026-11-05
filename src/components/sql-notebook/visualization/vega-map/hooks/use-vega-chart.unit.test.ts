@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable init-declarations */
-import { renderHook } from "@testing-library/react-hooks/dom"
+import { renderHook, waitFor } from "@testing-library/react"
 import { useVegaChart } from "./use-vega-chart"
 import { MapSettings } from "../types"
 import { ViewState } from "react-map-gl"
 import { ChartTypes, VegaTypeMap } from "components/sql-notebook/types"
 import Services from "services/immerse"
-import { waitFor } from "@testing-library/react"
+
 import { LAYER_TYPE } from "../constants"
 import { POINT_RENDER_LIMIT } from "components/sql-notebook/constants"
 

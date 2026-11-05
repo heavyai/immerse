@@ -54,7 +54,7 @@ const NVLogo = () => {
   return <img src={nvLogo} className="nv-logo" />
 }
 
-export const ComboLogo = () => {
+export function ComboLogo() {
   return (
     <div className="combo-logo">
       <NVLogo />

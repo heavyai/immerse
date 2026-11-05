@@ -2,10 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import DatabaseSwitcher from "components/database-switcher/database-switcher"
-import { MenuSurfaceAnchor, MenuSurface, MenuItem } from "@rmwc/menu"
+import {
+  MenuSurfaceAnchor,
+  MenuSurface,
+  MenuItem,
+  SecondaryButton
+} from "@immerse/ui"
 import cx from "classnames"
 import { MultiSelect } from "widgets/multi-select/Multi-select"
-import { SecondaryButton } from "widgets/button/Button"
+
 import React from "react"
 import { noop } from "utils/helpers"
 import AccountPanelAnchor from "./account-panel-anchor"

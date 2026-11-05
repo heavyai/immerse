@@ -8,7 +8,7 @@ import cx from "classnames"
 import { useDrag, useDrop } from "react-dnd"
 import { Link } from "react-router-dom"
 import { IconButton } from "widgets/icon-button/Icon-button"
-import { MenuSurfaceAnchor, Menu, MenuItem } from "@rmwc/menu"
+import { MenuSurfaceAnchor, Menu, MenuItem } from "@immerse/ui"
 import {
   duplicateDashboardTab,
   deleteDashboardTab,

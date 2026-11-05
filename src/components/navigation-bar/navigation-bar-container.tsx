@@ -50,8 +50,8 @@ import {
 } from "utils/routerPath"
 import AccountPanel from "components/account-panel/account-panel-parent"
 
-import { Tooltip } from "@rmwc/tooltip"
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { Tooltip, PrimaryButton, SecondaryButton } from "@immerse/ui"
+
 import IconImport from "components/svg-icons/icon-import"
 import { IMPORT_DASHBOARD_TEXT, NEW_DASHBOARD_TEXT } from "constants/dashboards"
 import AddTableButton from "components/data-manager/add-table-button"

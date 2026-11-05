@@ -3,7 +3,7 @@
 
 import React, { FC, MouseEventHandler } from "react"
 import { IconButton } from "widgets/icon-button/Icon-button"
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import cx from "classnames"
 
 import { DANGER } from "constants/modal-types"

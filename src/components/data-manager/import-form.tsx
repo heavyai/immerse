@@ -5,7 +5,7 @@ import React, { ReactComponentElement } from "react"
 import { Icon } from "@rmwc/icon"
 import { useHistory, useParams } from "react-router"
 
-import { PrimaryButton, SecondaryButton } from "widgets/button/Button"
+import { PrimaryButton, SecondaryButton } from "@immerse/ui"
 import { DataManagerRouteParams, IMPORT_ACTIONS } from "./constants"
 
 import "./import-form.scss"

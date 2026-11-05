@@ -5,7 +5,7 @@ import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import moment from "moment/moment"
 
-import { Tooltip } from "@rmwc/tooltip"
+import { Tooltip } from "@immerse/ui"
 import { SimpleDialog } from "widgets/dialog/Dialog"
 import { TextField } from "widgets/text-field/TextField"
 import IconPlus from "components/svg-icons/icon-plus"
