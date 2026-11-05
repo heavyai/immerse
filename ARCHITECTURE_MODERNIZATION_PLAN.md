@@ -261,7 +261,24 @@ The user explicitly authorized major dependency upgrades in this checkpoint.
 - Keep legacy DC redraw behavior behind an adapter until no registered chart depends on `LegacyDcEngine`.
 - First prove a single filter interaction through query execution, render completion, and cleanup, including stale-result rejection and a reversible cutover. Expand chart coverage only after that slice passes its correctness and performance gates.
 
-### Wave 3: Introduce ChartPlugin v2
+### Wave 3: Consolidate UI and styles
+
+- Create semantic tokens that alias current custom-theme variables.
+- Preserve light, dark, high-contrast, and customer tint behavior.
+- Migrate Enzyme tests to Testing Library.
+- Remove React Hot Loader.
+- Move through a React 18 compatibility bridge to an explicitly selected supported React release. Check library peer requirements first and verify effect cleanup, repeated mounts, and external runtime lifecycle behavior before enabling changed rendering behavior.
+- Update TypeScript in controlled steps. Pull forward the minimum TypeScript or React prerequisites if the chosen RTK, testing, or UI versions require them; do not let the wave ordering force unsupported dependency combinations.
+- Replace `packages/ui` implementations with accessible Radix/native primitives.
+- Start with tooltip, menu, dialog, button, switch, checkbox, and slider.
+- Defer data table and date/time picker migrations until the primitive layer is stable.
+- Use component-scoped SCSS/CSS Modules for migrated UI.
+- Restrict global styles to reset, tokens, typography, layout primitives, and documented portal/z-index layers.
+- Remove direct RMWC/MUI imports domain by domain.
+- Delete MDC CSS and `material-override.scss` after their consumers reach zero.
+- Do not introduce Tailwind globally during this migration.
+
+### Wave 4: Introduce ChartPlugin v2
 
 - Evolve [`src/charts/chart-registration.js`](src/charts/chart-registration.js) into `packages/chart-core`. Minimal migration, capability, and lifecycle interfaces should already exist from Wave 1; this wave proves and expands them through actual chart migrations.
 - Define a small required typed contract with optional capability-specific interfaces covering:
@@ -282,23 +299,6 @@ The user explicitly authorized major dependency upgrades in this checkpoint.
 - Require plugin contract tests for document upgrades, query/filter behavior, initialization, update, export where supported, and idempotent cleanup. Cover unknown or unsupported plugin versions explicitly.
 - Finalize shared interfaces only after representative DC, Vega, and raster plugins validate them. Do not require every chart to implement querying, exporting, or filtering when those capabilities do not apply.
 - Split mega-components into connected shells, pure query/spec builders, and render components.
-
-### Wave 4: Consolidate UI and styles
-
-- Create semantic tokens that alias current custom-theme variables.
-- Preserve light, dark, high-contrast, and customer tint behavior.
-- Migrate Enzyme tests to Testing Library.
-- Remove React Hot Loader.
-- Move through a React 18 compatibility bridge to an explicitly selected supported React release. Check library peer requirements first and verify effect cleanup, repeated mounts, and external runtime lifecycle behavior before enabling changed rendering behavior.
-- Update TypeScript in controlled steps. Pull forward the minimum TypeScript or React prerequisites if the chosen RTK, testing, or UI versions require them; do not let the wave ordering force unsupported dependency combinations.
-- Replace `packages/ui` implementations with accessible Radix/native primitives.
-- Start with tooltip, menu, dialog, button, switch, checkbox, and slider.
-- Defer data table and date/time picker migrations until the primitive layer is stable.
-- Use component-scoped SCSS/CSS Modules for migrated UI.
-- Restrict global styles to reset, tokens, typography, layout primitives, and documented portal/z-index layers.
-- Remove direct RMWC/MUI imports domain by domain.
-- Delete MDC CSS and `material-override.scss` after their consumers reach zero.
-- Do not introduce Tailwind globally during this migration.
 
 ### Wave 5: Retire legacy systems
 
@@ -323,8 +323,8 @@ Each implementation milestone must name its scope, owner, observable behavior, v
 | pnpm workspace/catalog cutover | Clean checkout installs with the pinned pnpm version and frozen root lockfile; catalog checks, the high/critical dependency audit gate, development/production builds, selected tests, type checks, and retained UI-test setup pass; resolution changes and peer/build-script exceptions are reviewed | Revert the tooling milestone as a unit, restoring npm manifests, lockfiles, scripts, and CI together; do not retain mixed active lockfiles |
 | Workspace/document codec | Development and production builds, selected tests, and type checks resolve package source consistently; no reverse imports or new cycles; initial codec output matches existing JSON/base64 behavior | Application can restore the prior codec without converting saved documents |
 | First filter/query/render slice | Legacy/new semantic comparisons pass; lifecycle races and cleanup tests pass; agreed latency, render-count, and backend-load budgets pass | Scoped switch restores the authoritative legacy path; pending new work is disposed or invalidated |
-| Plugin proof | Representative DC, Vega, and raster charts satisfy applicable contracts; saved chart identifiers, upgrades, and embed behavior pass | Existing registrations/adapters remain available until migrated consumers pass |
 | UI feature migration | Theme, keyboard/focus, portal, and visual checks pass for the migrated feature; direct vendor imports decrease | Previous implementation remains recoverable until feature acceptance |
+| Plugin proof | Representative DC, Vega, and raster charts satisfy applicable contracts; saved chart identifiers, upgrades, and embed behavior pass | Existing registrations/adapters remain available until migrated consumers pass |
 | Legacy retirement | No remaining runtime consumers; compatibility matrix and rollback policy satisfied; relevant fixtures and performance gates pass | Document the point at which older binaries or writers cease to be supported before removing adapters |
 
 ## Refactor versus rewrite decisions
