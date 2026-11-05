@@ -12,7 +12,7 @@ module.exports = {
   displayName: "UI",
   moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
   moduleNameMapper: {
-    "^puppeteer$": require.resolve("puppeteer")
+    "^puppeteer$": path.resolve(__dirname, "native-puppeteer.cjs")
   },
   modulePaths: ["<rootDir>/src/", "<rootDir>/test-config/", harnessNodeModules],
   preset: require.resolve("jest-puppeteer/jest-preset.js"),

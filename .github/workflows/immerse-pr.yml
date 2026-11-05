@@ -89,6 +89,9 @@ jobs:
       - name: Lint and check formatting
         run: pnpm run lint
 
+      - name: Check workspace declaration contracts
+        run: pnpm run ts:packages
+
       - name: Run unit tests
         run: pnpm run test:unit
 

@@ -237,6 +237,18 @@ Contract tests must cover out-of-order completion, rapid filtering, navigation d
 - Inventory and schedule owned Git-SHA dependency transfers in dependency order. Defer broad source transfers until one end-to-end filter/query/render slice proves the package boundaries; transfer only what that slice requires initially.
 - Prohibit package-internal imports such as `@heavyai/charting/src/*`.
 
+### Wave 1.5: Resolve blocking security dependencies
+
+Stack `wave-1.5` on the completed `wave-1` branch before starting Wave 2.
+The user explicitly authorized major dependency upgrades in this checkpoint.
+
+- Resolve all high/critical findings across the complete pnpm workspace, including development and browser automation dependencies. Keep `pnpm audit --audit-level high` blocking without advisory suppressions.
+- Upgrade or replace affected toolchains together, including their callers and configuration; remove unused vulnerable tooling rather than retaining dormant installations.
+- Ensure runtime bundles use upgraded implementations. A clean lockfile audit alone does not cover old code embedded in vendor distributions.
+- Track necessary pnpm patches with their rationale, upstream ownership, compatibility tests and removal conditions. Preserve document, chart, embed and plugin contracts.
+- Verify frozen installation, security regressions, package types/boundaries, focused application tests, production build/license enforcement and real HeavyDB/browser scenarios before proceeding.
+- Record remaining moderate/low findings for subsequent dependency waves; the CI severity threshold stays high/critical.
+
 ### Wave 2: Rewrite the filter/query path
 
 - Make `omnifilters` the canonical persisted filter model.

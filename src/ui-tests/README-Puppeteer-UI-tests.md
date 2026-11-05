@@ -12,12 +12,26 @@ This list of required data sources must be updated if new data sources are incor
 
 ## Install the test dependencies
 
-Puppeteer has a dedicated package and is not installed with the Immerse
-dependencies:
+Puppeteer lives in a private workspace package. Use Node 24.11.0 and the
+repository-pinned pnpm from the repository root; the root installation includes
+the browser test dependencies:
 
 ```sh
-npm ci --prefix test-config/puppeteer
+pnpm install --frozen-lockfile
 ```
+
+Puppeteer 25 downloads Chrome using its browsers 3 toolchain. CI can skip the
+installation download with `PUPPETEER_SKIP_DOWNLOAD=true` and install explicitly:
+
+```sh
+pnpm --dir test-config/puppeteer exec puppeteer browsers install chrome
+```
+
+`PUPPETEER_CACHE_DIR` must be the same for installation and test execution if you
+override the default. ZIP extraction requires the native `unzip` tool on Linux.
+The CommonJS recorded tests use `native-puppeteer.cjs` to load ESM through Node's
+native loader. Keep this bridge and the Jest 30 environment alignment when
+upgrading the harness.
 
 ## How to run in the background
 
@@ -27,7 +41,7 @@ Start a local server hosting Immerse at `http://localhost:8002`.
 
 ```sh
 IMMERSE_TEST_URL=http://localhost:8002 \
-  npm run --prefix test-config/puppeteer test:ci
+  pnpm --dir test-config/puppeteer test:ci
 ```
 
 ## How to watch it run
@@ -38,7 +52,7 @@ Start a local server hosting Immerse at `http://localhost:8002`.
 
 ```sh
 IMMERSE_TEST_URL=http://localhost:8002 DEBUG=true \
-  npm run --prefix test-config/puppeteer test
+  pnpm --dir test-config/puppeteer test
 ```
 
 ## How to run just one test
@@ -58,7 +72,7 @@ Run tests containing `debug` in their descriptions:
 
 ```sh
 IMMERSE_TEST_URL=http://localhost:8002 DEBUG=true \
-  npm run --prefix test-config/puppeteer test -- \
+  pnpm --dir test-config/puppeteer test \
   --testNamePattern='[Dd][Ee][Bb][Uu][Gg]'
 ```
 
@@ -66,7 +80,7 @@ Run one test file:
 
 ```sh
 IMMERSE_TEST_URL=http://localhost:8002 \
-  npm run --prefix test-config/puppeteer test -- \
+  pnpm --dir test-config/puppeteer test \
   --runTestsByPath ../../src/ui-tests/sessionization.ui.test.ts
 ```
 

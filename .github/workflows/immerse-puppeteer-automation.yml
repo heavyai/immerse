@@ -181,10 +181,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo env \
+            PATH="$PATH" \
             PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer" \
-            "$(command -v node)" \
-            test-config/puppeteer/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js \
-            browsers install chrome --install-deps
+            "$(command -v pnpm)" --dir test-config/puppeteer exec \
+            puppeteer browsers install chrome --install-deps
 
       - name: Verify Chrome launch
         timeout-minutes: 1

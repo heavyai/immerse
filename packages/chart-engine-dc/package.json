@@ -29,6 +29,6 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/chart-engine-dc/src/engine.unit.test.js"
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/chart-engine-dc/src/engine.unit.test.js packages/chart-engine-dc/src/combo.unit.test.js"
   }
 }

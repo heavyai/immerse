@@ -3,8 +3,11 @@
 
 const baseConfig = {
   testEnvironment: "jsdom",
-  moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
+  moduleFileExtensions: ["js", "mjs", "cjs", "jsx", "json", "ts", "tsx"],
   moduleNameMapper: {
+    "^d3/build/d3$": require.resolve("d3/index.js", {
+      paths: [require.resolve("@heavyai/d3-combo-chart/package.json")]
+    }),
     "^react$": "<rootDir>/node_modules/react",
     "\\.css$": "identity-obj-proxy",
     "\\.sass$": "identity-obj-proxy",
@@ -21,10 +24,10 @@ const baseConfig = {
   modulePaths: ["<rootDir>/src/", "<rootDir>/test-config/"],
   transform: {
     "^.+\\.(png|jpg|svg)$": "jest-transform-stub",
-    "\\.[jt]sx?$": "babel-jest"
+    "\\.[cm]?[jt]sx?$": "babel-jest"
   },
   transformIgnorePatterns: [
-    "node_modules/(?!\\.pnpm/)(?!(@heavyai|robust-predicates|delaunator|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
+    "node_modules/(?!\\.pnpm/)(?!(@heavyai|robust-predicates|delaunator|d3/(?!d3\\.js$)|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
   ],
   setupFiles: ["jest-canvas-mock", "<rootDir>/test-config/jest-shim"]
 }

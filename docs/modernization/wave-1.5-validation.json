@@ -1,0 +1,72 @@
+{
+  "wave": "wave-1.5",
+  "baseCommit": "750611a",
+  "node": "24.11.0",
+  "pnpm": "10.34.9",
+  "focusedApplicationTests": {
+    "suites": 14,
+    "tests": 149,
+    "snapshots": 6,
+    "files": [
+      "src/utils/modernization/metrics.unit.test.js",
+      "src/utils/modernization/lifecycle-invariants.unit.test.js",
+      "src/utils/modernization/dashboard-compatibility.unit.test.js",
+      "src/utils/modernization/filter-embed-contract.unit.test.js",
+      "src/store/create-store-with-services.unit.test.js",
+      "src/reducers/clear-dashboard.unit.test.js",
+      "src/charts/utils/coordinate-helpers.unit.spec.js",
+      "src/actions/dashboard-action-creators-basemap.unit.test.js",
+      "src/utils/performance/MagicQueue.unit.test.js",
+      "src/reducers/data-source-higher-order-reducer.unit.spec.js",
+      "src/actions/dashboard-action-creators.unit.spec.js",
+      "src/vega/actions/filter-action-creators-crossfilter-interop.unit.test.js",
+      "src/reducers/load-dashboard.unit.test.js",
+      "src/vega/constants/filter-types.unit.test.js"
+    ]
+  },
+  "packageTests": {
+    "suites": 7,
+    "tests": 11
+  },
+  "packageTypes": "pass",
+  "frozenCleanInstall": "pass",
+  "productionBuild": {
+    "status": "pass",
+    "webpack": "5.108.4",
+    "warnings": 322
+  },
+  "licenseEnforcement": "pass, including rejection regression test",
+  "audit": {
+    "info": 0,
+    "low": 5,
+    "moderate": 27,
+    "high": 0,
+    "critical": 0
+  },
+  "limitations": [
+    "Full application TypeScript check retains Wave 0 baseline failures.",
+    "Full application suite and representative production dashboards are outside these focused checks."
+  ],
+  "nodeToolSecurityTests": {
+    "tests": 8,
+    "status": "pass"
+  },
+  "puppeteer": {
+    "version": "25.16.0",
+    "browser": "Chrome 156.0.8078.47",
+    "downloadAndExtraction": "pass",
+    "suites": 2,
+    "tests": 5,
+    "includesExistingHeavyDbSessionization": true
+  },
+  "playwright": {
+    "scenarios": 1,
+    "savedDashboardReloads": 3,
+    "crossfilterCount": [
+      8,
+      2
+    ],
+    "status": "pass"
+  },
+  "lint": "pass"
+}

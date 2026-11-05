@@ -25,9 +25,9 @@
     "s:remove": "bash scripts/servers/remove.sh",
     "s:switch": "bash scripts/servers/switch.sh",
     "start": "ENABLE_CONTROL_PANEL=true pnpm run webpack:dev-server --open --hot --color",
-    "start:ssl": "ENABLE_CONTROL_PANEL=true pnpm run webpack:dev-server --open --hot --color --https",
+    "start:ssl": "ENABLE_CONTROL_PANEL=true pnpm run webpack:dev-server --open --hot --color --server-type https",
     "start:fast": "ENABLE_CONTROL_PANEL=true IMMERSE_BUILD_MODE=fast pnpm run webpack:dev-server --hot",
-    "start:fast:ssl": "ENABLE_CONTROL_PANEL=true IMMERSE_BUILD_MODE=fast pnpm run webpack:dev-server --open --hot --https --cert=cert.pem --key=key.pem",
+    "start:fast:ssl": "ENABLE_CONTROL_PANEL=true IMMERSE_BUILD_MODE=fast pnpm run webpack:dev-server --open --hot --server-type https --server-options-cert cert.pem --server-options-key key.pem",
     "start:prod": "pnpm run build:prod && http-server ./dist -p \"${IMMERSE_PORT:-8002}\" -o -P \"http://localhost:${IMMERSE_PORT:-8002}?\"",
     "start:eco": "ENABLE_CONTROL_PANEL=true HEAVY_ECO=true pnpm run webpack:dev-server --open --hot --color",
     "test": "pnpm run lint && pnpm run test:unit && pnpm run test:component",
@@ -337,7 +337,6 @@
     "mini-css-extract-plugin": "catalog:",
     "mutationobserver-shim": "catalog:",
     "node-stdlib-browser": "catalog:",
-    "nyc": "catalog:",
     "prettier": "catalog:",
     "prop-types": "catalog:",
     "proxyquire": "catalog:",
@@ -354,8 +353,6 @@
     "sinon-chai": "catalog:",
     "stream-http": "catalog:",
     "style-loader": "catalog:",
-    "stylelint": "catalog:",
-    "stylelint-config-standard": "catalog:",
     "terser-webpack-plugin": "catalog:",
     "ts-node": "catalog:",
     "typescript": "catalog:",
@@ -365,7 +362,8 @@
     "webpack-dev-server": "catalog:",
     "webpack-merge": "catalog:",
     "yargs": "catalog:",
-    "yaml": "catalog:"
+    "yaml": "catalog:",
+    "vega-canvas": "catalog:"
   },
   "pre-commit": [
     "test"

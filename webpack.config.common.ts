@@ -37,6 +37,7 @@ const webpackResolve: ResolveOptions = {
   // modules: [resolve(__dirname, 'src'), '..', 'node_modules'],
   modules: [resolve(__dirname, "src"), "node_modules"],
   alias: {
+    "d3/build/d3$": "d3/index.js",
     base: resolve(__dirname, "src", "styles", "base"),
     themes: resolve(__dirname, "src", "styles", "themes"),
     vendor: resolve(__dirname, "src", "styles", "vendor"),

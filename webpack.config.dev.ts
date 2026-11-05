@@ -79,8 +79,9 @@ const devServerOptions: DevConfig = {
   client: {
     overlay: false
   },
-  proxy: {
-    "/": {
+  proxy: [
+    {
+      context: ["/"],
       // target must be set, but the value isn't actually used - the return value
       // from `router` is used instead
       target: getProxyUrl(),
@@ -93,7 +94,7 @@ const devServerOptions: DevConfig = {
       bypass: (req) => (req.headers.accept?.includes("html") ? "/" : null),
       ...(serversJSON[0].devProxyOptions || {})
     }
-  },
+  ],
   setupMiddlewares: (middlewares, { app }) => {
     if (!app) {
       throw new Error("webpack-dev-server is not defined")
