@@ -75,18 +75,24 @@ const toolingFiles = [
     .map(relative)
     .filter((name) => !name.endsWith("package-lock.json"))
 ]
-const tooling = toolingFiles.flatMap((filename) =>
-  fs
-    .readFileSync(path.join(root, filename), "utf8")
-    .split("\n")
-    .flatMap((line, index) =>
-      /\bnpm\b|\bnpx\b|node_modules|legacy-peer-deps|overrides|symlinks/.test(
-        line
+const tooling = toolingFiles
+  .filter(
+    (filename) =>
+      !filename.split("/").includes("node_modules") &&
+      fs.statSync(path.join(root, filename)).isFile()
+  )
+  .flatMap((filename) =>
+    fs
+      .readFileSync(path.join(root, filename), "utf8")
+      .split("\n")
+      .flatMap((line, index) =>
+        /\bnpm\b|\bnpx\b|node_modules|legacy-peer-deps|overrides|symlinks/.test(
+          line
+        )
+          ? [{ file: filename, line: index + 1, text: line.trim() }]
+          : []
       )
-        ? [{ file: filename, line: index + 1, text: line.trim() }]
-        : []
-    )
-)
+  )
 const report = {
   schemaVersion: 1,
   projects,
