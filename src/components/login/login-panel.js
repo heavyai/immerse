@@ -121,7 +121,9 @@ export default class LoginPanel extends Component {
           </span>
           <h2>{this.props.titleName}</h2>
           <form onSubmit={this.handleConnect}>
-            <label htmlFor="username-field">{this.props.usernameLabel}</label>
+            <label id="username-field-label" htmlFor="username-field">
+              {this.props.usernameLabel}
+            </label>
             <TextField
               autoFocus
               className="login-field"
@@ -131,7 +133,9 @@ export default class LoginPanel extends Component {
               id="username-field"
               placeholder={this.props.usernamePlaceholder}
             />
-            <label htmlFor="password-field">Password</label>
+            <label id="password-field-label" htmlFor="password-field">
+              Password
+            </label>
             <TextField
               className="login-field"
               value={this.state.userInputs.password}
@@ -141,7 +145,9 @@ export default class LoginPanel extends Component {
               type="password"
             />
             <>
-              <label htmlFor="database-field">Database</label>
+              <label id="database-field-label" htmlFor="database-field">
+                Database
+              </label>
               {this.props.login_panel_databases.length ? (
                 <MultiSelect
                   data-testid="db-switcher"

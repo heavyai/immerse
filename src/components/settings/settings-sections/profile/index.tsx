@@ -4,14 +4,12 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import deepEquals from "fast-deep-equal"
-import { CircularProgress } from "@material-ui/core"
-
+import { CircularProgress } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { AppState } from "vega/charts/types"
 import { UserMetadata } from "components/settings/types"
 import ChangesSnackbar from "components/settings/changes-snackbar"
 import ReleaseCard from "components/settings/release-card"
-
 import "./styles.scss"
 
 // TODO replace with real call

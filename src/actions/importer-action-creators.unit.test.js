@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 import configureStore from "redux-mock-store"
 import { TSourceType } from "@heavyai/connector/dist/browser-connector"
 
@@ -29,7 +29,7 @@ services.set("DbCon", {
   createTableAsync: () => Promise.resolve()
 })
 
-const middlewares = [thunk.withExtraArgument(services)]
+const middlewares = [withExtraArgument(services)]
 const mockStore = configureStore(middlewares)
 
 describe("Importer Action Creators", () => {

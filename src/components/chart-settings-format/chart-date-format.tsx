@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as React from "react"
-import { SimpleSelect } from "react-selectize"
+import { CreatableSelect } from "@immerse/ui"
 import { contains } from "ramda"
 import { Dimension, Measure } from "constants/prop-types"
 
@@ -69,10 +69,6 @@ interface Props {
   onValueChange: (option: DateOption) => void
 }
 
-function restoreOnBackspace(option) {
-  return option.label.slice(0, -1) // enter edit mode and remove last character on backspace
-}
-
 function renderOption(option) {
   if (option.newOption) {
     return (
@@ -132,15 +128,21 @@ const ChartDateFormatter = ({
           </span>
           <span className="format-selector-label-name">{label}</span>
         </div>
-        <SimpleSelect
-          theme="format-selector"
+        <CreatableSelect
+          isValidNewOption={(input) =>
+            Boolean(createFromSearch(dateFormatOptions, input))
+          }
+          onCreateOption={(input) => {
+            const option = createFromSearch(dateFormatOptions, input)
+            if (option) {
+              onValueChange(option)
+            }
+          }}
           value={getDefaultValue(selector)}
           options={dateFormatOptions}
-          restoreOnBackspace={restoreOnBackspace}
           placeholder={"Enter a format or select a preset"}
-          renderOption={renderOption}
-          createFromSearch={createFromSearch}
-          onValueChange={onValueChange}
+          formatOptionLabel={renderOption}
+          onChange={onValueChange}
         />
       </div>
     </div>

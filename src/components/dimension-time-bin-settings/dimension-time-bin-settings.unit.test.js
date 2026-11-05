@@ -1,6 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import React from "react"
+import { render, screen, fireEvent } from "@testing-library/react"
+import DimensionTimeBinSettings from "./dimension-time-bin-settings"
+
 import {
   BINNING_INTERVAL_OPTIONS,
   EXTRACT_INTERVAL_OPTIONS,
@@ -65,4 +69,23 @@ describe("DimensionTimeBinSettings helpers", () => {
       expect(options).toStrictEqual(EXTRACT_INTERVAL_OPTIONS)
     })
   })
+})
+
+it("initializes the selected extract mode and switches to binning without losing its domain callbacks", () => {
+  const updateBinInterval = jest.fn()
+  render(
+    <DimensionTimeBinSettings
+      extract
+      chartType="table"
+      dimension={{ timeBin: "day" }}
+      binBounds={[new Date("2026-01-01"), new Date("2026-11-01")]}
+      updateBinInterval={updateBinInterval}
+      updateExtractInterval={jest.fn()}
+      timeBinInputVal="day"
+    />
+  )
+  expect(screen.getByTestId("extract-switcher")).toHaveClass("active")
+  fireEvent.click(screen.getByTestId("binning-switcher"))
+  expect(screen.getByTestId("binning-switcher")).toHaveClass("active")
+  expect(updateBinInterval).toHaveBeenCalledWith("day")
 })

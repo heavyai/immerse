@@ -50,8 +50,7 @@ export async function selectFilterDataSource(dataSource: string) {
 }
 
 export async function selectFilterColumn(dataSource: string) {
-  const filterColumnInputSelector =
-    ".react-selectize-search-field-and-selected-values"
+  const filterColumnInputSelector = "[role=combobox]"
 
   await clickAfterVisible(filterColumnInputSelector)
   await page.keyboard.type(dataSource)

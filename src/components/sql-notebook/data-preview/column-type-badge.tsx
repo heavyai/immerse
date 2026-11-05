@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { Chip } from "@material-ui/core"
+import { Chip } from "@immerse/ui"
 import IconNumber from "components/svg-icons/icon-number"
 import IconEnum from "components/svg-icons/icon-enum"
 import IconDateTime from "components/svg-icons/icon-date-time"

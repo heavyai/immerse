@@ -3,7 +3,7 @@
 
 import React, { useState } from "react"
 import { TextField } from "@rmwc/textfield"
-import { CircularProgress } from "@material-ui/core"
+import { CircularProgress } from "@immerse/ui"
 import { useDispatch } from "react-redux"
 import cx from "classnames"
 import IconPlus from "components/svg-icons/icon-plus"

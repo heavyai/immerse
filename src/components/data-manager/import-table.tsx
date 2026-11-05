@@ -6,23 +6,20 @@ import { connect } from "react-redux"
 import { Dispatch } from "redux"
 import cx from "classnames"
 import { Route, useRouteMatch } from "react-router-dom"
-
 import {
   getFeatureFlag,
   available_feature_flags
 } from "components/control-panel/featureflags"
 import { ROUTE_DATA_MANAGEMENT_IMPORT } from "routes/paths"
 import { getDataCatalog, resetImporter } from "actions/importer-action-creators"
-
 import { buildPostUrl } from "./utils"
 import ImporterTile from "./importer-tile"
 import ConnectorPage from "./connector-page"
 import { ConnectorType, IMPORT_ACTIONS } from "./constants"
 import ImportTableHeader from "./import-table-header"
 import { useConnectors } from "./hooks/use-connectors"
-
 import "./import-table.scss"
-import { CircularProgress } from "@material-ui/core"
+import { CircularProgress } from "@immerse/ui"
 
 const { ENABLE_DATA_CATALOG } = available_feature_flags
 

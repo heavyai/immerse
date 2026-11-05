@@ -3,12 +3,7 @@
 
 import React, { Component } from "react"
 import moment from "moment"
-import MomentUtils from "@date-io/moment"
-import {
-  MuiPickersUtilsProvider,
-  DateTimePicker,
-  DatePicker
-} from "@material-ui/pickers"
+import { DateTimeField } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import PropTypes from "prop-types"
 
@@ -70,34 +65,36 @@ export default class FilterTimeModalInput extends Component {
       ? moment(this.props.calendarValue).local()
       : moment.utc(this.props.calendarValue)
     return (
-      <MuiPickersUtilsProvider utils={MomentUtils}>
-        <div className="time-picker-container">
-          {this.props.hideTimePicker ? (
-            <DatePicker
-              variant="static"
-              value={time}
-              onChange={this.onCalendarChange}
-            />
-          ) : (
-            <DateTimePicker
-              variant="static"
-              value={time}
-              onChange={this.onCalendarChange}
-            />
-          )}
-          <TextField
-            label={"Date"}
-            value={this.props.inputValue}
-            onBlur={(e) => {
-              this.onInputBlur(e)
-            }}
-            onChange={this.onInputChange}
-            onKeyUp={this.onKeyUp}
-            style={{ width: "100%" }}
-            data-testid={`time-filter-input-${this.props.field}`}
-          />
-        </div>
-      </MuiPickersUtilsProvider>
+      <div className="time-picker-container">
+        <DateTimeField
+          includeTime={!this.props.hideTimePicker}
+          value={
+            time.isValid()
+              ? time.format(
+                  this.props.hideTimePicker
+                    ? "YYYY-MM-DD"
+                    : "YYYY-MM-DDTHH:mm:ss.SSS"
+                )
+              : ""
+          }
+          onChange={(value) =>
+            this.onCalendarChange(
+              this.props.localTime ? moment(value) : moment.utc(value)
+            )
+          }
+        />
+        <TextField
+          label={"Date"}
+          value={this.props.inputValue}
+          onBlur={(e) => {
+            this.onInputBlur(e)
+          }}
+          onChange={this.onInputChange}
+          onKeyUp={this.onKeyUp}
+          style={{ width: "100%" }}
+          data-testid={`time-filter-input-${this.props.field}`}
+        />
+      </div>
     )
   }
 }

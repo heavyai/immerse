@@ -9,7 +9,6 @@ import {
   AUTO_REFRESH_VALUE_2S
 } from "constants/auto-refresh-values"
 import APP_CONFIG from "constants/app-config"
-
 import { Tooltip, PrimaryButton, SecondaryButton } from "@immerse/ui"
 import CustomSelector from "components/custom-selector/custom-selector"
 import cx from "classnames"
@@ -20,14 +19,12 @@ import FilterSetsList from "components/new-filters/filter-sets/filter-sets-list"
 import FilterSetsCrossFilter from "components/new-filters/filter-sets/filter-sets-cross-filter"
 import MultiCount from "components/multi-count/multi-count"
 import ShareLink from "components/share-link/share-link-parent"
-
 import IconSave from "components/svg-icons/icon-save"
 import IconRefresh2 from "components/svg-icons/icon-refresh2"
 import { Icon } from "@rmwc/icon"
 import { isOldFilter } from "vega/constants/filter-metadata-types"
 import DashboardKebab from "components/dashboard-top-panel/dashboard-kebab"
 import AccountPanel from "components/account-panel/account-panel-parent"
-
 import {
   getFeatureFlag,
   available_feature_flags
@@ -415,7 +412,8 @@ RightWrapper.propTypes = {
   roles: PropTypes.arrayOf(PropTypes.string)
 }
 
-const DashboardTopPanel = (props) => {
+const DashboardTopPanel = ({ isDemo = false, ...incomingProps }) => {
+  const props = { ...incomingProps, isDemo }
   const [dashboardTitleValid, setDashboardTitleValid] = useState(true)
   return (
     <ImmerseUIRequired uiKey={IMMERSE_UI_HEADERBAR} type={REMOVE_BY_NO_DISPLAY}>
@@ -462,10 +460,6 @@ const DashboardTopPanel = (props) => {
       </div>
     </ImmerseUIRequired>
   )
-}
-
-DashboardTopPanel.defaultProps = {
-  isDemo: false
 }
 
 DashboardTopPanel.propTypes = {

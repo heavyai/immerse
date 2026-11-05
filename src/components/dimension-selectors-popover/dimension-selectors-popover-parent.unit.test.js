@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import { mapStateToProps } from "components/dimension-selectors-popover/dimension-selectors-popover-parent"
 import { populateImportableStore as setStore } from "store/importableStore"
 import "charts/chart-definitions"

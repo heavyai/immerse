@@ -21,7 +21,7 @@ import {
 } from "constants/action-types"
 
 import { delay } from "utils/redux/delay-middleware"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import { MS_IN_HALF_SECONDS } from "constants/magic-variables"
 import { getDatabase } from "selectors"
 

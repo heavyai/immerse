@@ -107,3 +107,77 @@ declare const primitives: {
   SuccessButton: typeof SuccessButton
 }
 export default primitives
+
+export interface TextFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: React.ReactNode
+  error?: boolean
+  helperText?: React.ReactNode
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  fullWidth?: boolean
+  margin?: string
+  variant?: string
+  multiline?: boolean
+}
+export const TextField: React.ForwardRefExoticComponent<
+  TextFieldProps & React.RefAttributes<HTMLInputElement>
+>
+export function InputLabel(
+  props: React.LabelHTMLAttributes<HTMLLabelElement>
+): React.ReactElement
+export function Link(
+  props: React.HTMLAttributes<HTMLElement> & {
+    href?: string
+    target?: string
+    rel?: string
+    component?: React.ElementType
+  }
+): React.ReactElement
+export function Chip(
+  props: React.HTMLAttributes<HTMLSpanElement> & {
+    label: React.ReactNode
+    size?: string
+    color?: string
+    variant?: string
+  }
+): React.ReactElement
+export function CircularProgress(
+  props: React.HTMLAttributes<HTMLSpanElement> & {
+    size?: number
+    value?: number
+    variant?: string
+  }
+): React.ReactElement
+export interface DateTimeFieldProps
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "onChange" | "value"
+  > {
+  includeTime?: boolean
+  value?: string
+  label?: string
+  onChange?: (value: string) => void
+}
+export const DateTimeField: React.ForwardRefExoticComponent<
+  DateTimeFieldProps & React.RefAttributes<HTMLInputElement>
+>
+export function Select<Option = unknown, IsMulti extends boolean = false>(
+  props: import("react-select").Props<Option, IsMulti>
+): React.ReactElement
+export function CreatableSelect<
+  Option = unknown,
+  IsMulti extends boolean = false
+>(
+  props: import("react-select/creatable").CreatableProps<
+    Option,
+    IsMulti,
+    import("react-select").GroupBase<Option>
+  >
+): React.ReactElement
+export function FileDrop(props: {
+  onFile: (file: File) => void | (() => void)
+  accept?: string
+  label?: string
+  children?: React.ReactNode
+  className?: string
+}): React.ReactElement

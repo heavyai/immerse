@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useRef } from "react"
-import { AutoSizer, Grid } from "react-virtualized"
-import { compose, mapProps } from "recompose"
+import { Grid } from "react-virtualized"
+import AutoSizer from "react-virtualized-auto-sizer"
 import trimTextWithEllipsis from "utils/trim-text-with-ellipsis"
 import cx from "classnames"
 
@@ -205,4 +205,15 @@ const SqlEditorDataTable = ({
   )
 }
 
-export default compose(mapProps(dataToArray))(SqlEditorDataTable)
+function useSqlEditorDataTableProps(incomingProps: any) {
+  let viewProps = incomingProps
+  viewProps = dataToArray(viewProps)
+  return viewProps
+}
+
+function StatefulSqlEditorDataTable(incomingProps: any) {
+  const viewProps = useSqlEditorDataTableProps(incomingProps)
+  return React.createElement(SqlEditorDataTable, viewProps)
+}
+
+export default StatefulSqlEditorDataTable

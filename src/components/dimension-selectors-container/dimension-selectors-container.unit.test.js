@@ -2,16 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-
-jest.mock("react-dnd", () => {
-  const identity = (Component) => Component
-  return {
-    __esModule: true,
-    DragSource: () => identity,
-    DropTarget: () => identity
-  }
-})
-
 import DimensionSelectorsContainer from "./dimension-selectors-container"
 import renderWithRedux from "utils/test-helpers/render-with-redux"
 import mockAppState from "utils/test-helpers/mock-app-state"

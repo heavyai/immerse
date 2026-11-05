@@ -98,3 +98,43 @@ for (const theme of ["dark", "light", "light2", "custom", "high-contrast"]) {
     await page.screenshot({ path: info.outputPath(`${theme}.png`) })
   })
 }
+
+test("owned date, creatable format and dashboard file controls retain their values", async ({
+  page
+}) => {
+  await page.goto("/")
+  await page.getByLabel("Refresh at").fill("2026-11-05T12:15:30.123")
+  await expect(page.getByLabel("Selected date")).toHaveText(
+    "2026-11-05T12:15:30.123"
+  )
+  const format = page.getByRole("combobox", { name: "Number format" })
+  await format.fill("custom-format")
+  await format.press("Enter")
+  await expect(page.getByLabel("Selected format")).toHaveText("custom-format")
+  await page.locator('input[type="file"]').setInputFiles({
+    name: "dashboard.json",
+    mimeType: "application/json",
+    buffer: Buffer.from("fixture")
+  })
+  await expect(page.getByLabel("Selected file")).toHaveText("dashboard.json")
+})
+
+test("retained Gauge and Skew-T engines mount and remount with React 19", async ({
+  page
+}) => {
+  const errors = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("/")
+  const toggle = page.getByRole("button", { name: "Toggle retained engines" })
+  await toggle.click()
+  const engines = page.getByTestId("retained-engines")
+  await expect(engines.locator("svg.gauge-chart")).toBeVisible()
+  await expect(engines.locator("svg.skewt-chart")).toBeVisible()
+  await expect(engines.locator("svg.skewt-chart path").first()).toBeAttached()
+  await toggle.click()
+  await expect(engines).toHaveCount(0)
+  await toggle.click()
+  await expect(engines.locator("svg.gauge-chart")).toBeVisible()
+  await expect(engines.locator("svg.skewt-chart")).toBeVisible()
+  expect(errors).toEqual([])
+})

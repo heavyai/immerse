@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { Link } from "@material-ui/core"
+import { Link } from "@immerse/ui"
 import IconJoinLeft from "components/svg-icons/icon-join-left"
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"

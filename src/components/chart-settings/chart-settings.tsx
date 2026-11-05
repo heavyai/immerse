@@ -3,17 +3,13 @@
 
 import React, { useCallback } from "react"
 import PropTypes from "prop-types"
-
 import { layerDefaultOpacity } from "constants/magic-variables"
 import * as RasterChartActions from "charts/raster-chart/raster-chart-actions"
-
 import { chartShape } from "constants/prop-types"
-
-import Toggle from "react-toggle"
+import { Switch as Toggle } from "@immerse/ui"
 import ChartSettingsBasemapDropdownParent from "components/chart-settings-basemap-dropdown/chart-settings-basemap-dropdown-parent"
 import RangeSlider from "../../vega/components/RangeSlider/RangeSlider"
 import NumericalSlider from "vega/components/NumericalSlider/NumericalSlider"
-
 import { chartSettingsComponents } from "./chart-settings-components"
 import DefaultChartSettings from "charts/components/default-chart-settings"
 import {

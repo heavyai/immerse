@@ -6,8 +6,7 @@ import { isDictString, isGeo } from "constants/data-types"
 import DataColumnSelector from "components/data-column-selector/data-column-selector"
 import { ColumnMetadata } from "constants/prop-types"
 import { Icon } from "@rmwc/icon"
-import { Link } from "@material-ui/core"
-
+import { Link } from "@immerse/ui"
 import "./styles.scss"
 import {
   available_feature_flags,

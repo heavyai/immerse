@@ -1,0 +1,82 @@
+/* SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved. */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--ui-text);
+}
+.textInput {
+  box-sizing: border-box;
+  min-height: 32px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  background: var(--ui-input);
+  color: var(--ui-text);
+  font: inherit;
+  color-scheme: var(--ui-color-scheme, dark);
+}
+.textInput:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 1px;
+}
+.textInput[aria-invalid="true"] {
+  border-color: var(--ui-danger);
+}
+.link {
+  color: var(--ui-accent);
+  font: inherit;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.chip {
+  display: inline-block;
+  border: 1px solid var(--ui-border);
+  border-radius: 12px;
+  padding: 2px 8px;
+  color: var(--ui-text);
+  background: var(--ui-hover);
+  font-size: 12px;
+}
+.progress {
+  display: inline-block;
+  border: 2px solid var(--ui-border);
+  border-top-color: var(--ui-accent);
+  border-radius: 50%;
+  animation: progressSpin 1s linear infinite;
+}
+@keyframes progressSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    animation: none;
+  }
+}
+.fileDrop {
+  border: 1px dashed var(--ui-border);
+  border-radius: var(--ui-radius);
+  color: var(--ui-text);
+}
+.fileDropButton {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.fileDropButton:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 2px;
+}

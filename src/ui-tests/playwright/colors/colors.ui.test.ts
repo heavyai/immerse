@@ -10,7 +10,6 @@ import {
   saveDashboard,
   setFeatureFlag
 } from "../utils"
-import { hexToRgb } from "@material-ui/core"
 // TODO: This import breaks playwright, there's no `window` when importing I think is the root cause
 // import { HEAVYAI_QUANTITATIVE_COLORS } from "services/colors"
 

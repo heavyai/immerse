@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useRef, useState } from "react"
-import ReactTestUtils from "react-dom/test-utils"
 import { connect } from "react-redux"
 
 import { CircularProgress } from "@rmwc/circular-progress"
@@ -142,12 +141,14 @@ const VegaSelector: FC<Props> = ({
       // keys down in the search input. This is the result of DataTable being
       // separate from the search field.
       //
-      // See this stackoverflow for why we're using ReactTestUtils.Simulate instead
-      // of the native `dispatchEvent(new KeyboardEvent("keydown"))`
-      // https://stackoverflow.com/questions/39065010/why-react-event-handler-is-not-called-on-dispatchevent
-      ReactTestUtils.Simulate.keyDown(dataTableRef.current, {
-        keyCode: e.keyCode
-      })
+      dataTableRef.current.dispatchEvent(
+        new KeyboardEvent("keydown", {
+          key: e.key,
+          code: e.code,
+          keyCode: e.keyCode,
+          bubbles: true
+        })
+      )
 
       if (e.keyCode === KEYCODE.Esc) {
         e.currentTarget.blur()

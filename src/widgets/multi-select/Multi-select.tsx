@@ -3,8 +3,6 @@
 
 import * as React from "react"
 import Select, { components as ReactSelectComponents } from "react-select"
-import FloatingLabel from "@material/react-floating-label"
-import NotchedOutline from "@material/react-notched-outline"
 import cx from "classnames"
 
 import "./multi-select.scss"
@@ -30,18 +28,15 @@ export class MultiSelect extends React.PureComponent<IMultiSelectProps, {}> {
     return (
       <ReactSelectComponents.SelectContainer {...childProps}>
         <span className="select-container-wrapper">{children}</span>
-        <NotchedOutline
-          notch={childProps.selectProps.noLabel ? false : labelShouldFloat}
-        >
-          <FloatingLabel
+        {!childProps.selectProps.noLabel && (
+          <span
             className={cx("floating-label", {
-              "no-label": childProps.selectProps.noLabel
+              "is-floating": labelShouldFloat
             })}
-            float={labelShouldFloat}
           >
             {childProps.selectProps.placeholder}
-          </FloatingLabel>
-        </NotchedOutline>
+          </span>
+        )}
       </ReactSelectComponents.SelectContainer>
     )
   }

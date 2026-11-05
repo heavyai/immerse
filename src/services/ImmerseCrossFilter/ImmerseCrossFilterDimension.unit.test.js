@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 
 import { getTestDimension, filterState } from "./test-utils"
 import { populateImportableStore as setStore } from "store/importableStore"

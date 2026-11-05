@@ -4,8 +4,7 @@
 import { NEGATIVE_ONE, SLIDER_MAX, SLIDER_MIN } from "constants/magic-variables"
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import Slider, { Range } from "rc-slider"
-import { Tooltip } from "@immerse/ui"
+import { Slider, Tooltip } from "@immerse/ui"
 
 const START_INPUT_INDEX = 0
 const END_INPUT_INDEX = 1
@@ -57,7 +56,7 @@ export default class CustomSlider extends Component {
 
   UNSAFE_componentWillReceiveProps({ defaultValue, values }) {
     const newValue = values || defaultValue
-    if (newValue) {
+    if (newValue !== undefined && newValue !== null) {
       this.setState({
         sliderValue: newValue,
         inputValues: newValue,
@@ -68,7 +67,12 @@ export default class CustomSlider extends Component {
 
   getDefaultValue() {
     const min = this.getMin()
-    return this.props.defaultValue || (this.props.range ? [min, min] : min)
+    const value = this.props.values ?? this.props.defaultValue
+    return this.props.range
+      ? value ?? [min, min]
+      : Array.isArray(value)
+      ? value[0]
+      : value ?? min
   }
 
   getMax() {
@@ -261,32 +265,16 @@ export default class CustomSlider extends Component {
             </div>
           )}
           <div className="slider-wrap">
-            {range ? (
-              <Range
-                {...{
-                  id: testid,
-                  max,
-                  min,
-                  onAfterChange: this.onSliderAfter,
-                  onChange: this.onSliderChange,
-                  dataFoo: "foo",
-                  value: sliderValue,
-                  ...this.props
-                }}
-              />
-            ) : (
-              <Slider
-                {...{
-                  ...this.props,
-                  id: testid,
-                  max,
-                  min,
-                  onAfterChange: this.onSliderAfter,
-                  onChange: this.onSliderChange,
-                  value: sliderValue
-                }}
-              />
-            )}
+            <Slider
+              id={testid}
+              max={max}
+              min={min}
+              value={sliderValue}
+              step={this.props.step || 1}
+              disabled={disabled}
+              onChange={(_event, next) => this.onSliderChange(next)}
+              onChangeCommitted={(_event, next) => this.onSliderAfter(next)}
+            />
           </div>
           {!fuzzyValues && (
             <div className="input-wrap end">

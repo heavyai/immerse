@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import { SAVE_CURRENT_CHART } from "constants/action-types"
 import { saveCurrentChart } from "actions/chart-editor-action-creators"
 

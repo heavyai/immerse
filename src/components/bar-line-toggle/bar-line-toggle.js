@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { compose, withHandlers } from "recompose"
+import { useEventHandlers } from "hooks/use-event-handlers"
 import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
@@ -36,13 +36,26 @@ BarLineToggle.propTypes = {
   setMarkType: PropTypes.func.isRequired
 }
 
-export default compose(
-  withHandlers({
-    handleLeftClick: (props) => () => {
-      props.setMarkType("line")
+function useBarLineToggleProps(incomingProps) {
+  let viewProps = incomingProps
+  const localHandlers = useEventHandlers(
+    {
+      handleLeftClick: (props) => () => {
+        props.setMarkType("line")
+      },
+      handleRightClick: (props) => () => {
+        props.setMarkType("bar")
+      }
     },
-    handleRightClick: (props) => () => {
-      props.setMarkType("bar")
-    }
-  })
-)(BarLineToggle)
+    viewProps
+  )
+  viewProps = { ...viewProps, ...localHandlers }
+  return viewProps
+}
+
+function StatefulBarLineToggle(incomingProps) {
+  const viewProps = useBarLineToggleProps(incomingProps)
+  return React.createElement(BarLineToggle, viewProps)
+}
+
+export default StatefulBarLineToggle

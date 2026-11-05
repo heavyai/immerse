@@ -4,12 +4,10 @@
 import React from "react"
 import { screen } from "@testing-library/react"
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import mockAppState from "utils/test-helpers/mock-app-state"
 import { renderWithRedux } from "jest/renderScaffolding"
-
 import ChartSettings from "./chart-settings"
-
 import { registerChart } from "charts/chart-registration"
 import contourChartDefinition from "charts/raster-chart/contour/definition"
 import pointMapDefinition from "charts/raster-chart/point/definition"

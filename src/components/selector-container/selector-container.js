@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useEventHandlers } from "hooks/use-event-handlers"
 import {
   ALL_NUMERICAL_TYPES,
   TEXT_AND_BOOL_TYPES,
@@ -12,15 +13,12 @@ import {
 } from "constants/magic-variables"
 import React from "react"
 import PropTypes from "prop-types"
-import compose from "recompose/compose"
 import cx from "classnames"
 import { KEYCODE } from "constants/keycode"
 import { CHART_TYPES } from "constants/charts"
 import SelectorPillParent from "components/selector-pill/selector-pill-parent"
 import SelectorPillWrapper from "components/selector-pill/selector-pill-wrapper"
 import { selectorShape } from "constants/prop-types"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
 import { getFullColumnName } from "components/join-manager/utils"
 
 function shouldStopAddingDimension({ option, chartType }) {
@@ -58,72 +56,6 @@ function shouldStopEditingSelector({ option, ...props }) {
   }
   return false
 }
-
-export const withStateContainer = compose(
-  withState("editMode", "setEditMode", false),
-  withState("isDropdownOpen", "setIsDropdownOpen", false),
-  withState("showCustom", "setShowCustom", false),
-  withState("showCustomBinSettings", "setShowCustomBinSettings", false),
-  withState("isPropagate", "setPropagation", true),
-  withState("isStopPropagate", "setStopPropagation", false),
-  withHandlers({
-    onOpenChange: (props) => (open) => {
-      props.setIsDropdownOpen(() => open)
-    },
-    startEditingSelector: (props) => () => {
-      if (props.dataSource) {
-        props.setEditMode(() => true)
-      }
-    },
-    stopEditingSelector: (props) => () => {
-      props.setEditMode(() => false)
-      props.setIsDropdownOpen(() => false)
-      props.setShowCustom(() => false)
-    },
-    onKeyDown: (props) => (e) => {
-      if (props.isStopPropagate) {
-        props.setStopPropagation(() => false)
-      } else if (props.isPropagate) {
-        switch (e.keyCode) {
-          case KEYCODE.Enter:
-            if (!props.isDropdownOpen) {
-              e.preventDefault()
-              props.setEditMode(() => false)
-              props.setIsDropdownOpen(() => false)
-              props.setShowCustom(() => false)
-            }
-            break
-          case KEYCODE.Esc:
-            e.preventDefault()
-            props.setEditMode(() => false)
-            props.setIsDropdownOpen(() => false)
-            props.setShowCustom(() => false)
-            break
-          default:
-            return
-        }
-      }
-    },
-    showCustomSQLSelector: (props) => (index) => {
-      props.setIsDropdownOpen(() => false)
-      props.setShowCustomBinSettings(() => false)
-      props.setShowCustom(() => true)
-      props.createNewCustomSQL(index)
-    },
-    closeCustomSelector: (props) => () => {
-      props.setIsDropdownOpen(() => true)
-      props.setShowCustom(() => false)
-    },
-    submitCustomDimension: (props) => () => {
-      props.setEditMode(() => false)
-      props.setIsDropdownOpen(() => false)
-      props.setShowCustom(() => false)
-    },
-    stopPropagation: (props) => () => {
-      props.setStopPropagation(() => true)
-    }
-  })
-)
 
 export const onValueChange = ({ index, selector = {}, ...props }) => (
   option
@@ -284,7 +216,91 @@ export function SelectorPillContent({ Popover, ...props }) {
   }
 }
 
-export default compose(
-  withStateContainer,
-  withHandlers({ onValueChange })
-)(SelectorContainer)
+export function useSelectorContainerState(incomingProps) {
+  let viewProps = incomingProps
+  const [editMode, setEditMode] = React.useState(false)
+  viewProps = { ...viewProps, editMode, setEditMode }
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false)
+  viewProps = { ...viewProps, isDropdownOpen, setIsDropdownOpen }
+  const [showCustom, setShowCustom] = React.useState(false)
+  viewProps = { ...viewProps, showCustom, setShowCustom }
+  const [showCustomBinSettings, setShowCustomBinSettings] = React.useState(
+    false
+  )
+  viewProps = { ...viewProps, showCustomBinSettings, setShowCustomBinSettings }
+  const [isPropagate, setPropagation] = React.useState(true)
+  viewProps = { ...viewProps, isPropagate, setPropagation }
+  const [isStopPropagate, setStopPropagation] = React.useState(false)
+  viewProps = { ...viewProps, isStopPropagate, setStopPropagation }
+  const selectionHandlers = useEventHandlers(
+    {
+      onOpenChange: (props) => (open) => {
+        props.setIsDropdownOpen(() => open)
+      },
+      startEditingSelector: (props) => () => {
+        if (props.dataSource) {
+          props.setEditMode(() => true)
+        }
+      },
+      stopEditingSelector: (props) => () => {
+        props.setEditMode(() => false)
+        props.setIsDropdownOpen(() => false)
+        props.setShowCustom(() => false)
+      },
+      onKeyDown: (props) => (e) => {
+        if (props.isStopPropagate) {
+          props.setStopPropagation(() => false)
+        } else if (props.isPropagate) {
+          switch (e.keyCode) {
+            case KEYCODE.Enter:
+              if (!props.isDropdownOpen) {
+                e.preventDefault()
+                props.setEditMode(() => false)
+                props.setIsDropdownOpen(() => false)
+                props.setShowCustom(() => false)
+              }
+              break
+            case KEYCODE.Esc:
+              e.preventDefault()
+              props.setEditMode(() => false)
+              props.setIsDropdownOpen(() => false)
+              props.setShowCustom(() => false)
+              break
+            default:
+              return
+          }
+        }
+      },
+      showCustomSQLSelector: (props) => (index) => {
+        props.setIsDropdownOpen(() => false)
+        props.setShowCustomBinSettings(() => false)
+        props.setShowCustom(() => true)
+        props.createNewCustomSQL(index)
+      },
+      closeCustomSelector: (props) => () => {
+        props.setIsDropdownOpen(() => true)
+        props.setShowCustom(() => false)
+      },
+      submitCustomDimension: (props) => () => {
+        props.setEditMode(() => false)
+        props.setIsDropdownOpen(() => false)
+        props.setShowCustom(() => false)
+      },
+      stopPropagation: (props) => () => {
+        props.setStopPropagation(() => true)
+      }
+    },
+    viewProps
+  )
+  viewProps = { ...viewProps, ...selectionHandlers }
+  const valueChangeHandlers = useEventHandlers({ onValueChange }, viewProps)
+  viewProps = { ...viewProps, ...valueChangeHandlers }
+  return viewProps
+}
+
+function StatefulSelectorContainer(incomingProps) {
+  const viewProps = useSelectorContainerState(incomingProps)
+  return React.createElement(SelectorContainer, viewProps)
+}
+
+export default StatefulSelectorContainer

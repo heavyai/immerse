@@ -45,7 +45,7 @@ import {
 } from "services/session"
 import { getUserPrivileges } from "actions/privileges-thunks"
 import { initializeProductTour } from "services/product-tour"
-import { replace } from "connected-react-router"
+import { replace } from "services/navigation"
 import { getDatabase } from "selectors"
 import {
   setServersJSONColors,

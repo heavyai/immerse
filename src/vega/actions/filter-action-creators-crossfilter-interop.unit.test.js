@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 
 import {
   FILTER_TYPE_ISNULL,
@@ -19,7 +19,7 @@ services.set("dc", {
   }
 })
 
-const middlewares = [thunk.withExtraArgument(services)]
+const middlewares = [withExtraArgument(services)]
 
 const mockStore = configureStore(middlewares)
 

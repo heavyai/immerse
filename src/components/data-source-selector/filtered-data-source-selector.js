@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { compose, withState } from "recompose"
 import React from "react"
 import PropTypes from "prop-types"
 import {
@@ -56,7 +55,21 @@ FilteredDataSourceSelector.propTypes = {
   dataSourceFilterFunc: PropTypes.func.isRequired
 }
 
-export default compose(
-  withState("isEditing", "setIsEditing", false),
-  connect(mapStateToProps, mapDispatchToProps)
+const ConnectedFilteredDataSourceSelector = connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(FilteredDataSourceSelector)
+
+function useFilteredDataSourceSelectorProps2(incomingProps) {
+  let viewProps = incomingProps
+  const [isEditing, setIsEditing] = React.useState(false)
+  viewProps = { ...viewProps, isEditing, setIsEditing }
+  return viewProps
+}
+
+function FilteredDataSourceSelectorWithState2(incomingProps) {
+  const viewProps = useFilteredDataSourceSelectorProps2(incomingProps)
+  return React.createElement(ConnectedFilteredDataSourceSelector, viewProps)
+}
+
+export default FilteredDataSourceSelectorWithState2

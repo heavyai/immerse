@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { createStore, applyMiddleware } from "redux"
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 import { getQueryRuntime } from "services/query-runtime"
 import { vegaResultsMiddleware } from "./middleware"
 import { withChartQueryData } from "./index"
@@ -22,7 +22,7 @@ it("keeps Vega rows and beats out of Redux state and action history", () => {
   const store = createStore((value = state, action) => {
     received.push(action)
     return value
-  }, applyMiddleware(thunk.withExtraArgument(services), vegaResultsMiddleware(runtime)))
+  }, applyMiddleware(withExtraArgument(services), vegaResultsMiddleware(runtime)))
   store.dispatch(requestData("1", "d", "t", "focus", 0, "10"))
   store.dispatch(
     receiveData("1", "d", "t", "focus", 0, "10", {

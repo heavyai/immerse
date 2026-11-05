@@ -47,16 +47,16 @@ describe("<JoinConditionSelector/>", () => {
     fireEvent.click(cards[0])
     expect(defaultProps.onSelect).toHaveBeenCalledTimes(0)
   })
-  it("should show tooltip on disabled option", () => {
+  it("should show tooltip on disabled option", async () => {
     defaultProps.leftType = "NONEXISTENT"
     defaultProps.rightType = "MULTIPOLYGON"
     render(<JoinConditionSelector {...defaultProps} />)
     const cards = screen.getAllByTestId("selectable-card")
-    fireEvent.mouseOver(cards[0])
+    fireEvent.focus(cards[0].parentElement)
     expect(
-      screen.getByText(
-        "Geometry types are not compatible with this join condition"
-      )
+      await screen.findByRole("tooltip", {
+        name: "Geometry types are not compatible with this join condition"
+      })
     ).toBeInTheDocument()
   })
 })

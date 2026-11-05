@@ -3,21 +3,7 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import compose from "recompose/compose"
 import Icon from "components/icon/icon"
-import mapProps from "recompose/mapProps"
-
-export const withSearchInputEvents = compose(
-  mapProps(({ updateSearchVal, ...rest }) => ({
-    onSearch: (e) => {
-      updateSearchVal(e.target.value)
-    },
-    clearSearch: () => {
-      updateSearchVal("")
-    },
-    ...rest
-  }))
-)
 
 SearchInput.propTypes = {
   clearSearch: PropTypes.func.isRequired,
@@ -49,4 +35,23 @@ export function SearchInput({ onSearch, searchVal, clearSearch, placeholder }) {
   )
 }
 
-export default withSearchInputEvents(SearchInput)
+function useSearchInputProps(incomingProps) {
+  let viewProps = incomingProps
+  viewProps = (({ updateSearchVal, ...rest }) => ({
+    onSearch: (e) => {
+      updateSearchVal(e.target.value)
+    },
+    clearSearch: () => {
+      updateSearchVal("")
+    },
+    ...rest
+  }))(viewProps)
+  return viewProps
+}
+
+function StatefulSearchInput(incomingProps) {
+  const viewProps = useSearchInputProps(incomingProps)
+  return React.createElement(SearchInput, viewProps)
+}
+
+export default StatefulSearchInput

@@ -43,9 +43,7 @@ export function mapDispatchToProps(dispatch, { chartId }) {
   }
 }
 
-export const options = {
-  pure: true
-}
+export const options = {}
 
 export default connect(
   mapStateToProps,

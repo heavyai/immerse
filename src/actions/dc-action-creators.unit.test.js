@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 import {
   chartRenderSuccess,
   handleAllChartsRendered
@@ -20,7 +20,7 @@ const mockDc = {
 }
 mockServices.set("dc", mockDc)
 
-const mockStore = configureStore([thunk.withExtraArgument(mockServices)])
+const mockStore = configureStore([withExtraArgument(mockServices)])
 
 const state = {
   dashboard: {

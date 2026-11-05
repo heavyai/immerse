@@ -9,23 +9,23 @@ import chartUpdateMiddleware from "utils/redux/chart-update-middleware"
 import cancelAsyncMiddleware from "utils/redux/cancel-async-middleware"
 import selectorDefaultUpdateMiddleware from "utils/redux/selector-default-update-middleware"
 import clearDashboard from "reducers/clear-dashboard"
-import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction"
+import { composeWithDevToolsLogOnlyInProduction as composeWithDevTools } from "@redux-devtools/extension"
 import createSagaMiddleware from "redux-saga"
 import { createLogger } from "redux-logger"
 import dataSourceReducer from "reducers/data-source-higher-order-reducer"
 import history from "services/history"
-import { routerMiddleware } from "connected-react-router"
+import { navigationMiddleware } from "services/navigation"
 import loadDashboard from "reducers/load-dashboard-higher-order-reducer"
 import resetAppState from "reducers/reset-app-state-higher-order-reducer"
 import rootSaga from "sagas/root-saga"
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 import { vegaResultsMiddleware } from "services/query-results/middleware"
 import { createFilterWorkflows } from "services/filter-workflows"
 import {
   getQueryRuntime,
   queryLifecycleMiddleware
 } from "services/query-runtime"
-import promiseMiddleware from "redux-promise-middleware"
+import promiseMiddleware from "utils/redux/promise-action-middleware"
 import { setAutoFreeze } from "immer"
 import { createActionMetrics } from "utils/modernization/metrics"
 import {
@@ -55,9 +55,9 @@ export default function createStoreWithServices(
   let middleware = [
     queryLifecycleMiddleware(queryRuntime),
     filters.middleware,
-    routerMiddleware(history),
+    navigationMiddleware(history),
     sagaMiddleware,
-    thunk.withExtraArgument(services),
+    withExtraArgument(services),
     promiseMiddleware(),
     applyDelay(),
     appErrorMiddleware(),

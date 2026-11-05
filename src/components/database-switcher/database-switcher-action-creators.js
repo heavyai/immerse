@@ -3,7 +3,7 @@
 
 import { exchangeSession } from "services/session"
 import { UPDATE_SESSION_INFO } from "constants/action-types"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import { routeToDashboardsList } from "../../utils/routerPath"
 import { handleGetUserRoles } from "../../actions/connection-action-creators"
 import { getUserPrivileges } from "../../actions/privileges-thunks"

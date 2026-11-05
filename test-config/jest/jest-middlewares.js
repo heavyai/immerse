@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { routerMiddleware } from "connected-react-router"
-import thunk from "redux-thunk"
+import { navigationMiddleware } from "services/navigation"
+import { withExtraArgument } from "redux-thunk"
 import promiseMiddleware from "redux-promise-middleware"
 import createSagaMiddleware from "redux-saga"
 import appErrorMiddleware from "../../src/utils/redux/app-error-middleware"
@@ -15,9 +15,9 @@ import MapD from "../../src/services/mapd"
 const sagaMiddleware = createSagaMiddleware()
 
 export default [
-  routerMiddleware(history),
+  navigationMiddleware(history),
   sagaMiddleware,
-  thunk.withExtraArgument(MapD),
+  withExtraArgument(MapD),
   promiseMiddleware(),
   applyDelay(),
   appErrorMiddleware(),

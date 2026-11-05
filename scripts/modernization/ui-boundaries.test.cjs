@@ -10,7 +10,12 @@ test("blocks retired primitive, hot-loader and Enzyme imports", () => {
     "@rmwc/tooltip/tooltip.css",
     "@material-ui/core/Slider",
     "react-hot-loader/root",
-    "enzyme"
+    "enzyme",
+    "recompose",
+    "react-toggle",
+    "react-selectize",
+    "@material-ui/pickers",
+    "connected-react-router"
   ]) {
     assert.equal(
       violations("component.tsx", `import widget from "${module}"`).length,

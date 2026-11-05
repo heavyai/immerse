@@ -2,17 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import BarLineToggle from "./bar-line-toggle"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
 import { setMarkType } from "charts/combo/line-chart2/line2-action-creators"
-import setPropTypes from "recompose/setPropTypes"
-
-const propTypes = {
-  chartId: PropTypes.string,
-  measureIndex: PropTypes.string.isRequired,
-  chooseLineStyle: PropTypes.func.isRequired
-}
 
 export function mapStateToProps({ charts }, { chartId, measureIndex }) {
   const chart = charts[chartId]
@@ -50,7 +41,10 @@ export function mergeProps(
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)
+const ConnectedBarLineToggleParent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(BarLineToggle)
+
+export default ConnectedBarLineToggleParent

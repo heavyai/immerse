@@ -10,7 +10,7 @@ import {
   updatePostFilters
 } from "reducers/charts/charts-reducer-helpers"
 import { createChartColor } from "reducers/charts/helpers/color-helpers"
-import compose from "recompose/compose"
+import compose from "lodash/flowRight"
 import { mapIdx } from "utils/ramda-helpers"
 import { maybeSetActive } from "./helpers/selectors-collection-helpers"
 import { updateDimensionNames } from "./helpers/dimension-object-helpers"

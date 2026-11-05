@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import ChartContainer from "./chart-container"
-import compose from "recompose/compose"
+import compose from "lodash/flowRight"
+import { dissoc } from "ramda"
 import { connect } from "react-redux"
 import connectToMapDServices from "utils/connect-to-mapd-services"
-import { dissoc } from "ramda"
 import filter from "ramda/src/filter"
 import { onEditPath } from "utils/routerPath"
 import { withChartQueryResults } from "services/query-results/react"
@@ -20,6 +20,13 @@ import {
 import { makeGetParameterValuesForChart } from "components/parameters/selectors"
 import { getChartAddonOfType } from "chart-addons/chart-addon-registry"
 
+const removeStateFromDCChart = compose(
+  dissoc("loading"),
+  dissoc("hasError"),
+  dissoc("dataError"),
+  dissoc("dcFlag")
+)
+
 const isSelectorUsable = (selector) =>
   selector.value && !selector.isError && !selector.inactive && !selector.loading
 
@@ -29,13 +36,6 @@ function selectChartStateForDCChart(chart) {
     dimensions: filter(isSelectorUsable, chart.dimensions)
   })
 }
-
-const removeStateFromDCChart = compose(
-  dissoc("loading"),
-  dissoc("hasError"),
-  dissoc("dataError"),
-  dissoc("dcFlag")
-)
 
 const areSelectorsLoading = (chart) =>
   chart.dimensions.concat(chart.measures).some((selector) => selector.loading)

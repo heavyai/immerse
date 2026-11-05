@@ -1,87 +1,125 @@
-# Wave 3: Owned UI primitives and runtime bridge
+# Wave 3: Owned UI and React 19
 
-Base: `wave-2` at `772e841`. Branch: `wave-3`.
+Base: `wave-2` at `772e841`. Branch: `wave-3`, on Omnistation.
+The React 18 bridge was committed as `21e3566`; the final target selected by the
+user is React/React DOM **19.3.1**, with React type declarations **19.3.0**.
 
-## Runtime and testing
+## Physical changes
 
-The selected compatibility runtime for this cutover is React/React DOM **18.3.1**,
-with the modern root API and automatic JSX transform. TypeScript is **5.9.3**;
-ESLint 8 and typescript-eslint 8 parse that syntax. React Hot Loader, its patched
-React DOM alias, Enzyme, the separate hooks testing library and react-test-renderer
-are removed. Existing hook tests use Testing Library's `renderHook`/`act` and
-observable async assertions. The three remaining Enzyme files are replaced by
-normal discovered behavior tests for login, hover-column removal and repeated
-root mounting.
+- `packages/ui/src/primitives.jsx` replaces the button, checkbox, switch,
+  tooltip, menu/popover, dialog and slider implementations with native controls
+  and Radix. `form-controls.jsx` owns native date/time, text, link, chip,
+  progress and file controls, plus React Select/Creatable Select. Styles live in
+  `primitives.module.css` and `form-controls.module.css`.
+- `packages/ui/src/tokens.css` aliases existing theme variables, customer tint
+  and accent colors. Portal layers are explicit: dialog 3000, menu 4000 and
+  tooltip 5000. Light, dark, Nexus light, custom tint, forced colors and reduced
+  motion retain their own behavior. No global Tailwind layer is introduced.
+- Callers import the seven primitive domains directly from `@immerse/ui`.
+  The old button/switch/slider widget implementations, their SCSS and obsolete
+  examples are deleted. Existing effectful dialog composition remains in the
+  application because it owns application behavior.
+- All product MUI imports and the unused theme-provider helpers are removed.
+  The two date/time consumers use the owned native field, preserving local/UTC
+  interpretation and millisecond precision. Chart date/number formats, GeoJSON
+  selection and table display settings move from Selectize to owned Select
+  controls. Presets and custom format creation remain available.
+- Remaining `react-toggle` consumers use the owned switch. The RC slider and
+  old toggle/selectize global stylesheets are deleted. Dashboard import uses
+  an owned file input/drop target instead of the old Dropzone React wrapper;
+  the existing three-line title/metadata/state format remains unchanged.
+- `src/runtime/mount-application.js` uses the modern root API. React Hot Loader,
+  its patched DOM alias, Enzyme and the separate hooks testing library are
+  removed. Repeated mount/unmount behavior and observable hook behavior replace
+  the old test adapters. All production React test-utils calls become native
+  bubbling keyboard events.
+- Application-authored Recompose imports are removed. Local state uses hooks,
+  connected views use ordinary components, and `use-event-handlers.js` keeps
+  event functions stable while reading committed inputs. Autocomplete option
+  updates use an effect; share-link feedback timers cancel on unmount.
+- React DnD 16 uses `DndProvider`, `useDrag` and `useDrop` for tabs and selectors.
+  Composed selector refs attach and detach both drag and drop connectors.
+- React Grid Layout 2 uses its current grid/drag/resize configuration and
+  position strategies. `use-element-size.js` replaces SizeMe with a scoped
+  ResizeObserver, disconnecting and ignoring queued callbacks on cleanup.
+  Dashboard window listeners and debounce timers also clean up. Layout merges
+  retain unknown saved item metadata when the engine reports new geometry.
+- React Virtualized 10 retains lists/grids/tables; AutoSizer now comes from its
+  supported separate package. Split Pane 3 uses explicit panes and resize
+  callbacks. CodeMirror, highlighting, React Redux 9, Redux 5 and thunk 3 are
+  updated for the selected runtime.
+- `src/services/navigation.js` replaces connected-react-router with owned
+  history actions, middleware, reducer and subscription cleanup. Router paths
+  and browser back/forward behavior are retained. The small owned promise-action
+  middleware preserves pending/fulfilled/rejected action behavior without the
+  abandoned Redux-4-only dependency.
+- Numeric binning reads render results through `useVegaChartData`, preserving
+  Wave 2's separation of query data from Redux.
+- TypeScript is 5.9.3, ESLint is 8 with typescript-eslint 8, and Jest transforms
+  the modern ESM dependencies used by the migrated controls. CI runs the owned
+  UI browser contracts after explicitly installing Chromium.
 
-This is explicitly the React 18 bridge, **not a claim of a React 19 migration**.
-Recompose, React DnD 7, date pickers and other retained libraries still depend on
-APIs removed by React 19. Their retirement must precede that next runtime cutover;
-no compatibility shim patches React or vendors to hide the removed APIs. The
-recorded dependency inventory includes peer-range mismatches rather than
-silencing them with blanket peer installation. Existing workspace peer policy
-and the approved Git-source exception remain unchanged.
+## Dependency policy
 
-Services now use modern React context. Query/render subscriptions use
-`useSyncExternalStore`; strict effect replay, invalidation and unmount checks
-verify the new subscription boundary. The application does not enable global
-StrictMode around unmigrated engines. Two production imports of React test-utils
-are replaced by native bubbling keyboard events. Debounced numerical/range
-slider callbacks cancel on cleanup.
+Versions remain centralized in the pnpm catalog and frozen root lockfile. The
+existing approved Git-source exception and exact eleven revisions are retained;
+no peer requirements or advisories are suppressed for this wave.
 
-The full application type check remains legacy work. Package declaration
-consumers pass separately. Webpack's ts-node execution now explicitly transpiles
-configuration; it does not pretend that executing a build type-checks the app.
-ESLint's existing CommonJS/legacy-type policy is retained across its upgrade;
-new recommended rules are not silently imposed as hundreds of unrelated fixes.
+RMWC's remaining domains are upgraded together to 14.3.5 with MDC 14 styles.
+A precise package extension supplies `@rmwc/touch-target@14.3.5`, imported but
+undeclared by upstream `@rmwc/button@14.3.5` through the retained snackbar action.
+Remove that extension when upstream fixes its manifest or the snackbar consumer
+is retired. The two nonexistent `collapsible-list.css` exports become the public
+`@rmwc/list/styles` entry; the architecture baseline records those two renames
+alongside removals. Overall occurrences fall from 582 before Wave 3 to 424.
 
-## UI ownership and physical changes
+Gauge and Skew-T retain older declared React peer ranges, and react-vega retains
+its existing Vega/vega-embed mismatch. These warnings remain visible. Gauge and
+Skew-T mount and remount in the real React 19 Chromium fixture; this is scoped
+compatibility evidence, not a certification of every engine interaction. Their
+source transfer remains part of the plugin/package work in Wave 4.
 
-`@immerse/ui` now implements button, checkbox, switch, tooltip, menu/popover,
-dialog and scalar/range slider primitives. Buttons/checkboxes/switches are native
-controls. Radix supplies portal, focus, dismissal and slider mechanics. Menu item
-keyboard navigation skips disabled items. Dialogs contain focus, support Escape
-and restore focus to the opening control. Widget button/switch/slider facades and
-their old globally scoped MDC overrides are removed. Callers import owned
-primitives directly; existing effectful dialog composition stays in the app.
+The attribution generator now uses `pnpm licenses list --json` so it includes
+transitive packages behind workspace/store symlinks. Walking only root links
+silently omitted those packages. The generated report covers tooling as well as
+application dependencies; production bundle license enforcement remains active.
 
-All direct imports of the seven targeted RMWC primitives and MUI Slider are
-removed from product source. Their unused direct dependencies, direct MDC CSS
-imports and stale widget example files are removed. Native menu-trigger buttons
-replace the directly actionable divs within menu anchors. Former MDC button flags
-are migrated to the owned `variant` API. Existing data table, text-field, radio,
-icon, progress, date-picker and other domains retain their current owners. Shared
-MDC CSS and `material-override.scss` remain because those consumers are not zero;
-this wave does not assert application-wide vendor-UI retirement.
+## Verification and limits
 
-`packages/ui/src/primitives.module.css` owns component styles. The only new global
-stylesheet, `@immerse/ui/tokens.css`, defines semantic aliases on the themed body.
-It retains the legacy HSL themes, customer accent and tint variables and maps the
-Nexus light theme to its gray scale. Portal content inherits the same aliases.
-Dialog/menu/tooltip layers are documented in the UI README. Forced colors and
-reduced motion are supported. No global Tailwind layer is introduced. Old global
-SCSS remains only for domains not yet migrated; it has not been mass-rewritten.
+`wave-3-validation.json` records the final checks; `wave-3-inventory.json` records
+the dependency/test inventory. The React 18 checkpoint evidence is preserved in
+`wave-3-react18-checkpoint.json` and commit `21e3566`.
 
-## Verification and rollback
+Chromium checks keyboard controls, tooltip/menu behavior, dialog focus containment
+and return, portal cleanup, scalar/range interaction, five theme modes, native
+millisecond date input, custom format creation, file selection and retained
+Gauge/Skew-T mounting. Screenshots are review evidence; there was no existing
+visual-diff baseline or complete accessibility certification.
 
-The isolated browser fixture is never imported by the product entry point. CPU
-CI installs Chromium explicitly and runs keyboard, focus return/containment,
-menu selection, range keyboard/pointer interactions and five theme/forced-color
-scenarios. Screenshots are review evidence, not a preexisting visual-diff baseline
-or a full accessibility certification. Its Sass loader uses the modern API.
+The real HeavyDB scenario uses only the approved synthetic eight-row dataset.
+It creates and saves a Vega dashboard, reloads three times, verifies visible bars
+and count 8 to 2 crossfiltering, resizes and drags the chart, then checks geometry
+after save/reload. Dashboard document and embed snapshots are checked unchanged.
+No anonymized production dashboards have been supplied; their coverage is still
+an explicit prerequisite for broader rollout.
 
-The real HeavyDB smoke scenario separately checks dashboard save, three reloads,
-visible Vega rendering and count 8 to 2 crossfiltering. Dashboard document and
-embed contract snapshots remain unchanged. No persisted schema or external API
-changes are intended. Compatibility and lifecycle tests cover the selected
-application slice; no all-engine or customer-production coverage is claimed.
+Package declaration consumers pass separately. The full application TypeScript
+check remains failing and is recorded separately; the old Wave 0 baseline failed
+before it could parse modern dependency declarations. The counts are not directly
+comparable. Webpack explicitly uses ts-node transpilation for configuration;
+a successful build does not imply application-wide type safety.
 
-`modernization:check` additionally prevents restoring the retired primitive,
-Enzyme and hot-loader imports. Existing architecture/catalog/export/dependency/
-cycle, license and high/critical audit gates remain active. Detailed results and
-limits are recorded in `wave-3-validation.json`; `wave-3-inventory.json` records
-the dependency/test layout. Historical wave evidence is unchanged.
+Remaining RMWC data table, text field, radio, icon, list and other domains still
+own consumers. Their shared MDC aggregate and `material-override.scss` remain.
+Global legacy SCSS cleanup and application-wide vendor-UI retirement are later
+incremental work; this wave establishes owned primitives and completes the
+selected runtime cutover. Global StrictMode is not enabled around legacy engines.
 
-Rollback this branch's commits together to return to the completed Wave 2
-runtime, lockfile and UI imports. There is no document-format rollback step.
-The parked preliminary stash remains available until the final branch is
-reviewed; it is not the source of later Wave 2 changes.
+`modernization:check` rejects reintroduction of the retired UI, Recompose,
+Selectize, Dropzone, date, sizing, routing and async bindings. Existing catalog,
+exports, dependency/cycle, license and blocking high/critical audit checks remain
+active. Lower-severity audit findings remain visible.
+
+Rollback the Wave 3 commits together to restore Wave 2's runtime, lockfile and UI
+imports. No persisted document conversion or rollback is required. The preliminary
+parked stash is retained until review; it is not the source of later Wave 2 fixes.

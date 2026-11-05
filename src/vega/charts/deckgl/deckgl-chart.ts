@@ -311,7 +311,6 @@ export function mergeProps(stateProps) {
 }
 
 export const options = {
-  pure: true,
   areStatesEqual: (next, prev) =>
     next.omnifilters === prev.omnifilters &&
     next.dashboard.streaming.last_request ===

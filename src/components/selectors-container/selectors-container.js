@@ -7,23 +7,12 @@ import {
   customMeasure,
   customPostFilter
 } from "actions/custom-selector-thunks"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import setPropTypes from "recompose/setPropTypes"
 import {
   editParameterizedCustomSQLSelector,
   OLD_SELECTORS_TO_MODAL_TYPE,
   openCustomSQLSelectorModal
 } from "components/custom-sql-manager/custom-sql-manager-actions"
-
-const propTypes = {
-  type: PropTypes.oneOf(["measures", "dimensions", "postFilters"]),
-  selectors: PropTypes.arrayOf(PropTypes.object).isRequired,
-  chartId: PropTypes.string.isRequired,
-  chartType: PropTypes.string.isRequired,
-  multiSourceIndex: PropTypes.number.isRequired
-}
 
 function mapStateToProps({ charts }, { chartId }) {
   return {
@@ -170,7 +159,4 @@ function mergeProps(
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)
-)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)

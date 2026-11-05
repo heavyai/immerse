@@ -64,7 +64,7 @@ import {
   set,
   view
 } from "ramda"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import fileSaver from "file-saver"
 import pushid from "pushid"
 import { ColumnMetadata } from "constants/prop-types"

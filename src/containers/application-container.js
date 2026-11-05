@@ -41,7 +41,6 @@ import {
   storeInLocalStorage
 } from "utils/local-storage"
 import { getNavigationTitle } from "utils/routerPath"
-import { withMuiTheme } from "utils/with-theme"
 
 const { ENABLE_MOCK_CONNECTOR, GLOBAL_SIDE_NAV } = available_feature_flags
 
@@ -197,4 +196,4 @@ class AppContainer extends PureComponent {
   }
 }
 
-export default withRouter(withMuiTheme(AppContainer))
+export default withRouter(AppContainer)

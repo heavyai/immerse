@@ -3,7 +3,8 @@
 
 import React, { FC, useState, useEffect } from "react"
 import { connect } from "react-redux"
-import { AutoSizer, List } from "react-virtualized"
+import { List } from "react-virtualized"
+import AutoSizer from "react-virtualized-auto-sizer"
 import { Checkbox } from "@immerse/ui"
 import { TextField } from "widgets/text-field/TextField"
 import { CircularProgress } from "@rmwc/circular-progress"
@@ -13,7 +14,6 @@ import {
   available_feature_flags
 } from "components/control-panel/featureflags"
 import { getDistinctColumnValues } from "actions/column-values-action-creators"
-
 import "./simple-categorical-multiselect-filter.scss"
 
 interface ColumnData {

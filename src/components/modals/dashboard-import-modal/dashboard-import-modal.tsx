@@ -1,19 +1,17 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { FC, useState } from "react"
-import { InfoDialog } from "widgets/dialog/Dialog"
 import {
   PrimaryButton,
   SecondaryButton,
   DialogTitle,
   DialogContent,
-  DialogActions
+  DialogActions,
+  FileDrop
 } from "@immerse/ui"
-
+import React, { FC, useState } from "react"
+import { InfoDialog } from "widgets/dialog/Dialog"
 import { IconButton } from "widgets/icon-button/Icon-button"
-import Dropzone from "react-dropzone-component"
-
 import IconImport from "components/svg-icons/icon-import"
 import ImportSuccessIcon from "components/svg-icons/icon-import-success"
 import ImportWarningIcon from "components/svg-icons/icon-import-warning"
@@ -27,7 +25,6 @@ import {
   BROWSE_MESSAGE_PREFIX,
   BROWSE_MESSAGE,
   BROWSE_MESSAGE_SUFFIX,
-  DRAG_BROWSE_MESSAGE,
   IMPORT_READY_MESSAGE,
   UNSUPPORTED_FILE_MESSAGE
 } from "constants/dashboard-import-modal"
@@ -85,6 +82,7 @@ const dropzoneEventHandlers = (setDashboardToImport, setFileLoadError) => ({
     reader.onerror = handleFileError(setFileLoadError)
 
     reader.readAsText(file)
+    return () => reader.abort()
   }
 })
 
@@ -116,25 +114,13 @@ const DashboardImportModal: FC<Props> = ({ hideModal, importDashboard }) => {
         />
       </DialogTitle>
       <DialogContent className="import-dialog-content">
-        <Dropzone
-          className="import-dropzone dropzone-clickable"
-          config={{
-            postUrl: "no-url"
-          }}
-          djsConfig={{
-            acceptedFiles: "application/json",
-            autoQueue: false,
-            autoProcessQueue: false,
-            dictDefaultMessage: DRAG_BROWSE_MESSAGE,
-            dictRemoveFile: "",
-            dictCancelUpload: "",
-            maxFiles: 1,
-            previewsContainer: null
-          }}
-          eventHandlers={dropzoneEventHandlers(
-            setDashboardToImport,
-            setFileLoadError
-          )}
+        <FileDrop
+          className="import-dropzone"
+          label="Choose dashboard file"
+          onFile={
+            dropzoneEventHandlers(setDashboardToImport, setFileLoadError)
+              .addedfile
+          }
         >
           {fileLoadError ? (
             <div className="import-message import-message-warning">
@@ -173,7 +159,7 @@ const DashboardImportModal: FC<Props> = ({ hideModal, importDashboard }) => {
               )}
             </div>
           )}
-        </Dropzone>
+        </FileDrop>
       </DialogContent>
       <DialogActions>
         <SecondaryButton

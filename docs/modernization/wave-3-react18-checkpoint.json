@@ -1,0 +1,60 @@
+{
+  "wave": "wave-3",
+  "baseCommit": "772e841",
+  "checkpoint": "React 18 bridge and seven owned primitive domains",
+  "host": "omni-lsn-uwx2z",
+  "toolchain": {
+    "node": "24.11.0",
+    "pnpm": "10.34.9",
+    "react": "18.3.1",
+    "typescript": "5.9.3"
+  },
+  "checks": {
+    "components": {
+      "suites": 26,
+      "tests": 94,
+      "failedTests": 0
+    },
+    "hooks": {
+      "suites": 32,
+      "tests": 172,
+      "failedTests": 0
+    },
+    "packages": {
+      "suites": 11,
+      "tests": 28
+    },
+    "bridgeAndCompatibility": {
+      "suites": 6,
+      "tests": 16,
+      "snapshots": 6
+    },
+    "uiBrowser": {
+      "passed": 6,
+      "source": "standalone fixture; keyboard, focus, range pointer/keyboard and five theme scenarios"
+    },
+    "heavydbBrowser": "passed: create/save, three reloads, count 8 to 2, visible Vega bar",
+    "frozenInstall": "passed",
+    "productionBuild": {
+      "passed": true,
+      "warnings": 318,
+      "licenseEnforcement": "passed"
+    },
+    "packageTypes": "passed",
+    "lint": "passed; one unused test variable warning",
+    "guards": "passed; architecture ratcheted to 439 occurrences",
+    "audit": {
+      "info": 0,
+      "low": 5,
+      "moderate": 28,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "limits": [
+    "Checkpoint does not complete React 19 or all vendor UI retirement.",
+    "Full application TypeScript remains a legacy baseline; executing Webpack configuration uses explicit ts-node transpilation.",
+    "No production-dashboard coverage, full-application unit-suite pass or complete accessibility certification is claimed.",
+    "Screenshots exercise semantic aliases and portals; no preexisting visual-diff baseline exists."
+  ]
+}

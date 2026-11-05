@@ -1,11 +1,9 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import compose from "recompose/compose"
+import React from "react"
 import { connect } from "react-redux"
-import mapProps from "recompose/mapProps"
 import SqlEditorDataViewer from "components/sql-editor/sql-editor-data-viewer"
-import withState from "recompose/withState"
 
 const DEFAULT_HEIGHT = 320
 
@@ -29,8 +27,33 @@ const eventHandlers = ({ query, queryId, sessionId, url, ...rest }) => ({
   ...rest
 })
 
-export default compose(
-  withState("viewerHeight", "setViewerHeight", DEFAULT_HEIGHT),
-  connect(mapStateToProps),
-  mapProps(eventHandlers)
-)(SqlEditorDataViewer)
+function useSqlEditorDataViewerParentProps(incomingProps) {
+  let viewProps = incomingProps
+  viewProps = eventHandlers(viewProps)
+  return viewProps
+}
+
+function StatefulSqlEditorDataViewerParent(incomingProps) {
+  const viewProps = useSqlEditorDataViewerParentProps(incomingProps)
+  return React.createElement(SqlEditorDataViewer, viewProps)
+}
+
+const ConnectedSqlEditorDataViewerParent = connect(mapStateToProps)(
+  StatefulSqlEditorDataViewerParent
+)
+
+function useSqlEditorDataViewerParentProps3(incomingProps) {
+  let viewProps = incomingProps
+  const [viewerHeight, setViewerHeight] = React.useState(() =>
+    DEFAULT_HEIGHT(viewProps)
+  )
+  viewProps = { ...viewProps, viewerHeight, setViewerHeight }
+  return viewProps
+}
+
+function SqlEditorDataViewerParentWithState3(incomingProps) {
+  const viewProps = useSqlEditorDataViewerParentProps3(incomingProps)
+  return React.createElement(ConnectedSqlEditorDataViewerParent, viewProps)
+}
+
+export default SqlEditorDataViewerParentWithState3

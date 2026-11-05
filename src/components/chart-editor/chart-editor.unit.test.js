@@ -2,17 +2,20 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { DragDropContext } from "react-dnd"
-import HTML5Backend from "react-dnd-html5-backend"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import { render, screen } from "@testing-library/react"
-
 import withStoreContext from "utils/test-helpers/with-store-context"
 import mockAppState from "utils/test-helpers/mock-app-state"
 import { ChartEditor } from "./chart-editor"
 import { BrowserRouter as Router } from "react-router-dom"
 import "charts/chart-definitions"
 
-const Editor = DragDropContext(HTML5Backend)(ChartEditor)
+const Editor = (props) => (
+  <DndProvider backend={HTML5Backend}>
+    <ChartEditor {...props} />
+  </DndProvider>
+)
 const CHART_ID = "7"
 
 const defaultProps = {

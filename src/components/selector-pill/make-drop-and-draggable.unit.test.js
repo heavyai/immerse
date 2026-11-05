@@ -1,7 +1,30 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { drop } from "./make-drop-and-draggable"
+import React from "react"
+import { render } from "@testing-library/react"
+import { connectElement, drop as dropSelector } from "./make-drop-and-draggable"
+
+it("attaches both drag and drop connectors and the original ref to the selector node, then detaches all three", () => {
+  const drag = jest.fn()
+  const drop = jest.fn()
+  const original = jest.fn()
+  const Selector = () =>
+    connectElement(drag)(
+      connectElement(drop)(<div ref={original} data-testid="pill" />)
+    )
+  const { getByTestId, unmount } = render(
+    <Selector selectorType="dimensions" index={0} />
+  )
+  const node = getByTestId("pill")
+  for (const connector of [drag, drop, original]) {
+    expect(connector).toHaveBeenCalledWith(node)
+  }
+  unmount()
+  for (const connector of [drag, drop, original]) {
+    expect(connector).toHaveBeenLastCalledWith(null)
+  }
+})
 
 describe("SelectorPill Parent", () => {
   describe("when component is dragged and dropped", () => {
@@ -22,7 +45,7 @@ describe("SelectorPill Parent", () => {
       getItem: () => ({ index: 1 })
     }
 
-    drop(props, monitor)
+    dropSelector(props, monitor)
 
     it("should call the swapSelectors prop", () => {
       expect(props.swapSelectors).toHaveBeenCalled()

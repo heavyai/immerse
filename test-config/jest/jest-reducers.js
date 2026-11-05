@@ -18,7 +18,7 @@ import tablesReference from "../../src/reducers/tables-reference-reducer"
 import cohorts from "../../src/components/new-filters/cohorts-reducer"
 import ui from "../../src/reducers/ui-reducer"
 import { createBrowserHistory } from "history"
-import { connectRouter } from "connected-react-router"
+import { createNavigationReducer } from "services/navigation"
 import omnifilters from "../../src/vega/reducers/filters-reducer"
 import charts from "../../src/reducers/charts/charts-reducer"
 import { joinDataSourcesReducer as joinDataSources } from "../../src/reducers/join-reducer"
@@ -37,7 +37,7 @@ export default {
   omnifilters,
   // sqlEditor,
   // filterZones,
-  router: connectRouter(createBrowserHistory()),
+  router: createNavigationReducer(createBrowserHistory()),
   app,
   chartEditor,
   connection,

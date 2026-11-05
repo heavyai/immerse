@@ -56,7 +56,7 @@ import { isNumerical } from "constants/data-types"
 import Services from "services/immerse"
 import action from "utils/redux/action"
 import { CHART_TYPES } from "../constants/charts"
-import { replace } from "connected-react-router"
+import { replace } from "services/navigation"
 import {
   getFeatureFlag,
   available_feature_flags

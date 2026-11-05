@@ -11,7 +11,7 @@ import {
   TUTORIALS_URL
 } from "constants/hyperlinks"
 import { clearDashboard } from "actions/dashboard-action-creators"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import resetAppState from "actions/reset-app-state-action-creator"
 import { showModal } from "actions/ui-action-creators"
 import {

@@ -4,7 +4,7 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import { Provider } from "react-redux"
-
+import configureStore from "redux-mock-store"
 import ChartSettingsGeoJsonDropdown from "./chart-settings-geojson-dropdown"
 
 describe("ChartSettingsGeoJsonDropdown", () => {
@@ -20,17 +20,16 @@ describe("ChartSettingsGeoJsonDropdown", () => {
     clearJoinDataSource: jest.fn()
   }
 
-  const store = {
-    getState: () => ({
-      dashboard: { dataSources: {} },
-      tables: { list: [], listWithMeta: [] },
-      joinDataSources: [],
-      tablesMeta: {},
-      connection: { roles: [] }
-    }),
-    dispatch: jest.fn(),
-    subscribe: jest.fn()
-  }
+  const store = configureStore([])({
+    dashboard: { dataSources: {} },
+    tables: { list: [], listWithMeta: [] },
+    joinDataSources: [],
+    tablesMeta: {},
+    connection: { roles: [] }
+  })
+
+  // This markup fixture does not execute the nested source selector backend requests.
+  store.dispatch = jest.fn()
 
   it("renders ChartSourceSelector when poly raster is enabled and appropriate chart type", () => {
     const { container } = render(

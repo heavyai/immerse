@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import DimensionBinRangeSettings from "./dimension-bin-range-settings"
 import { dimensionShape } from "constants/prop-types"
 import { COLUMN_CARDINALITY_THRESHOLD } from "constants/magic-variables"
-import Toggle from "react-toggle"
+import { Switch as Toggle } from "@immerse/ui"
 
 DimensionBinSettings.propTypes = {
   dimension: dimensionShape.isRequired,

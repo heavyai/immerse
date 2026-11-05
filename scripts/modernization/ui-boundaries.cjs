@@ -20,20 +20,12 @@ function violations(file, source) {
       if (
         retired.test(value) ||
         /^(@hot-loader\/|react-hot-loader|enzyme($|\/))/.test(value) ||
-        value === "@material-ui/core/Slider"
-      ) {
-        errors.push(`${file}: retired UI dependency ${value}`)
-      }
-      if (
-        value === "@material-ui/core" &&
-        ts.isImportDeclaration(node) &&
-        node.importClause?.namedBindings &&
-        ts.isNamedImports(node.importClause.namedBindings) &&
-        node.importClause.namedBindings.elements.some(
-          (item) => (item.propertyName || item.name).text === "Slider"
+        /^@material-ui\//.test(value) ||
+        /^(recompose|react-selectize|react-dropzone-component|react-dates|react-sizeme|react-toggle|connected-react-router|redux-promise-middleware|redux-devtools-extension|rc-slider)($|\/)/.test(
+          value
         )
       ) {
-        errors.push(`${file}: sliders belong to @immerse/ui`)
+        errors.push(`${file}: retired UI dependency ${value}`)
       }
     }
     ts.forEachChild(node, visit)

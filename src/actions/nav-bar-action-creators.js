@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 
 import { getDatabase } from "selectors"
 import { routeToDashboardsList } from "utils/routerPath"

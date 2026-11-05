@@ -2,15 +2,26 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { render, waitFor } from "@testing-library/react"
+import { render, waitFor, act } from "@testing-library/react"
 import withStoreContext from "utils/test-helpers/with-store-context"
 import HeavyServicesProvider from "containers/heavy-services-provider"
 import mockAppState from "utils/test-helpers/mock-app-state"
 import Services from "services/immerse"
 import history from "services/history"
 import { Router } from "react-router-dom"
-
 import Dashboard from "./dashboard"
+import { removePointMapEventListeners } from "actions/dc-action-creators"
+jest.mock("actions/dc-action-creators", () => ({
+  ...jest.requireActual("actions/dc-action-creators"),
+  addPointMapEventListeners: jest.fn((id) => ({
+    type: "TEST_ADD_POINT_LISTENERS",
+    id
+  })),
+  removePointMapEventListeners: jest.fn((id) => ({
+    type: "TEST_REMOVE_POINT_LISTENERS",
+    id
+  }))
+}))
 import { createCrossfilterService } from "services/crossfilter"
 import { paramState } from "components/parameters/parameter-mock-store"
 
@@ -134,7 +145,9 @@ describe("Dashboard Component", () => {
       const nextProps = { ...defaultProps, editing: false, dispatch }
       rerender(createDashboardElement(nextProps, state, dispatch))
 
-      expect(dispatch).toHaveBeenCalledTimes(2)
+      expect(dispatch).toHaveBeenCalledWith(
+        expect.objectContaining({ type: "TEST_ADD_POINT_LISTENERS" })
+      )
     })
 
     it("should removePointMapEventListeners when switching to edit mode for an existing chart", () => {
@@ -162,7 +175,12 @@ describe("Dashboard Component", () => {
 
       rerender(createDashboardElement(nextProps, state, dispatch))
 
-      expect(dispatch).toHaveBeenCalledTimes(2)
+      expect(dispatch).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: "TEST_REMOVE_POINT_LISTENERS",
+          id: "1"
+        })
+      )
     })
 
     it("should removePointMapEventListeners when switching to edit mode for a new chart", () => {
@@ -190,7 +208,7 @@ describe("Dashboard Component", () => {
 
       rerender(createDashboardElement(nextProps, state, dispatch))
 
-      expect(dispatch).toHaveBeenCalledTimes(1)
+      expect(removePointMapEventListeners).not.toHaveBeenCalledWith("2")
     })
   })
 
@@ -240,10 +258,10 @@ describe("Dashboard Component", () => {
 
       const dashboardRoot = dashboardRef.current
 
-      dashboardRoot.setState({ rowHeight: 12, colWidth: 32 })
+      act(() => dashboardRoot.setState({ rowHeight: 12, colWidth: 32 }))
       expect(dashboardRoot.state.rowHeight).toEqual(12)
 
-      dashboardRoot.recalculateGridLayout()
+      act(() => dashboardRoot.recalculateGridLayout())
 
       expect(dashboardRoot.state.rowHeight).toEqual(32)
     })

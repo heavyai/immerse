@@ -5,7 +5,8 @@ import React, { useState, useRef, useEffect } from "react"
 import sqlFormatter from "sql-formatter"
 import cx from "classnames"
 import { debounce } from "lodash"
-import SplitPane from "react-split-pane"
+import { SplitPane, Pane } from "react-split-pane"
+import "react-split-pane/styles.css"
 import { Icon } from "@rmwc/icon"
 import { Tooltip, PrimaryButton, SecondaryButtonNoBorder } from "@immerse/ui"
 import { CircularProgress } from "@rmwc/circular-progress"
@@ -14,7 +15,6 @@ import "@material/snackbar/dist/mdc.snackbar.css"
 import "@rmwc/circular-progress/circular-progress.css"
 
 import JupyterButton from "components/jupyter/JupyterButton"
-
 import {
   SQL_EDITOR_TEST_ID_RUN_BUTTON,
   SQL_EDITOR_TEST_ID_TABLE_BROWSER_TAB,
@@ -241,35 +241,42 @@ export default function SqlEditorContent({
 
         <div className="sql-editor__pane-container" ref={splitPaneRef}>
           <SplitPane
-            pane2Style={{
-              // This prevents a scrollbar from flickering in/out as the user drags
-              // the pane and the results table resizes
-              overflowY: isResizingResults ? "hidden" : "auto"
+            direction="vertical"
+            style={{
+              height: "100%",
+              "--split-pane-divider-color": "var(--ui-border)",
+              "--split-pane-focus-color": "var(--ui-accent)"
             }}
-            defaultSize={`${DEFAULT_INPUT_PANE_HEIGHT}px`}
-            split="horizontal"
-            minSize={100}
-            maxSize={-100}
-            onChange={debouncedUpdateResultsHeight}
-            onDragStarted={() => setIsResizingResults(true)}
-            onDragFinished={() => setIsResizingResults(false)}
+            onResize={() => debouncedUpdateResultsHeight()}
+            onResizeStart={() => setIsResizingResults(true)}
+            onResizeEnd={() => setIsResizingResults(false)}
           >
-            <div className="sql-editor__top-pane" dir="ltr" ref={inputPaneRef}>
-              <SqlEditorInput
-                onEnter={runQuery}
-                onSelection={onSelection}
-                setEditor={setEditorInstance}
-              />
-            </div>
-
-            <div className="sql-editor__bottom-pane" dir="ltr">
-              {!loading && lastQuery && !lastQueryIsFromPreviousSession ? (
-                <SqlEditorResults
-                  queryResults={lastQuery}
-                  resultsTableHeight={resultsTableHeight}
+            <Pane defaultSize={`${DEFAULT_INPUT_PANE_HEIGHT}px`} minSize={100}>
+              <div
+                className="sql-editor__top-pane"
+                dir="ltr"
+                ref={inputPaneRef}
+              >
+                <SqlEditorInput
+                  onEnter={runQuery}
+                  onSelection={onSelection}
+                  setEditor={setEditorInstance}
                 />
-              ) : null}
-            </div>
+              </div>
+            </Pane>
+            <Pane
+              minSize={100}
+              style={{ overflowY: isResizingResults ? "hidden" : "auto" }}
+            >
+              <div className="sql-editor__bottom-pane" dir="ltr">
+                {!loading && lastQuery && !lastQueryIsFromPreviousSession ? (
+                  <SqlEditorResults
+                    queryResults={lastQuery}
+                    resultsTableHeight={resultsTableHeight}
+                  />
+                ) : null}
+              </div>
+            </Pane>
           </SplitPane>
         </div>
       </div>

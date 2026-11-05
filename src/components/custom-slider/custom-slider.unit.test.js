@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { render, fireEvent } from "@testing-library/react"
+import { render, fireEvent, act } from "@testing-library/react"
 import CustomSlider from "components/custom-slider/custom-slider"
 
 describe("Custom Slider Component", () => {
@@ -98,11 +98,13 @@ describe("Custom Slider Component", () => {
     )
 
     // Seed internal value to 2 to represent an existing slider value
-    sliderRef.current.setState({
-      inputValues: 2,
-      sliderValue: 2,
-      value: 2
-    })
+    act(() =>
+      sliderRef.current.setState({
+        inputValues: 2,
+        sliderValue: 2,
+        value: 2
+      })
+    )
 
     const form = container.querySelector(".input-wrap.end form")
     const input = getByTestId("slider-input")
@@ -127,11 +129,13 @@ describe("Custom Slider Component", () => {
     )
 
     // Seed internal value to the current range
-    sliderRef.current.setState({
-      inputValues: [2, 10],
-      sliderValue: [2, 10],
-      value: [2, 10]
-    })
+    act(() =>
+      sliderRef.current.setState({
+        inputValues: [2, 10],
+        sliderValue: [2, 10],
+        value: [2, 10]
+      })
+    )
 
     const form = container.querySelector(".input-wrap.start form")
     const startInput = container.querySelector(".start-input")
@@ -156,11 +160,13 @@ describe("Custom Slider Component", () => {
     )
 
     // Seed internal value to the current range
-    sliderRef.current.setState({
-      inputValues: [2, 10],
-      sliderValue: [2, 10],
-      value: [2, 10]
-    })
+    act(() =>
+      sliderRef.current.setState({
+        inputValues: [2, 10],
+        sliderValue: [2, 10],
+        value: [2, 10]
+      })
+    )
 
     const form = container.querySelector(".input-wrap.start form")
     const startInput = container.querySelector(".start-input")
@@ -196,7 +202,7 @@ describe("Custom Slider Component", () => {
       />
     )
 
-    sliderRef.current.onSliderChange(7)
+    act(() => sliderRef.current.onSliderChange(7))
 
     expect(sliderRef.current.state.sliderValue).toEqual(7)
   })
@@ -214,7 +220,7 @@ describe("Custom Slider Component", () => {
       />
     )
 
-    sliderRef.current.onSliderAfter(10)
+    act(() => sliderRef.current.onSliderAfter(10))
 
     expect(onValueChange).toHaveBeenCalledWith(10)
   })

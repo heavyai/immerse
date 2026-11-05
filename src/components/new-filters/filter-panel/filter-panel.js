@@ -7,30 +7,25 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { CohortSnackbar } from "./components/cohort-snackbar"
 import cx from "classnames"
-import "@rmwc/list/collapsible-list.css"
+import "@rmwc/list/styles"
 import { SecondaryButton, Tooltip } from "@immerse/ui"
 import { Icon } from "@rmwc/icon"
-
 import "@rmwc/icon/icon.css"
 
 import { redrawAll } from "actions/dc-action-creators"
-
 import * as filterStateActions from "vega/actions/filter-state-actions"
 import * as filterCommands from "services/filter-commands"
 import { doRedrawAll } from "services/legacy-dc-filter-adapter"
 import { isOldFilter } from "vega/constants/filter-metadata-types"
 import { hasNonBoundingBoxNonGeoJoinFilter } from "vega/utils/filter"
-
 import {
   highlightCharts,
   dehighlightCharts,
   toggleChartFilters
 } from "actions/charts-action-creators"
 import { updateChart } from "actions/update-chart-action-creator"
-
 import { setChartFilters } from "actions/charts-filter-action-creators"
 import { FILTER_TYPE_SIMPLE } from "vega/constants/filter-type-constants"
-
 import {
   addFilterToFilterSet,
   makeCohortFromSelectedFilterSet,
@@ -41,45 +36,35 @@ import {
   toggleCohortAggregateFilter,
   setCohortAggregateFilterValidity
 } from "../filter-sets-action-creators"
-
 import { deleteCohort, deleteAllCohorts } from "../cohorts-action-creators"
-
 import { getFilterSets, getSelectedFilterSet } from "../filter-sets-selectors"
-
 import { makeFilterValidator } from "../filter-selectors"
-
 import {
   openCustomSQLFilterModal,
   editParameterizedCustomSQLSelector
 } from "components/custom-sql-manager/custom-sql-manager-actions"
-
 import { showCohortBuilderModal } from "components/cohort-builder/cohort-builder-actions"
-
 import {
   SWITCH_SELECTED_DASHBOARD_COHORT,
   SUBMIT_COHORT_AGGREGATE_FILTER,
   SUBMIT_DASHBOARD_FILTER
 } from "components/new-filters/filter-component/filter-column-editor-actions"
-
 import {
   unsetFilterNewlyCreated,
   setFilterPanelViewMode,
   setFilterNewlyCreated
 } from "components/new-filters/filters-actions"
-
 import {
   openCategorySelectionModal,
   makeCategorySelection,
   CategorySelectionsPropType
 } from "actions/category-selection-modal-action-creators"
-
 import IconSimpleFilters from "components/svg-icons/icon-simple-filters"
 import {
   updateFilterX,
   deleteFilterX,
   toggleFilterX
 } from "vega/actions/filter-action-creators-crossfilter-interop"
-
 import "./filter-panel.scss"
 
 import { CollapsibleList } from "@rmwc/list"
@@ -91,18 +76,15 @@ import AddFilterButtonContainer from "./components/add-filter-button-container"
 import SectionTitle from "components/dashboard-config-panel/components/section-title"
 import FilterPanelModeToggle from "components/new-filters/filter-panel/components/filter-panel-mode-toggle"
 import CohortNameInput from "./components/cohort-name-input"
-
 import {
   getActiveDataSources,
   getFiltersInCurrentFilterSetByDataSource
 } from "utils/currently-active-datasources"
-
 import { FILTER_PANEL_VIEWS } from "./constants"
 import {
   optionNameFromFilter,
   getChildlessFilter
 } from "../filter-component/filter-component-options"
-
 import { isSupportedTypeForDashboardFilter } from "components/new-filters/filter-component/data-type-filters"
 import { getTablesForDataSource } from "components/join-manager/utils"
 

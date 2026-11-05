@@ -6,10 +6,10 @@ import PropTypes from "prop-types"
 import FilterDropdownMenu from "./filter-dropdown-menu"
 
 export default function FilterSelect({
-  selectedOption,
+  selectedOption = {},
   onMenuSelect,
   testId,
-  options,
+  options = [],
   menuIsOpen,
   openMenu,
   closeMenu,
@@ -100,9 +100,4 @@ FilterSelect.propTypes = {
   ),
   menuIsOpen: PropTypes.bool,
   menuIsDisabled: PropTypes.bool
-}
-
-FilterSelect.defaultProps = {
-  options: [],
-  selectedOption: {}
 }

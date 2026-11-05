@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Icon } from "@rmwc/icon"
-
 import {
   ALL_NUMERICAL_TYPES,
   GEO_TYPES,
@@ -17,9 +16,7 @@ import {
 import React from "react"
 import PropTypes from "prop-types"
 import AutocompleteParent from "components/autocomplete/autocomplete-parent"
-import compose from "recompose/compose"
 import cx from "classnames"
-import mapProps from "recompose/mapProps"
 import GeoPinIcon from "components/svg-icons/icon-geo-pin"
 import CustomSelectorIcon from "components/svg-icons/icon-custom-selector"
 import { CustomSQLTypes } from "components/custom-sql-manager/custom-sql-manager-actions"
@@ -50,14 +47,6 @@ export function shouldDropDown(props) {
     return true
   }
 }
-
-const mapDefaultProps = mapProps((props) => ({
-  placeholder: `Select a ${props.dimension ? "dimension" : "measure"}`,
-  defaultValue:
-    props.selector.value || props.selector.custom ? props.selector : false,
-  shouldDropDown: shouldDropDown(props),
-  ...props
-}))
 
 const mapStateToProps = (state) => ({
   isSuperuser: state.connection.isSuperuser
@@ -197,7 +186,25 @@ function SelectorDropdown(props) {
   )
 }
 
-export default compose(
-  connect(mapStateToProps),
-  mapDefaultProps
-)(SelectorDropdown)
+function useSelectorDropdownProps(incomingProps) {
+  let viewProps = incomingProps
+  viewProps = ((props) => ({
+    placeholder: `Select a ${props.dimension ? "dimension" : "measure"}`,
+    defaultValue:
+      props.selector.value || props.selector.custom ? props.selector : false,
+    shouldDropDown: shouldDropDown(props),
+    ...props
+  }))(viewProps)
+  return viewProps
+}
+
+function StatefulSelectorDropdown(incomingProps) {
+  const viewProps = useSelectorDropdownProps(incomingProps)
+  return React.createElement(SelectorDropdown, viewProps)
+}
+
+const ConnectedSelectorDropdown = connect(mapStateToProps)(
+  StatefulSelectorDropdown
+)
+
+export default ConnectedSelectorDropdown

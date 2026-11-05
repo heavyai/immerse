@@ -1,14 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import compose from "recompose/compose"
 import { connect } from "react-redux"
 import Dashboard from "./dashboard"
-import PropTypes from "prop-types"
-import setPropTypes from "recompose/setPropTypes"
 import { withRouter } from "react-router-dom"
 import { getUserConfigurableUISettings } from "reducers/user-configurable-ui-reducer"
-
 import {
   getFeatureFlag,
   available_feature_flags
@@ -21,10 +17,6 @@ const {
   DEFAULT_FILTER_PANEL_OPEN,
   RESTRICTED_VIEWING
 } = available_feature_flags
-
-const propTypes = {
-  params: PropTypes.object.isRequired
-}
 
 function mapStateToProps(state) {
   const isDashboardLoaded = Boolean(
@@ -87,7 +79,8 @@ function mapStateToProps(state) {
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps)
-)(withRouter(Dashboard))
+const ConnectedDashboardContainer = connect(mapStateToProps)(
+  withRouter(Dashboard)
+)
+
+export default ConnectedDashboardContainer

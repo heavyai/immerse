@@ -10,7 +10,7 @@ import { SimpleListItem } from "@rmwc/list"
 import { List } from "widgets/list/List"
 import { Icon } from "@rmwc/icon"
 import { RenderTypeInput } from "components/control-panel/feature-flag-inputs"
-import "@rmwc/list/collapsible-list.css"
+import "@rmwc/list/styles"
 
 import FEATUREFLAG_DEFINITIONS from "./featureflag-definitions.json"
 import {
@@ -21,7 +21,6 @@ import {
   getFeatureFlagDefinition,
   groupForFlag
 } from "./featureflags"
-
 import "./control-panel.scss"
 
 /*

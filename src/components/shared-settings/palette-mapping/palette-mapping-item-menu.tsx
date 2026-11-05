@@ -1,14 +1,12 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { Link, Tooltip } from "@immerse/ui"
 import React from "react"
 import cx from "classnames"
 import { PaletteMapping } from "../types"
-import { Link } from "@material-ui/core"
-import { Tooltip } from "@immerse/ui"
 import { WarningGradientIcon } from "components/svg-icons/icon-warning-gradient"
 import { PaletteMappingSelectorItem } from "./palette-mapping-selector-item"
-
 import { IconButton } from "@rmwc/icon-button"
 import { IconSaveOutline } from "components/svg-icons/icon-save-outline"
 import { IconTrashOutline } from "components/svg-icons/icon-trash-outline"

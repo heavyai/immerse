@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-@import "@material/react-floating-label/index";
 @import "~base/variables";
 
 @mixin notch-border($borderColor) {
@@ -205,3 +204,6 @@ body:not(.light2-mode) .multi-select {
 .select__menu-portal {
     @extend .multi-select;
 }
+
+.multi-select .floating-label { position: absolute; top: 6px; left: 8px; color: var(--dimTextOnDark); pointer-events: none; }
+.multi-select .floating-label.is-floating { top: -9px; padding: 0 3px; font-size: 11px; background: var(--grayDp24); }

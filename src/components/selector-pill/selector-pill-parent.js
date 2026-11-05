@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import React from "react"
 import * as SelectorActions from "actions/selector-action-creators"
-
 import { getIsNonGeoJoinedChoroplethColorMeasure } from "components/measure-selectors-popover/measure-selectors-popover-parent"
 import {
   editParameterizedCustomSQLSelector,
@@ -16,33 +16,13 @@ import {
   getSelectorPillStyles
 } from "./selector-pill-parent-helpers"
 import { shouldShowAggType } from "utils/selector-helpers"
-
-import compose from "recompose/compose"
 import { connect } from "react-redux"
 import enhanceComponentIf from "utils/enhance-component-if"
 import makeDropAndDraggable from "./make-drop-and-draggable"
-import mapProps from "recompose/mapProps"
-import PropTypes from "prop-types"
 import SelectorPill from "./selector-pill"
-import { selectorShape } from "constants/prop-types"
-import setPropTypes from "recompose/setPropTypes"
 import { TIME_UNITS } from "constants/data-types"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { removeCustomDomainRange } from "actions/charts-color-action-creators"
-
-const propTypes = {
-  aggType: PropTypes.string,
-  chartId: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  label: PropTypes.string,
-  name: PropTypes.string,
-  selector: selectorShape.isRequired,
-  openSelectorPopover: PropTypes.func.isRequired,
-  removeSelector: PropTypes.func.isRequired,
-  selectorType: PropTypes.oneOf(["measures", "dimensions", "postFilters"]),
-  type: PropTypes.string,
-  value: PropTypes.string
-}
 
 export function mapStateToProps(
   { charts },
@@ -171,9 +151,24 @@ export function mergeProps(props) {
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps),
-  makeDropAndDraggable,
-  mapProps(mergeProps)
-)(SelectorPill)
+function useSelectorPillParentProps(incomingProps) {
+  let viewProps = incomingProps
+  viewProps = mergeProps(viewProps)
+  return viewProps
+}
+
+function StatefulSelectorPillParent(incomingProps) {
+  const viewProps = useSelectorPillParentProps(incomingProps)
+  return React.createElement(SelectorPill, viewProps)
+}
+
+const DraggableSelectorPillParent = makeDropAndDraggable(
+  StatefulSelectorPillParent
+)
+
+const ConnectedSelectorPillParent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DraggableSelectorPillParent)
+
+export default ConnectedSelectorPillParent

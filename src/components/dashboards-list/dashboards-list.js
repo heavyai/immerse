@@ -3,14 +3,13 @@
 
 import React, { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
-import { AutoSizer, List } from "react-virtualized"
+import { List } from "react-virtualized"
+import AutoSizer from "react-virtualized-auto-sizer"
 import Icon from "components/icon/icon"
 import { Checkbox } from "@immerse/ui"
-
 import DashboardRowItem from "components/dashboard-row-item/dashboard-row-item-parent"
 import { frontEndViewShape } from "constants/prop-types"
 import { filterTypesMap } from "../dashboards/dashboard-manager-filters/FilterTypePickerComponent"
-
 import {
   getFeatureFlag,
   available_feature_flags

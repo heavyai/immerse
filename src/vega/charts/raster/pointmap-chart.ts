@@ -87,8 +87,6 @@ export function mergeProps(stateProps, dispatchProps, ownProps) {
 }
 
 export const options = {
-  pure: true,
-
   // I wish I had access to ownProps here so I could compare the actual chart
   areStatesEqual: (next, prev) =>
     next.charts === prev.charts && next.omnifilters === prev.omnifilters,

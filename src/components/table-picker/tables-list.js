@@ -1,10 +1,9 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
-import pure from "recompose/pure"
+import React, { memo as pure } from "react"
 import SearchTermHighlight from "components/search-term-highlight/search-term-highlight"
 import { tableShape } from "constants/prop-types"
 import { ParameterTypes } from "components/parameters/parameters-types"

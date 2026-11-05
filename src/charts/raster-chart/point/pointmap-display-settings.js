@@ -22,8 +22,8 @@ import CustomSlider from "components/custom-slider/custom-slider"
 import HoverSelector from "components/hover-selector/hover-selector"
 import { isSelectorUsable } from "utils/selector-helpers"
 import MarkShapeSelector from "components/mark-shape-selector/mark-shape-selector"
-import Toggle from "react-toggle"
-import { Switch } from "@immerse/ui"
+import { Switch as Toggle, Switch } from "@immerse/ui"
+
 import PriorityColorSelector from "./priority-color-selector"
 import ColorRampParent from "components/color-ramp/color-ramp-parent"
 import {

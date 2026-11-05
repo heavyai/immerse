@@ -3,8 +3,7 @@
 
 import * as React from "react"
 import PropTypes from "prop-types"
-import { SimpleSelect } from "react-selectize"
-import { contains } from "ramda"
+import { CreatableSelect } from "@immerse/ui"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { CUSTOM_FORMATTER_TYPE } from "utils/auto-formatter"
 
@@ -89,6 +88,12 @@ export const numberFormatOptions = [
   }
 ]
 
+const createFormatOption = (search) =>
+  search.length &&
+  !numberFormatOptions.some((option) => option.label === search)
+    ? { label: search, value: search, example: "" }
+    : null
+
 const getFormatName = (format) => {
   const optionMatched = numberFormatOptions.filter(
     (option) => option.value === format
@@ -121,8 +126,14 @@ export default function ChartNumberFormat({
                   {process(measure.label, { useDisplayName: true })}
                 </span>
               </div>
-              <SimpleSelect
-                theme="format-selector"
+              <CreatableSelect
+                isValidNewOption={(input) => Boolean(createFormatOption(input))}
+                onCreateOption={(input) => {
+                  const option = createFormatOption(input)
+                  if (option) {
+                    onValueChangeWithFormat(option.value, measure.index)
+                  }
+                }}
                 value={
                   measure.numberFormat
                     ? {
@@ -133,19 +144,12 @@ export default function ChartNumberFormat({
                     : null
                 }
                 options={numberFormatOptions}
-                restoreOnBackspace={function restoreOnBackspace(option) {
-                  return option.label.slice(0, -1) // enter edit mode and remove last character on backspace
-                }}
                 placeholder={"Enter a format or select a preset"}
-                filterOptions={function filterOptions(options, search) {
-                  const lowercaseSearch = search.toLowerCase()
-                  return options.filter(
-                    (option) =>
-                      option.hint.includes(search) ||
-                      option.label.toLowerCase().includes(lowercaseSearch)
-                  )
-                }}
-                renderOption={function renderOption(option) {
+                filterOption={({ data }, search) =>
+                  (data.hint || "").includes(search) ||
+                  data.label.toLowerCase().includes(search.toLowerCase())
+                }
+                formatOptionLabel={function renderOption(option) {
                   if (option.newOption) {
                     return (
                       <div className="simple-option new">
@@ -167,20 +171,7 @@ export default function ChartNumberFormat({
                     )
                   }
                 }}
-                createFromSearch={function createFromSearch(options, search) {
-                  if (
-                    search.length === 0 ||
-                    contains(
-                      options.map((option) => option.label),
-                      search
-                    )
-                  ) {
-                    return null
-                  } else {
-                    return { label: search, value: search, example: "" }
-                  }
-                }}
-                onValueChange={function onValueChange(option) {
+                onChange={function onValueChange(option) {
                   const value = option && option.value
                   onValueChangeWithFormat(value, measure.index)
                 }}

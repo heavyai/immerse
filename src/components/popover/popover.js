@@ -4,7 +4,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
-import mapProps from "recompose/mapProps"
 
 export default class Popover extends Component {
   static propTypes = {
@@ -97,4 +96,15 @@ function mapTargetToPosition({ target, overflowWidth, ...props }) {
   }
 }
 
-export const TargetedPopover = mapProps(mapTargetToPosition)(Popover)
+function usePopoverProps(incomingProps) {
+  let viewProps = incomingProps
+  viewProps = mapTargetToPosition(viewProps)
+  return viewProps
+}
+
+function StatefulPopover(incomingProps) {
+  const viewProps = usePopoverProps(incomingProps)
+  return React.createElement(Popover, viewProps)
+}
+
+export const TargetedPopover = StatefulPopover

@@ -3,7 +3,7 @@
 
 import React from "react"
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { withExtraArgument } from "redux-thunk"
 
 import { renderHook } from "@testing-library/react"
 
@@ -19,7 +19,7 @@ services.set("dc", {
   getChart: () => ({})
 })
 
-const middlewares = [thunk.withExtraArgument(services)]
+const middlewares = [withExtraArgument(services)]
 const mockStore = configureStore(middlewares)
 
 const TEST_FIELD = "testField"

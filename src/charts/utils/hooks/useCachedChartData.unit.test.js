@@ -3,7 +3,7 @@
 
 import React, { StrictMode } from "react"
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 
 import { renderHook, act } from "@testing-library/react"
 

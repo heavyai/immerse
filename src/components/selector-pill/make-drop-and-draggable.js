@@ -1,44 +1,15 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { DragSource, DropTarget } from "react-dnd"
-import compose from "recompose/compose"
+import React from "react"
+import { useDrag, useDrop } from "react-dnd"
 import {
   isD3ChartWithCategoricalColoring,
   resetD3ChartDomainRange
 } from "reducers/charts/helpers/color-helpers"
 
-function type(props) {
-  return props.selectorType
-}
-
-function beginDrag({ index }) {
-  return {
-    index
-  }
-}
-
-function collect(dragType) {
-  if (dragType === "target") {
-    return (dragConnect, monitor) => ({
-      connectDropTarget: dragConnect.dropTarget(),
-      isOver: monitor.isOver()
-    })
-  } else if (dragType === "source") {
-    return (dragConnect, monitor) => ({
-      connectDragSource: dragConnect.dragSource(),
-      isDragging: monitor.isDragging()
-    })
-  } else {
-    return () => {
-      "no-op"
-    }
-  }
-}
-
 export function drop(props, monitor) {
   const dragIndex = monitor.getItem().index
-  const hoverIndex = props.index
   if (
     props.selectorType === "dimensions" &&
     isD3ChartWithCategoricalColoring(props.chart)
@@ -46,10 +17,48 @@ export function drop(props, monitor) {
     resetD3ChartDomainRange(props.chart)
     props.resetCustomDomainRange()
   }
-  props.swapSelectors(hoverIndex, dragIndex)
+  props.swapSelectors(props.index, dragIndex)
 }
 
-export default compose(
-  DropTarget(type, { drop }, collect("target")),
-  DragSource(type, { beginDrag }, collect("source"))
-)
+export const connectElement = (connector) => (element) =>
+  React.cloneElement(element, {
+    ref: (node) => {
+      connector(node)
+      const previous = element.props.ref
+      if (typeof previous === "function") {
+        previous(node)
+      } else if (previous) {
+        previous.current = node
+      }
+    }
+  })
+
+export default function makeDropAndDraggable(Component) {
+  return function DraggableSelector(props) {
+    const [{ isDragging }, drag] = useDrag(
+      () => ({
+        type: props.selectorType,
+        item: { index: props.index },
+        collect: (monitor) => ({ isDragging: monitor.isDragging() })
+      }),
+      [props.selectorType, props.index]
+    )
+    const [{ isOver }, target] = useDrop(
+      () => ({
+        accept: props.selectorType,
+        drop: (_item, monitor) => drop(props, monitor),
+        collect: (monitor) => ({ isOver: monitor.isOver() })
+      }),
+      [props]
+    )
+    return (
+      <Component
+        {...props}
+        connectDragSource={connectElement(drag)}
+        connectDropTarget={connectElement(target)}
+        isDragging={isDragging}
+        isOver={isOver}
+      />
+    )
+  }
+}

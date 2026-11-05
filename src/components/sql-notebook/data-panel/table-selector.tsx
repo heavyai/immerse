@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { memo, useState } from "react"
-import { AutoSizer, List } from "react-virtualized"
+import { List } from "react-virtualized"
+import AutoSizer from "react-virtualized-auto-sizer"
 import { TextField } from "widgets/text-field/TextField"
 import { SQL_EDITOR_TEST_ID_TABLE_BROWSER_SEARCH } from "../../sql-editor/constants"
 import {
@@ -10,7 +11,6 @@ import {
   ListItemWithActions,
   TableItem
 } from "./list-item-with-actions"
-
 import "./table-selector.scss"
 
 // Copied/modified from SQLEditorTableSelector

@@ -5,8 +5,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import moment from "moment"
 import { useDispatch } from "react-redux"
 import pushid from "pushid"
-import { CircularProgress } from "@material-ui/core"
-
+import { CircularProgress } from "@immerse/ui"
 import { useGuidanceSnippets } from "../redux/useGuidanceSnippets"
 import {
   GuidanceSnippet,

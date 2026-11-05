@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { compose, withHandlers } from "recompose"
+import { useEventHandlers } from "hooks/use-event-handlers"
 import React from "react"
 import PropTypes from "prop-types"
 import cx from "classnames"
@@ -50,13 +50,26 @@ export function MeasureYAxisToggle({
   )
 }
 
-export default compose(
-  withHandlers({
-    handleLeftAxisClick: (props) => () => {
-      props.toggleYAxisOrientation(Y_AXIS_ORIENTATIONS.LEFT)
+function useMeasureYaxisToggleProps(incomingProps) {
+  let viewProps = incomingProps
+  const localHandlers = useEventHandlers(
+    {
+      handleLeftAxisClick: (props) => () => {
+        props.toggleYAxisOrientation(Y_AXIS_ORIENTATIONS.LEFT)
+      },
+      handleRightAxisClick: (props) => () => {
+        props.toggleYAxisOrientation(Y_AXIS_ORIENTATIONS.RIGHT)
+      }
     },
-    handleRightAxisClick: (props) => () => {
-      props.toggleYAxisOrientation(Y_AXIS_ORIENTATIONS.RIGHT)
-    }
-  })
-)(MeasureYAxisToggle)
+    viewProps
+  )
+  viewProps = { ...viewProps, ...localHandlers }
+  return viewProps
+}
+
+function StatefulMeasureYaxisToggle(incomingProps) {
+  const viewProps = useMeasureYaxisToggleProps(incomingProps)
+  return React.createElement(MeasureYAxisToggle, viewProps)
+}
+
+export default StatefulMeasureYaxisToggle

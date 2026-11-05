@@ -3,22 +3,9 @@
 
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import compose from "recompose/compose"
 import CopyToClipboard from "react-copy-to-clipboard"
 import Icon from "components/icon/icon"
 import { MS_IN_SECONDS } from "constants/magic-variables"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
-
-const withShowSuccessMsgState = compose(
-  withState("shouldShowSuccessMsg", "toggle", false),
-  withHandlers({
-    showSuccessMsg: ({ toggle }) => () => toggle(() => true),
-    hideSuccessMsg: ({ toggle }) => () => {
-      setTimeout(() => toggle(() => false), MS_IN_SECONDS)
-    }
-  })
-)
 
 export class ShareLinkPopover extends Component {
   static propTypes = {
@@ -78,4 +65,23 @@ export class ShareLinkPopover extends Component {
   }
 }
 
-export default withShowSuccessMsgState(ShareLinkPopover)
+function ShareLinkWithFeedback(props) {
+  const [shouldShowSuccessMsg, setShowSuccess] = React.useState(false)
+  const timer = React.useRef(null)
+  React.useEffect(() => () => clearTimeout(timer.current), [])
+  const showSuccessMsg = () => setShowSuccess(true)
+  const hideSuccessMsg = () => {
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => setShowSuccess(false), MS_IN_SECONDS)
+  }
+  return (
+    <ShareLinkPopover
+      {...props}
+      shouldShowSuccessMsg={shouldShowSuccessMsg}
+      showSuccessMsg={showSuccessMsg}
+      hideSuccessMsg={hideSuccessMsg}
+    />
+  )
+}
+
+export default ShareLinkWithFeedback

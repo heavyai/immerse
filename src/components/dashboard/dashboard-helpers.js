@@ -168,3 +168,9 @@ export function calculateGridStates(
 export const isSharingRestricted = ({ isSuperuser, roles, user }) =>
   !isSuperuser &&
   roles.includes(user.restrictedSharingRole || RESTRICTED_SHARING_ROLE)
+
+// Grid engines own positions, while the document owns opaque per-item metadata.
+export function preserveLayoutMetadata(previous, next) {
+  const byId = new Map(previous.map((item) => [String(item.i), item]))
+  return next.map((item) => ({ ...byId.get(String(item.i)), ...item }))
+}

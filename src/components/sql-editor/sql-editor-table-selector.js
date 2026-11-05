@@ -4,8 +4,8 @@
 import React, { memo, useState } from "react"
 import { Icon } from "@rmwc/icon"
 import { TextField } from "widgets/text-field/TextField"
-import { AutoSizer, List } from "react-virtualized"
-
+import { List } from "react-virtualized"
+import AutoSizer from "react-virtualized-auto-sizer"
 import { SQL_EDITOR_TEST_ID_TABLE_BROWSER_SEARCH } from "./constants"
 import "./sql-editor-table-selector.scss"
 

@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { connect } from "react-redux"
-import compose from "recompose/compose"
-
+import compose from "lodash/flowRight"
 import {
   getDashboards,
   initializeDashboard
@@ -18,7 +17,6 @@ import {
   showDashboardImportModal
 } from "actions/ui-action-creators"
 import resetAppState from "actions/reset-app-state-action-creator"
-
 import Dashboards from "./dashboards"
 
 export const mapStateToProps = ({

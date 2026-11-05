@@ -7,18 +7,8 @@ import {
 } from "./chart-settings-sort-by-helpers"
 import { lensPath, lensProp, set } from "ramda"
 import ChartSettingsSortByDropdown from "./chart-settings-sort-by-dropdown"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import setPropTypes from "recompose/setPropTypes"
 import { updateChart } from "actions/update-chart-action-creator"
-
-const propTypes = {
-  measures: PropTypes.array.isRequired,
-  dimensions: PropTypes.array.isRequired,
-  chartId: PropTypes.string.isRequired,
-  sortColumn: PropTypes.object.isRequired
-}
 
 export function mapStateToProps({ charts }, { chartId }) {
   return {
@@ -69,7 +59,10 @@ export function mergeProps(
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)
+const ConnectedChartSettingsSortByDropdownParent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(ChartSettingsSortByDropdown)
+
+export default ConnectedChartSettingsSortByDropdownParent

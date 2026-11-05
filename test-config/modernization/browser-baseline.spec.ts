@@ -92,6 +92,60 @@ test("record a saved Vega dashboard load and crossfilter result", async ({
       )
     })
   }
+  // Opt-in runtime migration contract; keep historical timing samples comparable.
+  if (process.env.IMMERSE_RUNTIME_INTERACTIONS === "1") {
+    const item = page.locator(".react-grid-item").first()
+    await item.scrollIntoViewIfNeeded()
+    const before = await item.boundingBox()
+    const resize = item.locator(".react-resizable-handle-se")
+    const handle = await resize.boundingBox()
+    await page.mouse.move(
+      handle.x + handle.width / 2,
+      handle.y + handle.height / 2
+    )
+    await page.mouse.down()
+    await page.mouse.move(handle.x - 100, handle.y + 32, { steps: 10 })
+    await page.mouse.up()
+    await expect
+      .poll(async () => (await item.boundingBox()).width)
+      .toBeLessThan(before.width - 50)
+    const resized = await item.boundingBox()
+    const title = item.locator(".draggable-container-handle").first()
+    const titleBounds = await title.boundingBox()
+    await page.mouse.move(
+      titleBounds.x + titleBounds.width / 2,
+      titleBounds.y + titleBounds.height / 2
+    )
+    await page.mouse.down()
+    await page.mouse.move(
+      titleBounds.x + titleBounds.width / 2 + 80,
+      titleBounds.y + titleBounds.height / 2,
+      { steps: 10 }
+    )
+    await page.mouse.up()
+    await expect
+      .poll(async () => (await item.boundingBox()).x)
+      .toBeGreaterThan(resized.x + 20)
+    const moved = await item.boundingBox()
+    await page.getByTestId("save-dashboard-button").click()
+    await page
+      .locator('.success[data-testid="save-dashboard-button"]')
+      .waitFor()
+    await page.goto(savedUrl)
+    await expect(page.locator(".count-selected").first()).toBeVisible()
+    await expect
+      .poll(
+        async () =>
+          (await page.locator(".react-grid-item").first().boundingBox()).width
+      )
+      .toBeCloseTo(moved.width, -1)
+    await expect
+      .poll(
+        async () =>
+          (await page.locator(".react-grid-item").first().boundingBox()).x
+      )
+      .toBeCloseTo(moved.x, -1)
+  }
   const queryRuntime = await page.evaluate(() => {
     const app = window as any
     const ownership = app.immerseModernizationMetrics.readQueryOwnership()

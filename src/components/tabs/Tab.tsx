@@ -188,7 +188,8 @@ const Tab: FC<Props> = ({
   })
 
   const [{ isDragging }, drag] = useDrag({
-    item: { type: "TAB", id: tabId, index },
+    type: "TAB",
+    item: { id: tabId, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })

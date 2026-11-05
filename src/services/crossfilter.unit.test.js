@@ -5,7 +5,7 @@ import CrossFilter from "services/ImmerseCrossFilter"
 import { createCrossfilterService } from "./crossfilter"
 
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 
 import { filterState } from "./ImmerseCrossFilter/test-utils"
 import {

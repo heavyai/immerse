@@ -49,6 +49,7 @@ describe("CustomColorsListItem Component", () => {
 
     expect(screen.getByTestId("custom-colors-popup")).toBeInTheDocument()
     fireEvent.keyDown(screen.getByTestId("custom-colors-popup"), {
+      key: "Escape",
       keyCode: KEYCODE.Esc
     })
     await waitFor(() => {

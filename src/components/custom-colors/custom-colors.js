@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useEventHandlers } from "hooks/use-event-handlers"
 import {
   addCustomColor,
   addCustomColorMultiSource,
@@ -17,7 +18,6 @@ import { toggleYAxisOrientation } from "charts/combo/line-chart2/line2-action-cr
 import { colorShape, measureShape } from "constants/prop-types"
 import React from "react"
 import PropTypes from "prop-types"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
 import CustomColorsList from "components/custom-colors/custom-colors-list"
 import CustomSelector from "components/custom-selector/custom-selector"
@@ -25,8 +25,6 @@ import Icon from "components/icon/icon"
 import { LINE_STYLES } from "constants/charts"
 import { MS_IN_HALF_SECONDS } from "constants/magic-variables"
 import { noop } from "utils/helpers"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
 import { isEmpty, path } from "ramda"
 import {
   getDataSource,
@@ -40,7 +38,6 @@ import {
   getD3ChartColorRange,
   resetD3ChartDomainRange
 } from "reducers/charts/helpers/color-helpers"
-
 import TopNToggle from "./topn-toggle"
 import cx from "classnames"
 import "./custom-colors.scss"
@@ -55,19 +52,6 @@ const CHARTS_WITH_ALL_OTHERS = [
   "linemap",
   "backendChoropleth"
 ]
-
-const withAddedState = compose(
-  withState("addedColor", "setAddedColor", false),
-  withHandlers({
-    addedColorAnimation: (props) => (callback = noop) => {
-      props.setAddedColor(() => true)
-      setTimeout(() => {
-        props.setAddedColor(() => false)
-        callback()
-      }, MS_IN_HALF_SECONDS)
-    }
-  })
-)
 
 function mapDispatchToProps(dispatch, props) {
   return {
@@ -341,20 +325,44 @@ function CustomColors(props) {
   )
 }
 
-export default compose(
-  withAddedState,
-  connect(
-    (state, { multiSourceIndex }) => {
-      const chartState = state.charts[state.chartEditor.editId]
-      const measures = chartState.measures
-      const table = getDataSource(chartState, multiSourceIndex)
+const ConnectedCustomColors = connect(
+  (state, { multiSourceIndex }) => {
+    const chartState = state.charts[state.chartEditor.editId]
+    const measures = chartState.measures
+    const table = getDataSource(chartState, multiSourceIndex)
 
-      return {
-        measures,
-        table
+    return {
+      measures,
+      table
+    }
+  },
+  mapDispatchToProps,
+  mergeProps
+)(CustomColors)
+
+function useCustomColorsProps2(incomingProps) {
+  let viewProps = incomingProps
+  const [addedColor, setAddedColor] = React.useState(false)
+  viewProps = { ...viewProps, addedColor, setAddedColor }
+  const localHandlers = useEventHandlers(
+    {
+      addedColorAnimation: (props) => (callback = noop) => {
+        props.setAddedColor(() => true)
+        setTimeout(() => {
+          props.setAddedColor(() => false)
+          callback()
+        }, MS_IN_HALF_SECONDS)
       }
     },
-    mapDispatchToProps,
-    mergeProps
+    viewProps
   )
-)(CustomColors)
+  viewProps = { ...viewProps, ...localHandlers }
+  return viewProps
+}
+
+function CustomColorsWithState2(incomingProps) {
+  const viewProps = useCustomColorsProps2(incomingProps)
+  return React.createElement(ConnectedCustomColors, viewProps)
+}
+
+export default CustomColorsWithState2

@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import React from "react"
 import * as GeoHeatActions from "charts/raster-chart/geoheat-actions"
 import * as LineChartActions from "charts/line/line-chart-action-creators"
 import * as RasterChartActions from "charts/raster-chart/raster-chart-actions"
@@ -8,10 +9,7 @@ import { contains, lensProp, not, set, equals } from "ramda"
 import { CHARTS, CHART_TYPES } from "constants/charts"
 import { COLOR_PALETTE_TYPES } from "constants/colors"
 import ColorPicker from "./color-picker"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
-import PropTypes from "prop-types"
-import setPropTypes from "recompose/setPropTypes"
 import {
   updateChartColors,
   updateD3ChartColorPalette,
@@ -35,15 +33,6 @@ import {
   isD3ChartWithCustomDomainRange
 } from "reducers/charts/helpers/color-helpers"
 import { isCrossSectionType } from "charts/raster-chart/cross-section/utils/is-cross-section-type"
-
-const propTypes = {
-  id: PropTypes.string.isRequired,
-  colorDimensionActive: PropTypes.bool.isRequired,
-  lockedTopN: PropTypes.bool.isRequired,
-  multiSourceIndex: PropTypes.string,
-  onUnlockTopN: PropTypes.func,
-  savedColors: PropTypes.object.isRequired
-}
 
 const isColorMeasureColunmAllNull = (minMax) => equals(minMax, [null, null]) // check if colorMeasure column is all null
 
@@ -304,14 +293,22 @@ export function mergeProps(stateProps, dispatchProps, ownProps) {
   }
 }
 
-const ColorPickerParent = compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)
+const ConnectedColorPickerParent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(ColorPicker)
 
-ColorPickerParent.defaultProps = {
-  lockedTopN: false,
-  colorDimensionActive: false
+function ColorPickerParent({
+  lockedTopN = false,
+  colorDimensionActive = false,
+  ...props
+}) {
+  return React.createElement(ConnectedColorPickerParent, {
+    ...props,
+    lockedTopN,
+    colorDimensionActive
+  })
 }
 
 export default ColorPickerParent

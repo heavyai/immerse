@@ -4,16 +4,16 @@
 import React from "react"
 import { render, renderHook } from "@testing-library/react"
 import { Provider } from "react-redux"
-import { ConnectedRouter, routerMiddleware } from "connected-react-router"
+import { NavigationSync, navigationMiddleware } from "services/navigation"
 import { createBrowserHistory } from "history"
 import { applyMiddleware, createStore, combineReducers } from "redux"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import reducers from "./jest-reducers"
 
 const history = createBrowserHistory()
 
 export function renderWithRedux(ui, store, initialState = {}) {
-  const middlewares = [thunk, routerMiddleware(history)]
+  const middlewares = [thunk, navigationMiddleware(history)]
   const simpleStore =
     store ||
     createStore(
@@ -31,7 +31,7 @@ export function renderWithRedux(ui, store, initialState = {}) {
 }
 
 export function renderHookWithStore(hook, { store, initialState = {} }) {
-  const middlewares = [thunk, routerMiddleware(history)]
+  const middlewares = [thunk, navigationMiddleware(history)]
   const simpleStore =
     store ||
     createStore(
@@ -53,7 +53,7 @@ export function renderHookWithStore(hook, { store, initialState = {} }) {
 
 export function renderWithRouter(ui, routerHistory = history) {
   return {
-    ...render(<ConnectedRouter history={routerHistory}>{ui}</ConnectedRouter>),
+    ...render(<NavigationSync history={routerHistory}>{ui}</NavigationSync>),
     // adding `history` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).

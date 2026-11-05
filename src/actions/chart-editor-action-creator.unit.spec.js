@@ -6,7 +6,7 @@ import sinon from "sinon"
 import spies from "sinon-chai"
 import proxyquire from "proxyquire"
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import * as ActionTypes from "constants/action-types"
 import { saveCurrentChart } from "./chart-editor-action-creators"
 import { addMultiSourceAndOpenFold } from "./chart-editor-multisource-action-creators"
@@ -36,7 +36,7 @@ describe("Chart Editor Action Creators", () => {
       const chart = {
         type: "pie",
         measures: [],
-        layers:[]
+        layers: []
       }
 
       const id = "1"
@@ -77,7 +77,13 @@ describe("Chart Editor Action Creators", () => {
     })
     it("should not call dispatch if chart is saving", () => {
       hasSaved = true
-      maybeRevertChartToOldState(id, hasSaved, savedChart, chart, [])(dispatch, () => ({charts:{}}))
+      maybeRevertChartToOldState(
+        id,
+        hasSaved,
+        savedChart,
+        chart,
+        []
+      )(dispatch, () => ({ charts: {} }))
       expect(dispatch).to.have.not.been.called
     })
 
@@ -92,7 +98,7 @@ describe("Chart Editor Action Creators", () => {
         null,
         false,
         savedFilters
-      )(dispatch, () => ({charts:{}}))
+      )(dispatch, () => ({ charts: {} }))
       expect(dispatch).to.have.been.calledWith("resetChartState")
       dc.chartRegistry.list().pop()
     })
@@ -109,7 +115,7 @@ describe("Chart Editor Action Creators", () => {
         null,
         false,
         savedFilters
-      )(dispatch, () => ({charts:{}}))
+      )(dispatch, () => ({ charts: {} }))
       expect(dispatch).to.have.been.calledWith("resetChartState")
       dc.chartRegistry.list().pop()
     })
@@ -123,7 +129,7 @@ describe("Chart Editor Action Creators", () => {
         savedChart,
         chart,
         savedFilters
-      )(dispatch, () => ({charts:{}}))
+      )(dispatch, () => ({ charts: {} }))
       expect(dispatch).to.have.been.calledWith("deleteChart")
       dc.chartRegistry.list().pop()
     })
@@ -140,7 +146,7 @@ describe("Chart Editor Action Creators", () => {
         "taxi",
         false,
         savedFilters
-      )(dispatch, () => ({charts:{}}))
+      )(dispatch, () => ({ charts: {} }))
       expect(dispatch).to.have.been.calledWith("removeCountChart")
       dc.chartRegistry.list().pop()
     })

@@ -1,13 +1,14 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { SizeMe } from "react-sizeme"
+import { MeasuredContainer } from "hooks/use-element-size"
 import {
   addPointMapEventListeners,
   removePointMapEventListeners
 } from "actions/dc-action-creators"
 import {
   calculateGridStates,
+  preserveLayoutMetadata,
   findInsertionSpot,
   pxToGridUnits,
   getChartMinHeight,
@@ -21,6 +22,7 @@ import {
 import React, { Component } from "react"
 import PropTypes from "prop-types"
 import ReactGridLayout from "react-grid-layout"
+import { absoluteStrategy, transformStrategy } from "react-grid-layout/core"
 import { addDashboardTab } from "actions/dashboard-action-creators"
 import { updateDashboardSaveState } from "actions/dashboard-save-state-action-creators"
 import { updateLayout } from "actions/dashboard-layout-action-creators"
@@ -35,7 +37,6 @@ import { RESIZE_DEBOUNCE_MS } from "constants/magic-variables"
 import { isMultiLayer } from "components/chart-editor/chart-editor"
 import { Route } from "react-router-dom"
 import ChartEditorParent from "components/chart-editor/chart-editor-parent"
-
 import DashboardConfigPanel from "components/dashboard-config-panel"
 import MigrationRibbon from "components/migration/migration-ribbon"
 import QuickFilterNotch from "components/quick-filters/quick-filter"
@@ -44,7 +45,6 @@ import {
   ImmerseUIRequired,
   IMMERSE_UI_ADD_CHART
 } from "services/immerse-ui-provider"
-
 import {
   getFeatureFlag,
   available_feature_flags
@@ -53,9 +53,7 @@ import {
   getQuickFiltersForChart,
   isQuickFilterVisibleOnDashboard
 } from "components/quick-filters/quick-filter-utils"
-
 import { DEFAULT_DATABASE_STYLES } from "components/ui-config-panel/constants"
-
 import {
   NUM_COLS,
   OFFSET,
@@ -198,7 +196,7 @@ class Dashboard extends Component {
   componentDidMount() {
     // Recalculate on load, in case the layout was saved at a different resolution
     this.recalculateGridLayout()
-    window.onresize = this.debouncedRecalculateGridLayout
+    window.addEventListener("resize", this.debouncedRecalculateGridLayout)
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -229,10 +227,18 @@ class Dashboard extends Component {
   }
 
   componentWillUnmount() {
-    window.onresize = null
+    window.removeEventListener("resize", this.debouncedRecalculateGridLayout)
+    this.debouncedRecalculateGridLayout.cancel()
   }
 
   chartRefs = {}
+
+  onGridSizeChange = ({ width }) => {
+    if (this.gridWidth !== width) {
+      this.gridWidth = width
+      this.recalculateGridLayout()
+    }
+  }
 
   recalculateGridLayout = () => {
     const newState = calculateGridStates(
@@ -278,7 +284,8 @@ class Dashboard extends Component {
     this.recalculateGridLayout()
   }, RESIZE_DEBOUNCE_MS)
 
-  onResizeStop = (layout, item) => {
+  onResizeStop = (incomingLayout, item) => {
+    const layout = preserveLayoutMetadata(this.props.layout, incomingLayout)
     if (!this.props.layout.length && !Object.keys(this.chartRefs).length) {
       return
     }
@@ -327,8 +334,9 @@ class Dashboard extends Component {
     )
   }
 
-  onLayoutChange = (layout) => {
+  onLayoutChange = (incomingLayout) => {
     const oldLayout = this.props.layout
+    const layout = preserveLayoutMetadata(oldLayout, incomingLayout)
 
     const layoutChanged = oldLayout.some(
       (dataGrid) => !layoutUnchanged(dataGrid, layout)
@@ -492,43 +500,46 @@ class Dashboard extends Component {
             {({
               immerseUIKeys: { IMMERSE_UI_CHART_RESIZE, IMMERSE_UI_CHART_MOVE }
             }) => (
-              <SizeMe>
+              <MeasuredContainer onResize={this.onGridSizeChange}>
                 {({ size }) => {
-                  if (this.gridWidth !== size.width) {
-                    this.gridWidth = size.width
-                    this.recalculateGridLayout()
-                  }
                   return (
-                    // Let SizeMe measure the wrapper before ReactGridLayout renders,
+                    // Measure the wrapper before ReactGridLayout renders,
                     // since map charts don't handle this initial grid resize well
-                    <div className="grid-layout-wrapper">
+                    <>
                       {size.width && (
                         <ReactGridLayout
                           {...{
-                            measureBeforeMount: true,
                             className: cx("dashboard", {
                               "chart-edit-mode": editing,
                               "layer-tabs-enabled": layersEnabled
                             }),
-                            cols: NUM_COLS,
-                            draggableHandle: ".draggable-container-handle",
+                            gridConfig: {
+                              cols: NUM_COLS,
+                              rowHeight: this.state.rowHeight,
+                              margin: [0, 0],
+                              containerPadding: [
+                                dashboardGridPaddingHorizontal,
+                                dashboardGridPaddingVertical
+                              ]
+                            },
+                            dragConfig: {
+                              handle: ".draggable-container-handle",
+                              enabled:
+                                !restrictViewing &&
+                                !editId &&
+                                IMMERSE_UI_CHART_MOVE
+                            },
+                            resizeConfig: {
+                              enabled:
+                                !restrictViewing && IMMERSE_UI_CHART_RESIZE
+                            },
                             layout,
-                            margin: [0, 0],
-                            containerPadding: [
-                              dashboardGridPaddingHorizontal,
-                              dashboardGridPaddingVertical
-                            ],
                             onLayoutChange: this.onLayoutChange,
                             onResizeStop: this.onResizeStop,
-                            rowHeight: this.state.rowHeight,
-                            useCSSTransforms,
-                            width: size.width,
-                            isDraggable:
-                              !restrictViewing &&
-                              !editId &&
-                              IMMERSE_UI_CHART_MOVE,
-                            isResizable:
-                              !restrictViewing && IMMERSE_UI_CHART_RESIZE
+                            positionStrategy: useCSSTransforms
+                              ? transformStrategy
+                              : absoluteStrategy,
+                            width: size.width
                           }}
                         >
                           {parameterContainers.map((widget) => (
@@ -610,10 +621,10 @@ class Dashboard extends Component {
                           )}
                         </ReactGridLayout>
                       )}
-                    </div>
+                    </>
                   )
                 }}
-              </SizeMe>
+              </MeasuredContainer>
             )}
           </ImmerseUIContext.Consumer>
         </div>

@@ -1,60 +1,95 @@
 {
   "wave": "wave-3",
   "baseCommit": "772e841",
-  "checkpoint": "React 18 bridge and seven owned primitive domains",
+  "checkpointCommit": "21e3566",
   "host": "omni-lsn-uwx2z",
   "toolchain": {
     "node": "24.11.0",
     "pnpm": "10.34.9",
-    "react": "18.3.1",
+    "react": "19.3.1",
+    "reactTypes": "19.3.0",
     "typescript": "5.9.3"
   },
   "checks": {
+    "fullJest": {
+      "numTotalTestSuites": 295,
+      "numPassedTestSuites": 294,
+      "numFailedTestSuites": 0,
+      "numPendingTestSuites": 1,
+      "numTotalTests": 1753,
+      "numPassedTests": 1741,
+      "numFailedTests": 0,
+      "numPendingTests": 12
+    },
+    "snapshots": {
+      "matched": 6,
+      "unmatched": 0,
+      "updated": 0
+    },
     "components": {
-      "suites": 26,
-      "tests": 94,
-      "failedTests": 0
+      "suites": 29,
+      "passedTests": 98
     },
-    "hooks": {
-      "suites": 32,
-      "tests": 172,
-      "failedTests": 0
-    },
-    "packages": {
+    "workspacePackages": {
       "suites": 11,
-      "tests": 28
+      "passedTests": 28
     },
-    "bridgeAndCompatibility": {
-      "suites": 6,
-      "tests": 16,
-      "snapshots": 6
+    "postCleanupSelectorAndBinningRecheck": {
+      "suites": 4,
+      "passedTests": 43
     },
+    "localAndUTCDateInputs": "Three tests passed with TZ=America/New_York, including millisecond edits and null schedule clearing.",
     "uiBrowser": {
-      "passed": 6,
-      "source": "standalone fixture; keyboard, focus, range pointer/keyboard and five theme scenarios"
+      "passed": 8,
+      "scope": "Chromium keyboard/focus/pointer/portal contracts, five themes, native date/creatable select/file controls and retained Gauge/Skew-T mount/remount."
     },
-    "heavydbBrowser": "passed: create/save, three reloads, count 8 to 2, visible Vega bar",
-    "frozenInstall": "passed",
+    "heavydbBrowser": {
+      "status": "passed",
+      "durationMs": 49671,
+      "scope": "Synthetic Vega create/save, three reloads, count 8 to 2, resize/drag and geometry after save/reload.",
+      "metrics": "wave-3-browser-modern.json"
+    },
     "productionBuild": {
       "passed": true,
-      "warnings": 318,
+      "warnings": 316,
+      "durationMs": 142932,
       "licenseEnforcement": "passed"
     },
+    "frozenInstall": "passed; all nine projects, no resolution change",
     "packageTypes": "passed",
+    "fullApplicationTypes": {
+      "status": "failed",
+      "errorCount": 19929,
+      "details": "wave-3-types.json"
+    },
     "lint": "passed; one unused test variable warning",
-    "guards": "passed; architecture ratcheted to 439 occurrences",
+    "guards": {
+      "status": "passed",
+      "architectureOccurrences": 424,
+      "baselineBeforeWave3": 582,
+      "approvedGitRevisions": 11,
+      "toolTests": 12,
+      "reviewedAdditions": "Two CSS import sites renamed from nonexistent @rmwc/list/collapsible-list.css exports to public @rmwc/list/styles."
+    },
     "audit": {
       "info": 0,
       "low": 5,
       "moderate": 28,
       "high": 0,
       "critical": 0
+    },
+    "licenseReport": {
+      "command": "node scripts/generate-third-party-licenses.js",
+      "pnpmInventory": "pnpm licenses list --json",
+      "thirdPartyVersions": 2061
     }
   },
   "limits": [
-    "Checkpoint does not complete React 19 or all vendor UI retirement.",
-    "Full application TypeScript remains a legacy baseline; executing Webpack configuration uses explicit ts-node transpilation.",
-    "No production-dashboard coverage, full-application unit-suite pass or complete accessibility certification is claimed.",
-    "Screenshots exercise semantic aliases and portals; no preexisting visual-diff baseline exists."
+    "Twelve existing skipped tests remain; no new skips or updated compatibility snapshots.",
+    "Full application TypeScript remains failing; only workspace declaration contracts are a passing type gate.",
+    "No production-dashboard fixtures or complete accessibility/all-engine certification supplied.",
+    "Gauge/Skew-T retain older React peer declarations; their browser mounts are scoped evidence. Existing Vega/vega-embed peer mismatch remains visible.",
+    "Remaining RMWC domains and legacy global styles retire incrementally; global StrictMode is not enabled around legacy engines.",
+    "The preliminary React 18 checkpoint and its evidence remain in history and wave-3-react18-checkpoint.json."
   ]
 }

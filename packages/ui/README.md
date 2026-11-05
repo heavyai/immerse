@@ -29,3 +29,9 @@ Run `pnpm --filter @immerse/ui test`, `pnpm run ts:packages`, and
 product bundle and HeavyDB. Its tests cover keyboard operation, focus containment
 and return, portal cleanup, pointer dragging and theme-token inheritance.
 See `docs/modernization/WAVE_3.md` for the migration record and remaining owners.
+
+Owned form controls include native date/datetime-local fields (string values,
+millisecond steps), file input/drop targets with cancellable reads, and select/
+creatable-select controls backed by React Select. Application callers own date
+parsing, timezone semantics, document parsing and domain validation. The package
+imports no application code. Form styles are isolated in `form-controls.module.css`.

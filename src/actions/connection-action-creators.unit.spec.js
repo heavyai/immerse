@@ -15,7 +15,7 @@ import {
 import { hideModal, showModal } from "actions/ui-action-creators"
 import { CONNECTION_SUCCESS, DROP_CONNECTION } from "constants/action-types"
 import parseUrl from "utils/parse-url"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import proxyquire from "proxyquire"
 
 chai.use(spies)
@@ -25,7 +25,14 @@ describe("Connection Actions", () => {
 
   describe("connectionSuccess", () => {
     it("should return proper type and id in payload", () => {
-      expect(connectionSuccess("id", { user: "USER", database: "DATABASE" }, [], "HEAVYAI")).to.deep.equal({
+      expect(
+        connectionSuccess(
+          "id",
+          { user: "USER", database: "DATABASE" },
+          [],
+          "HEAVYAI"
+        )
+      ).to.deep.equal({
         type: CONNECTION_SUCCESS,
         sessionId: "id",
         sessionInfo: {

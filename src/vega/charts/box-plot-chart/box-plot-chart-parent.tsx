@@ -1543,7 +1543,6 @@ export const mergeProps = (stateProps, dispatchProps) => ({
 })
 
 export const options = {
-  pure: true,
   areStatesEqual: (next, prev) =>
     next.omnifilters === prev.omnifilters && next.parameters === prev.parameters
 }

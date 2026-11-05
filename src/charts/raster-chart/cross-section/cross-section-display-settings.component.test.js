@@ -7,7 +7,8 @@ import { CHART_TYPES } from "constants/chart-types"
 import { renderWithRedux } from "jest/renderScaffolding"
 import { fireEvent } from "@testing-library/react"
 import { UPDATE_RASTER_CHART } from "../raster-chart-actions"
-import * as reactRedux from "react-redux"
+import configureStore from "redux-mock-store"
+import { thunk } from "redux-thunk"
 
 describe("<CrossSectionDisplaySettings />", () => {
   let defaultState
@@ -86,20 +87,17 @@ describe("<CrossSectionDisplaySettings />", () => {
       )
     })
     test("should update chart when smoothing is changed", async () => {
-      const dispatchSpy = jest.fn()
-      jest
-        .spyOn(reactRedux, "useDispatch")
-        .mockImplementation(() => dispatchSpy)
-      const { getByTestId } = renderComponent()
+      const store = configureStore([thunk])({
+        ...defaultState,
+        sharedSettings: { mappings: [] }
+      })
+      const { getByTestId } = renderComponent({ store })
       const smoothingInput = getByTestId("cross-section-smoothing-input")
       expect(smoothingInput).toHaveValue("10")
       fireEvent.change(smoothingInput, { target: { value: "20" } })
       fireEvent.blur(smoothingInput)
-      expect(dispatchSpy).toHaveBeenCalled()
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: UPDATE_RASTER_CHART
-        })
+      expect(store.getActions()).toContainEqual(
+        expect.objectContaining({ type: UPDATE_RASTER_CHART })
       )
     })
   })

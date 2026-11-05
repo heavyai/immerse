@@ -1,12 +1,16 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import {
+  InputLabel,
+  TextField,
+  PrimaryButton,
+  SecondaryButtonNoBorder
+} from "@immerse/ui"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import cx from "classnames"
 import { Icon } from "@rmwc/icon"
-import { InputLabel, TextField } from "@material-ui/core"
-import { PrimaryButton, SecondaryButtonNoBorder } from "@immerse/ui"
 import { SimpleDialog } from "widgets/dialog/Dialog"
 import { ColumnMetadata } from "constants/prop-types"
 import MultiSelect from "widgets/multi-select/Multi-select"

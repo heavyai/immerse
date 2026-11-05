@@ -15,8 +15,7 @@ import {
 
 import { NULLS_FIRST, NULLS_LAST } from "constants/magic-variables"
 
-import { SimpleSelect } from "react-selectize"
-import Toggle from "react-toggle"
+import { Select, Switch as Toggle } from "@immerse/ui"
 
 import "./chart-settings.css"
 
@@ -117,18 +116,17 @@ const TableChartSettings = (props: any) => {
         />
         <div className="chart-editor-label">{"Border options"}</div>
         <div className="format-selector-wrapper">
-          <SimpleSelect
-            theme="format-selector"
+          <Select
             value={
               borderOptions.find(
                 (opt) => opt.value === props.chart.renderTableBorders
               ) || borderOptions[0]
             }
-            onValueChange={(opt) =>
+            onChange={(opt) =>
               onValueChangeWithTableCellBorders(opt?.value || "none")
             }
             options={borderOptions}
-            renderOption={(option) => (
+            formatOptionLabel={(option) => (
               <div className="simple-option">
                 <span className="option-label">{option.label}</span>
               </div>

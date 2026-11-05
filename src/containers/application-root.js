@@ -4,18 +4,15 @@
 import { Provider } from "react-redux"
 import React from "react"
 import CustomStylesOverride from "components/custom-styles-override/custom-styles-override"
-import { DragDropContext } from "react-dnd"
-import HTML5Backend from "react-dnd-html5-backend"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import HeavyServicesProvider from "./heavy-services-provider"
-import { Router } from "react-router-dom"
 import Routes from "../routes"
 import history from "services/history"
 import AppContainer from "containers/application-container"
 import SVGIcons from "components/svg-icons"
-import "react-dates/initialize"
-import "react-dates/lib/css/_datepicker.css"
 import store from "store/store"
-import { ConnectedRouter } from "connected-react-router"
+import { NavigationSync } from "services/navigation"
 import ImmerseUIProvider from "services/immerse-ui-provider/ImmerseUIProvider"
 
 const AppRoot = () => (
@@ -23,21 +20,27 @@ const AppRoot = () => (
     <SVGIcons />
     <ImmerseUIProvider>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <NavigationSync history={history}>
           <HeavyServicesProvider services={store.services}>
             <React.Fragment>
-              <Router history={history}>
+              <>
                 <AppContainer>
                   <Routes />
                 </AppContainer>
-              </Router>
+              </>
               <CustomStylesOverride />
             </React.Fragment>
           </HeavyServicesProvider>
-        </ConnectedRouter>
+        </NavigationSync>
       </Provider>
     </ImmerseUIProvider>
   </React.Fragment>
 )
 
-export default DragDropContext(HTML5Backend)(AppRoot)
+export default function Application() {
+  return (
+    <DndProvider backend={HTML5Backend}>
+      <AppRoot />
+    </DndProvider>
+  )
+}

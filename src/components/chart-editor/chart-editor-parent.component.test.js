@@ -3,7 +3,7 @@
 
 import React from "react"
 import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import { thunk } from "redux-thunk"
 import mockAppState from "utils/test-helpers/mock-app-state"
 import {
   ChartEditorParent,

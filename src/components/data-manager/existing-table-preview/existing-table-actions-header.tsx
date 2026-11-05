@@ -5,14 +5,12 @@ import React, { useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { SecondaryButton } from "@immerse/ui"
 import { useDispatch, useSelector } from "react-redux"
-import { push } from "connected-react-router"
+import { push } from "services/navigation"
 import { generatePath } from "react-router"
 import { ROUTE_DATA_MANAGEMENT } from "routes/paths"
 import { dropDataSource, truncTable } from "actions/tables-action-creators"
 import { hideDangerModal, showDangerModal } from "actions/ui-action-creators"
-
 import { refreshConnectedTable } from "../services/data-sources.service"
-
 import { generateImportAppendPath } from "../utils/generate-import-path"
 import EditTableRefreshScheduleModal from "../../table-refresh-schedule-modal/edit-table-refresh-schedule-modal"
 

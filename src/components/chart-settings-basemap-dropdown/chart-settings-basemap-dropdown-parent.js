@@ -1,13 +1,12 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useEventHandlers } from "hooks/use-event-handlers"
+import React from "react"
 import ChartSettingsBasemapDropdown from "./chart-settings-basemap-dropdown"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
 import { updateRasterChart } from "charts/raster-chart/raster-chart-actions"
 import { updateChart } from "actions/update-chart-action-creator"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
 import {
   getAvailableBasemapsForChart,
   getDefaultBasemap,
@@ -58,12 +57,26 @@ export function mergeProps(
   }
 }
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps, mergeProps),
-  withState(
-    "preview",
-    "setPreview",
-    (props) => props.basemap || getDefaultBasemap()
-  ),
-  withHandlers(eventHandlers)
-)(ChartSettingsBasemapDropdown)
+function useChartSettingsBasemapDropdownParentProps(incomingProps) {
+  let viewProps = incomingProps
+  const [preview, setPreview] = React.useState(
+    () => viewProps.basemap || getDefaultBasemap()
+  )
+  viewProps = { ...viewProps, preview, setPreview }
+  const localHandlers = useEventHandlers(eventHandlers, viewProps)
+  viewProps = { ...viewProps, ...localHandlers }
+  return viewProps
+}
+
+function StatefulChartSettingsBasemapDropdownParent(incomingProps) {
+  const viewProps = useChartSettingsBasemapDropdownParentProps(incomingProps)
+  return React.createElement(ChartSettingsBasemapDropdown, viewProps)
+}
+
+const ConnectedChartSettingsBasemapDropdownParent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(StatefulChartSettingsBasemapDropdownParent)
+
+export default ConnectedChartSettingsBasemapDropdownParent

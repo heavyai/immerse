@@ -2,15 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-import { render } from "@testing-library/react"
-import { act } from "react-dom/test-utils"
+import { render, act } from "@testing-library/react"
 import {
-  withStateContainer,
+  useSelectorContainerState,
   onValueChange,
   SelectorPillContent
 } from "./selector-container"
-import { compose, setDisplayName, toClass } from "recompose"
-import withHandlers from "recompose/withHandlers"
 import {
   CUSTOM_DIMENSION_VALUE,
   CUSTOM_MEASURE_VALUE
@@ -38,17 +35,12 @@ jest.mock("components/selector-pill/make-drop-and-draggable", () => {
 describe("Selector Container Component", () => {
   let latestChildProps = null
 
-  const StatefulElement = compose(
-    withHandlers({
-      createNewCustomSQL: () => () => {}
-    }),
-    withStateContainer,
-    setDisplayName("Child"),
-    toClass
-  )((props) => {
-    latestChildProps = props
+  function StatefulElement() {
+    latestChildProps = useSelectorContainerState({
+      createNewCustomSQL: () => {}
+    })
     return <div className="root" />
-  })
+  }
 
   describe("Selector State", () => {
     beforeEach(() => {

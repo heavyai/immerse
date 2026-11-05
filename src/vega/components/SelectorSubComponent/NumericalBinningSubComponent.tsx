@@ -4,9 +4,8 @@
 import React, { FC, useState } from "react"
 import { Dispatch } from "redux"
 import { connect, ConnectedProps } from "react-redux"
-import NotchedOutline from "@material/react-notched-outline"
-import FloatingLabel from "@material/react-floating-label"
 
+import { useVegaChartData } from "charts/utils/hooks/useCachedChartData"
 import Popover from "components/popover/popover"
 import IconTriangleDown from "components/svg-icons/icon-triangle-down"
 
@@ -34,7 +33,7 @@ type OwnProps = {
 
 const mapStateToProps = ({ charts }: AppState, { chartId }: OwnProps) => {
   const chart = charts[chartId] as VegaComboChart
-  const { binSettings, data, dataSelections } = chart
+  const { binSettings, dataSelections } = chart
 
   const isMultilayer = dataSelections.length > 1
   const isMultiBaseDimensions = dataSelections.some(
@@ -51,30 +50,10 @@ const mapStateToProps = ({ charts }: AppState, { chartId }: OwnProps) => {
     isMultiBaseDimensions ||
     (isMultilayer && !supportsNumericScale && !supportsTimeScale)
 
-  // The min/max of the data, disregarding any manual overrides
-  let dataMinMax: ComputedMinMax | null = null
-
-  // The computed min/max based on both the data and any manual overrides
-  let computedMinMax: ComputedMinMax | null = null
-
-  if (binSettings?.dimensionType === "binned_numeric" && data) {
-    // Take minmax results from focus chart as source of truth
-    const minmaxData = data.focus
-      .map(getLatestBeatData)
-      .map((beatData) =>
-        beatData ? beatData.minmax || beatData.fullMinMax : null
-      )
-
-    dataMinMax = getDataMinMax(minmaxData)
-    computedMinMax = getComputedMinMax(minmaxData, binSettings)
-  }
-
   return {
     binSettings,
     isMultilayer,
-    disableBinningToggle,
-    dataMinMax,
-    computedMinMax
+    disableBinningToggle
   }
 }
 
@@ -113,11 +92,28 @@ const NumericalBinningSubComponent: FC<Props> = ({
   binSettings,
   isMultilayer,
   disableBinningToggle,
-  dataMinMax,
-  computedMinMax,
+  chartId,
   actions
 }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const data = useVegaChartData(chartId)
+  // The min/max of the data, disregarding any manual overrides
+  let dataMinMax: ComputedMinMax | null = null
+
+  // The computed min/max based on both the data and any manual overrides
+  let computedMinMax: ComputedMinMax | null = null
+
+  if (binSettings?.dimensionType === "binned_numeric" && data) {
+    // Take minmax results from focus chart as source of truth
+    const minmaxData = data.focus
+      .map(getLatestBeatData)
+      .map((beatData) =>
+        beatData ? beatData.minmax || beatData.fullMinMax : null
+      )
+
+    dataMinMax = getDataMinMax(minmaxData)
+    computedMinMax = getComputedMinMax(minmaxData, binSettings)
+  }
 
   // closes Numerical Bin Dropdown when clicking outside
   const handleCloseDropdown = () => {
@@ -142,11 +138,7 @@ const NumericalBinningSubComponent: FC<Props> = ({
             <IconTriangleDown />
           </div>
         </div>
-        <NotchedOutline notch>
-          <FloatingLabel className={"floating-label"} float>
-            Bin
-          </FloatingLabel>
-        </NotchedOutline>
+        <span className="binning-field-label">Bin</span>
         {menuIsOpen && (
           <NumericalDimBinning
             binSettings={binSettings}

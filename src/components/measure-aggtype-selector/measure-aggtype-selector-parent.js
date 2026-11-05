@@ -9,13 +9,9 @@ import {
 } from "constants/agg-types"
 import { CHART_TYPES } from "constants/charts"
 import { ALL_TYPES, isNonDictString } from "constants/data-types"
-import compose from "recompose/compose"
 import { connect } from "react-redux"
 import MeasureAggTypeSelector from "./measure-aggtype-selector"
-import { measureShape } from "constants/prop-types"
-import PropTypes from "prop-types"
 import { setAggType } from "reducers/charts/helpers/measure-object-helpers"
-import setPropTypes from "recompose/setPropTypes"
 import { updateLineMeasureAggType } from "charts/line/line-chart-action-creators"
 import { updateSelector } from "actions/charts-action-creators"
 import {
@@ -24,12 +20,6 @@ import {
 } from "charts/raster-chart/raster-utils"
 import { mergeR } from "utils/ramda-helpers"
 import { isHardwareDistributed } from "utils/store-utils"
-
-const propTypes = {
-  measure: measureShape.isRequired,
-  chartId: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired
-}
 
 function mapStateToProps({ charts }, { chartId }) {
   return {
@@ -124,7 +114,10 @@ export function mergeProps(
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)
+const ConnectedMeasureAggtypeSelectorParent = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
 )(MeasureAggTypeSelector)
+
+export default ConnectedMeasureAggtypeSelectorParent

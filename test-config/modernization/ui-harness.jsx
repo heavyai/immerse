@@ -17,8 +17,14 @@ import {
   DialogActions,
   MenuSurfaceAnchor,
   Menu,
-  MenuItem
+  MenuItem,
+  DateTimeField,
+  CreatableSelect,
+  FileDrop
 } from "@immerse/ui"
+import { GaugeChart } from "heavy-gauge-chart"
+import { SkewTChart } from "heavy-skewt-chart"
+
 import "../../src/styles/base/_css-vars.scss"
 import "../../src/styles/base/nexus/colors.scss"
 import "@immerse/ui/tokens.css"
@@ -29,6 +35,11 @@ function Harness() {
   const [selection, setSelection] = useState("None")
   const [range, setRange] = useState([2, 8])
   const [checked, setChecked] = useState(false)
+  const [date, setDate] = useState("")
+  const [format, setFormat] = useState(null)
+  const [file, setFile] = useState("")
+  const [engines, setEngines] = useState(false)
+  const [gauge, setGauge] = useState(50)
   return (
     <main
       style={{
@@ -86,6 +97,65 @@ function Harness() {
       </div>
       <output aria-label="Selected range">{range.join(" to ")}</output>
       <output aria-label="Selected menu action">{selection}</output>
+      <section style={{ marginTop: 24, width: 320 }}>
+        <DateTimeField label="Refresh at" value={date} onChange={setDate} />
+        <output aria-label="Selected date">{date}</output>
+        <CreatableSelect
+          aria-label="Number format"
+          value={format}
+          onChange={setFormat}
+          options={[{ label: "Basic", value: "basic" }]}
+        />
+        <output aria-label="Selected format">{format?.value}</output>
+        <FileDrop
+          onFile={(next) => setFile(next.name)}
+          label="Import dashboard"
+        />
+        <output aria-label="Selected file">{file}</output>
+      </section>
+      <SecondaryButton onClick={() => setEngines(!engines)}>
+        Toggle retained engines
+      </SecondaryButton>
+      {engines && (
+        <section
+          data-testid="retained-engines"
+          style={{ display: "flex", height: 250 }}
+        >
+          <div style={{ width: 250 }}>
+            <GaugeChart
+              value={gauge}
+              min={0}
+              max={100}
+              duration={20}
+              wedges={[{ size: 1, color: "green" }]}
+              needleCallback={() => setGauge(75)}
+            />
+          </div>
+          <div style={{ width: 250 }}>
+            <SkewTChart
+              data={[
+                {
+                  press: 1000,
+                  hght: 100,
+                  temp: 15,
+                  dwpt: 10,
+                  wdir: 90,
+                  wspd: 20
+                },
+                {
+                  press: 850,
+                  hght: 1500,
+                  temp: 5,
+                  dwpt: 1,
+                  wdir: 120,
+                  wspd: 25
+                }
+              ]}
+              chartId="runtime-fixture"
+            />
+          </div>
+        </section>
+      )}
       <Dialog open={dialog} onClose={() => setDialog(false)}>
         <DialogTitle>Export dashboard</DialogTitle>
         <DialogContent>

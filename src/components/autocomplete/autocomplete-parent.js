@@ -1,13 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useEventHandlers } from "hooks/use-event-handlers"
+import React from "react"
 import Autocomplete from "components/autocomplete/autocomplete"
-import compose from "recompose/compose"
 import { KEYCODE } from "constants/keycode"
-import mapProps from "recompose/mapProps"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
-import lifecycle from "recompose/lifecycle"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 
 const searchFilter = (value = "", alias, options = []) => {
@@ -256,57 +253,75 @@ function getInitialOptions(props) {
   return props.options || []
 }
 
-export default compose(
-  withState("didMouseMove", "setDidMouseMove", false),
-  withState("forceIntoViewIndex", "setForceIntoViewIndex", null),
-  withState("highlightIndex", "setHighlightIndex", null),
-  withState("inputValue", "setInputValue", (props) =>
-    getProcessedOptionValue(props.selectedOption, props)
-  ),
-  withState("inputState", "setInputState", (props) =>
-    props.openByDefault || props.selectInputwithoutDropdown ? "select" : null
-  ),
-  withState("matchingOptions", "setMatchingOptions", getInitialOptions),
-  withState(
-    "selectedOption",
-    "setSelectedOption",
-    (props) => props.selectedOption || { value: "" }
-  ),
-  withState("isFocus", "setFocus", null),
-  withState("isOpen", "setOpenState", (props) => props.openByDefault || false),
-  withState(
-    "forceComplete",
-    "setForceComplete",
-    (props) => props.forceComplete || false
-  ),
-  withState(
-    "valueAlias",
-    "setValueAlias",
-    (props) => props.valueAlias || "value"
-  ),
-  mapProps(autocompleteMethods),
-  withHandlers(autocompleteEventHandlers),
-  lifecycle({
-    componentWillReceiveProps(nextProps) {
-      /**
-       * If updateInputValue is async, updateOptionsOnPropsChange must be true.
-       * If it's synchronous with a pre-populated value, skip it to avoid filtering
-       * by the existing value. But this is a last-minute band-aid, please ditch
-       * autocomplete and just use getDistinctColumnValues instead if you need
-       * to re-query on input value change.
-       */
-      if (
-        this.props.updateOptionsOnPropsChange &&
-        this.props.options !== nextProps.options
-      ) {
-        this.props.setMatchingOptions(() =>
-          searchFilter(
-            this.props.inputValue,
-            this.props.valueAlias,
-            getInitialOptions(this.props)
-          )
-        )
-      }
+function useAutocompleteParentProps(incomingProps) {
+  let viewProps = incomingProps
+  const [didMouseMove, setDidMouseMove] = React.useState(false)
+  viewProps = { ...viewProps, didMouseMove, setDidMouseMove }
+  const [forceIntoViewIndex, setForceIntoViewIndex] = React.useState(null)
+  viewProps = { ...viewProps, forceIntoViewIndex, setForceIntoViewIndex }
+  const [highlightIndex, setHighlightIndex] = React.useState(null)
+  viewProps = { ...viewProps, highlightIndex, setHighlightIndex }
+  const [inputValue, setInputValue] = React.useState(() =>
+    getProcessedOptionValue(viewProps.selectedOption, viewProps)
+  )
+  viewProps = { ...viewProps, inputValue, setInputValue }
+  const [inputState, setInputState] = React.useState(() =>
+    viewProps.openByDefault || viewProps.selectInputwithoutDropdown
+      ? "select"
+      : null
+  )
+  viewProps = { ...viewProps, inputState, setInputState }
+  const [matchingOptions, setMatchingOptions] = React.useState(() =>
+    getInitialOptions(viewProps)
+  )
+  viewProps = { ...viewProps, matchingOptions, setMatchingOptions }
+  const [selectedOption, setSelectedOption] = React.useState(
+    () => viewProps.selectedOption || { value: "" }
+  )
+  viewProps = { ...viewProps, selectedOption, setSelectedOption }
+  const [isFocus, setFocus] = React.useState(null)
+  viewProps = { ...viewProps, isFocus, setFocus }
+  const [isOpen, setOpenState] = React.useState(
+    () => viewProps.openByDefault || false
+  )
+  viewProps = { ...viewProps, isOpen, setOpenState }
+  const [forceComplete, setForceComplete] = React.useState(
+    () => viewProps.forceComplete || false
+  )
+  viewProps = { ...viewProps, forceComplete, setForceComplete }
+  const [valueAlias, setValueAlias] = React.useState(
+    () => viewProps.valueAlias || "value"
+  )
+  viewProps = { ...viewProps, valueAlias, setValueAlias }
+  viewProps = autocompleteMethods(viewProps)
+  const localHandlers = useEventHandlers(autocompleteEventHandlers, viewProps)
+  viewProps = { ...viewProps, ...localHandlers }
+  const {
+    options,
+    updateOptionsOnPropsChange,
+    inputValue: currentInput,
+    valueAlias: currentAlias,
+    setMatchingOptions: updateMatches
+  } = viewProps
+  const previousOptions = React.useRef(options)
+  React.useEffect(() => {
+    if (updateOptionsOnPropsChange && previousOptions.current !== options) {
+      updateMatches(searchFilter(currentInput, currentAlias, options || []))
     }
-  })
-)(Autocomplete)
+    previousOptions.current = options
+  }, [
+    options,
+    updateOptionsOnPropsChange,
+    currentInput,
+    currentAlias,
+    updateMatches
+  ])
+  return viewProps
+}
+
+function StatefulAutocompleteParent(incomingProps) {
+  const viewProps = useAutocompleteParentProps(incomingProps)
+  return React.createElement(Autocomplete, viewProps)
+}
+
+export default StatefulAutocompleteParent

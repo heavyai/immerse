@@ -28,7 +28,7 @@ const baseConfig = {
     "\\.[cm]?[jt]sx?$": "babel-jest"
   },
   transformIgnorePatterns: [
-    "node_modules/(?!\\.pnpm/)(?!(@heavyai|robust-predicates|delaunator|d3/(?!d3\\.js$)|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
+    "node_modules/(?!\\.pnpm/)(?!(react-codemirror2|@redux-devtools|@react-dnd|react-dnd|dnd-core|@heavyai|robust-predicates|delaunator|d3/(?!d3\\.js$)|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))"
   ],
   setupFiles: [
     "jest-canvas-mock",

@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { Component } from "react"
-import { SimpleSelect } from "react-selectize"
+import { Select } from "@immerse/ui"
 import PropTypes from "prop-types"
-
 import { isGeo } from "constants/data-types"
 import ChartSourceSelector from "vega/components/SourceSelector/ChartSourceSelector"
 
@@ -72,9 +71,9 @@ export default class ChartSettingsGeoJsonDropdown extends Component {
           />
           {geoJoin.table && !isDisabled && (
             <div className="geo-json-dropdown">
-              <SimpleSelect
+              <Select
                 defaultValue={defaultValue}
-                onValueChange={updateGeoJoinValue}
+                onChange={updateGeoJoinValue}
                 options={valid_cols}
                 placeholder="Select a Column to Join"
                 value={defaultValue}
@@ -86,9 +85,9 @@ export default class ChartSettingsGeoJsonDropdown extends Component {
     } else {
       return (
         <div className="geo-json-dropdown">
-          <SimpleSelect
+          <Select
             defaultValue={defaultValue}
-            onValueChange={updateGeoJsonValue}
+            onChange={updateGeoJsonValue}
             options={options}
             placeholder="Select a Geo JSON"
           />

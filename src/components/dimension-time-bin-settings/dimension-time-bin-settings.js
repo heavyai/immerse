@@ -1,15 +1,12 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useEventHandlers } from "hooks/use-event-handlers"
 import React from "react"
 import PropTypes from "prop-types"
-import compose from "recompose/compose"
 import CustomSelector from "components/custom-selector/custom-selector"
 import cx from "classnames"
-import mapProps from "recompose/mapProps"
 import { NUM_BINS_FOR_TIME } from "constants/data-types"
-import withHandlers from "recompose/withHandlers"
-import withState from "recompose/withState"
 import { TIME_SPANS } from "utils/time-helpers"
 
 const isLineOrHistogram = (chartType) =>
@@ -73,32 +70,6 @@ export function createOptions({ binning, binBounds, chartType }) {
   }
 }
 
-const withToggleState = compose(
-  withState("binning", "toggle", ({ dimension: { extract } }) => !extract),
-  withHandlers({
-    onBinningClick: (props) => () => {
-      const options = createOptions({ ...props, binning: true })
-      const interval = options
-        .map((d) => d.value)
-        .reduce((p, c) => (p === "day" ? p : c))
-      props.updateBinInterval(interval)
-      props.toggle(() => true)
-    },
-    onExtractClick: (props) => () => {
-      const selectedTimeBin = props.dimension && props.dimension.timeBin
-      const timeBinIsValidExtract =
-        selectedTimeBin &&
-        EXTRACT_INTERVAL_OPTIONS.some(
-          (extractOption) => extractOption.value === props.dimension.timeBin
-        )
-      const timeBin =
-        selectedTimeBin && timeBinIsValidExtract ? selectedTimeBin : "isodow"
-      props.updateExtractInterval(timeBin)
-      props.toggle(() => false)
-    }
-  })
-)
-
 const propsMapper = (props) => ({
   allowsExtract: !isLineOrHistogram(props.chartType),
   onChange: props.binning
@@ -158,7 +129,43 @@ export function DimensionTimeBinSettings(props) {
   )
 }
 
-export default compose(
-  withToggleState,
-  mapProps(propsMapper)
-)(DimensionTimeBinSettings)
+function useDimensionTimeBinSettingsProps(incomingProps) {
+  let viewProps = incomingProps
+  const [binning, toggle] = React.useState(() => !incomingProps.extract)
+  viewProps = { ...viewProps, binning, toggle }
+  const localHandlers = useEventHandlers(
+    {
+      onBinningClick: (props) => () => {
+        const options = createOptions({ ...props, binning: true })
+        const interval = options
+          .map((d) => d.value)
+          .reduce((p, c) => (p === "day" ? p : c))
+        props.updateBinInterval(interval)
+        props.toggle(() => true)
+      },
+      onExtractClick: (props) => () => {
+        const selectedTimeBin = props.dimension && props.dimension.timeBin
+        const timeBinIsValidExtract =
+          selectedTimeBin &&
+          EXTRACT_INTERVAL_OPTIONS.some(
+            (extractOption) => extractOption.value === props.dimension.timeBin
+          )
+        const timeBin =
+          selectedTimeBin && timeBinIsValidExtract ? selectedTimeBin : "isodow"
+        props.updateExtractInterval(timeBin)
+        props.toggle(() => false)
+      }
+    },
+    viewProps
+  )
+  viewProps = { ...viewProps, ...localHandlers }
+  viewProps = propsMapper(viewProps)
+  return viewProps
+}
+
+function StatefulDimensionTimeBinSettings(incomingProps) {
+  const viewProps = useDimensionTimeBinSettingsProps(incomingProps)
+  return React.createElement(DimensionTimeBinSettings, viewProps)
+}
+
+export default StatefulDimensionTimeBinSettings

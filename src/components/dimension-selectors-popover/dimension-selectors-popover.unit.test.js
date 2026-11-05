@@ -4,6 +4,7 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import { Provider } from "react-redux"
+import configureStore from "redux-mock-store"
 
 jest.mock("components/selector-dropdown/selector-dropdown", () => {
   return function MockSelectorDropdown() {
@@ -56,8 +57,8 @@ describe("DimensionSelectorsPopover Component", () => {
     stopEditingSelector: () => {}
   }
 
-  const createStore = () => ({
-    getState: () => ({
+  const createStore = () =>
+    configureStore([])({
       connection: {
         isSuperuser: false
       },
@@ -66,10 +67,7 @@ describe("DimensionSelectorsPopover Component", () => {
           dimensions: []
         }
       }
-    }),
-    dispatch: jest.fn(),
-    subscribe: jest.fn()
-  })
+    })
 
   const renderPopover = (overrideProps = {}) => {
     const store = createStore()

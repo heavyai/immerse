@@ -2,10 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { connect } from "react-redux"
-import compose from "recompose/compose"
-import setPropTypes from "recompose/setPropTypes"
-import PropTypes from "prop-types"
-
 import {
   selectJoinDataSource,
   clearJoinDataSource
@@ -13,13 +9,8 @@ import {
 import { updateChart } from "actions/update-chart-action-creator"
 import { updateGeoJoinColumn } from "charts/raster-chart/raster-chart-actions"
 import { isGeo } from "vega/constants/data-selection-types"
-
 import ChartSettingsGeoJsonDropdown from "./chart-settings-geojson-dropdown"
 import { toParameterSyntax } from "utils/parameters"
-
-const propTypes = {
-  chartId: PropTypes.string.isRequired
-}
 
 export const geoJsonDataSourceFilterFcn = (table: TTableMeta): boolean =>
   table.col_types.some(isGeo)
@@ -99,7 +90,9 @@ export function mapDispatchToProps(dispatch, { chartId }) {
   }
 }
 
-export default compose(
-  setPropTypes(propTypes),
-  connect(mapStateToProps, mapDispatchToProps)
+const ConnectedChartSettingsGeojsonDropdownParent = connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(ChartSettingsGeoJsonDropdown)
+
+export default ConnectedChartSettingsGeojsonDropdownParent

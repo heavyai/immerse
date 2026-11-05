@@ -2,14 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React from "react"
-
 import ChartEditorErrorMessage from "./chart-editor-error-message"
 import * as UIActions from "actions/ui-action-creators"
 import "charts/chart-definitions"
 import { renderWithRedux } from "jest/renderScaffolding"
 import { fireEvent, waitFor } from "@testing-library/react"
-import * as reactRedux from "react-redux"
-import { noop } from "lodash"
+import configureStore from "redux-mock-store"
+import { thunk } from "redux-thunk"
 
 const state = {
   charts: {
@@ -62,8 +61,12 @@ const defaultProps = {
 }
 
 describe("ChartEditorErrorMessage Component", () => {
+  let store
+  beforeEach(() => {
+    store = configureStore([thunk])(state)
+  })
   function renderComponent(props = defaultProps) {
-    return renderWithRedux(<ChartEditorErrorMessage {...props} />, null, state)
+    return renderWithRedux(<ChartEditorErrorMessage {...props} />, store, state)
   }
 
   describe("Missing Requirements", () => {
@@ -143,28 +146,14 @@ describe("ChartEditorErrorMessage Component", () => {
   })
 
   describe("Hover Behavior", () => {
-    let dispatchSpy
-    beforeEach(() => {
-      dispatchSpy = jest.fn().mockImplementation((action) => {
-        if (typeof action === "function") {
-          // This is a thunk
-          action(dispatchSpy, () => state)
-        } else {
-          noop()
-        }
-      })
-      jest
-        .spyOn(reactRedux, "useDispatch")
-        .mockImplementation(() => dispatchSpy)
-    })
     it("should setSelectorPillHoverFromIndex on mouse enter", async () => {
       const { getAllByRole } = renderComponent()
       const missing = getAllByRole("listitem")
       fireEvent.mouseOver(missing[0])
       await waitFor(() => {
-        expect(dispatchSpy).toHaveBeenCalledTimes(2)
+        expect(store.getActions()).toHaveLength(1)
       })
-      expect(dispatchSpy).toHaveBeenCalledWith({
+      expect(store.getActions()).toContainEqual({
         type: "SELECTOR_PILL_HOVER",
         selector: { chartType: "pie", index: 0, selectorType: "dimensions" },
         top: 10
@@ -174,7 +163,9 @@ describe("ChartEditorErrorMessage Component", () => {
       const { getAllByRole } = renderComponent()
       const missing = getAllByRole("listitem")
       fireEvent.mouseLeave(missing[0])
-      expect(dispatchSpy).toHaveBeenCalledWith(UIActions.selectorPillNotHover())
+      expect(store.getActions()).toContainEqual(
+        UIActions.selectorPillNotHover()
+      )
     })
   })
 })

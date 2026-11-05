@@ -38,7 +38,7 @@ import userConfigurableUI from "./user-configurable-ui-reducer"
 import settings from "./settings-reducer"
 import { joinDataSourcesReducer as joinDataSources } from "./join-reducer"
 import history from "services/history"
-import { connectRouter } from "connected-react-router"
+import { createNavigationReducer } from "services/navigation"
 
 export default combineReducers({
   app,
@@ -61,7 +61,7 @@ export default combineReducers({
   filters,
   importer,
   navBar,
-  router: connectRouter(history),
+  router: createNavigationReducer(history),
   tablePreview,
   tables,
   tablesMeta,

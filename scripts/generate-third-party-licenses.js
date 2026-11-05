@@ -3,7 +3,7 @@
 
 const fs = require("fs")
 const path = require("path")
-const licenseChecker = require("license-checker")
+const { execFile } = require("node:child_process")
 
 const OUTPUT_PATH = path.join(
   __dirname,
@@ -65,53 +65,72 @@ function getLicenseUrl(license, repository) {
   return repository || ""
 }
 
-licenseChecker.init({ start: PROJECT_ROOT }, (err, data) => {
-  if (err) {
-    throw err
-  }
-
-  const rows = Object.entries(data).map(([pkgAtVersion, info]) => {
-    const lastAt = pkgAtVersion.lastIndexOf("@")
-    const name = pkgAtVersion.slice(0, lastAt)
-    const version = pkgAtVersion.slice(lastAt + 1)
-    const rawLicense = info.licenses
-    const license = Array.isArray(rawLicense)
-      ? rawLicense.join(", ")
-      : rawLicense || "Unknown"
-    const licenseUrl = getLicenseUrl(license, info.repository)
-    return { name, version, license, licenseUrl }
-  })
-
-  rows.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-
-  const lines = []
-  lines.push("# Third-Party Licenses")
-  lines.push("")
-  lines.push(
-    "This file lists the third-party npm packages distributed with this project (the runtime dependency closure of `package.json`) and their licenses, in fulfillment of the attribution requirements of those licenses."
-  )
-  lines.push("")
-  lines.push(
-    `Generated from the installed environment. Total packages: **${rows.length}**.`
-  )
-  lines.push("")
-  lines.push("## Summary")
-  lines.push("")
-  lines.push("| Package | Version | License | URL |")
-  lines.push("|---|---|---|---|")
-
-  for (const row of rows) {
-    const urlCell = row.licenseUrl
-      ? `[${row.licenseUrl}](${row.licenseUrl})`
-      : ""
-    lines.push(`| ${row.name} | ${row.version} | ${row.license} | ${urlCell} |`)
-  }
-
-  const output = `${lines.join("\n")}\n`
-  fs.writeFile(OUTPUT_PATH, output, (writeError) => {
-    if (writeError) {
-      throw writeError
+execFile(
+  "pnpm",
+  ["licenses", "list", "--json"],
+  { cwd: PROJECT_ROOT, maxBuffer: 16 * 1024 * 1024 },
+  (err, stdout) => {
+    if (err) {
+      throw err
     }
-    process.stdout.write(`Written ${rows.length} packages to ${OUTPUT_PATH}\n`)
-  })
-})
+
+    // pnpm reports its complete resolved dependency graph, including dependencies
+    // behind workspace and virtual-store symlinks. Walking node_modules directly
+    // only discovers root links and silently omits most transitive packages.
+    const groups = JSON.parse(stdout)
+    const rows = Object.values(groups).flatMap((packages) =>
+      packages.flatMap((info) =>
+        info.versions.map((version) => {
+          const license = info.license || "Unknown"
+          return {
+            name: info.name,
+            version,
+            license,
+            licenseUrl: getLicenseUrl(license, info.homepage)
+          }
+        })
+      )
+    )
+
+    rows.sort(
+      (a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase()) ||
+        a.version.localeCompare(b.version)
+    )
+
+    const lines = []
+    lines.push("# Third-Party Licenses")
+    lines.push("")
+    lines.push(
+      "This file lists the third-party npm packages distributed with this project (the resolved dependency closure, including development tooling) and their licenses, in fulfillment of the attribution requirements of those licenses."
+    )
+    lines.push("")
+    lines.push(
+      `Generated with pnpm licenses list --json. Total packages: **${rows.length}**.`
+    )
+    lines.push("")
+    lines.push("## Summary")
+    lines.push("")
+    lines.push("| Package | Version | License | URL |")
+    lines.push("|---|---|---|---|")
+
+    for (const row of rows) {
+      const urlCell = row.licenseUrl
+        ? `[${row.licenseUrl}](${row.licenseUrl})`
+        : ""
+      lines.push(
+        `| ${row.name} | ${row.version} | ${row.license} | ${urlCell} |`
+      )
+    }
+
+    const output = `${lines.join("\n")}\n`
+    fs.writeFile(OUTPUT_PATH, output, (writeError) => {
+      if (writeError) {
+        throw writeError
+      }
+      process.stdout.write(
+        `Written ${rows.length} packages to ${OUTPUT_PATH}\n`
+      )
+    })
+  }
+)
