@@ -7,7 +7,7 @@ import {
 } from "constants/action-types"
 
 import createReducer from "utils/redux/create-reducer"
-import { TUserDefinedTableFunction } from "@heavyai/connector/dist/browser-connector"
+import { TUserDefinedTableFunction } from "@immerse/connector/legacy"
 
 type BackendFunctionsState = {
   loadingTableFunctions: boolean

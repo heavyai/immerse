@@ -22,7 +22,7 @@ import { pushImportPreviewRoute } from "./utils/push-import-preview-route"
 
 import "./import-form.scss"
 import "./import-local-file.scss"
-import { TSourceType } from "@heavyai/connector/dist/browser-connector"
+import { TSourceType } from "@immerse/connector/legacy"
 import { hideModal, showModal } from "../../actions/ui-action-creators"
 import { filenameToSourceTypeHeuristics } from "./utils/source-type-heuristics"
 

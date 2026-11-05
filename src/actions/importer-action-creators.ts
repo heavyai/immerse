@@ -7,7 +7,7 @@ import {
   TImportHeaderRow,
   TSourceType,
   TTableRefreshInfo
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import { AnyAction, Dispatch } from "redux"
 import moment from "moment"
 import { ThunkDispatch } from "redux-thunk"

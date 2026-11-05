@@ -3,7 +3,7 @@
 
 import React, { FC, useState, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { TUserDefinedTableFunction } from "@heavyai/connector/dist/browser-connector"
+import { TUserDefinedTableFunction } from "@immerse/connector/legacy"
 import { TextField } from "widgets/text-field/TextField"
 import { List, SimpleListItem } from "@rmwc/list"
 import groupBy from "lodash/groupBy"

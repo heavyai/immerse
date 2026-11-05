@@ -3,7 +3,7 @@
 
 import PropTypes from "prop-types"
 import React from "react"
-import { TDatumType } from "@heavyai/connector/dist/browser-connector"
+import { TDatumType } from "@immerse/connector/legacy"
 import { findTypeStringByColumnType } from "../../constants/table-data-types"
 
 // Headers from an existing table; displayed when appending data.

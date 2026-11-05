@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { getStore } from "services/ImmerseCrossFilter/utils"
-import { setLastFilteredSize } from "@heavyai/charting/src/core/core-async"
+import { setLastFilteredSize } from "@immerse/chart-engine-dc/legacy"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import { getJoinFilters } from "./ImmerseCrossFilter/ImmerseCrossFilterJoin"
 

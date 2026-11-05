@@ -1,11 +1,6 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import R from "ramda"
+import { decodeDashboard } from "@immerse/dashboard-document"
 
-export const deserialize = R.compose(
-  JSON.parse,
-  window.decodeURIComponent,
-  window.escape,
-  window.atob
-)
+export const deserialize = (wire) => decodeDashboard(wire, window)

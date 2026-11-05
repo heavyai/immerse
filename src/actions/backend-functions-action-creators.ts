@@ -6,7 +6,7 @@ import {
   LOAD_TABLE_FUNCTIONS_SUCCESS
 } from "constants/action-types"
 import { getTableFunctions } from "../utils/table-functions"
-import { TUserDefinedTableFunction } from "@heavyai/connector/dist/browser-connector"
+import { TUserDefinedTableFunction } from "@immerse/connector/legacy"
 import { Dispatch } from "redux"
 
 export function loadTableFunctionsRequest() {

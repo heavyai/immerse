@@ -14,7 +14,7 @@ import {
   TSourceType,
   TRasterPointType,
   TRasterPointTransform
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import { toggleImportSettingsModal } from "actions/importer-action-creators"
 import { setImportSettings } from "../../actions/importer-action-creators"
 import { ImporterState, ImportSettings } from "../../reducers/importer-reducer"

@@ -11,7 +11,7 @@ import {
   RESET_PREVIEW_TABLE
 } from "constants/action-types"
 import { getDataSourcePreview } from "actions/table-preview-action-creators"
-import { TTableType } from "@heavyai/connector/dist/browser-connector"
+import { TTableType } from "@immerse/connector/legacy"
 
 // moved to a separate file to bust a circular dependency
 import {

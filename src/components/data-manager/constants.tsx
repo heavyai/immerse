@@ -6,7 +6,7 @@ import {
   TTableRefreshInfo,
   TColumnType,
   TSourceType
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 
 export type TablePreviewData = {
   rows: number[]

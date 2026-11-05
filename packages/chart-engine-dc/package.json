@@ -1,0 +1,34 @@
+{
+  "name": "@immerse/chart-engine-dc",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./legacy": {
+      "default": "./src/legacy.js"
+    },
+    "./draw": {
+      "default": "./src/draw.js"
+    },
+    "./combo": {
+      "default": "./src/combo.js"
+    },
+    "./styles.css": "./src/styles.css",
+    "./combo-styles.css": "./src/combo-styles.css"
+  },
+  "dependencies": {
+    "@immerse/chart-core": "workspace:*",
+    "@heavyai/charting": "catalog:",
+    "@heavyai/draw": "catalog:",
+    "@heavyai/d3-combo-chart": "catalog:"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/chart-engine-dc/src/engine.unit.test.js"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2019",
+      "DOM"
+    ],
+    "types": []
+  },
+  "include": [
+    "*/src/index.d.ts",
+    "type-contracts.ts"
+  ]
+}

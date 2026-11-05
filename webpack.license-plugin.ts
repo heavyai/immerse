@@ -5,6 +5,8 @@ import LicenseCheckerWebpackPlugin, {
   Options
 } from "license-checker-webpack-plugin"
 
+import { dependencyLicenseFilter } from "./webpack.license-filter"
+
 const override = {
   /** License is spelled as UNLICENSE */
   "gif-encoder-2@^1.0.5": {
@@ -89,6 +91,7 @@ const approvedLicenses = `(${[
 ].join(" OR ")})`
 
 export const licenseCheckerOptions: Partial<Options> = {
+  filter: dependencyLicenseFilter,
   allow: approvedLicenses,
   emitError: true,
   override,

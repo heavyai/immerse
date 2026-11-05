@@ -8,7 +8,7 @@ import {
   hideDangerModal
 } from "actions/ui-action-creators"
 import { connect } from "react-redux"
-import { TSourceType } from "@heavyai/connector/dist/browser-connector"
+import { TSourceType } from "@immerse/connector/legacy"
 import TablePreview from "./table-preview"
 import { clearChangedColumnNameList } from "actions/importer-action-creators"
 

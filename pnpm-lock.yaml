@@ -117,9 +117,36 @@ catalogs:
     '@material-ui/pickers':
       specifier: ^3.3.10
       version: 3.3.11
+    '@material/button':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/checkbox':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/dialog':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/form-field':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/icon-button':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/line-ripple':
+      specifier: 3.1.0
+      version: 3.1.0
     '@material/list':
       specifier: 3.2.0
       version: 3.2.0
+    '@material/menu':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/menu-surface':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/notched-outline':
+      specifier: 1.1.1
+      version: 1.1.1
     '@material/radio':
       specifier: 5.1.0
       version: 5.1.0
@@ -130,6 +157,12 @@ catalogs:
       specifier: ^0.15.0
       version: 0.15.0
     '@material/snackbar':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/switch':
+      specifier: 3.2.0
+      version: 3.2.0
+    '@material/textfield':
       specifier: 3.2.0
       version: 3.2.0
     '@playwright/test':
@@ -816,7 +849,7 @@ overrides:
   protocol-buffers-schema: 3.6.1
   serialize-javascript: 7.0.5
   vega-selections: 6.1.2
-  axios: ^1.16.0
+  axios: ^1.20.0
   lodash: ^4.18.1
   '@heavyai/charting': git+https://github.com/heavyai/heavyai-charting.git#7daf2e49cd024938ec4863affbee3db3acf5f47a
   '@heavyai/connector': git+https://github.com/heavyai/heavyai-connector.git#6f77df57d099eaff0dda193ec186da247f261f44
@@ -829,6 +862,22 @@ overrides:
   useWhisper: git+https://github.com/heavyai/useWhisper.git#a4da42bdfa8f62353ea0b21f20e5df50377f61b6
   '@heavyai/crossfilter': git+https://github.com/heavyai/heavyai-crossfilter.git#25ff4c5cc27636519e65d576dfd736a34e6212e0
   legendables: git+https://github.com/heavyai/legendables.git#3eac5e999e554e31577989eda9698896b741c29a
+  trim@<0.0.3: 0.0.3
+  form-data@>=2 <2.5.6: 2.5.6
+  brace-expansion@>=1 <1.1.20: 1.1.20
+  brace-expansion@>=2 <2.1.6: 2.1.6
+  fast-uri@>=3 <3.1.7: 3.1.7
+  js-yaml@>=3 <3.15.2: 3.15.2
+  nanoid@>=3 <3.3.18: 3.3.18
+  postcss@>=8 <8.5.18: 8.5.18
+  undici@>=7 <7.30.1: 7.30.1
+  node-forge@>=1 <1.4.3: 1.4.3
+  source-map-js@>=1 <1.2.2: 1.2.2
+  proxy-addr@>=2 <2.0.8: 2.0.8
+  compression@>=1 <1.8.2: 1.8.2
+  shell-quote@>=1 <1.11.0: 1.11.0
+  launch-editor@>=2 <2.14.2: 2.14.2
+  body-parser@>=1 <1.20.9: 1.20.9
 
 importers:
 
@@ -864,15 +913,60 @@ importers:
       '@hot-loader/react-dom':
         specifier: 'catalog:'
         version: 16.14.0(react@16.14.0)
+      '@immerse/chart-core':
+        specifier: workspace:*
+        version: link:packages/chart-core
+      '@immerse/chart-engine-dc':
+        specifier: workspace:*
+        version: link:packages/chart-engine-dc
+      '@immerse/connector':
+        specifier: workspace:*
+        version: link:packages/connector
+      '@immerse/dashboard-document':
+        specifier: workspace:*
+        version: link:packages/dashboard-document
+      '@immerse/query-runtime':
+        specifier: workspace:*
+        version: link:packages/query-runtime
+      '@immerse/ui':
+        specifier: workspace:*
+        version: link:packages/ui
       '@material-ui/core':
         specifier: 'catalog:'
         version: 4.12.4(@types/react@16.14.70)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
       '@material-ui/pickers':
         specifier: 'catalog:'
         version: 3.3.11(@material-ui/core@4.12.4(@types/react@16.14.70)(react-dom@16.14.0(react@16.14.0))(react@16.14.0))(prop-types@15.8.1)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@material/button':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/checkbox':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/dialog':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/form-field':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/icon-button':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/line-ripple':
+        specifier: 'catalog:'
+        version: 3.1.0
       '@material/list':
         specifier: 'catalog:'
         version: 3.2.0
+      '@material/menu':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/menu-surface':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/notched-outline':
+        specifier: 'catalog:'
+        version: 1.1.1
       '@material/radio':
         specifier: 'catalog:'
         version: 5.1.0
@@ -883,6 +977,12 @@ importers:
         specifier: 'catalog:'
         version: 0.15.0(react@16.14.0)
       '@material/snackbar':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/switch':
+        specifier: 'catalog:'
+        version: 3.2.0
+      '@material/textfield':
         specifier: 'catalog:'
         version: 3.2.0
       '@rmwc/button':
@@ -949,8 +1049,8 @@ importers:
         specifier: 'catalog:'
         version: 7.0.0
       axios:
-        specifier: ^1.16.0
-        version: 1.18.1
+        specifier: ^1.20.0
+        version: 1.21.0
       browser-cookies:
         specifier: 'catalog:'
         version: 1.2.0
@@ -1651,6 +1751,56 @@ importers:
       yargs:
         specifier: 'catalog:'
         version: 12.0.5
+
+  packages/chart-core:
+    dependencies:
+      '@immerse/dashboard-document':
+        specifier: workspace:*
+        version: link:../dashboard-document
+
+  packages/chart-engine-dc:
+    dependencies:
+      '@heavyai/charting':
+        specifier: git+https://github.com/heavyai/heavyai-charting.git#7daf2e49cd024938ec4863affbee3db3acf5f47a
+        version: https://codeload.github.com/heavyai/heavyai-charting/tar.gz/7daf2e49cd024938ec4863affbee3db3acf5f47a(apache-arrow@7.0.0)
+      '@heavyai/d3-combo-chart':
+        specifier: git+https://github.com/heavyai/heavyai-d3.git#c01faf17df9dd98876336ae7708938d450a42d85
+        version: https://codeload.github.com/heavyai/heavyai-d3/tar.gz/c01faf17df9dd98876336ae7708938d450a42d85
+      '@heavyai/draw':
+        specifier: git+https://github.com/heavyai/heavyai-draw.git#e841dd2af045e0153b9d300e7cc19456ff2fac98
+        version: https://codeload.github.com/heavyai/heavyai-draw/tar.gz/e841dd2af045e0153b9d300e7cc19456ff2fac98
+      '@immerse/chart-core':
+        specifier: workspace:*
+        version: link:../chart-core
+
+  packages/connector:
+    dependencies:
+      '@heavyai/connector':
+        specifier: git+https://github.com/heavyai/heavyai-connector.git#6f77df57d099eaff0dda193ec186da247f261f44
+        version: https://codeload.github.com/heavyai/heavyai-connector/tar.gz/6f77df57d099eaff0dda193ec186da247f261f44(apache-arrow@7.0.0)
+
+  packages/dashboard-document: {}
+
+  packages/query-runtime: {}
+
+  packages/ui:
+    dependencies:
+      '@rmwc/button':
+        specifier: 'catalog:'
+        version: 5.7.2(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+    devDependencies:
+      '@testing-library/react':
+        specifier: 'catalog:'
+        version: 12.1.5(@types/react@16.14.70)(react-dom@16.14.0(react@16.14.0))(react@16.14.0)
+      '@types/react':
+        specifier: 'catalog:'
+        version: 16.14.70
+      react:
+        specifier: 'catalog:'
+        version: 16.14.0
+      react-dom:
+        specifier: 'catalog:'
+        version: 16.14.0(react@16.14.0)
 
   test-config/puppeteer:
     devDependencies:
@@ -2698,7 +2848,7 @@ packages:
       apache-arrow: ^7.0.0
 
   '@heavyai/crossfilter@https://codeload.github.com/heavyai/heavyai-crossfilter/tar.gz/25ff4c5cc27636519e65d576dfd736a34e6212e0':
-    resolution: {gitHosted: true, integrity: sha512-Ggj4rXhBMJ+EYhwDW/Px8JZAjxaoHKoFFxxIi2BjoyOweW0t2jYKYErJnicPP9rPqkM7M6AiGyzTIOc3P0wtqQ==, tarball: https://codeload.github.com/heavyai/heavyai-crossfilter/tar.gz/25ff4c5cc27636519e65d576dfd736a34e6212e0}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/heavyai/heavyai-crossfilter/tar.gz/25ff4c5cc27636519e65d576dfd736a34e6212e0}
     version: 1.2.1
 
   '@heavyai/d3-combo-chart@https://codeload.github.com/heavyai/heavyai-d3/tar.gz/c01faf17df9dd98876336ae7708938d450a42d85':
@@ -4746,8 +4896,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.21.0:
+    resolution: {integrity: sha512-YCzXMB53Q9PZBsh7yN7wtapit4WepwcHS2fP8QhGsBxSz5YtgYobV7GGlWlAJi+RxfU77GQTQi2DSLUma42EYA==}
 
   b4a@1.9.0:
     resolution: {integrity: sha512-dpfcF9fDNR6++cthXR67iyhgqWy9CBouAvIWhIntzBG6cvK/cnIPiZQjBwi/ZqjjBEDGfoNDtmB0kTjroOJ3pQ==}
@@ -4949,8 +5099,8 @@ packages:
   bn.js@5.2.4:
     resolution: {integrity: sha512-QL7sb18rJ1PbdsKsqPA0guxL563vIMwRHgzNrW/uzQuRGN1Cjqd/wonUBAVqHox9KwzHA6vCbM0lXx3k4iQMow==}
 
-  body-parser@1.20.5:
-    resolution: {integrity: sha512-3grm+/2tUOvu2cjJkvsIxrv/wVpfXQW4PsQHYm7yk4vfpu7Ekl6nEsYBoJUL6qDwZUx8wUhQ8tR2qz+ad9c9OA==}
+  body-parser@1.20.9:
+    resolution: {integrity: sha512-FISIQxV5u91Y9gvuFq3q/tA/qTqLJn3AhRcEvyozyhJTh5OBFFtv827AdHU7Rbyct4r+Ba1/99oFa1Y3yuFsdw==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
 
   bonjour-service@1.4.2:
@@ -4959,11 +5109,11 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  brace-expansion@1.1.16:
-    resolution: {integrity: sha512-IDw48K2/2kRkg9LdJxurvq3lV3aBgq0REY89duEqFRthjlPdXHKMj7EnQOXVckxzgisinf3nHfrcE2FufFLXMw==}
+  brace-expansion@1.1.20:
+    resolution: {integrity: sha512-5/qk29RyvatwgzNMrvGjkIhKYzpJ0OUnPK+9TU+zS/CMJqzmb+UD0irWu42JfpUvO636fxd8IstgiydZRM/76A==}
 
-  brace-expansion@2.1.2:
-    resolution: {integrity: sha512-w5JZcKgdhDOgOwm8H+KgbosopHMuGcl6qbulwjtz3SM7I7P3yW1eAjzMPLrIE+NQ9vjgANKHWeMHnrT0OXW1oA==}
+  brace-expansion@2.1.6:
+    resolution: {integrity: sha512-pi/WFpBvCBmB/NsURt7hW5sDvuOqvJaDMDai7CrlT9xoehzWRzo/dhQRKqOhpPvlnicVaTzHCbzGnnTgpvMTFw==}
 
   braces@2.3.2:
     resolution: {integrity: sha512-aNdbnj9P8PjdXU4ybaWLK2IF3jc/EoDYbC7AazW6to3TRsfXxscC9UXOB5iDiEQrkyIbWp2SLQda4+QAa7nc3w==}
@@ -5365,8 +5515,8 @@ packages:
     resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
     engines: {node: '>= 0.6'}
 
-  compression@1.8.1:
-    resolution: {integrity: sha512-9mAqGPHLakhCLeNyxPkK4xVo746zQ/czLH1Ky+vkitMnWfWZps8r0qXuwhwizagCRttsL4lfG4pIOvaWLpAP0w==}
+  compression@1.8.2:
+    resolution: {integrity: sha512-o8vI5RE5A6EVVOd9o41jKp41aJom+QTEO/Bx8MYNjexMo/Bv2WOjUfZr+aL0WnYSgymUy6zeguqLTsIhV0gMvQ==}
     engines: {node: '>= 0.8.0'}
 
   concat-map@0.0.1:
@@ -6627,8 +6777,8 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-uri@3.1.4:
-    resolution: {integrity: sha512-8JnbkQ4juDyvYs4mgFGQqg4yCYtFDtUtmp2QIQq11ZZe5CFQ5wcqm1rqDgAh/QdMySuBnPzMUiJUNZG5N/AiQw==}
+  fast-uri@3.1.7:
+    resolution: {integrity: sha512-dOvZVzjdZdz7phd9v6jCbwxrBW3fK6n8Rc0CtdmM4bumzMnxywBYhuph6J819RRw/ku+rLbelwfMunktuzVVHg==}
 
   fast-xml-builder@1.2.1:
     resolution: {integrity: sha512-tPb5TTWfgfVx5BNSi2xV0eLr89POeXXn0dXIsCJ9m1narrWxeIyx6je9d7Rce/3NyXLbvuQmLkxq+RuxMWejvw==}
@@ -6789,8 +6939,8 @@ packages:
   forever-agent@0.6.1:
     resolution: {integrity: sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==}
 
-  form-data@2.3.3:
-    resolution: {integrity: sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==}
+  form-data@2.5.6:
+    resolution: {integrity: sha512-Ogz/E85h9tlfJzpI6TuFpGcHZFhLrb9Gw8wq9v40CxSCPnv7ahKr6Xgtkn0KYCDQJ8DNn5VoMO8EXr9V5PadyA==}
     engines: {node: '>= 0.12'}
 
   form-data@4.0.6:
@@ -7302,7 +7452,7 @@ packages:
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: ^8.1.0
+      postcss: 8.5.18
 
   identity-obj-proxy@3.0.0:
     resolution: {integrity: sha512-00n6YnVHKrinT9t0d9+5yZC6UBNJANpYEQvL2LlX6Ab9lnmxzIRcEmTPuyGScvl1+jKuCICX1Z0Ab1pPKKdikA==}
@@ -7980,8 +8130,8 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@3.15.0:
-    resolution: {integrity: sha512-ttBQIIQPDeLjpPOohtUdXuXUVoA2uIB6fEH9HyJ7234s5mBJ5wTx20njxplLZQgLaOfpmPQA7X2t5AX6tIPbog==}
+  js-yaml@3.15.2:
+    resolution: {integrity: sha512-6EuL879VkRA+1Cz578mKMiKvjPNEuk6+r1JaFzoSWejZmtf7xWbIyw1e3KkxlkzTIt9Taw6JBhEppG7utc1P+w==}
     hasBin: true
 
   js-yaml@4.3.2:
@@ -8137,8 +8287,8 @@ packages:
   ktx-parse@0.0.4:
     resolution: {integrity: sha512-LY3nrmfXl+wZZdPxgJ3ZmLvG+wkOZZP3/dr4RbQj1Pk3Qwz44esOOSFFVQJcNWpXAtiNIC66WgXufX/SYgYz6A==}
 
-  launch-editor@2.14.1:
-    resolution: {integrity: sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA==}
+  launch-editor@2.14.2:
+    resolution: {integrity: sha512-NHJEb30MGBCkmZXLZwz25t37QR4aY03ZzPYUJXOJaOa92uWwExI9SBQUuIznBYc1xkD7cJNGX7oc3Nl3sq2kQQ==}
 
   launder@1.7.1:
     resolution: {integrity: sha512-mU6WRz5EusL9ZZuiZ5SO4Y6C0P9PAUR9iwdb6bzj4KDihm28DiHFw+/yk9DBH4f+Pv1wuzQ4e2jV3oQ7mkIqvw==}
@@ -8152,7 +8302,7 @@ packages:
     deprecated: use String.prototype.padStart()
 
   legendables@https://codeload.github.com/heavyai/legendables/tar.gz/3eac5e999e554e31577989eda9698896b741c29a:
-    resolution: {gitHosted: true, integrity: sha512-uLFF7VKNwScP6OJnHZj9Ow883RJoZgMBc3laKoBYrbCsum8s6jtltlCcFi+vrewSiOj1UqZDfgteDs0+1op9pw==, tarball: https://codeload.github.com/heavyai/legendables/tar.gz/3eac5e999e554e31577989eda9698896b741c29a}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/heavyai/legendables/tar.gz/3eac5e999e554e31577989eda9698896b741c29a}
     version: 1.0.0-rc.6
 
   lerc@4.1.2:
@@ -8621,8 +8771,8 @@ packages:
   mutationobserver-shim@0.3.7:
     resolution: {integrity: sha512-oRIDTyZQU96nAiz2AQyngwx1e89iApl2hN5AOYwyxLUB47UYsU3Wv9lJWqH5y/QdiYkc5HQLi23ZNB3fELdHcQ==}
 
-  nanoid@3.3.15:
-    resolution: {integrity: sha512-y7Wygv/7mEOvxTuEQDB8StXdMRBWf1kR/tlhAzBRUFkB2jfcLOAxO/SHmOO2zgz1pVgK29/kyupn059/bCHdjA==}
+  nanoid@3.3.18:
+    resolution: {integrity: sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -8694,8 +8844,8 @@ packages:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  node-forge@1.4.0:
-    resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==}
+  node-forge@1.4.3:
+    resolution: {integrity: sha512-P6wzfh6t70avmV8FrVEAd/36sOPJQ+hkaJVX1Laap9J/77m7M0eyozDvc8SwnDf4P7MP94gwbAAo0rg3YVXT+g==}
     engines: {node: '>= 6.13.0'}
 
   node-int64@0.4.0:
@@ -9158,13 +9308,13 @@ packages:
   postcss-html@0.36.0:
     resolution: {integrity: sha512-HeiOxGcuwID0AFsNAL0ox3mW6MHH5cstWN1Z3Y+n6H+g12ih7LHdYxWwEA/QmrebctLjo79xz9ouK3MroHwOJw==}
     peerDependencies:
-      postcss: '>=5.0.0'
+      postcss: 8.5.18
       postcss-syntax: '>=0.36.0'
 
   postcss-jsx@0.36.4:
     resolution: {integrity: sha512-jwO/7qWUvYuWYnpOb0+4bIIgJt7003pgU3P6nETBLaOyBXuTD55ho21xnals5nBrlpTIFodyd3/jBi6UO3dHvA==}
     peerDependencies:
-      postcss: '>=5.0.0'
+      postcss: 8.5.18
       postcss-syntax: '>=0.36.0'
 
   postcss-less@3.1.4:
@@ -9174,7 +9324,7 @@ packages:
   postcss-markdown@0.36.0:
     resolution: {integrity: sha512-rl7fs1r/LNSB2bWRhyZ+lM/0bwKv9fhl38/06gF6mKMo/NPnp55+K1dSTosSVjFZc0e1ppBlu+WT91ba0PMBfQ==}
     peerDependencies:
-      postcss: '>=5.0.0'
+      postcss: 8.5.18
       postcss-syntax: '>=0.36.0'
 
   postcss-media-query-parser@0.2.3:
@@ -9184,25 +9334,25 @@ packages:
     resolution: {integrity: sha512-k3kNe0aNFQDAZGbin48pL2VNidTF0w4/eASDsxlyspobzU3wZQLOGj7L9gfRe0Jo9/4uud09DsjFNH7winGv8Q==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: ^8.1.0
+      postcss: 8.5.18
 
   postcss-modules-local-by-default@4.2.0:
     resolution: {integrity: sha512-5kcJm/zk+GJDSfw+V/42fJ5fhjL5YbFDl8nVdXkJPLLW+Vf9mTD5Xe0wqIaDnLuL2U6cDNpTr+UQ+v2HWIBhzw==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: ^8.1.0
+      postcss: 8.5.18
 
   postcss-modules-scope@3.2.1:
     resolution: {integrity: sha512-m9jZstCVaqGjTAuny8MdgE88scJnCiQSlSrOWcTQgM2t32UBe+MUmFSO5t7VMSfAf/FJKImAxBav8ooCHJXCJA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: ^8.1.0
+      postcss: 8.5.18
 
   postcss-modules-values@4.0.0:
     resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: ^8.1.0
+      postcss: 8.5.18
 
   postcss-reporter@6.0.1:
     resolution: {integrity: sha512-LpmQjfRWyabc+fRygxZjpRxfhRf9u/fdlKf4VHG4TSPbV2XNsuISzYW1KL+1aQzx53CAppa1bKG4APIB/DOXXw==}
@@ -9233,7 +9383,7 @@ packages:
   postcss-syntax@0.36.2:
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
-      postcss: '>=5.0.0'
+      postcss: 8.5.18
       postcss-html: '*'
       postcss-jsx: '*'
       postcss-less: '*'
@@ -9261,8 +9411,8 @@ packages:
     resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
     engines: {node: '>=6.0.0'}
 
-  postcss@8.5.16:
-    resolution: {integrity: sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==}
+  postcss@8.5.18:
+    resolution: {integrity: sha512-xdB1oSLHbz1vRWgCDalrCqEFTWzFlhqFC5tIHLMOSUIjhm3XXQ1qrFy8S/ESr1JYRRXqM3c1QFiMZUJdUTqyMQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   potpack@1.0.2:
@@ -9342,8 +9492,8 @@ packages:
   protocol-buffers-schema@3.6.1:
     resolution: {integrity: sha512-VG2K63Igkiv9p76tk1lilczEK1cT+kCjKtkdhw1dQZV3k3IXJbd3o6Ho8b9zJZaHSnT2hKe4I+ObmX9w6m5SmQ==}
 
-  proxy-addr@2.0.7:
-    resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
+  proxy-addr@2.0.8:
+    resolution: {integrity: sha512-5nnx0yGyVUcY6t9RnWcARWtwT9F1D8O9rt08htPvnd49W1IgZtmLkhu9WfMzQj1cFxjHIO6connUNVW5k7AVyQ==}
     engines: {node: '>= 0.10'}
 
   proxy-agent@6.5.0:
@@ -9396,6 +9546,10 @@ packages:
 
   qs@6.15.3:
     resolution: {integrity: sha512-O9gl3zCl5h5blw1KGUzQKhA5oUXSl8rwUIM5o0S3nCXMliSvy5Dzx7/DJcI+SwgICv+IneSZwhBh1oSyEHA71A==}
+    engines: {node: '>=0.6'}
+
+  qs@6.16.2:
+    resolution: {integrity: sha512-VYdnB5S7/0IeXzBacUtwNAaM6d7Y/PgYnNC7bJCI6meqA/OgnsQbZMtVW8Dt2D1PHgbHGtYmhSoEIgvt7xZ2ZA==}
     engines: {node: '>=0.6'}
 
   qs@6.5.5:
@@ -10297,8 +10451,8 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shell-quote@1.9.0:
-    resolution: {integrity: sha512-Iov+JwFv/2HcTpcwNMKd8+IWNb8tboQJNQTkAY/LLVK7gGH9jy+LGkVqPxfekHl+yMmiqXszdGWXgkfml7hjqA==}
+  shell-quote@1.11.0:
+    resolution: {integrity: sha512-JdxDPD0DBTyu08pq0kPC0xSNet/qsU07qT6IsX1AS8oO2ICNRY4ldNa8OAI6PuwAH8tG3lxEhbqmyp4Dw4036g==}
     engines: {node: '>= 0.4'}
 
   shelljs@0.8.5:
@@ -10405,8 +10559,8 @@ packages:
   source-list-map@2.0.1:
     resolution: {integrity: sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==}
 
-  source-map-js@1.2.1:
-    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+  source-map-js@1.2.2:
+    resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
     engines: {node: '>=0.10.0'}
 
   source-map-resolve@0.5.3:
@@ -10950,8 +11104,8 @@ packages:
   trim-trailing-lines@1.1.4:
     resolution: {integrity: sha512-rjUWSqnfTNrjbB9NQWfPMH/xRK1deHeGsHoVfpxJ++XeYXE0d6B1En37AHfw3jtfTU7dzMzZL2jjpe8Qb5gLIQ==}
 
-  trim@0.0.1:
-    resolution: {integrity: sha512-YzQV+TZg4AxpKxaTHK3c3D+kRDCGVEE7LemdlQZoQXn0iennk10RsIoY6ikzAqJTc9Xjl9C1/waHom/J86ziAQ==}
+  trim@0.0.3:
+    resolution: {integrity: sha512-h82ywcYhHK7veeelXrCScdH7HkWfbIT1D/CgYO+nmDarz3SGNssVBMws6jU16Ga60AJCRAvPV6w6RLuNerQqjg==}
     deprecated: Use String.prototype.trim() instead
 
   trough@1.0.5:
@@ -11063,8 +11217,8 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
-  undici@7.28.0:
-    resolution: {integrity: sha512-cRZYrTDwWznlnRiPjggAGxZXanty6M8RV1ff8Wm4LWXBp7/IG8v5DnOm74DtUBp9OONpK75YlPnIjQqX0dBDtA==}
+  undici@7.30.1:
+    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
     engines: {node: '>=20.18.1'}
 
   unherit@1.1.3:
@@ -13032,7 +13186,7 @@ snapshots:
       globals: 13.24.0
       ignore: 4.0.6
       import-fresh: 3.3.1
-      js-yaml: 3.15.0
+      js-yaml: 3.15.2
       minimatch: 3.1.5
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -13065,7 +13219,7 @@ snapshots:
       '@turf/bbox': 6.5.0
       '@turf/bbox-clip': 6.5.0
       assert: 2.1.0
-      axios: 1.18.1
+      axios: 1.21.0
       chevrotain: 6.5.0
       d3: 3.5.17
       fast-deep-equal: 2.0.1
@@ -13147,7 +13301,7 @@ snapshots:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 3.15.0
+      js-yaml: 3.15.2
       resolve-from: 5.0.0
 
   '@istanbuljs/schema@0.1.6': {}
@@ -15855,7 +16009,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.4
+      fast-uri: 3.1.7
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -16105,7 +16259,7 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@1.18.1:
+  axios@1.21.0:
     dependencies:
       follow-redirects: 1.15.9
       form-data: 4.0.6
@@ -16357,7 +16511,7 @@ snapshots:
 
   bn.js@5.2.4: {}
 
-  body-parser@1.20.5:
+  body-parser@1.20.9:
     dependencies:
       bytes: 3.1.2
       content-type: 1.0.5
@@ -16367,7 +16521,7 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.4.24
       on-finished: 2.4.1
-      qs: 6.15.3
+      qs: 6.16.2
       raw-body: 2.5.3
       type-is: 1.6.18
       unpipe: 1.0.0
@@ -16381,12 +16535,12 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  brace-expansion@1.1.16:
+  brace-expansion@1.1.20:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
-  brace-expansion@2.1.2:
+  brace-expansion@2.1.6:
     dependencies:
       balanced-match: 1.0.2
 
@@ -16667,7 +16821,7 @@ snapshots:
       parse5: 7.3.0
       parse5-htmlparser2-tree-adapter: 7.1.0
       parse5-parser-stream: 7.1.2
-      undici: 7.28.0
+      undici: 7.30.1
       whatwg-mimetype: 4.0.0
 
   chevrotain@6.5.0:
@@ -16842,11 +16996,12 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  compression@1.8.1:
+  compression@1.8.2:
     dependencies:
       bytes: 3.1.2
       compressible: 2.0.18
       debug: 2.6.9
+      destroy: 1.2.0
       negotiator: 0.6.4
       on-headers: 1.1.0
       safe-buffer: 5.2.1
@@ -16947,7 +17102,7 @@ snapshots:
     dependencies:
       import-fresh: 2.0.0
       is-directory: 0.3.1
-      js-yaml: 3.15.0
+      js-yaml: 3.15.2
       parse-json: 4.0.0
 
   cosmiconfig@7.1.0:
@@ -17055,12 +17210,12 @@ snapshots:
 
   css-loader@6.11.0(webpack@5.108.4):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.16)
-      postcss: 8.5.16
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.16)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.16)
-      postcss-modules-scope: 3.2.1(postcss@8.5.16)
-      postcss-modules-values: 4.0.0(postcss@8.5.16)
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.18)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.18)
+      postcss-modules-scope: 3.2.1(postcss@8.5.18)
+      postcss-modules-values: 4.0.0(postcss@8.5.18)
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
@@ -18217,7 +18372,7 @@ snapshots:
       import-fresh: 3.3.1
       imurmurhash: 0.1.4
       is-glob: 4.0.3
-      js-yaml: 3.15.0
+      js-yaml: 3.15.2
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
       lodash.merge: 4.6.2
@@ -18341,7 +18496,7 @@ snapshots:
     dependencies:
       accepts: 1.3.8
       array-flatten: 1.1.1
-      body-parser: 1.20.5
+      body-parser: 1.20.9
       content-disposition: 0.5.4
       content-type: 1.0.5
       cookie: 0.7.2
@@ -18359,7 +18514,7 @@ snapshots:
       on-finished: 2.4.1
       parseurl: 1.3.3
       path-to-regexp: 0.1.13
-      proxy-addr: 2.0.7
+      proxy-addr: 2.0.8
       qs: 6.15.3
       range-parser: 1.2.1
       safe-buffer: 5.2.1
@@ -18453,7 +18608,7 @@ snapshots:
 
   fast-levenshtein@2.0.6: {}
 
-  fast-uri@3.1.4: {}
+  fast-uri@3.1.7: {}
 
   fast-xml-builder@1.2.1:
     dependencies:
@@ -18641,11 +18796,14 @@ snapshots:
 
   forever-agent@0.6.1: {}
 
-  form-data@2.3.3:
+  form-data@2.5.6:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      hasown: 2.0.4
       mime-types: 2.1.35
+      safe-buffer: 5.2.1
 
   form-data@4.0.6:
     dependencies:
@@ -19215,9 +19373,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.16):
+  icss-utils@5.1.0(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.18
 
   identity-obj-proxy@3.0.0:
     dependencies:
@@ -20098,7 +20256,7 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.15.0:
+  js-yaml@3.15.2:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
@@ -20303,10 +20461,10 @@ snapshots:
 
   ktx-parse@0.0.4: {}
 
-  launch-editor@2.14.1:
+  launch-editor@2.14.2:
     dependencies:
       picocolors: 1.1.1
-      shell-quote: 1.9.0
+      shell-quote: 1.11.0
 
   launder@1.7.1:
     dependencies:
@@ -20743,11 +20901,11 @@ snapshots:
 
   minimatch@3.1.5:
     dependencies:
-      brace-expansion: 1.1.16
+      brace-expansion: 1.1.20
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.1.2
+      brace-expansion: 2.1.6
 
   minimist-options@3.0.2:
     dependencies:
@@ -20817,7 +20975,7 @@ snapshots:
 
   mutationobserver-shim@0.3.7: {}
 
-  nanoid@3.3.15: {}
+  nanoid@3.3.18: {}
 
   nanomatch@1.2.13:
     dependencies:
@@ -20893,7 +21051,7 @@ snapshots:
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
 
-  node-forge@1.4.0: {}
+  node-forge@1.4.3: {}
 
   node-int64@0.4.0: {}
 
@@ -21017,7 +21175,7 @@ snapshots:
       istanbul-lib-report: 2.0.8
       istanbul-lib-source-maps: 3.0.6
       istanbul-reports: 2.2.7
-      js-yaml: 3.15.0
+      js-yaml: 3.15.2
       make-dir: 2.1.0
       merge-source-map: 1.1.0
       resolve-from: 4.0.0
@@ -21442,26 +21600,26 @@ snapshots:
 
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.16):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.18
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.16):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.18):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.16)
-      postcss: 8.5.16
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.16):
+  postcss-modules-scope@3.2.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
-  postcss-modules-values@4.0.0(postcss@8.5.16):
+  postcss-modules-values@4.0.0(postcss@8.5.18):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.16)
-      postcss: 8.5.16
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
 
   postcss-reporter@6.0.1:
     dependencies:
@@ -21515,11 +21673,11 @@ snapshots:
       picocolors: 0.2.1
       source-map: 0.6.1
 
-  postcss@8.5.16:
+  postcss@8.5.18:
     dependencies:
-      nanoid: 3.3.15
+      nanoid: 3.3.18
       picocolors: 1.1.1
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
 
   potpack@1.0.2: {}
 
@@ -21609,7 +21767,7 @@ snapshots:
 
   protocol-buffers-schema@3.6.1: {}
 
-  proxy-addr@2.0.7:
+  proxy-addr@2.0.8:
     dependencies:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
@@ -21699,6 +21857,11 @@ snapshots:
   pushid@1.0.0: {}
 
   qs@6.15.3:
+    dependencies:
+      es-define-property: 1.0.1
+      side-channel: 1.1.1
+
+  qs@6.16.2:
     dependencies:
       es-define-property: 1.0.1
       side-channel: 1.1.1
@@ -22465,7 +22628,7 @@ snapshots:
       parse-entities: 1.2.2
       repeat-string: 1.6.1
       state-toggle: 1.0.3
-      trim: 0.0.1
+      trim: 0.0.3
       trim-trailing-lines: 1.1.4
       unherit: 1.1.3
       unist-util-remove-position: 1.1.4
@@ -22529,7 +22692,7 @@ snapshots:
       combined-stream: 1.0.8
       extend: 3.0.2
       forever-agent: 0.6.1
-      form-data: 2.3.3
+      form-data: 2.5.6
       har-validator: 5.1.5
       http-signature: 1.2.0
       is-typedarray: 1.0.0
@@ -22685,7 +22848,7 @@ snapshots:
       is-plain-object: 5.0.0
       launder: 1.7.1
       parse-srcset: 1.0.2
-      postcss: 8.5.16
+      postcss: 8.5.18
 
   sass-loader@13.3.3(sass@1.101.0)(webpack@5.108.4):
     dependencies:
@@ -22698,7 +22861,7 @@ snapshots:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.9
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
     optionalDependencies:
       '@parcel/watcher': 2.5.6
 
@@ -22744,7 +22907,7 @@ snapshots:
   selfsigned@2.4.1:
     dependencies:
       '@types/node-forge': 1.3.14
-      node-forge: 1.4.0
+      node-forge: 1.4.3
 
   semver-compare@1.0.0: {}
 
@@ -22870,7 +23033,7 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shell-quote@1.9.0: {}
+  shell-quote@1.11.0: {}
 
   shelljs@0.8.5:
     dependencies:
@@ -23003,7 +23166,7 @@ snapshots:
 
   source-list-map@2.0.1: {}
 
-  source-map-js@1.2.1: {}
+  source-map-js@1.2.2: {}
 
   source-map-resolve@0.5.3:
     dependencies:
@@ -23671,7 +23834,7 @@ snapshots:
 
   trim-trailing-lines@1.1.4: {}
 
-  trim@0.0.1: {}
+  trim@0.0.3: {}
 
   trough@1.0.5: {}
 
@@ -23783,7 +23946,7 @@ snapshots:
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
 
-  undici@7.28.0: {}
+  undici@7.30.1: {}
 
   unherit@1.1.3:
     dependencies:
@@ -24296,7 +24459,7 @@ snapshots:
 
   wait-on@8.0.5:
     dependencies:
-      axios: 1.18.1
+      axios: 1.21.0
       joi: 18.3.2
       lodash: 4.18.1
       minimist: 1.2.8
@@ -24394,7 +24557,7 @@ snapshots:
       bonjour-service: 1.4.2
       chokidar: 3.6.0
       colorette: 2.0.20
-      compression: 1.8.1
+      compression: 1.8.2
       connect-history-api-fallback: 2.0.0
       default-gateway: 6.0.3
       express: 4.22.2
@@ -24402,7 +24565,7 @@ snapshots:
       html-entities: 2.6.0
       http-proxy-middleware: 2.0.10(@types/express@4.17.25)
       ipaddr.js: 2.4.0
-      launch-editor: 2.14.1
+      launch-editor: 2.14.2
       open: 8.4.2
       p-retry: 4.6.2
       rimraf: 3.0.2

@@ -1,10 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  TCopyParams,
-  TSourceType
-} from "@heavyai/connector/dist/browser-connector"
+import { TCopyParams, TSourceType } from "@immerse/connector/legacy"
 import { parseExtension } from "../../table-importer/table-importer-helpers"
 import { IMPORT_FILE_TYPES } from "../../../constants/import-file-types"
 import Services from "services/immerse"

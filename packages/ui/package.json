@@ -1,0 +1,29 @@
+{
+  "name": "@immerse/ui",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "dependencies": {
+    "@rmwc/button": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:"
+  },
+  "devDependencies": {
+    "@testing-library/react": "catalog:",
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/ui/src/button.unit.test.js"
+  }
+}

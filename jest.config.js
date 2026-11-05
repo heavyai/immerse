@@ -5,6 +5,7 @@ const baseConfig = {
   testEnvironment: "jsdom",
   moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
   moduleNameMapper: {
+    "^react$": "<rootDir>/node_modules/react",
     "\\.css$": "identity-obj-proxy",
     "\\.sass$": "identity-obj-proxy",
     "\\.scss$": "identity-obj-proxy",
@@ -45,6 +46,14 @@ module.exports = {
     url: "http://localhost/"
   },
   projects: [
+    {
+      testEnvironment: "jsdom",
+      displayName: "PACKAGES",
+      testMatch: ["<rootDir>/packages/**/*.unit.test.js"],
+      transform: baseConfig.transform,
+      transformIgnorePatterns: baseConfig.transformIgnorePatterns,
+      moduleNameMapper: baseConfig.moduleNameMapper
+    },
     {
       ...baseConfig,
       displayName: "UNIT",

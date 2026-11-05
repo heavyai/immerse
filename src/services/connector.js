@@ -1,7 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import DbCon, { TPixel } from "@heavyai/connector/dist/browser-connector"
+import { createDbTransport } from "@immerse/connector"
+import DbCon, { TPixel } from "@immerse/connector/legacy"
 import {
   getFeatureFlag,
   available_feature_flags
@@ -15,6 +16,7 @@ const { SQLLogging, USE_BINARY_THRIFT } = available_feature_flags
 window.TPixel = TPixel
 
 const Connector = new DbCon()
+export const dbTransport = createDbTransport(Connector)
 
 export const spoofDbConnector = (config) => {
   // Spoof connector into thinking we called .connectAsync() so that it'll

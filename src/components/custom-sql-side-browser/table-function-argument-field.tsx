@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { FC, useMemo } from "react"
-import { TExtArgumentType } from "@heavyai/connector/dist/browser-connector"
+import { TExtArgumentType } from "@immerse/connector/legacy"
 import { invert } from "lodash"
 import { TextField } from "widgets/text-field/TextField"
 import { Radio } from "@rmwc/radio"

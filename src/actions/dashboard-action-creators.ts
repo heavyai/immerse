@@ -1,6 +1,11 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import {
+  encodeDashboard,
+  persistedDashboardKeys,
+  mapDashboardCharts
+} from "@immerse/dashboard-document"
 import { setAppError } from "actions/app-action-creators"
 import { getDashboards } from "actions/dashboards-action-creator"
 import { updateDashboardSaveState } from "actions/dashboard-save-state-action-creators"
@@ -134,38 +139,8 @@ const normalizeChartBasemap = (chart) => {
   return chart
 }
 
-const normalizeChartsBasemap = (charts = {}) =>
-  Object.fromEntries(
-    Object.entries(charts).map(([chartId, chart]) => [
-      chartId,
-      normalizeChartBasemap(chart)
-    ])
-  )
-
-export const normalizeMinimalistBasemapState = (state) => {
-  if (!state || typeof state !== "object") {
-    return state
-  }
-
-  const nextState = {
-    ...state
-  }
-
-  if (nextState.charts) {
-    nextState.charts = normalizeChartsBasemap(nextState.charts)
-  }
-
-  if (nextState.tabs && typeof nextState.tabs === "object") {
-    nextState.tabs = Object.fromEntries(
-      Object.entries(nextState.tabs).map(([tabId, tab]) => [
-        tabId,
-        normalizeMinimalistBasemapState(tab)
-      ])
-    )
-  }
-
-  return nextState
-}
+export const normalizeMinimalistBasemapState = (state) =>
+  mapDashboardCharts(state, normalizeChartBasemap)
 
 export const pickStateForViewState = compose(
   removeErrorFilters,
@@ -185,21 +160,7 @@ export const pickStateForViewState = compose(
     )
   ),
   over(lensProp("annotations"), dissoc("editMode")),
-  pick([
-    "annotations",
-    "charts",
-    "filters",
-    "dashboard",
-    "omnifilters",
-    "filterZones",
-    "cohorts",
-    "parameters",
-    "chartAddons",
-    "tabId",
-    "crossLinks",
-    "joinDataSources",
-    "sharedSettings"
-  ]),
+  pick([...persistedDashboardKeys]),
   addVersionNumberToDashboard
 )
 
@@ -280,18 +241,10 @@ const dashboardStateWithNewTitle = (
       }
 }
 
-const serializeViewState = compose(
-  window.btoa,
-  window.unescape,
-  window.encodeURIComponent,
-  JSON.stringify
-)
+const serializeViewState = (document) => encodeDashboard(document, window)
 
 export const mapStateToSerializedViewState = compose(
-  window.btoa,
-  window.unescape,
-  window.encodeURIComponent,
-  JSON.stringify,
+  serializeViewState,
   normalizeMinimalistBasemapState,
   mapTabState,
   pickStateForViewState

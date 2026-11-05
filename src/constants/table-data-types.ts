@@ -1,10 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  TDatumType,
-  TEncodingType
-} from "@heavyai/connector/dist/browser-connector"
+import { TDatumType, TEncodingType } from "@immerse/connector/legacy"
 
 // The values for precision, scale, encoding, and comp_param are as specified in the backend code
 export const TABLE_DATA_TYPES = [

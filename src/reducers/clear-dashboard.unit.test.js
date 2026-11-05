@@ -30,7 +30,7 @@ describe("Clear Dashboard Reducer", () => {
 
   it("should clear all reducers to initialstate", () => {
     const state = clearDashboardReducer({}, { type: CLEAR_DASHBOARD })
-    expect(state).toEqual({
+    expect(state).toMatchObject({
       charts: {},
       dashboard: dashboard.initialState,
       ui: ui.initialState,

@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { cloneDeep } from "lodash"
+import { resetDashboardOwnedState } from "./reset-dashboard-owned-state"
 import { initialState as initialChartsState } from "reducers/charts/charts-reducer"
 import { initialState as initialDashboardState } from "reducers/dashboard"
 import { initialState as initialDCState } from "reducers/dc-reducer"
@@ -16,15 +18,15 @@ import { RESET_APP_STATE } from "constants/action-types"
 export default function resetAppState(reducer) {
   return (state, action) => {
     if (action.type === RESET_APP_STATE) {
-      return Object.assign({}, state, {
-        dc: initialDCState,
-        dashboard: initialDashboardState,
-        charts: initialChartsState,
-        filters: initialFiltersState,
+      return Object.assign({}, resetDashboardOwnedState(state), {
+        dc: cloneDeep(initialDCState),
+        dashboard: cloneDeep(initialDashboardState),
+        charts: cloneDeep(initialChartsState),
+        filters: cloneDeep(initialFiltersState),
         tables: initialTablesState,
         sqlEditor: initialSqlEditorState,
         snapshots: initialSnapshotsState,
-        crossLinks: initialCrossLinksState,
+        crossLinks: cloneDeep(initialCrossLinksState),
         sqlNotebook: initialSqlNotebookState
       })
     } else {

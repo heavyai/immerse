@@ -1,0 +1,24 @@
+{
+  "name": "@immerse/connector",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./legacy": {
+      "types": "./src/legacy.d.ts",
+      "default": "./src/legacy.js"
+    }
+  },
+  "dependencies": {
+    "@heavyai/connector": "catalog:"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/connector/src/transport.unit.test.js"
+  }
+}

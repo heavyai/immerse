@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { upgradeChartMap } from "@immerse/dashboard-document"
+
 const CHART_VERSIONS = {}
 
 const DEFAULT_VERSION = 1.0
@@ -34,12 +36,5 @@ export function upgradeChart(chart) {
 }
 
 export function upgradeCharts(charts) {
-  return Object.entries(charts).reduce((newCharts, [id, chart]) => {
-    const upgradedChart = upgradeChart(chart)
-    if (chart !== upgradedChart) {
-      return { ...newCharts, [id]: upgradedChart }
-    } else {
-      return newCharts
-    }
-  }, charts)
+  return upgradeChartMap(charts, { upgradeChart })
 }

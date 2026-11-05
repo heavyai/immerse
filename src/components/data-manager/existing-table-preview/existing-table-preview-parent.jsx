@@ -8,7 +8,7 @@ import {
   getDataSourcePrivs
 } from "actions/table-preview-action-creators"
 import ExistingTablePreview from "./existing-table-preview"
-import { TTableType } from "@heavyai/connector/dist/browser-connector"
+import { TTableType } from "@immerse/connector/legacy"
 
 export const mapStateToProps = (
   {

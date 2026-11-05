@@ -66,7 +66,7 @@ import {
   TImportHeaderRow,
   TSourceType,
   TTableRefreshInfo
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import {
   DONT_CALL_IMPORT_EXTS,
   RESERVED_RASTER_COLUMN_NAMES

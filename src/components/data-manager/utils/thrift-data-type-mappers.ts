@@ -8,7 +8,7 @@ import {
   TTableRefreshIntervalType,
   TTableRefreshTimingType,
   TTableRefreshUpdateType
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import { invert } from "lodash"
 import Services from "../../../services/immerse"
 

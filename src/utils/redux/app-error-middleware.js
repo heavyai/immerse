@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { DestroyedChartError } from "@heavyai/charting/src/core/errors"
+import { DestroyedChartError } from "@immerse/chart-engine-dc/legacy"
 
 import * as ActionTypes from "constants/action-types"
 import { setAppError } from "actions/app-action-creators"

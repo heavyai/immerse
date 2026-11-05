@@ -1,10 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import {
-  TDatumType,
-  TTypeInfo
-} from "@heavyai/connector/dist/browser-connector"
+import { TDatumType, TTypeInfo } from "@immerse/connector/legacy"
 import { VegaCustomizableTopNOptions } from "vega/charts/types"
 import {
   isIntegerType,

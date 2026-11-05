@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { resetDashboardWorkflows } from "./reset-dashboard-owned-state"
 /* eslint no-return-assign: "off" */
 
 import {
@@ -675,7 +676,7 @@ export default function loadDashboardHigherOrderReducer(reducer) {
         parameters.sets[tabParameterSet.id] = tabParameterSet
       }
 
-      return Object.assign({}, state, {
+      return Object.assign({}, resetDashboardWorkflows(state), {
         annotations,
         charts: map(
           convertISODatesToRegularDates,

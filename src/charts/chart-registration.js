@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { createChartRegistry } from "@immerse/chart-core"
 import APP_CONFIG from "constants/app-config"
 
 import { addChartLabelsIcons } from "components/chart-editor-error-message/chart-editor-error-message-icons"
@@ -29,9 +30,12 @@ import {
 
 const { CHART_ADDON_EXPORT_AS_IMAGE } = getChartAddonTypes()
 
+export const chartRegistry = createChartRegistry()
+
 const defaultAddons = [CHART_ADDON_EXPORT_AS_IMAGE]
 
 export const registerChart = (chartDef) => {
+  chartRegistry.register(chartDef)
   if (chartDef.labelsIcons) {
     addChartLabelsIcons(chartDef.type, chartDef.labelsIcons)
   }

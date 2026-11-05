@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { useEffect, useState } from "react"
-import { TSourceType } from "@heavyai/connector/dist/browser-connector"
+import { TSourceType } from "@immerse/connector/legacy"
 import { parseFilenameForSourceType } from "../utils/source-type-heuristics"
 import { SOURCE_TYPE_OPTIONS } from "../constants"
 

@@ -47,13 +47,15 @@
     "webpack:dev-server": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=development PORT=\"${IMMERSE_PORT:-8002}\" webpack serve --config webpack.config.dev.ts",
     "checkLinked": "find node_modules -maxdepth 2 -type l -not -path \"node_modules/.bin/*\"",
     "listAvailableLinked": "pnpm list -g --depth=0 --link=true",
-    "modernization:check": "node scripts/modernization/architecture.cjs && node scripts/modernization/git-sources.cjs",
+    "modernization:check": "node scripts/modernization/architecture.cjs && node scripts/modernization/git-sources.cjs && node scripts/modernization/workspace.cjs",
     "modernization:inventory": "node scripts/modernization/inventory.cjs",
     "modernization:measure": "node scripts/modernization/measure.cjs",
     "test:modernization": "jest --runInBand --runTestsByPath src/utils/modernization/dashboard-compatibility.unit.test.js src/utils/modernization/lifecycle-invariants.unit.test.js src/utils/modernization/filter-embed-contract.unit.test.js src/utils/modernization/metrics.unit.test.js",
     "test:legacy": "jest --config jest.legacy.config.js --runInBand",
     "test:modernization-tools": "node --test scripts/modernization/*.test.cjs",
-    "audit:deps": "pnpm audit --audit-level high"
+    "audit:deps": "pnpm audit --audit-level high",
+    "test:packages": "jest --selectProjects PACKAGES --runInBand",
+    "ts:packages": "tsc -p packages/tsconfig.json"
   },
   "husky": {
     "hooks": {
@@ -209,7 +211,24 @@
     "@deck.gl/layers": "catalog:",
     "d3-scale": "catalog:",
     "viewport-mercator-project": "catalog:",
-    "@rmwc/types": "catalog:"
+    "@rmwc/types": "catalog:",
+    "@immerse/dashboard-document": "workspace:*",
+    "@immerse/connector": "workspace:*",
+    "@immerse/query-runtime": "workspace:*",
+    "@immerse/chart-core": "workspace:*",
+    "@immerse/chart-engine-dc": "workspace:*",
+    "@immerse/ui": "workspace:*",
+    "@material/checkbox": "catalog:",
+    "@material/form-field": "catalog:",
+    "@material/button": "catalog:",
+    "@material/dialog": "catalog:",
+    "@material/icon-button": "catalog:",
+    "@material/menu": "catalog:",
+    "@material/menu-surface": "catalog:",
+    "@material/switch": "catalog:",
+    "@material/textfield": "catalog:",
+    "@material/notched-outline": "catalog:",
+    "@material/line-ripple": "catalog:"
   },
   "devDependencies": {
     "@babel/cli": "catalog:",

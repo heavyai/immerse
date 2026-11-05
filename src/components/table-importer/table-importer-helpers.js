@@ -8,7 +8,7 @@ import {
 } from "constants/import-file-types"
 import { checkForNameValidity } from "reducers/importer-reducer"
 import { any, keys } from "ramda"
-import { TDatumType } from "@heavyai/connector/dist/browser-connector"
+import { TDatumType } from "@immerse/connector/legacy"
 
 export const areAnyColumnsNotValid = (headers) =>
   headers.some((header) => header.is_not_valid)

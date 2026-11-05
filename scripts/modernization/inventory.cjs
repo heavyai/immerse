@@ -7,7 +7,10 @@ const { filesUnder } = require("./architecture.cjs")
 const root = path.resolve(__dirname, "../..")
 const relative = (filename) =>
   path.relative(root, filename).split(path.sep).join("/")
-const sourceFiles = filesUnder(path.join(root, "src"))
+const sourceFiles = [
+  ...filesUnder(path.join(root, "src")),
+  ...filesUnder(path.join(root, "packages"))
+]
 const config = require(path.join(root, "jest.config.js"))
 const { spawnSync } = require("node:child_process")
 const testFiles = sourceFiles.filter((filename) =>
@@ -39,7 +42,15 @@ const excluded = testFiles
   .map(relative)
   .filter((filename) => !selected.has(filename))
 const pkg = require(path.join(root, "package.json"))
+const yaml = require("yaml")
+const workspace = yaml.parse(
+  fs.readFileSync(path.join(root, "pnpm-workspace.yaml"), "utf8")
+)
 const gitDependencies = Object.entries(pkg.dependencies)
+  .map(([name, version]) => [
+    name,
+    version === "catalog:" ? workspace.catalog[name] : version
+  ])
   .filter(([, version]) => /github:|git\+|git@/.test(version))
   .map(([name, version]) => ({
     name,
@@ -82,14 +93,15 @@ const report = {
   excludedLegacyUnit: excluded.filter((name) => /\.unit\.spec\./.test(name)),
   excludedOther: excluded.filter((name) => !/\.unit\.spec\./.test(name)),
   gitDependencies,
-  npmMigration: {
+  packageManagement: {
+    packageManager: pkg.packageManager,
+    catalog: workspace.catalog,
     engines: pkg.engines,
-    overrides: pkg.overrides,
+    overrides: workspace.overrides,
     hooks: pkg.husky,
-    lockfiles: [
-      "package-lock.json",
-      "test-config/puppeteer/package-lock.json"
-    ].filter((name) => fs.existsSync(path.join(root, name))),
+    lockfiles: ["pnpm-lock.yaml"].filter((name) =>
+      fs.existsSync(path.join(root, name))
+    ),
     tooling
   }
 }

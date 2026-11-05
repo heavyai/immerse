@@ -1,4 +1,4 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-export * from "@heavyai/draw/dist/draw"
+export * from "@immerse/chart-engine-dc/draw"

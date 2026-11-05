@@ -3,7 +3,7 @@
 
 import { numberWithCommas } from "utils/helpers"
 import moment from "moment"
-import { TTableRefreshInfo } from "@heavyai/connector/dist/browser-connector"
+import { TTableRefreshInfo } from "@immerse/connector/legacy"
 
 export const buildTablePreviewMetrics = ({
   columns = 0,

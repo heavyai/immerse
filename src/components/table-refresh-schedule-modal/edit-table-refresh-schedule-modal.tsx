@@ -3,7 +3,7 @@
 
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { TTableRefreshInfo } from "@heavyai/connector/dist/browser-connector"
+import { TTableRefreshInfo } from "@immerse/connector/legacy"
 import { DANGER as DANGER_MODAL_TYPE } from "constants/modal-types"
 import {
   getDataSourcePreview,

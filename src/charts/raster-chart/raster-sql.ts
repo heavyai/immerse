@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { createParser } from "@heavyai/data-layer"
-import { lastFilteredSize } from "@heavyai/charting/src/core/core-async"
+import { lastFilteredSize } from "@immerse/chart-engine-dc/legacy"
 import { path } from "ramda"
 import Services from "services/immerse"
 import buildFilterString from "services/ImmerseCrossFilter/build-filter-string"

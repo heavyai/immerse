@@ -3,7 +3,7 @@
 
 import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { TSourceType } from "@heavyai/connector/dist/browser-connector"
+import { TSourceType } from "@immerse/connector/legacy"
 import { SecondaryButton } from "widgets/button/Button"
 import {
   toggleImportSettingsModal,

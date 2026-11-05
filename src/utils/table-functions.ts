@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Services from "services/immerse"
-import { TUserDefinedTableFunction } from "@heavyai/connector/dist/browser-connector"
+import { TUserDefinedTableFunction } from "@immerse/connector/legacy"
 
 const stripName = (name: string) => {
   if (name.includes("__cpu")) {

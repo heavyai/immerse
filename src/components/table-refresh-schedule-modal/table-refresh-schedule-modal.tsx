@@ -10,7 +10,7 @@ import {
   TTableRefreshIntervalType,
   TTableRefreshTimingType,
   TTableRefreshUpdateType
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import TriggerAtField from "./TriggerAtField"
 import RepeatEveryField from "./RepeatEveryField"
 

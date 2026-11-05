@@ -5,7 +5,7 @@ import React, { FC, useMemo, useState } from "react"
 import {
   TUserDefinedTableFunction,
   TExtArgumentType
-} from "@heavyai/connector/dist/browser-connector"
+} from "@immerse/connector/legacy"
 import { SimpleListItem } from "@rmwc/list"
 import TableFunctionArgumentField from "./table-function-argument-field"
 import { PrimaryButton } from "../../widgets/button/Button"

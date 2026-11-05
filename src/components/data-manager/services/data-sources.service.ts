@@ -16,10 +16,7 @@ import {
   mapRefreshInfoFields,
   mapRowDescriptorFields
 } from "../utils/thrift-data-type-mappers"
-import {
-  TColumnType,
-  TTableRefreshInfo
-} from "@heavyai/connector/dist/browser-connector"
+import { TColumnType, TTableRefreshInfo } from "@immerse/connector/legacy"
 
 /**
  * Maps thrift enums from numbers to strings--row descriptors returned from detectColumnTypes

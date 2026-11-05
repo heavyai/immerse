@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { createLegacyQueryRuntime } from "@immerse/query-runtime"
 import {
   enqueue,
   QUEUE_RESOLUTION,
@@ -28,7 +29,7 @@ import { shouldTrackUsage } from "utils/ImmerseSQLPlusPlus/trackable-tokens"
 import { getStore } from "services/ImmerseCrossFilter/utils"
 import { populateImportableCreateQueuedConnector } from "./ConnectorWithQueue-importable"
 import { saveChartData } from "components/chart-data/chart-data-action-creators"
-import { setPaused } from "@heavyai/charting/src/constants/paused"
+import { setPaused } from "@immerse/chart-engine-dc/legacy"
 
 const paused = {}
 const pausedMapMove = {}
@@ -575,4 +576,7 @@ export function createQueuedConnector({
   return queuedConnector
 }
 
+// Populate after the public adapter is initialized below.
+
+export const queryRuntime = createLegacyQueryRuntime(createQueuedConnector)
 populateImportableCreateQueuedConnector(createQueuedConnector)

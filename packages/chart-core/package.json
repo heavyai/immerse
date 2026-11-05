@@ -1,0 +1,20 @@
+{
+  "name": "@immerse/chart-core",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "dependencies": {
+    "@immerse/dashboard-document": "workspace:*"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/chart-core/src/registry.unit.test.js"
+  }
+}

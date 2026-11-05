@@ -82,14 +82,72 @@ it("loading B after A replaces every persisted document slice and preserves conn
   expect(afterA.session).toBe(a.session)
 })
 
-// Known gaps are explicitly tracked, not approved as desired behavior.
-// See docs/modernization/README.md: reset/load ownership matrix and Wave 1 work.
-it.todo(
-  "CLEAR_DASHBOARD clears omnifilters, parameters, cohorts, filterZones, annotations, crossLinks, chartAddons and chartData"
+it.each([
+  [CLEAR_DASHBOARD, clearDashboard],
+  [RESET_APP_STATE, resetAppState]
+])(
+  "%s discards every observed stale dashboard-owned slice and returns fresh state",
+  (type, wrapper) => {
+    const state = {
+      ...cloneDeep(mixed),
+      dc: cloneDeep(dc),
+      chartData: { old: { rows: [1] } },
+      columnValues: { old: [1] },
+      chartEditor: { editId: "old", editing: true }
+    }
+    const reducer = wrapper(passthrough)
+    const result = reducer(state, { type })
+    for (const key of ["omnifilters", "crossLinks", "joinDataSources"]) {
+      expect(result[key]).toEqual([])
+    }
+    for (const key of [
+      "filterZones",
+      "cohorts",
+      "chartAddons",
+      "chartData",
+      "columnValues"
+    ]) {
+      expect(result[key]).toEqual({})
+    }
+    expect(result.annotations).toEqual({
+      annotations: {},
+      enabled: true,
+      editMode: false
+    })
+    expect(result.parameters).toEqual({
+      definitions: {},
+      values: {},
+      sets: {},
+      usage: {},
+      crossfilterTokens: {}
+    })
+    expect(result.chartEditor.editId).toBe("")
+    expect(result.chartEditor.editing).toBe(false)
+    result.parameters.values.poison = "must not survive"
+    result.dc.initialRender.pending = true
+    const again = reducer(state, { type })
+    expect(again.parameters.values).toEqual({})
+    expect(again.dc.initialRender.pending).toBe(false)
+    expect(state.chartData).toEqual({ old: { rows: [1] } })
+  }
 )
-it.todo(
-  "RESET_APP_STATE clears omnifilters, parameters, cohorts, filterZones, annotations, chartAddons, joinDataSources and chartData"
-)
-it.todo(
-  "LOAD_DASHBOARD_SUCCESS invalidates prior chartData and chart-editor workflow state"
-)
+it("loading another document invalidates prior query results and chart-editor work", () => {
+  const reducer = loadDashboard(passthrough)
+  const state = {
+    ...cloneDeep(mixed),
+    dc: cloneDeep(dc),
+    chartData: { old: { rows: [1] } },
+    columnValues: { old: [1] },
+    chartEditor: { editId: "old", editing: true }
+  }
+  const result = reducer(state, {
+    type: LOAD_DASHBOARD_SUCCESS,
+    dashboardState: cloneDeep(mixed),
+    dashboardId: "new"
+  })
+  expect(result.chartData).toEqual({})
+  expect(result.columnValues).toEqual({})
+  expect(result.chartEditor.editId).toBe("")
+  expect(result.chartEditor.editing).toBe(false)
+  expect(state.chartData).toEqual({ old: { rows: [1] } })
+})

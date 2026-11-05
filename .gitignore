@@ -17,7 +17,6 @@ build.log
 version.txt
 frontend-dev/
 frontend-prod/
-packages/
 webpack.config.custom.js
 cert.pem
 key.pem

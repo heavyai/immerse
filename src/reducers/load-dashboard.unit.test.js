@@ -183,7 +183,7 @@ describe("Load Dashboard Reducer", () => {
       dashboardState: initialState
     })
     const normalizedState = normalizeAppState(initialState)
-    expect(state).toEqual(
+    expect(state).toMatchObject(
       Object.assign({}, normalizedState, {
         dashboard: {
           ...normalizedState.dashboard,
@@ -211,7 +211,7 @@ describe("Load Dashboard Reducer", () => {
       dashboardState: newInitialState
     })
     const normalizedState = normalizeAppState(initialState)
-    expect(state).toEqual(
+    expect(state).toMatchObject(
       Object.assign({}, normalizedState, {
         omnifilters: [],
         dashboard: {

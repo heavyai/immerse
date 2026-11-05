@@ -1,0 +1,17 @@
+{
+  "name": "@immerse/query-runtime",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "pnpm --workspace-root exec jest --selectProjects PACKAGES --runInBand --runTestsByPath packages/query-runtime/src/runtime.unit.test.js"
+  }
+}
