@@ -40,7 +40,7 @@ import {
   buildFilterSql,
   createUnlikelyStmtFromShape
 } from "vega/constants/filter-types"
-import { doRedrawAll } from "./filter-action-creators"
+import { doRedrawAll } from "services/legacy-dc-filter-adapter"
 import {
   buildRasterPolyFilters,
   getRasterDimensions

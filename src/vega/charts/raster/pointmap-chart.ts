@@ -12,7 +12,7 @@ import {
   setCrossFilter,
   setDashboardFilter,
   clearFilterByName
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 import { pointmapChartToQuerySpec } from "./query-spec"
 import { cleanBounds } from "./utils"
 import { getFiltersAppliedToChart } from "vega/constants/filter-metadata-types"

@@ -8,7 +8,7 @@ import {
   buildDeckgl3dQuery,
   buildDeckglCardinalityQuery
 } from "../charts/deckgl/query-building"
-import { setCrossFilter } from "vega/actions/filter-action-creators"
+import { setCrossFilter } from "services/filter-commands"
 import {
   boundingBoxFilter,
   boundingBoxGeoFilter,

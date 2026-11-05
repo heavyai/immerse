@@ -3,8 +3,8 @@
 
 import { NUM_RESULTS } from "actions/autosuggest-action-creators"
 import { escapeSqlString } from "vega/constants/filter-types"
-import { makeCached, getSharedCache } from "utils/performance/MagicCache"
-import { enqueue, QUEUE_RESOLUTION } from "utils/performance/MagicQueue"
+import { makeCached, getSharedCache } from "@immerse/query-runtime/legacy-cache"
+import { enqueue, QUEUE_RESOLUTION } from "@immerse/query-runtime/legacy-queue"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import buildFilterString from "services/ImmerseCrossFilter/build-filter-string"
 import Services from "services/immerse"

@@ -59,7 +59,8 @@ import {
   setSelectedDataSelection,
   setTable
 } from "./data-selection-action-creators"
-import { clearChartFilters, clearCrossFilters } from "./filter-action-creators"
+import { clearChartFilters } from "vega/actions/filter-state-actions"
+import { clearCrossFilters } from "services/filter-commands"
 import {
   clearPrimaryMeasureFormat,
   clearScaleType

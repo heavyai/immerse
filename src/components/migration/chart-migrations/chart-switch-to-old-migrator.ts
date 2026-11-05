@@ -12,10 +12,7 @@ import {
 import { addSelector } from "actions/charts-action-creators"
 import { customDimension, customMeasure } from "actions/custom-selector-thunks"
 import { selectDataSource } from "actions/data-source-action-creators"
-import {
-  clearFilterByName,
-  setChartFilter
-} from "vega/actions/filter-action-creators"
+import { clearFilterByName, setChartFilter } from "services/filter-commands"
 
 import { getTrueSelectorIndex } from "reducers/charts/helpers/multi-source-helpers"
 

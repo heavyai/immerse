@@ -53,7 +53,7 @@ import {
 } from "components/parameters/selectors"
 import { setCustomSqlFilterError } from "components/new-filters/filters-actions"
 import { clearCustomMeasuresByValue } from "vega/actions/data-selection-action-creators"
-import { clearFilterByName } from "vega/actions/filter-action-creators"
+import { clearFilterByName } from "services/filter-commands"
 import { makeGetParameterizedCustomSqlFiltersByValue } from "components/new-filters/filter-selectors"
 import { getErrorMessageFromBackendError } from "utils/error-handling-helpers"
 

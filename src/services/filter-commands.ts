@@ -1,16 +1,14 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-// Stable public commands; application service owns effects and the DC adapter.
-import * as stateActions from "./filter-state-actions"
+// Application commands compose canonical state changes, redraws and notifications.
+import * as stateActions from "vega/actions/filter-state-actions"
 import { createFilterApplicationService } from "services/filter-application-service"
 import {
   isOldFilter,
   OldFilterMetadata,
   FilterMetadata
 } from "vega/constants/filter-metadata-types"
-export * from "./filter-state-actions"
-export { doRedrawAll } from "services/legacy-dc-filter-adapter"
 const service = createFilterApplicationService(stateActions)
 export const clearAllChartFilters = service.clearAllChartFilters
 export const clearFilterByName = service.clearFilterByName

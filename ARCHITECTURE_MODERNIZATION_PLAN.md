@@ -26,6 +26,7 @@ Use selective rewrites behind adapters while keeping every milestone shippable:
 
 Compatibility is an explicit release contract, not just successful loading of historical fixtures:
 
+- **Internal implementation freedom:** internal import paths, function signatures, action shapes and module layouts may change freely when their callers are migrated together. Do not retain compatibility reexports or facades solely to preserve internal APIs. Preserve user-facing contracts, including saved dashboards, embeds and public plugin interfaces. Runtime adapters may remain where they still implement required behavior.
 - **Loading historical documents:** the new application must load every supported historical dashboard and chart configuration.
 - **Supporting older application readers:** before changing persisted output, document which older Immerse versions must still read newly saved dashboards. Do not assume backward-save compatibility or silently drop it.
 - Until that reader/writer support matrix is agreed, preserve the existing wire format and legacy fields. Making omnifilters canonical internally does not by itself authorize removing legacy `filters` from saved output.

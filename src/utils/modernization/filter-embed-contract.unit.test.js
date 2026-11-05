@@ -9,7 +9,7 @@ import {
   setFeatureFlag,
   available_feature_flags
 } from "components/control-panel/featureflags"
-import { doRedrawAll } from "vega/actions/filter-action-creators"
+import { doRedrawAll } from "services/legacy-dc-filter-adapter"
 import { getFilters } from "services/external-messenger-api/api/getFilters"
 import {
   registerForFilterNotifications,

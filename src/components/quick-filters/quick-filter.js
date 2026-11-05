@@ -5,10 +5,12 @@ import { connect, batch } from "react-redux"
 import { debounce } from "lodash"
 import {
   updateFilterByName,
-  toggleQuickFilterVisibility,
-  setQuickFilterOption,
   toggleFilterByName
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
+import {
+  toggleQuickFilterVisibility,
+  setQuickFilterOption
+} from "vega/actions/filter-state-actions"
 import {
   getDistinctColumnValues,
   clearDistinctColumnValues

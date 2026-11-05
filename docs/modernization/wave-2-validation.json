@@ -86,5 +86,23 @@
     "Reader/writer support matrix and numerical production performance budgets are pending acceptance; legacy fields remain supported.",
     "Legacy HeavyDB requests use discard-results-only cancellation; backend work can continue.",
     "SQL path rollback is available by feature flag; reverting the Wave 2 commit restores earlier result ownership and workflow implementation."
-  ]
+  ],
+  "internalCompatibilityCleanup": {
+    "baseCommit": "43582b0",
+    "focusedTests": {
+      "passedSuites": 10,
+      "passedTests": 55,
+      "matchedSnapshots": 6
+    },
+    "lint": "passed",
+    "workspaceAndArchitectureGuards": "passed",
+    "developmentBuild": "passed",
+    "heavydbBrowser": {
+      "status": "passed",
+      "mode": "modern",
+      "scenario": "Dashboard create/save, three reloads and count 8 to 2 crossfiltering"
+    },
+    "dependencies": "unchanged",
+    "productionBuild": "Not repeated for this import-only cleanup; previous Wave 2 build evidence above remains separate."
+  }
 }

@@ -34,7 +34,7 @@ import createFilterService, {
 } from "services/create-filter-service"
 import { createCrossfilterService } from "services/crossfilter"
 import { clearVegaSpecCache } from "vega/actions/vega-data-thunks"
-import { clearAllFilters } from "vega/actions/filter-action-creators"
+import { clearAllFilters } from "vega/actions/filter-state-actions"
 import {
   setFilterX,
   setChartSpecificBinFilters

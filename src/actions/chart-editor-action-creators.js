@@ -17,7 +17,7 @@ import {
 } from "actions/charts-action-creators"
 import { updateChart } from "actions/update-chart-action-creator"
 import { setDataSources } from "actions/dashboard-action-creators"
-import { cancelChartFilterChanges } from "vega/actions/filter-action-creators"
+import { cancelChartFilterChanges } from "vega/actions/filter-state-actions"
 import { getActiveChartDataSources } from "utils/currently-active-datasources"
 import {
   findRasterLayerIndexById,

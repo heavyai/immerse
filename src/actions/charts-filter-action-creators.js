@@ -11,7 +11,7 @@ import {
   isChartMultiSource
 } from "reducers/charts/helpers/multi-source-helpers"
 import { dcAdapterForChartId } from "utils/chart-adapter-mappings"
-import { doRedrawAll } from "vega/actions/filter-action-creators"
+import { doRedrawAll } from "services/legacy-dc-filter-adapter"
 import { getTablesForDataSource } from "components/join-manager/utils"
 
 function layerFilterKey(layerSpec) {

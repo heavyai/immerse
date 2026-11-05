@@ -8,12 +8,12 @@ import {
   enqueue,
   QUEUE_RESOLUTION,
   clearQueues
-} from "utils/performance/MagicQueue"
+} from "@immerse/query-runtime/legacy-queue"
 import {
   getSharedCache,
   makeCached,
   purgeSharedCache
-} from "utils/performance/MagicCache"
+} from "@immerse/query-runtime/legacy-cache"
 import { tableToJson } from "utils/arrow"
 
 import {

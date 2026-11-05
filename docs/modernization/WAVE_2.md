@@ -11,10 +11,10 @@ branch retains React 16 and TypeScript 3.9 from the completed security checkpoin
 | --- | --- |
 | Canonical filters | Existing omnifilter action/reducer and persisted identifiers remain authoritative for chart filtering. The legacy document conversion now lives in `@immerse/filter-engine` with injected constructors and ID generation. It clones the omnifilter array and is idempotent. |
 | Pure filter/query behavior | `@immerse/filter-engine` owns chart/dashboard filter selection and SQL composition. Chart capabilities, datasource resolution, SQL dialect builders and join/link behavior enter through explicit ports. |
-| Filter commands | `services/filter-application-service.ts` owns mutation/redraw/notification sequencing. Public action imports remain stable; the split `filter-action-creators-actual` proxy is retired. |
+| Filter commands | `services/filter-application-service.ts` owns mutation/redraw/notification sequencing. Callers import effectful commands from `services/filter-commands.ts`, state mutations from `filter-state-actions.ts`, and redraw behavior from the DC adapter. The old action facade and split `filter-action-creators-actual` proxy are retired. |
 | Filter async workflows | `services/filter-workflows.ts` replaces the dashboard filter saga. Each store owns its workflows and cancellation. Late metadata for a replaced filter, different dashboard or disposed store is discarded. |
 | Legacy DC behavior | `services/legacy-dc-filter-adapter.ts` retains chart groups, linked sources, parameter-token redraw and initial-render gating. Existing raster cross-section watchers remain with the raster saga until its engine migration. |
-| Queues and caches | Existing MagicQueue/MagicCache implementations moved into `@immerse/query-runtime`; source imports remain compatibility reexports. Shared promises, latest pending invocation, token separation, throttling and cache limits retain their existing scheduling behavior. |
+| Queues and caches | Existing MagicQueue/MagicCache implementations moved into `@immerse/query-runtime`; callers import their public workspace exports directly; the old application entry points are removed. Shared promises, latest pending invocation, token separation, throttling and cache limits retain their existing scheduling behavior. |
 | Query rows and render beats | `@immerse/query-runtime` owns separate query and Vega render snapshots. Neither the removed `chartData` slice nor `charts[id].data` accumulates query results. Normal Vega completions dispatch metadata only, keeping rows out of Redux and DevTools action history. |
 | React/legacy consumers | Subscription hooks and explicit read models supply data to chart rendering, Top-N controls, query planning, colors, exports, SQL parameter tokens and embed formatters. Projections do not modify stored chart configuration. |
 | Bootstrap state access | Filter utilities accept explicit state snapshots. A dependency-free bootstrap port plus a separate legacy helper adapter supports existing non-React callers. This is a temporary application boundary; application-wide global store retirement remains Wave 5. |
@@ -94,3 +94,14 @@ coverage is claimed. Numerical production performance budgets, approved customer
 fixtures and the historical reader/writer window still need acceptance. Local
 browser timings were collected alongside builds/tests and are compatibility
 measurements, not production performance certification.
+
+## Internal compatibility cleanup
+
+Internal import paths and APIs are not compatibility requirements. The follow-up
+removes the old MagicQueue/MagicCache reexports and filter-action facade, updates
+all callers to their implementation owners, and binds Vega result reducer ports
+directly in the consuming middleware. `filter-commands.ts` composes effectful
+commands rather than reexporting state mutations. The DC and explicit-state
+adapters remain because they still supply runtime behavior to existing consumers.
+Dashboard persistence, embed APIs and public plugin contracts retain their
+compatibility requirements.

@@ -28,7 +28,7 @@ import {
   setChartFilter,
   setChartCohort,
   toggleFilterByName
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 import { Filter } from "../../constants/filter-types"
 import {
   BaseFilterMetadata,

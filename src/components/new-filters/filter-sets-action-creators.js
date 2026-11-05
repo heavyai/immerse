@@ -10,9 +10,9 @@ import { updateDashboardSaveState } from "actions/dashboard-save-state-action-cr
 import {
   toggleFilterByName,
   setDashboardCohort,
-  clearFilterByName,
-  duplicateOmnifilter
-} from "vega/actions/filter-action-creators"
+  clearFilterByName
+} from "services/filter-commands"
+import { duplicateOmnifilter } from "vega/actions/filter-state-actions"
 import {
   deleteFilterX,
   toggleFilterX

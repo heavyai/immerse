@@ -9,7 +9,7 @@ import {
   setChartFilter,
   setDashboardFilter,
   toggleFilterByName
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 import { closeCustomSQLManager } from "components/custom-sql-manager/custom-sql-manager-actions"
 import { getErrorMessageFromBackendError } from "utils/error-handling-helpers"
 import { importableCreateQueuedConnector as createQueuedConnector } from "services/ConnectorWithQueue-importable"

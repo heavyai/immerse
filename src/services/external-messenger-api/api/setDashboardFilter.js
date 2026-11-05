@@ -14,7 +14,7 @@ import {
 import {
   setDashboardFilter as setDashboardFilterAction,
   clearFilterByName as clearFilterByNameAction
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 
 export const setDashboardFilter = async ({ payload = {} }) => {
   const { name, filter } = payload

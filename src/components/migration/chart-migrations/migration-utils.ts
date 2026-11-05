@@ -61,7 +61,7 @@ import {
   setSecondaryMeasureTitle
 } from "../../../vega/actions/presentation-settings-action-creators"
 import { isMultiLayer } from "../../../charts/raster-chart/raster-utils"
-import { setChartFilter } from "../../../vega/actions/filter-action-creators"
+import { setChartFilter } from "services/filter-commands"
 import { Filter } from "../../../vega/constants/filter-types"
 import {
   ChartFilterMetadata,

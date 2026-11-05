@@ -1,7 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { makeCached, purgeSharedCache } from "./MagicCache"
+import {
+  makeCached,
+  purgeSharedCache
+} from "@immerse/query-runtime/legacy-cache"
 
 describe("MagicCache test suite ", () => {
   beforeEach(() => {

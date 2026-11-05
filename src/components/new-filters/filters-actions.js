@@ -5,10 +5,7 @@ import {
   SET_CUSTOM_SQL_FILTER_VALIDATION_ERROR,
   SET_FILTER_PANEL_VIEW_MODE
 } from "constants/action-types"
-import {
-  setChartFilter,
-  setDashboardFilter
-} from "vega/actions/filter-action-creators"
+import { setChartFilter, setDashboardFilter } from "services/filter-commands"
 import { sqlFilter } from "vega/constants/filter-types"
 
 export const setFilterNewlyCreated = (name) => ({

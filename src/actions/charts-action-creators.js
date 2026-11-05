@@ -59,12 +59,14 @@ import { deleteAnnotationsForChart } from "../actions/annotation-action-creators
 import { isOldFilter } from "vega/constants/filter-metadata-types"
 import {
   clearAllChartFilters,
-  doRedrawAll,
   setChartFilter,
-  setCrossFilter,
+  setCrossFilter
+} from "services/filter-commands"
+import { doRedrawAll } from "services/legacy-dc-filter-adapter"
+import {
   setQuickFilterOption,
   toggleQuickFilterVisibility
-} from "vega/actions/filter-action-creators"
+} from "vega/actions/filter-state-actions"
 import {
   getDataSourcesForFilter,
   isFocusChartFilterName,

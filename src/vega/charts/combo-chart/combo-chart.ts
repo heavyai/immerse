@@ -84,7 +84,7 @@ import {
   clearFilterByName,
   setCrossFilter,
   toggleFilterByName
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 import {
   topnResetOptions,
   topnSetColor,

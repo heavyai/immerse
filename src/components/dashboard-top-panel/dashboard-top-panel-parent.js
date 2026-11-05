@@ -15,10 +15,7 @@ import { createNewChartAfterMax } from "actions/create-new-chart-action-creators
 import DashboardTopPanel from "./dashboard-top-panel"
 import { newChartIndex } from "utils/add-chart-helpers"
 import { isSharingRestricted } from "components/dashboard/dashboard-helpers"
-import {
-  toggleFilterByName,
-  clearFilterByName
-} from "../../vega/actions/filter-action-creators"
+import { toggleFilterByName, clearFilterByName } from "services/filter-commands"
 import { clearCrossFiltersFromFilterSet } from "components/new-filters/filter-sets-action-creators"
 import { toggleFilterX } from "vega/actions/filter-action-creators-crossfilter-interop"
 import { getSelectedFilterSet } from "components/new-filters/filter-sets-selectors"

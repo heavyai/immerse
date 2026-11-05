@@ -6,10 +6,7 @@ import { useCallback, useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 import { buildFiltersForColumn } from "./filter-creator-wrappers"
-import {
-  setChartFilter,
-  clearFilterByName
-} from "vega/actions/filter-action-creators"
+import { setChartFilter, clearFilterByName } from "services/filter-commands"
 import { andFilter } from "vega/constants/filter-types"
 
 import { useInternalCrossfilterId } from "./useInternalCrossfilterId"

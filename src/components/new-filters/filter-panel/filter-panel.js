@@ -16,7 +16,9 @@ import "@rmwc/tooltip/tooltip.css"
 
 import { redrawAll } from "actions/dc-action-creators"
 
-import * as filterActions from "vega/actions/filter-action-creators"
+import * as filterStateActions from "vega/actions/filter-state-actions"
+import * as filterCommands from "services/filter-commands"
+import { doRedrawAll } from "services/legacy-dc-filter-adapter"
 import { isOldFilter } from "vega/constants/filter-metadata-types"
 import { hasNonBoundingBoxNonGeoJoinFilter } from "vega/utils/filter"
 
@@ -889,7 +891,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(
     {
-      ...filterActions,
+      ...filterStateActions,
+      ...filterCommands,
+      doRedrawAll,
       highlightCharts,
       dehighlightCharts,
       openCategorySelectionModal,

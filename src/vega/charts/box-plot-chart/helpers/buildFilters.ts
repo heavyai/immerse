@@ -15,10 +15,7 @@ import {
   TransformedDatum
 } from "vega/charts/combo-chart/combo-chart"
 import { BoxPlotDataSelection } from "vega/constants/data-selection-types"
-import {
-  clearFilterByName,
-  setCrossFilter
-} from "vega/actions/filter-action-creators"
+import { clearFilterByName, setCrossFilter } from "services/filter-commands"
 
 /**
  * Build crossfilters

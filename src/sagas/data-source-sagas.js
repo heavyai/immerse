@@ -13,7 +13,7 @@ import Services from "services/immerse"
 import R from "ramda"
 import { isGeoTypeSupportedRasterChart } from "charts/raster-chart/raster-utils"
 import { clearMultiSource } from "actions/chart-editor-multisource-action-creators"
-import { clearCrossFilters } from "vega/actions/filter-action-creators"
+import { clearCrossFilters } from "services/filter-commands"
 import {
   getActiveFilterDataSources,
   getActiveChartDataSources

@@ -1,9 +1,15 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import reducers from "./legacy-vega-results"
+import { createVegaResultReducers } from "@immerse/query-runtime"
+import { getErrorMessageFromBackendError } from "utils/error-handling-helpers"
 import * as types from "vega/constants/vega-data-action-types"
 import { withChartQueryData } from "./index"
+
+const reducers = createVegaResultReducers({
+  types,
+  getErrorMessageFromBackendError
+})
 
 export function recordVegaResult(runtime, applicationState, action) {
   const id = action.chartId ?? action.id

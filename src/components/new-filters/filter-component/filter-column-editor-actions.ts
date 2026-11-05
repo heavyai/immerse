@@ -12,7 +12,7 @@ import {
   clearFilterByName,
   setChartFilter,
   setChartCohort
-} from "vega/actions/filter-action-creators"
+} from "services/filter-commands"
 
 import {
   selectParameterizedCustomFilterFromDropdown,
