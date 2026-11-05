@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "kind": "bundle",
+  "files": [
+    {
+      "file": "app-config.js",
+      "bytes": 30,
+      "gzipBytes": 50
+    },
+    {
+      "file": "bundle.acbac9060fa6a5d92e0de24e80f39e17a568269d.css",
+      "bytes": 2230596,
+      "gzipBytes": 464552
+    },
+    {
+      "file": "bundle.acbac9060fa6a5d92e0de24e80f39e17a568269d.js",
+      "bytes": 8347562,
+      "gzipBytes": 2206137
+    },
+    {
+      "file": "override.css",
+      "bytes": 262,
+      "gzipBytes": 213
+    },
+    {
+      "file": "polyfills.acbac9060fa6a5d92e0de24e80f39e17a568269d.js",
+      "bytes": 3682,
+      "gzipBytes": 1680
+    },
+    {
+      "file": "vendor.acbac9060fa6a5d92e0de24e80f39e17a568269d.js",
+      "bytes": 14035541,
+      "gzipBytes": 3265476
+    }
+  ],
+  "totalBytes": 24617673,
+  "totalGzipBytes": 5938108
+}

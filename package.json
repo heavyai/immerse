@@ -36,8 +36,8 @@
     "test:debug": "DEBUG=true jest -t [Dd][Ee][Bb][Uu][Gg]",
     "test:coverage": "jest --coverage",
     "test:coverage:report": "npm run test:coverage && http-server ./coverage_jest",
-    "test:unit": "jest '\\.unit\\.test\\.(t|j)sx?$'",
-    "test:unit:debug": "jest '\\.unit\\.test\\.(t|j)sx?$' -t [Dd][Ee][Bb][Uu][Gg]",
+    "test:unit": "jest '\\.unit\\.(test|spec)\\.(t|j)sx?$'",
+    "test:unit:debug": "jest '\\.unit\\.(test|spec)\\.(t|j)sx?$' -t [Dd][Ee][Bb][Uu][Gg]",
     "test:component": "jest '\\.component\\.test\\.(t|j)sx?$' --runInBand",
     "test:component:debug": "jest '\\.component\\.test\\.(t|j)sx?$' -t [Dd][Ee][Bb][Uu][Gg]",
     "test:playwright": "npx playwright test",
@@ -46,7 +46,13 @@
     "webpack": "webpack",
     "webpack:dev-server": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=development PORT=\"${IMMERSE_PORT:-8002}\" webpack serve --config webpack.config.dev.ts",
     "checkLinked": "find node_modules -maxdepth 2 -type l -not -path \"node_modules/.bin/*\"",
-    "listAvailableLinked": "npm ls -g --depth=0 --link=true"
+    "listAvailableLinked": "npm ls -g --depth=0 --link=true",
+    "modernization:check": "node scripts/modernization/architecture.cjs",
+    "modernization:inventory": "node scripts/modernization/inventory.cjs",
+    "modernization:measure": "node scripts/modernization/measure.cjs",
+    "test:modernization": "jest --runInBand --runTestsByPath src/utils/modernization/dashboard-compatibility.unit.test.js src/utils/modernization/lifecycle-invariants.unit.test.js src/utils/modernization/filter-embed-contract.unit.test.js src/utils/modernization/metrics.unit.test.js",
+    "test:legacy": "jest --config jest.legacy.config.js --runInBand",
+    "test:modernization-tools": "node --test scripts/modernization/*.test.cjs"
   },
   "husky": {
     "hooks": {

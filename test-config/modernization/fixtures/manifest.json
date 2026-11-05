@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Synthetic characterization fixtures based on repository load-dashboard tests, chart definitions, and parameter-mock-store. Not production exports.",
+  "fixtures": [
+    {
+      "file": "legacy-single-source.json",
+      "covers": [
+        "legacy-filters",
+        "single-source-migration",
+        "dc",
+        "sorting-upgrade",
+        "unicode"
+      ]
+    },
+    {
+      "file": "mixed-engines.json",
+      "covers": [
+        "omnifilters",
+        "parameters",
+        "join-payload-preservation",
+        "addons",
+        "dc",
+        "vega",
+        "raster",
+        "deckgl",
+        "custom-react",
+        "iframe-configuration"
+      ]
+    }
+  ]
+}

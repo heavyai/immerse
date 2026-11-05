@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "name": "UNIT",
+      "patterns": [
+        "<rootDir>/src/**/?(*.)unit.test.js?(x)",
+        "<rootDir>/src/**/?(*.)unit.test.ts?(x)",
+        "<rootDir>/src/actions/dashboard-action-creators.unit.spec.js",
+        "<rootDir>/src/reducers/data-source-higher-order-reducer.unit.spec.js",
+        "<rootDir>/src/charts/utils/coordinate-helpers.unit.spec.js"
+      ],
+      "selected": [
+        "src/actions/app-action-creators.unit.test.js",
+        "src/actions/chart-editor-action-creators.unit.test.js",
+        "src/actions/dashboard-action-creators-basemap.unit.test.js",
+        "src/actions/dashboard-action-creators.unit.spec.js",
+        "src/actions/dashboard-filters-action-creators.unit.test.js",
+        "src/actions/dc-action-creators.unit.test.js",
+        "src/actions/importer-action-creators.unit.test.js",
+        "src/actions/parameter-dashboard-widget-action.creators.unit.test.js",
+        "src/chart-addons/utils/hooks/useChartAddon.unit.test.js",
+        "src/chart-addons/utils/hooks/useChartAddonUpdate.unit.test.js",
+        "src/charts/bar-chart/sql-utils.unit.test.js",
+        "src/charts/bar-chart/utils.unit.test.js",
+        "src/charts/bubble/scatter.unit.test.js",
+        "src/charts/components/create-chart-component.unit.test.js",
+        "src/charts/components/create-saga-chart-component.unit.test.js",
+        "src/charts/count/count.unit.test.js",
+        "src/charts/fe-choropleth/choropleth.unit.test.js",
+        "src/charts/heat/heat.unit.test.js",
+        "src/charts/number/number.unit.test.js",
+        "src/charts/pie/pie.unit.test.js",
+        "src/charts/raster-chart/contour/contour-display-settings.unit.test.js",
+        "src/charts/raster-chart/contour/utils.unit.test.js",
+        "src/charts/raster-chart/geoheat-reducer.unit.test.js",
+        "src/charts/raster-chart/raster-chart-actions.unit.test.js",
+        "src/charts/raster-chart/raster-chart-component.unit.test.js",
+        "src/charts/raster-chart/raster-chart-reducer.unit.test.js",
+        "src/charts/raster-chart/raster-chart.unit.test.js",
+        "src/charts/raster-chart/raster-sql.unit.test.js",
+        "src/charts/row/row.unit.test.js",
+        "src/charts/table/table.unit.test.js",
+        "src/charts/text/text-component.unit.test.js",
+        "src/charts/utils/add-chart-event-listeners.unit.test.js",
+        "src/charts/utils/compose-measures.unit.test.js",
+        "src/charts/utils/coordinate-helpers.unit.spec.js",
+        "src/charts/utils/create-update-function-for-chart.unit.test.js",
+        "src/charts/utils/event-listeners.unit.test.js",
+        "src/charts/utils/general-chart-update.unit.test.js",
+        "src/charts/utils/hooks/filter-creator-wrappers.unit.test.js",
+        "src/charts/utils/hooks/simplify-filters.unit.test.js",
+        "src/charts/utils/hooks/useCachedChartData.unit.test.js",
+        "src/charts/utils/hooks/useChart.unit.test.js",
+        "src/charts/utils/hooks/useChartDataQuery.unit.test.js",
+        "src/charts/utils/hooks/useChartFilterString.unit.test.js",
+        "src/charts/utils/hooks/useChartToggle.unit.test.js",
+        "src/charts/utils/hooks/useChartUpdate.unit.test.js",
+        "src/charts/utils/hooks/useCrossLinks.unit.test.js",
+        "src/charts/utils/hooks/useCurrentEditingChart.unit.test.js",
+        "src/charts/utils/hooks/useCurrentFilterSet.unit.test.js",
+        "src/charts/utils/hooks/useDashboardId.unit.test.js",
+        "src/charts/utils/hooks/useDashboardRefresh.unit.test.js",
+        "src/charts/utils/hooks/useDebugProps.unit.test.js",
+        "src/charts/utils/hooks/useFilters.unit.test.js",
+        "src/charts/utils/hooks/useInternalCrossfilterId.unit.test.js",
+        "src/charts/utils/hooks/useIsUserGeneratedFilter.unit.test.js",
+        "src/charts/utils/hooks/useLegacyChartingCrossFilterId.unit.test.js",
+        "src/charts/utils/hooks/useLegacyFilters.unit.test.js",
+        "src/charts/utils/hooks/useSetChartFilter.unit.test.js",
+        "src/charts/utils/hooks/useSetCrossFilter.unit.test.js",
+        "src/charts/utils/hooks/useSimpleFilters.unit.test.js",
+        "src/charts/utils/promisify-chart-creation.unit.test.js",
+        "src/charts/utils/specific-chart-updates.unit.test.js",
+        "src/components/app-overlay/app-overlay.unit.test.js",
+        "src/components/app-overlay/loading-widget.unit.test.js",
+        "src/components/autocomplete/autocomplete.unit.test.js",
+        "src/components/autosuggest/with-autosuggest-state.unit.test.js",
+        "src/components/bar-line-toggle/bar-line-toggle-parent.unit.test.js",
+        "src/components/bar-line-toggle/bar-line-toggle.unit.test.js",
+        "src/components/chart-container-header/chart-container-header.unit.test.js",
+        "src/components/chart-container/chart-container-parent.unit.test.js",
+        "src/components/chart-container/chart-container.unit.test.js",
+        "src/components/chart-editor-error-message/chart-editor-error-message.unit.test.js",
+        "src/components/chart-editor-table-preview/chart-editor-table-preview-parent.unit.test.js",
+        "src/components/chart-editor-table-preview/chart-editor-table-preview.unit.test.js",
+        "src/components/chart-editor/chart-editor.unit.test.js",
+        "src/components/chart-settings-basemap-dropdown/chart-settings-basemap-dropdown-parent.unit.test.js",
+        "src/components/chart-settings-geojson-dropdown/chart-settings-geojson-dropdown-parent.unit.test.js",
+        "src/components/chart-settings-geojson-dropdown/chart-settings-geojson-dropdown.unit.test.js",
+        "src/components/chart-settings-sort-by-dropdown/chart-settings-sort-by-dropdown-parent.unit.test.js",
+        "src/components/chart-settings-sort-by-dropdown/chart-settings-sort-by-helpers.unit.test.js",
+        "src/components/chart-settings/chart-settings.unit.test.js",
+        "src/components/chart-title/chart-title-helpers.unit.test.js",
+        "src/components/chart-type-button/chart-type-button.unit.test.js",
+        "src/components/chart-type-panel/chart-type-panel.unit.test.js",
+        "src/components/color-picker/color-picker-parent.unit.test.js",
+        "src/components/color-picker/color-picker.unit.test.js",
+        "src/components/color-swatch/color-swatch.unit.test.js",
+        "src/components/colors-popup/colors-popup.unit.test.js",
+        "src/components/custom-colors/custom-colors-list-item.unit.test.js",
+        "src/components/custom-colors/custom-colors.unit.test.js",
+        "src/components/custom-selector/custom-selector.unit.test.js",
+        "src/components/custom-slider/custom-slider.unit.test.js",
+        "src/components/custom-styles-override/custom-styles-override.unit.test.js",
+        "src/components/dashboard-row-item/dashboard-row-item-parent.unit.test.js",
+        "src/components/dashboard-row-item/dashboard-row-item.unit.test.js",
+        "src/components/dashboard-top-panel-title/dashboard-top-panel-title.unit.test.js",
+        "src/components/dashboard-top-panel/dashboard-top-panel-parent.unit.test.js",
+        "src/components/dashboard-top-panel/dashboard-top-panel.unit.test.js",
+        "src/components/dashboard/dashboard-helpers.unit.test.js",
+        "src/components/dashboard/dashboard.unit.test.js",
+        "src/components/dashboards-list/dashboards-list.unit.test.js",
+        "src/components/dashboards/dashboards-parent.unit.test.js",
+        "src/components/dashboards/dashboards.unit.test.js",
+        "src/components/data-source-selector/base-data-source-selector.unit.test.js",
+        "src/components/data-source-selector/data-source-selector-utils.unit.test.js",
+        "src/components/data-source-selector/data-source-selector.unit.test.js",
+        "src/components/data-source-selector/filtered-data-source-selector.unit.test.js",
+        "src/components/dimension-bin-settings/dimension-bin-range-settings.unit.test.js",
+        "src/components/dimension-bin-settings/dimension-bin-settings-parent.unit.test.js",
+        "src/components/dimension-bin-settings/dimension-bin-settings.unit.test.js",
+        "src/components/dimension-selectors-container/dimension-selectors-container.unit.test.js",
+        "src/components/dimension-selectors-popover/dimension-selectors-popover-parent.unit.test.js",
+        "src/components/dimension-selectors-popover/dimension-selectors-popover.unit.test.js",
+        "src/components/dimension-time-bin-settings/dimension-time-bin-settings.unit.test.js",
+        "src/components/join-condition-selector/join-condition-selector.unit.test.js",
+        "src/components/join-manager/join-manager-thunks.unit.test.js",
+        "src/components/join-manager/use-join-from-parameter.unit.test.js",
+        "src/components/join-manager/utils.unit.test.js",
+        "src/components/layer-picker/layer-picker.unit.test.js",
+        "src/components/layer-selector/layer-selector.unit.test.js",
+        "src/components/lock/lock.unit.test.js",
+        "src/components/logo/logo.unit.test.js",
+        "src/components/measure-aggtype-selector/measure-aggtype-selector-parent.unit.test.js",
+        "src/components/measure-selectors-container/measure-selectors-container.unit.test.js",
+        "src/components/measure-selectors-popover/measure-selectors-popover-parent.unit.test.js",
+        "src/components/measure-selectors-popover/measure-selectors-popover.unit.test.js",
+        "src/components/measure-yaxis-toggle/measure-yaxis-toggle-parent.unit.test.js",
+        "src/components/measure-yaxis-toggle/measure-yaxis-toggle.unit.test.js",
+        "src/components/multi-count/multi-count.unit.test.js",
+        "src/components/navigation-bar/app-info.unit.test.js",
+        "src/components/navigation-bar/nav-dropdown.unit.test.js",
+        "src/components/navigation-bar/navigation-bar-container.unit.test.tsx",
+        "src/components/new-filters/cohorts-action-creators.unit.test.js",
+        "src/components/new-filters/cohorts-reducer.unit.test.js",
+        "src/components/new-filters/filter-component/filter-component-options.unit.test.js",
+        "src/components/new-filters/filter-sets-action-creators.unit.test.js",
+        "src/components/new-filters/filter-sets-reducer.unit.test.js",
+        "src/components/parameters/actions/parameter-definitions-action-creators.unit.test.js",
+        "src/components/parameters/actions/parameter-sets-action-creators.unit.test.js",
+        "src/components/parameters/actions/parameter-usage.unit.test.js",
+        "src/components/parameters/actions/parameter-values-action-creators.unit.test.js",
+        "src/components/parameters/actions/simple-action-wrappers.unit.test.js",
+        "src/components/parameters/reducer/parameter-definitions.unit.test.js",
+        "src/components/parameters/reducer/parameter-sets.unit.test.js",
+        "src/components/parameters/reducer/parameter-usage.unit.test.js",
+        "src/components/parameters/reducer/parameter-values.unit.test.js",
+        "src/components/parameters/selectors.unit.test.js",
+        "src/components/parameters/utils.unit.test.js",
+        "src/components/parameters/validation.unit.test.js",
+        "src/components/popover/popover.unit.test.js",
+        "src/components/search-input/search-input.unit.test.js",
+        "src/components/search-term-highlight/search-term-highlight.unit.test.js",
+        "src/components/segmented-control/segmented-control.unit.test.js",
+        "src/components/selectable-card/selectable-card.unit.test.js",
+        "src/components/selector-container/selector-container.unit.test.js",
+        "src/components/selector-dropdown/selector-dropdown.unit.test.js",
+        "src/components/selector-pill/make-drop-and-draggable.unit.test.js",
+        "src/components/selector-pill/selector-pill-parent-helpers.unit.test.js",
+        "src/components/selector-pill/selector-pill-parent.unit.test.js",
+        "src/components/selector-pill/selector-pill-wrapper.unit.test.js",
+        "src/components/selector-pill/selector-pill.unit.test.js",
+        "src/components/share-link/share-link-parent.unit.test.js",
+        "src/components/share-link/share-link-popover.unit.test.js",
+        "src/components/share-link/share-link.unit.test.js",
+        "src/components/sql-editor/sql-editor-data-table.unit.test.js",
+        "src/components/sql-editor/sql-editor-data-viewer.unit.test.js",
+        "src/components/sql-notebook/visualization/chart-generators.unit.test.ts",
+        "src/components/sql-notebook/visualization/chart-generators/chart-generator.unit.test.ts",
+        "src/components/sql-notebook/visualization/vega-map/ast-helpers.unit.test.js",
+        "src/components/sql-notebook/visualization/vega-map/hooks/use-vega-chart.unit.test.ts",
+        "src/components/table-importer/table-importer-helpers.unit.test.js",
+        "src/components/table-picker/table-picker.unit.test.js",
+        "src/components/table-picker/tables-list.unit.test.js",
+        "src/components/table-preview/table-preview-parent.unit.test.js",
+        "src/components/table-preview/table-preview.unit.test.js",
+        "src/components/table/editable-column-header.unit.test.js",
+        "src/components/table/table.unit.test.js",
+        "src/components/tabs/tabs.unit.test.js",
+        "src/hooks/use-column-options.unit.test.js",
+        "src/hooks/useChartsCount.unit.test.js",
+        "src/hooks/useDashboardDcRedrawAll.unit.test.js",
+        "src/hooks/useDashboardInitialRender.unit.test.js",
+        "src/hooks/useDashboardState.unit.test.js",
+        "src/hooks/useSearchableList.unit.test.js",
+        "src/hooks/useStaticValue.unit.test.js",
+        "src/hooks/useUserRoles.unit.test.js",
+        "src/reducers/app-reducer.unit.test.js",
+        "src/reducers/autosuggest-reducer.unit.test.js",
+        "src/reducers/chart-editor-reducer.unit.test.js",
+        "src/reducers/clear-dashboard.unit.test.js",
+        "src/reducers/connection.unit.test.js",
+        "src/reducers/dashboard.unit.test.js",
+        "src/reducers/dashboards-reducer.unit.test.js",
+        "src/reducers/data-source-higher-order-reducer.unit.spec.js",
+        "src/reducers/dc-reducer.unit.test.js",
+        "src/reducers/filters-reducer.unit.test.js",
+        "src/reducers/importer-reducer.unit.test.js",
+        "src/reducers/join.reducer.unit.test.js",
+        "src/reducers/load-dashboard.unit.test.js",
+        "src/reducers/sql-editor.unit.test.js",
+        "src/reducers/tables-preview.unit.test.js",
+        "src/reducers/tables-reducer.unit.test.js",
+        "src/reducers/tables-reference-reducer.unit.test.js",
+        "src/reducers/ui-reducer.unit.test.js",
+        "src/services/ImmerseCrossFilter/ImmerseCrossFilter.unit.test.js",
+        "src/services/ImmerseCrossFilter/ImmerseCrossFilterBoundingBox.unit.test.js",
+        "src/services/ImmerseCrossFilter/ImmerseCrossFilterDimension.unit.test.js",
+        "src/services/ImmerseCrossFilter/ImmerseCrossFilterGroup.unit.test.js",
+        "src/services/ImmerseCrossFilter/ImmerseCrossFilterGroupAll.unit.test.js",
+        "src/services/ImmerseCrossFilter/utils-date-bin.unit.test.js",
+        "src/services/colors.unit.test.js",
+        "src/services/crossfilter.unit.test.js",
+        "src/services/geocoder.unit.test.js",
+        "src/services/groupall.unit.test.js",
+        "src/services/immerse-ui-provider/actions.unit.test.js",
+        "src/services/immerse-ui-provider/reducer.unit.test.js",
+        "src/services/immerse-ui-provider/set-default-keys.unit.test.js",
+        "src/services/immerse.unit.test.js",
+        "src/store/create-store-with-services.unit.test.js",
+        "src/utils/ImmerseSQLPlusPlus/crossfilter-extractor.unit.test.js",
+        "src/utils/ImmerseSQLPlusPlus/parse-crossfilter-tokens.unit.test.js",
+        "src/utils/app-config.unit.test.js",
+        "src/utils/color-blindness.unit.test.ts",
+        "src/utils/error-handling-helpers.unit.test.js",
+        "src/utils/geo.unit.test.js",
+        "src/utils/helpers.unit.test.js",
+        "src/utils/map-binned-dimensions.unit.test.js",
+        "src/utils/modernization/dashboard-compatibility.unit.test.js",
+        "src/utils/modernization/filter-embed-contract.unit.test.js",
+        "src/utils/modernization/lifecycle-invariants.unit.test.js",
+        "src/utils/modernization/metrics.unit.test.js",
+        "src/utils/parse-url.unit.test.js",
+        "src/utils/performance/MagicCache.unit.test.js",
+        "src/utils/performance/MagicQueue.unit.test.js",
+        "src/utils/ramda-helpers.unit.test.js",
+        "src/utils/selector-helpers.unit.test.js",
+        "src/utils/time-helpers.unit.test.js",
+        "src/utils/to-proper-case.unit.test.js",
+        "src/utils/user.unit.test.js",
+        "src/utils/validate-mapbox-custom-styles.unit.test.js",
+        "src/utils/windowfuncs.unit.test.ts",
+        "src/utils/with-key-press-listener.unit.test.js",
+        "src/vega/actions/filter-action-creators-crossfilter-interop.unit.test.js",
+        "src/vega/charts/combo-chart/combo-chart.unit.test.ts",
+        "src/vega/charts/combo-chart/query-building.unit.test.ts",
+        "src/vega/constants/filter-types.unit.test.js",
+        "src/vega/utils/sql-tag.unit.test.ts"
+      ]
+    },
+    {
+      "name": "COMPONENT",
+      "patterns": [
+        "<rootDir>/src/**/?(*.)component.test.js?(x)",
+        "<rootDir>/src/**/?(*.)component.test.ts?(x)"
+      ],
+      "selected": [
+        "src/charts/raster-chart/cross-section/cross-section-display-settings.component.test.js",
+        "src/components/chart-container/chart-container.component.test.js",
+        "src/components/chart-editor/chart-editor-parent.component.test.js",
+        "src/components/chart-settings/chart-settings.component.test.js",
+        "src/components/chart-title/chart-title.component.test.js",
+        "src/components/data-column-selector/data-type-icon.component.test.js",
+        "src/components/data-source-selector/data-source-selector.component.test.js",
+        "src/components/join-manager/join-data-source-item.component.test.js",
+        "src/components/join-manager/join-manager-modal.component.test.js",
+        "src/components/navigation-bar/app-info.component.test.js",
+        "src/components/new-filters/filter-component/aggregate-filter-component.component.test.js",
+        "src/components/new-filters/filter-component/components/filter-time-modal.component.test.js",
+        "src/components/new-filters/filter-component/filter-component.component.test.js",
+        "src/components/new-filters/filter-panel/components/data-source-header.component.test.js",
+        "src/components/settings/settings-nav-list.component.test.js",
+        "src/components/settings/settings-sections/roles/roles-settings.component.test.js",
+        "src/components/svg-icons/icon-clear-filter.component.test.js",
+        "src/components/svg-icons/icon-compressed-file.component.test.js",
+        "src/components/svg-icons/icon-date-time.component.test.js",
+        "src/components/svg-icons/icon-enum.component.test.js",
+        "src/components/svg-icons/icon-geo.component.test.js",
+        "src/components/svg-icons/icon-number.component.test.js",
+        "src/components/svg-icons/icon-selector-dots.component.test.js",
+        "src/vega/components/SourceSelector/BaseSourceSelector.component.test.js"
+      ]
+    }
+  ],
+  "excludedLegacyUnit": [
+    "src/actions/app-action-creators.unit.spec.js",
+    "src/actions/autosuggest-action-creators.unit.spec.js",
+    "src/actions/chart-editor-action-creator.unit.spec.js",
+    "src/actions/charts-action-creators.unit.spec.js",
+    "src/actions/connection-action-creators.unit.spec.js",
+    "src/actions/dashboards-action-creators.unit.spec.js",
+    "src/actions/dc-action-creators.unit.spec.js",
+    "src/actions/privileges-thunks.unit.spec.js",
+    "src/actions/reset-app-state-action-creator.unit.spec.js",
+    "src/actions/routes-action-creators.unit.spec.js",
+    "src/actions/selector-action-creators.unit.spec.js",
+    "src/actions/sql-editor-action-creators.unit.spec.js",
+    "src/actions/tables-action-creators.unit.spec.js",
+    "src/actions/tables-reference-action-creators.unit.spec.js",
+    "src/actions/ui-action-creators.unit.spec.js",
+    "src/charts/combo/line-chart2/line2-reducer.unit.spec.ts",
+    "src/charts/utils/color-chart.unit.spec.js",
+    "src/components/hover-selector/hover-selector-row.unit.spec.js",
+    "src/components/hover-selector/hover-selector.unit.spec.js",
+    "src/constants/data-types.unit.spec.js",
+    "src/containers/application-container.unit.spec.js",
+    "src/containers/application-root.unit.spec.js",
+    "src/reducers/charts/add-dimension-reducer.unit.spec.js",
+    "src/reducers/charts/add-measure-reducer.unit.spec.js",
+    "src/reducers/charts/charts-reducer-helpers.unit.spec.js",
+    "src/reducers/charts/charts-reducer.unit.spec.js",
+    "src/reducers/charts/clear-selector-reducer.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/check-for-errors/check-for-dimension-errors.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/check-for-errors/check-for-measure-errors.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/check-for-missing/check-for-missing-dimensions.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/check-for-missing/check-for-missing-measures.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/error-checking-reducer.unit.spec.js",
+    "src/reducers/charts/error-checking-reducer/update-has-error.unit.spec.js",
+    "src/reducers/charts/helpers/dimension-object-helpers.unit.spec.js",
+    "src/reducers/charts/helpers/measure-object-helpers.unit.spec.js",
+    "src/reducers/charts/helpers/selector-object-helpers.unit.spec.js",
+    "src/reducers/charts/remove-selector-reducer.unit.spec.js",
+    "src/reducers/charts/swap-selectors-reducer.unit.spec.js",
+    "src/reducers/charts/update-chart-type-reducer.unit.spec.js",
+    "src/reducers/charts/update-selector-reducer.unit.spec.js",
+    "src/sagas/chart-editor-saga.unit.spec.js",
+    "src/sagas/dashboard-filter-sagas.unit.spec.js",
+    "src/sagas/dashboard-sagas.unit.spec.js",
+    "src/sagas/data-refresh-sagas.unit.spec.js",
+    "src/sagas/data-sources-sagas.unit.spec.js",
+    "src/utils/currently-active-datasources.unit.spec.js",
+    "src/utils/helpers.unit.spec.js",
+    "src/utils/load-dashboard-helpers/single-source-to-multi-source.unit.spec.js",
+    "src/utils/map-binned-dimensions.unit.spec.js",
+    "src/utils/parse-url.unit.spec.js",
+    "src/utils/ramda-helpers.unit.spec.js",
+    "src/utils/redux/app-error-middleware.unit.spec.js",
+    "src/utils/redux/chart-editor-error-handler-middleware.unit.spec.js",
+    "src/utils/redux/chart-update-middleware.unit.spec.js",
+    "src/utils/redux/create-reducer.unit.spec.js",
+    "src/utils/redux/delay-middleware.unit.spec.js",
+    "src/utils/selector-helpers.unit.spec.js",
+    "src/utils/time-helpers.unit.spec.js",
+    "src/utils/validate-mapbox-custom-styles.unit.spec.js"
+  ],
+  "excludedOther": [
+    "src/components/login/login-parent-unit.test.ts",
+    "src/components/login/login-unit.test.js",
+    "src/routes/routes-unit.spec.js",
+    "src/ui-tests/chart-coloring.ui.test.ts",
+    "src/ui-tests/chart-creation/bubble-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/choropleth-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/heat-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/multilayer-raster-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/number-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/pointmap-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/scatter-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/table-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/text-chart.ui.test.ts",
+    "src/ui-tests/chart-creation/vega-combo/vega-combo-creation.ui.test.ts",
+    "src/ui-tests/chart-creation/vega-combo/vega-combo-existing-crossfilter.ui.test.ts",
+    "src/ui-tests/chart-creation/vega-combo/vega-combo-existing-global-filter.ui.test.ts",
+    "src/ui-tests/chart-creation/vega-combo/vega-combo-filtering.ui.test.ts",
+    "src/ui-tests/components/filter-panel-cohort-builder.ui.test.ts",
+    "src/ui-tests/components/filter-panel.ui.test.ts",
+    "src/ui-tests/components/parameter-url.ui.test.ts",
+    "src/ui-tests/components/simple-filter-panel.ui.test.ts",
+    "src/ui-tests/components/ui-config-panel.ui.test.ts",
+    "src/ui-tests/create-and-delete-view.ui.test.ts",
+    "src/ui-tests/data-manager.ui.test.ts",
+    "src/ui-tests/global-filter.ui.test.ts",
+    "src/ui-tests/opening-all-charts-interacts.ui.test.ts",
+    "src/ui-tests/playwright/charts/pie-chart.ui.test.ts",
+    "src/ui-tests/playwright/charts/zoom-to-filters.ui.test.ts",
+    "src/ui-tests/playwright/colors/colors.ui.test.ts",
+    "src/ui-tests/playwright/dashboard/create-dashboard.ui.test.ts",
+    "src/ui-tests/playwright/dashboard/joins-crossfilter.ui.test.ts",
+    "src/ui-tests/playwright/dashboard/load-dashboard.ui.test.ts",
+    "src/ui-tests/playwright/filters/filter-panel.ui.test.ts",
+    "src/ui-tests/playwright/filters/vega-combo-filter.ui.test.ts",
+    "src/ui-tests/playwright/sql-notebook/nl-to-answer.ui.test.ts",
+    "src/ui-tests/playwright/sql-notebook/sql-to-answer.ui.test.ts",
+    "src/ui-tests/recorded/FE-11844/FE-11844.ui.test.js",
+    "src/ui-tests/recorded/bar/bar.ui.test.js",
+    "src/ui-tests/recorded/number/number.ui.test.js",
+    "src/ui-tests/recorded/pie-num-crossfilter/crossfilter.ui.test.js",
+    "src/ui-tests/recorded/pie/pie.ui.test.js",
+    "src/ui-tests/recorded/table/table.ui.test.js",
+    "src/ui-tests/sessionization.ui.test.ts",
+    "src/ui-tests/sql-editor.ui.test.ts",
+    "src/ui-tests/text-chart-embed.ui.test.ts",
+    "src/ui-tests/utils.ui.test.ts"
+  ],
+  "gitDependencies": [
+    {
+      "name": "@heavyai/charting",
+      "version": "git+ssh://git@github.com/heavyai/heavyai-charting.git#272d4b0",
+      "consumers": [
+        "src/charts/raster-chart/fixtures.js",
+        "src/charts/raster-chart/raster-chart-sagas.tsx",
+        "src/charts/raster-chart/raster-sql.ts",
+        "src/import-shims/heavyai-charting-styles.js",
+        "src/services/ConnectorWithQueue.js",
+        "src/services/d3.js",
+        "src/services/dc.js",
+        "src/services/groupall.js",
+        "src/utils/redux/app-error-middleware.js",
+        "src/vega/actions/filter-action-creators.ts"
+      ]
+    },
+    {
+      "name": "@heavyai/connector",
+      "version": "github:heavyai/heavyai-connector#6f77df5",
+      "consumers": [
+        "src/actions/backend-functions-action-creators.ts",
+        "src/actions/importer-action-creators.ts",
+        "src/actions/tables-action-creators.js",
+        "src/components/custom-sql-side-browser/table-function-argument-field.tsx",
+        "src/components/custom-sql-side-browser/table-function-browser.tsx",
+        "src/components/custom-sql-side-browser/table-function-details-item.tsx",
+        "src/components/data-manager/constants.tsx",
+        "src/components/data-manager/existing-table-preview/existing-table-preview-parent.jsx",
+        "src/components/data-manager/hooks/use-source-type.ts",
+        "src/components/data-manager/import-local-file.tsx",
+        "src/components/data-manager/import-s3.tsx",
+        "src/components/data-manager/import-server-file.tsx",
+        "src/components/data-manager/import-table-preview/import-table-preview-actions-header.tsx",
+        "src/components/data-manager/services/data-sources.service.ts",
+        "src/components/data-manager/table-preview-utils.ts",
+        "src/components/data-manager/utils/source-type-heuristics.ts",
+        "src/components/data-manager/utils/thrift-data-type-mappers.ts",
+        "src/components/table-importer/import-settings-modal.tsx",
+        "src/components/table-importer/table-importer-helpers.js",
+        "src/components/table-importer/table-importer-preview-parent.js",
+        "src/components/table-refresh-schedule-modal/edit-table-refresh-schedule-modal.tsx",
+        "src/components/table-refresh-schedule-modal/table-refresh-schedule-modal.tsx",
+        "src/components/table/dest-table-headers.js",
+        "src/constants/table-data-types.ts",
+        "src/reducers/backend-functions-reducer.ts",
+        "src/reducers/importer-reducer.ts",
+        "src/services/connector.js",
+        "src/utils/table-functions.ts",
+        "src/vega/constants/data-selection-types.ts"
+      ]
+    },
+    {
+      "name": "@heavyai/d3-combo-chart",
+      "version": "git+ssh://git@github.com/heavyai/heavyai-d3.git#c01faf1",
+      "consumers": [
+        "src/import-shims/heavyai-d3-combo-chart-styles.js",
+        "src/import-shims/heavyai-d3-combo-chart.js"
+      ]
+    },
+    {
+      "name": "@heavyai/data-layer",
+      "version": "github:heavyai/metis#fea3f38",
+      "consumers": [
+        "src/charts/combo/line-chart2/sql-utils.js",
+        "src/charts/raster-chart/raster-sql.ts",
+        "src/services/create-filter-service.ts"
+      ]
+    },
+    {
+      "name": "@heavyai/draw",
+      "version": "git+ssh://git@github.com/heavyai/heavyai-draw.git#e841dd2",
+      "consumers": [
+        "src/import-shims/heavyai-draw.js"
+      ]
+    },
+    {
+      "name": "heavy-gauge-chart",
+      "version": "git+ssh://git@github.com/heavyai/gauge-chart.git#3713bfe",
+      "consumers": [
+        "src/charts/gauge/chart.js"
+      ]
+    },
+    {
+      "name": "heavy-skewt-chart",
+      "version": "git+ssh://git@github.com/heavyai/skewt-chart.git#9e77e97",
+      "consumers": [
+        "src/charts/skewt/chart.js"
+      ]
+    },
+    {
+      "name": "node-sql-parser",
+      "version": "github:heavyai/node-sql-parser#node-sql-parser-v4.18.0-gitpkg",
+      "consumers": [
+        "src/components/sql-notebook/visualization/vega-map/ast-helpers.ts",
+        "src/components/sql-notebook/visualization/vega-map/hooks/use-geometry-bounds.ts",
+        "src/components/sql-notebook/visualization/vega-map/hooks/use-vega-chart.ts"
+      ]
+    },
+    {
+      "name": "useWhisper",
+      "version": "git+ssh://git@github.com/heavyai/useWhisper.git#a4da42b",
+      "consumers": [
+        "src/components/sql-notebook/components/whisper-recorder.tsx"
+      ]
+    }
+  ],
+  "npmMigration": {
+    "engines": {
+      "node": "24.11.0",
+      "npm": ">=11.6.1"
+    },
+    "overrides": {
+      "tether": "1.4.4",
+      "tough-cookie": "2.5.0",
+      "minimist": "1.2.8",
+      "json-schema": "0.4.0",
+      "follow-redirects": "1.15.9",
+      "cheerio": "^1.0.0-rc.12",
+      "@testing-library/react": {
+        "@types/react-dom": "^16.9.0"
+      },
+      "isomorphic-fetch": "3.0.0",
+      "fast-xml-parser": "5.8.0",
+      "lodash-es": "4.18.1",
+      "protocol-buffers-schema": "3.6.1",
+      "serialize-javascript": "7.0.5",
+      "vega-selections": "6.1.2",
+      "axios": "^1.16.0",
+      "lodash": "^4.18.1"
+    },
+    "hooks": {
+      "hooks": {
+        "pre-commit": "bash -c \"./githooks/pre-commit-check-tether-version.sh && ./githooks/pre-commit-lint.sh\"",
+        "prepare-commit-msg": "bash -c \"./githooks/prepare-commit-msg-add-jira-id.sh $HUSKY_GIT_PARAMS\""
+      }
+    },
+    "lockfiles": [
+      "package-lock.json",
+      "test-config/puppeteer/package-lock.json"
+    ],
+    "tooling": [
+      {
+        "file": "package.json",
+        "line": 20,
+        "text": "\"lint\": \"npm run lint:cmd -- . --cache --ext=js --ext=jsx --ext=ts --ext=tsx\","
+      },
+      {
+        "file": "package.json",
+        "line": 22,
+        "text": "\"lint:fix\": \"npm run lint -- --fix\","
+      },
+      {
+        "file": "package.json",
+        "line": 27,
+        "text": "\"start\": \"ENABLE_CONTROL_PANEL=true npm run webpack:dev-server -- --open --hot --color\","
+      },
+      {
+        "file": "package.json",
+        "line": 28,
+        "text": "\"start:ssl\": \"ENABLE_CONTROL_PANEL=true npm run webpack:dev-server -- --open --hot --color --https\","
+      },
+      {
+        "file": "package.json",
+        "line": 29,
+        "text": "\"start:fast\": \"ENABLE_CONTROL_PANEL=true IMMERSE_BUILD_MODE=fast npm run webpack:dev-server -- --hot\","
+      },
+      {
+        "file": "package.json",
+        "line": 30,
+        "text": "\"start:fast:ssl\": \"ENABLE_CONTROL_PANEL=true IMMERSE_BUILD_MODE=fast npm run webpack:dev-server -- --open --hot --https --cert=cert.pem --key=key.pem\","
+      },
+      {
+        "file": "package.json",
+        "line": 31,
+        "text": "\"start:prod\": \"npm run build:prod && http-server ./dist -p \\\"${IMMERSE_PORT:-8002}\\\" -o -P \\\"http://localhost:${IMMERSE_PORT:-8002}?\\\"\","
+      },
+      {
+        "file": "package.json",
+        "line": 32,
+        "text": "\"start:eco\": \"ENABLE_CONTROL_PANEL=true HEAVY_ECO=true npm run webpack:dev-server -- --open --hot --color\","
+      },
+      {
+        "file": "package.json",
+        "line": 33,
+        "text": "\"test\": \"npm run lint && npm run test:unit && npm run test:component\","
+      },
+      {
+        "file": "package.json",
+        "line": 38,
+        "text": "\"test:coverage:report\": \"npm run test:coverage && http-server ./coverage_jest\","
+      },
+      {
+        "file": "package.json",
+        "line": 43,
+        "text": "\"test:playwright\": \"npx playwright test\","
+      },
+      {
+        "file": "package.json",
+        "line": 44,
+        "text": "\"test:playwright:gui\": \"npm run test:playwright -- --ui\","
+      },
+      {
+        "file": "package.json",
+        "line": 48,
+        "text": "\"checkLinked\": \"find node_modules -maxdepth 2 -type l -not -path \\\"node_modules/.bin/*\\\"\","
+      },
+      {
+        "file": "package.json",
+        "line": 49,
+        "text": "\"listAvailableLinked\": \"npm ls -g --depth=0 --link=true\","
+      },
+      {
+        "file": "package.json",
+        "line": 72,
+        "text": "\"npm\": \">=11.6.1\""
+      },
+      {
+        "file": "package.json",
+        "line": 335,
+        "text": "\"overrides\": {"
+      },
+      {
+        "file": ".npmrc",
+        "line": 4,
+        "text": "legacy-peer-deps=true"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 20,
+        "text": "resolve(__dirname, \"./node_modules/@heavyai/charting\"),"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 21,
+        "text": "resolve(__dirname, \"./node_modules/@heavyai/connector/src\")"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 24,
+        "text": "resolve(__dirname, \"./node_modules/@heavyai/charting/node_modules/\"),"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 25,
+        "text": "resolve(__dirname, \"./node_modules/@heavyai/connector/node_modules/\"),"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 26,
+        "text": "/(node_modules\\/[^(@heavyai)]+)/"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 32,
+        "text": "symlinks: false,"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 33,
+        "text": "// modules: [resolve(__dirname, 'src'), '..', 'node_modules'],"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 34,
+        "text": "modules: [resolve(__dirname, \"src\"), \"node_modules\"],"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 41,
+        "text": "\"node_modules/@heavyai/connector/dist/browser-connector\""
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 43,
+        "text": "\"@heavyai/charting\": resolve(__dirname, \"./node_modules/@heavyai/charting\"),"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 46,
+        "text": "\"./node_modules/@heavyai/connector/src\""
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 50,
+        "text": "\"./node_modules/@heavyai/d3-combo-chart\""
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 52,
+        "text": "react: resolve(__dirname, \"./node_modules/react\"),"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 55,
+        "text": "\"./node_modules/@heavyai/data-layer/packages/data-layer/dist/heavyai-data-layer.js\""
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 73,
+        "text": "test: /node_modules.*(?<!\\.css)(?<!\\.scss)(?<!\\.less)$/,"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 101,
+        "text": "include: /node_modules\\/(vega-lite|vega-util|vega-encode|vega-scale|vega-runtime|vega)/,"
+      },
+      {
+        "file": "webpack.config.common.ts",
+        "line": 102,
+        "text": "exclude: /node_modules\\/(vega-lite|vega-util|vega-encode|vega-scale|vega-runtime|vega)\\/node_modules/,"
+      },
+      {
+        "file": "jest.config.js",
+        "line": 16,
+        "text": "\"<rootDir>/node_modules/@heavyai/data-layer/packages/data-layer/dist/heavyai-data-layer.js\","
+      },
+      {
+        "file": "jest.config.js",
+        "line": 18,
+        "text": "\"^vega-lite$\": \"<rootDir>/node_modules/vega-lite/build/vega-lite.min.js\""
+      },
+      {
+        "file": "jest.config.js",
+        "line": 26,
+        "text": "\"<rootDir>/node_modules/(?!(@heavyai|robust-predicates|delaunator|d3-.*|axios|internmap|formdata-polyfill|fetch-blob|data-uri-to-buffer|node-fetch|vega|suneditor|quill-next|@quill-next|parchment|lodash-es|legendables|@mapbox-controls|@mapbox|vega-.*|cheerio|cheerio-.*))\""
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 12,
+        "text": "npm run clean"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 13,
+        "text": "npm run mkDistDir"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 17,
+        "text": "npm run copyServersLocalJson"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 20,
+        "text": "npm run copyServersJson"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 22,
+        "text": "npm run copyAppConfigJs"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 23,
+        "text": "npm run copyFavicon"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 24,
+        "text": "npm run copyGeoJson"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 25,
+        "text": "npm run copyFonts"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 26,
+        "text": "npm run copySamlErrorPage"
+      },
+      {
+        "file": "scripts/build-dev.sh",
+        "line": 27,
+        "text": "npm run webpack -- --config webpack.config.dev.ts --bail"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 11,
+        "text": "npm run clean"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 12,
+        "text": "npm run copyServersJson"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 13,
+        "text": "npm run copyFavicon"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 14,
+        "text": "npm run copyGeoJson"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 15,
+        "text": "npm run copyFonts"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 16,
+        "text": "npm run copySamlErrorPage"
+      },
+      {
+        "file": "scripts/build-prod-sourcemaps.sh",
+        "line": 17,
+        "text": "npm run webpack -- --bail --config webpack.config.prod.ts"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 14,
+        "text": "npm run clean"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 15,
+        "text": "npm run copyServersJson"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 16,
+        "text": "npm run copyFavicon"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 17,
+        "text": "npm run copyGeoJson"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 18,
+        "text": "npm run copyFonts"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 19,
+        "text": "npm run copySamlErrorPage"
+      },
+      {
+        "file": "scripts/build-prod.sh",
+        "line": 20,
+        "text": "npm run webpack -- --bail --config webpack.config.prod.ts"
+      },
+      {
+        "file": "scripts/deploy.sh",
+        "line": 32,
+        "text": "npm run build:\"$ENV\""
+      },
+      {
+        "file": "scripts/generate-third-party-licenses.js",
+        "line": 91,
+        "text": "\"This file lists the third-party npm packages distributed with this project (the runtime dependency closure of `package.json`) and their licenses, in fulfillment of the attribution requirements of those licenses.\""
+      },
+      {
+        "file": "scripts/modernization/inventory.cjs",
+        "line": 72,
+        "text": "/\\bnpm\\b|\\bnpx\\b|node_modules|legacy-peer-deps|overrides|symlinks/.test("
+      },
+      {
+        "file": "scripts/modernization/inventory.cjs",
+        "line": 87,
+        "text": "overrides: pkg.overrides,"
+      },
+      {
+        "file": "scripts/servers/add.sh",
+        "line": 22,
+        "text": "echo \"Give a name to your new server - e.g., npm run s:add demo-server\""
+      },
+      {
+        "file": "scripts/servers/remove.sh",
+        "line": 21,
+        "text": "echo \"Name the server to remove - e.g., npm run s:remove demo-server\""
+      },
+      {
+        "file": "scripts/servers/switch.sh",
+        "line": 45,
+        "text": "echo \"No last used server. To switch to a server, pass a name - e.g., npm run s:switch demo-server\""
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 30,
+        "text": "# npm ci; the Puppeteer workflow installs it independently."
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 64,
+        "text": "cache: npm"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 67,
+        "text": "- name: Upgrade npm"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 68,
+        "text": "run: npm install --global npm@^11.6.1"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 77,
+        "text": "run: npm ci"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 80,
+        "text": "run: npm run modernization:check && npm run test:modernization-tools"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 83,
+        "text": "run: npm run lint"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 86,
+        "text": "run: npm run test:unit"
+      },
+      {
+        "file": ".github/workflows/immerse-pr.yml",
+        "line": 89,
+        "text": "run: npm run test:component"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 78,
+        "text": "cache: npm"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 93,
+        "text": "run: npm ci --prefer-offline --no-audit"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 119,
+        "text": "run: npm run build:dev"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 153,
+        "text": "cache: npm"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 167,
+        "text": "run: npm ci --prefix test-config/puppeteer --prefer-offline --no-audit"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 176,
+        "text": "test-config/puppeteer/node_modules/puppeteer/lib/cjs/puppeteer/node/cli.js \\"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 183,
+        "text": "const puppeteer = require(\"./test-config/puppeteer/node_modules/puppeteer\")"
+      },
+      {
+        "file": ".github/workflows/immerse-puppeteer-automation.yml",
+        "line": 234,
+        "text": "npm run --prefix test-config/puppeteer test:ci"
+      },
+      {
+        "file": ".github/workflows/playwright.yml",
+        "line": 14,
+        "text": "cache: 'npm'"
+      },
+      {
+        "file": ".github/workflows/playwright.yml",
+        "line": 25,
+        "text": "run: npm install"
+      },
+      {
+        "file": ".github/workflows/playwright.yml",
+        "line": 29,
+        "text": "npm run start -- --no-open &"
+      },
+      {
+        "file": ".github/workflows/playwright.yml",
+        "line": 42,
+        "text": "run: npx playwright install --with-deps"
+      },
+      {
+        "file": ".github/workflows/playwright.yml",
+        "line": 44,
+        "text": "run: npm run test:e2e"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "line": 35,
+        "text": "- name: Upgrade npm"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "line": 36,
+        "text": "run: npm install -g npm@^11.6.1"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "line": 43,
+        "text": "run: npm ci"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "line": 50,
+        "text": "run: npm run build:prod"
+      },
+      {
+        "file": ".github/workflows/release.yml",
+        "line": 53,
+        "text": "run: npm test"
+      },
+      {
+        "file": "test-config/puppeteer/jest.config.js",
+        "line": 7,
+        "text": "const harnessNodeModules = path.resolve(__dirname, \"node_modules\")"
+      },
+      {
+        "file": "test-config/puppeteer/package.json",
+        "line": 7,
+        "text": "\"test:smoke\": \"npm test -- --runTestsByPath ../../src/ui-tests/sessionization.ui.test.ts\""
+      }
+    ]
+  }
+}

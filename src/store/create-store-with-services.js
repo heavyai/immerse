@@ -21,6 +21,7 @@ import rootSaga from "sagas/root-saga"
 import thunk from "redux-thunk"
 import promiseMiddleware from "redux-promise-middleware"
 import { setAutoFreeze } from "immer"
+import { createActionMetrics } from "utils/modernization/metrics"
 import {
   getFeatureFlag,
   available_feature_flags
@@ -56,6 +57,13 @@ export default function createStoreWithServices(
     chartEditorErrorHandlingMiddleware(),
     selectorDefaultUpdateMiddleware()
   ]
+
+  if (
+    process.env.NODE_ENV === "development" &&
+    window.immerseModernizationMetrics
+  ) {
+    middleware.push(createActionMetrics(window.immerseModernizationMetrics))
+  }
 
   if (getFeatureFlag(REDUX_LOGGING)) {
     /* eslint-enable no-process-env */

@@ -1,0 +1,558 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`dashboard compatibility kernel legacy preserves writer bytes and canonical migration output: legacy canonical upgraded document 1`] = `
+{
+  "annotations": {
+    "annotations": {},
+    "enabled": true,
+  },
+  "chartAddons": {},
+  "charts": {
+    "1": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [
+        "West",
+      ],
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "pie",
+      "version": 1,
+    },
+  },
+  "cohorts": {},
+  "crossLinks": [],
+  "dashboard": {
+    "chartContainers": [
+      {
+        "id": "1",
+      },
+    ],
+    "copyState": {
+      "error": false,
+      "request": false,
+    },
+    "currentDataSource": "fixture_sales",
+    "dataSources": {
+      "fixture_sales": {
+        "alias": "A",
+      },
+    },
+    "id": "fixture-dashboard",
+    "initialization": {
+      "counter": 0,
+      "done": false,
+      "error": false,
+      "pending": false,
+    },
+    "loadState": {
+      "complete": false,
+      "error": false,
+      "request": false,
+    },
+    "owner": "fixture-owner",
+    "saveState": {
+      "isSaved": true,
+    },
+    "streaming": {
+      "interval": 0,
+      "request": false,
+    },
+    "table": "fixture_sales",
+    "title": "Compatibility — 測試",
+    "version": "9.0.0",
+  },
+  "filterZones": {
+    "fixture-set": {
+      "filters": [],
+      "id": "fixture-set",
+      "name": "Default",
+      "selected": true,
+    },
+  },
+  "filters": [
+    {
+      "dataSource": "fixture_sales",
+      "expression": "amount",
+      "operator": ">",
+      "value": 10,
+    },
+  ],
+  "joinDataSources": [],
+  "omnifilters": [],
+  "parameters": {
+    "definitions": {},
+    "sets": {
+      "fixture-params": {
+        "id": "fixture-params",
+      },
+    },
+    "values": {},
+  },
+  "sharedSettings": {
+    "mappings": [],
+  },
+}
+`;
+
+exports[`dashboard compatibility kernel legacy preserves writer bytes and canonical migration output: legacy wire base64 1`] = `"eyJhbm5vdGF0aW9ucyI6eyJhbm5vdGF0aW9ucyI6e30sImVuYWJsZWQiOnRydWV9LCJjaGFydHMiOnsiMSI6eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoicGllIiwiZGltZW5zaW9ucyI6W3sibmFtZSI6IngiLCJ2YWx1ZSI6InJlZ2lvbiIsImxhYmVsIjoicmVnaW9uIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwidHlwZSI6IlRFWFQifV0sIm1lYXN1cmVzIjpbXSwiZmlsdGVycyI6WyJXZXN0Il0sInJhbmdlRmlsdGVyIjpbXSwiY29sb3IiOnsidHlwZSI6InNvbGlkIn0sInNhdmVkQ29sb3JzIjp7InNvbGlkIjp7InR5cGUiOiJzb2xpZCJ9fSwic29ydENvbHVtbiI6InJlZ2lvbiIsIm9yZGVyaW5nIjoiYXNjIn19LCJmaWx0ZXJzIjpbeyJleHByZXNzaW9uIjoiYW1vdW50Iiwib3BlcmF0b3IiOiI+IiwidmFsdWUiOjEwfV0sImRhc2hib2FyZCI6eyJ0aXRsZSI6IkNvbXBhdGliaWxpdHkg4oCUIOa4rOippiIsInZlcnNpb24iOiI5LjAuMCIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsImN1cnJlbnREYXRhU291cmNlIjoiZml4dHVyZV9zYWxlcyIsImRhdGFTb3VyY2VzIjp7ImZpeHR1cmVfc2FsZXMiOnsiYWxpYXMiOiJBIn19LCJjaGFydENvbnRhaW5lcnMiOlt7ImlkIjoiMSJ9XSwic2F2ZVN0YXRlIjp7ImlzU2F2ZWQiOnRydWV9fSwiZmlsdGVyWm9uZXMiOnsiZml4dHVyZS1zZXQiOnsiaWQiOiJmaXh0dXJlLXNldCIsIm5hbWUiOiJEZWZhdWx0Iiwic2VsZWN0ZWQiOnRydWUsImZpbHRlcnMiOltdfX0sImNvaG9ydHMiOnt9LCJwYXJhbWV0ZXJzIjp7InNldHMiOnsiZml4dHVyZS1wYXJhbXMiOnsiaWQiOiJmaXh0dXJlLXBhcmFtcyJ9fSwidmFsdWVzIjp7fSwiZGVmaW5pdGlvbnMiOnt9fSwiY2hhcnRBZGRvbnMiOnt9LCJjcm9zc0xpbmtzIjpbXSwiam9pbkRhdGFTb3VyY2VzIjpbXSwic2hhcmVkU2V0dGluZ3MiOnsibWFwcGluZ3MiOltdfSwib21uaWZpbHRlcnMiOltdfQ=="`;
+
+exports[`dashboard compatibility kernel mixed preserves writer bytes and canonical migration output: mixed canonical upgraded document 1`] = `
+{
+  "annotations": {
+    "annotations": {},
+    "enabled": true,
+  },
+  "chartAddons": {
+    "fixture-addon": {
+      "type": "export-as-image",
+    },
+  },
+  "charts": {
+    "1": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "pie",
+      "version": 1,
+    },
+    "2": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "isNotDc": true,
+      "layers": [
+        {
+          "dimensions": [
+            {
+              "label": "region",
+              "name": "x",
+              "table": "fixture_sales",
+              "type": "TEXT",
+              "value": "region",
+            },
+          ],
+          "id": "layer-1",
+          "measures": [],
+          "type": "bar",
+        },
+      ],
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "vega-combo",
+      "version": 1,
+    },
+    "3": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "isNotDc": true,
+      "layers": [
+        {
+          "id": "points",
+          "measures": [],
+          "type": "points",
+        },
+      ],
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "pointmap",
+      "version": 1,
+    },
+    "4": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "isNotDc": true,
+      "layers": [
+        {
+          "id": "points",
+          "measures": [],
+          "type": "points",
+        },
+      ],
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "deckgl-pointmap",
+      "version": 1,
+    },
+    "5": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "isNotDc": true,
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "number",
+      "version": 1,
+    },
+    "6": {
+      "basemap": {
+        "label": "Current Immerse Theme",
+        "value": "current",
+      },
+      "color": {
+        "type": "solid",
+      },
+      "dataSource": "fixture_sales",
+      "dimensions": [
+        {
+          "label": "region",
+          "name": "x",
+          "table": "fixture_sales",
+          "type": "TEXT",
+          "value": "region",
+        },
+      ],
+      "elasticY": true,
+      "filters": [],
+      "isNotDc": true,
+      "loading": false,
+      "measures": [],
+      "numberOfGroups": 500,
+      "rangeFilter": [],
+      "savedColors": {
+        "solid": {
+          "type": "solid",
+        },
+      },
+      "showAbsoluteValues": true,
+      "showNullDimensions": false,
+      "sortColumn": {
+        "col": {
+          "name": "region",
+        },
+        "index": 0,
+        "order": "asc",
+      },
+      "type": "iframe",
+      "url": "https://example.invalid/embed",
+      "version": 1,
+    },
+  },
+  "cohorts": {},
+  "crossLinks": [
+    {
+      "enabled": true,
+      "sourceA": "fixture_sales",
+      "sourceB": "fixture_regions",
+    },
+  ],
+  "dashboard": {
+    "chartContainers": [
+      {
+        "id": "1",
+      },
+      {
+        "id": "2",
+      },
+      {
+        "id": "3",
+      },
+      {
+        "id": "4",
+      },
+      {
+        "id": "5",
+      },
+      {
+        "id": "6",
+      },
+    ],
+    "copyState": {
+      "error": false,
+      "request": false,
+    },
+    "currentDataSource": "fixture_sales",
+    "dataSources": {
+      "fixture_sales": {
+        "alias": "A",
+      },
+    },
+    "id": "fixture-dashboard",
+    "initialization": {
+      "counter": 0,
+      "done": false,
+      "error": false,
+      "pending": false,
+    },
+    "loadState": {
+      "complete": false,
+      "error": false,
+      "request": false,
+    },
+    "owner": "fixture-owner",
+    "saveState": {
+      "isSaved": true,
+    },
+    "streaming": {
+      "interval": 0,
+      "request": false,
+    },
+    "table": "fixture_sales",
+    "title": "Compatibility — 測試",
+    "version": "9.0.0",
+  },
+  "filterZones": {
+    "fixture-set": {
+      "filters": [
+        "fixture-global",
+      ],
+      "id": "fixture-set",
+      "name": "Default",
+      "selected": true,
+    },
+  },
+  "filters": [],
+  "joinDataSources": [
+    {
+      "condition": "fixture_sales.region_id = fixture_regions.id",
+      "id": "fixture-join",
+      "tables": [
+        "fixture_sales",
+        "fixture_regions",
+      ],
+    },
+  ],
+  "omnifilters": [
+    {
+      "appliesTo": "GLOBAL",
+      "dataSources": [
+        "fixture_sales",
+      ],
+      "enabled": true,
+      "filter": {
+        "dataExpression": "amount",
+        "dataSource": "fixture_sales",
+        "dataType": "FLOAT",
+        "filterType": "SIMPLE",
+        "operator": ">",
+        "value": 10,
+      },
+      "name": "fixture-global",
+    },
+  ],
+  "parameters": {
+    "definitions": {
+      "region": {
+        "id": "region",
+        "type": "string",
+      },
+    },
+    "sets": {
+      "fixture-params": {
+        "id": "fixture-params",
+      },
+    },
+    "values": {
+      "region": {
+        "fixture-params": {
+          "defaultValue": "East",
+          "value": "West",
+        },
+      },
+    },
+  },
+  "sharedSettings": {
+    "mappings": [],
+  },
+}
+`;
+
+exports[`dashboard compatibility kernel mixed preserves writer bytes and canonical migration output: mixed wire base64 1`] = `"eyJhbm5vdGF0aW9ucyI6eyJhbm5vdGF0aW9ucyI6e30sImVuYWJsZWQiOnRydWV9LCJjaGFydHMiOnsiMSI6eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoicGllIiwiZGltZW5zaW9ucyI6W3sibmFtZSI6IngiLCJ2YWx1ZSI6InJlZ2lvbiIsImxhYmVsIjoicmVnaW9uIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwidHlwZSI6IlRFWFQifV0sIm1lYXN1cmVzIjpbXSwiZmlsdGVycyI6W10sInJhbmdlRmlsdGVyIjpbXSwiY29sb3IiOnsidHlwZSI6InNvbGlkIn0sInNhdmVkQ29sb3JzIjp7InNvbGlkIjp7InR5cGUiOiJzb2xpZCJ9fSwic29ydENvbHVtbiI6InJlZ2lvbiIsIm9yZGVyaW5nIjoiYXNjIn0sIjIiOnsidmVyc2lvbiI6MSwidHlwZSI6InZlZ2EtY29tYm8iLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdLCJmaWx0ZXJzIjpbXSwicmFuZ2VGaWx0ZXIiOltdLCJjb2xvciI6eyJ0eXBlIjoic29saWQifSwic2F2ZWRDb2xvcnMiOnsic29saWQiOnsidHlwZSI6InNvbGlkIn19LCJzb3J0Q29sdW1uIjoicmVnaW9uIiwib3JkZXJpbmciOiJhc2MiLCJpc05vdERjIjp0cnVlLCJudW1iZXJPZkdyb3VwcyI6NTAwLCJsYXllcnMiOlt7ImlkIjoibGF5ZXItMSIsInR5cGUiOiJiYXIiLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdfV19LCIzIjp7InZlcnNpb24iOjEsInR5cGUiOiJwb2ludG1hcCIsImRpbWVuc2lvbnMiOlt7Im5hbWUiOiJ4IiwidmFsdWUiOiJyZWdpb24iLCJsYWJlbCI6InJlZ2lvbiIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsInR5cGUiOiJURVhUIn1dLCJtZWFzdXJlcyI6W10sImZpbHRlcnMiOltdLCJyYW5nZUZpbHRlciI6W10sImNvbG9yIjp7InR5cGUiOiJzb2xpZCJ9LCJzYXZlZENvbG9ycyI6eyJzb2xpZCI6eyJ0eXBlIjoic29saWQifX0sInNvcnRDb2x1bW4iOiJyZWdpb24iLCJvcmRlcmluZyI6ImFzYyIsImlzTm90RGMiOnRydWUsImxheWVycyI6W3siaWQiOiJwb2ludHMiLCJ0eXBlIjoicG9pbnRzIiwibWVhc3VyZXMiOltdfV19LCI0Ijp7InZlcnNpb24iOjEsInR5cGUiOiJkZWNrZ2wtcG9pbnRtYXAiLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdLCJmaWx0ZXJzIjpbXSwicmFuZ2VGaWx0ZXIiOltdLCJjb2xvciI6eyJ0eXBlIjoic29saWQifSwic2F2ZWRDb2xvcnMiOnsic29saWQiOnsidHlwZSI6InNvbGlkIn19LCJzb3J0Q29sdW1uIjoicmVnaW9uIiwib3JkZXJpbmciOiJhc2MiLCJpc05vdERjIjp0cnVlLCJsYXllcnMiOlt7ImlkIjoicG9pbnRzIiwidHlwZSI6InBvaW50cyIsIm1lYXN1cmVzIjpbXX1dfSwiNSI6eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoibnVtYmVyIiwiZGltZW5zaW9ucyI6W3sibmFtZSI6IngiLCJ2YWx1ZSI6InJlZ2lvbiIsImxhYmVsIjoicmVnaW9uIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwidHlwZSI6IlRFWFQifV0sIm1lYXN1cmVzIjpbXSwiZmlsdGVycyI6W10sInJhbmdlRmlsdGVyIjpbXSwiY29sb3IiOnsidHlwZSI6InNvbGlkIn0sInNhdmVkQ29sb3JzIjp7InNvbGlkIjp7InR5cGUiOiJzb2xpZCJ9fSwic29ydENvbHVtbiI6InJlZ2lvbiIsIm9yZGVyaW5nIjoiYXNjIiwiaXNOb3REYyI6dHJ1ZX0sIjYiOnsidmVyc2lvbiI6MSwidHlwZSI6ImlmcmFtZSIsImRpbWVuc2lvbnMiOlt7Im5hbWUiOiJ4IiwidmFsdWUiOiJyZWdpb24iLCJsYWJlbCI6InJlZ2lvbiIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsInR5cGUiOiJURVhUIn1dLCJtZWFzdXJlcyI6W10sImZpbHRlcnMiOltdLCJyYW5nZUZpbHRlciI6W10sImNvbG9yIjp7InR5cGUiOiJzb2xpZCJ9LCJzYXZlZENvbG9ycyI6eyJzb2xpZCI6eyJ0eXBlIjoic29saWQifX0sInNvcnRDb2x1bW4iOiJyZWdpb24iLCJvcmRlcmluZyI6ImFzYyIsImlzTm90RGMiOnRydWUsInVybCI6Imh0dHBzOi8vZXhhbXBsZS5pbnZhbGlkL2VtYmVkIn19LCJmaWx0ZXJzIjpbXSwiZGFzaGJvYXJkIjp7InRpdGxlIjoiQ29tcGF0aWJpbGl0eSDigJQg5ris6KmmIiwidmVyc2lvbiI6IjkuMC4wIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwiY3VycmVudERhdGFTb3VyY2UiOiJmaXh0dXJlX3NhbGVzIiwiZGF0YVNvdXJjZXMiOnsiZml4dHVyZV9zYWxlcyI6eyJhbGlhcyI6IkEifX0sImNoYXJ0Q29udGFpbmVycyI6W3siaWQiOiIxIn0seyJpZCI6IjIifSx7ImlkIjoiMyJ9LHsiaWQiOiI0In0seyJpZCI6IjUifSx7ImlkIjoiNiJ9XSwic2F2ZVN0YXRlIjp7ImlzU2F2ZWQiOnRydWV9fSwib21uaWZpbHRlcnMiOlt7Im5hbWUiOiJmaXh0dXJlLWdsb2JhbCIsImVuYWJsZWQiOnRydWUsImFwcGxpZXNUbyI6IkdMT0JBTCIsImRhdGFTb3VyY2VzIjpbImZpeHR1cmVfc2FsZXMiXSwiZmlsdGVyIjp7ImZpbHRlclR5cGUiOiJTSU1QTEUiLCJkYXRhU291cmNlIjoiZml4dHVyZV9zYWxlcyIsImRhdGFFeHByZXNzaW9uIjoiYW1vdW50IiwiZGF0YVR5cGUiOiJGTE9BVCIsIm9wZXJhdG9yIjoiPiIsInZhbHVlIjoxMH19XSwiZmlsdGVyWm9uZXMiOnsiZml4dHVyZS1zZXQiOnsiaWQiOiJmaXh0dXJlLXNldCIsIm5hbWUiOiJEZWZhdWx0Iiwic2VsZWN0ZWQiOnRydWUsImZpbHRlcnMiOlsiZml4dHVyZS1nbG9iYWwiXX19LCJjb2hvcnRzIjp7fSwicGFyYW1ldGVycyI6eyJzZXRzIjp7ImZpeHR1cmUtcGFyYW1zIjp7ImlkIjoiZml4dHVyZS1wYXJhbXMifX0sInZhbHVlcyI6eyJyZWdpb24iOnsiZml4dHVyZS1wYXJhbXMiOnsidmFsdWUiOiJXZXN0IiwiZGVmYXVsdFZhbHVlIjoiRWFzdCJ9fX0sImRlZmluaXRpb25zIjp7InJlZ2lvbiI6eyJpZCI6InJlZ2lvbiIsInR5cGUiOiJzdHJpbmcifX19LCJjaGFydEFkZG9ucyI6eyJmaXh0dXJlLWFkZG9uIjp7InR5cGUiOiJleHBvcnQtYXMtaW1hZ2UifX0sImNyb3NzTGlua3MiOlt7InNvdXJjZUEiOiJmaXh0dXJlX3NhbGVzIiwic291cmNlQiI6ImZpeHR1cmVfcmVnaW9ucyIsImVuYWJsZWQiOnRydWV9XSwiam9pbkRhdGFTb3VyY2VzIjpbeyJpZCI6ImZpeHR1cmUtam9pbiIsInRhYmxlcyI6WyJmaXh0dXJlX3NhbGVzIiwiZml4dHVyZV9yZWdpb25zIl0sImNvbmRpdGlvbiI6ImZpeHR1cmVfc2FsZXMucmVnaW9uX2lkID0gZml4dHVyZV9yZWdpb25zLmlkIn1dLCJzaGFyZWRTZXR0aW5ncyI6eyJtYXBwaW5ncyI6W119fQ=="`;
+
+exports[`dashboard compatibility kernel preserves inactive tabs and shared state through the real tabbed writer: tabbed wire base64 1`] = `"eyJ0YWJzIjp7InRhYi1hIjp7ImNvbm5lY3Rpb24iOnsidmVyc2lvbiI6IjkuMC4wIn0sImFubm90YXRpb25zIjp7ImFubm90YXRpb25zIjp7fSwiZW5hYmxlZCI6dHJ1ZX0sImNoYXJ0cyI6eyIxIjp7InZlcnNpb24iOjEsInR5cGUiOiJwaWUiLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdLCJmaWx0ZXJzIjpbXSwicmFuZ2VGaWx0ZXIiOltdLCJjb2xvciI6eyJ0eXBlIjoic29saWQifSwic2F2ZWRDb2xvcnMiOnsic29saWQiOnsidHlwZSI6InNvbGlkIn19LCJzb3J0Q29sdW1uIjoicmVnaW9uIiwib3JkZXJpbmciOiJhc2MifSwiMiI6eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoidmVnYS1jb21ibyIsImRpbWVuc2lvbnMiOlt7Im5hbWUiOiJ4IiwidmFsdWUiOiJyZWdpb24iLCJsYWJlbCI6InJlZ2lvbiIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsInR5cGUiOiJURVhUIn1dLCJtZWFzdXJlcyI6W10sImZpbHRlcnMiOltdLCJyYW5nZUZpbHRlciI6W10sImNvbG9yIjp7InR5cGUiOiJzb2xpZCJ9LCJzYXZlZENvbG9ycyI6eyJzb2xpZCI6eyJ0eXBlIjoic29saWQifX0sInNvcnRDb2x1bW4iOiJyZWdpb24iLCJvcmRlcmluZyI6ImFzYyIsImlzTm90RGMiOnRydWUsIm51bWJlck9mR3JvdXBzIjo1MDAsImxheWVycyI6W3siaWQiOiJsYXllci0xIiwidHlwZSI6ImJhciIsImRpbWVuc2lvbnMiOlt7Im5hbWUiOiJ4IiwidmFsdWUiOiJyZWdpb24iLCJsYWJlbCI6InJlZ2lvbiIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsInR5cGUiOiJURVhUIn1dLCJtZWFzdXJlcyI6W119XX0sIjMiOnsidmVyc2lvbiI6MSwidHlwZSI6InBvaW50bWFwIiwiZGltZW5zaW9ucyI6W3sibmFtZSI6IngiLCJ2YWx1ZSI6InJlZ2lvbiIsImxhYmVsIjoicmVnaW9uIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwidHlwZSI6IlRFWFQifV0sIm1lYXN1cmVzIjpbXSwiZmlsdGVycyI6W10sInJhbmdlRmlsdGVyIjpbXSwiY29sb3IiOnsidHlwZSI6InNvbGlkIn0sInNhdmVkQ29sb3JzIjp7InNvbGlkIjp7InR5cGUiOiJzb2xpZCJ9fSwic29ydENvbHVtbiI6InJlZ2lvbiIsIm9yZGVyaW5nIjoiYXNjIiwiaXNOb3REYyI6dHJ1ZSwibGF5ZXJzIjpbeyJpZCI6InBvaW50cyIsInR5cGUiOiJwb2ludHMiLCJtZWFzdXJlcyI6W119XX0sIjQiOnsidmVyc2lvbiI6MSwidHlwZSI6ImRlY2tnbC1wb2ludG1hcCIsImRpbWVuc2lvbnMiOlt7Im5hbWUiOiJ4IiwidmFsdWUiOiJyZWdpb24iLCJsYWJlbCI6InJlZ2lvbiIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsInR5cGUiOiJURVhUIn1dLCJtZWFzdXJlcyI6W10sImZpbHRlcnMiOltdLCJyYW5nZUZpbHRlciI6W10sImNvbG9yIjp7InR5cGUiOiJzb2xpZCJ9LCJzYXZlZENvbG9ycyI6eyJzb2xpZCI6eyJ0eXBlIjoic29saWQifX0sInNvcnRDb2x1bW4iOiJyZWdpb24iLCJvcmRlcmluZyI6ImFzYyIsImlzTm90RGMiOnRydWUsImxheWVycyI6W3siaWQiOiJwb2ludHMiLCJ0eXBlIjoicG9pbnRzIiwibWVhc3VyZXMiOltdfV19LCI1Ijp7InZlcnNpb24iOjEsInR5cGUiOiJudW1iZXIiLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdLCJmaWx0ZXJzIjpbXSwicmFuZ2VGaWx0ZXIiOltdLCJjb2xvciI6eyJ0eXBlIjoic29saWQifSwic2F2ZWRDb2xvcnMiOnsic29saWQiOnsidHlwZSI6InNvbGlkIn19LCJzb3J0Q29sdW1uIjoicmVnaW9uIiwib3JkZXJpbmciOiJhc2MiLCJpc05vdERjIjp0cnVlfSwiNiI6eyJ2ZXJzaW9uIjoxLCJ0eXBlIjoiaWZyYW1lIiwiZGltZW5zaW9ucyI6W3sibmFtZSI6IngiLCJ2YWx1ZSI6InJlZ2lvbiIsImxhYmVsIjoicmVnaW9uIiwidGFibGUiOiJmaXh0dXJlX3NhbGVzIiwidHlwZSI6IlRFWFQifV0sIm1lYXN1cmVzIjpbXSwiZmlsdGVycyI6W10sInJhbmdlRmlsdGVyIjpbXSwiY29sb3IiOnsidHlwZSI6InNvbGlkIn0sInNhdmVkQ29sb3JzIjp7InNvbGlkIjp7InR5cGUiOiJzb2xpZCJ9fSwic29ydENvbHVtbiI6InJlZ2lvbiIsIm9yZGVyaW5nIjoiYXNjIiwiaXNOb3REYyI6dHJ1ZSwidXJsIjoiaHR0cHM6Ly9leGFtcGxlLmludmFsaWQvZW1iZWQifX0sImRhc2hib2FyZCI6eyJ2ZXJzaW9uIjoiOS4wLjAiLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJjdXJyZW50RGF0YVNvdXJjZSI6ImZpeHR1cmVfc2FsZXMiLCJkYXRhU291cmNlcyI6eyJmaXh0dXJlX3NhbGVzIjp7ImFsaWFzIjoiQSJ9fSwiY2hhcnRDb250YWluZXJzIjpbeyJpZCI6IjEifSx7ImlkIjoiMiJ9LHsiaWQiOiIzIn0seyJpZCI6IjQifSx7ImlkIjoiNSJ9LHsiaWQiOiI2In1dLCJzYXZlU3RhdGUiOnsiaXNTYXZlZCI6dHJ1ZX0sInRpdGxlIjoiQ29tcGF0aWJpbGl0eSDigJQg5ris6KmmIn0sImZpbHRlcnMiOltdLCJvbW5pZmlsdGVycyI6W3sibmFtZSI6ImZpeHR1cmUtZ2xvYmFsIiwiZW5hYmxlZCI6dHJ1ZSwiYXBwbGllc1RvIjoiR0xPQkFMIiwiZGF0YVNvdXJjZXMiOlsiZml4dHVyZV9zYWxlcyJdLCJmaWx0ZXIiOnsiZmlsdGVyVHlwZSI6IlNJTVBMRSIsImRhdGFTb3VyY2UiOiJmaXh0dXJlX3NhbGVzIiwiZGF0YUV4cHJlc3Npb24iOiJhbW91bnQiLCJkYXRhVHlwZSI6IkZMT0FUIiwib3BlcmF0b3IiOiI+IiwidmFsdWUiOjEwfX1dLCJmaWx0ZXJab25lcyI6eyJmaXh0dXJlLXNldCI6eyJpZCI6ImZpeHR1cmUtc2V0IiwibmFtZSI6IkRlZmF1bHQiLCJzZWxlY3RlZCI6dHJ1ZSwiZmlsdGVycyI6WyJmaXh0dXJlLWdsb2JhbCJdfX0sImNvaG9ydHMiOnt9LCJwYXJhbWV0ZXJzIjp7InNldHMiOnsiZml4dHVyZS1wYXJhbXMiOnsiaWQiOiJmaXh0dXJlLXBhcmFtcyJ9fSwidmFsdWVzIjp7InJlZ2lvbiI6eyJmaXh0dXJlLXBhcmFtcyI6eyJ2YWx1ZSI6Ildlc3QiLCJkZWZhdWx0VmFsdWUiOiJFYXN0In19fSwiZGVmaW5pdGlvbnMiOnsicmVnaW9uIjp7ImlkIjoicmVnaW9uIiwidHlwZSI6InN0cmluZyJ9fX0sImNoYXJ0QWRkb25zIjp7ImZpeHR1cmUtYWRkb24iOnsidHlwZSI6ImV4cG9ydC1hcy1pbWFnZSJ9fSwiY3Jvc3NMaW5rcyI6W3sic291cmNlQSI6ImZpeHR1cmVfc2FsZXMiLCJzb3VyY2VCIjoiZml4dHVyZV9yZWdpb25zIiwiZW5hYmxlZCI6dHJ1ZX1dLCJqb2luRGF0YVNvdXJjZXMiOlt7ImlkIjoiZml4dHVyZS1qb2luIiwidGFibGVzIjpbImZpeHR1cmVfc2FsZXMiLCJmaXh0dXJlX3JlZ2lvbnMiXSwiY29uZGl0aW9uIjoiZml4dHVyZV9zYWxlcy5yZWdpb25faWQgPSBmaXh0dXJlX3JlZ2lvbnMuaWQifV0sInNoYXJlZFNldHRpbmdzIjp7Im1hcHBpbmdzIjpbXX19LCJ0YWItYiI6eyJjb25uZWN0aW9uIjp7InZlcnNpb24iOiI5LjAuMCJ9LCJhbm5vdGF0aW9ucyI6eyJhbm5vdGF0aW9ucyI6e30sImVuYWJsZWQiOnRydWUsImVkaXRNb2RlIjpmYWxzZX0sImNoYXJ0cyI6eyIxIjp7InZlcnNpb24iOjEsInR5cGUiOiJwaWUiLCJkaW1lbnNpb25zIjpbeyJuYW1lIjoieCIsInZhbHVlIjoicmVnaW9uIiwibGFiZWwiOiJyZWdpb24iLCJ0YWJsZSI6ImZpeHR1cmVfc2FsZXMiLCJ0eXBlIjoiVEVYVCJ9XSwibWVhc3VyZXMiOltdLCJmaWx0ZXJzIjpbIldlc3QiXSwicmFuZ2VGaWx0ZXIiOltdLCJjb2xvciI6eyJ0eXBlIjoic29saWQifSwic2F2ZWRDb2xvcnMiOnsic29saWQiOnsidHlwZSI6InNvbGlkIn19LCJzb3J0Q29sdW1uIjoicmVnaW9uIiwib3JkZXJpbmciOiJhc2MifX0sImRhc2hib2FyZCI6eyJ0aXRsZSI6IkNvbXBhdGliaWxpdHkg4oCUIOa4rOippiIsInZlcnNpb24iOiI5LjAuMCIsInRhYmxlIjoiZml4dHVyZV9zYWxlcyIsImN1cnJlbnREYXRhU291cmNlIjoiZml4dHVyZV9zYWxlcyIsImRhdGFTb3VyY2VzIjp7ImZpeHR1cmVfc2FsZXMiOnsiYWxpYXMiOiJBIn19LCJjaGFydENvbnRhaW5lcnMiOlt7ImlkIjoiMSJ9XSwic2F2ZVN0YXRlIjp7ImlzU2F2ZWQiOnRydWV9fSwiZmlsdGVycyI6W3siZXhwcmVzc2lvbiI6ImFtb3VudCIsIm9wZXJhdG9yIjoiPiIsInZhbHVlIjoxMH1dLCJmaWx0ZXJab25lcyI6eyJmaXh0dXJlLXNldCI6eyJpZCI6ImZpeHR1cmUtc2V0IiwibmFtZSI6IkRlZmF1bHQiLCJzZWxlY3RlZCI6dHJ1ZSwiZmlsdGVycyI6W119fSwiY29ob3J0cyI6e30sInBhcmFtZXRlcnMiOnsic2V0cyI6eyJmaXh0dXJlLXBhcmFtcyI6eyJpZCI6ImZpeHR1cmUtcGFyYW1zIn19LCJ2YWx1ZXMiOnt9LCJkZWZpbml0aW9ucyI6e319LCJjaGFydEFkZG9ucyI6e30sImNyb3NzTGlua3MiOltdLCJqb2luRGF0YVNvdXJjZXMiOltdLCJzaGFyZWRTZXR0aW5ncyI6eyJtYXBwaW5ncyI6W119fX0sInBhcmFtZXRlcnMiOnsic2V0cyI6eyJmaXh0dXJlLXBhcmFtcyI6eyJpZCI6ImZpeHR1cmUtcGFyYW1zIn19LCJ2YWx1ZXMiOnsicmVnaW9uIjp7ImZpeHR1cmUtcGFyYW1zIjp7InZhbHVlIjoiV2VzdCIsImRlZmF1bHRWYWx1ZSI6IkVhc3QifX19LCJkZWZpbml0aW9ucyI6eyJyZWdpb24iOnsiaWQiOiJyZWdpb24iLCJ0eXBlIjoic3RyaW5nIn19fSwiY2hhcnRBZGRvbnMiOnsiZml4dHVyZS1hZGRvbiI6eyJ0eXBlIjoiZXhwb3J0LWFzLWltYWdlIn19LCJqb2luRGF0YVNvdXJjZXMiOlt7ImlkIjoiZml4dHVyZS1qb2luIiwidGFibGVzIjpbImZpeHR1cmVfc2FsZXMiLCJmaXh0dXJlX3JlZ2lvbnMiXSwiY29uZGl0aW9uIjoiZml4dHVyZV9zYWxlcy5yZWdpb25faWQgPSBmaXh0dXJlX3JlZ2lvbnMuaWQifV0sInNoYXJlZFNldHRpbmdzIjp7Im1hcHBpbmdzIjpbXX19"`;

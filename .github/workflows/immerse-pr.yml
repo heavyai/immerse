@@ -76,6 +76,9 @@ jobs:
           GIT_CONFIG_VALUE_1: "ssh://git@github.com/"
         run: npm ci
 
+      - name: Check modernization boundaries
+        run: npm run modernization:check && npm run test:modernization-tools
+
       - name: Lint and check formatting
         run: npm run lint
 

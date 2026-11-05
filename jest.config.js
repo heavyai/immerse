@@ -15,9 +15,7 @@ const baseConfig = {
     "^@heavyai/data-layer$":
       "<rootDir>/node_modules/@heavyai/data-layer/packages/data-layer/dist/heavyai-data-layer.js",
 
-    "^vega-lite$": "<rootDir>/node_modules/vega-lite/build/vega-lite.min.js",
-    "^fs$": "<rootDir>/test-config/__mocks__/fs.js",
-    "^node:fs$": "<rootDir>/test-config/__mocks__/fs.js"
+    "^vega-lite$": "<rootDir>/node_modules/vega-lite/build/vega-lite.min.js"
   },
   modulePaths: ["<rootDir>/src/", "<rootDir>/test-config/"],
   transform: {
@@ -52,7 +50,11 @@ module.exports = {
       displayName: "UNIT",
       testMatch: [
         "<rootDir>/src/**/?(*.)unit.test.js?(x)",
-        "<rootDir>/src/**/?(*.)unit.test.ts?(x)"
+        "<rootDir>/src/**/?(*.)unit.test.ts?(x)",
+        // Restored after explicit Wave 0 legacy-suite assessment.
+        "<rootDir>/src/actions/dashboard-action-creators.unit.spec.js",
+        "<rootDir>/src/reducers/data-source-higher-order-reducer.unit.spec.js",
+        "<rootDir>/src/charts/utils/coordinate-helpers.unit.spec.js"
       ],
       setupFilesAfterEnv: ["<rootDir>/test-config/setup-jest.js"]
     },

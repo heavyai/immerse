@@ -1,0 +1,315 @@
+{
+  "connection": {
+    "version": "9.0.0"
+  },
+  "annotations": {
+    "annotations": {},
+    "enabled": true,
+    "editMode": false
+  },
+  "charts": {
+    "1": {
+      "version": 1,
+      "type": "pie",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc"
+    },
+    "2": {
+      "version": 1,
+      "type": "vega-combo",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc",
+      "isNotDc": true,
+      "numberOfGroups": 500,
+      "layers": [
+        {
+          "id": "layer-1",
+          "type": "bar",
+          "dimensions": [
+            {
+              "name": "x",
+              "value": "region",
+              "label": "region",
+              "table": "fixture_sales",
+              "type": "TEXT"
+            }
+          ],
+          "measures": []
+        }
+      ]
+    },
+    "3": {
+      "version": 1,
+      "type": "pointmap",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc",
+      "isNotDc": true,
+      "layers": [
+        {
+          "id": "points",
+          "type": "points",
+          "measures": []
+        }
+      ]
+    },
+    "4": {
+      "version": 1,
+      "type": "deckgl-pointmap",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc",
+      "isNotDc": true,
+      "layers": [
+        {
+          "id": "points",
+          "type": "points",
+          "measures": []
+        }
+      ]
+    },
+    "5": {
+      "version": 1,
+      "type": "number",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc",
+      "isNotDc": true
+    },
+    "6": {
+      "version": 1,
+      "type": "iframe",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc",
+      "isNotDc": true,
+      "url": "https://example.invalid/embed"
+    }
+  },
+  "dashboard": {
+    "title": "Compatibility — 測試",
+    "version": "9.0.0",
+    "table": "fixture_sales",
+    "currentDataSource": "fixture_sales",
+    "dataSources": {
+      "fixture_sales": {
+        "alias": "A"
+      }
+    },
+    "chartContainers": [
+      {
+        "id": "1"
+      },
+      {
+        "id": "2"
+      },
+      {
+        "id": "3"
+      },
+      {
+        "id": "4"
+      },
+      {
+        "id": "5"
+      },
+      {
+        "id": "6"
+      }
+    ],
+    "saveState": {
+      "isSaved": true
+    }
+  },
+  "filters": [],
+  "omnifilters": [
+    {
+      "name": "fixture-global",
+      "enabled": true,
+      "appliesTo": "GLOBAL",
+      "dataSources": [
+        "fixture_sales"
+      ],
+      "filter": {
+        "filterType": "SIMPLE",
+        "dataSource": "fixture_sales",
+        "dataExpression": "amount",
+        "dataType": "FLOAT",
+        "operator": ">",
+        "value": 10
+      }
+    }
+  ],
+  "filterZones": {
+    "fixture-set": {
+      "id": "fixture-set",
+      "name": "Default",
+      "selected": true,
+      "filters": [
+        "fixture-global"
+      ]
+    }
+  },
+  "cohorts": {},
+  "parameters": {
+    "sets": {
+      "fixture-params": {
+        "id": "fixture-params"
+      }
+    },
+    "values": {
+      "region": {
+        "fixture-params": {
+          "value": "West",
+          "defaultValue": "East"
+        }
+      }
+    },
+    "definitions": {
+      "region": {
+        "id": "region",
+        "type": "string"
+      }
+    }
+  },
+  "chartAddons": {
+    "fixture-addon": {
+      "type": "export-as-image"
+    }
+  },
+  "crossLinks": [
+    {
+      "sourceA": "fixture_sales",
+      "sourceB": "fixture_regions",
+      "enabled": true
+    }
+  ],
+  "joinDataSources": [
+    {
+      "id": "fixture-join",
+      "tables": [
+        "fixture_sales",
+        "fixture_regions"
+      ],
+      "condition": "fixture_sales.region_id = fixture_regions.id"
+    }
+  ],
+  "sharedSettings": {
+    "mappings": []
+  }
+}

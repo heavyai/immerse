@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`keeps embed filter responses and notification ordering, suppression and unsubscribe: getFilters published schema 1`] = `
+{
+  "input": {
+    "additionalProperties": false,
+    "properties": {
+      "responseKey": {
+        "type": [
+          "integer",
+          "string",
+        ],
+      },
+      "type": {
+        "const": "getFilters",
+      },
+    },
+    "required": [
+      "type",
+    ],
+    "type": "object",
+  },
+  "output": {
+    "properties": {
+      "payload": {
+        "type": "object",
+      },
+      "responseKey": {
+        "type": [
+          "integer",
+          "string",
+        ],
+      },
+      "type": {
+        "const": "filters",
+      },
+    },
+    "type": "object",
+  },
+}
+`;

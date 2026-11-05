@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "acbac90",
+  "build": {
+    "status": "passed",
+    "mode": "production",
+    "node": "24.11.0",
+    "npm": "11.6.1",
+    "warnings": 322,
+    "report": "bundle-baseline.json"
+  },
+  "lint": {
+    "status": "passed",
+    "scope": "Full repository ESLint including new JS/TS; CJS tools separately tested"
+  },
+  "focusedTests": {
+    "status": "passed",
+    "report": "validation-baseline.json"
+  },
+  "legacyTests": {
+    "status": "known-failures",
+    "report": "legacy-test-baseline.json"
+  },
+  "types": {
+    "status": "pre-existing-toolchain-failure",
+    "report": "types-baseline.json"
+  },
+  "browser": {
+    "status": "passed",
+    "report": "browser-baseline.json"
+  },
+  "chartAddition": {
+    "registeredDefinitions": 32,
+    "directChartTypeBranches": 194,
+    "actualNewChartChangedFiles": null,
+    "reason": "No product chart added in Wave 0; touchpoint map documented in README"
+  },
+  "unavailable": {
+    "productionHistoricalFixtures": "Owner-approved anonymized exports not supplied",
+    "readerWriterVersionWindow": "Product support window not specified; preserve existing wire format",
+    "fullCiDatasetBenchmark": "S3 restoration credentials unavailable; synthetic eight-row smoke scenario used",
+    "representativePerformanceBudgets": "Must be agreed using representative datasets before cutover"
+  },
+  "supplementalEmbedTests": {
+    "status": "passed",
+    "tests": 4,
+    "snapshots": 1,
+    "scope": "Filter SQL, notifications, enabled source redraw links, responseKey and allowed sender origin; includes three strengthened/rechecked assertions and one additional test after focused suite validation"
+  }
+}

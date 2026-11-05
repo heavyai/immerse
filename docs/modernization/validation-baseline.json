@@ -1,0 +1,70 @@
+{
+  "scope": "14 focused Wave 0, restored legacy, dashboard, filter, store and queue suites; snapshots checked without updates",
+  "summary": {
+    "numTotalTestSuites": 14,
+    "numPassedTestSuites": 14,
+    "numFailedTestSuites": 0,
+    "numTotalTests": 148,
+    "numPassedTests": 145,
+    "numFailedTests": 0,
+    "numTodoTests": 3
+  },
+  "suites": [
+    {
+      "file": "src/vega/constants/filter-types.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/reducers/load-dashboard.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/vega/actions/filter-action-creators-crossfilter-interop.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/utils/performance/MagicQueue.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/utils/modernization/dashboard-compatibility.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/actions/dashboard-action-creators-basemap.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/utils/modernization/filter-embed-contract.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/utils/modernization/lifecycle-invariants.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/reducers/clear-dashboard.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/store/create-store-with-services.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/utils/modernization/metrics.unit.test.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/actions/dashboard-action-creators.unit.spec.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/charts/utils/coordinate-helpers.unit.spec.js",
+      "status": "passed"
+    },
+    {
+      "file": "src/reducers/data-source-higher-order-reducer.unit.spec.js",
+      "status": "passed"
+    }
+  ]
+}

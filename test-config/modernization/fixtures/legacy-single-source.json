@@ -1,0 +1,90 @@
+{
+  "connection": {
+    "version": "9.0.0"
+  },
+  "annotations": {
+    "annotations": {},
+    "enabled": true,
+    "editMode": false
+  },
+  "charts": {
+    "1": {
+      "version": 1,
+      "type": "pie",
+      "dimensions": [
+        {
+          "name": "x",
+          "value": "region",
+          "label": "region",
+          "table": "fixture_sales",
+          "type": "TEXT"
+        }
+      ],
+      "measures": [],
+      "filters": [
+        "West"
+      ],
+      "rangeFilter": [],
+      "color": {
+        "type": "solid"
+      },
+      "savedColors": {
+        "solid": {
+          "type": "solid"
+        }
+      },
+      "sortColumn": "region",
+      "ordering": "asc"
+    }
+  },
+  "dashboard": {
+    "title": "Compatibility — 測試",
+    "version": "9.0.0",
+    "table": "fixture_sales",
+    "currentDataSource": "fixture_sales",
+    "dataSources": {
+      "fixture_sales": {
+        "alias": "A"
+      }
+    },
+    "chartContainers": [
+      {
+        "id": "1"
+      }
+    ],
+    "saveState": {
+      "isSaved": true
+    }
+  },
+  "filters": [
+    {
+      "expression": "amount",
+      "operator": ">",
+      "value": 10
+    }
+  ],
+  "filterZones": {
+    "fixture-set": {
+      "id": "fixture-set",
+      "name": "Default",
+      "selected": true,
+      "filters": []
+    }
+  },
+  "cohorts": {},
+  "parameters": {
+    "sets": {
+      "fixture-params": {
+        "id": "fixture-params"
+      }
+    },
+    "values": {},
+    "definitions": {}
+  },
+  "chartAddons": {},
+  "crossLinks": [],
+  "joinDataSources": [],
+  "sharedSettings": {
+    "mappings": []
+  }
+}
