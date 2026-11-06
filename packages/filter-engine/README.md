@@ -8,5 +8,5 @@ repository maintainers, reviewed with filter/query consumers.
 `createFilterEngine` selects applicable chart/dashboard filters and composes SQL
 through supplied dialect/join/link ports. `createLegacyFilterMigrator` preserves
 the existing document migration, injects ID generation and leaves its input
-untouched. See [Wave 2](../../docs/modernization/WAVE_2.md) for comparison, rollback
-and compatibility limits.
+untouched. Historical comparison, rollback and compatibility notes are preserved on the
+`modernization-docs-archive` branch.
