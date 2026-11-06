@@ -22,7 +22,7 @@ import CustomSlider from "components/custom-slider/custom-slider"
 import HoverSelector from "components/hover-selector/hover-selector"
 import { isSelectorUsable } from "utils/selector-helpers"
 import MarkShapeSelector from "components/mark-shape-selector/mark-shape-selector"
-import { Toggle, Switch } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 
 import PriorityColorSelector from "./priority-color-selector"
 import ColorRampParent from "components/color-ramp/color-ramp-parent"
@@ -170,7 +170,7 @@ export function PointmapDisplaySettings(props) {
           )}
           {!sizeMeasureSet && (
             <div className="auto-pointsize">
-              <Toggle
+              <Switch
                 checked={autoSize}
                 onChange={props.onValueChangeWithAutoSize}
               />
@@ -224,7 +224,7 @@ export function PointmapDisplaySettings(props) {
           <div className="chart-editor-section">
             <div className="chart-editor-label">{"Color All Values"}</div>
             <div className="chart-settings-row">
-              <Toggle
+              <Switch
                 checked={fullColorHashing ?? false}
                 onChange={props.onValueChangeWithFullColorHashing}
                 className="fullColorHashing-btn"
@@ -251,7 +251,7 @@ export function PointmapDisplaySettings(props) {
         </div>
         <div className="chart-editor-section density-accumulator">
           <div className="chart-editor-label">Density Gradient</div>
-          <Toggle
+          <Switch
             checked={densityAccumulatorEnabled && !isColorMeasureActive}
             disabled={isColorMeasureActive}
             onChange={props.onValueChangeWithDensityAccumulatorEnabled}

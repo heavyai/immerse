@@ -3,7 +3,7 @@
 
 import React from "react"
 
-import { Toggle } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 
 type NullToggleProps = {
   checked: boolean
@@ -21,7 +21,7 @@ export default function NullToggle({
   return (
     <div className="chart-editor-section">
       <div className="chart-editor-label">{label}</div>
-      <Toggle checked={checked} id={id} onChange={onChange} />
+      <Switch checked={checked} id={id} onChange={onChange} />
     </div>
   )
 }

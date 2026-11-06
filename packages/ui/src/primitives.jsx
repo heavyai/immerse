@@ -74,7 +74,7 @@ export const InfoButton = buttonVariant("primary")
 export const SuccessButton = buttonVariant("primary", "success")
 
 function ToggleControl(
-  { label, indeterminate, role, className, variant, ...props },
+  { label, indeterminate, role, className, ...props },
   ref
 ) {
   const input = useRef(null)
@@ -88,7 +88,6 @@ function ToggleControl(
       {...props}
       type="checkbox"
       role={role}
-      data-toggle-variant={variant}
       ref={(node) => {
         input.current = node
         if (typeof ref === "function") {
@@ -116,10 +115,6 @@ function ToggleControl(
 export const Checkbox = forwardRef(ToggleControl)
 export const Switch = forwardRef(function SwitchControl(props, ref) {
   return <Checkbox {...props} role="switch" ref={ref} />
-})
-
-export const Toggle = forwardRef(function PillToggleControl(props, ref) {
-  return <Switch {...props} variant="pill" ref={ref} />
 })
 
 export function Tooltip({

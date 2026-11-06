@@ -25,14 +25,12 @@ export const SuccessButton: typeof Button
 export interface ToggleProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: React.ReactNode
-  variant?: "pill"
   indeterminate?: boolean
 }
 export const Checkbox: React.ForwardRefExoticComponent<
   ToggleProps & React.RefAttributes<HTMLInputElement>
 >
 export const Switch: typeof Checkbox
-export const Toggle: typeof Switch
 export interface TooltipProps {
   asChild?: boolean
   content?: React.ReactNode

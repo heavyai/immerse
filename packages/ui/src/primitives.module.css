@@ -180,41 +180,6 @@
 .switch[class~="compact"]:checked::before {
   transform: translateX(11px);
 }
-.switch[data-toggle-variant="pill"] {
-  width: 50px;
-  height: 24px;
-  border-radius: 12px;
-  background: var(--ui-muted);
-}
-.switch[data-toggle-variant="pill"]::before {
-  width: 22px;
-  height: 22px;
-  top: 1px;
-  left: 1px;
-  background: var(--ui-text);
-}
-.switch[data-toggle-variant="pill"]::after {
-  content: "×";
-  font: bold 18px/24px sans-serif;
-  text-align: right;
-  padding-right: 7px;
-  color: var(--ui-text);
-  opacity: 1;
-  top: 0;
-  height: 24px;
-  background: transparent;
-}
-.switch[data-toggle-variant="pill"]:checked {
-  background: var(--ui-accent);
-}
-.switch[data-toggle-variant="pill"]:checked::before {
-  transform: translateX(26px);
-}
-.switch[data-toggle-variant="pill"]:checked::after {
-  content: "✓";
-  text-align: left;
-  padding-left: 7px;
-}
 .tooltipTrigger {
   display: inline-flex;
   max-width: 100%;

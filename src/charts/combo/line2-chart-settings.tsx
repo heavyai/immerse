@@ -3,7 +3,7 @@
 
 import * as React from "react"
 import { connect } from "react-redux"
-import { Toggle } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 
 import { isPercentageViewVisible } from "charts/combo/line-chart2/utils"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
@@ -53,7 +53,7 @@ export const PercentageViewToggle = ({
 }: PercentageViewToggleProps) => (
   <div className="chart-editor-section">
     <div className="chart-editor-label">Percentage View</div>
-    <Toggle
+    <Switch
       checked={percentageViewEnabled}
       id="range-toggle"
       onChange={onValueChangeWithPercentageView}
@@ -185,7 +185,7 @@ export const Line2ChartSettingsComponent = ({
       </div>
       <div className="chart-editor-section">
         <div className="chart-editor-label">Show Range Chart</div>
-        <Toggle
+        <Switch
           checked={rangeChartEnabled}
           id="range-toggle"
           onChange={onValueChangeWithRangeChart2}

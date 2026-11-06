@@ -3,7 +3,7 @@
 
 import React from "react"
 
-import { Toggle } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import ChartFormatting from "components/chart-settings/chart-formatting"
 import { useOnValueChangeWithRangeChart } from "charts/utils/shared-chart-settings-handlers"
@@ -18,7 +18,7 @@ const HistogramChartSettings = (props) => {
     <div>
       <div className="chart-editor-section">
         <div className="chart-editor-label">{"Show Range Chart"}</div>
-        <Toggle
+        <Switch
           checked={props.chart.rangeChartEnabled}
           id="range-toggle"
           onChange={onValueChangeWithRangeChart}

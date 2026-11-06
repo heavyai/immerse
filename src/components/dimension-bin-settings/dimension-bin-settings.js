@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 import DimensionBinRangeSettings from "./dimension-bin-range-settings"
 import { dimensionShape } from "constants/prop-types"
 import { COLUMN_CARDINALITY_THRESHOLD } from "constants/magic-variables"
-import { Toggle } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 
 DimensionBinSettings.propTypes = {
   dimension: dimensionShape.isRequired,
@@ -35,7 +35,7 @@ export default function DimensionBinSettings({
   return (
     <div className="bin-settings">
       <label className="bin-settings-toggle">
-        <Toggle
+        <Switch
           disabled={disableUnbinning(dimension, chartType)}
           checked={dimension.isBinned}
           onChange={updateIsBinned}

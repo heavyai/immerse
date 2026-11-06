@@ -12,7 +12,7 @@ import Icon from "components/icon/icon"
 import { KEYCODE } from "constants/keycode"
 import { LINE_STYLES } from "constants/charts"
 import Popover from "components/popover/popover"
-import { Toggle, MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
+import { Switch, MenuSurface, MenuSurfaceAnchor } from "@immerse/ui"
 import withAutosuggestState from "components/autosuggest/with-autosuggest-state"
 import { process } from "utils/ImmerseSQLPlusPlus/parser"
 import Services from "services/immerse"
@@ -194,7 +194,7 @@ export class CustomColorsListItem extends Component {
             </div>
 
             {this.props.isOther && (
-              <Toggle
+              <Switch
                 checked={this.props.enabled}
                 disabled={this.props.disableToggle}
                 id={`${this.props.id}-toggle`}

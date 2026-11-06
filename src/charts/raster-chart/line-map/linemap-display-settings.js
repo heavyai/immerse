@@ -16,7 +16,7 @@ import { chartShape } from "constants/prop-types"
 import { connect } from "react-redux"
 import HoverSelector from "components/hover-selector/hover-selector"
 import { isSelectorUsable } from "utils/selector-helpers"
-import { Toggle, Switch } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import CustomSlider from "components/custom-slider/custom-slider"
 import ChartSettingsGeoJsonDropdown from "components/chart-settings-geojson-dropdown/chart-settings-geojson-dropdown-parent"
@@ -130,7 +130,7 @@ export function LinemapDisplaySettings(props) {
         )}
         {!sizeMeasureSet && (
           <div className="auto-pointsize">
-            <Toggle
+            <Switch
               checked={autoSize}
               onChange={props.onValueChangeWithAutoSize}
             />
@@ -169,7 +169,7 @@ export function LinemapDisplaySettings(props) {
       </div>
       <div className="chart-editor-section density-accumulator">
         <div className="chart-editor-label">Density Gradient</div>
-        <Toggle
+        <Switch
           checked={densityAccumulatorEnabled && !isColorMeasureActive}
           disabled={isColorMeasureActive}
           onChange={props.onValueChangeWithDensityAccumulatorEnabled}
@@ -179,7 +179,7 @@ export function LinemapDisplaySettings(props) {
         <div className="chart-editor-section">
           <div className="chart-editor-label">{"Color All Values"}</div>
           <div className="chart-settings-row">
-            <Toggle
+            <Switch
               checked={fullColorHashing ?? false}
               onChange={props.onValueChangeWithFullColorHashing}
               className="fullColorHashing-btn"

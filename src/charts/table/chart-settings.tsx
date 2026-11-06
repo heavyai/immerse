@@ -15,7 +15,7 @@ import {
 
 import { NULLS_FIRST, NULLS_LAST } from "constants/magic-variables"
 
-import { Select, Toggle } from "@immerse/ui"
+import { Select, Switch } from "@immerse/ui"
 
 import "./chart-settings.css"
 
@@ -108,8 +108,10 @@ const TableChartSettings = (props: any) => {
         </div>
       )}
       <div className="chart-editor-section">
-        <div className="chart-editor-label">Zebra Striping</div>
-        <Toggle
+        <div className="chart-editor-label">
+          <label htmlFor="zebra-striping-toggle">Zebra Striping</label>
+        </div>
+        <Switch
           id="zebra-striping-toggle"
           checked={props.chart.zebraStriping}
           onChange={() => toggleZebraStriping()}

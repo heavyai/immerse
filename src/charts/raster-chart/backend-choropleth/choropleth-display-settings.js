@@ -8,7 +8,7 @@ import ChartSettingsBasemapDropdownParent from "components/chart-settings-basema
 import ChartSettingsGeoJsonDropdown from "components/chart-settings-geojson-dropdown/chart-settings-geojson-dropdown-parent"
 import HoverSelector from "components/hover-selector/hover-selector"
 import CustomSlider from "components/custom-slider/custom-slider"
-import { Toggle, Switch } from "@immerse/ui"
+import { Switch } from "@immerse/ui"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import { isSelectorUsable } from "utils/selector-helpers"
 import { chartShape } from "constants/prop-types"
@@ -120,7 +120,7 @@ export function ChoroplethDisplaySettings(props) {
       </div>
       <div className="chart-editor-section">
         <div className="chart-editor-label">{"Match border color to fill"}</div>
-        <Toggle
+        <Switch
           defaultChecked={hasBorderColorFromFill}
           id="border-fill-toggle"
           onChange={props.onValueChangeWithBorderColorFromFill}
@@ -141,7 +141,7 @@ export function ChoroplethDisplaySettings(props) {
         <div className="chart-editor-section">
           <div className="chart-editor-label">{"Color All Values"}</div>
           <div className="chart-settings-row">
-            <Toggle
+            <Switch
               checked={fullColorHashing ?? false}
               onChange={props.onValueChangeWithFullColorHashing}
               className="fullColorHashing-btn"
