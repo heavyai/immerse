@@ -280,3 +280,67 @@ test("column preview replaces the previous card and dismisses on outside clicks"
   await trigger.click()
   await expect(page.locator(".data-preview-popover")).toHaveCount(0)
 })
+
+test("clicks within an open column preview do not requery or replace its chart", async ({
+  page
+}) => {
+  let queries = 0
+  page.on("request", (request) => {
+    if (
+      request.method() === "POST" &&
+      request.postData()?.includes("sql_execute")
+    ) {
+      queries += 1
+    }
+  })
+  await page.goto("/heavyai/sql-notebook")
+  await expect(
+    page.getByTestId("sql-editor-table-selector-modernization_wave0_sales")
+  ).toBeVisible()
+  const sqlToggle = page.getByRole("switch", {
+    name: "SQL Editor",
+    exact: true
+  })
+  if (await sqlToggle.isVisible()) {
+    await sqlToggle.click()
+  }
+  await page.locator(".CodeMirror").last().click()
+  await page
+    .getByTestId("sql-editor-table-selector-modernization_wave0_sales")
+    .click()
+  const row = page
+    .locator(".sql-notebook__column-table tbody tr")
+    .filter({ hasText: "amount" })
+  await row.hover()
+  const trigger = row.getByRole("button", {
+    name: "Preview amount",
+    exact: true
+  })
+  await trigger.click()
+  const preview = page.getByRole("dialog", {
+    name: "amount column preview",
+    exact: true
+  })
+  await expect(preview.locator("canvas")).toBeVisible()
+  await expect(
+    preview.locator(".loader-with-height,.loading-widget")
+  ).toHaveCount(0)
+  const initialQueries = queries
+  expect(initialQueries).toBeGreaterThan(0)
+  const canvas = await preview.locator("canvas").elementHandle()
+  for (let i = 0; i < 3; i++) {
+    await preview.locator(".data-preview-header").click()
+  }
+  // Allow effects/requests to run if a click accidentally updates the browser.
+  await page.waitForTimeout(500)
+  expect(queries).toBe(initialQueries)
+  expect(await canvas!.evaluate((element) => element.isConnected)).toBe(true)
+  await expect(
+    preview.locator(".loader-with-height,.loading-widget")
+  ).toHaveCount(0)
+  await page.keyboard.press("Escape")
+  await row.hover()
+  await trigger.click()
+  await expect(preview.locator("canvas")).toBeVisible()
+  expect(queries).toBeGreaterThan(initialQueries)
+})

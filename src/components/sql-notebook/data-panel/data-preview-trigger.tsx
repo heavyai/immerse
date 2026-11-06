@@ -19,7 +19,12 @@ export const DataPreviewTrigger = ({
   disabled?: boolean
   disabledTooltip?: string | null
 }) => {
-  const [open, setOpen] = useState(false)
+  // Keep metadata stable for the lifetime of an open preview, even if the
+  // table browser renders new row objects after a selection/store update.
+  const [previewColumn, setPreviewColumn] = useState<ColumnMetadata | null>(
+    null
+  )
+  const open = previewColumn !== null
   const triggerRef = useRef<HTMLButtonElement>(null)
   const previewId = useId()
   const columnName = item.name || item.value
@@ -35,7 +40,7 @@ export const DataPreviewTrigger = ({
         !triggerRef.current?.contains(target) &&
         !document.getElementById(previewId)?.contains(target)
       ) {
-        setOpen(false)
+        setPreviewColumn(null)
       }
     }
     document.addEventListener("pointerdown", dismissOutside, true)
@@ -54,7 +59,7 @@ export const DataPreviewTrigger = ({
       onClick={(event) => {
         event.stopPropagation()
         if (!disabled) {
-          setOpen(!open)
+          setPreviewColumn(open ? null : item)
         }
       }}
     >
@@ -76,14 +81,16 @@ export const DataPreviewTrigger = ({
       <MenuSurface
         id={previewId}
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => setPreviewColumn(null)}
+        // Portal clicks still bubble through React's table-row ancestors.
+        onClick={(event) => event.stopPropagation()}
         focusOnOpen={false}
         side="right"
         sideOffset={8}
         className="data-preview-popover"
         aria-label={`${columnName} column preview`}
       >
-        <DataPreview column={item} />
+        {previewColumn && <DataPreview column={previewColumn} />}
       </MenuSurface>
     </MenuSurfaceAnchor>
   )
