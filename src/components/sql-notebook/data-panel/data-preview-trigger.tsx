@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useState } from "react"
+import React, { useEffect, useId, useRef, useState } from "react"
 import { MenuSurface, MenuSurfaceAnchor, Tooltip } from "@immerse/ui"
 import { ColumnMetadata } from "constants/prop-types"
 import { DataPreview } from "../data-preview/data-preview"
@@ -20,9 +20,31 @@ export const DataPreviewTrigger = ({
   disabledTooltip?: string | null
 }) => {
   const [open, setOpen] = useState(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const previewId = useId()
   const columnName = item.name || item.value
+
+  useEffect(() => {
+    if (!open) {
+      return undefined
+    }
+    // Capture outside presses even when application controls stop bubbling.
+    const dismissOutside = (event: PointerEvent) => {
+      const target = event.target as Node
+      if (
+        !triggerRef.current?.contains(target) &&
+        !document.getElementById(previewId)?.contains(target)
+      ) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("pointerdown", dismissOutside, true)
+    return () =>
+      document.removeEventListener("pointerdown", dismissOutside, true)
+  }, [open, previewId])
   const trigger = (
     <button
+      ref={triggerRef}
       type="button"
       className={cx("data-preview-trigger", { disabled, "is-open": open })}
       aria-label={`Preview ${columnName}`}
@@ -52,6 +74,7 @@ export const DataPreviewTrigger = ({
     <MenuSurfaceAnchor>
       {trigger}
       <MenuSurface
+        id={previewId}
         open={open}
         onClose={() => setOpen(false)}
         focusOnOpen={false}

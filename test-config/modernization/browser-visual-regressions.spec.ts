@@ -236,3 +236,47 @@ test("column previews contain statistics and return focus when dismissed", async
   }
   expect(errors).toEqual([])
 })
+
+test("column preview replaces the previous card and dismisses on outside clicks", async ({
+  page
+}) => {
+  await page.goto("/heavyai/sql-notebook")
+  await page
+    .getByTestId("sql-editor-table-selector-modernization_wave0_sales")
+    .click()
+  for (const column of ["amount", "region", "lon"]) {
+    const row = page
+      .locator(".sql-notebook__column-table tbody tr")
+      .filter({ hasText: column })
+    await row.hover()
+    const trigger = row.getByRole("button", {
+      name: `Preview ${column}`,
+      exact: true
+    })
+    await trigger.click()
+    const preview = page.getByRole("dialog", {
+      name: `${column} column preview`,
+      exact: true
+    })
+    await expect(preview).toBeVisible()
+    await expect(page.locator(".data-preview-popover")).toHaveCount(1)
+    await preview.locator(".data-preview-header").click()
+    await expect(preview).toBeVisible()
+  }
+  const search = page.locator(".data-column-selector__input input")
+  await search.click()
+  await expect(page.locator(".data-preview-popover")).toHaveCount(0)
+  await expect(search).toBeFocused()
+  const row = page
+    .locator(".sql-notebook__column-table tbody tr")
+    .filter({ hasText: "amount" })
+  await row.hover()
+  const trigger = row.getByRole("button", {
+    name: "Preview amount",
+    exact: true
+  })
+  await trigger.click()
+  await expect(page.locator(".data-preview-popover")).toHaveCount(1)
+  await trigger.click()
+  await expect(page.locator(".data-preview-popover")).toHaveCount(0)
+})
