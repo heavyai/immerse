@@ -99,7 +99,6 @@ const AccountPanel = ({
             isSuperuser &&
             getFeatureFlag(ENABLE_KEY_MANAGER) && (
               <ImmerseUIRequired uiKey={IMMERSE_UI_HELP_DROPDOWN}>
-                <div className="separator-top" />
                 <HelpMenu helpLinks={helpLinks} toggleIsOpen={onToggleOpen} />
                 <div className="separator-bottom" />
               </ImmerseUIRequired>
