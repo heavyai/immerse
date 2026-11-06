@@ -118,6 +118,7 @@ export const Switch = forwardRef(function SwitchControl(props, ref) {
 })
 
 export function Tooltip({
+  asChild = false,
   content,
   children,
   enterDelay = 500,
@@ -139,10 +140,17 @@ export function Tooltip({
         {...props}
         open={open === undefined ? undefined : Boolean(open)}
       >
-        <TooltipPrimitive.Trigger asChild>
-          <span className={styles.tooltipTrigger} tabIndex={0}>
-            {children}
-          </span>
+        <TooltipPrimitive.Trigger
+          asChild
+          className={asChild ? styles.tooltipChild : undefined}
+        >
+          {asChild ? (
+            children
+          ) : (
+            <span className={styles.tooltipTrigger} tabIndex={0}>
+              {children}
+            </span>
+          )}
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Content

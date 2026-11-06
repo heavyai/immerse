@@ -10,6 +10,10 @@
 }
 
 .global-side-nav__trigger {
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
   position: absolute;
   top: 7px;
   left: 10px;
@@ -30,6 +34,7 @@
   width: $globalSideNavWidth;
   height: 100vh;
   position: fixed;
+  top: 0;
   left: -$globalSideNavWidth;
   transition: left 0.1s ease-in-out;
 

@@ -48,7 +48,8 @@
 .control:focus-visible,
 .thumb:focus-visible,
 .menuItem:focus-visible,
-.tooltipTrigger:focus-visible {
+.tooltipTrigger:focus-visible,
+.tooltipChild:focus-visible {
   outline: 2px solid var(--ui-accent);
   outline-offset: 3px;
 }

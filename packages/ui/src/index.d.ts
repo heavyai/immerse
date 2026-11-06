@@ -32,6 +32,7 @@ export const Checkbox: React.ForwardRefExoticComponent<
 >
 export const Switch: typeof Checkbox
 export interface TooltipProps {
+  asChild?: boolean
   content?: React.ReactNode
   children?: React.ReactNode
   enterDelay?: number

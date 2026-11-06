@@ -110,13 +110,16 @@ const GlobalSideNav = ({
         <div className="global-side-nav">
           <ImmerseUIRequired uiKey={IMMERSE_UI_GLOBAL_SIDE_NAV_TOGGLE}>
             <Tooltip
+              asChild
               activateOn="hover"
               showArrow
               align="right"
               enterDelay={500}
               content={isPinned ? "Unpin navigation" : "Pin navigation"}
             >
-              <div
+              <button
+                type="button"
+                aria-label={isPinned ? "Unpin navigation" : "Pin navigation"}
                 className="global-side-nav__trigger"
                 data-testid="global-side-nav-trigger"
                 onClick={() => setIsPinned(!isPinned)}
@@ -127,7 +130,7 @@ const GlobalSideNav = ({
                 onMouseLeave={debouncedMouseLeave}
               >
                 <IconHamburger />
-              </div>
+              </button>
             </Tooltip>
           </ImmerseUIRequired>
           <nav
@@ -149,6 +152,7 @@ const GlobalSideNav = ({
                   enterDelay={500}
                   align="right"
                   content="Dashboards"
+                  asChild
                   open={!isPinned && !isExpanded ? false : undefined}
                 >
                   <NavLink
@@ -180,6 +184,7 @@ const GlobalSideNav = ({
                   enterDelay={500}
                   align="right"
                   content="Data Manager"
+                  asChild
                   open={!isPinned && !isExpanded ? false : undefined}
                 >
                   <NavLink
@@ -206,6 +211,7 @@ const GlobalSideNav = ({
                     enterDelay={500}
                     align="right"
                     content="SQL Editor"
+                    asChild
                     open={!isPinned && !isExpanded ? false : undefined}
                   >
                     <NavLink
@@ -245,6 +251,7 @@ const GlobalSideNav = ({
                   enterDelay={500}
                   align="right"
                   content="SQL Notebook"
+                  asChild
                   open={!isPinned && !isExpanded ? false : undefined}
                 >
                   <NavLink
