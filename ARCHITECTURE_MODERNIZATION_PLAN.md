@@ -264,7 +264,7 @@ The user explicitly authorized major dependency upgrades in this checkpoint.
 
 ### Wave 3: Consolidate UI and styles
 
-Implementation record: `docs/modernization/WAVE_3.md`. The cutover passes through a React 18.3.1 checkpoint and finishes on the user-selected React 19.3.1 runtime, including required dependency migrations. Seven shared primitive domains and all MUI consumers now use owned UI controls. Remaining RMWC domains and legacy global styles continue to retire incrementally as their consumers migrate.
+Implementation record: preserved on the `modernization-docs-archive` branch. The cutover passes through a React 18.3.1 checkpoint and finishes on the user-selected React 19.3.1 runtime, including required dependency migrations. Seven shared primitive domains and all MUI consumers now use owned UI controls. Remaining RMWC domains and legacy global styles continue to retire incrementally as their consumers migrate.
 
 - Create semantic tokens that alias current custom-theme variables.
 - Preserve light, dark, high-contrast, and customer tint behavior.

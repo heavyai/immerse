@@ -28,7 +28,7 @@ Run `pnpm --filter @immerse/ui test`, `pnpm run ts:packages`, and
 `pnpm run test:ui:browser`. The standalone browser fixture is separate from the
 product bundle and HeavyDB. Its tests cover keyboard operation, focus containment
 and return, portal cleanup, pointer dragging and theme-token inheritance.
-See `docs/modernization/WAVE_3.md` for the migration record and remaining owners.
+The historical migration record is preserved on the `modernization-docs-archive` branch.
 
 Owned form controls include native date/datetime-local fields (string values,
 millisecond steps), file input/drop targets with cancellable reads, and select/
@@ -42,8 +42,7 @@ specialized editor; the application SimpleDialog also supports
 `--dialog-min-width`. Put consumer classes on the portaled dialog itself rather
 than relying on an ancestor that remains at the trigger location.
 
-`Switch` uses the standard thumb/track presentation, with `compact` for dense
-settings. `Toggle` has the larger pill/check/cross presentation used by legacy
-chart controls; both retain native checkbox events and switch semantics. Slider
+`Switch` provides the shared thumb/track presentation, with `compact` for dense
+settings and native checkbox events and switch semantics. Slider
 roots expose `data-ui="slider"` so adjacent numeric inputs can share a row without
 depending on Radix's internal markup.
