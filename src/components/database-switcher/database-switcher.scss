@@ -4,16 +4,17 @@
  */
 
 @import "../../styles/base/_variables.scss";
-.account-panel {
-  .account-menu-panel {
-    margin-top: 50px;
-    position: absolute;
-    background: white;
-    border: 1px solid $gray1;
-    padding: 10px;
-    width: 208px;
-    border-radius: 4px;
-  }
+// The account menu is portaled outside its navigation trigger.
+.user-menu-panel {
+  box-sizing: border-box;
+  width: 208px;
+  padding: 10px;
+  font-size: $fontSizeNormal;
+  line-height: 20px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: 4px;
+  color: var(--ui-text);
   .single-database-display {
     line-height: 16px;
     margin-bottom: 16px;
@@ -182,12 +183,12 @@
   .control-panel-link {
     border-radius: 4px;
     &:hover {
-      background-color: #f5f5f5;
+      background-color: var(--ui-hover);
     }
   }
 
   .control-panel-link {
-    color: $textOnDark;
+    color: var(--ui-text);
     font-size: 16px;
     .key-icon {
       margin-right: 6px;
@@ -209,7 +210,7 @@
   }
 }
 
-body:not(.light2-mode) .account-panel {
+body:not(.light2-mode) .user-menu-panel {
   .db-label,
   .user-label,
   .theme-label {
@@ -218,12 +219,6 @@ body:not(.light2-mode) .account-panel {
   .db-value,
   .user-value {
     color: $textOnDark;
-  }
-  .account-menu-panel {
-    background: $grayDp3;
-    border: 1px solid $borderSeparator;
-    color: $textOnDark;
-    fill: $textOnDark;
   }
   .database-switcher-option {
     a {

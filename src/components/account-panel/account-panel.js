@@ -57,7 +57,7 @@ const AccountPanel = ({
       <MenuSurfaceAnchor>
         <MenuSurface
           {...{
-            className: "account-menu-panel",
+            className: "account-menu-panel user-menu-panel",
             open: isOpen,
             onClose: () => {
               if (isOpen) {
