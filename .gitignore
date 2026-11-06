@@ -33,3 +33,5 @@ key.pem
 .npmrc
 # Track only the safe project npm config; do not put credentials in it.
 !/.npmrc
+# Local modernization notes are preserved separately from the code stack.
+/docs/

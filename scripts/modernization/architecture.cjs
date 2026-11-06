@@ -7,7 +7,7 @@ const ts = require("typescript")
 const root = path.resolve(__dirname, "../..")
 const baselinePath = path.join(
   root,
-  "docs/modernization/architecture-baseline.json"
+  "scripts/modernization/baselines/architecture.json"
 )
 
 function filesUnder(directory) {
