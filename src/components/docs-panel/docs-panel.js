@@ -37,7 +37,10 @@ const DocsPanel = ({ isOpen, onToggleOpen = noop, onDocsClick = noop }) => {
             }
           }}
         >
-          <MenuItem onClick={onDocsClick}>
+          <MenuItem
+            className="docs-menu-panel__documentation"
+            onClick={onDocsClick}
+          >
             <Icon icon="description" size="small" />
             Documentation
           </MenuItem>
