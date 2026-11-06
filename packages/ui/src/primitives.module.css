@@ -173,9 +173,9 @@
   box-shadow: 0 12px 40px #0008;
 }
 .dialog[data-tone="warning"] {
-  --ui-dialog-title-background: var(--ui-warning);
-  --ui-dialog-title-text: var(--ui-on-warning);
-  --ui-dialog-icon: var(--ui-warning);
+  --ui-dialog-title-background: var(--ui-accent);
+  --ui-dialog-title-text: var(--ui-on-accent);
+  --ui-dialog-icon: var(--ui-accent);
 }
 .dialog[data-tone="danger"] {
   --ui-dialog-title-background: var(--ui-danger);

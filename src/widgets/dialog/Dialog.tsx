@@ -10,7 +10,6 @@ import {
   DialogContent,
   DialogActions,
   DangerButton,
-  WarningButton,
   SuccessButton,
   SecondaryButton,
   PrimaryButton
@@ -210,12 +209,12 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
                     </DangerButton>
                   ),
                   warning: (
-                    <WarningButton
+                    <PrimaryButton
                       onClick={handlePrimary}
                       disabled={primaryDisabled}
                     >
                       {primaryLabel}
-                    </WarningButton>
+                    </PrimaryButton>
                   ),
                   success: (
                     <SuccessButton
