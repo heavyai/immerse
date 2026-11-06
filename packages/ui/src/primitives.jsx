@@ -290,7 +290,9 @@ export function Dialog({
   onOpenChange,
   onOpen,
   onClose,
+  onOpenAutoFocus,
   preventOutsideDismiss,
+  tone,
   children,
   className,
   ...props
@@ -318,9 +320,11 @@ export function Dialog({
         <DialogPrimitive.Content
           {...props}
           className={classes(styles.dialog, className)}
+          data-tone={tone}
           aria-describedby={undefined}
-          onOpenAutoFocus={() => {
+          onOpenAutoFocus={(event) => {
             returnFocus.current = document.activeElement
+            onOpenAutoFocus?.(event)
           }}
           onCloseAutoFocus={(event) => {
             event.preventDefault()

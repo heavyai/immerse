@@ -1,0 +1,92 @@
+/* SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved. */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+.dialog {
+  box-sizing: border-box;
+  width: 560px;
+  min-width: min(420px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 24px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: 0 48px 0 16px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  line-height: 28px;
+  outline: none;
+}
+.title .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 8px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+.content {
+  padding: 16px;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  line-height: 24px;
+}
+.messageContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.messageIcon {
+  flex: 0 0 32px;
+}
+.statusIcon {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  line-height: 32px;
+  color: var(--ui-dialog-icon, var(--ui-text));
+}
+.message {
+  min-width: 0;
+  flex: 1;
+}
+.message p {
+  margin: 0 0 8px;
+}
+.message p:last-child {
+  margin-bottom: 0;
+}
+.actions {
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 8px;
+  gap: 8px;
+}
+.actions > button {
+  border-width: 0;
+  height: 32px;
+  min-height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.actions > button[data-variant="secondary"] {
+  padding-inline: 15px;
+  border-width: 1px;
+  border-color: var(--secondaryButtonBorder, var(--ui-border));
+}

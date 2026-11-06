@@ -58,11 +58,13 @@ export const MenuItem: React.ForwardRefExoticComponent<
     React.RefAttributes<HTMLButtonElement>
 >
 export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
+  tone?: "danger" | "warning" | "success" | "info"
   open?: boolean
   onOpenChange?: (open: boolean) => void
   onOpen?: () => void
   onClose?: () => void
   preventOutsideDismiss?: boolean
+  onOpenAutoFocus?: (event: Event) => void
 }
 export function Dialog(props: DialogProps): React.ReactElement
 export const DialogTitle: React.ForwardRefExoticComponent<

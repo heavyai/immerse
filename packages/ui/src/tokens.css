@@ -13,7 +13,10 @@ body {
   --ui-hover: var(--highlightOnDark, #eee);
   --ui-disabled: var(--disabled, #777);
   --ui-danger: #d83c3c;
-  --ui-warning: #b58400;
+  --ui-warning: #f2b700;
+  --ui-warning-hover: #e2aa00;
+  --ui-on-warning: #404040;
+  --ui-info: #3ba1d9;
   --ui-success: #398200;
   --ui-radius: 4px;
   --ui-z-menu: 4000;
@@ -30,5 +33,10 @@ body.light2-mode {
   --ui-border: var(--gray-300, #ccc);
   --ui-hover: var(--gray-100, #eee);
 }
-body { --ui-color-scheme: dark; }
-body.light-mode, body.light2-mode { --ui-color-scheme: light; }
+body {
+  --ui-color-scheme: dark;
+}
+body.light-mode,
+body.light2-mode {
+  --ui-color-scheme: light;
+}

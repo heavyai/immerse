@@ -1,9 +1,10 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useRef } from "react"
 import classNames from "classnames"
 import {
+  Button,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -14,8 +15,8 @@ import {
   SecondaryButton,
   PrimaryButton
 } from "@immerse/ui"
-import { IconButton } from "widgets/icon-button/Icon-button"
 import { Icon } from "@rmwc/icon"
+import styles from "./dialog.module.css"
 
 /**
  * Dialog properties.
@@ -33,7 +34,7 @@ export interface ISimpleDialogProps {
   secondaryLabel?: React.ReactNode | string
   primaryAction?(): void
   secondaryAction?(): void
-  type?: string
+  type?: React.ComponentProps<typeof Dialog>["tone"]
   hideCloseIcon?: boolean
   onCloseFromHeader?: any
   children?: React.ReactNode
@@ -79,6 +80,8 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
   preventOutsideDismiss,
   primaryDisabled = false
 }) => {
+  const titleRef = useRef<HTMLHeadingElement>(null)
+
   const handlePrimary = () => {
     if (primaryAction) {
       primaryAction()
@@ -99,9 +102,16 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
 
   return (
     <Dialog
-      className={classNames(type, className)}
+      className={classNames(styles.dialog, type, className)}
+      tone={type}
       open={open}
       onOpen={onOpen}
+      onOpenAutoFocus={(event) => {
+        if (titleRef.current) {
+          event.preventDefault()
+          titleRef.current.focus()
+        }
+      }}
       onClose={() => {
         onStateChange?.("closing")
         onClose("from state change")
@@ -110,30 +120,59 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
       data-testid="simple-dialog"
     >
       {(title || !hideCloseIcon) && (
-        <DialogTitle>
+        <DialogTitle ref={titleRef} tabIndex={-1} className={styles.title}>
           {title}
           {!hideCloseIcon && (
-            <IconButton
-              icon="close"
+            <Button
+              variant="quiet"
+              className={styles.close}
+              aria-label="Close dialog"
               onClick={handleCloseFromHeader}
-              ripple={false}
-            />
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
+            </Button>
           )}
         </DialogTitle>
       )}
-      <DialogContent>
+      <DialogContent
+        className={classNames(
+          styles.content,
+          !children && styles.messageContent
+        )}
+      >
         {children ? (
           children
         ) : (
           <>
-            <div className="message-icon">
-              {(type === "warning" || type === "danger") && (
-                <Icon icon="warning_outline" />
-              )}
-              {type === "success" && <Icon icon="check_circle_outline" />}
-              {type === "info" && <Icon icon="info_outline" />}
-            </div>
-            <div className="dialog-message">
+            {type && (
+              <div className={styles.messageIcon} aria-hidden="true">
+                {(type === "warning" || type === "danger") && (
+                  <Icon className={styles.statusIcon} icon="warning_outline" />
+                )}
+                {type === "success" && (
+                  <Icon
+                    className={styles.statusIcon}
+                    icon="check_circle_outline"
+                  />
+                )}
+                {type === "info" && (
+                  <Icon className={styles.statusIcon} icon="info_outline" />
+                )}
+              </div>
+            )}
+            <div className={classNames("dialog-message", styles.message)}>
               {Array.isArray(message)
                 ? message.map((msg, i) => <p key={i}>{msg}</p>)
                 : message}
@@ -142,7 +181,7 @@ export const SimpleDialog: FunctionComponent<ISimpleDialogProps> = ({
         )}
       </DialogContent>
       {(footer || primaryAction || secondaryAction) && (
-        <DialogActions>
+        <DialogActions className={styles.actions}>
           {footer || (
             <>
               {prependFooter}
@@ -229,25 +268,25 @@ export const SimpleInfoDialog = (props: IDialogProps) => (
 )
 
 export const DangerDialog = (props: IDialogProps) => (
-  <Dialog className={"danger"} {...props}>
+  <Dialog tone="danger" className={"danger"} {...props}>
     {props.children}
   </Dialog>
 )
 
 export const WarningDialog = (props: IDialogProps) => (
-  <Dialog className={"warning"} {...props}>
+  <Dialog tone="warning" className={"warning"} {...props}>
     {props.children}
   </Dialog>
 )
 
 export const SuccessDialog = (props: IDialogProps) => (
-  <Dialog className={"success"} {...props}>
+  <Dialog tone="success" className={"success"} {...props}>
     {props.children}
   </Dialog>
 )
 
 export const InfoDialog = (props: IDialogProps) => (
-  <Dialog className={"info"} {...props}>
+  <Dialog tone="info" className={"info"} {...props}>
     {props.children}
   </Dialog>
 )

@@ -28,6 +28,11 @@
 }
 .button[data-tone="warning"] {
   background: var(--ui-warning);
+  color: var(--ui-on-warning);
+}
+.button[data-tone="warning"]:hover:not(:disabled) {
+  background: var(--ui-warning-hover);
+  filter: none;
 }
 .button[data-tone="success"] {
   background: var(--ui-success);
@@ -167,11 +172,33 @@
   color: var(--ui-text);
   box-shadow: 0 12px 40px #0008;
 }
+.dialog[data-tone="warning"] {
+  --ui-dialog-title-background: var(--ui-warning);
+  --ui-dialog-title-text: var(--ui-on-warning);
+  --ui-dialog-icon: var(--ui-warning);
+}
+.dialog[data-tone="danger"] {
+  --ui-dialog-title-background: var(--ui-danger);
+  --ui-dialog-title-text: var(--ui-on-accent);
+  --ui-dialog-icon: var(--ui-danger);
+}
+.dialog[data-tone="success"] {
+  --ui-dialog-title-background: var(--ui-success);
+  --ui-dialog-title-text: var(--ui-on-accent);
+  --ui-dialog-icon: var(--ui-success);
+}
+.dialog[data-tone="info"] {
+  --ui-dialog-title-background: var(--ui-info);
+  --ui-dialog-title-text: var(--ui-on-accent);
+  --ui-dialog-icon: var(--ui-info);
+}
 .dialogTitle {
   position: relative;
   margin: 0;
   padding: 16px;
   font-size: 20px;
+  background: var(--ui-dialog-title-background, transparent);
+  color: var(--ui-dialog-title-text, inherit);
 }
 .dialogContent {
   padding: 16px;
