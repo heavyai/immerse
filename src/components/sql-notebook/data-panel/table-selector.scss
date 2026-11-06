@@ -20,6 +20,13 @@ body.dark-mode {
 
 .table-selector__search__input {
   border-radius: 4px;
+
+  // Input padding already reserves icon space; keep RMWC icons out of flow.
+  .mdc-text-field__icon {
+    position: absolute;
+    margin: 0;
+    z-index: 3;
+  }
 }
 
 .table-selector__list {
