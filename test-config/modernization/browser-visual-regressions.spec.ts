@@ -203,11 +203,17 @@ test("column previews contain statistics and return focus when dismissed", async
       name: `Preview ${column}`,
       exact: true
     })
-    await trigger.click()
     const preview = page.getByRole("dialog", {
       name: `${column} column preview`,
       exact: true
     })
+    // Stay beyond the former tooltip delay: hover must never open a popup.
+    await trigger.hover()
+    await page.waitForTimeout(1200)
+    await expect(preview).toHaveCount(0)
+    await expect(page.getByRole("tooltip")).toHaveCount(0)
+    await expect(trigger).toHaveAttribute("aria-expanded", "false")
+    await trigger.click()
     await expect(preview).toBeVisible()
     await expect(
       preview.locator(".loader-with-height,.loading-widget")

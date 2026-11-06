@@ -50,14 +50,7 @@ export const DataPreviewTrigger = ({
 
   return (
     <MenuSurfaceAnchor>
-      <Tooltip
-        asChild
-        content="Column Data Preview"
-        open={open ? false : undefined}
-        enterDelay={850}
-      >
-        {trigger}
-      </Tooltip>
+      {trigger}
       <MenuSurface
         open={open}
         onClose={() => setOpen(false)}
