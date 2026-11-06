@@ -12,6 +12,10 @@
   background: var(--ui-accent);
   color: var(--ui-on-accent);
   font: inherit;
+  font-size: var(--ui-button-font-size, 14px);
+  font-weight: var(--ui-button-font-weight, 500);
+  line-height: var(--ui-button-line-height, 20px);
+  letter-spacing: normal;
   cursor: pointer;
 }
 .button[data-variant="secondary"] {

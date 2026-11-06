@@ -18,6 +18,9 @@ body {
   --ui-on-warning: #404040;
   --ui-info: #3ba1d9;
   --ui-success: #398200;
+  --ui-button-font-size: 14px;
+  --ui-button-font-weight: 500;
+  --ui-button-line-height: 20px;
   --ui-radius: 4px;
   --ui-z-menu: 4000;
   --ui-z-dialog: 3000;
