@@ -35,8 +35,14 @@
     }
 
     .sql-notebook-visualization-view__chart-field {
-      .select__control {
+      .select-container-wrapper .select__control {
         background-color: var(--visualization-select-background) !important;
+        border: 1px solid var(--ui-border);
+        border-radius: 4px;
+
+        &--is-focused {
+          border-color: var(--ui-accent);
+        }
       }
       .select__menu {
         background-color: var(
