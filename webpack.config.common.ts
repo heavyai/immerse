@@ -87,6 +87,16 @@ export const commonConfig: Configuration = {
   module: {
     rules: [
       {
+        // This CJS bundle calls require("clsx") directly; resolve its CJS entry,
+        // rather than the ESM namespace returned through clsx's module field.
+        test: /[\\/]react-virtualized[\\/]dist[\\/]react-virtualized\.cjs$/,
+        resolve: {
+          byDependency: {
+            commonjs: { mainFields: ["main", "module"] }
+          }
+        }
+      },
+      {
         test: /\.(js|jsx|ts|tsx)$/,
         include: webpackModule.include,
         exclude: webpackModule.exclude,

@@ -90,7 +90,7 @@ const SqlEditorDataTable = ({
     return rows[0].length === 1 && rows.length === 2
   }
 
-  const cellRenderer = ({ columnIndex, key, rowIndex, style, parent }) => {
+  const cellRenderer = ({ columnIndex, key, rowIndex, style }) => {
     const isHeader = rowIndex === 0
     const className = cx("table-cell", {
       "table-data": Boolean(rowIndex),
@@ -102,7 +102,7 @@ const SqlEditorDataTable = ({
     const newStyle = shouldAdjustColWidth
       ? adjustColWidth(
           columnIndex,
-          parent.props.columnCount - 1,
+          rows[0].length - 1,
           style,
           Math.min(tableRef.current.clientWidth, MAX_COL_WIDTH)
         )

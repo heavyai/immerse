@@ -182,3 +182,34 @@ test("record a saved Vega dashboard load and crossfilter result", async ({
     contentType: "application/json"
   })
 })
+
+test("dashboard manager renders populated virtualized rows without browser errors", async ({
+  page
+}) => {
+  const errors = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("/")
+  await expect(page.locator(".ReactVirtualized__List")).toBeVisible()
+  await expect(
+    page.locator(".ReactVirtualized__List .row-item").first()
+  ).toBeVisible()
+  expect(errors).toEqual([])
+})
+
+test("SQL editor mounts its panes and displays populated virtualized query results", async ({
+  page
+}) => {
+  const errors = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("/heavyai/sql-editor")
+  await page.getByTestId("sql-editor-input").click()
+  await page.keyboard.insertText(
+    "SELECT region, amount FROM modernization_wave0_sales LIMIT 4"
+  )
+  await page.getByTestId("sql-editor-run-button").click()
+  await expect(page.getByTestId("sql-editor-results-cell")).toHaveCount(8)
+  await expect(
+    page.getByTestId("sql-editor-results-cell").first()
+  ).toBeVisible()
+  expect(errors).toEqual([])
+})

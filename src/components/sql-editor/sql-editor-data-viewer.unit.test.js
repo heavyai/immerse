@@ -5,7 +5,9 @@ import React from "react"
 import { render, screen } from "@testing-library/react"
 import withStoreContext from "utils/test-helpers/with-store-context"
 
-import { mapStateToProps } from "components/sql-editor/sql-editor-data-viewer-parent"
+import SqlEditorDataViewerParent, {
+  mapStateToProps
+} from "components/sql-editor/sql-editor-data-viewer-parent"
 import SqlEditorDataViewer from "components/sql-editor/sql-editor-data-viewer"
 
 describe("SqlEditorDataViewer Component", () => {
@@ -42,5 +44,25 @@ describe("SqlEditorDataViewer Component", () => {
       render(withStoreContext(<SqlEditorDataViewer {...props} />, storeState))
       expect(screen.getByTestId("sql-editor-data-viewer")).toBeInTheDocument()
     })
+  })
+})
+
+it("initializes the connected SQL viewer with its numeric default height", () => {
+  const state = {
+    connection: {
+      sessionId: "fixture",
+      user: { protocol: "http:", host: "localhost", port: 6273 }
+    }
+  }
+  render(
+    withStoreContext(
+      <SqlEditorDataViewerParent
+        data={{ fields: [{ name: "value" }], results: [{ value: 42 }] }}
+      />,
+      state
+    )
+  )
+  expect(screen.getByTestId("sql-editor-data-viewer")).toHaveStyle({
+    height: "320px"
   })
 })

@@ -123,3 +123,25 @@ active. Lower-severity audit findings remain visible.
 Rollback the Wave 3 commits together to restore Wave 2's runtime, lockfile and UI
 imports. No persisted document conversion or rollback is required. The preliminary
 parked stash is retained until review; it is not the source of later Wave 2 fixes.
+
+
+## Follow-up browser QA
+
+Manual QA on the dashboard landing page exposed an interop error in React
+Virtualized 10: its CommonJS bundle directly calls `require("clsx")`, while
+Webpack's module-field preference selected an ESM namespace. A module rule now
+prefers CommonJS entries only for that bundle's CommonJS dependencies. No package
+versions, global interop behavior or peer-policy exceptions change.
+
+Browser coverage now includes populated dashboard-manager rows and a real SQL
+query/result grid. Those paths were not exercised by the original Vega editor
+smoke scenario, and zero-width jsdom containers had hidden the renderer failures.
+The SQL viewer's numeric default initializer is corrected, cell sizing uses its
+own column data rather than the removed Grid instance props, and split-pane
+measurement waits for refs with a stable, cancellable resize debounce.
+
+The fresh synthetic HeavyDB instance also returned `400 {}` until its database UI
+configuration existed. Creating an empty record through its authenticated
+`POST /configuration/db` API returned 201; subsequent reads return 200. This is
+local test-instance initialization, not suppression of configuration failures or
+an authentication change.

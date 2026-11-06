@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Copyright (c) 2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react"
 import sqlFormatter from "sql-formatter"
 import cx from "classnames"
 import { debounce } from "lodash"
@@ -127,7 +127,10 @@ export default function SqlEditorContent({
   const splitPaneRef = useRef(null)
   const inputPaneRef = useRef(null)
 
-  const updateResultsHeight = () => {
+  const updateResultsHeight = useCallback(() => {
+    if (!splitPaneRef.current || !inputPaneRef.current) {
+      return
+    }
     // We use this same function as a callback when a user resizes SplitPane.
     // SplitPane actually passes the input pane height to us, but we're using
     // `inputPaneRef` here because we want to resize the pane every time new
@@ -138,13 +141,19 @@ export default function SqlEditorContent({
         inputPaneRef.current.offsetHeight -
         META_TEXT_HEIGHT
     )
-  }
+  }, [])
 
-  const debouncedUpdateResultsHeight = debounce(updateResultsHeight, 5)
+  const debouncedUpdateResultsHeight = useMemo(
+    () => debounce(updateResultsHeight, 5),
+    [updateResultsHeight]
+  )
 
+  useEffect(() => () => debouncedUpdateResultsHeight.cancel(), [
+    debouncedUpdateResultsHeight
+  ])
   useEffect(() => {
     updateResultsHeight()
-  }, [loading])
+  }, [loading, updateResultsHeight])
 
   const runQuery = () => {
     if (selectionValue) {

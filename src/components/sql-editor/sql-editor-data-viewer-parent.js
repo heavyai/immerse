@@ -44,9 +44,7 @@ const ConnectedSqlEditorDataViewerParent = connect(mapStateToProps)(
 
 function useSqlEditorDataViewerParentProps3(incomingProps) {
   let viewProps = incomingProps
-  const [viewerHeight, setViewerHeight] = React.useState(() =>
-    DEFAULT_HEIGHT(viewProps)
-  )
+  const [viewerHeight, setViewerHeight] = React.useState(DEFAULT_HEIGHT)
   viewProps = { ...viewProps, viewerHeight, setViewerHeight }
   return viewProps
 }
