@@ -43,38 +43,33 @@ body {
   z-index: 10000;
 }
 
-.rmwc-tooltip.data-preview-tooltip {
-  // This messes with the rmwc animation, figure it out later
-  // but we need opacity: 1
-  // &:not(.rmwc-tooltip-zoom-leave),
-  // &:not(.rmwc-tooltip-zoom-enter) {
-  //   opacity: 1;
-  // }
-  &:not(.disabled) {
-    border: 1px solid $border-dim;
-  }
+.data-preview-popover[role="dialog"] {
+  box-sizing: border-box;
+  width: min(600px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  padding: 8px;
+  border: 1px solid $border-dim;
   border-radius: 8px;
-
-  // overriding material-overrides.scss madness
-  .rmwc-tooltip-inner {
-    background-color: var(--tooltipBackgroundColor) !important;
-  }
-  .rmwc-tooltip-arrow {
-    border-right-color: var(--tooltipBackgroundColor) !important;
-  }
+  background: var(--tooltipBackgroundColor);
+  color: var(--ui-text);
+  overflow: auto;
 }
 
-.data-preview-tooltip:not(.disabled) {
-  opacity: 1;
+.data-preview-popover .data-preview-header {
+  min-width: 0;
 }
-
-body:not(.light2-mode):not(.light-mode) {
-  .data-preview-tooltip:not(.disabled) {
-    .rmwc-tooltip-inner {
-      background-color: var(--tooltipBackgroundColor) !important;
-    }
-    .rmwc-tooltip-arrow {
-      border-right-color: var(--tooltipBackgroundColor) !important;
-    }
+.data-preview-popover .data-preview-header__titles {
+  gap: 12px;
+}
+.data-preview-popover .column-type-badge {
+  flex-shrink: 0;
+}
+.data-preview-popover .sql-notebook__statistic-set {
+  flex-wrap: wrap;
+  gap: 8px;
+  > .data-preview__statistic {
+    flex: 1 1 110px;
+    min-width: 0;
   }
 }

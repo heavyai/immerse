@@ -52,6 +52,8 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: (event: Event | React.SyntheticEvent) => void
   onSelect?: (event: React.MouseEvent) => void
   focusOnOpen?: boolean
+  side?: "top" | "right" | "bottom" | "left"
+  sideOffset?: number
   anchorCorner?: string
 }
 export function MenuSurface(props: MenuProps): React.ReactElement
@@ -141,6 +143,7 @@ export function Link(
 export function Chip(
   props: React.HTMLAttributes<HTMLSpanElement> & {
     label: React.ReactNode
+    icon?: React.ReactNode
     size?: string
     color?: string
     variant?: string

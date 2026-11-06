@@ -154,6 +154,7 @@ export const SqlNotebookDataPanel = ({
         },
         // Disabling in both places (DataPreviewTrigger + here) so disabled row action styles apply
         title: "Column Data Preview",
+        managesInteraction: true,
         isDisabled: (item: ColumnMetadata) => isNonEncodedString(item),
         onClick: noop // DataPreviewTrigger handles click itself
       })

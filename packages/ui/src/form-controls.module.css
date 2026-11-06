@@ -36,7 +36,9 @@
   cursor: pointer;
 }
 .chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid var(--ui-border);
   border-radius: 12px;
   padding: 2px 8px;
@@ -79,4 +81,8 @@
 .fileDropButton:focus-visible {
   outline: 2px solid var(--ui-accent);
   outline-offset: 2px;
+}
+
+.chip[data-variant="outlined"] {
+  background: transparent;
 }

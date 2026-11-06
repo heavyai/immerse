@@ -13,6 +13,7 @@ interface IActionIcon<I> {
 export interface IItemAction<I> {
   Icon: React.FC<IActionIcon<I>>
   onClick: (item: I) => void
+  managesInteraction?: boolean
   title?: string
   isDisabled?: (item?: I) => boolean
   disabledTooltip?: string
@@ -24,22 +25,35 @@ export const RowAction = <T,>({
   action: IItemAction<T>
   item: T
 }) => {
-  const { Icon, onClick, title, isDisabled, disabledTooltip } = action
+  const {
+    Icon,
+    onClick,
+    title,
+    isDisabled,
+    disabledTooltip,
+    managesInteraction
+  } = action
   const disabled = isDisabled?.(item) ?? false
   return (
     <TooltipIfContent
-      content={disabled ? disabledTooltip : title}
+      content={
+        managesInteraction ? undefined : disabled ? disabledTooltip : title
+      }
       enterDelay={850}
     >
       <div
-        role="button"
+        role={managesInteraction ? undefined : "button"}
         className={cx("sql-notebook__row-action", {
           disabled
         })}
-        onClick={(e) => {
-          e.stopPropagation()
-          onClick(item)
-        }}
+        onClick={
+          managesInteraction
+            ? undefined
+            : (e) => {
+                e.stopPropagation()
+                onClick(item)
+              }
+        }
       >
         <Icon item={item} />
       </div>

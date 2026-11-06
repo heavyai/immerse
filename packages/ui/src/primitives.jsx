@@ -217,6 +217,8 @@ export function MenuSurface({
   focusOnOpen = true,
   hoistToBody,
   anchorCorner,
+  side = "bottom",
+  sideOffset = 0,
   fixed,
   fullwidth,
   onSelect,
@@ -242,7 +244,8 @@ export function MenuSurface({
           ref={content}
           role={role}
           className={classes(styles.menu, className)}
-          sideOffset={0}
+          side={side}
+          sideOffset={sideOffset}
           align={/right|end/i.test(anchorCorner || "") ? "end" : "start"}
           onKeyDown={moveMenuFocus}
           onOpenAutoFocus={(e) => {

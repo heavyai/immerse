@@ -6,11 +6,9 @@
 @import "~base/_variables";
 
 .column-type-badge {
-  &.MuiChip-root {
-    padding: 0 $spacing-04;
-    color: $text-light;
-    border-color: $border-dim;
-  }
+  padding: 0 $spacing-04;
+  color: $text-light;
+  border-color: $border-dim;
 
   .column-type-badge__icon {
     display: flex;

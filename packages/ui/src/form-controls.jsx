@@ -73,12 +73,22 @@ export function Link({
     </Element>
   )
 }
-export function Chip({ label, className, size, color, variant, ...props }) {
+export function Chip({
+  label,
+  icon,
+  className,
+  size,
+  color,
+  variant,
+  ...props
+}) {
   return (
     <span
       {...props}
       className={[styles.chip, className].filter(Boolean).join(" ")}
+      data-variant={variant}
     >
+      {icon}
       {label}
     </span>
   )

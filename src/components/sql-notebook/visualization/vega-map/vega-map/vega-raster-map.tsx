@@ -203,6 +203,8 @@ export const VegaRasterMap = ({
         height="100%"
       >
         <StaticMap
+          // React 19 no longer applies defaultProps to function components.
+          {...StaticMap.defaultProps}
           mapStyle={basemap || DEFAULT_BASEMAP}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           ref={mapRef}

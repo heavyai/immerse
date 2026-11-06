@@ -178,3 +178,55 @@ test("SQL browser keeps names visible, type header readable, and empty space dar
   await expect(table.locator("tbody tr")).toHaveCount(1)
   await expect(firstName).toHaveText("region")
 })
+
+test("column previews contain statistics and return focus when dismissed", async ({
+  page
+}) => {
+  const errors: string[] = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("/heavyai/sql-notebook")
+  for (const [table, column] of [
+    ["modernization_wave0_sales", "amount"],
+    ["modernization_wave0_sales", "region"],
+    ["heavyai_countries", "geom"]
+  ]) {
+    const back = page.locator(".table-browser__current-table__back")
+    if (await back.isVisible()) {
+      await back.click()
+    }
+    await page.getByTestId(`sql-editor-table-selector-${table}`).click()
+    const row = page
+      .locator(".sql-notebook__column-table tbody tr")
+      .filter({ hasText: column })
+    await row.hover()
+    const trigger = row.getByRole("button", {
+      name: `Preview ${column}`,
+      exact: true
+    })
+    await trigger.click()
+    const preview = page.getByRole("dialog", {
+      name: `${column} column preview`,
+      exact: true
+    })
+    await expect(preview).toBeVisible()
+    await expect(
+      preview.locator(".loader-with-height,.loading-widget")
+    ).toHaveCount(0)
+    for (const selector of [
+      ".data-preview-header",
+      ".column-type-badge",
+      ".sql-notebook__statistic-set"
+    ]) {
+      await expectInside(preview, preview.locator(selector))
+    }
+    await expect(preview.locator(".column-type-badge svg")).toBeVisible()
+    const overflows = await preview.evaluate(
+      (el) => el.scrollWidth > el.clientWidth + 1
+    )
+    expect(overflows).toBe(false)
+    await page.keyboard.press("Escape")
+    await expect(preview).toBeHidden()
+    await expect(trigger).toBeFocused()
+  }
+  expect(errors).toEqual([])
+})

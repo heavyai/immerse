@@ -25,6 +25,9 @@ body.dark-mode {
   height: 36px;
 
   border-radius: 50%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 
   &:not(.disabled) {
     &:hover {
