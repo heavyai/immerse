@@ -74,6 +74,8 @@ const bundle = [
 const devServerOptions: DevConfig = {
   port: process.env.PORT || DEFAULT_PORT, // what port on localhost content will be served from
   compress: true, // use compression
+  // SSH forwarding can pair a localhost Origin with a 127.0.0.1 WebSocket Host.
+  allowedHosts: ["localhost", "127.0.0.1", "::1"],
   // hot: true, // enables react-refresh
   historyApiFallback: true,
   client: {
