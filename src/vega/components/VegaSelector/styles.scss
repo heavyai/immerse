@@ -16,8 +16,12 @@
     width: 100%;
     background: white;
 
-    .rmwc-data-table__content {
+    .mdc-data-table__table {
       position: initial;
+    }
+
+    th.data-table__cell--last {
+      width: 64px;
     }
   }
 
@@ -25,7 +29,7 @@
     .data-table {
       width: 320px;
 
-      .rmwc-data-table {
+      .data-table__table {
         max-height: 300px;
       }
     }

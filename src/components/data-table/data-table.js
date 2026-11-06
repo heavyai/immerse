@@ -448,26 +448,11 @@ const DataTable = ({
                   className="data-table__row--cta is-clickable"
                   onClick={callToAction}
                 >
-                  {columns.map((_, index) =>
-                    index === 0 ? (
-                      <React.Fragment key={index}>
-                        <RMWCDataTableCell>
-                          {callToActionText}
-                        </RMWCDataTableCell>
-                        {/* Empty cell purely to get correct background color */}
-                        {rowIconOptions && rowIconOptions.alignRight && (
-                          <RMWCDataTableCell />
-                        )}
-                      </React.Fragment>
-                    ) : (
-                      <React.Fragment key={index}>
-                        <RMWCDataTableCell />
-                        {rowIconOptions && rowIconOptions.alignRight && (
-                          <RMWCDataTableCell />
-                        )}
-                      </React.Fragment>
-                    )
-                  )}
+                  <RMWCDataTableCell
+                    colSpan={columns.length + (rowIconOptions ? 1 : 0)}
+                  >
+                    {callToActionText}
+                  </RMWCDataTableCell>
                 </RMWCDataTableRow>
               )}
 

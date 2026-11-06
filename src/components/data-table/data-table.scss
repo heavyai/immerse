@@ -126,6 +126,15 @@ body:not(.light2-mode):not(.light-mode) {
   border-top: 1px solid $gray3;
   font-weight: 400;
 
+  .mdc-data-table__table-container {
+    width: 100%;
+  }
+
+  // RMWC now supplies MDC row heights; keep the owned table density.
+  .rmwc-data-table__row {
+    height: 32px;
+  }
+
   .rmwc-data-table__cell {
     padding: 2px 0 2px 8px;
     height: auto;
@@ -136,7 +145,7 @@ body:not(.light2-mode):not(.light-mode) {
       }
     }
 
-    &.rmwc-data-table__head-cell {
+    &.mdc-data-table__header-cell {
       padding-left: 4px;
     }
 
@@ -153,7 +162,7 @@ body:not(.light2-mode):not(.light-mode) {
     padding-right: 4px;
   }
 
-  .rmwc-data-table__body .rmwc-data-table__cell:last-child {
+  .mdc-data-table__content .rmwc-data-table__cell:last-child {
     text-align: left;
   }
 
@@ -176,7 +185,7 @@ body:not(.light2-mode):not(.light-mode) {
     border: none;
   }
 
-  th.rmwc-data-table__head-cell {
+  th.mdc-data-table__header-cell {
     font-weight: 400;
     font-size: $fontSizeSmall;
     text-transform: capitalize;
@@ -193,7 +202,7 @@ body:not(.light2-mode):not(.light-mode) {
     }
   }
 
-  .rmwc-data-table__content {
+  .mdc-data-table__table {
     position: absolute;
     width: 100%;
   }
@@ -305,11 +314,11 @@ body:not(.light2-mode):not(.light-mode) {
       }
     }
 
-    .rmwc-data-table__content {
+    .mdc-data-table__table {
       background: $borderSeparator;
     }
 
-    .rmwc-data-table__body {
+    .mdc-data-table__content {
       background-color: $borderSeparator;
 
       .rmwc-data-table__cell {
