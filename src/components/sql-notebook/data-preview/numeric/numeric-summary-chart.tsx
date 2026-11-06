@@ -96,7 +96,7 @@ export const NumericSummaryChart = ({
             encoding: {
               x: {
                 axis: {
-                  labelExpr: `datum.value === '0' ? ${JSON.stringify(
+                  labelExpr: `datum.value === 0 ? ${JSON.stringify(
                     String(minLabel)
                   )} : ${JSON.stringify(String(maxLabel))}`,
                   values: [0, numBuckets - 1]
