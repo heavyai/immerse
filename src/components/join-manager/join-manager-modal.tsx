@@ -287,6 +287,7 @@ export const JoinManagerModal = () => {
   return (
     <div className="join-manager-modal">
       <SimpleDialog
+        className="join-manager-dialog"
         open
         title={
           <div className="join-manager-modal__title__wrapper">

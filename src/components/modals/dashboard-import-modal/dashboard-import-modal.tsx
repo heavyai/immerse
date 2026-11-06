@@ -3,7 +3,7 @@
 
 import {
   PrimaryButton,
-  SecondaryButton,
+  SecondaryButtonNoBorder,
   DialogTitle,
   DialogContent,
   DialogActions,
@@ -11,7 +11,6 @@ import {
 } from "@immerse/ui"
 import React, { FC, useState } from "react"
 import { InfoDialog } from "widgets/dialog/Dialog"
-import { IconButton } from "widgets/icon-button/Icon-button"
 import IconImport from "components/svg-icons/icon-import"
 import ImportSuccessIcon from "components/svg-icons/icon-import-success"
 import ImportWarningIcon from "components/svg-icons/icon-import-warning"
@@ -107,11 +106,21 @@ const DashboardImportModal: FC<Props> = ({ hideModal, importDashboard }) => {
     <InfoDialog open onClose={handleClose(hideModal)} className="import-dialog">
       <DialogTitle className="import-dialog-title">
         {HEADER_TEXT}
-        <IconButton
-          icon="close"
+        <button
+          type="button"
+          className="import-dialog-close"
+          aria-label="Close dialog"
           onClick={handleClose(hideModal)}
-          ripple={false}
-        />
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6 6l12 12M18 6L6 18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
       </DialogTitle>
       <DialogContent className="import-dialog-content">
         <FileDrop
@@ -162,12 +171,12 @@ const DashboardImportModal: FC<Props> = ({ hideModal, importDashboard }) => {
         </FileDrop>
       </DialogContent>
       <DialogActions>
-        <SecondaryButton
+        <SecondaryButtonNoBorder
           className="import-dialog-action-button"
           onClick={handleClose(hideModal)}
         >
           {SECONDARY_BUTTON_TEXT}
-        </SecondaryButton>
+        </SecondaryButtonNoBorder>
         <PrimaryButton
           className="import-dialog-action-button"
           onClick={handleImport(hideModal, importDashboard, dashboardToImport)}

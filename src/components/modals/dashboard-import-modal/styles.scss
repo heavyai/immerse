@@ -31,7 +31,8 @@
   }
 
   .mdc-icon-button:not(.mdc-ripple-upgraded):focus {
-    &::before, &::after {
+    &::before,
+    &::after {
       opacity: 0;
     }
   }
@@ -172,5 +173,55 @@
 body:not(.light2-mode):not(.light-mode) {
   .import-dialog-content .import-message-text {
     color: $textOnDark;
+  }
+}
+
+.import-dialog {
+  --dialog-width: 560px;
+  width: 560px;
+  min-width: min(420px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  font-size: 14px;
+
+  .import-dropzone {
+    width: 100%;
+    padding: 0;
+    font-size: 17.5px;
+  }
+  .import-prompt {
+    text-align: center;
+  }
+  .import-drag-hint {
+    justify-content: center;
+    align-items: center;
+  }
+  .import-dialog-title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .import-dialog-title .mdc-icon-button {
+    background: transparent;
+    border-radius: 0;
+  }
+}
+
+.import-dialog-close {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--ui-accent);
+    outline-offset: -4px;
   }
 }

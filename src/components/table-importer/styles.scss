@@ -43,74 +43,6 @@
     margin-bottom: 48px;
   }
 
-  .import-settings-dialog {
-    .mdc-dialog__surface {
-      min-width: 0 !important;
-
-      .mdc-dialog__content {
-        padding: 25px;
-      }
-    }
-
-    .import-settings-modal {
-      display: flex;
-      flex-direction: column;
-
-      .table-importer-option-title {
-        margin-bottom: 0;
-        font-size: $fontSizeNormal;
-        color: $dimTextOnDark;
-        white-space: nowrap;
-      }
-
-      .table-importer-option-container {
-        margin-right: 0;
-        margin-top: 10px;
-        justify-content: space-between;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .table-importer-option-list-container {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .table-importer-option-list-container > div {
-        margin-bottom: 15px;
-      }
-
-      .table-importer-option-text-input {
-        height: 32px;
-        min-width: 120px;
-      }
-
-      .table-importer-option-placeholder {
-        margin-top: auto;
-        margin-bottom: auto;
-      }
-
-      .table-importer-option-checkboxgroup {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-        .table-importer-option-container {
-          flex-direction: row;
-          align-items: center;
-        }
-
-        .table-importer-option-title {
-          margin: 0;
-        }
-
-        .table-importer-option-checkbox {
-          margin: 0 0.5em 0 0;
-        }
-      }
-    }
-  }
-
   .table-importer-header {
     display: flex;
     align-items: center;
@@ -195,5 +127,81 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.import-settings-dialog {
+  --dialog-width: max-content;
+  --dialog-min-width: 0px;
+
+  [data-ui="dialog-content"] {
+    padding: 25px;
+    line-height: 20px;
+  }
+
+  [data-ui="dialog-actions"] > div {
+    display: flex;
+    gap: 8px;
+  }
+
+  .import-settings-modal {
+    display: flex;
+    flex-direction: column;
+
+    .table-importer-option-title {
+      margin-bottom: 0;
+      font-size: $fontSizeNormal;
+      color: $dimTextOnDark;
+      white-space: nowrap;
+    }
+
+    .table-importer-option-container {
+      margin-right: 0;
+      margin-top: 10px;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .table-importer-option-list-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .table-importer-option-list-container > div {
+      margin-bottom: 15px;
+    }
+
+    .table-importer-option-text-input {
+      height: 32px;
+      min-width: 120px;
+      background: var(--ui-input);
+      color: var(--ui-text);
+      border: 1px solid var(--ui-border);
+    }
+
+    .table-importer-option-placeholder {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .table-importer-option-checkboxgroup {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .table-importer-option-container {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .table-importer-option-title {
+        margin: 0;
+      }
+
+      .table-importer-option-checkbox {
+        margin: 0 0.5em 0 0;
+      }
+    }
   }
 }

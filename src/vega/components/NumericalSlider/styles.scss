@@ -23,8 +23,11 @@
     }
   }
 
-  & > .mdc-slider {
+  & > [data-ui="slider"] {
     margin: 0 5px;
+    height: 48px;
+    width: auto;
+    min-width: 0;
     flex: 1 0 0;
     outline: none;
   }

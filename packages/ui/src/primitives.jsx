@@ -74,7 +74,7 @@ export const InfoButton = buttonVariant("primary")
 export const SuccessButton = buttonVariant("primary", "success")
 
 function ToggleControl(
-  { label, indeterminate, role, className, ...props },
+  { label, indeterminate, role, className, variant, ...props },
   ref
 ) {
   const input = useRef(null)
@@ -88,6 +88,7 @@ function ToggleControl(
       {...props}
       type="checkbox"
       role={role}
+      data-toggle-variant={variant}
       ref={(node) => {
         input.current = node
         if (typeof ref === "function") {
@@ -115,6 +116,10 @@ function ToggleControl(
 export const Checkbox = forwardRef(ToggleControl)
 export const Switch = forwardRef(function SwitchControl(props, ref) {
   return <Checkbox {...props} role="switch" ref={ref} />
+})
+
+export const Toggle = forwardRef(function PillToggleControl(props, ref) {
+  return <Switch {...props} variant="pill" ref={ref} />
 })
 
 export function Tooltip({
@@ -237,8 +242,8 @@ export function MenuSurface({
           ref={content}
           role={role}
           className={classes(styles.menu, className)}
-          sideOffset={4}
-          align={anchorCorner?.includes("RIGHT") ? "end" : "start"}
+          sideOffset={0}
+          align={/right|end/i.test(anchorCorner || "") ? "end" : "start"}
           onKeyDown={moveMenuFocus}
           onOpenAutoFocus={(e) => {
             e.preventDefault()
@@ -360,15 +365,28 @@ export const DialogTitle = forwardRef(function DialogTitleControl(
     <DialogPrimitive.Title
       {...props}
       ref={ref}
+      data-ui="dialog-title"
       className={classes(styles.dialogTitle, className)}
     />
   )
 })
 export function DialogContent({ className, ...props }) {
-  return <div {...props} className={classes(styles.dialogContent, className)} />
+  return (
+    <div
+      {...props}
+      data-ui="dialog-content"
+      className={classes(styles.dialogContent, className)}
+    />
+  )
 }
 export function DialogActions({ className, ...props }) {
-  return <div {...props} className={classes(styles.dialogActions, className)} />
+  return (
+    <div
+      {...props}
+      data-ui="dialog-actions"
+      className={classes(styles.dialogActions, className)}
+    />
+  )
 }
 
 export const Slider = forwardRef(function SliderControl(
@@ -416,6 +434,7 @@ export const Slider = forwardRef(function SliderControl(
       value={values}
       defaultValue={initial}
       orientation={orientation}
+      data-ui="slider"
       className={classes(styles.slider, className)}
       data-track={track}
       onValueChange={(next) => onChange?.(null, unpack(next))}

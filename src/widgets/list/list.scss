@@ -5,58 +5,69 @@
 
 @import "~base/variables";
 
-.mdc-list {
+:is(.mdc-list, .mdc-deprecated-list) {
+  --mdc-theme-primary: var(--ui-accent);
+}
+
+:is(.mdc-list, .mdc-deprecated-list) {
   border: 1px solid $gray5;
   background-color: #fff;
   color: $text-black;
   svg {
-    fill: $dimTextOnDark
+    fill: $dimTextOnDark;
   }
-  .mdc-list-item:hover {
+  :is(.mdc-list-item, .mdc-deprecated-list-item):hover {
     background-color: $gray1;
   }
-  .mdc-list-item--selected {
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected) {
     color: $text-gray;
     svg {
       fill: $text-gray;
     }
   }
-  .mdc-list-item.compact, .mdc-list-item.extra-compact {
+  :is(.mdc-list-item, .mdc-deprecated-list-item).compact,
+  :is(.mdc-list-item, .mdc-deprecated-list-item).extra-compact {
     padding: 0 8px;
     font-size: $fontSizeNormal;
   }
-  .mdc-list-item.compact {
+  :is(.mdc-list-item, .mdc-deprecated-list-item).compact {
     height: 32px;
   }
-  .mdc-list-item.extra-compact {
+  :is(.mdc-list-item, .mdc-deprecated-list-item).extra-compact {
     height: 24px;
   }
-  &:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::before,
-  &:not(.mdc-list--non-interactive) > :not(.mdc-list-item--disabled).mdc-list-item::after {
+  &:not(:is(.mdc-list--non-interactive, .mdc-deprecated-list--non-interactive))
+    > :not(:is(.mdc-list-item--disabled, .mdc-deprecated-list-item--disabled)):is(.mdc-list-item, .mdc-deprecated-list-item)::before,
+  &:not(:is(.mdc-list--non-interactive, .mdc-deprecated-list--non-interactive))
+    > :not(:is(.mdc-list-item--disabled, .mdc-deprecated-list-item--disabled)):is(.mdc-list-item, .mdc-deprecated-list-item)::after {
     background-color: $gray1;
   }
 }
 
-.mdc-list.compact, .mdc-list.extra-compact {
+:is(.mdc-list, .mdc-deprecated-list).compact,
+:is(.mdc-list, .mdc-deprecated-list).extra-compact {
   padding: 0;
-  .mdc-list-item {
+  :is(.mdc-list-item, .mdc-deprecated-list-item) {
     height: 32px;
     padding: 0 8px;
     font-size: $fontSizeNormal;
   }
 }
 
-.mdc-list.extra-compact .mdc-list-item {
+:is(.mdc-list, .mdc-deprecated-list).extra-compact
+  :is(.mdc-list-item, .mdc-deprecated-list-item) {
   height: 24px;
 }
 
-body .mdc-list {
+body :is(.mdc-list, .mdc-deprecated-list) {
   background-color: $grayDp8;
   border-color: $borderSeparator;
-  .mdc-list-item, .mdc-list-item__meta, .mdc-list-item__graphic {
+  :is(.mdc-list-item, .mdc-deprecated-list-item),
+  :is(.mdc-list-item__meta, .mdc-deprecated-list-item__meta),
+  :is(.mdc-list-item__graphic, .mdc-deprecated-list-item__graphic) {
     color: $dimTextOnDark;
   }
-  .mdc-list-item:hover {
+  :is(.mdc-list-item, .mdc-deprecated-list-item):hover {
     background-color: $highlightOnDark;
     color: $textOnDark;
     svg {
@@ -64,21 +75,28 @@ body .mdc-list {
     }
   }
 
-  .mdc-list-item--disabled, .mdc-list-item--disabled:hover {
+  :is(.mdc-list-item--disabled, .mdc-deprecated-list-item--disabled),
+  :is(.mdc-list-item--disabled, .mdc-deprecated-list-item--disabled):hover {
     color: $disabled;
     svg {
       fill: $disabled;
     }
   }
-  .mdc-list-item--selected {
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected) {
     color: $textOnDark;
     svg {
       fill: $textOnDark;
     }
   }
 
-  .mdc-list-item--selected::before,
-  .mdc-list-item--selected::after {
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected)::before,
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected)::after {
     background-color: $grayDp8;
   }
+}
+
+// Updated MDC draws state layers in its ripple child, not these legacy pseudos.
+.mdc-deprecated-list .mdc-deprecated-list-item::before,
+.mdc-deprecated-list .mdc-deprecated-list-item::after {
+  display: none;
 }

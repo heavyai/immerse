@@ -291,14 +291,14 @@ $filter-view-row-height: 32px;
     }
   }
 
-  .mdc-list {
+  :is(.mdc-list, .mdc-deprecated-list) {
     border-color: $gray2;
   }
 
   .dashboard-mngr-multiselect {
     height: 100%;
 
-    .mdc-list {
+    :is(.mdc-list, .mdc-deprecated-list) {
       position: absolute;
       z-index: 1;
       max-height: 160px;
@@ -306,7 +306,7 @@ $filter-view-row-height: 32px;
       overflow: hidden;
     }
 
-    .mdc-list-item--selected::before {
+    :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected)::before {
       display: none;
     }
 
@@ -448,11 +448,12 @@ body:not(.light2-mode) .dashboard-manager-filters-panel {
     border-color: $borderSeparator;
   }
 
-  .mdc-list-item--selected {
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected) {
     background-color: $highlightOnDark;
   }
 
-  .mdc-list-item--selected .mdc-form-field {
+  :is(.mdc-list-item--selected, .mdc-deprecated-list-item--selected)
+    .mdc-form-field {
     color: $textOnDark;
   }
 
@@ -474,7 +475,7 @@ body:not(.light2-mode) .dashboard-manager-filters-panel {
     border: none;
   }
 
-  .mdc-list {
+  :is(.mdc-list, .mdc-deprecated-list) {
     border-color: $highlightOnDark;
   }
 }

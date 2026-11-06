@@ -3,7 +3,7 @@
 
 import React from "react"
 
-import { Switch as Toggle } from "@immerse/ui"
+import { Toggle } from "@immerse/ui"
 
 type NullToggleProps = {
   checked: boolean

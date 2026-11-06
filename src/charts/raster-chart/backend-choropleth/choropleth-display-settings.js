@@ -8,7 +8,7 @@ import ChartSettingsBasemapDropdownParent from "components/chart-settings-basema
 import ChartSettingsGeoJsonDropdown from "components/chart-settings-geojson-dropdown/chart-settings-geojson-dropdown-parent"
 import HoverSelector from "components/hover-selector/hover-selector"
 import CustomSlider from "components/custom-slider/custom-slider"
-import { Switch as Toggle, Switch } from "@immerse/ui"
+import { Toggle, Switch } from "@immerse/ui"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import { isSelectorUsable } from "utils/selector-helpers"
 import { chartShape } from "constants/prop-types"

@@ -3,7 +3,7 @@
 
 import * as React from "react"
 import { connect } from "react-redux"
-import { Switch as Toggle } from "@immerse/ui"
+import { Toggle } from "@immerse/ui"
 
 import { isPercentageViewVisible } from "charts/combo/line-chart2/utils"
 import ColorPickerParent from "components/color-picker/color-picker-parent"

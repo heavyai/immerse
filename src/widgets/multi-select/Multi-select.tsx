@@ -49,7 +49,10 @@ export class MultiSelect extends React.PureComponent<IMultiSelectProps, {}> {
     )
   }
 
-  private Placeholder = () => null
+  private Placeholder = (props) =>
+    props.selectProps.noLabel ? (
+      <ReactSelectComponents.Placeholder {...props} />
+    ) : null
 
   private customStyles = {
     menuPortal: (base) => ({

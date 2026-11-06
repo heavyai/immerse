@@ -15,7 +15,7 @@ import {
 
 import { NULLS_FIRST, NULLS_LAST } from "constants/magic-variables"
 
-import { Select, Switch as Toggle } from "@immerse/ui"
+import { Select, Toggle } from "@immerse/ui"
 
 import "./chart-settings.css"
 
@@ -117,6 +117,9 @@ const TableChartSettings = (props: any) => {
         <div className="chart-editor-label">{"Border options"}</div>
         <div className="format-selector-wrapper">
           <Select
+            className="table-border-select"
+            classNamePrefix="table-border-select"
+            isClearable
             value={
               borderOptions.find(
                 (opt) => opt.value === props.chart.renderTableBorders

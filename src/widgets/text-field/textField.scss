@@ -62,6 +62,16 @@
     padding-right: 32px;
   }
 
+  .mdc-text-field__icon {
+    position: absolute;
+    margin: 0;
+    z-index: 3;
+  }
+
+  .mdc-text-field__icon--trailing {
+    right: 4px;
+  }
+
   .mdc-floating-label {
     top: 6px;
     bottom: initial;

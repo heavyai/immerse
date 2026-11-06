@@ -5,17 +5,12 @@
 
 @import "~base/variables";
 
-.join-manager-modal {
-  .mdc-dialog__container {
-    height: 827px;
-    width: 1140px;
-    max-width: 1140px;
-    min-height: 90vh;
-    max-height: 60vh;
+.join-manager-dialog {
+  --dialog-width: 1140px;
+  height: min(827px, 90vh);
 
-    .mdc-dialog__surface {
-      min-width: 100%;
-    }
+  [data-ui="dialog-title"] {
+    min-height: 72px;
   }
 
   .multi-select .mdc-floating-label,

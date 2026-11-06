@@ -266,6 +266,7 @@ export default class CustomSlider extends Component {
           )}
           <div className="slider-wrap">
             <Slider
+              className="legacy-range-slider"
               id={testid}
               max={max}
               min={min}

@@ -269,12 +269,12 @@ const DataTable = ({
       <RMWCDataTableHead>
         <RMWCDataTableRow>
           {rowIconOptions && !rowIconOptions.alignRight && (
-            <RMWCDataTableHeadCell />
+            <RMWCDataTableHeadCell className="data-table__head-cell--icon" />
           )}
 
           {columns.map((column, index) => (
             <RMWCDataTableHeadCell
-              className={cx({
+              className={cx(`data-table__head-cell--key-${column.columnKey}`, {
                 "data-table__cell--last": index === columns.length - 1
               })}
               key={`data-table-header-${index}`}
@@ -289,7 +289,7 @@ const DataTable = ({
           ))}
 
           {rowIconOptions && rowIconOptions.alignRight && (
-            <RMWCDataTableHeadCell />
+            <RMWCDataTableHeadCell className="data-table__head-cell--icon" />
           )}
         </RMWCDataTableRow>
       </RMWCDataTableHead>

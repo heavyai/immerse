@@ -125,8 +125,11 @@ body:not(.light2-mode):not(.light-mode) {
   border: 0;
   border-top: 1px solid $gray3;
   font-weight: 400;
+  background-color: white;
 
   .mdc-data-table__table-container {
+    flex: 1;
+    min-width: 0;
     width: 100%;
   }
 
@@ -203,8 +206,18 @@ body:not(.light2-mode):not(.light-mode) {
   }
 
   .mdc-data-table__table {
-    position: absolute;
+    position: relative;
     width: 100%;
+  }
+
+  .rmwc-data-table__head {
+    .rmwc-data-table__cell.data-table__head-cell--icon {
+      width: 48px;
+    }
+    .rmwc-data-table__cell.data-table__head-cell--key-type,
+    .rmwc-data-table__cell.data-table__head-cell--key-filterType {
+      width: 64px;
+    }
   }
 
   .rmwc-data-table__row {
@@ -305,6 +318,8 @@ body:not(.light2-mode):not(.light-mode) {
 
   .data-table__table {
     border-top-color: $borderSeparator;
+
+    background-color: $grayDp3;
 
     .rmwc-data-table__head {
       .rmwc-data-table__row,

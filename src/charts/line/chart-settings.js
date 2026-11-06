@@ -6,7 +6,7 @@ import React from "react"
 import SegmentedControl from "components/segmented-control/segmented-control"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import ChartFormatting from "components/chart-settings/chart-formatting"
-import { Switch as Toggle } from "@immerse/ui"
+import { Toggle } from "@immerse/ui"
 import {
   useOnValueChangeWithRangeChart,
   useOnValueChangeWithChartStyle

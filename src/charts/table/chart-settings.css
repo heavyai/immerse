@@ -6,3 +6,26 @@
 .chart-editor-container .chart-editor-section {
   margin-bottom: 16px;
 }
+
+.table-border-select .table-border-select__control {
+  min-height: 39px;
+  height: 39px;
+  border: 0;
+  border-radius: 0;
+  font-size: 16px;
+  padding: 2px;
+  box-shadow: none;
+}
+.table-border-select .table-border-select__indicator-separator {
+  display: none;
+}
+.table-border-select .table-border-select__value-container {
+  padding: 0 4px;
+}
+.table-border-select .table-border-select__indicator {
+  padding: 4px;
+}
+
+.table-border-select .table-border-select__dropdown-indicator {
+  display: none;
+}

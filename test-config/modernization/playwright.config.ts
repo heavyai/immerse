@@ -5,7 +5,7 @@ import { defineConfig } from "@playwright/test"
 
 export default defineConfig({
   testDir: ".",
-  testMatch: "browser-baseline.spec.ts",
+  testMatch: ["browser-baseline.spec.ts", "browser-visual-regressions.spec.ts"],
   timeout: 180000,
   workers: 1,
   retries: 0,

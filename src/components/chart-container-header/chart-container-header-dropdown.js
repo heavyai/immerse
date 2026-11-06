@@ -46,6 +46,7 @@ export const ChartContainerHeaderDropdown = ({ items }) => {
     >
       <MenuSurfaceAnchor>
         <Menu
+          anchorCorner="bottomRight"
           open={isOpen}
           onClose={() => setIsOpen(false)}
           onMouseLeave={delayClose}

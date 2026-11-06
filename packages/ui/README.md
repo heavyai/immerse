@@ -35,3 +35,15 @@ millisecond steps), file input/drop targets with cancellable reads, and select/
 creatable-select controls backed by React Select. Application callers own date
 parsing, timezone semantics, document parsing and domain validation. The package
 imports no application code. Form styles are isolated in `form-controls.module.css`.
+
+Portaled dialog sections expose `data-ui="dialog-title"`, `dialog-content`, and
+`dialog-actions` for consumer layouts. Set `--dialog-width` on a dialog to size a
+specialized editor; the application SimpleDialog also supports
+`--dialog-min-width`. Put consumer classes on the portaled dialog itself rather
+than relying on an ancestor that remains at the trigger location.
+
+`Switch` uses the standard thumb/track presentation, with `compact` for dense
+settings. `Toggle` has the larger pill/check/cross presentation used by legacy
+chart controls; both retain native checkbox events and switch semantics. Slider
+roots expose `data-ui="slider"` so adjacent numeric inputs can share a row without
+depending on Radix's internal markup.

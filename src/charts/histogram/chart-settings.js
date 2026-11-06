@@ -3,7 +3,7 @@
 
 import React from "react"
 
-import { Switch as Toggle } from "@immerse/ui"
+import { Toggle } from "@immerse/ui"
 import ColorPickerParent from "components/color-picker/color-picker-parent"
 import ChartFormatting from "components/chart-settings/chart-formatting"
 import { useOnValueChangeWithRangeChart } from "charts/utils/shared-chart-settings-handlers"
