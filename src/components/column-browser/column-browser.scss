@@ -16,8 +16,23 @@
     padding: $spacing-05;
     .data-column-selector__input {
       width: 100%;
+
+      .mdc-text-field__icon {
+        position: absolute;
+        margin: 0;
+        z-index: 3;
+      }
     }
   }
+  .toggle-menu-multi-select .multi-select__menu-anchor {
+    padding: $spacing-03 $spacing-05;
+    border-radius: 16px;
+
+    &:not(.has-selected-options) {
+      border: 1px solid var(--menuAnchorPillOutline);
+    }
+  }
+
   .data-column-selector__filters {
     display: flex;
     justify-content: space-between;

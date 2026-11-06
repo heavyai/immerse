@@ -23,6 +23,9 @@ body {
   line-height: $fontSizeXLarge;
   overflow: auto;
   display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
 
   &.is-loading {
     flex-grow: 1;
@@ -38,22 +41,43 @@ body {
 
   .sql-notebook__column-table__table {
     display: flex;
+    width: 100%;
+    min-width: 0;
+    border-radius: 0;
+    background-color: var(--cellBackgroundColor);
     border: 0;
     border-top: 1px solid $gray3;
     font-weight: 400;
     border-top-color: var(--borderTopColor);
 
-    // Fill the drawer
-    .rmwc-data-table__content {
-      width: $drawer-width;
+    // RMWC now wraps the table in its own scrolling container.
+    .mdc-data-table__table-container {
+      width: 100%;
+    }
+
+    .mdc-data-table__table {
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .mdc-data-table__header-row {
+      height: 28px;
+    }
+
+    .mdc-data-table__header-cell:first-child {
+      width: 52px;
+    }
+
+    .mdc-data-table__row {
+      height: 46px;
     }
 
     // Dark theme
-    .rmwc-data-table__content {
+    .mdc-data-table__table {
       background: $borderSeparator;
     }
 
-    .rmwc-data-table__body {
+    .mdc-data-table__content {
       // Highlight cells when hovering a row
       .rmwc-data-table__row {
         &.active,
@@ -72,7 +96,9 @@ body {
     }
 
     // Header cell styles
-    .rmwc-data-table__cell.rmwc-data-table__head-cell {
+    .rmwc-data-table__head
+      .rmwc-data-table__row
+      .rmwc-data-table__cell.mdc-data-table__header-cell {
       background-color: var(--headerCellBackgroundColor);
       padding-left: $spacing-02;
     }
