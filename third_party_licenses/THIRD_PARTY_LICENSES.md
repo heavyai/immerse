@@ -189,7 +189,7 @@ Generated from the installed environment. Total packages: **2374**.
 | @heavyai/connector | 7.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @heavyai/crossfilter | 1.2.1 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @heavyai/d3-combo-chart | 1.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
-| @heavyai/draw | 2.0.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
+| @heavyai/draw | 2.0.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @hot-loader/react-dom | 16.14.0 | MIT | [https://spdx.org/licenses/MIT.html](https://spdx.org/licenses/MIT.html) |
 | @humanwhocodes/config-array | 0.5.0 | Apache-2.0 | [https://spdx.org/licenses/Apache-2.0.html](https://spdx.org/licenses/Apache-2.0.html) |
 | @humanwhocodes/object-schema | 1.2.1 | BSD-3-Clause | [https://spdx.org/licenses/BSD-3-Clause.html](https://spdx.org/licenses/BSD-3-Clause.html) |
