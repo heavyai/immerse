@@ -86,7 +86,7 @@ export default {
   },
 
   ordering(chart, diff) {
-    chart.ordering(diff.sortColumn.order)
+    chart.ordering(diff.sortColumn?.order)
   },
 
   color() {

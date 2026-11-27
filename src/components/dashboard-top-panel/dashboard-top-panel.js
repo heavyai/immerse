@@ -311,13 +311,13 @@ export const RightWrapper = ({
         </div>
       )}
       {dashboardId &&
-        privileges.editDashboard &&
+        privileges?.editDashboard &&
         !isSharingRestricted &&
         !getFeatureFlag(KIOSK_MODE) && <ShareLink />}
-      {(privileges.editDashboard || userPrivileges.createDashboard) &&
+      {(privileges?.editDashboard || userPrivileges?.createDashboard) &&
         getFeatureFlag(GLOBAL_SIDE_NAV) &&
         !getFeatureFlag(KIOSK_MODE) && <DashboardKebab />}
-      {(!dashboardId || privileges.editDashboard) &&
+      {(!dashboardId || privileges?.editDashboard) &&
         !saveState.isLink &&
         !isDemo &&
         !getFeatureFlag(KIOSK_MODE) && (
@@ -381,7 +381,7 @@ export const RightWrapper = ({
           <AccountPanel />
         </ImmerseUIRequired>
       ) : (
-        (privileges.editDashboard || userPrivileges.createDashboard) && (
+        (privileges?.editDashboard || userPrivileges?.createDashboard) && (
           <DashboardKebab />
         )
       )}

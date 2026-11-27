@@ -204,7 +204,7 @@ function getTopN(querySpec, queuedConnector) {
 }
 
 function preFlight(querySpec, queuedConnector, colorGroupsShouldReset) {
-  if (querySpec.dimensions[1].value) {
+  if (querySpec.dimensions[1]?.value) {
     if (
       !colorGroupsShouldReset &&
       querySpec.customColorAssignment &&

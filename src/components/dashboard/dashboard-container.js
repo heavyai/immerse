@@ -81,7 +81,7 @@ function mapStateToProps(state) {
     dashboardGridMargin,
     restrictViewing:
       getFeatureFlag(RESTRICTED_VIEWING) &&
-      !state.dashboard.privileges.editDashboard,
+      !state.dashboard.privileges?.editDashboard,
     configPanelWidth:
       state.dashboard.configPanelWidth || MIN_DASHBOARD_CONFIG_PANEL_WIDTH
   }

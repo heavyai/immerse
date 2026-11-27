@@ -690,7 +690,7 @@ export function calculateCdfPdf(
           const annotationDimensions = JSON.parse(
             prev.annotationKey.annotationDimensions
           )
-          dataSelection.dimensions.xAxis.forEach((dim, dimidx) => {
+          dataSelection?.dimensions?.xAxis?.forEach((dim, dimidx) => {
             annotationDimensions[dimExprToStr(dim)] = dimensionScaler(
               dimensions[dimidx]
             )
@@ -1182,7 +1182,7 @@ export function fillTooltipData(
     const group = measureSettingsLookup[datum.measureKey]
     if (group && !datum.gap) {
       const colorMeasureData =
-        dataSelections[group.dataSelectionIndex].measures.color
+        dataSelections[group.dataSelectionIndex]?.measures?.color
       const dimData = tooltipData[datum.dimension]
       if (dimData) {
         const isCategoricalColorMeasure = Boolean(
@@ -1210,7 +1210,7 @@ export function fillTooltipData(
           dataSelectionIndex: datum.dataSelectionIndex,
           dataSource:
             getDisplayOrParameterName(
-              dataSelections[group.dataSelectionIndex].table?.name
+              dataSelections[group.dataSelectionIndex]?.table?.name
             ) || "",
           colorMeasureAggregate: colorMeasureData?.aggregate || null,
           colorMeasureValue: isCategoricalColorMeasure
@@ -1391,9 +1391,11 @@ const buildFilters = (
     // find all data matching this dimension and build corresponding filters
     const matchingData = data.filter((datum) => datum.dimension === value.value)
     matchingData.forEach((datum) => {
-      const {
-        dimensions: { xAxis: baseDimensions }
-      } = dataSelections[datum.dataSelectionIndex]
+      const baseDimensions =
+        dataSelections[datum.dataSelectionIndex]?.dimensions?.xAxis
+      if (!baseDimensions?.length) {
+        return
+      }
       // Confusing that this property is table in the dim, but this is
       // the datasource, which can be a param ${stuff}. The column within the baseDimension
       // has the columns source table
@@ -2169,7 +2171,7 @@ export const mapStateToProps = () => {
       const binnedDimension =
         binSettings?.dimensionType === "binned_numeric" ||
         binSettings?.dimensionType === "binned_time"
-      const dimensionSorted = sortColumn.col.name === "dimension0"
+      const dimensionSorted = sortColumn?.col?.name === "dimension0"
 
       return binnedDimension && dimensionSorted
     }
@@ -2189,7 +2191,7 @@ export const mapStateToProps = () => {
     "continuousDimensionDesc",
     enableContinuousDimensionSelector,
     sortColumnSelector,
-    (isContinuous, sortColumn) => isContinuous && sortColumn.order === "desc"
+    (isContinuous, sortColumn) => isContinuous && sortColumn?.order === "desc"
   )
 
   const sharedSettingsSelector = selectors.createSelector(
@@ -2683,7 +2685,7 @@ export const mapStateToProps = () => {
         const dataSelection = dataSelections[index]
         const paletteMapping = paletteMappings.find(
           (pm: PaletteMapping) =>
-            pm.id === dataSelection.measures.color?.paletteMappingId
+            pm.id === dataSelection?.measures?.color?.paletteMappingId
         )
         // Translates from palette mapping to the top n options for combo
         const mapping = paletteMapping?.mapping
@@ -2723,7 +2725,7 @@ export const mapStateToProps = () => {
         const dataSelection = dataSelections[index]
         const paletteMapping = paletteMappings.find(
           (pm: PaletteMapping) =>
-            pm.id === dataSelection.dimensions.color?.paletteMappingId
+            pm.id === dataSelection?.dimensions?.color?.paletteMappingId
         )
         // Translates from palette mapping to the top n options for combo
         const mapping = paletteMapping?.mapping
@@ -2970,14 +2972,14 @@ export const mapStateToProps = () => {
       return data.reduce((layerMappingsAcc, layer, index) => {
         const { table: layerData } = layer
         const dataSelection = dataSelections[index]
-        const hasMeasureColor = Boolean(dataSelection.measures.color)
+        const hasMeasureColor = Boolean(dataSelection?.measures?.color)
         const isCategoricalMeasureColor =
           hasMeasureColor &&
-          Boolean(dataSelection.measures.color?.aggregate === "Mode")
+          Boolean(dataSelection?.measures?.color?.aggregate === "Mode")
         const paletteMapping = paletteMappings.find(
-          (pm) => pm.id === dataSelection.measures.color?.paletteMappingId
+          (pm) => pm.id === dataSelection?.measures?.color?.paletteMappingId
         )
-        const measureOptions = dataSelection.measureTopNOptions
+        const measureOptions = dataSelection?.measureTopNOptions
         const colorKey = getColorKey(measureOptions, paletteMapping)
         const paletteType =
           paletteMapping?.mapping?.palette?.type ??
@@ -3035,6 +3037,9 @@ export const mapStateToProps = () => {
           index
         ) => {
           const dataSelection = dataSelections[index]
+          if (!dataSelection) {
+            return acc
+          }
           return acc.concat(
             transformData(
               dataSelection,
@@ -3070,7 +3075,7 @@ export const mapStateToProps = () => {
         return { dimensions: [], formatted: {} }
       }
 
-      const naturalBinnedSorting = sortColumn.col.name === "dimension0"
+      const naturalBinnedSorting = sortColumn?.col?.name === "dimension0"
 
       // If we're sorting by anything other than dimension, we treat the
       // chart as categorical. Otherwise, we generate the full domain of
@@ -3098,7 +3103,7 @@ export const mapStateToProps = () => {
           }
         })
 
-        if (sortColumn.order === "desc") {
+        if (sortColumn?.order === "desc") {
           dimensions.reverse()
         }
 
@@ -3115,22 +3120,22 @@ export const mapStateToProps = () => {
         let sortableVal = null
         if (
           datum.dataSelectionIndex !== 0 &&
-          sortColumn.col.name === "measureColor"
+          sortColumn?.col?.name === "measureColor"
         ) {
           sortableVal = datum.measure
         } else if (
           // Size measure #Records is not included as countval but measure0
-          sortColumn.col.name === "countval" &&
-          !datum[sortColumn.col.name]
+          sortColumn?.col?.name === "countval" &&
+          !datum[sortColumn?.col?.name]
         ) {
           sortableVal = datum.measure0
         } else {
-          sortableVal = datum[sortColumn.col.name]
+          sortableVal = datum[sortColumn?.col?.name]
         }
 
         if (datum.dimension in grouped) {
           if (
-            !sortColumn.col.name.startsWith("dimension") &&
+            !sortColumn?.col?.name?.startsWith("dimension") &&
             typeof grouped[datum.dimension] === "number" &&
             typeof sortableVal === "number"
           ) {
@@ -3143,7 +3148,7 @@ export const mapStateToProps = () => {
       })
 
       const sorter =
-        sortColumn.order === "desc"
+        sortColumn?.order === "desc"
           ? (a, b) => (a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0)
           : (a, b) => (a[1] > b[1] ? 1 : a[1] < b[1] ? -1 : 0)
 
@@ -3883,7 +3888,7 @@ export const mapStateToProps = () => {
       collapsedLegendLayers
     ) => {
       const topNLegendData = dataSelections.map((dataSelection, index) => {
-        const colorMeasure = dataSelection.measures.color
+        const colorMeasure = dataSelection?.measures?.color
         const isCategoricalMeasureColor = colorMeasure?.aggregate === "Mode"
         const layerMeasureData = measureData[index]
         const layerMeasureOptions = measureTopNOptions[index]
@@ -3904,7 +3909,7 @@ export const mapStateToProps = () => {
             isColorMeasureSelected: true,
             propertyName: "measureTopNOptions",
             legendCollapsed: Boolean(
-              collapsedLegendLayers?.[dataSelection.layerId]
+              collapsedLegendLayers?.[dataSelection?.layerId]
             )
           }
         } else if (topNquerySpecs[index]) {
@@ -3918,14 +3923,14 @@ export const mapStateToProps = () => {
             return {
               type: "MEASURE",
               name: `Layer ${index + 1} - ${getDisplayOrParameterName(
-                dataSelection.table?.name
+                dataSelection?.table?.name
               )}`,
-              layerId: dataSelection.layerId,
+              layerId: dataSelection?.layerId,
               legendCollapsed: Boolean(
-                collapsedLegendLayers?.[dataSelection.layerId]
+                collapsedLegendLayers?.[dataSelection?.layerId]
               ),
-              isColorMeasureSelected: Boolean(dataSelection.measures.color),
-              measures: dataSelection.measures
+              isColorMeasureSelected: Boolean(dataSelection?.measures?.color),
+              measures: dataSelection?.measures
             }
           } else {
             const isColorMeasureSelected = Boolean(colorMeasure)
@@ -3938,7 +3943,7 @@ export const mapStateToProps = () => {
               dimColName: colorMeasure
                 ? colorMeasure.column?.value
                 : topnDimension.column?.value,
-              layerId: dataSelections[index].layerId,
+              layerId: dataSelections[index]?.layerId,
               topNoptions: layerData.filter(
                 (td) => `others${index}` !== td.key && !td.isAllOther
               ),
@@ -3951,7 +3956,7 @@ export const mapStateToProps = () => {
                 ? "measureTopNOptions"
                 : "topNoptions",
               legendCollapsed: Boolean(
-                collapsedLegendLayers?.[dataSelections[index].layerId]
+                collapsedLegendLayers?.[dataSelections[index]?.layerId]
               )
             }
           }
@@ -3959,14 +3964,14 @@ export const mapStateToProps = () => {
           return {
             type: "MEASURE",
             name: `Layer ${index + 1} - ${getDisplayOrParameterName(
-              dataSelection.table?.name
+              dataSelection?.table?.name
             )}`,
-            layerId: dataSelection.layerId,
+            layerId: dataSelection?.layerId,
             legendCollapsed: Boolean(
-              collapsedLegendLayers?.[dataSelection.layerId]
+              collapsedLegendLayers?.[dataSelection?.layerId]
             ),
-            isColorMeasureSelected: Boolean(dataSelection.measures.color),
-            measures: dataSelection.measures
+            isColorMeasureSelected: Boolean(dataSelection?.measures?.color),
+            measures: dataSelection?.measures
           }
         }
       })

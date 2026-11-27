@@ -1135,7 +1135,7 @@ export function buildBoundingBoxFilter({
     layer
   })
 
-  if (!mapZoomCenter || !rasterFilter) {
+  if (!mapZoomCenter?.bounds || !rasterFilter) {
     return undefined
   }
 

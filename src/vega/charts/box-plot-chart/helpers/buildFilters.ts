@@ -59,9 +59,10 @@ export const buildFilters = (
         )
         matchingData.forEach((datum) => {
           // TODO: when we implement layers, will need to store dataSelectionIndex on each val and reference here
-          const {
-            dimensions: { xAxis: baseDimensions }
-          } = dataSelections[0]
+          const baseDimensions = dataSelections[0]?.dimensions?.xAxis
+          if (!baseDimensions?.length) {
+            return
+          }
           // Confusing that this property is table in the dim, but this is
           // the datasource, which can be a param ${stuff}. The column within the baseDimension
           // has the columns source table

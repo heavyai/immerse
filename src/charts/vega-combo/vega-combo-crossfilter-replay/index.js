@@ -290,7 +290,8 @@ export const VegaComboCrossFilterReplay = ({ chartId, chartAddonId }) => {
   const chart = useChart(chartId)
   const currentFilterSet = useCurrentFilterSet()
 
-  const columnType = chart.dataSelections[0].dimensions.xAxis[0].column.type
+  const columnType =
+    chart.dataSelections?.[0]?.dimensions?.xAxis?.[0]?.column?.type
 
   const rangeFilter = useSimpleFilters({
     chartId,
@@ -346,10 +347,10 @@ export const VegaComboCrossFilterReplay = ({ chartId, chartAddonId }) => {
 
   const setCrossFilter = useSetCrossFilter({
     chartId,
-    columns: [chart.dataSelections[0].dimensions.xAxis[0].column],
+    columns: [chart.dataSelections?.[0]?.dimensions?.xAxis?.[0]?.column],
     name: `zone${currentFilterSet.id}-chart${chartId}-crossfilter`,
     useGeneratedInternalId: false,
-    dataSource: chart.dataSelections[0].table.name
+    dataSource: chart.dataSelections?.[0]?.table?.name
   })
 
   const calculateDelta = useCallback(

@@ -48,7 +48,7 @@ export const buildBoxPlotQuery = ({
 }) => {
   const nullDimensionsEnabled =
     !querySpec.binSettings && querySpec.nullDimensionsEnabled
-  let sortColumnName = querySpec.sortColumn.col.name
+  let sortColumnName = querySpec.sortColumn?.col?.name ?? "measure0"
 
   const dimensions = querySpec.baseDimensions
   const sizeMeasureExprs = querySpec.sizeMeasures.map(
@@ -396,7 +396,7 @@ export const buildBoxPlotQuery = ({
               `dimension${index}`,
               "INT",
               "<",
-              querySpec.binSettings.numOfBins
+              querySpec.binSettings.numOfBins ?? 12
             )
           )
           const isNullFilterHaving = nullFilter(
@@ -438,7 +438,7 @@ export const buildBoxPlotQuery = ({
     ${sql.groupBy(groupBy)}
     ${sql.having(sql.and(having))}
     ${sql.orderBy(
-      `${colorMeasureAlias} ${querySpec.sortColumn.order} NULLS LAST`
+      `${colorMeasureAlias} ${querySpec.sortColumn?.order ?? "asc"} NULLS LAST`
     )}
     ${sql.limit(limit)}
   `
@@ -563,7 +563,7 @@ export const buildViolinPlotQuery = ({
     querySpec.violinDistributionPrecision ?? DEFAULT_VIOLIN_PRECISION
   const nullDimensionsEnabled =
     !querySpec.binSettings && querySpec.nullDimensionsEnabled
-  let sortColumnName = querySpec.sortColumn.col.name
+  let sortColumnName = querySpec.sortColumn?.col?.name ?? "measure0"
 
   const [min, max] = minmax ?? [0, 1]
 

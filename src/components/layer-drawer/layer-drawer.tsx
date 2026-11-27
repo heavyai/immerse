@@ -141,7 +141,7 @@ export const LayerDrawer: FC<ILayerDrawerProps> = ({
           <div className="layer-info">
             <p>
               {visibleCount} visible ({hiddenCount} hidden) • Current zoom
-              level: {currentZoomLevel.toFixed(2)}
+              level: {currentZoomLevel?.toFixed(2) ?? "N/A"}
             </p>
           </div>
         </div>

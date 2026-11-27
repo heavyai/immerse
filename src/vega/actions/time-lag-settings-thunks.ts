@@ -83,8 +83,11 @@ export const toggleBaseMeasureTimeLag = (
   const chart = getState().charts[chartId] as VegaComboChart
   const layerIndex = getLayerIndex(chart.dataSelections, layerId)
 
-  const sizeMeasures = chart.dataSelections[layerIndex].measures.size
-  const baseMeasure = sizeMeasures[measureIndex]
+  const sizeMeasures = chart.dataSelections[layerIndex]?.measures?.size
+  const baseMeasure = sizeMeasures?.[measureIndex]
+  if (!baseMeasure) {
+    return
+  }
 
   if (baseMeasure.linkedTimeLagId) {
     const timeLagId = baseMeasure.linkedTimeLagId
@@ -97,7 +100,7 @@ export const toggleBaseMeasureTimeLag = (
     }
   } else {
     const newMeasureIndex =
-      chart.dataSelections[layerIndex].measures.size.length
+      chart.dataSelections[layerIndex]?.measures?.size?.length ?? 0
     dispatch(
       createTimeLagMeasureFromBaseMeasure(
         chartId,

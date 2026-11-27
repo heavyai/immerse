@@ -64,8 +64,8 @@ const DataSelectionPanelComponent: FC<Props> = ({
   const currentLayerIndex = dataSelections ? dataSelections.length - 1 : 0
   const isCurrentLayerAllRequiredStateSatisfied =
     dataSelections &&
-    dataSelections[currentLayerIndex].dimensions.xAxis.length > 0 &&
-    dataSelections[currentLayerIndex].measures.size.length > 0
+    dataSelections[currentLayerIndex]?.dimensions?.xAxis?.length > 0 &&
+    dataSelections[currentLayerIndex]?.measures?.size?.length > 0
 
   const joinDataSources = useSelector((state) => state.joinDataSources)
 

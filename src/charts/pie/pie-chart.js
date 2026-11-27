@@ -60,7 +60,7 @@ export function createPieChart(crossFilter) {
         .othersGrouper(false)
         .externalRadiusPadding(PIE_EXTERNAL_RADIUS_PADDING)
         .pieStyle(chartSpec.pieStyle || "donut")
-        .ordering(chartSpec.sortColumn.order)
+        .ordering(chartSpec.sortColumn?.order)
         .measureLabelsOn(true)
 
       const mapping = store
@@ -105,7 +105,9 @@ export function createPieChart(crossFilter) {
         allOthersEnabledForPieMeasure(sizeMeasure) &&
         chartSpec.showAllOthers
 
-      measures.order(chartSpec.sortColumn.col.name)
+      if (chartSpec.sortColumn?.col?.name) {
+        measures.order(chartSpec.sortColumn.col.name)
+      }
       PieChart.dimension(dimensions).group(measures)
       PieChart.showNullDimensions(chartSpec.showNullDimensions)
       PieChart.showAbsoluteValues(chartSpec.showAbsoluteValues)

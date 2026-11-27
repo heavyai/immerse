@@ -26,7 +26,7 @@ function mapStateToProps(state) {
     ),
     canEditDashboard: Boolean(
       state.connection.isSuperuser ||
-        (!state.connection.isDemo && state.dashboard.privileges.editDashboard)
+        (!state.connection.isDemo && state.dashboard.privileges?.editDashboard)
     )
   }
 }

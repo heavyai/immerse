@@ -10,4 +10,4 @@ import {
 // in which case they need `editDashboard` permissions
 export const userCanEditDashboard = (privileges) =>
   !getFeatureFlag(available_feature_flags.RESTRICTED_VIEWING) ||
-  privileges.editDashboard
+  privileges?.editDashboard

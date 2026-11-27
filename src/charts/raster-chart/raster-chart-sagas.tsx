@@ -695,11 +695,13 @@ export function* handleCreateRasterChart({
           yield call(RasterChart.geocoder, geoCoder)
         }
         yield* setRasterChartSettings({ chartId, chartSpec }, RasterChart)
-        if (chartSpec.mapZoomCenter) {
+        if (chartSpec.mapZoomCenter?.center) {
           yield call(RasterChart.center, [
             chartSpec.mapZoomCenter.center.lng,
             chartSpec.mapZoomCenter.center.lat
           ])
+        }
+        if (typeof chartSpec.mapZoomCenter?.zoom === "number") {
           yield call(RasterChart.zoom, chartSpec.mapZoomCenter.zoom)
         }
       }

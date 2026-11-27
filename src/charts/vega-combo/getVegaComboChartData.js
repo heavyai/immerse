@@ -9,13 +9,14 @@ const getVegaComboChartData = (chart, data = {}) => {
   return layerKeys.map((k) => {
     const layer = data[k]
     const idx = k.replace(/\D+/g, "")
+    const dataSelection = chart.dataSelections?.[idx]
     return layer.map((point) => ({
       ...point,
-      dimLabel: chart.dataSelections[idx].dimensions.xAxis[0].column.label,
-      dimColumn: chart.dataSelections[idx].dimensions.xAxis[0].column.column,
-      measure: chart.dataSelections[idx].measures.size[0].type,
-      measureAggregate: chart.dataSelections[idx].measures.size[0].aggregate,
-      measureColumn: chart.dataSelections[idx].measures.size[0].column?.value
+      dimLabel: dataSelection?.dimensions?.xAxis?.[0]?.column?.label,
+      dimColumn: dataSelection?.dimensions?.xAxis?.[0]?.column?.column,
+      measure: dataSelection?.measures?.size?.[0]?.type,
+      measureAggregate: dataSelection?.measures?.size?.[0]?.aggregate,
+      measureColumn: dataSelection?.measures?.size?.[0]?.column?.value
     }))
   })
 }

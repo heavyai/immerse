@@ -109,17 +109,18 @@ const BoundingBoxFilter = ({ mapZoomCenter }) => {
   return (
     <div>
       <div>
-        Bounding box centered at ({formatCoordinate(mapZoomCenter.center.lat)},{" "}
-        {formatCoordinate(mapZoomCenter.center.lng)})
+        Bounding box centered at ({formatCoordinate(mapZoomCenter?.center?.lat)}
+        , {formatCoordinate(mapZoomCenter?.center?.lng)})
       </div>
       <ul>
         <li>
-          Between latitudes : ({formatCoordinate(mapZoomCenter.bounds.latMin)}{" "}
-          to {formatCoordinate(mapZoomCenter.bounds.latMax)})
+          Between latitudes : ({formatCoordinate(mapZoomCenter?.bounds?.latMin)}{" "}
+          to {formatCoordinate(mapZoomCenter?.bounds?.latMax)})
         </li>
         <li>
-          Between longitudes : ({formatCoordinate(mapZoomCenter.bounds.lonMin)}{" "}
-          to {formatCoordinate(mapZoomCenter.bounds.lonMax)})
+          Between longitudes : (
+          {formatCoordinate(mapZoomCenter?.bounds?.lonMin)} to{" "}
+          {formatCoordinate(mapZoomCenter?.bounds?.lonMax)})
         </li>
       </ul>
     </div>

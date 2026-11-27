@@ -42,7 +42,7 @@ function mapStateToProps(state) {
     ),
     canEditDashboard: Boolean(
       state.connection.isSuperuser ||
-        (!state.connection.isDemo && state.dashboard.privileges.editDashboard)
+        (!state.connection.isDemo && state.dashboard.privileges?.editDashboard)
     ),
     canViewKeyManager:
       getFeatureFlag(available_feature_flags.ENABLE_KEY_MANAGER) &&

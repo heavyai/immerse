@@ -15,11 +15,15 @@ export function setChartZoom(chartId, mapZoomCenter) {
 
     if (dcChart) {
       if (mapZoomCenter !== undefined) {
-        await dcChart.zoom(mapZoomCenter.zoom)
-        await dcChart.center([
-          mapZoomCenter.center.lng,
-          mapZoomCenter.center.lat
-        ])
+        if (typeof mapZoomCenter.zoom === "number") {
+          await dcChart.zoom(mapZoomCenter.zoom)
+        }
+        if (mapZoomCenter.center) {
+          await dcChart.center([
+            mapZoomCenter.center.lng,
+            mapZoomCenter.center.lat
+          ])
+        }
       } else {
         await dcChart.zoom(0)
       }

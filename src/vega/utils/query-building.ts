@@ -71,7 +71,10 @@ export function getBinnedDimExpression(
         throw new Error("Invalid minmax for binned numeric expression")
       }
 
-      const { numOfBins } = binSettings
+      // numOfBins may be missing/null on stale or hand-edited dashboard
+      // state; fall back to the default (see vega/utils/binning.ts) so we
+      // don't emit WIDTH_BUCKET(..., null), which the server rejects.
+      const numOfBins = binSettings.numOfBins ?? 12
       const { min, max } = minmax
       if (min >= max) {
         // Do NOT move the -1 inside the ${} - there is a bug in calcite that
