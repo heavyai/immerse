@@ -127,29 +127,29 @@ export default class ChartContainer extends Component {
       case CHART_TYPES.SCATTER:
         return {
           y:
-            this.props.chart.measures[1].axisLabel ||
-            this.props.chart.measures[1].label,
+            this.props.chart.measures[1]?.axisLabel ||
+            this.props.chart.measures[1]?.label,
           x:
-            this.props.chart.measures[0].axisLabel ||
-            this.props.chart.measures[0].label
+            this.props.chart.measures[0]?.axisLabel ||
+            this.props.chart.measures[0]?.label
         }
       case CHART_TYPES.BACKEND_SCATTER:
         return {
           y:
-            this.props.chart.measures[1].axisLabel ||
-            this.props.chart.measures[1].label,
+            this.props.chart.measures[1]?.axisLabel ||
+            this.props.chart.measures[1]?.label,
           x:
-            this.props.chart.measures[0].axisLabel ||
-            this.props.chart.measures[0].label
+            this.props.chart.measures[0]?.axisLabel ||
+            this.props.chart.measures[0]?.label
         }
       case CHART_TYPES.HEAT:
         return {
           y:
-            this.props.chart.dimensions[1].axisLabel ||
-            this.props.chart.dimensions[1].label,
+            this.props.chart.dimensions[1]?.axisLabel ||
+            this.props.chart.dimensions[1]?.label,
           x:
-            this.props.chart.dimensions[0].axisLabel ||
-            this.props.chart.dimensions[0].label
+            this.props.chart.dimensions[0]?.axisLabel ||
+            this.props.chart.dimensions[0]?.label
         }
       default:
         return {

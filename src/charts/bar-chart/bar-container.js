@@ -84,7 +84,7 @@ export function mapStateToProps(state, { id }) {
   ) // [SCAFFOLDING]: FIX ME
   const yLabel = yMeasures.map(getLabel).join(", ")
   const dimensions = chartState.dimensions.filter((d) => d.value)
-  const hasColorDimension = Boolean(chartState.dimensions[1].label)
+  const hasColorDimension = Boolean(chartState.dimensions[1]?.label)
   const hasOther = any((d) => d.key1 === CHARTS_DEFAULT_OTHER_ALIASES.other)(
     chartState.data || []
   )
@@ -144,7 +144,7 @@ export function mapStateToProps(state, { id }) {
       extract: dim.extract,
       binExtent: [dim.currentLowValue, dim.currentHighValue],
       keyType,
-      legendTitle: chartState.dimensions[1].label
+      legendTitle: chartState.dimensions[1]?.label
         ? process(chartState.dimensions[1].label, { useDisplayName: true })
         : "",
       legendIsEnabled: hasColorDimension || hasMultipleMeasures,

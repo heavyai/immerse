@@ -27,8 +27,8 @@ const mapStateToProps = (state: AppState) => {
     } = {}
   } = state
   return {
-    showDuplicateDashboard: userPrivileges.createDashboard,
-    showUpgradeCharts: dashboardPrivileges.editDashboard
+    showDuplicateDashboard: userPrivileges?.createDashboard,
+    showUpgradeCharts: dashboardPrivileges?.editDashboard
   }
 }
 

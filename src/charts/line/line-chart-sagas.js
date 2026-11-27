@@ -355,7 +355,7 @@ function* handleSeriesDimension(action) {
       yield put(
         addCustomColorDomain(
           action.id,
-          chart.dimensions[1].value,
+          chart.dimensions[1]?.value,
           focusChart.focus().series().selected().slice(),
           "other"
         )

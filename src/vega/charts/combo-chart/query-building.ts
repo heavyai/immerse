@@ -46,7 +46,7 @@ export const buildComboQuery = ({
 }) => {
   const nullDimensionsEnabled =
     !querySpec.binSettings && querySpec.nullDimensionsEnabled
-  let sortColumnName = querySpec.sortColumn.col.name
+  let sortColumnName = querySpec.sortColumn?.col?.name ?? "measure0"
 
   const dimensions = querySpec.baseDimensions
   const sizeMeasureExprs = querySpec.sizeMeasures.map((sizeMeasure) =>
@@ -237,7 +237,9 @@ export const buildComboQuery = ({
       ${sql.where(sql.and(where))}
       ${sql.groupBy(dimensions.map((_, index) => `key${index}`))}
       ${sql.orderBy(
-        `${subquerySortByDimAlias} ${querySpec.sortColumn.order} NULLS LAST`
+        `${subquerySortByDimAlias} ${
+          querySpec.sortColumn?.order ?? "asc"
+        } NULLS LAST`
       )}
       ${sql.limit(limit)}
     `
@@ -355,7 +357,7 @@ export const buildComboQuery = ({
               `dimension${index}`,
               "INT",
               "<",
-              querySpec.binSettings.numOfBins
+              querySpec.binSettings.numOfBins ?? 12
             )
           )
           const isNullFilterHaving = nullFilter(
@@ -400,7 +402,7 @@ export const buildComboQuery = ({
     ${sql.groupBy(groupBy)}
     ${sql.having(sql.and(having))}
     ${sql.orderBy(
-      `${colorMeasureAlias} ${querySpec.sortColumn.order} NULLS LAST`
+      `${colorMeasureAlias} ${querySpec.sortColumn?.order ?? "asc"} NULLS LAST`
     )}
     ${sql.limit(limit)}
   `

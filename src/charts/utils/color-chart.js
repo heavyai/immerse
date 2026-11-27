@@ -77,9 +77,9 @@ function customMultiLineAccessor(chart, color) {
 }
 
 export function shouldRemoveLegend(chart, color) {
-  if (chart.legend().legendType() !== color.type) {
+  if (!color || chart.legend().legendType() !== color.type) {
     return true
-  } else if (color.type === "custom" && !color.customDomain.length) {
+  } else if (color.type === "custom" && !color.customDomain?.length) {
     return true
   } else {
     return false
@@ -100,10 +100,12 @@ export function colorChartWithMeasure(
   }
 
   const colorRange =
-    color.type === "quantitative" ? color.val : defaultQuantitativeVal()
+    color?.type === "quantitative" && color.val?.length
+      ? color.val
+      : defaultQuantitativeVal()
   const colorScale = d3.scale
     .quantize()
-    .range(color.reverse ? colorRange.slice(0).reverse() : colorRange)
+    .range(color?.reverse ? colorRange.slice(0).reverse() : colorRange)
 
   if (data) {
     const sliceData = data.filter((datum) => !datum.isAllOthers)
@@ -127,7 +129,8 @@ export function colorChartWithMeasure(
 }
 
 function colorChartWithExistingData(chart, color, type) {
-  const colorValues = color.reverse ? color.val.slice(0).reverse() : color.val
+  const colorValues =
+    (color?.reverse ? color.val?.slice(0).reverse() : color?.val) ?? []
   if (type === "number") {
     chart.colors(colorValues)
   } else {
@@ -153,13 +156,13 @@ export function colorChartWithCustomColors(chart, color, dimensions) {
     const defaultOtherDomainAlias = aliasDefaultOtherDomain(
       color.defaultOtherDomain ||
         getColors(CHARTS_DEFAULT_COLORS).custom.defaultOtherDomain,
-      color.customDomain.length,
+      color.customDomain?.length,
       chart && chart.isMulti()
     )
     colorScale
-      .domain(color.customDomain.concat([defaultOtherDomainAlias]))
+      .domain((color.customDomain ?? []).concat([defaultOtherDomainAlias]))
       .range(
-        color.customRange.concat([
+        (color.customRange ?? []).concat([
           color.defaultOtherRange ||
             getColors(CHARTS_DEFAULT_COLORS).custom.defaultOtherRange
         ])
@@ -230,7 +233,7 @@ export default function colorChart(
         return callback(null, data)
       }
     })
-  } else if (color.isCustom && CHARTS[type].customColorable) {
+  } else if (color?.isCustom && CHARTS[type]?.customColorable) {
     colorChartWithCustomColors(chart, color, dimensions)
     return callback()
   } else {

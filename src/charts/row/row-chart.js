@@ -38,7 +38,7 @@ export function createRowChart(crossFilter) {
         .elasticX(chartSpec.elasticX)
         .cap(chartSpec.cap)
         .othersGrouper(false)
-        .ordering(chartSpec.sortColumn.order)
+        .ordering(chartSpec.sortColumn?.order)
         .xAxis()
         .tickFormat(formatNumber)
 
@@ -49,7 +49,9 @@ export function createRowChart(crossFilter) {
         "row",
         chartSpec
       )
-      measures.order(chartSpec.sortColumn.col.name)
+      if (chartSpec.sortColumn?.col?.name) {
+        measures.order(chartSpec.sortColumn.col.name)
+      }
       RowChart.dimension(dimensions).group(measures)
       RowChart.showNullDimensions(chartSpec.showNullDimensions)
 

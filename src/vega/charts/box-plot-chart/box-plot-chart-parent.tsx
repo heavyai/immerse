@@ -672,6 +672,9 @@ export const mapStateToProps = () => {
 
         const dataSelection = dataSelections[index]
         const layerTopNOptions = topNOptions[index]
+        if (!dataSelection) {
+          return []
+        }
 
         // pre-process and sort outlier data
         const outliersByDimension = {}
@@ -734,6 +737,9 @@ export const mapStateToProps = () => {
       const transformedViolinData = data?.flatMap(({ violinData }, index) => {
         const layerTopNOptions = topNOptions[index]
         const dataSelection = dataSelections[index]
+        if (!dataSelection) {
+          return []
+        }
         if (!violinData || violinData.length === 0) {
           return []
         } else {
@@ -748,7 +754,7 @@ export const mapStateToProps = () => {
       })
 
       const transformBoxPlotAndOutliersData = (source, index) => {
-        if (!source || source.length === 0) {
+        if (!source || source.length === 0 || !dataSelections[index]) {
           return []
         }
 

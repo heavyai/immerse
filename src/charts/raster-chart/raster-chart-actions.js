@@ -487,8 +487,8 @@ export function checkLayerVisibility(chartId, layerId) {
       const layer = chart.layers?.find((l, id) => id === layerId)
       if (layer) {
         const currentActive =
-          layer.zoomMinThreshold < chart.mapZoomCenter.zoom &&
-          layer.zoomMaxThreshold > chart.mapZoomCenter.zoom
+          layer.zoomMinThreshold < (chart.mapZoomCenter?.zoom ?? 0) &&
+          layer.zoomMaxThreshold > (chart.mapZoomCenter?.zoom ?? 0)
         if (layer.active && layer.activeZoomLevel !== currentActive) {
           const param = {}
           param[layerId] = currentActive
@@ -513,8 +513,10 @@ export function checkLayerVisibility(chartId, layerId) {
         const layerZoomMaxThreshold = chart.layers[id].zoomMaxThreshold || 22
 
         // we consider any negative zoom level from Mapbox map as zoom level 0.
-        const currentMapZoomCenterZoom =
-          chart.mapZoomCenter.zoom < 0 ? 0 : chart.mapZoomCenter.zoom
+        const currentMapZoomCenterZoom = Math.max(
+          0,
+          chart.mapZoomCenter?.zoom ?? 0
+        )
 
         const currentActive =
           layerZoomMinThreshold <= currentMapZoomCenterZoom &&
@@ -698,6 +700,7 @@ export function updateChartsZoom(chartId, mapZoomCenter) {
     // The originating chart has to have the linkedZoomEnabled flag ON
     // in order to propagate it's bbox filter to other synced charts
     if (
+      mapZoomCenter &&
       charts?.[chartId]?.linkedZoomEnabled &&
       getFeatureFlag(available_feature_flags.ENABLE_LINKED_ZOOM)
     ) {
@@ -712,8 +715,8 @@ export function updateChartsZoom(chartId, mapZoomCenter) {
           // comparing the originating chart map center and zoom level with other synced charts' zoom level and center
           if (
             dcChartMapZoom !== mapZoomCenter.zoom ||
-            mapZoomCenter.center.lng !== dcChartMapCenter.lng ||
-            mapZoomCenter.center.lat !== dcChartMapCenter.lat
+            mapZoomCenter.center?.lng !== dcChartMapCenter.lng ||
+            mapZoomCenter.center?.lat !== dcChartMapCenter.lat
           ) {
             dispatch(setChartZoom(id, mapZoomCenter))
           }
@@ -815,19 +818,19 @@ const getFilteredBboxQuery = (
     boundsField = { geomField: source.measures[0].value }
   } else if ([CHART_TYPES.GEOHEAT, CHART_TYPES.CONTOUR].includes(source.type)) {
     boundsField =
-      source.dimensions[0].type === "POINT"
+      source.dimensions[0]?.type === "POINT"
         ? { geomField: source.dimensions[0].value }
         : {
-            lonField: source.dimensions[0].value,
-            latField: source.dimensions[1].value
+            lonField: source.dimensions[0]?.value,
+            latField: source.dimensions[1]?.value
           }
   } else {
     boundsField =
-      source.measures[0].type === "POINT"
+      source.measures[0]?.type === "POINT"
         ? { geomField: source.measures[0].value }
         : {
-            lonField: source.measures[0].value,
-            latField: source.measures[1].value
+            lonField: source.measures[0]?.value,
+            latField: source.measures[1]?.value
           }
   }
 

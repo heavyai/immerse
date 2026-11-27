@@ -118,7 +118,7 @@ export function mapStateToProps(state): MappedProps {
       !getFeatureFlag(available_feature_flags.DISABLE_SQL_EDITOR),
     canEditDashboard: Boolean(
       state.connection.isSuperuser ||
-        (!state.connection.isDemo && state.dashboard.privileges.editDashboard)
+        (!state.connection.isDemo && state.dashboard.privileges?.editDashboard)
     ),
     route: state.router.location.pathname,
     coreVersion: state.connection.version,

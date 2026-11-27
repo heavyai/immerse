@@ -119,10 +119,10 @@ export function createHeatChart(crossFilter, dispatch, chartId) {
         .xBorderRadius(0)
         .yBorderRadius(0)
         .xAxisLabel(
-          chartSpec.dimensions[0].axisLabel || chartSpec.dimensions[0].label
+          chartSpec.dimensions[0]?.axisLabel || chartSpec.dimensions[0]?.label
         )
         .yAxisLabel(
-          chartSpec.dimensions[1].axisLabel || chartSpec.dimensions[1].label
+          chartSpec.dimensions[1]?.axisLabel || chartSpec.dimensions[1]?.label
         )
         .elasticX(chartSpec.elasticX)
         .elasticY(chartSpec.elasticY)
@@ -196,10 +196,10 @@ const heatUpdateMethods = {
 
     chart
       .xAxisLabel(
-        chartSpec.dimensions[0].axisLabel || chartSpec.dimensions[0].label
+        chartSpec.dimensions[0]?.axisLabel || chartSpec.dimensions[0]?.label
       )
       .yAxisLabel(
-        chartSpec.dimensions[1].axisLabel || chartSpec.dimensions[1].label
+        chartSpec.dimensions[1]?.axisLabel || chartSpec.dimensions[1]?.label
       )
   }
 }

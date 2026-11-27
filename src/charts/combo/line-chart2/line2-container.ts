@@ -387,7 +387,7 @@ export function mapStateToProps(state, { id, baseCrossfilter }) {
       binExtent,
       binningIsEnabled: Boolean(xDim.timeBin && !xDim.extract),
       keyType: getKeyTime(xDim),
-      legendTitle: chartState.dimensions[1].label || "Legend",
+      legendTitle: chartState.dimensions[1]?.label || "Legend",
       legendIsEnabled: Boolean(hasColorDimension || hasMultipleMeasures),
       xDomain:
         rangeBrushExtent || getXDomain(chartState.dimensions, xDim.extract),

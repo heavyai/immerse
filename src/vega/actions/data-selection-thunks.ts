@@ -230,13 +230,13 @@ export const setMeasure = (
   let markColor = undefined
   const cf = services
     .get("crossfilter")
-    .getCrossfilter(chart.dataSelections[layerIndex].table.name, chartId)
+    .getCrossfilter(chart.dataSelections[layerIndex]?.table?.name, chartId)
 
   // figure out if it's a new measure, if so apply color theme
   if (
     measureName === "size" &&
     measureIndex !== null &&
-    !chart.dataSelections[layerIndex].measures.size[measureIndex]
+    !chart.dataSelections[layerIndex]?.measures?.size?.[measureIndex]
   ) {
     // get color theme (custom)
     const theme = getUserConfigurableUISettings(state).colorPalettes.custom
