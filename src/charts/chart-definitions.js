@@ -34,6 +34,7 @@ import GaugeChartDefinition from "charts/gauge/definition"
 import SkewTChartDefinition from "charts/skewt/definition"
 import WindbarbDefinition from "charts/raster-chart/windbarb/definition"
 import ContourChartDefinition from "charts/raster-chart/contour/definition"
+import RastermapChartDefinition from "charts/raster-chart/rastermap/definition"
 import BoxPlotChartDefinition from "./box-plot/definition"
 
 let chartsAreDefined = false
@@ -72,6 +73,7 @@ function registerCharts() {
   registerChart(FEChoroplethDefinition)
   registerChart(iFrameChartDefinition)
   registerChart(ContourChartDefinition)
+  registerChart(RastermapChartDefinition)
 
   // these aren't actually visible
   registerChart(LineChartDefinition)

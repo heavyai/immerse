@@ -46,7 +46,7 @@ export type GeoHeatState = {
   sortColumn: Record<string, any>
   ticks: number
   title: string
-  type: "geoheat" | "pointmap" | "backendChoropleth" | "contour"
+  type: "geoheat" | "pointmap" | "backendChoropleth" | "contour" | "rastermap"
   width: number
   mapboxToken: string
   popupEnabled: boolean

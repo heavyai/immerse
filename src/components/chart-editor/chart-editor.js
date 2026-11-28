@@ -96,6 +96,7 @@ export const isMultiLayer = (chart, isPolyRasterEnabled) => {
     "deckgl-geoheat",
     "deckgl-choropleth",
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(chart.type)
   return isMultiLayerType || isPolyRasterAndEnabled || isCrossSectionAndEnabled

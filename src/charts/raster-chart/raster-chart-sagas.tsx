@@ -71,6 +71,13 @@ import {
   CONTOUR_LINE_LAYER_NAME,
   CONTOUR_POLYGON_LAYER_NAME
 } from "./contour"
+import {
+  createRastermapLayer,
+  handleUpdateRastermapSettings,
+  setRastermapMeasure,
+  updateRastermapMeasure,
+  RASTERMAP_LAYER_NAME
+} from "./rastermap"
 import { filter, intersection, keys, length, path, values } from "ramda"
 import APP_CONFIG from "constants/app-config"
 import d3 from "services/d3"
@@ -205,7 +212,9 @@ function shouldShowDrawTools(chartSpec) {
     !isCrossSectionType(chartSpec.type) &&
     // Contour only shows line tool if cross section is enabled, nothing if not.
     (chartSpec.type !== CHART_TYPES.CONTOUR ||
-      getFeatureFlag(available_feature_flags.ENABLE_CROSS_SECTION_CHART))
+      getFeatureFlag(available_feature_flags.ENABLE_CROSS_SECTION_CHART)) &&
+    // Rastermap does not participate in crossfiltering, so no draw tools
+    chartSpec.type !== CHART_TYPES.RASTERMAP
   )
 }
 
@@ -380,6 +389,18 @@ function* getRasterLayers(chartId, chartSpec) {
     rasterLayers.push([
       CONTOUR_LINE_LAYER_NAME,
       yield* createContourLayer(chartId)
+    ])
+  } else if (chartSpec.type === CHART_TYPES.RASTERMAP) {
+    rasterLayers.push([
+      RASTERMAP_LAYER_NAME,
+      yield* createRastermapLayer({
+        ...chartSpec,
+        colorDomain,
+        legendLocked,
+        currentLayer: currentLayerIndex || 0,
+        chartId,
+        opacity
+      })
     ])
   } else if (chartSpec.type === CHART_TYPES.CROSS_SECTION) {
     rasterLayers.push([
@@ -626,10 +647,13 @@ export function* handleCreateRasterChart({
 
       if (
         isGeoTypeSupportedRasterChart(chartSpec.type) ||
-        chartSpec.type === CHART_TYPES.CONTOUR
+        chartSpec.type === CHART_TYPES.CONTOUR ||
+        chartSpec.type === CHART_TYPES.RASTERMAP
       ) {
         // Backend Choropleth and Linemap requires geo poly or linestring columns
         // for some reason contour requires this as well, even though I'm not sure why
+        // Rastermap requires it so the mesh2d longitude/latitude geographic
+        // channels wrap the fields in conv_4326_900913
         yield call(RasterChart.useGeoTypes, true)
       }
 
@@ -1190,6 +1214,21 @@ export function* handleCombineLayers({ chartId, chartSpec: cSpec }) {
               ])
               break
 
+            case CHART_TYPES.RASTERMAP:
+              // The mesh2d layer requires geo types for the conv_4326_900913
+              // wrapping of its geographic channels
+              yield call(RasterChart.useGeoTypes, true)
+              rasterLayers.push([
+                RASTERMAP_LAYER_NAME,
+                yield call(createRastermapLayer, {
+                  ...layers[i],
+                  mapZoomCenter: chartSpec.mapZoomCenter,
+                  currentLayer: chartSpec.currentLayer,
+                  chartId,
+                  opacity
+                })
+              ])
+              break
             case CHART_TYPES.CROSS_SECTION:
               rasterLayers.push([
                 CHART_TYPES.CROSS_SECTION,
@@ -1391,6 +1430,9 @@ export function* handleUpdateRasterLayerSettings({ chartId, updates }) {
         case CHART_TYPES.CONTOUR:
           yield* handleUpdateContourSettings({ chartId })
           break
+        case CHART_TYPES.RASTERMAP:
+          yield* handleUpdateRastermapSettings({ chartId })
+          break
         default:
           break
       }
@@ -1419,6 +1461,8 @@ function* handleSetRasterChartMeasure({ chartId, selector, index }) {
     yield* setLinemapMeasure({ chartId, selector, index })
   } else if (type === CHART_TYPES.CONTOUR) {
     yield* setContourMeasure({ chartId, selector, index })
+  } else if (type === CHART_TYPES.RASTERMAP) {
+    yield* setRastermapMeasure({ chartId, selector, index })
   }
 }
 
@@ -1450,6 +1494,8 @@ function* handleUpdateMasterLayerSettings({ chartId, layerId }) {
     yield* handleUpdateLinemapSettings({ chartId, layerName, layerSpec })
   } else if (type === CHART_TYPES.CONTOUR) {
     yield* handleUpdateContourSettings({ chartId, layerId })
+  } else if (type === CHART_TYPES.RASTERMAP) {
+    yield* handleUpdateRastermapSettings({ chartId, layerName, layerSpec })
   } else if (type === CHART_TYPES.CROSS_SECTION) {
     yield* handleUpdateCrossSectionSettings({ chartId, layerName, layerSpec })
   } else if (type === CHART_TYPES.CROSS_SECTION_TERRAIN) {
@@ -1482,6 +1528,8 @@ function* handleRemoveRasterChartMeasure({ chartId }) {
       yield* handleUpdateLinemapSettings({ chartId })
     } else if (type === CHART_TYPES.CONTOUR) {
       yield* handleUpdateContourSettings({ chartId })
+    } else if (type === CHART_TYPES.RASTERMAP) {
+      yield* handleUpdateRastermapSettings({ chartId })
     }
   }
 }
@@ -1538,7 +1586,11 @@ function* handleAutoPopulateRasterChartMeasure({ chartId, columnMetaData }) {
   }
 
   let geoCols = []
-  if (type === "pointmap" || type === "geoheat") {
+  if (
+    type === "pointmap" ||
+    type === "geoheat" ||
+    type === CHART_TYPES.RASTERMAP
+  ) {
     geoCols = values(filter((col) => isPointOnlyGeo(col.type), columnMetaData))
   } else if (type === "linemap") {
     geoCols = values(filter((col) => isLineGeo(col.type), columnMetaData))
@@ -1550,9 +1602,13 @@ function* handleAutoPopulateRasterChartMeasure({ chartId, columnMetaData }) {
     yield setGeoSelector(geoCols[0])
     return
   } else if (
-    ["pointmap", "geoheat", CHART_TYPES.CONTOUR, CHART_TYPE_WINDBARB].includes(
-      type
-    )
+    [
+      "pointmap",
+      "geoheat",
+      CHART_TYPES.CONTOUR,
+      CHART_TYPES.RASTERMAP,
+      CHART_TYPE_WINDBARB
+    ].includes(type)
   ) {
     geoCols = values(filter((col) => isPointOtherGeo(col.type), columnMetaData))
 
@@ -1746,6 +1802,8 @@ function* handleUpdateRasterMeasureAgg(chartSpec) {
     yield* updatePolyMeasure({ chartId, index })
   } else if (type === CHART_TYPES.CONTOUR) {
     yield* updateContourMeasure({ chartId, index })
+  } else if (type === CHART_TYPES.RASTERMAP) {
+    yield* updateRastermapMeasure({ chartId, index })
   } else {
     return
   }

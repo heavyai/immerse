@@ -92,6 +92,7 @@ const isMultiLayer = (chart) => {
     "backendChoropleth",
     "linemap",
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(chart.type)
   return isMultiLayerType || isCrossSectionAndEnabled

@@ -89,7 +89,8 @@ export const shouldShowAggType = (
     selector.name === "geo" ||
     isNonGeoJoinedChoroplethColorMeasure ||
     isCrossSectionType(chartType) ||
-    chartType === CHART_TYPES.CONTOUR
+    chartType === CHART_TYPES.CONTOUR ||
+    chartType === CHART_TYPES.RASTERMAP
   ) {
     return false
   }
