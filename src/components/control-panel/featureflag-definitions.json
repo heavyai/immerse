@@ -432,6 +432,15 @@
     "permission": "super"
   },
   {
+    "key": "ui/enable_rastermap_chart",
+    "constant": "ENABLE_RASTERMAP_CHART",
+    "type": "boolean",
+    "description": "Enable the new raster mesh chart",
+    "default": false,
+    "beta": true,
+    "permission": "super"
+  },
+  {
     "key": "ui/enable_new_text_chart",
     "constant": "ENABLE_NEW_TEXT_CHART",
     "type": "boolean",

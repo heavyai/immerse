@@ -277,6 +277,7 @@ export function mergeProps(stateProps, dispatchProps, ownProps) {
       } else if (
         isRasterPointChart(stateProps.chartType) ||
         stateProps.chartType === CHART_TYPES.CONTOUR ||
+        stateProps.chartType === CHART_TYPES.RASTERMAP ||
         isCrossSectionType(stateProps.chartType)
       ) {
         dispatchProps.updateRasterColor(color)

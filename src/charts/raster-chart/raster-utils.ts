@@ -116,6 +116,13 @@ export function isLayerValid({ type, ...layer }) {
         layer.dimensions?.every((d) => d.value && !d.isError) &&
           layer.measures?.every((m) => m.value && !m.isError)
       )
+    case CHART_TYPES.RASTERMAP:
+      // x, y and color measures are all required for the mesh2d layer
+      return Boolean(
+        layer.measures &&
+          layer.measures.length === 3 &&
+          layer.measures.every((m) => m.value && !m.isError)
+      )
     case CHART_TYPE_WINDBARB:
       return Boolean(
         layer.measures?.every((m) => (m.value || !m.isRequired) && !m.isError)
@@ -183,6 +190,7 @@ export const isRasterChart = (type) =>
     CHART_TYPES.CROSS_SECTION,
     CHART_TYPES.CROSS_SECTION_TERRAIN,
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(type)
 
@@ -201,6 +209,7 @@ export const isMultiLayer = (type: string) => {
     "deckgl-geoheat",
     "deckgl-choropleth",
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(type)
   return isMultiLayerType || isCrossSectionAndEnabled
@@ -213,6 +222,7 @@ export const isGeoChart = (type) =>
     "backendChoropleth",
     "linemap",
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(type)
 // this const could be removed once we refactor and combine geoheat only functionality
@@ -225,6 +235,7 @@ export const isRasterChartButNotGeoheat = (type) =>
     CHART_TYPES.CROSS_SECTION,
     CHART_TYPES.CROSS_SECTION_TERRAIN,
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(type)
 
@@ -248,6 +259,7 @@ export const isBERendered = (type) =>
     CHART_TYPES.CROSS_SECTION,
     CHART_TYPES.CROSS_SECTION_TERRAIN,
     CHART_TYPES.CONTOUR,
+    CHART_TYPES.RASTERMAP,
     CHART_TYPE_WINDBARB
   ].includes(type)
 
